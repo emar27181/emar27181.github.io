@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
+import {Template} from './pages/template'
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
             Home
           </NavLink>
         </li>
-        
+
         <li>
           <NavLink activeClassName="active" to="/template">
             Template
@@ -55,9 +56,7 @@ function App() {
 function Home() {
   return <h2>Home</h2>;
 }
-function Template() {
-  return <h2>Template</h2>;
-}
+
 function Contact() {
   return <h2>Contact</h2>;
 }
