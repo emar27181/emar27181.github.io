@@ -2,7 +2,9 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
-import {Template} from './pages/template'
+import { Template } from './pages/template'
+import { UniqueBrush } from './pages/UniqueBrush'
+import { LineGame } from './pages/LineGame'
 
 function App() {
 
@@ -24,10 +26,17 @@ function App() {
         </li>
 
         <li>
-          <NavLink activeClassName="active" to="/contact">
-            Contact
+          <NavLink activeClassName="active" to="/uniqueBrush">
+            UniqueBrush
           </NavLink>
         </li>
+
+        <li>
+          <NavLink activeClassName="active" to="/lineGame">
+            LineGame
+          </NavLink>
+        </li>
+
       </ul>
 
       <Switch>
@@ -39,8 +48,12 @@ function App() {
           <Template />
         </Route>
 
-        <Route path="/contact">
-          <Contact />
+        <Route path="/uniqueBrush">
+          <UniqueBrush />
+        </Route>
+
+        <Route path="/lineGame">
+          <LineGame />
         </Route>
 
         <Route>
@@ -57,13 +70,8 @@ function Home() {
   return <h2>Home</h2>;
 }
 
-function Contact() {
-  return <h2>Contact</h2>;
-}
 function NotFound() {
   return <h2>Not Found Page</h2>;
 }
-
-
 
 export default App
