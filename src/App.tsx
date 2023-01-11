@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import {Template} from './pages/template'
+import {LineGame} from './pages/LineGame'
 
 function App() {
 
@@ -28,6 +29,13 @@ function App() {
             Contact
           </NavLink>
         </li>
+
+        <li>
+          <NavLink activeClassName="active" to="/lineGame">
+            LineGame
+          </NavLink>
+        </li>
+
       </ul>
 
       <Switch>
@@ -39,8 +47,8 @@ function App() {
           <Template />
         </Route>
 
-        <Route path="/contact">
-          <Contact />
+        <Route path="/lineGame">
+          <LineGame />
         </Route>
 
         <Route>
