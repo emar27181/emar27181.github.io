@@ -15,11 +15,13 @@ function App() {
             Home
           </NavLink>
         </li>
+        
         <li>
-          <NavLink activeClassName="active" to="/about">
-            About
+          <NavLink activeClassName="active" to="/template">
+            Template
           </NavLink>
         </li>
+
         <li>
           <NavLink activeClassName="active" to="/contact">
             Contact
@@ -31,12 +33,15 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/about">
-          <About />
+
+        <Route path="/template">
+          <Template />
         </Route>
+
         <Route path="/contact">
           <Contact />
         </Route>
+
         <Route>
           <NotFound />
         </Route>
@@ -50,8 +55,8 @@ function App() {
 function Home() {
   return <h2>Home</h2>;
 }
-function About() {
-  return <h2>About</h2>;
+function Template() {
+  return <h2>Template</h2>;
 }
 function Contact() {
   return <h2>Contact</h2>;
