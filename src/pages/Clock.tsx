@@ -2,7 +2,7 @@ import '../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
-export function Time() {
+export function Clock() {
   const sketch = (p: P5CanvasInstance) => {
     const color1 = p.color("#ffffff"); //描画色1(白)
     const color2 = p.color("#000000"); //描画色2(黒)
@@ -25,4 +25,4 @@ export function Time() {
   )
 }
 
-export default Time
+export default Clock
