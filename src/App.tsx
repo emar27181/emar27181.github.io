@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import { Template } from './pages/template'
 import { UniqueBrush } from './pages/UniqueBrush'
 import { LineGame } from './pages/LineGame'
-import { Time } from './pages/Time'
+import { Clock } from './pages/Clock'
 
 function App() {
 
@@ -39,8 +39,8 @@ function App() {
         </li>
 
         <li>
-          <NavLink activeClassName="active" to="/time">
-            Time
+          <NavLink activeClassName="active" to="/clock">
+            Clock
           </NavLink>
         </li>
 
@@ -63,8 +63,8 @@ function App() {
           <LineGame />
         </Route>
 
-        <Route path="/time">
-          <Time />
+        <Route path="/clock">
+          <Clock />
         </Route>
 
         <Route>
