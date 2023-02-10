@@ -6,6 +6,7 @@ import { Template } from './pages/template'
 import { UniqueBrush } from './pages/UniqueBrush'
 import { LineGame } from './pages/LineGame'
 import { Clock } from './pages/Clock'
+import { Camera } from './pages/camera';
 
 function App() {
 
@@ -44,6 +45,12 @@ function App() {
           </NavLink>
         </li>
 
+        <li>
+          <NavLink activeClassName="active" to="/camera">
+            Camera
+          </NavLink>
+        </li>
+
       </ul>
 
       <Switch>
@@ -65,6 +72,10 @@ function App() {
 
         <Route path="/clock">
           <Clock />
+        </Route>
+
+        <Route path="/camera">
+          <Camera />
         </Route>
 
         <Route>
