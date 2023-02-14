@@ -6,7 +6,8 @@ import { Template } from './pages/template'
 import { UniqueBrush } from './pages/UniqueBrush'
 import { LineGame } from './pages/LineGame'
 import { Clock } from './pages/Clock'
-import { Camera } from './pages/camera';
+import { Camera } from './pages/camera'
+import { ClockCircle} from './pages/ClockCircle'
 
 function App() {
 
@@ -63,7 +64,7 @@ function App() {
 
         <Route path="/clock">
           <Clock />
-          <Template />
+          <ClockCircle/>
         </Route>
 
         <Route path="/camera">
