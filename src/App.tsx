@@ -15,15 +15,10 @@ function App() {
       <h1>Hello React Router!!</h1>
 
       <ul>
+        
         <li>
           <NavLink activeClassName="active" exact to="/">
             Home
-          </NavLink>
-        </li>
-
-        <li>
-          <NavLink activeClassName="active" to="/template">
-            Template
           </NavLink>
         </li>
 
@@ -58,10 +53,6 @@ function App() {
           <Home />
         </Route>
 
-        <Route path="/template">
-          <Template />
-        </Route>
-
         <Route path="/uniqueBrush">
           <UniqueBrush />
         </Route>
@@ -72,6 +63,7 @@ function App() {
 
         <Route path="/clock">
           <Clock />
+          <Template />
         </Route>
 
         <Route path="/camera">
