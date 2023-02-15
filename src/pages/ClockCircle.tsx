@@ -54,11 +54,25 @@ export function ClockCircle() {
         p.fill(gray);
         p.ellipse(p.width * Math.random(), p.height * Math.random(), minutesSize, minutesSize);
       }
+
       if (preSeconds != time.getSeconds()) {
         isSecondsChanged = true;
         preSeconds = time.getSeconds();
+
+        let dx = 2 * secondsSize * p.random() - secondsSize;
+        let dy = p.sqrt(4*secondsSize*secondsSize - dx * dx);
+        if (p.random() > 0.5) { dy = -dy; }
+        let x = preX + dx/2;
+        let y = preY + dy/2;
+
+        console.log("preX: " + preX + ", preY: " + preY + ",\n dx: " + dx + ", dy: " + dy + ",\n x: "+  x + ", y: " + y);
+        console.log("distance: " + p.sqrt( dx * dx + dy * dy));
+
         p.fill(darkgray);
-        p.ellipse(p.width * Math.random(), p.height * Math.random(), secondsSize, secondsSize);
+        p.ellipse(x, y, secondsSize, secondsSize);
+
+        preX = x;
+        preY = y;
 
       }
 
