@@ -2,6 +2,8 @@ import '../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
+const CANVAS_SIZE = 512;
+
 export function ClockCircle() {
   const sketch = (p: P5CanvasInstance) => {
     const white = p.color('#ffffff'); //描画色1(白)
@@ -10,7 +12,7 @@ export function ClockCircle() {
     const black = p.color("#000000"); //描画色2(黒)
 
     p.setup = () => {
-      p.createCanvas(512, 512); //キャンバスの作成
+      p.createCanvas(CANVAS_SIZE, CANVAS_SIZE); //キャンバスの作成
       p.background("#000000"); // 背景色を設定(黒)
       //p.noStroke(); // 線なし（塗りつぶしのみ）に設定
     };
@@ -25,7 +27,7 @@ export function ClockCircle() {
 
     let isFirst = true;
 
-    let preX = 0, preY = 0;
+    let preX = CANVAS_SIZE / 2, preY = CANVAS_SIZE / 2;
 
     p.draw = () => {
       p.frameRate(1);
@@ -34,9 +36,6 @@ export function ClockCircle() {
       let hours = time.getHours();
       let minutes = time.getMinutes();
       let seconds = time.getSeconds();
-
-      //console.log("preHours: " + preHours + ", time.getHours(): " + time.getHours() + ", isHoursChanged: " + isHoursChanged);
-      // console.log("isFirst: " + isFirst);
 
       const hoursSize = 30;
       const minutesSize = 20;
@@ -57,10 +56,8 @@ export function ClockCircle() {
       }
       if (preSeconds != time.getSeconds()) {
         isSecondsChanged = true;
-        // console.log("preSeconds: " + preSeconds + ", time.getSeconds: " + time.getSeconds() + ", isSecondsChanged: " + isSecondsChanged);
         preSeconds = time.getSeconds();
         p.fill(darkgray);
-        //何故か白色で描画されてしまう
         p.ellipse(p.width * Math.random(), p.height * Math.random(), secondsSize, secondsSize);
 
       }
