@@ -59,14 +59,34 @@ export function ClockCircle() {
         isSecondsChanged = true;
         preSeconds = time.getSeconds();
 
-        let dx = 2 * secondsSize * p.random() - secondsSize;
-        let dy = p.sqrt(4*secondsSize*secondsSize - dx * dx);
-        if (p.random() > 0.5) { dy = -dy; }
-        let x = preX + dx/2;
-        let y = preY + dy/2;
+        let x = 0, y = 0;
 
-        console.log("preX: " + preX + ", preY: " + preY + ",\n dx: " + dx + ", dy: " + dy + ",\n x: "+  x + ", y: " + y);
-        console.log("distance: " + p.sqrt( dx * dx + dy * dy));
+        // while (true) {
+        let dx = 2 * secondsSize * p.random() - secondsSize;
+        let dy = p.sqrt(4 * secondsSize * secondsSize - dx * dx);
+        if (p.random() > 0.5) { dy = -dy; }
+        x = preX + dx / 2;
+        y = preY + dy / 2;
+
+        console.log("preX: " + preX + ", preY: " + preY + ",\n dx: " + dx + ", dy: " + dy + ",\n x: " + x + ", y: " + y);
+        console.log("distance: " + p.sqrt(dx * dx + dy * dy));
+        /*
+          let r = secondsSize;
+          let canBePainted = true;
+          for (let i = x - r; i < x + r; i++) {
+            for (let j = y - r; j < y + r; j++) {
+              let distance = p.sqrt((x - i) * (x - i) + (y - j) * (y - j));
+              if (distance < r) {
+                let color = p.get(i, j); //塗られていない場合、color[0] = 0となる
+                if (color[0] != 0) { canBePainted = false;}
+              }
+            }
+          }
+          if (canBePainted) {
+            break;
+          }
+          */
+        //}
 
         p.fill(darkgray);
         p.ellipse(x, y, secondsSize, secondsSize);
