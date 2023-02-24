@@ -12,35 +12,39 @@ export function Camera() {
       p.createCanvas(512, 512);
       capture = p.createCapture(p.VIDEO);
       capture.hide();
-      p.frameRate(1);
+      p.noStroke();
+      //p.frameRate(1);
     };
 
-    p.draw = () => {
-      p.background(220);
-      let img = capture.get();
-      p.image(img, 0, 0);
+    let x = 100, y = 100, dx = 20, dy = 10;
 
-      
-      
-      /*
+    p.draw = () => {
+      let img = capture.get();
+      p.image(img, p.width-1, p.height-1);
+
       //読み込みを行うと重すぎて画面が固まってしまう
+      /*
       for (let i = 0; i < p.width; i++) {
         for(let j = 0; j < p.height; j++){
           let getColor = p.get(i,j);
-          p.fill(getColor[0] + 10 , getColor[1] + 10, getColor[2] + 10, getColor[3]);
-          p.rect(i, j, 1, 1);
+          p.fill(getColor[0]  , getColor[1] , getColor[2] , 0);
+          //console.log("[0]: " + getColor[0] + ", [1]: " + getColor[1] + ", [2]: " + getColor[2]+ ", [3]: " + getColor[3]);
+          //p.rect(i, j, 1, 1);
         }
       }
       */
-
       
-      
-      
-      let getColor = p.get(p.width/2, p.height/2);
+      let getColor = p.get(p.width-1, p.height-1);
       console.log(getColor);
-      console.log(getColor[0]);
-      
+      p.fill(getColor);
 
+      x += dx;
+      y += dy;
+      if(x < 0 || x > p.width){ dx = -dx;}
+      if(y < 0 || y > p.height){ dy = -dy;}
+
+
+      p.ellipse(x, y, 30, 30);
     };
   }
 
