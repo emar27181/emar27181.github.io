@@ -6,7 +6,7 @@ import { Template } from './pages/template'
 import { UniqueBrush } from './pages/UniqueBrush'
 import { LineGame } from './pages/LineGame'
 import { Clock } from './pages/Clock'
-import { Camera } from './pages/camera'
+import { CameraColorBall } from './pages/cameraColorBall'
 import { ClockCircle} from './pages/ClockCircle'
 
 function App() {
@@ -68,7 +68,7 @@ function App() {
         </Route>
 
         <Route path="/camera">
-          <Camera />
+          <CameraColorBall />
         </Route>
 
         <Route>
