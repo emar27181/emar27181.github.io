@@ -3,7 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { Element } from 'p5';
 
-export function Camera() {
+export function CameraMosaic() {
   const sketch = (p: P5CanvasInstance) => {
 
     let capture: Element;
@@ -21,6 +21,14 @@ export function Camera() {
       let img = capture.get();
       p.image(img, 0, 0);
 
+      for (let i = 0; i < p.width; i += 10) {
+        for (let j = 0; j < p.height; j += 10) {
+          p.fill(p.get(i, j));
+          //p.ellipse(i, j, 15, 15);
+          p.rect(i, j, 10,  10);
+        }
+      }
+
     };
   }
 
@@ -29,4 +37,4 @@ export function Camera() {
   )
 }
 
-export default Camera
+export default CameraMosaic

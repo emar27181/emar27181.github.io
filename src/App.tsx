@@ -6,8 +6,11 @@ import { Template } from './pages/template'
 import { UniqueBrush } from './pages/UniqueBrush'
 import { LineGame } from './pages/LineGame'
 import { Clock } from './pages/Clock'
+import { CameraColorBall } from './pages/cameraColorBall'
 import { Camera } from './pages/camera'
-import { ClockCircle} from './pages/ClockCircle'
+import { CameraMosaic } from './pages/CameraMosaic'
+import { ClockCircle } from './pages/ClockCircle'
+
 
 function App() {
 
@@ -16,7 +19,7 @@ function App() {
       <h1>Hello React Router!!</h1>
 
       <ul>
-        
+
         <li>
           <NavLink activeClassName="active" exact to="/">
             Home
@@ -64,11 +67,13 @@ function App() {
 
         <Route path="/clock">
           <Clock />
-          <ClockCircle/>
+          <ClockCircle />
         </Route>
 
         <Route path="/camera">
           <Camera />
+          <CameraColorBall />
+          <CameraMosaic />
         </Route>
 
         <Route>
