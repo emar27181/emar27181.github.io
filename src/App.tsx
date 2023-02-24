@@ -8,7 +8,9 @@ import { LineGame } from './pages/LineGame'
 import { Clock } from './pages/Clock'
 import { CameraColorBall } from './pages/cameraColorBall'
 import { Camera } from './pages/camera'
+import { CameraMosaic } from './pages/CameraMosaic'
 import { ClockCircle } from './pages/ClockCircle'
+
 
 function App() {
 
@@ -71,6 +73,7 @@ function App() {
         <Route path="/camera">
           <Camera />
           <CameraColorBall />
+          <CameraMosaic />
         </Route>
 
         <Route>
