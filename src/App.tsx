@@ -11,12 +11,13 @@ import { CameraMosaic } from './pages/CameraMosaic'
 import { ClockCircle } from './pages/ClockCircle'
 import { ClockColor } from './pages/ClockColor'
 import { ClockColorCircle } from './pages/ClockColorCircle'
+import { Home } from './views/home'
 
 function App() {
 
   return (
     <BrowserRouter>
-      <h1>p5.js演習ブラウザへようこそ!!</h1>
+      <h1>p5.js演習ブラウザ</h1>
 
       <ul>
 
@@ -50,6 +51,8 @@ function App() {
         </NavLink>
 
       </ul>
+
+      <div className = "red">※上記はメニューバーです。</div>
 
       <Switch>
         <Route exact path="/">
@@ -87,10 +90,6 @@ function App() {
 }
 
 // ルーティング先の処理
-function Home() {
-  return <h2>上記のリンク先をクリックすることで作品ページへジャンプします。</h2>;
-}
-
 function NotFound() {
   return <h2>Not Found Page</h2>;
 }
