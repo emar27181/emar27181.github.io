@@ -10,7 +10,7 @@ import { CameraColorBall } from './pages/cameraColorBall'
 import { Camera } from './pages/camera'
 import { CameraMosaic } from './pages/CameraMosaic'
 import { ClockCircle } from './pages/ClockCircle'
-
+import { ClockColor } from './pages/ClockColor'
 
 function App() {
 
@@ -68,6 +68,7 @@ function App() {
         <Route path="/clock">
           <Clock />
           <ClockCircle />
+          <ClockColor />
         </Route>
 
         <Route path="/camera">
