@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import { Template } from './pages/template'
@@ -12,46 +11,39 @@ import { CameraMosaic } from './pages/CameraMosaic'
 import { ClockCircle } from './pages/ClockCircle'
 import { ClockColor } from './pages/ClockColor'
 import { ClockColorCircle } from './pages/ClockColorCircle'
+import { Home } from './views/home'
 
 function App() {
 
   return (
     <BrowserRouter>
-      <h1>Hello React Router!!</h1>
+      <h1>p5.js演習ブラウザ</h1>
 
       <ul>
 
-        <li>
-          <NavLink activeClassName="active" exact to="/">
-            Home
-          </NavLink>
-        </li>
+        <NavLink activeClassName="active" exact to="/">
+          Home
+        </NavLink><br />
 
-        <li>
-          <NavLink activeClassName="active" to="/uniqueBrush">
-            UniqueBrush
-          </NavLink>
-        </li>
+        <NavLink activeClassName="active" to="/uniqueBrush">
+          UniqueBrush
+        </NavLink><br />
 
-        <li>
-          <NavLink activeClassName="active" to="/lineGame">
-            LineGame
-          </NavLink>
-        </li>
+        <NavLink activeClassName="active" to="/lineGame">
+          LineGame
+        </NavLink><br />
 
-        <li>
-          <NavLink activeClassName="active" to="/clock">
-            Clock
-          </NavLink>
-        </li>
+        <NavLink activeClassName="active" to="/clock">
+          Clock
+        </NavLink><br />
 
-        <li>
-          <NavLink activeClassName="active" to="/camera">
-            Camera
-          </NavLink>
-        </li>
+        <NavLink activeClassName="active" to="/camera">
+          Camera
+        </NavLink>
 
       </ul>
+
+      <div className="red">※上記はメニューバー(のつもり)です。</div>
 
       <Switch>
         <Route exact path="/">
@@ -89,10 +81,6 @@ function App() {
 }
 
 // ルーティング先の処理
-function Home() {
-  return <h2>Home</h2>;
-}
-
 function NotFound() {
   return <h2>Not Found Page</h2>;
 }
