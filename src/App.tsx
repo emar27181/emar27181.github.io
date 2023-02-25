@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import { Template } from './pages/template'
@@ -17,39 +16,38 @@ function App() {
 
   return (
     <BrowserRouter>
-      <h1>Hello React Router!!</h1>
+      <h1>p5.js演習ブラウザへようこそ!!</h1>
 
       <ul>
 
-        <li>
-          <NavLink activeClassName="active" exact to="/">
-            Home
-          </NavLink>
-        </li>
 
-        <li>
-          <NavLink activeClassName="active" to="/uniqueBrush">
-            UniqueBrush
-          </NavLink>
-        </li>
+        <NavLink activeClassName="active" exact to="/">
+          Home
+        </NavLink>
 
-        <li>
-          <NavLink activeClassName="active" to="/lineGame">
-            LineGame
-          </NavLink>
-        </li>
+        <br />
 
-        <li>
-          <NavLink activeClassName="active" to="/clock">
-            Clock
-          </NavLink>
-        </li>
+        <NavLink activeClassName="active" to="/uniqueBrush">
+          UniqueBrush
+        </NavLink>
 
-        <li>
-          <NavLink activeClassName="active" to="/camera">
-            Camera
-          </NavLink>
-        </li>
+        <br />
+
+        <NavLink activeClassName="active" to="/lineGame">
+          LineGame
+        </NavLink>
+
+        <br />
+
+        <NavLink activeClassName="active" to="/clock">
+          Clock
+        </NavLink>
+
+        <br />
+
+        <NavLink activeClassName="active" to="/camera">
+          Camera
+        </NavLink>
 
       </ul>
 
@@ -90,7 +88,7 @@ function App() {
 
 // ルーティング先の処理
 function Home() {
-  return <h2>Home</h2>;
+  return <h2>上記のリンク先をクリックすることで作品ページへジャンプします。</h2>;
 }
 
 function NotFound() {
