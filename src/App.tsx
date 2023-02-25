@@ -21,30 +21,21 @@ function App() {
 
       <ul>
 
-
         <NavLink activeClassName="active" exact to="/">
           Home
-        </NavLink>
-
-        <br />
+        </NavLink><br />
 
         <NavLink activeClassName="active" to="/uniqueBrush">
           UniqueBrush
-        </NavLink>
-
-        <br />
+        </NavLink><br />
 
         <NavLink activeClassName="active" to="/lineGame">
           LineGame
-        </NavLink>
-
-        <br />
+        </NavLink><br />
 
         <NavLink activeClassName="active" to="/clock">
           Clock
-        </NavLink>
-
-        <br />
+        </NavLink><br />
 
         <NavLink activeClassName="active" to="/camera">
           Camera
@@ -52,7 +43,7 @@ function App() {
 
       </ul>
 
-      <div className = "red">※上記はメニューバーです。</div>
+      <div className="red">※上記はメニューバー(のつもり)です。</div>
 
       <Switch>
         <Route exact path="/">
