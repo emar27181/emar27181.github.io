@@ -12,6 +12,7 @@ import { ClockCircle } from './pages/ClockCircle'
 import { ClockColor } from './pages/ClockColor'
 import { ClockColorCircle } from './pages/ClockColorCircle'
 import { Home } from './views/home'
+import { GrowArt} from './pages/GrowArt'
 
 function App() {
 
@@ -39,7 +40,11 @@ function App() {
 
         <NavLink activeClassName="active" to="/camera">
           Camera
-        </NavLink>
+        </NavLink><br />
+
+        <NavLink activeClassName="active" to="/growArt">
+          GrowArt
+        </NavLink><br />
 
       </ul>
 
@@ -69,6 +74,10 @@ function App() {
           <Camera />
           <CameraColorBall />
           <CameraMosaic />
+        </Route>
+
+        <Route path="/growArt">
+          <GrowArt />
         </Route>
 
         <Route>
