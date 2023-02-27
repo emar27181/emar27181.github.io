@@ -11,8 +11,9 @@ import { CameraMosaic } from './pages/CameraMosaic'
 import { ClockCircle } from './pages/ClockCircle'
 import { ClockColor } from './pages/ClockColor'
 import { ClockColorCircle } from './pages/ClockColorCircle'
-import { Home } from './views/home'
 import { GrowArt} from './pages/GrowArt'
+import { Home } from './views/home'
+import CameraMosaicBall from './pages/CameraMosaicBall';
 
 function App() {
 
@@ -74,6 +75,7 @@ function App() {
           <Camera />
           <CameraColorBall />
           <CameraMosaic />
+          <CameraMosaicBall />
         </Route>
 
         <Route path="/growArt">
