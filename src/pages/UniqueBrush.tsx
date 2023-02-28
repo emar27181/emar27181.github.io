@@ -16,7 +16,7 @@ export function UniqueBrush() {
       //p.windowHeight: 464
       //p.width: 464
       //p.height: 648
-      p.createCanvas(p.windowWidth, p.windowHeight); //キャンバスの作成
+      p.createCanvas(512, 512); //キャンバスの作成
       p.background("#000000"); // 背景色を設定(白)
       p.noStroke(); // 線なし（塗りつぶしのみ）に設定
     };

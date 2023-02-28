@@ -9,13 +9,13 @@ export function CameraMosaicBall() {
     let capture: Element;
 
     p.setup = () => {
-      p.createCanvas(512, 512);
+      p.createCanvas(512, 480);
       capture = p.createCapture(p.VIDEO);
       capture.hide();
       p.noStroke();
     };
 
-    let x = 0, y = 0, dx = 10, dy = 5;
+    let x = 0, y = 0, dx = 4, dy = 2;
 
     p.draw = () => {
       let img = capture.get();
@@ -35,20 +35,15 @@ export function CameraMosaicBall() {
           p.rect(i, j, 10,  10);
         }
       }
-    
-      /*
-      let getColor = p.get(x, y);
-      let v = getColor[0];
-      if(getColor[1] > v){v = getColor[1];}
-      if(getColor[2] > v){v = getColor[2];}
-      if( v <= 128){ }
-      */
 
       let nextColorX = p.get(x + dx, y);
       let nextColorY = p.get(x, y + dy);
 
       if (nextColorX[0] != 0) { dx = -dx; }
       else if (nextColorY[0] != 0) { dy = -dy; }
+
+      //if (nextColorX[0] != 255) { dx = -dx; }
+      //else if (nextColorY[0] != 255) { dy = -dy; }
 
       if (x > p.width || x < 0) {
         dx = -dx;

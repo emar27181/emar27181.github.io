@@ -5,15 +5,12 @@ import { Template } from './pages/template'
 import { UniqueBrush } from './pages/UniqueBrush'
 import { LineGame } from './pages/LineGame'
 import { Clock } from './pages/Clock'
-import { CameraColorBall } from './pages/cameraColorBall'
-import { Camera } from './pages/camera'
-import { CameraMosaic } from './pages/CameraMosaic'
 import { ClockCircle } from './pages/ClockCircle'
 import { ClockColor } from './pages/ClockColor'
 import { ClockColorCircle } from './pages/ClockColorCircle'
-import { GrowArt} from './pages/GrowArt'
+import { GrowArt } from './pages/GrowArt'
 import { Home } from './views/home'
-import CameraMosaicBall from './pages/CameraMosaicBall';
+import { CameraHome} from './views/CameraHome'
 
 function App() {
 
@@ -72,10 +69,7 @@ function App() {
         </Route>
 
         <Route path="/camera">
-          <Camera />
-          <CameraColorBall />
-          <CameraMosaic />
-          <CameraMosaicBall />
+          <CameraHome />
         </Route>
 
         <Route path="/growArt">
