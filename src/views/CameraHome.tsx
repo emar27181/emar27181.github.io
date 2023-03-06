@@ -6,6 +6,7 @@ import { CameraColorBall } from '../pages/cameraColorBall'
 import { CameraMosaic } from '../pages/CameraMosaic'
 import { CameraMosaicArt } from '../pages/CameraMosaicArt'
 import { CameraMosaicBall } from '../pages/CameraMosaicBall'
+import {CameraTracking} from '../pages/CameraTracking'
 
 
 
@@ -35,6 +36,10 @@ export function CameraHome() {
           Camera Mosaic Ball
         </NavLink> <br />
 
+        <NavLink activeClassName="active" to="/cameraTracking">
+          Camera Tracking
+        </NavLink> <br />
+
       </ul>
 
       <switch>
@@ -57,6 +62,10 @@ export function CameraHome() {
 
         <Route path="/cameraMosaicBall" >
           <CameraMosaicBall />
+        </Route>
+
+        <Route path="/cameraTracking">
+          <CameraTracking/>
         </Route>
 
       </switch>
