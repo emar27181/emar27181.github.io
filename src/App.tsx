@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
-import { Template } from './pages/template'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { UniqueBrush } from './pages/UniqueBrush'
 import { LineGame } from './pages/LineGame'
 import { Clock } from './pages/Clock'
@@ -10,76 +11,69 @@ import { ClockColor } from './pages/ClockColor'
 import { ClockColorCircle } from './pages/ClockColorCircle'
 import { GrowArt } from './pages/GrowArt'
 import { Home } from './views/home'
-import { CameraHome} from './views/CameraHome'
+import { CameraHome } from './views/CameraHome'
+import { Navbar, Container } from 'react-bootstrap';
+import { WorkMenu } from './views/WorkMenu'
+
 
 function App() {
 
   return (
     <BrowserRouter>
-      <h1>p5.js演習ブラウザ</h1>
 
-      <ul>
+      <Navbar bg="dark" variant='dark'>
+        <Container>
+          <Navbar.Brand >
+            p5.js演習ブラウザ
+          </Navbar.Brand>
 
-        <NavLink activeClassName="active" exact to="/">
-          Home
-        </NavLink><br />
+          <NavLink activeClassName="active" exact to="/">
+            ホーム
+          </NavLink>
 
-        <NavLink activeClassName="active" to="/uniqueBrush">
-          UniqueBrush
-        </NavLink><br />
+          <NavLink activeClassName="active" exact to="/workMenu">
+            作品集
+          </NavLink>
 
-        <NavLink activeClassName="active" to="/lineGame">
-          LineGame
-        </NavLink><br />
+        </Container>
+        </Navbar><br/>
 
-        <NavLink activeClassName="active" to="/clock">
-          Clock
-        </NavLink><br />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
 
-        <NavLink activeClassName="active" to="/camera">
-          Camera
-        </NavLink><br />
+          <Route exact path="/workMenu">
+            <WorkMenu />
+          </Route>
 
-        <NavLink activeClassName="active" to="/growArt">
-          GrowArt
-        </NavLink><br />
+          <Route path="/uniqueBrush">
+            <UniqueBrush />
+          </Route>
 
-      </ul>
+          <Route path="/lineGame">
+            <LineGame />
+          </Route>
 
-      <div className="red">※上記はメニューバー(のつもり)です。</div>
+          <Route path="/clock">
+            <Clock />
+            <ClockCircle />
+            <ClockColor />
+            <ClockColorCircle />
+          </Route>
 
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
+          <Route path="/camera">
+            <CameraHome />
+          </Route>
 
-        <Route path="/uniqueBrush">
-          <UniqueBrush />
-        </Route>
+          <Route path="/growArt">
+            <GrowArt />
+          </Route>
 
-        <Route path="/lineGame">
-          <LineGame />
-        </Route>
-
-        <Route path="/clock">
-          <Clock />
-          <ClockCircle />
-          <ClockColor />
-          <ClockColorCircle />
-        </Route>
-
-        <Route path="/camera">
-          <CameraHome />
-        </Route>
-
-        <Route path="/growArt">
-          <GrowArt />
-        </Route>
-
-        <Route>
-          <NotFound />
-        </Route>
-      </Switch>
+          <Route>
+            <NotFound />
+          </Route>
+        </Switch>
     </BrowserRouter>
   );
 
