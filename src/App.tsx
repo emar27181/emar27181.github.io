@@ -10,9 +10,12 @@ import { ClockCircle } from './pages/ClockCircle'
 import { ClockColor } from './pages/ClockColor'
 import { ClockColorCircle } from './pages/ClockColorCircle'
 import { GrowArt } from './pages/GrowArt'
+import { BallsReflect } from './pages/BallsRefrect'
+
 import { Home } from './views/home'
 import { CameraHome } from './views/CameraHome'
-import { Navbar, Container } from 'react-bootstrap';
+
+import { Navbar, Container } from 'react-bootstrap'
 import { WorkMenu } from './views/WorkMenu'
 
 
@@ -68,6 +71,10 @@ function App() {
 
           <Route path="/growArt">
             <GrowArt />
+          </Route>
+
+          <Route path="/ballsReflect">
+            <BallsReflect />
           </Route>
 
           <Route>

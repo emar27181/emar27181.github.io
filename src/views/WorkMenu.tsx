@@ -25,6 +25,10 @@ export function WorkMenu() {
         <NavLink activeClassName="active" to="/growArt">
           GrowArt
         </NavLink><br />
+
+        <NavLink activeClassName="active" to="/ballsReflect">
+          BallsReflect
+        </NavLink><br />
       </ul>
 
     </div>
