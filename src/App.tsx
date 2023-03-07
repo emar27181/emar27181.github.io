@@ -10,9 +10,13 @@ import { ClockCircle } from './pages/ClockCircle'
 import { ClockColor } from './pages/ClockColor'
 import { ClockColorCircle } from './pages/ClockColorCircle'
 import { GrowArt } from './pages/GrowArt'
+import { BallsReflect } from './pages/BallsRefrect'
+import { BallsLoop} from './pages/BallsLoop'
+
 import { Home } from './views/home'
 import { CameraHome } from './views/CameraHome'
-import { Navbar, Container } from 'react-bootstrap';
+
+import { Navbar, Container } from 'react-bootstrap'
 import { WorkMenu } from './views/WorkMenu'
 
 
@@ -36,44 +40,52 @@ function App() {
           </NavLink>
 
         </Container>
-        </Navbar><br/>
+      </Navbar><br />
 
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
 
-          <Route exact path="/workMenu">
-            <WorkMenu />
-          </Route>
+        <Route exact path="/workMenu">
+          <WorkMenu />
+        </Route>
 
-          <Route path="/uniqueBrush">
-            <UniqueBrush />
-          </Route>
+        <Route path="/uniqueBrush">
+          <UniqueBrush />
+        </Route>
 
-          <Route path="/lineGame">
-            <LineGame />
-          </Route>
+        <Route path="/lineGame">
+          <LineGame />
+        </Route>
 
-          <Route path="/clock">
-            <Clock />
-            <ClockCircle />
-            <ClockColor />
-            <ClockColorCircle />
-          </Route>
+        <Route path="/clock">
+          <Clock />
+          <ClockCircle />
+          <ClockColor />
+          <ClockColorCircle />
+        </Route>
 
-          <Route path="/camera">
-            <CameraHome />
-          </Route>
+        <Route path="/camera">
+          <CameraHome />
+        </Route>
 
-          <Route path="/growArt">
-            <GrowArt />
-          </Route>
+        <Route path="/growArt">
+          <GrowArt />
+        </Route>
 
-          <Route>
-            <NotFound />
-          </Route>
-        </Switch>
+        <Route path="/ballsReflect">
+          <BallsReflect />
+        </Route>
+
+        <Route path="/ballsLoop">
+          <BallsLoop />
+        </Route>
+
+        <Route>
+          <NotFound />
+        </Route>
+      </Switch>
     </BrowserRouter>
   );
 

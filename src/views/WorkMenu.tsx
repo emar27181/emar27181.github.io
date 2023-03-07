@@ -1,6 +1,7 @@
 import '../App.css'
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route, Switch } from 'react-router-dom';
+
 
 export function WorkMenu() {
   return (
@@ -25,6 +26,15 @@ export function WorkMenu() {
         <NavLink activeClassName="active" to="/growArt">
           GrowArt
         </NavLink><br />
+
+        <NavLink activeClassName="active" to="/ballsReflect">
+          BallsReflect
+        </NavLink><br />
+
+        <NavLink activeClassName="active" to="/ballsLoop">
+          BallsLoop
+        </NavLink><br />
+
       </ul>
 
     </div>
