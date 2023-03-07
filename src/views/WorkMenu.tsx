@@ -35,6 +35,11 @@ export function WorkMenu() {
           BallsLoop
         </NavLink><br />
 
+        <NavLink activeClassName="active" to="/sound">
+          Sound
+        </NavLink><br />
+
+
       </ul>
 
     </div>
