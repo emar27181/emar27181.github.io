@@ -12,6 +12,7 @@ import { ClockColorCircle } from './pages/ClockColorCircle'
 import { GrowArt } from './pages/GrowArt'
 import { BallsReflect } from './pages/BallsRefrect'
 import { BallsLoop} from './pages/BallsLoop'
+import { Sound } from './pages/Sound'
 
 import { Home } from './views/home'
 import { CameraHome } from './views/CameraHome'
@@ -80,6 +81,10 @@ function App() {
 
         <Route path="/ballsLoop">
           <BallsLoop />
+        </Route>
+
+        <Route path="/sound">
+          <Sound />
         </Route>
 
         <Route>
