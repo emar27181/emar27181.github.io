@@ -44,12 +44,10 @@ export function BallsReflect() {
 
         if (balls[i].x > p.width || balls[i].x < 0) {
           balls[i].dx = -balls[i].dx;
-          //balls[i].x = -balls[i].dx;
         }
 
         if (balls[i].y > p.height || balls[i].y < 0) {
           balls[i].dy = -balls[i].dy;
-          //balls[i].y = -balls[i].dy;
         }
 
         balls[i].x += balls[i].dx;
