@@ -8,6 +8,8 @@ export function BallsReflect() {
     class Ball {
       x: number = 0;
       y: number = 0;
+      dx: number = 1;
+      dy: number = 2;
       r: number = 10;
 
       constructor(x: number, y: number, r: number) {
@@ -20,19 +22,41 @@ export function BallsReflect() {
     p.setup = () => {
       p.createCanvas(512, 512);
       p.background("#000000");
+      p.frameRate(30);
     };
 
     let balls: Array<Ball> = [];
+    let dx = 1, dy = 2;
 
     p.draw = () => {
       p.background("#000000");
 
-      //balls.push(new Ball(p.width / 2, p.height / 2, 10));
-      balls[0] = new Ball(p.width / 2, p.height / 2, 10);
-      balls[1] = new Ball(p.width / 2, 0, 10);
+      if (p.mouseIsPressed) {
+        balls.push(new Ball(p.mouseX, p.mouseY, 10));
+      }
 
-      p.ellipse(balls[0].x, balls[0].y, balls[0].r);
-      p.ellipse(balls[1].x, balls[1].y, balls[1].r);
+      for (let i = 0; i < balls.length; i++) {
+        let nextColorX = p.get(balls[i].x + dx, balls[i].y);
+        let nextColorY = p.get(balls[i].x, balls[i].y + dy);
+  
+        if (nextColorX[0] != 0) { balls[i].dx = -balls[i].dx; }
+        else if (nextColorY[0] != 0) { balls[i].dy = -balls[i].dy; }
+
+        if (balls[i].x > p.width || balls[i].x < 0) {
+          balls[i].dx = -balls[i].dx;
+          //balls[i].x = -balls[i].dx;
+        }
+
+        if (balls[i].y > p.height || balls[i].y < 0) {
+          balls[i].dy = -balls[i].dy;
+          //balls[i].y = -balls[i].dy;
+        }
+
+        balls[i].x += balls[i].dx;
+        balls[i].y += balls[i].dy;
+
+        p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
+      }
 
       p.fill(255);
       p.noStroke();
