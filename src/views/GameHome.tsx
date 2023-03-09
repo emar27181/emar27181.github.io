@@ -14,7 +14,7 @@ export function GameHome() {
     <BrowserRouter>
       <ul>
         <NavLink activeClassName="active" to="/lineGame">
-          LineGame
+          ブロック崩しもどき
         </NavLink> <br />
       </ul>
 
