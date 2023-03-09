@@ -1,6 +1,5 @@
 import '../App.css'
 import React from 'react';
-import { Camera } from '../pages/camera'
 import { BrowserRouter, Route, NavLink} from 'react-router-dom';
 
 import LineGame from '../pages/LineGame';

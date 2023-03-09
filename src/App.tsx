@@ -2,24 +2,13 @@ import { useState } from 'react'
 import './App.css'
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navbar, Container, Nav } from 'react-bootstrap'
 
-import { UniqueBrush } from './pages/UniqueBrush'
 import { LineGame } from './pages/LineGame'
-import { Clock } from './pages/Clock'
-import { ClockCircle } from './pages/ClockCircle'
-import { ClockColor } from './pages/ClockColor'
-import { ClockColorCircle } from './pages/ClockColorCircle'
-import { GrowArt } from './pages/GrowArt'
-import { BallsReflect } from './pages/BallsRefrect'
-import { BallsLoop } from './pages/BallsLoop'
-import { Sound } from './pages/Sound'
 import { Header } from './pages/Header'
 import { Preparation } from './pages/Preparation'
-
 import { Home } from './views/home'
 import { CameraHome } from './views/CameraHome'
-
-import { Navbar, Container, Nav } from 'react-bootstrap'
 import { WorkMenu } from './views/WorkMenu'
 import GameHome from './views/GameHome';
 import ClockHome from './views/ClockHome';
@@ -57,8 +46,6 @@ function App() {
         <Route exact path="/workMenu">
           <WorkMenu />
         </Route>
-
-
 
         <Route path="/lineGame">
           <LineGame />

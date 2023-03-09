@@ -1,8 +1,6 @@
 import '../App.css'
 import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
-import GameHome from './GameHome';
-
 
 export function WorkMenu() {
   return (
@@ -31,8 +29,6 @@ export function WorkMenu() {
         <NavLink activeClassName="active" to="/generativeHome">
           生成系
         </NavLink><br />
-
-
 
       </ul>
 
