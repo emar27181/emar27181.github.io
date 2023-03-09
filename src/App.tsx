@@ -14,13 +14,15 @@ import { BallsReflect } from './pages/BallsRefrect'
 import { BallsLoop } from './pages/BallsLoop'
 import { Sound } from './pages/Sound'
 import { Header } from './pages/Header'
-import {Preparation} from './pages/Preparation'
+import { Preparation } from './pages/Preparation'
 
 import { Home } from './views/home'
 import { CameraHome } from './views/CameraHome'
 
 import { Navbar, Container, Nav } from 'react-bootstrap'
 import { WorkMenu } from './views/WorkMenu'
+import GameHome from './views/GameHome';
+import ClockHome from './views/ClockHome';
 
 
 function App() {
@@ -62,15 +64,12 @@ function App() {
           <LineGame />
         </Route>
 
-        <Route path="/clock">
-          <Clock />
-          <ClockCircle />
-          <ClockColor />
-          <ClockColorCircle />
-        </Route>
-
         <Route path="/camera">
           <CameraHome />
+        </Route>
+
+        <Route path="/clockHome">
+          <ClockHome />
         </Route>
 
         <Route path="/growArt">
@@ -83,6 +82,10 @@ function App() {
 
         <Route path="/ballsLoop">
           <BallsLoop />
+        </Route>
+
+        <Route path="/gameHome">
+          <GameHome />
         </Route>
 
         <Route path="/sound">
