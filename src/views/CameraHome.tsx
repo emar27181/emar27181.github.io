@@ -18,27 +18,27 @@ export function CameraHome() {
     <BrowserRouter>
       <ul>
         <NavLink activeClassName="active" to="/camera">
-          Default Camera
+          通常カメラ
         </NavLink> <br />
 
         <NavLink activeClassName="active" to="/cameraColorBall">
-          Camera Color Ball
+          カメラに応じて色が変化するボール
         </NavLink> <br />
 
         <NavLink activeClassName="active" to="/cameraMosaic">
-          Camera Mosaic
+          モザイクカメラ
         </NavLink> <br />
 
         <NavLink activeClassName="active" to="/cameraMosaicArt">
-          Camera Mosaic Art
+          モザイクカメラアート
         </NavLink> <br />
 
         <NavLink activeClassName="active" to="/cameraMosaicBall">
-          Camera Mosaic Ball
+          モザイクカメラで反射するボール
         </NavLink> <br />
 
         <NavLink activeClassName="active" to="/cameraTracking">
-          Camera Tracking
+          トラッキングカメラ
         </NavLink> <br />
 
       </ul>
