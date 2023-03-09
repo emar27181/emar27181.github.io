@@ -28,8 +28,8 @@ export function WorkMenu() {
           ツール系
         </NavLink><br />
 
-        <NavLink activeClassName="active" to="/growArt">
-          GrowArt
+        <NavLink activeClassName="active" to="/generativeHome">
+          生成系
         </NavLink><br />
 
 

@@ -24,6 +24,7 @@ import { WorkMenu } from './views/WorkMenu'
 import GameHome from './views/GameHome';
 import ClockHome from './views/ClockHome';
 import ToolHome from './views/ToolHome';
+import GenerativeHome from './views/GenerativeHome';
 
 
 function App() {
@@ -71,10 +72,6 @@ function App() {
           <ClockHome />
         </Route>
 
-        <Route path="/growArt">
-          <GrowArt />
-        </Route>
-
         <Route path="/gameHome">
           <GameHome />
         </Route>
@@ -85,6 +82,10 @@ function App() {
 
         <Route path="/toolHome">
           <ToolHome />
+        </Route>
+
+        <Route path="/generativeHome">
+          <GenerativeHome />
         </Route>
 
         <Route>
