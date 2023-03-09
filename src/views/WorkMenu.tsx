@@ -1,6 +1,7 @@
 import '../App.css'
 import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
+import GameHome from './GameHome';
 
 
 export function WorkMenu() {
@@ -11,16 +12,16 @@ export function WorkMenu() {
           UniqueBrush
         </NavLink><br />
 
-        <NavLink activeClassName="active" to="/lineGame">
-          LineGame
+        <NavLink activeClassName="active" to="/gameHome">
+          ゲーム系
         </NavLink><br />
 
-        <NavLink activeClassName="active" to="/clock">
-          Clock
+        <NavLink activeClassName="active" to="/clockHome">
+          時計系
         </NavLink><br />
 
         <NavLink activeClassName="active" to="/camera">
-          Camera
+          カメラ系
         </NavLink><br />
 
         <NavLink activeClassName="active" to="/growArt">
@@ -38,7 +39,6 @@ export function WorkMenu() {
         <NavLink activeClassName="active" to="/sound">
           Sound
         </NavLink><br />
-
 
       </ul>
 
