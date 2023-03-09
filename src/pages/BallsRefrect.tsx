@@ -28,6 +28,7 @@ export function BallsReflect() {
     let balls: Array<Ball> = [];
     let dx = 1, dy = 2;
     let isChangeColor = false;
+    let isBallCollisionDetected = false;
 
     p.draw = () => {
       p.background("#000000");
@@ -36,24 +37,23 @@ export function BallsReflect() {
         balls.push(new Ball(p.mouseX, p.mouseY, 10));
       }
       if (p.keyIsPressed) {
-
-        if (p.key === "m") {
-          if(isChangeColor === true){isChangeColor = false;}
-          else{isChangeColor = true;}
-        }
+        if (p.key === "c") { isChangeColor = !isChangeColor; }
+        else if (p.key === "d") { isBallCollisionDetected = !isBallCollisionDetected; }
       }
 
       for (let i = 0; i < balls.length; i++) {
-        let nextColorX = p.get(balls[i].x + dx, balls[i].y);
-        let nextColorY = p.get(balls[i].x, balls[i].y + dy);
+        if (isBallCollisionDetected) {
+          let nextColorX = p.get(balls[i].x + dx, balls[i].y);
+          let nextColorY = p.get(balls[i].x, balls[i].y + dy);
 
-        if (nextColorX[0] != 0) {
-          balls[i].dx = -balls[i].dx;
-          balls[i].boundCount++;
-        }
-        else if (nextColorY[0] != 0) {
-          balls[i].dy = -balls[i].dy;
-          balls[i].boundCount++;
+          if (nextColorX[0] != 0) {
+            balls[i].dx = -balls[i].dx;
+            balls[i].boundCount++;
+          }
+          else if (nextColorY[0] != 0) {
+            balls[i].dy = -balls[i].dy;
+            balls[i].boundCount++;
+          }
         }
 
         if (balls[i].x > p.width || balls[i].x < 0) {
@@ -69,8 +69,8 @@ export function BallsReflect() {
         balls[i].x += balls[i].dx;
         balls[i].y += balls[i].dy;
 
-        if (isChangeColor) {p.fill(255 - balls[i].boundCount * 30);}
-        else{ p.fill(255);}
+        if (isChangeColor) { p.fill(255 - balls[i].boundCount * 30); }
+        else { p.fill(255); }
         p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
       }
 
