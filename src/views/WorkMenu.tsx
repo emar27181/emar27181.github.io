@@ -8,10 +8,6 @@ export function WorkMenu() {
   return (
     <div>
       <ul>
-        <NavLink activeClassName="active" to="/uniqueBrush">
-          UniqueBrush
-        </NavLink><br />
-
         <NavLink activeClassName="active" to="/gameHome">
           ゲーム系
         </NavLink><br />
@@ -24,21 +20,19 @@ export function WorkMenu() {
           カメラ系
         </NavLink><br />
 
+        <NavLink activeClassName="active" to="/sound">
+          音声系
+        </NavLink><br />
+
+        <NavLink activeClassName="active" to="/toolHome">
+          ツール系
+        </NavLink><br />
+
         <NavLink activeClassName="active" to="/growArt">
           GrowArt
         </NavLink><br />
 
-        <NavLink activeClassName="active" to="/ballsReflect">
-          BallsReflect
-        </NavLink><br />
 
-        <NavLink activeClassName="active" to="/ballsLoop">
-          BallsLoop
-        </NavLink><br />
-
-        <NavLink activeClassName="active" to="/sound">
-          Sound
-        </NavLink><br />
 
       </ul>
 

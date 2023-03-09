@@ -23,6 +23,7 @@ import { Navbar, Container, Nav } from 'react-bootstrap'
 import { WorkMenu } from './views/WorkMenu'
 import GameHome from './views/GameHome';
 import ClockHome from './views/ClockHome';
+import ToolHome from './views/ToolHome';
 
 
 function App() {
@@ -56,9 +57,7 @@ function App() {
           <WorkMenu />
         </Route>
 
-        <Route path="/uniqueBrush">
-          <UniqueBrush />
-        </Route>
+
 
         <Route path="/lineGame">
           <LineGame />
@@ -76,20 +75,16 @@ function App() {
           <GrowArt />
         </Route>
 
-        <Route path="/ballsReflect">
-          <BallsReflect />
-        </Route>
-
-        <Route path="/ballsLoop">
-          <BallsLoop />
-        </Route>
-
         <Route path="/gameHome">
           <GameHome />
         </Route>
 
         <Route path="/sound">
           <Preparation />
+        </Route>
+
+        <Route path="/toolHome">
+          <ToolHome />
         </Route>
 
         <Route>
