@@ -7,6 +7,7 @@ import { CameraMosaic } from '../pages/CameraMosaic'
 import { CameraMosaicArt } from '../pages/CameraMosaicArt'
 import { CameraMosaicBall } from '../pages/CameraMosaicBall'
 import {CameraTracking} from '../pages/CameraTracking'
+import Preparation from '../pages/Preparation';
 
 
 
@@ -65,7 +66,7 @@ export function CameraHome() {
         </Route>
 
         <Route path="/cameraTracking">
-          <CameraTracking/>
+          <Preparation/>
         </Route>
 
       </switch>
