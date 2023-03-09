@@ -14,6 +14,7 @@ import { BallsReflect } from './pages/BallsRefrect'
 import { BallsLoop } from './pages/BallsLoop'
 import { Sound } from './pages/Sound'
 import { Header } from './pages/Header'
+import {Preparation} from './pages/Preparation'
 
 import { Home } from './views/home'
 import { CameraHome } from './views/CameraHome'
@@ -85,7 +86,7 @@ function App() {
         </Route>
 
         <Route path="/sound">
-          <Sound />
+          <Preparation />
         </Route>
 
         <Route>
