@@ -13,6 +13,7 @@ import { GrowArt } from './pages/GrowArt'
 import { BallsReflect } from './pages/BallsRefrect'
 import { BallsLoop } from './pages/BallsLoop'
 import { Sound } from './pages/Sound'
+import { Header } from './pages/Header'
 
 import { Home } from './views/home'
 import { CameraHome } from './views/CameraHome'
@@ -25,6 +26,8 @@ function App() {
 
   return (
     <BrowserRouter>
+
+      <Header />
 
       <Navbar bg="dark" variant='dark'>
         <Container>
