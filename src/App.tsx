@@ -11,13 +11,13 @@ import { ClockColor } from './pages/ClockColor'
 import { ClockColorCircle } from './pages/ClockColorCircle'
 import { GrowArt } from './pages/GrowArt'
 import { BallsReflect } from './pages/BallsRefrect'
-import { BallsLoop} from './pages/BallsLoop'
+import { BallsLoop } from './pages/BallsLoop'
 import { Sound } from './pages/Sound'
 
 import { Home } from './views/home'
 import { CameraHome } from './views/CameraHome'
 
-import { Navbar, Container } from 'react-bootstrap'
+import { Navbar, Container, Nav } from 'react-bootstrap'
 import { WorkMenu } from './views/WorkMenu'
 
 
@@ -31,17 +31,15 @@ function App() {
           <Navbar.Brand >
             p5.js演習ブラウザ
           </Navbar.Brand>
-
-          <NavLink activeClassName="active" exact to="/">
-            ホーム
-          </NavLink>
-
-          <NavLink activeClassName="active" exact to="/workMenu">
-            作品集
-          </NavLink>
-
         </Container>
-      </Navbar><br />
+      </Navbar>
+
+      <Navbar bg="dark" variant="dark">
+        <Nav className="mr-auto">
+          <Nav.Link href="/">ホーム</Nav.Link>
+          <Nav.Link href="/workMenu">作品集</Nav.Link>
+        </Nav>
+      </Navbar >
 
       <Switch>
         <Route exact path="/">
