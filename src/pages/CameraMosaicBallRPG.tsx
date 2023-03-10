@@ -47,6 +47,18 @@ export function CameraMosaicBallRPG() {
       else if (nextColorY[2] != 0) { dy = -dy; }
       if (x > p.width || x < 0) { dx = -dx; }
       else if (y > p.height - MENU_BAR_HEIGHT || y < 0) { dy = -dy; }
+
+      //HP管理
+      let nextColor = p.get(x + dx, y + dy);
+      console.log("nextColor: " + nextColor);
+      if (nextColor[0] === 0 && nextColor[1] === 0 && nextColor[2] === 255) {
+        if(hp < 0){console.log("GAME OVER");}
+        else{hp--;}
+      }
+      else if (nextColor[0] === 255 && nextColor[1] === 0 &&nextColor[2] === 0) {
+        if(hp < 100){hp++;}
+      }
+
       x += dx;
       y += dy;
       p.fill(255, 128, 0);
