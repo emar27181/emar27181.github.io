@@ -16,17 +16,24 @@ export function CameraMosaic() {
     };
 
     let x = 100, y = 100, dx = 20, dy = 10;
+    let splitSize = 8;
 
     p.draw = () => {
       let img = capture.get();
       p.image(img, 0, 0);
 
-      for (let i = 0; i < p.width; i += 10) {
-        for (let j = 0; j < p.height; j += 10) {
+
+      if (p.mouseIsPressed) {
+        if (splitSize === 512) { splitSize = 8; }
+        else {splitSize *= 2;}
+      }
+
+      for (let i = 0; i < p.width; i += splitSize) {
+        for (let j = 0; j < p.height; j += splitSize) {
           let getColor = p.get(i, j);
 
           p.fill(getColor);
-          p.ellipse(i, j, 15, 15);
+          p.rect(i, j, splitSize, splitSize);
         }
       }
 
