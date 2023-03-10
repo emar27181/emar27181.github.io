@@ -14,6 +14,7 @@ import GameHome from './views/GameHome';
 import ClockHome from './views/ClockHome';
 import ToolHome from './views/ToolHome';
 import GenerativeHome from './views/GenerativeHome';
+import OtherHome from './views/OtherHome';
 
 
 function App() {
@@ -73,6 +74,10 @@ function App() {
 
         <Route path="/generativeHome">
           <GenerativeHome />
+        </Route>
+
+        <Route path="/otherHome">
+          <OtherHome />
         </Route>
 
         <Route>

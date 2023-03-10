@@ -30,6 +30,10 @@ export function WorkMenu() {
           生成系
         </NavLink><br />
 
+        <NavLink activeClassName="active" to="/otherHome">
+          その他
+        </NavLink>
+
       </ul>
 
     </div>
