@@ -19,13 +19,11 @@ export function CameraMosaic() {
     let splitSize = 8;
 
     p.draw = () => {
-      let img = capture.get();
-      p.image(img, 0, 0);
-
+      p.image(capture, 0, 0);
 
       if (p.mouseIsPressed) {
         if (splitSize === 512) { splitSize = 8; }
-        else {splitSize *= 2;}
+        else { splitSize *= 2; }
       }
 
       for (let i = 0; i < p.width; i += splitSize) {

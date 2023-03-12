@@ -13,16 +13,14 @@ export function CameraMosaicBallRPG() {
       capture = p.createCapture(p.VIDEO);
       capture.hide();
       p.noStroke();
-      p.background(255);
     };
 
     const MENU_BAR_HEIGHT = 30;
-    let x = 0, y = 0, dx = 4, dy = 2;
+    let x = 0, y = 0, dx = 4, dy = 2, v = 3;
     let hp = 100;
 
     p.draw = () => {
-      let img = capture.get();
-      p.image(img, 0, 0);
+      p.image(capture, 0, 0);
 
       //フィールドの生成
       for (let i = 0; i < p.width; i += 10) {
@@ -40,6 +38,8 @@ export function CameraMosaicBallRPG() {
         }
       }
 
+
+
       //プレイヤーの生成
       let nextColorX = p.get(x + dx, y);
       let nextColorY = p.get(x, y + dy);
@@ -47,18 +47,38 @@ export function CameraMosaicBallRPG() {
       else if (nextColorY[2] != 0) { dy = -dy; }
       if (x > p.width || x < 0) { dx = -dx; }
       else if (y > p.height - MENU_BAR_HEIGHT || y < 0) { dy = -dy; }
+
+      //キーボード操作
+      if (p.keyIsPressed) {
+        if (p.key === 'W' || p.key === 'w') { dx = 0; dy = -v; }
+        else if (p.key === 'A' || p.key === 'a') { dx = -v; dy = 0; }
+        else if (p.key === 'S' || p.key === 's') { dx = 0; dy = v; }
+        else if (p.key === 'D' || p.key === 'd') { dx = v; dy = 0; }
+        else if (p.key === 'C' || p.key === 'c') { dx = v; dy = v; }
+        else if (p.key === 'Z' || p.key === 'z') { dx = -v; dy = v; }
+        else if (p.key === 'E' || p.key === 'e') { dx = v; dy = -v; }
+        else if (p.key === 'Q' || p.key === 'q') { dx = -v; dy = -v; }
+        else if (p.key === 'R' || p.key === 'r') { x = 0; y = 0; }
+      }
+
+      //HP管理
+      let nextColor = p.get(x + dx, y + dy);
+      console.log("nextColor: " + nextColor);
+      if (nextColor[0] === 0 && nextColor[1] === 0 && nextColor[2] === 255) {
+        if(hp < 0){console.log("GAME OVER");}
+        else{hp--;}
+      }
+      else if (nextColor[0] === 255 && nextColor[1] === 0 &&nextColor[2] === 0) {
+        if(hp < 100){hp++;}
+      }
+
       x += dx;
       y += dy;
       p.fill(255, 128, 0);
       p.rect(x, y, 10, 10);
       console.log("x: " + x + " y: " + y);
 
-      //ダメージ判定の作成
-      let CurrentColor = p.get(x, y);
-      console.log("Current Color: " + CurrentColor);
-      if(CurrentColor[0] === 0 && CurrentColor[1] === 0 && CurrentColor[2] === 255){
-        hp--;
-      }
+
 
       //メニューバーの生成
       p.fill(255);
