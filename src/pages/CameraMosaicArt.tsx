@@ -18,8 +18,7 @@ export function CameraMosaicArt() {
     let x = 0, y = 0, dx = 10, dy = 5;
 
     p.draw = () => {
-      let img = capture.get();
-      p.image(img, 0, 0);
+      p.image(capture, 0, 0);
 
       for (let i = 0; i < p.width; i += 10) {
         for (let j = 0; j < p.height; j += 10) {

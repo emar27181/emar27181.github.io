@@ -20,8 +20,7 @@ export function CameraMosaicBallRPG() {
     let hp = 100;
 
     p.draw = () => {
-      let img = capture.get();
-      p.image(img, 0, 0);
+      p.image(capture, 0, 0);
 
       //フィールドの生成
       for (let i = 0; i < p.width; i += 10) {

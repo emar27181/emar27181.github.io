@@ -18,8 +18,10 @@ export function Camera() {
     let x = 100, y = 100, dx = 20, dy = 10;
 
     p.draw = () => {
-      let img = capture.get();
-      p.image(img, 0, 0);
+      //let img = capture.get();
+      //p.image(img, 0, 0);
+
+      p.image(capture, 0, 0);
 
     };
   }
