@@ -12,9 +12,13 @@ export function Ripples() {
       p.background(0); 
     };
 
+    let x = 0, y = 0, r = 0;
+
     p.draw = () => {
-      p.fill(255); 
-      p.ellipse(p.width / 2, p.height / 2, 100, 100); 
+      p.background(0);
+      p.stroke(255);
+      p.fill(0, 0, 0, 0); 
+      p.ellipse(x, y, r++, r++); 
     };
   }
 
