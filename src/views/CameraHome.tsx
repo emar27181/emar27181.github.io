@@ -1,13 +1,14 @@
 import '../App.css'
 import React from 'react';
 import { Camera } from '../pages/camera'
-import { BrowserRouter, Route, NavLink} from 'react-router-dom';
+import { BrowserRouter, Route, NavLink } from 'react-router-dom';
 import { CameraColorBall } from '../pages/cameraColorBall'
 import { CameraMosaic } from '../pages/CameraMosaic'
 import { CameraMosaicArt } from '../pages/CameraMosaicArt'
 import { CameraMosaicBall } from '../pages/CameraMosaicBall'
-import {CameraTracking} from '../pages/CameraTracking'
+import { CameraTracking } from '../pages/CameraTracking'
 import Preparation from '../pages/Preparation';
+import CameraColorFilter from '../pages/CameraColorFilter';
 
 
 
@@ -27,6 +28,10 @@ export function CameraHome() {
 
         <NavLink activeClassName="active" to="/cameraMosaic">
           モザイクカメラ
+        </NavLink> <br />
+
+        <NavLink activeClassName="active" to="/cameraColorFilter">
+          カメラのフィルタ
         </NavLink> <br />
 
         <NavLink activeClassName="active" to="/cameraMosaicArt">
@@ -57,6 +62,10 @@ export function CameraHome() {
           <CameraMosaic />
         </Route>
 
+        <Route path="/cameraColorFilter" >
+          <CameraColorFilter />
+        </Route>
+
         <Route path="/cameraMosaicArt" >
           <CameraMosaicArt />
         </Route>
@@ -66,7 +75,7 @@ export function CameraHome() {
         </Route>
 
         <Route path="/cameraTracking">
-          <Preparation/>
+          <Preparation />
         </Route>
 
       </switch>
