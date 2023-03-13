@@ -5,40 +5,49 @@ import React from 'react';
 export function BallsReflectColors() {
   const sketch = (p: P5CanvasInstance) => {
 
+
+
     class Ball {
       x: number = 0;
       y: number = 0;
       dx: number = 1;
       dy: number = 2;
-      r: number = 10;
+      r: number = 100;
+      color: string = "red";
       boundCount: number = 0;
 
-      constructor(x: number, y: number, r: number) {
+      constructor(x: number, y: number, r: number, color: string) {
         this.x = x;
         this.y = y;
         this.r = r;
+        this.color = color;
       }
+
     }
 
     p.setup = () => {
       p.createCanvas(512, 512);
-      p.background("#000000");
     };
 
     let balls: Array<Ball> = [];
     let dx = 1, dy = 2;
     let isChangeColor = false;
+    let isColor = "red";
     let isBallCollisionDetected = false;
 
     p.draw = () => {
-      p.background("#000000");
+      p.background(0);
+      //p.blendMode(p.ADD);
 
       if (p.mouseIsPressed) {
-        balls.push(new Ball(p.mouseX, p.mouseY, 10));
+        balls.push(new Ball(p.mouseX, p.mouseY, 200, isColor));
       }
       if (p.keyIsPressed) {
         if (p.key === "c") { isChangeColor = !isChangeColor; }
         else if (p.key === "d") { isBallCollisionDetected = !isBallCollisionDetected; }
+        else if (p.key === "r") { isColor = "red"; }
+        else if (p.key === "g") { isColor = "green"; }
+        else if (p.key === "b") { isColor = "blue"; }
       }
 
       for (let i = 0; i < balls.length; i++) {
@@ -70,7 +79,9 @@ export function BallsReflectColors() {
         balls[i].y += balls[i].dy;
 
         if (isChangeColor) { p.fill(255 - balls[i].boundCount * 30); }
-        else { p.fill(255); }
+        else if (balls[i].color === 'red') { p.fill(255, 0, 0, 30); }
+        else if (balls[i].color === 'green') { p.fill(0, 255, 0, 30); }
+        else if (balls[i].color === 'blue') { p.fill(0, 0, 255, 30); }
         p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
       }
 
