@@ -15,6 +15,7 @@ import ClockHome from './views/ClockHome';
 import ToolHome from './views/ToolHome';
 import GenerativeHome from './views/GenerativeHome';
 import OtherHome from './views/OtherHome';
+import ExplainPage from './views/ExplainPage';
 
 
 function App() {
@@ -36,12 +37,17 @@ function App() {
         <Nav className="mr-auto">
           <Nav.Link href="/">ホーム</Nav.Link>
           <Nav.Link href="/workMenu">作品集</Nav.Link>
+          <Nav.Link href='/ExplainPage'> 実行環境 </Nav.Link>
         </Nav>
       </Navbar >
 
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+
+        <Route exact path="/ExplainPage">
+          <ExplainPage />
         </Route>
 
         <Route exact path="/workMenu">
