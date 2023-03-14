@@ -1,13 +1,12 @@
 import '../App.css'
 import React from 'react';
+import Preparation from '../pages/Preparation';
 
 export function ExplainPage() {
 
 
   return (
-    <div>
-      This is test text.
-    </div>
+    <Preparation />
   )
 }
 
