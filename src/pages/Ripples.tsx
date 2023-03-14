@@ -7,7 +7,7 @@ export function Ripples() {
 
     const CANVAS_SIZE = 512;
 
-    class  Circle{
+    class Circle {
       x: number;
       y: number;
       r: number;
@@ -17,30 +17,39 @@ export function Ripples() {
         this.r = r;
       }
     }
-    
+
     p.setup = () => {
       p.createCanvas(CANVAS_SIZE, CANVAS_SIZE);
-      p.background(0); 
+      p.background(0);
+      p.noFill();
     };
 
-    let x = 0, y = 0, r = 0;
+    let v = 1;
     let circles: Array<Circle> = [];
+    let isLoop = true;
 
     p.draw = () => {
 
-      if(p.mouseIsPressed){
+      if (p.mouseIsPressed) {
         circles.push(new Circle(p.mouseX, p.mouseY, 0));
       }
 
+      if (p.keyIsPressed) {
+        if (p.key === "l") { isLoop = !isLoop; console.log("isLoop: " + isLoop); }
+      }
+
+      if (isLoop) { v = 1; }
+      else { v = 0; }
+
       p.background(0);
       p.stroke(255);
-      p.fill(0, 0, 0, 0); 
-
-      for(let i = 0; i < circles.length; i++){
-        p.ellipse(circles[i].x, circles[i].y, circles[i].r++, circles[i].r++);
+      for (let i = 0; i < circles.length; i++) {
+        p.ellipse(circles[i].x, circles[i].y, circles[i].r += v, circles[i].r += v);
+        if (circles[i].r > 2 * p.width) { circles.splice(i, 1); }
       }
-      console.log(circles);
+      //console.log(circles);
     };
+
   }
 
   return (
