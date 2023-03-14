@@ -5,6 +5,7 @@ import { BrowserRouter, Route, NavLink } from 'react-router-dom';
 import { UniqueBrush } from '../pages/UniqueBrush';
 import BallsLoop from '../pages/BallsLoop';
 import BallsReflect from '../pages/BallsRefrect';
+import BallsReflectColors from '../pages/BallsRefrectColors';
 
 
 
@@ -25,6 +26,12 @@ export function ToolHome() {
         <NavLink activeClassName="active" to="/ballsReflect">
           ボールの反射
         </NavLink><br />
+
+        <NavLink activeClassName="active" to="/ballsReflectColors">
+          カラーボールの反射
+        </NavLink>
+
+
       </ul>
 
       <switch>
@@ -38,6 +45,10 @@ export function ToolHome() {
 
         <Route path="/ballsLoop">
           <BallsLoop />
+        </Route>
+
+        <Route path="/ballsReflectColors">
+          <BallsReflectColors />
         </Route>
 
       </switch>
