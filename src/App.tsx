@@ -16,7 +16,7 @@ import ToolHome from './views/ToolHome';
 import GenerativeHome from './views/GenerativeHome';
 import OtherHome from './views/OtherHome';
 import ExplainPage from './views/ExplainPage';
-
+import logo from './assets/icon2.png';
 
 function App() {
 
@@ -26,8 +26,9 @@ function App() {
       <Navbar bg="dark" variant="dark" fixed="top">
 
         <Navbar.Brand >
-          p5.js演習ブラウザ
-        </Navbar.Brand> <br /> <br />
+          <img src={logo} height="30" className="d-inline-block align-top" alt="Logo" />
+          <span style={{ marginLeft: "10px" }}>p5.js演習ブラウザ</span>
+        </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/">ホーム</Nav.Link>
           <Nav.Link href="/workMenu">作品集</Nav.Link>
@@ -38,7 +39,7 @@ function App() {
           <Button variant="outline-primary">Search</Button>
         </Form>
       </Navbar >
-      <br/><br/>
+      <br /><br />
 
       <Switch>
         <Route exact path="/">
