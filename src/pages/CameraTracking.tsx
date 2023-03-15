@@ -5,24 +5,10 @@ import React from 'react';
 
 
 export function CameraTracking() {
-  const sketch = (p: P5CanvasInstance) => {
-
-    
-
-    p.setup = () => {
-      p.createCanvas(512, 512);
-      p.background(0);
-    };
-
-    p.draw = () => {
-      p.fill(255);
-      p.textSize(40);
-      p.text("現在準備中", p.width/2 - 70, p.height/2);
-    };
-  }
-
   return (
-    <ReactP5Wrapper sketch={sketch} />
+    <div>
+      <a href='https://editor.p5js.org/ema_r/sketches/sxNjzQ7ZV' target='_blank'> https://editor.p5js.org/ema_r/sketches/sxNjzQ7ZV </a>
+    </div>
   )
 }
 

@@ -75,7 +75,7 @@ export function CameraHome() {
         </Route>
 
         <Route path="/cameraTracking">
-          <Preparation />
+          <CameraTracking/>
         </Route>
 
       </switch>
