@@ -17,7 +17,6 @@ export function CameraHome() {
 
   return (
     <BrowserRouter>
-      <br /><br />
       <ul>
         <NavLink activeClassName="active" to="/cameraHome/camera">
           通常カメラ
