@@ -23,24 +23,18 @@ function App() {
   return (
     <BrowserRouter>
 
-      <Header />
-
-      <Navbar bg="dark" variant='dark'>
-        <Container>
+      <Navbar bg="dark" variant="dark" fixed="top">
+      
           <Navbar.Brand >
             p5.js演習ブラウザ
-          </Navbar.Brand>
-        </Container>
-      </Navbar>
-
-      <Navbar bg="dark" variant="dark">
+          </Navbar.Brand> <br /> <br/>
         <Nav className="mr-auto">
           <Nav.Link href="/">ホーム</Nav.Link>
           <Nav.Link href="/workMenu">作品集</Nav.Link>
           <Nav.Link href='/ExplainPage'> 実行環境 </Nav.Link>
         </Nav>
         <Form className="ml-auto d-flex">
-          <FormControl type="text" placeholder="Search" className="ml-sm-2" />
+          <FormControl type="text" placeholder="Search(Preparing)" className="ml-sm-2" />
           <Button variant="outline-primary">Search</Button>
         </Form>
       </Navbar >
