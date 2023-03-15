@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Container, Nav } from 'react-bootstrap'
+import { Navbar, Container, Nav, FormControl, Button, Form } from 'react-bootstrap'
 
 import { LineGame } from './pages/LineGame'
 import { Header } from './pages/Header'
@@ -39,6 +39,10 @@ function App() {
           <Nav.Link href="/workMenu">作品集</Nav.Link>
           <Nav.Link href='/ExplainPage'> 実行環境 </Nav.Link>
         </Nav>
+        <Form className="ml-auto d-flex">
+          <FormControl type="text" placeholder="Search" className="ml-sm-2" />
+          <Button variant="outline-primary">Search</Button>
+        </Form>
       </Navbar >
 
       <Switch>
