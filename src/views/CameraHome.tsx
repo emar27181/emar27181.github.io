@@ -17,65 +17,66 @@ export function CameraHome() {
 
   return (
     <BrowserRouter>
+      <br /><br />
       <ul>
-        <NavLink activeClassName="active" to="/camera">
+        <NavLink activeClassName="active" to="/cameraHome/camera">
           通常カメラ
         </NavLink> <br />
 
-        <NavLink activeClassName="active" to="/cameraColorBall">
+        <NavLink activeClassName="active" to="/cameraHome/cameraColorBall">
           カメラに応じて色が変化するボール
         </NavLink> <br />
 
-        <NavLink activeClassName="active" to="/cameraMosaic">
+        <NavLink activeClassName="active" to="/cameraHome/cameraMosaic">
           モザイクカメラ
         </NavLink> <br />
 
-        <NavLink activeClassName="active" to="/cameraColorFilter">
+        <NavLink activeClassName="active" to="/cameraHome/cameraColorFilter">
           カメラのフィルタ
         </NavLink> <br />
 
-        <NavLink activeClassName="active" to="/cameraMosaicArt">
+        <NavLink activeClassName="active" to="/cameraHome/cameraMosaicArt">
           モザイクカメラアート
         </NavLink> <br />
 
-        <NavLink activeClassName="active" to="/cameraMosaicBall">
+        <NavLink activeClassName="active" to="/cameraHome/cameraMosaicBall">
           モザイクカメラで反射するボール
         </NavLink> <br />
 
-        <NavLink activeClassName="active" to="/cameraTracking">
+        <NavLink activeClassName="active" to="/cameraHome/cameraTracking">
           トラッキングカメラ
         </NavLink> <br />
 
       </ul>
 
       <switch>
-        <Route path="/camera" >
+        <Route path="/cameraHome/camera" >
           <Camera />
         </Route>
 
-        <Route path="/cameraColorBall" >
+        <Route path="/cameraHome/cameraColorBall" >
           <Camera />
           <CameraColorBall />
         </Route>
 
-        <Route path="/cameraMosaic" >
+        <Route path="/cameraHome/cameraMosaic" >
           <CameraMosaic />
         </Route>
 
-        <Route path="/cameraColorFilter" >
+        <Route path="/cameraHome/cameraColorFilter" >
           <CameraColorFilter />
         </Route>
 
-        <Route path="/cameraMosaicArt" >
+        <Route path="/cameraHome/cameraMosaicArt" >
           <CameraMosaicArt />
         </Route>
 
-        <Route path="/cameraMosaicBall" >
+        <Route path="/cameraHome/cameraMosaicBall" >
           <CameraMosaicBall />
         </Route>
 
-        <Route path="/cameraTracking">
-          <CameraTracking/>
+        <Route path="/cameraHome/cameraTracking">
+          <CameraTracking />
         </Route>
 
       </switch>

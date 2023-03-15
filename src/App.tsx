@@ -56,7 +56,7 @@ function App() {
           <LineGame />
         </Route>
 
-        <Route path="/camera">
+        <Route path="/cameraHome">
           <CameraHome />
         </Route>
 
@@ -68,7 +68,7 @@ function App() {
           <GameHome />
         </Route>
 
-        <Route path="/sound">
+        <Route path="/soundHome">
           <Preparation />
         </Route>
 
