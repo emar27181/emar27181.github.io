@@ -14,11 +14,11 @@ export function WorkMenu() {
           時計系
         </NavLink><br />
 
-        <NavLink activeClassName="active" to="/camera">
+        <NavLink activeClassName="active" to="/cameraHome">
           カメラ系
         </NavLink><br />
 
-        <NavLink activeClassName="active" to="/sound">
+        <NavLink activeClassName="active" to="/soundHome">
           音声系
         </NavLink><br />
 
