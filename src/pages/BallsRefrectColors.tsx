@@ -34,13 +34,17 @@ export function BallsReflectColors() {
     let isChangeColor = false;
     let isColor = "red";
     let isBallCollisionDetected = false;
+    const BALL_SIZE = 10, SATURATION = 255; // SATURATION: 彩度
 
     p.draw = () => {
       p.background(0);
-      //p.blendMode(p.ADD);
+      p.fill(0);
+      p.rect(0, 0, p.width, p.height);
+
+      p.blendMode(p.SCREEN);
 
       if (p.mouseIsPressed) {
-        balls.push(new Ball(p.mouseX, p.mouseY, 200, isColor));
+        balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor));
       }
       if (p.keyIsPressed) {
         if (p.key === "c") { isChangeColor = !isChangeColor; }
@@ -48,6 +52,7 @@ export function BallsReflectColors() {
         else if (p.key === "r") { isColor = "red"; }
         else if (p.key === "g") { isColor = "green"; }
         else if (p.key === "b") { isColor = "blue"; }
+        else if (p.key === "0") { isColor = "black"; }
       }
 
       for (let i = 0; i < balls.length; i++) {
@@ -79,12 +84,12 @@ export function BallsReflectColors() {
         balls[i].y += balls[i].dy;
 
         if (isChangeColor) { p.fill(255 - balls[i].boundCount * 30); }
-        else if (balls[i].color === 'red') { p.fill(255, 0, 0, 30); }
-        else if (balls[i].color === 'green') { p.fill(0, 255, 0, 30); }
-        else if (balls[i].color === 'blue') { p.fill(0, 0, 255, 30); }
+        else if (balls[i].color === 'red') { p.fill(SATURATION, 0, 0, 10); }
+        else if (balls[i].color === 'green') { p.fill(0, SATURATION, 0, 10); }
+        else if (balls[i].color === 'blue') { p.fill(0, 0, SATURATION, 10); }
+        else if (balls[i].color === 'black') { p.fill(0, 0, 0, 0); }
         p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
       }
-
 
       p.noStroke();
     };
