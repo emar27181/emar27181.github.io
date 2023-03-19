@@ -9,6 +9,7 @@ import { CameraMosaicBall } from '../pages/CameraMosaicBall'
 import { CameraTracking } from '../pages/CameraTracking'
 import Preparation from '../pages/Preparation';
 import CameraColorFilter from '../pages/CameraColorFilter';
+import CameraMosaicBlend from '../pages/CameraMosaicBlend';
 
 
 
@@ -28,6 +29,10 @@ export function CameraHome() {
 
         <NavLink activeClassName="active" to="/cameraHome/cameraMosaic">
           モザイクカメラ
+        </NavLink> <br />
+
+        <NavLink activeClassName="active" to="/cameraHome/cameraMosaicBlend">
+          カメラ上の色の混ぜ合わせ(?)
         </NavLink> <br />
 
         <NavLink activeClassName="active" to="/cameraHome/cameraColorFilter">
@@ -77,6 +82,10 @@ export function CameraHome() {
         <Route path="/cameraHome/cameraTracking">
           <CameraTracking />
         </Route>
+
+      <Route path="/cameraHome/cameraMosaicBlend">
+        <CameraMosaicBlend />
+      </Route>
 
       </switch>
 
