@@ -34,14 +34,13 @@ export function BallsReflectColors() {
     let isChangeColor = false;
     let isColor = "red";
     let isBallCollisionDetected = false;
-    const BALL_SIZE = 10, SATURATION = 255; // SATURATION: 彩度
+    const BALL_SIZE = 200, SATURATION = 255; // SATURATION: 彩度
 
     p.draw = () => {
+      p.blendMode(p.DARKEST);
       p.background(0);
-      p.fill(0);
-      p.rect(0, 0, p.width, p.height);
 
-      p.blendMode(p.SCREEN);
+      p.blendMode(p.ADD);
 
       if (p.mouseIsPressed) {
         balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor));
@@ -84,9 +83,9 @@ export function BallsReflectColors() {
         balls[i].y += balls[i].dy;
 
         if (isChangeColor) { p.fill(255 - balls[i].boundCount * 30); }
-        else if (balls[i].color === 'red') { p.fill(SATURATION, 0, 0, 10); }
-        else if (balls[i].color === 'green') { p.fill(0, SATURATION, 0, 10); }
-        else if (balls[i].color === 'blue') { p.fill(0, 0, SATURATION, 10); }
+        else if (balls[i].color === 'red') { p.fill(SATURATION, 0, 0); }
+        else if (balls[i].color === 'green') { p.fill(0, SATURATION, 0); }
+        else if (balls[i].color === 'blue') { p.fill(0, 0, SATURATION); }
         else if (balls[i].color === 'black') { p.fill(0, 0, 0, 0); }
         p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
       }
