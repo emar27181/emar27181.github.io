@@ -13,6 +13,7 @@ export function Home() {
       <h3>外部リンク</h3>
       <a href="https://gitlab.com/RyunosukeEma" target="_blank">GitLab</a><br />
       <a href="https://github.com/emar27181" target="_blank">GitHub</a><br />
+      <a href="https://editor.p5js.org/ema_r/sketches" target="_blank">p5 editor</a><br/>
       <a href="https://openprocessing.org/user/360361/?view=activity" target="_blank">OpenProcessing</a><br/>
       <a href="https://int.cs.meiji.ac.jp/" target="_blank">MyLab</a><br />
       <br />
