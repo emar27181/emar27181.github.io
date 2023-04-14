@@ -5,7 +5,7 @@ import React from 'react';
 export function ColorGanerate() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_SIZE = 512;
+    const CANVAS_SIZE = 512, SPLIT = 10;
     let isColorChanged = false;
 
     p.setup = () => {
@@ -13,6 +13,7 @@ export function ColorGanerate() {
       p.background(0);
       p.frameRate(10);
       p.colorMode(p.HSB, 360, 100, 100);
+      p.noStroke();
     };
 
     let randomSeed: number;
@@ -28,10 +29,11 @@ export function ColorGanerate() {
     };
 
     function GenerateColor() {
-      p.fill(randomSeed, 50, 50);
-      p.rect(0, 0, p.width / 4, p.height);
-      p.fill(randomSeed, 100, 100);
-      p.rect(p.width/4, 0, p.width / 4 , p.height)
+
+      for (let i = 0; i < SPLIT; i++) {
+        p.fill(randomSeed, i * 100/SPLIT + 100/SPLIT, i * 100/SPLIT + 100/SPLIT);
+        p.rect(p.width/SPLIT * i, 0, p.width / SPLIT, p.height);
+      }
     }
 
     function oparateKeyboard(key: string) {
