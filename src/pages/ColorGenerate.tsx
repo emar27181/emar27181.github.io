@@ -11,24 +11,28 @@ export function ColorGanerate() {
     p.setup = () => {
       p.createCanvas(CANVAS_SIZE, CANVAS_SIZE);
       p.background(0);
+      p.frameRate(10);
+      p.colorMode(p.HSB, 360, 100, 100);
     };
+
+    let randomSeed: number;
 
     p.draw = () => {
 
-      let color = (Math.random() * 0xFFFFFF | 0).toString(16);
-      let randomColor = "#" + ("000000" + color).slice(-6);
-      let colorRandom = p.color(randomColor);
+      randomSeed = p.round(p.random(0, 360));
 
-      if (p.keyIsPressed) {
-        oparateKeyboard(p.key);
-      }
+      if (p.keyIsPressed) { oparateKeyboard(p.key); }
+      if (p.mouseIsPressed) {GenerateColor();}
+      
 
-      if (isColorChanged) {
-        p.fill(colorRandom);
-      }
-
-      p.ellipse(p.width / 2, p.height / 2, 100, 100);
     };
+
+    function GenerateColor() {
+      p.fill(randomSeed, 50, 50);
+      p.rect(0, 0, p.width / 4, p.height);
+      p.fill(randomSeed, 100, 100);
+      p.rect(p.width/4, 0, p.width / 4 , p.height)
+    }
 
     function oparateKeyboard(key: string) {
       switch (key) {
