@@ -18,7 +18,7 @@ export function ColorGanerate() {
       p.fill("#FFFFFF");
       p.textSize(20);
       p.textAlign("center", "center");
-      p.text("画面をクリックしてください。", p.width/2 , p.height/2);
+      p.text("画面をクリックしてください。", p.width / 2, p.height / 2);
     };
 
     let randomSeed: number;
@@ -28,8 +28,8 @@ export function ColorGanerate() {
       randomSeed = p.round(p.random(0, 360));
 
       if (p.keyIsPressed) { oparateKeyboard(p.key); }
-      if (p.mouseIsPressed) {GenerateColor();}
-      
+      if (p.mouseIsPressed) { GenerateColor(); }
+
 
     };
 
@@ -37,12 +37,14 @@ export function ColorGanerate() {
       let hue = randomSeed;
 
       for (let i = 0; i < SPLIT; i++) {
+        for(let j = 0; j < SPLIT; j++) {
 
-      let saturation = i * 100/SPLIT + 100/SPLIT;
-      let value = i * 100/SPLIT + 100/SPLIT;
-      
+        let saturation = i * 100 / SPLIT + 100 / SPLIT;
+        let value = j * 100 / SPLIT + 100 / SPLIT;
+
         p.fill(hue, saturation, value);
-        p.rect(p.width/SPLIT * i, 0, p.width / SPLIT, p.height);
+        p.rect(p.width / SPLIT * j, p.height / SPLIT * i, p.width / SPLIT, p.height/SPLIT);
+        }
       }
     }
 
