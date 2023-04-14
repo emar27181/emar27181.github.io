@@ -26,7 +26,8 @@ export function BallsReflectColors() {
     }
 
     p.setup = () => {
-      p.createCanvas(512, 512);
+      //p.createCanvas(512, 512);
+      p.createCanvas(p.windowWidth, p.windowHeight);
     };
 
     let balls: Array<Ball> = [];
