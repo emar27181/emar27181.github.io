@@ -39,8 +39,8 @@ export function ColorGanerate() {
       for (let i = 0; i < SPLIT; i++) {
         for(let j = 0; j < SPLIT; j++) {
 
-        let saturation = i * 100 / SPLIT + 100 / SPLIT;
-        let value = j * 100 / SPLIT + 100 / SPLIT;
+        let saturation = i * 100 / SPLIT;
+        let value = j * 100 / SPLIT ;
 
         p.fill(hue, saturation, value);
         p.rect(p.width / SPLIT * j, p.height / SPLIT * i, p.width / SPLIT, p.height/SPLIT);
