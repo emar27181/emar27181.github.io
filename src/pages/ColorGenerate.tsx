@@ -14,6 +14,11 @@ export function ColorGanerate() {
       p.frameRate(10);
       p.colorMode(p.HSB, 360, 100, 100);
       p.noStroke();
+
+      p.fill("#FFFFFF");
+      p.textSize(20);
+      p.textAlign("center", "center");
+      p.text("画面をクリックしてください。", p.width/2 , p.height/2);
     };
 
     let randomSeed: number;
