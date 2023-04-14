@@ -34,9 +34,14 @@ export function ColorGanerate() {
     };
 
     function GenerateColor() {
+      let hue = randomSeed;
 
       for (let i = 0; i < SPLIT; i++) {
-        p.fill(randomSeed, i * 100/SPLIT + 100/SPLIT, i * 100/SPLIT + 100/SPLIT);
+
+      let saturation = i * 100/SPLIT + 100/SPLIT;
+      let value = i * 100/SPLIT + 100/SPLIT;
+      
+        p.fill(hue, saturation, value);
         p.rect(p.width/SPLIT * i, 0, p.width / SPLIT, p.height);
       }
     }
