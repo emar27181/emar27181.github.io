@@ -4,6 +4,7 @@ import { BrowserRouter, Route, NavLink } from 'react-router-dom';
 
 import GrowArt from '../pages/GrowArt';
 import Ripples from '../pages/Ripples';
+import ColorGanerate from '../pages/ColorGenerate';
 
 
 
@@ -21,6 +22,10 @@ export function GenerativeHome() {
           波紋
         </NavLink><br />
 
+        <NavLink activeClassName="active" to="/colorGanerate">
+          色の生成
+        </NavLink>
+
       </ul>
 
       <switch>
@@ -29,6 +34,9 @@ export function GenerativeHome() {
         </Route>
         <Route path="/ripples">
           <Ripples />
+        </Route>
+        <Route path="/colorGanerate">
+          <ColorGanerate />
         </Route>
       </switch>
 

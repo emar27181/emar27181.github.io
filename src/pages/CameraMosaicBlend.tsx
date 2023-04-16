@@ -9,7 +9,8 @@ export function CameraMosaicBlend() {
     let capture: Element;
 
     p.setup = () => {
-      p.createCanvas(512, 512);
+      //p.createCanvas(512, 512);
+      p.createCanvas(p.windowWidth, p.windowHeight);
       capture = p.createCapture(p.VIDEO);
       capture.hide();
       p.noStroke();
@@ -45,6 +46,11 @@ export function CameraMosaicBlend() {
       for (let i = 0; i < p.width; i += splitSize) {
         for (let j = 0; j < p.height; j += splitSize) {
           let getColor = p.get(i, j);
+
+          if (getColor[0] !== 0 || getColor[1] !== 0 || getColor[2] !== 0) {
+            continue;
+          }
+          //p.image(capture, i, j, splitSize * EXPANSION, splitSize * EXPANSION);
 
           p.fill(getColor[0], getColor[1], getColor[2], ALPHA);
           if (isDrawingShape === "rect") { p.rect(i, j, splitSize * EXPANSION, splitSize * EXPANSION); }
