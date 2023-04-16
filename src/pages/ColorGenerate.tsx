@@ -5,7 +5,7 @@ import React from 'react';
 export function ColorGanerate() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_SIZE = 512, SPLIT = 10;
+    const CANVAS_SIZE = 512, SPLIT = 20;
     let isColorChanged = false;
 
     p.setup = () => {
@@ -43,7 +43,7 @@ export function ColorGanerate() {
         let value = j * 100 / SPLIT ;
 
         p.fill(hue, saturation, value);
-        p.rect(p.width / SPLIT * j, p.height / SPLIT * i, p.width / SPLIT, p.height/SPLIT);
+        p.rect(p.width / SPLIT * j, p.height / SPLIT * i  , p.width / SPLIT + 1, p.height/SPLIT  + 1);
         }
       }
     }
