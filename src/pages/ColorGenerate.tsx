@@ -18,9 +18,6 @@ export function ColorGanerate() {
       p.frameRate(10);
       p.colorMode(p.HSB, 360, 100, 100);
       p.noStroke();
-
-
-
     };
 
     let randomSeed: number;
@@ -42,12 +39,14 @@ export function ColorGanerate() {
     function generateObject() {
       // 色相バーの表示
       p.fill(255);
-      p.rect(hueBarX, HUE_BAR_Y  , HUE_BAR_WIDTH, HUE_BAR_HEIGHT);
+      p.rect(hueBarX, HUE_BAR_Y, HUE_BAR_WIDTH, HUE_BAR_HEIGHT);
 
     }
 
     function oparateMouse() {
-      hueBarX = p.mouseX;
+      if (HUE_BAR_Y < p.mouseY && p.mouseY < HUE_BAR_Y + HUE_BAR_HEIGHT) {
+        hueBarX = p.mouseX;
+      }
     }
 
     function generateColor(hue: number) {
