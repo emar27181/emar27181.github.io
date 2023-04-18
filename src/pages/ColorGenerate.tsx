@@ -7,7 +7,7 @@ export function ColorGanerate() {
 
     const CANVAS_WIDTH = 500, CANVAS_HEIGHT = 600, MENU_BAR_WIDTH = 0, MENU_BAR_HEIGHT = 100, SPLIT = 20, DEBUG = true;
     let isColorChanged = false, hue = 100, saturation = 0, value = 0;
-    let hueBarX = 50, HUE_BAR_Y = CANVAS_HEIGHT - MENU_BAR_HEIGHT + 10;
+    let hueBarX = 100, HUE_BAR_Y = CANVAS_HEIGHT - MENU_BAR_HEIGHT + 10;
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -32,6 +32,9 @@ export function ColorGanerate() {
       if (p.keyIsPressed) { oparateKeyboard(p.key); }
       if (p.mouseIsPressed) { oparateMouse(); }
 
+      hue = 360 * hueBarX / CANVAS_WIDTH;
+      generateColor(hue);
+
       if(DEBUG){
         //console.log("mouseX: " + p.mouseX + " y: " + p.mouseY);
       }
@@ -45,16 +48,7 @@ export function ColorGanerate() {
     }
 
     function oparateMouse() {
-      let getColor = p.get(p.mouseX, p.mouseY);
-      let color = p.color(getColor);
-      if (DEBUG) {
-        console.log("hue(color): " + p.hue(color));
-        console.log("saturation(color): " + p.saturation(color));
-      }
-
-      generateColor(p.hue(color));
-
-      
+      hueBarX = p.mouseX;
     }
 
     function generateColor(hue: number) {
@@ -75,7 +69,7 @@ export function ColorGanerate() {
 
       // メニューバーの表示
       for (let i = 0; i < p.width; i++) {
-        p.fill(360 * i / p.width, 99, 100);
+        p.fill(360 * i / p.width, 100, 100);
         p.rect(i, drawingHeight + 10, p.width / 360, 20);
       }
       generateObject();
