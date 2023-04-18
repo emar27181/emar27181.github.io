@@ -7,6 +7,7 @@ export function ColorGanerate() {
 
     const CANVAS_WIDTH = 500, CANVAS_HEIGHT = 600, MENU_BAR_WIDTH = 0, MENU_BAR_HEIGHT = 100, SPLIT = 20, DEBUG = true;
     let isColorChanged = false, hue = 100, saturation = 0, value = 0;
+    let hueBarX = 50, HUE_BAR_Y = CANVAS_HEIGHT - MENU_BAR_HEIGHT + 10;
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -36,6 +37,13 @@ export function ColorGanerate() {
       }
     };
 
+    function generateObject(){
+      // 色相バーの表示
+      p.fill(255);
+      p.rect(hueBarX, HUE_BAR_Y, 3, 20);
+
+    }
+
     function oparateMouse() {
       let getColor = p.get(p.mouseX, p.mouseY);
       let color = p.color(getColor);
@@ -45,7 +53,8 @@ export function ColorGanerate() {
       }
 
       generateColor(p.hue(color));
-      //generateColor(p.hue(getColor));
+
+      
     }
 
     function generateColor(hue: number) {
@@ -69,6 +78,7 @@ export function ColorGanerate() {
         p.fill(360 * i / p.width, 99, 100);
         p.rect(i, drawingHeight + 10, p.width / 360, 20);
       }
+      generateObject();
 
 
     }
