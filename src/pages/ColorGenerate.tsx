@@ -33,19 +33,29 @@ export function ColorGanerate() {
 
     };
 
-    function GenerateColor() {
-      let hue = randomSeed;
+    function generateColor(hue: number) {
+      let drawingWidth = p.width - MENU_BAR_WIDTH;
+      let drawingHeight = p.height - MENU_BAR_HEIGHT;
 
+      // 特定の色相の表示
       for (let i = 0; i < SPLIT; i++) {
-        for(let j = 0; j < SPLIT; j++) {
+        for (let j = 0; j < SPLIT; j++) {
 
-        let saturation = i * 100 / SPLIT;
-        let value = j * 100 / SPLIT ;
+          saturation = i * 100 / SPLIT;
+          value = j * 100 / SPLIT;
 
         p.fill(hue, saturation, value);
-        p.rect(p.width / SPLIT * j, p.height / SPLIT * i  , p.width / SPLIT + 1, p.height/SPLIT  + 1);
+          p.rect(drawingWidth / SPLIT * j, drawingHeight / SPLIT * i, drawingWidth / SPLIT + 1, drawingHeight / SPLIT + 1);
         }
       }
+
+      // メニューバーの表示
+      for (let i = 0; i < p.width; i++) {
+        p.fill(360 * i / p.width, 100, 100);
+        p.rect(i, drawingHeight + 10, p.width / 360, 20);
+      }
+
+
     }
 
     function oparateKeyboard(key: string) {
