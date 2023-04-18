@@ -5,9 +5,12 @@ import React from 'react';
 export function ColorGanerate() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_WIDTH = 500, CANVAS_HEIGHT = 600, MENU_BAR_WIDTH = 0, MENU_BAR_HEIGHT = 100, SPLIT = 20, DEBUG = true;
+    const CANVAS_WIDTH = 500, CANVAS_HEIGHT = 600, MENU_BAR_WIDTH = 0, MENU_BAR_HEIGHT = 100,
+      DRAWING_WIDTH = CANVAS_WIDTH - MENU_BAR_WIDTH, DRAWING_HEIGHT = CANVAS_HEIGHT - MENU_BAR_HEIGHT,
+      HUE_BAR_WIDTH = 3, HUE_BAR_HEIGHT = 20, MARGIN_HEIGHT = 10,
+      SPLIT = 20, DEBUG = true;
     let isColorChanged = false, hue = 100, saturation = 0, value = 0;
-    let hueBarX = 100, HUE_BAR_Y = CANVAS_HEIGHT - MENU_BAR_HEIGHT + 10;
+    let hueBarX = 100, HUE_BAR_Y = CANVAS_HEIGHT - MENU_BAR_HEIGHT + MARGIN_HEIGHT;
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -17,10 +20,6 @@ export function ColorGanerate() {
       p.noStroke();
 
 
-      p.fill("#FFFFFF");
-      p.textSize(20);
-      p.textAlign("center", "center");
-      p.text("Cをクリックしてください。", p.width / 2, p.height / 2);
 
     };
 
@@ -35,15 +34,15 @@ export function ColorGanerate() {
       hue = 360 * hueBarX / CANVAS_WIDTH;
       generateColor(hue);
 
-      if(DEBUG){
+      if (DEBUG) {
         //console.log("mouseX: " + p.mouseX + " y: " + p.mouseY);
       }
     };
 
-    function generateObject(){
+    function generateObject() {
       // 色相バーの表示
       p.fill(255);
-      p.rect(hueBarX, HUE_BAR_Y, 3, 20);
+      p.rect(hueBarX, HUE_BAR_Y  , HUE_BAR_WIDTH, HUE_BAR_HEIGHT);
 
     }
 
@@ -52,8 +51,6 @@ export function ColorGanerate() {
     }
 
     function generateColor(hue: number) {
-      let drawingWidth = p.width - MENU_BAR_WIDTH;
-      let drawingHeight = p.height - MENU_BAR_HEIGHT;
 
       // 特定の色相の表示
       for (let i = 0; i < SPLIT; i++) {
@@ -63,14 +60,14 @@ export function ColorGanerate() {
           value = j * 100 / SPLIT;
 
           p.fill(hue, saturation, value);
-          p.rect(drawingWidth / SPLIT * j, drawingHeight / SPLIT * i, drawingWidth / SPLIT + 1, drawingHeight / SPLIT + 1);
+          p.rect(DRAWING_WIDTH / SPLIT * j, DRAWING_HEIGHT / SPLIT * i, DRAWING_WIDTH / SPLIT + 1, DRAWING_HEIGHT / SPLIT + 1);
         }
       }
 
-      // メニューバーの表示
+      // 色相バーの表示
       for (let i = 0; i < p.width; i++) {
         p.fill(360 * i / p.width, 100, 100);
-        p.rect(i, drawingHeight + 10, p.width / 360, 20);
+        p.rect(i, HUE_BAR_Y, p.width / 360, HUE_BAR_HEIGHT);
       }
       generateObject();
 
