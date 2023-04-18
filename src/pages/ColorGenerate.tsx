@@ -5,20 +5,22 @@ import React from 'react';
 export function ColorGanerate() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_SIZE = 512, SPLIT = 20;
-    let isColorChanged = false;
+    const CANVAS_WIDTH = 500, CANVAS_HEIGHT = 600, MENU_BAR_WIDTH = 0, MENU_BAR_HEIGHT = 100, SPLIT = 20, DEBUG = true;
+    let isColorChanged = false, hue = 100, saturation = 0, value = 0;
 
     p.setup = () => {
-      p.createCanvas(CANVAS_SIZE, CANVAS_SIZE);
+      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(0);
       p.frameRate(10);
       p.colorMode(p.HSB, 360, 100, 100);
       p.noStroke();
 
+
       p.fill("#FFFFFF");
       p.textSize(20);
       p.textAlign("center", "center");
-      p.text("画面をクリックしてください。", p.width / 2, p.height / 2);
+      p.text("Cをクリックしてください。", p.width / 2, p.height / 2);
+
     };
 
     let randomSeed: number;
@@ -26,9 +28,13 @@ export function ColorGanerate() {
     p.draw = () => {
 
       randomSeed = p.round(p.random(0, 360));
-
       if (p.keyIsPressed) { oparateKeyboard(p.key); }
-      if (p.mouseIsPressed) { GenerateColor(); }
+      if (p.mouseIsPressed) { oparateMouse(); }
+
+      if(DEBUG){
+        //console.log("mouseX: " + p.mouseX + " y: " + p.mouseY);
+      }
+    };
 
     function oparateMouse() {
       let getColor = p.get(p.mouseX, p.mouseY);
@@ -38,7 +44,9 @@ export function ColorGanerate() {
         console.log("saturation(color): " + p.saturation(color));
       }
 
-    };
+      generateColor(p.hue(color));
+      //generateColor(p.hue(getColor));
+    }
 
     function generateColor(hue: number) {
       let drawingWidth = p.width - MENU_BAR_WIDTH;
@@ -51,14 +59,14 @@ export function ColorGanerate() {
           saturation = i * 100 / SPLIT;
           value = j * 100 / SPLIT;
 
-        p.fill(hue, saturation, value);
+          p.fill(hue, saturation, value);
           p.rect(drawingWidth / SPLIT * j, drawingHeight / SPLIT * i, drawingWidth / SPLIT + 1, drawingHeight / SPLIT + 1);
         }
       }
 
       // メニューバーの表示
       for (let i = 0; i < p.width; i++) {
-        p.fill(360 * i / p.width, 100, 100);
+        p.fill(360 * i / p.width, 99, 100);
         p.rect(i, drawingHeight + 10, p.width / 360, 20);
       }
 
@@ -67,7 +75,7 @@ export function ColorGanerate() {
 
     function oparateKeyboard(key: string) {
       switch (key) {
-        case "c": isColorChanged = !isColorChanged; break;
+        case "c": generateColor(randomSeed); break;
         default: break;
       }
     }
