@@ -7,7 +7,7 @@ export function ColorGanerate() {
 
     const CANVAS_WIDTH = 500, CANVAS_HEIGHT = 600, MENU_BAR_WIDTH = 0, MENU_BAR_HEIGHT = 100,
       DRAWING_WIDTH = CANVAS_WIDTH - MENU_BAR_WIDTH, DRAWING_HEIGHT = CANVAS_HEIGHT - MENU_BAR_HEIGHT,
-      HUE_BAR_WIDTH = 3, HUE_BAR_HEIGHT = 20, MARGIN_HEIGHT = 10,
+      HUE_BAR_WIDTH = 3, HUE_BAR_HEIGHT = 20, MARGIN_HEIGHT = 10, TEXT_SIZE = 10,
       SPLIT = 20, DEBUG = true;
     let isColorChanged = false, hue = 100, saturation = 0, value = 0;
     let hueBarX = 100, HUE_BAR_Y = CANVAS_HEIGHT - MENU_BAR_HEIGHT + MARGIN_HEIGHT;
@@ -24,6 +24,7 @@ export function ColorGanerate() {
 
     p.draw = () => {
 
+      p.background(0);
       randomSeed = p.round(p.random(0, 360));
       if (p.keyIsPressed) { oparateKeyboard(p.key); }
       if (p.mouseIsPressed) { oparateMouse(); }
@@ -44,9 +45,24 @@ export function ColorGanerate() {
     }
 
     function oparateMouse() {
+      //色相バーの処理
       if (HUE_BAR_Y < p.mouseY && p.mouseY < HUE_BAR_Y + HUE_BAR_HEIGHT) {
         hueBarX = p.mouseX;
       }
+
+
+    }
+
+    function displayColorInfo() {
+      let getColor = p.get(p.mouseX, p.mouseY);
+      let getColorObject = p.color(getColor);
+      let h = p.round(p.hue(getColorObject));
+      let s = p.round(p.saturation(getColorObject));
+      let b = p.round(p.brightness(getColorObject));
+      p.textSize(TEXT_SIZE);
+      p.text(getColorObject, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT);
+      let text = "hsb(" + h + "," + s + "," + b + ")" + "←なんかバグってる";
+      p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE);
     }
 
     function generateColor(hue: number) {
@@ -69,7 +85,7 @@ export function ColorGanerate() {
         p.rect(i, HUE_BAR_Y, p.width / 360, HUE_BAR_HEIGHT);
       }
       generateObject();
-
+      displayColorInfo();
 
     }
 
