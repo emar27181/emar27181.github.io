@@ -30,6 +30,13 @@ export function ColorGanerate() {
       if (p.keyIsPressed) { oparateKeyboard(p.key); }
       if (p.mouseIsPressed) { GenerateColor(); }
 
+    function oparateMouse() {
+      let getColor = p.get(p.mouseX, p.mouseY);
+      let color = p.color(getColor);
+      if (DEBUG) {
+        console.log("hue(color): " + p.hue(color));
+        console.log("saturation(color): " + p.saturation(color));
+      }
 
     };
 
