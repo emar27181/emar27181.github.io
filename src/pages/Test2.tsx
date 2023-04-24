@@ -1,10 +1,15 @@
 import compromise from 'compromise';
 
 export function Test2() {
-  const sentence = 'This is a sample sentence.(tsx)';
-  const firstWord = compromise(sentence).first().text();
-  console.log(firstWord); // "This"
-  return <p>{firstWord}</p>;
+  const paragraph = 'This is a sample sentence by tsx. This is second sentence. This is third sentence.';
+  console.log("before: " + paragraph);
+
+  const sentences = compromise(paragraph).sentences();
+  sentences.forEach((sentence) =>{
+    console.log("after: " + sentence.text());
+  });
+  
+  //return <p>{sentences}</p>;
 }
 
 export default Test2;
