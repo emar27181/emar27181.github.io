@@ -1,7 +1,11 @@
-export function Test(){
-  console.log("this is a test javascript file");
-  let a = 10, b = 10;
-  console.log("a + b = " + a + b );
+import compromise from 'compromise';
+
+export function Test2() {
+  const sentence = 'This is a sample sentence (js).';
+  const firstWord = compromise(sentence).first().text();
+  console.log(firstWord); // "This"
+
+  //console.log("This is a test typescript file");
 }
 
-export default Test;
+export default Test2;
