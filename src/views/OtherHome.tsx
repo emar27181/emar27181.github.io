@@ -1,6 +1,6 @@
 import '../App.css'
 import React from 'react';
-import { BrowserRouter, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 
 import Picture from '../pages/Picture';
 import WebGl from '../pages/WebGl';
@@ -32,7 +32,7 @@ export function CameraHome() {
         </NavLink>
       </ul>
 
-      <switch>
+      <Switch>
         <Route path="/picture" >
           <Picture />
         </Route>
@@ -48,7 +48,7 @@ export function CameraHome() {
         <Route path="/test">
           <Test />
         </Route>
-        </switch>
+      </Switch>
 
     </BrowserRouter>
   )
