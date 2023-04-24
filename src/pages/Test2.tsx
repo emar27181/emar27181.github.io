@@ -4,8 +4,7 @@ export function Test2() {
   const sentence = 'This is a sample sentence.(tsx)';
   const firstWord = compromise(sentence).first().text();
   console.log(firstWord); // "This"
-
-  //console.log("This is a test typescript file");
+  return <p>{firstWord}</p>;
 }
 
 export default Test2;
