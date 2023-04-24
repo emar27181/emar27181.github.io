@@ -6,6 +6,7 @@ import Picture from '../pages/Picture';
 import WebGl from '../pages/WebGl';
 import OtherLinkTest from '../pages/OtherLinkTest';
 import Test from '../pages/Test';
+import Test2 from '../pages/Test2';
 
 
 
@@ -28,8 +29,13 @@ export function CameraHome() {
         </NavLink><br />
 
         <NavLink activeClassName="active" to="/test">
-          テスト表示
+          テスト表示(js)
+        </NavLink><br />
+
+        <NavLink activeClassName="active" to="/test2">
+          テスト表示(tsx)
         </NavLink>
+
       </ul>
 
       <Switch>
@@ -47,6 +53,10 @@ export function CameraHome() {
 
         <Route path="/test">
           <Test />
+        </Route>
+
+        <Route path="/test2">
+          <Test2 />
         </Route>
       </Switch>
 
