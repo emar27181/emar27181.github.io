@@ -6,16 +6,13 @@ export function CompromiseTemplate() {
 
   const sentences = compromise(paragraph).sentences();
   const terms = compromise(paragraph).terms();
+  const firstChar = compromise(paragraph).firstTerms().text();
 
   console.log("after: ");
-  /*
-  sentences.forEach((sentence) =>{
-    console.log("after: " + sentence.text());
-  });
-  */
   console.log(sentences.map(sentence => sentence.text()));
   console.log(terms.map(term => term.text()));
-  
+  console.log(firstChar);
+
   //return <p>{sentences}</p>;
 
   return (
