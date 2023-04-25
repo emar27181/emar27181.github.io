@@ -1,6 +1,6 @@
 import '../App.css'
 import React from 'react';
-import { BrowserRouter, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Route, NavLink , Switch} from 'react-router-dom';
 
 import GrowArt from '../pages/GrowArt';
 import Ripples from '../pages/Ripples';
@@ -33,7 +33,7 @@ export function GenerativeHome() {
 
       </ul>
 
-      <switch>
+      <Switch>
         <Route path="/growArt">
           <GrowArt />
         </Route>
@@ -46,7 +46,7 @@ export function GenerativeHome() {
         <Route path="/compromiseTemplate">
           <CompromiseTemplate />
         </Route>
-      </switch>
+      </Switch>
 
     </BrowserRouter>
   )
