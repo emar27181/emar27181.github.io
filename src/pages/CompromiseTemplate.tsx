@@ -1,6 +1,6 @@
 import compromise from 'compromise';
 
-export function Test2() {
+export function CompromiseTemplate() {
   const paragraph = 'This is a sample sentence by tsx. This is second sentence. This is third sentence.';
   console.log("before: " + paragraph);
 
@@ -12,4 +12,4 @@ export function Test2() {
   //return <p>{sentences}</p>;
 }
 
-export default Test2;
+export default CompromiseTemplate;
