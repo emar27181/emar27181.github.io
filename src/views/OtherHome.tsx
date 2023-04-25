@@ -1,6 +1,6 @@
 import '../App.css'
 import React from 'react';
-import { BrowserRouter, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 
 import Picture from '../pages/Picture';
 import WebGl from '../pages/WebGl';
@@ -25,9 +25,12 @@ export function CameraHome() {
         <NavLink activeClassName="active" to="/otherLinkTest">
           外部リンクのテンプレート
         </NavLink><br />
+
+
+
       </ul>
 
-      <switch>
+      <Switch>
         <Route path="/picture" >
           <Picture />
         </Route>
@@ -39,7 +42,7 @@ export function CameraHome() {
         <Route path="/otherLinkTest">
           <OtherLinkTest />
         </Route>
-      </switch>
+      </Switch>
 
     </BrowserRouter>
   )

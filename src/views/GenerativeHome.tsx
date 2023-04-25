@@ -5,6 +5,7 @@ import { BrowserRouter, Route, NavLink } from 'react-router-dom';
 import GrowArt from '../pages/GrowArt';
 import Ripples from '../pages/Ripples';
 import ColorGanerate from '../pages/ColorGenerate';
+import CompromiseTemplate from '../pages/CompromiseTemplate';
 
 
 
@@ -24,6 +25,10 @@ export function GenerativeHome() {
 
         <NavLink activeClassName="active" to="/colorGanerate">
           色の生成
+        </NavLink><br />
+
+        <NavLink activeClassName="active" to="/compromiseTemplate">
+          NLPのテンプレート
         </NavLink>
 
       </ul>
@@ -37,6 +42,9 @@ export function GenerativeHome() {
         </Route>
         <Route path="/colorGanerate">
           <ColorGanerate />
+        </Route>
+        <Route path="/compromiseTemplate">
+          <CompromiseTemplate />
         </Route>
       </switch>
 
