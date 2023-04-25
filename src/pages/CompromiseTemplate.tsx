@@ -10,6 +10,12 @@ export function CompromiseTemplate() {
   });
   
   //return <p>{sentences}</p>;
+  
+  return (
+    <div>
+      {/* JSX elements here */}
+    </div>
+  );
 }
 
 export default CompromiseTemplate;
