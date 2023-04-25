@@ -19,7 +19,7 @@ export function FormTemplate() {
 
   const [colorInput, setColorInput] = useState('');
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.log('Color input:', colorInput);
   };
