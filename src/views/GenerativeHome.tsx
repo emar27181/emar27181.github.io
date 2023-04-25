@@ -1,11 +1,12 @@
 import '../App.css'
 import React from 'react';
-import { BrowserRouter, Route, NavLink , Switch} from 'react-router-dom';
+import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 
 import GrowArt from '../pages/GrowArt';
 import Ripples from '../pages/Ripples';
 import ColorGanerate from '../pages/ColorGenerate';
 import CompromiseTemplate from '../pages/CompromiseTemplate';
+import FormTemplate from '../pages/FormTemplate';
 
 
 
@@ -29,6 +30,10 @@ export function GenerativeHome() {
 
         <NavLink activeClassName="active" to="/compromiseTemplate">
           NLPのテンプレート
+        </NavLink><br />
+
+        <NavLink activeClassName="active" to="/formTemplate">
+          入力フォームのテンプレート
         </NavLink>
 
       </ul>
@@ -45,6 +50,9 @@ export function GenerativeHome() {
         </Route>
         <Route path="/compromiseTemplate">
           <CompromiseTemplate />
+        </Route>
+        <Route path="/formTemplate">
+          <FormTemplate />
         </Route>
       </Switch>
 
