@@ -1,7 +1,11 @@
 import compromise from 'compromise';
+import { getColorInput } from './FormTemplate';
+import { FormTemplate } from './FormTemplate';
 
 export function CompromiseTemplate() {
-  const paragraph = 'This is a sample sentence by tsx. This is second sentence. This is third sentence.';
+  FormTemplate();
+  //const paragraph = 'This is a sample sentence by tsx. This is second sentence. This is third sentence.';
+  const paragraph = getColorInput();
   console.log("before: \n" + paragraph);
 
   const sentences = compromise(paragraph).sentences();
@@ -17,7 +21,8 @@ export function CompromiseTemplate() {
 
   return (
     <div>
-      {/* JSX elements here */}
+      befor(Input value): {paragraph} <br/>
+      after: blank {} <br/>
     </div>
   );
 }

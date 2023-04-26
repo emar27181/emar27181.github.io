@@ -2,12 +2,14 @@ import compromise from 'compromise';
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
+let colorInputGetter = "this is initial input";
+
 export function FormTemplate() {
   const [colorInput, setColorInput] = useState('');
-
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.log('Color input:', colorInput);
+    colorInputGetter = colorInput;
   };
 
   return (
@@ -26,6 +28,10 @@ export function FormTemplate() {
       </Button>
     </Form>
   );
+}
+
+export function getColorInput(){
+  return colorInputGetter;
 }
 
 export default FormTemplate;
