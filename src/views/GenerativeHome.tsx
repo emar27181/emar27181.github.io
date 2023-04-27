@@ -7,6 +7,7 @@ import Ripples from '../pages/Ripples';
 import ColorGanerate from '../pages/ColorGenerate';
 import CompromiseTemplate from '../pages/CompromiseTemplate';
 import FormTemplate from '../pages/FormTemplate';
+import ColorDisplay from '../pages/ColorDisplay';
 
 
 
@@ -57,6 +58,7 @@ export function GenerativeHome() {
         <Route path="/colorGenerateProttype">
           <FormTemplate />
           <CompromiseTemplate />
+          <ColorDisplay/>
         </Route>
         <Route path="/formTemplate">
           <FormTemplate />
