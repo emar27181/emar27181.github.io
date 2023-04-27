@@ -2,7 +2,7 @@ import compromise from 'compromise';
 import { getColorInput } from './FormTemplate';
 import { FormTemplate } from './FormTemplate';
 import {ColorCode} from './ColorCode';
-const DEBUG = true;
+const DEBUG = false;
 
 export function CompromiseTemplate() {
   FormTemplate();
@@ -24,7 +24,7 @@ export function CompromiseTemplate() {
   }
 
   //カラーコードへの変換
-  let colorCode = ColorCode("testColor");
+  let colorCode = ColorCode(firstChar);
   console.log(colorCode);
 
   return (
