@@ -33,16 +33,6 @@ export function GenerativeHome() {
           色の推薦アルゴリズムのプロトタイプ
         </NavLink><br />
 
-        <NavLink activeClassName="active" to="/formTemplate">
-          入力フォームのテンプレート
-        </NavLink><br />
-
-        <NavLink activeClassName="active" to="/compromiseTemplate">
-          NLPのテンプレート
-        </NavLink><br />
-
-
-
       </ul>
 
       <Switch>
@@ -60,13 +50,6 @@ export function GenerativeHome() {
           <CompromiseTemplate />
           <ColorDisplay/>
         </Route>
-        <Route path="/formTemplate">
-          <FormTemplate />
-        </Route>
-        <Route path="/compromiseTemplate">
-          <CompromiseTemplate />
-        </Route>
-
       </Switch>
 
     </BrowserRouter>
