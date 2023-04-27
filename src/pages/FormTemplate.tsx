@@ -1,5 +1,5 @@
 import compromise from 'compromise';
-import { useState} from 'react';
+import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
 let colorInputGetter = "this is initial input";
@@ -27,6 +27,7 @@ export function FormTemplate() {
           onChange={(event) => setColorInput(event.target.value)}
         />
       </Form.Group>
+
       <Button onClick={handleClick} variant="primary" type="submit">
         Submit
       </Button>
@@ -34,7 +35,7 @@ export function FormTemplate() {
   );
 }
 
-export function getColorInput(){
+export function getColorInput() {
   return colorInputGetter;
 }
 

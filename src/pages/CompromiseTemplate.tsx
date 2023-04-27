@@ -26,7 +26,8 @@ export function CompromiseTemplate() {
 
   return (
     <div>
-      befor(Input value): {paragraph} <br />
+      <br />
+      before(Input value): {paragraph} <br />
       after: blank { } <br />
     </div>
   );
