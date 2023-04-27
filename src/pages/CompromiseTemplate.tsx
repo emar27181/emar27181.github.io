@@ -1,7 +1,7 @@
 import compromise from 'compromise';
 import { getColorInput } from './FormTemplate';
 import { FormTemplate } from './FormTemplate';
-const DEBUG = false;
+const DEBUG = true;
 
 export function CompromiseTemplate() {
   FormTemplate();
@@ -19,16 +19,17 @@ export function CompromiseTemplate() {
     console.log("after: ");
     console.log(sentences.map(sentence => sentence.text()));
     console.log(terms.map(term => term.text()));
+    //console.log(terms.text());
     console.log(firstChar);
   }
-
-  //return <p>{sentences}</p>;
 
   return (
     <div>
       <br />
-      before(Input value): {paragraph} <br />
-      after: blank { } <br />
+      before: {paragraph} <br />
+      after: {terms.text()} <br/>
+      (※見た目は変わっていないが、元の文章が文字区切りの配列になっている)
+      <br />
     </div>
   );
 }
