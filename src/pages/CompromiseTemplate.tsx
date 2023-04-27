@@ -1,11 +1,11 @@
 import compromise from 'compromise';
 import { getColorInput } from './FormTemplate';
 import { FormTemplate } from './FormTemplate';
+import {ColorCode} from './ColorCode';
 const DEBUG = true;
 
 export function CompromiseTemplate() {
   FormTemplate();
-  //const paragraph = 'This is a sample sentence by tsx. This is second sentence. This is third sentence.';
   const paragraph = getColorInput();
   if (DEBUG) {
     console.log("before(paragraph): \n" + paragraph);
@@ -22,6 +22,10 @@ export function CompromiseTemplate() {
     //console.log(terms.text());
     //console.log(firstChar);
   }
+
+  //カラーコードへの変換
+  let colorCode = ColorCode("testColor");
+  console.log(colorCode);
 
   return (
     <div>
