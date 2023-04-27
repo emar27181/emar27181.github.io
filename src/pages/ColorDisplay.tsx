@@ -6,7 +6,7 @@ import {getColorInput} from './FormTemplate';
 export function ColorDisplay() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_WIDTH = 128, CANVAS_HEIGHT = 128;
+    const CANVAS_WIDTH = 50, CANVAS_HEIGHT = 50;
     
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -16,6 +16,10 @@ export function ColorDisplay() {
     p.draw = () => {
       let colorInput = getColorInput();
       p.background(colorInput);
+      p.noFill();
+      p.stroke(0);
+      p.strokeWeight(3);
+      p.rect(0, 0, p.width, p.height);
     };
   }
 
