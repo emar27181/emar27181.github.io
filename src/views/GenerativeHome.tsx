@@ -28,15 +28,19 @@ export function GenerativeHome() {
           色の生成
         </NavLink><br />
 
+        <NavLink activeClassName='active' to="/colorGenerateProttype">
+          色の推薦アルゴリズムのプロトタイプ
+        </NavLink><br />
+
         <NavLink activeClassName="active" to="/formTemplate">
           入力フォームのテンプレート
-        </NavLink><br/>
+        </NavLink><br />
 
         <NavLink activeClassName="active" to="/compromiseTemplate">
           NLPのテンプレート
         </NavLink><br />
 
-  
+
 
       </ul>
 
@@ -49,6 +53,10 @@ export function GenerativeHome() {
         </Route>
         <Route path="/colorGanerate">
           <ColorGanerate />
+        </Route>
+        <Route path="/colorGenerateProttype">
+          <FormTemplate />
+          <CompromiseTemplate />
         </Route>
         <Route path="/formTemplate">
           <FormTemplate />
