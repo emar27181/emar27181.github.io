@@ -8,7 +8,7 @@ export function CompromiseTemplate() {
   //const paragraph = 'This is a sample sentence by tsx. This is second sentence. This is third sentence.';
   const paragraph = getColorInput();
   if (DEBUG) {
-    console.log("before: \n" + paragraph);
+    console.log("before(paragraph): \n" + paragraph);
   }
 
   const sentences = compromise(paragraph).sentences();
@@ -16,11 +16,11 @@ export function CompromiseTemplate() {
   const firstChar = compromise(paragraph).firstTerms().text();
 
   if (DEBUG) {
-    console.log("after: ");
-    console.log(sentences.map(sentence => sentence.text()));
-    console.log(terms.map(term => term.text()));
+    console.log("after(terms): ");
+    //console.log(sentences.map(sentence => sentence.text()));
+    console.log( terms.map(term => term.text()));
     //console.log(terms.text());
-    console.log(firstChar);
+    //console.log(firstChar);
   }
 
   return (
