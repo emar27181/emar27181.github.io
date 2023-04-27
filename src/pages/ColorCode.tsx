@@ -1,7 +1,12 @@
 export function ColorCode(colorInput: string) {
-  //let testReturn = "This is test return";
+  let returnColorCode = "#000000";
 
-  return colorInput;
+  switch (colorInput) {
+    case "red": returnColorCode = "#FF0000"; break;
+    default: break;
+  }
+
+  return returnColorCode;
 }
 
 export default ColorCode;
