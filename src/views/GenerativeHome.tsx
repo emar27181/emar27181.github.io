@@ -48,7 +48,9 @@ export function GenerativeHome() {
         <Route path="/colorGenerateProttype">
           <FormTemplate />
           <CompromiseTemplate />
-          <ColorDisplay/>
+          <ColorDisplay />
+          <br />
+          <ColorGanerate />
         </Route>
       </Switch>
 
