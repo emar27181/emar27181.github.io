@@ -31,9 +31,7 @@ export function CompromiseTemplate() {
     <div>
       <br />
       before: {paragraph} <br />
-      after: {terms.text()} <br/>
-      (※見た目は変わっていないが、元の文章が文字区切りの配列になっている)
-      <br />
+      after: {colorCode} <br/>
     </div>
   );
 }
