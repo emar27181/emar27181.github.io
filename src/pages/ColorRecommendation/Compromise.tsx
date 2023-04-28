@@ -3,6 +3,7 @@ import { getColorInput } from './FormTemplate';
 import { FormTemplate } from './FormTemplate';
 import { ColorCode } from './ColorCode';
 const DEBUG = false;
+let colorCode = "#000000";
 
 export function Compromise() {
   FormTemplate();
@@ -24,8 +25,7 @@ export function Compromise() {
   }
 
   //カラーコードへの変換
-
-  let colorCode = ColorCode(firstChar);
+  colorCode = ColorCode(firstChar);
   if (DEBUG) { console.log(colorCode); }
 
   return (
@@ -36,6 +36,11 @@ export function Compromise() {
       
     </div>
   );
+}
+
+export function getColorCode(){
+  const returnColorCode = colorCode;
+  return returnColorCode;
 }
 
 export default Compromise;

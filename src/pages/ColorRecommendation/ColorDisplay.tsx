@@ -1,7 +1,8 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import {getColorInput} from './FormTemplate';
+//import {getColorInput} from './FormTemplate';
+import { getColorCode } from './Compromise';
 
 export function ColorDisplay() {
   const sketch = (p: P5CanvasInstance) => {
@@ -14,7 +15,7 @@ export function ColorDisplay() {
     };
 
     p.draw = () => {
-      let colorInput = getColorInput();
+      let colorInput = getColorCode();
       p.background(colorInput);
       p.noFill();
       p.stroke(0);
