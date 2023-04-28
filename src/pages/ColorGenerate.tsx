@@ -63,7 +63,7 @@ export function ColorGanerate() {
       p.text(getColorObject, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT);
       let text = "hsb(" + h + "," + s + "," + b + ")" + "←なんかバグってる";
       p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE);
-      text = '#' + p.hex(getColor).slice(1);
+      text = '#' + p.hex(getColor);
       //text = '#' + p.hex(getColorObject); 
       //text = getColor.toString("rrggbb");
       p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE * 2);
