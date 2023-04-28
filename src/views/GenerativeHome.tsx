@@ -4,10 +4,10 @@ import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 
 import GrowArt from '../pages/GrowArt';
 import Ripples from '../pages/Ripples';
-import ColorGanerate from '../pages/ColorGenerate';
-import CompromiseTemplate from '../pages/CompromiseTemplate';
-import FormTemplate from '../pages/FormTemplate';
-import ColorDisplay from '../pages/ColorDisplay';
+import ColorGanerate from '../pages/ColorRecommendation/ColorGenerate';
+import CompromiseTemplate from '../pages/ColorRecommendation/CompromiseTemplate';
+import FormTemplate from '../pages/ColorRecommendation/FormTemplate';
+import ColorDisplay from '../pages/ColorRecommendation/ColorDisplay';
 
 
 
