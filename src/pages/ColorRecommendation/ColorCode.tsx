@@ -11,7 +11,7 @@ export function ColorCode(colorInput: string) {
     case "lightBlue": returnColorCode = "#00FFFF"; break;
     case "white": returnColorCode = "#FFFFFF"; break;
     case "#*": returnColorCode = colorInput; break;
-    default: returnColorCode = "入力された色は想定されていない入力です。"; break;
+    default: returnColorCode = "入力された色("+ colorInput + ")は想定されていない入力です。"; break;
   }
 
   return returnColorCode;

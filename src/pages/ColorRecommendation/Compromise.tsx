@@ -31,8 +31,8 @@ export function Compromise() {
   return (
     <div>
       <br />
-      before: {paragraph} <br />
-      after: {colorCode} <br />
+      input: {paragraph} <br />
+      output: {colorCode} <br />
       
     </div>
   );
