@@ -33,6 +33,9 @@ export function GenerativeHome() {
           色の推薦アルゴリズムのプロトタイプ
         </NavLink><br />
 
+        <NavLink activeClassName='active' to="/compromiseTemplate">
+          compromiseの動作確認
+        </NavLink><br />
 
       </ul>
 
@@ -52,6 +55,9 @@ export function GenerativeHome() {
           <ColorDisplay />
           <br />
           <ColorGanerate />
+        </Route>
+        <Route path="/compromiseTemplate">
+          <CompromiseTemplate />
         </Route>
       </Switch>
 
