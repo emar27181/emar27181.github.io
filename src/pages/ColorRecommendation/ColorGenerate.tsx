@@ -1,11 +1,11 @@
-import '../App.css'
+import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
 export function ColorGanerate() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_WIDTH = 500, CANVAS_HEIGHT = 600, MENU_BAR_WIDTH = 0, MENU_BAR_HEIGHT = 100,
+    const CANVAS_WIDTH = 200, CANVAS_HEIGHT = 300, MENU_BAR_WIDTH = 0, MENU_BAR_HEIGHT = 100,
       DRAWING_WIDTH = CANVAS_WIDTH - MENU_BAR_WIDTH, DRAWING_HEIGHT = CANVAS_HEIGHT - MENU_BAR_HEIGHT,
       HUE_BAR_WIDTH = 3, HUE_BAR_HEIGHT = 20, MARGIN_HEIGHT = 10, TEXT_SIZE = 10,
       SPLIT = 20, DEBUG = true;
@@ -63,6 +63,10 @@ export function ColorGanerate() {
       p.text(getColorObject, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT);
       let text = "hsb(" + h + "," + s + "," + b + ")" + "←なんかバグってる";
       p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE);
+      text = '#' + p.hex(getColor);
+      //text = '#' + p.hex(getColorObject); 
+      //text = getColor.toString("rrggbb");
+      p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE * 2);
     }
 
     function generateColor(hue: number) {
