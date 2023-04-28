@@ -5,10 +5,10 @@ import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 import GrowArt from '../pages/GrowArt';
 import Ripples from '../pages/Ripples';
 import ColorGanerate from '../pages/ColorRecommendation/ColorGenerate';
-import CompromiseTemplate from '../pages/ColorRecommendation/CompromiseTemplate';
+import Compromise from '../pages/ColorRecommendation/Compromise';
 import FormTemplate from '../pages/ColorRecommendation/FormTemplate';
 import ColorDisplay from '../pages/ColorRecommendation/ColorDisplay';
-
+import CompromiseTemplate from '../pages/CompromiseTemplate';
 
 
 export function GenerativeHome() {
@@ -33,6 +33,7 @@ export function GenerativeHome() {
           色の推薦アルゴリズムのプロトタイプ
         </NavLink><br />
 
+
       </ul>
 
       <Switch>
@@ -47,7 +48,7 @@ export function GenerativeHome() {
         </Route>
         <Route path="/colorGenerateProttype">
           <FormTemplate />
-          <CompromiseTemplate />
+          <Compromise />
           <ColorDisplay />
           <br />
           <ColorGanerate />

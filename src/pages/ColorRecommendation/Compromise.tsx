@@ -4,7 +4,7 @@ import { FormTemplate } from './FormTemplate';
 import { ColorCode } from './ColorCode';
 const DEBUG = false;
 
-export function CompromiseTemplate() {
+export function Compromise() {
   FormTemplate();
   const paragraph = getColorInput();
   if (DEBUG) {
@@ -31,13 +31,11 @@ export function CompromiseTemplate() {
   return (
     <div>
       <br />
-      {/*
-      <br />
       before: {paragraph} <br />
       after: {colorCode} <br />
-      */}
+      
     </div>
   );
 }
 
-export default CompromiseTemplate;
+export default Compromise;
