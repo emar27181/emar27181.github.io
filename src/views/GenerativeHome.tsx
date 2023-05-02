@@ -9,6 +9,7 @@ import Compromise from '../pages/ColorRecommendation/Compromise';
 import FormTemplate from '../pages/ColorRecommendation/FormTemplate';
 import ColorDisplay from '../pages/ColorRecommendation/ColorDisplay';
 import CompromiseTemplate from '../pages/CompromiseTemplate';
+import ColorTemplate from '../pages/ColorTemplate';
 
 
 export function GenerativeHome() {
@@ -37,6 +38,10 @@ export function GenerativeHome() {
           compromiseの動作確認
         </NavLink><br />
 
+        <NavLink activeClassName='active' to="/colorTemplate">
+          colorの動作確認
+        </NavLink>
+
       </ul>
 
       <Switch>
@@ -58,6 +63,9 @@ export function GenerativeHome() {
         </Route>
         <Route path="/compromiseTemplate">
           <CompromiseTemplate />
+        </Route>
+        <Route path="/colorTemplate">
+          <ColorTemplate />
         </Route>
       </Switch>
 
