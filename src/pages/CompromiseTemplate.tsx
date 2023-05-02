@@ -5,33 +5,24 @@ const DEBUG = true;
 export function CompromiseTemplate() {
   //const paragraph = "This is template paragraph. This is second paragraph. Is is verbs. Sample color is red and blue";
   //const paragraph = "red and blue are test color";
-  const paragraph = "red green blue ";
-  //const paragraph = "animal";
-  const colorsArray: Array<Color> = [];
+  const paragraph = "red is color";
+  let colorsArray: Array<Color> = [];
+  let nounsArray: Array<string> = [];
 
   if (DEBUG) { console.log("before: \ninput: " + paragraph); }
 
   const sentences = compromise(paragraph).sentences();
   const terms = compromise(paragraph).terms();
   const firstChar = compromise(paragraph).firstTerms().text();
-  const doc = compromise(paragraph); //doc: 解析結果のオブジェクト
+  const doc = compromise(paragraph);
   const nouns1 = doc.nouns().map(noun => noun.text());
-  const nouns2 = doc.nouns().out('array');
+  const nouns2: string = doc.nouns().out('array');
+  nounsArray = doc.nouns().out('array');
   const verbs = doc.verbs().map(verb => verb.text());
   const adverbs = doc.adverbs().map(adverb => adverb.text());
   const prepositions = doc.prepositions().map(preposition => preposition.text());
   const adjectives = doc.adjectives().map(adjective => adjective.text());
   const colorNouns = doc.match('#Color').text();
-
-  compromise(paragraph).nouns().forEach(noun => {
-    const color = Color(noun.text());
-    if (DEBUG) {
-      console.log('color: ' + color + "(in forEach)");
-    }
-    if (color.hex() !== '#000000') {
-      colorsArray.push(color);
-    }
-  })
 
   if (DEBUG) {
     console.log("colorsArray: " + colorsArray);
@@ -51,8 +42,10 @@ export function CompromiseTemplate() {
     //console.log("adverbs: " + adverbs);
     //console.log("prepositions: " + prepositions);
     //console.log("new paragraph: " + `The ${adjectives} ${nouns1} ${verbs} over the fence.`);
-    console.log("past paragraph: " + doc.sentences().toPastTense().out());
-    console.log("colorNouns: " + colorNouns);
+    //console.log("past paragraph: " + doc.sentences().toPastTense().out());
+    //console.log("colorNouns: " + colorNouns);
+    console.log("nounsArray: ");
+    for(let i = 0; i < nounsArray.length; i++){console.log("[" + i + "]: " + nounsArray[i]);}
   }
 
   return (
