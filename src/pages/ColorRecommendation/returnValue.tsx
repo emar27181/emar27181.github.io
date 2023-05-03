@@ -10,7 +10,7 @@ export function returnValue(valueInput: string) {
     case "normal": returnValue = 50; break;
     case "light": returnValue = 70; break;
     case "bright": returnValue = 90; break;
-    default: return "入力された明度("+ valueInput + ")は想定されていない入力です。"; break;
+    default: return -2; break;
   }
 
   return returnValue;

@@ -9,7 +9,7 @@ export function returnSaturation(saturationInput: string) {
     case "normal": returnSaturation = 40; break;
     case "vivid": returnSaturation = 70; break;
     case "pure": returnSaturation = 100; break;
-    default: return "入力された彩度("+ saturationInput + ")は想定されていない入力です。"; break;
+    default: return -2; break;
   }
 
   return returnSaturation;

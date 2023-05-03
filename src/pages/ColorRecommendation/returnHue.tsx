@@ -10,7 +10,7 @@ export function returnHue(hueInput: string) {
     case "cyan": returnHue = 180; break;
     case "blue": returnHue = 240; break;
     case "magenta": returnHue = 300; break;
-    default: return "入力された色相("+ hueInput + ")は想定されていない入力です。"; break;
+    default: return -2; break;
   }
 
   return returnHue;
