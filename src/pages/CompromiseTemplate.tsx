@@ -5,7 +5,7 @@ const DEBUG = true;
 export function CompromiseTemplate() {
   //const paragraph = "This is template paragraph. This is second paragraph. Is is verbs. Sample color is red and blue";
   //const paragraph = "red and blue are test color";
-  const paragraph = "red is color";
+  const paragraph = "red is color. blue is test color too. banana is yellow. java";
   let colorsArray: Array<Color> = [];
   let nounsArray: Array<string> = [];
 
@@ -50,7 +50,9 @@ export function CompromiseTemplate() {
 
   return (
     <div>
-      This is test text.
+      {nounsArray.map((noun, i) =>(
+        <div>[{i}]: {noun}</div>
+      ))}
     </div>
   );
 }
