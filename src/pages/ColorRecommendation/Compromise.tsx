@@ -16,9 +16,9 @@ let value = -1;
 export function Compromise() {
   let nounsArray: Array<string> = [];
   let adjectiveArray: Array<string> = [];
-  //const paragraph = getColorInput();
+  const paragraph = getColorInput();
   //const paragraph = "This is a test imput. normal red";
-  const paragraph = "normal";
+  //const paragraph = "normal ";
   const doc = compromise(paragraph);
   const firstChar = compromise(paragraph).firstTerms().text();
   //const colorSentences = compromise(paragraph).sentences().filter((sentence) => sentence.has("color"));
@@ -28,24 +28,35 @@ export function Compromise() {
   FormDisplay();
 
   if (DEBUG) {
-    console.log("before(paragraph): \n" + paragraph);
+    console.log("before: ");
+    console.log("paragraph: " + paragraph + "\n");
+
     console.log("after: ");
-    console.log(firstChar);
+    console.log("firstChar: " + firstChar);
+    console.log("nounsArray: "+ nounsArray);
+    console.log("adjectiveArray: "+ adjectiveArray);
     //console.log("colorSentences: " + colorSentences.map(colorSentence => colorSentence.text()));
     //console.log("colorSentences: " + colorSentences.text());
   }
 
   //RGB, HSVへの変換
   colorCode = returnColorCode(firstChar);
+  /*
   hue = returnHue(firstChar);
   saturation = returnSaturation(firstChar);
   value = returnValue(firstChar);
+  */
+
+  hue = 0;
+  //hue = returnHue(nounsArray[0]);
+  saturation = returnSaturation(adjectiveArray[0]); 
+  value = returnValue(adjectiveArray[0]);
 
   if (DEBUG) {
     //console.log("colorCode: " + colorCode);
-    console.log("hue: " + hue);
-    console.log("saturation: " + saturation);
-    console.log("value: " + value);
+    //console.log("hue: " + hue);
+    //console.log("saturation: " + saturation);
+    //console.log("value: " + value);
   }
 
   return (
@@ -54,7 +65,6 @@ export function Compromise() {
       ---input---- <br />
       paragraph: {paragraph} <br /><br />
       ---output--- <br />
-      colorCode: {colorCode} <br />
       hue: {hue} <br />
       saturation: {saturation} <br />
       value: {value} <br />
@@ -65,6 +75,21 @@ export function Compromise() {
 export function getColorCode() {
   const returnColorCode = colorCode;
   return returnColorCode;
+}
+
+export function getHue(){
+  const returnHue = hue;
+  return returnHue ;
+}
+
+export function getSaturation(){
+  const returnSaturation = saturation;
+  return returnSaturation;
+}
+
+export function getValue(){
+  const returnValue = value;
+  return returnValue;
 }
 
 export default Compromise;
