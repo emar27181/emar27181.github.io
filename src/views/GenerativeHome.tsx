@@ -6,7 +6,7 @@ import GrowArt from '../pages/GrowArt';
 import Ripples from '../pages/Ripples';
 import ColorGanerate from '../pages/ColorRecommendation/ColorGenerate';
 import Compromise from '../pages/ColorRecommendation/Compromise';
-import FormTemplate from '../pages/ColorRecommendation/FormTemplate';
+import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
 import ColorDisplay from '../pages/ColorRecommendation/ColorDisplay';
 import CompromiseTemplate from '../pages/CompromiseTemplate';
 import ColorTemplate from '../pages/ColorTemplate';
@@ -55,7 +55,7 @@ export function GenerativeHome() {
           <ColorGanerate />
         </Route>
         <Route path="/colorGenerateProttype">
-          <FormTemplate />
+          <FormDisplay />
           <Compromise />
           <ColorDisplay />
           <br />

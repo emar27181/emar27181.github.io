@@ -1,13 +1,13 @@
 import compromise from 'compromise';
 import sentences from 'compromise-sentences';
-import { getColorInput } from './FormTemplate';
-import { FormTemplate } from './FormTemplate';
+import { getColorInput } from './FormDisplay';
+import { FormDisplay } from './FormDisplay';
 import { ColorCode } from './ColorCode';
 const DEBUG = true;
 let colorCode = "#000000";
 
 export function Compromise() {
-  FormTemplate();
+  FormDisplay();
   const paragraph = getColorInput();
   if (DEBUG) {
     console.log("before(paragraph): \n" + paragraph);
