@@ -1,4 +1,4 @@
-export function ColorCode(colorInput: string) {
+export function returnColorCode(colorInput: string) {
   let returnColorCode = "#000000";
 
   switch (colorInput) {
@@ -17,4 +17,4 @@ export function ColorCode(colorInput: string) {
   return returnColorCode;
 }
 
-export default ColorCode;
+export default returnColorCode;

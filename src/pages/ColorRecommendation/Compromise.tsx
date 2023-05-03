@@ -2,7 +2,7 @@ import compromise from 'compromise';
 import sentences from 'compromise-sentences';
 import { getColorInput } from './FormDisplay';
 import { FormDisplay } from './FormDisplay';
-import { ColorCode } from './ColorCode';
+import { returnColorCode } from './returnColorCode';
 const DEBUG = true;
 let colorCode = "#000000";
 
@@ -29,7 +29,7 @@ export function Compromise() {
   }
 
   //カラーコードへの変換
-  colorCode = ColorCode(firstChar);
+  colorCode = returnColorCode(firstChar);
   if (DEBUG) {
     //console.log("colorCode: " + colorCode);
   }
