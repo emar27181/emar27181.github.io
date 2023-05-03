@@ -7,25 +7,23 @@ const DEBUG = true;
 let colorCode = "#000000";
 
 export function Compromise() {
-  FormDisplay();
+  let nounsArray: Array<string> = [];
+  let adjectiveArray: Array<string> = [];
   const paragraph = getColorInput();
+  const doc = compromise(paragraph);
+  const firstChar = compromise(paragraph).firstTerms().text();
+  //const colorSentences = compromise(paragraph).sentences().filter((sentence) => sentence.has("color"));
+  nounsArray = doc.nouns().out('array');
+  adjectiveArray = doc.adjectives().out('array');
+
+  FormDisplay();
+
   if (DEBUG) {
     console.log("before(paragraph): \n" + paragraph);
-  }
-
-  const sentences = compromise(paragraph).sentences();
-  const terms = compromise(paragraph).terms();
-  const firstChar = compromise(paragraph).firstTerms().text();
-  const colorSentences = compromise(paragraph).sentences().filter((sentence) => sentence.has("color"));
-
-  if (DEBUG) {
     console.log("after: ");
-    //console.log(sentences.map(sentence => sentence.text()));
-    //console.log("terms: " + terms.map(term => term.text()));
-    //console.log(terms.text());
     //console.log(firstChar);
     //console.log("colorSentences: " + colorSentences.map(colorSentence => colorSentence.text()));
-    console.log("colorSentences: " + colorSentences.text());
+    //console.log("colorSentences: " + colorSentences.text());
   }
 
   //カラーコードへの変換

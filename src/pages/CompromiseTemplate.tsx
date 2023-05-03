@@ -7,16 +7,20 @@ export function CompromiseTemplate() {
   //const paragraph = "";
   let colorsArray: Array<Color> = [];
   let nounsArray: Array<string> = [];
+  let adjectiveArray: Array<string> = [];
 
   if (DEBUG) { console.log("before: \ninput: " + paragraph); }
+
+
+  const doc = compromise(paragraph);
+  nounsArray = doc.nouns().out('array');
+  adjectiveArray = doc.adjectives().out('array');
 
   const sentences = compromise(paragraph).sentences();
   const terms = compromise(paragraph).terms();
   const firstChar = compromise(paragraph).firstTerms().text();
-  const doc = compromise(paragraph);
   const nouns1 = doc.nouns().map(noun => noun.text());
   const nouns2: string = doc.nouns().out('array');
-  nounsArray = doc.nouns().out('array');
   const verbs = doc.verbs().map(verb => verb.text());
   const adverbs = doc.adverbs().map(adverb => adverb.text());
   const prepositions = doc.prepositions().map(preposition => preposition.text());
@@ -53,6 +57,10 @@ export function CompromiseTemplate() {
       nounsArray:
       {nounsArray.map((noun, i) => (
         <div>[{i}]: {noun}</div>
+      ))}<br/>
+      adjectiveArray:
+      {adjectiveArray.map((adjective, i)=>(
+        <div>[{i}]: {adjective}</div>
       ))}
     </div>
   );
