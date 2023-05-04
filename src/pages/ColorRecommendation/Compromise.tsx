@@ -58,8 +58,8 @@ export function Compromise() {
   return (
     <div>
       ※"(名詞) + (形容詞)"の順番で入力してください。<br />
-      例: "red normal"
-      <br />
+      例: "red normal", "green dark"
+      <br /><br/>
       ---input---- <br />
       paragraph: {paragraph} <br />
       nounsArray:
@@ -74,7 +74,8 @@ export function Compromise() {
       ---output--- <br />
       hue: {hue} <br />
       saturation: {saturation} <br />
-      value: {value} <br />
+      value: {value} <br /><br/>
+      ※入力が正しく読み取れないとh=0, s=50, v=50にそれぞれ設定されます。
     </div>
   );
 }
