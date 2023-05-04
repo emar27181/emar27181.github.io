@@ -33,24 +33,20 @@ export function Compromise() {
 
     console.log("after: ");
     console.log("firstChar: " + firstChar);
-    console.log("nounsArray: "+ nounsArray);
-    console.log("adjectiveArray: "+ adjectiveArray);
+    console.log("nounsArray: " + nounsArray);
+    console.log("adjectiveArray: " + adjectiveArray);
     //console.log("colorSentences: " + colorSentences.map(colorSentence => colorSentence.text()));
     //console.log("colorSentences: " + colorSentences.text());
   }
 
   //RGB, HSVへの変換
   colorCode = returnColorCode(firstChar);
-  /*
-  hue = returnHue(firstChar);
-  saturation = returnSaturation(firstChar);
-  value = returnValue(firstChar);
-  */
 
   hue = 0;
   //hue = returnHue(nounsArray[0]);
-  saturation = returnSaturation(adjectiveArray[0]); 
-  value = returnValue(adjectiveArray[0]);
+  hue = returnHue(firstChar);
+  saturation = returnSaturation(adjectiveArray[1]);
+  value = returnValue(adjectiveArray[1]);
 
   if (DEBUG) {
     //console.log("colorCode: " + colorCode);
@@ -61,9 +57,20 @@ export function Compromise() {
 
   return (
     <div>
+      ※"(名詞) + (形容詞)"の順番で入力してください。<br />
+      例: "red normal"
       <br />
       ---input---- <br />
-      paragraph: {paragraph} <br /><br />
+      paragraph: {paragraph} <br />
+      nounsArray:
+      {nounsArray.map((noun) => (
+        <div> {noun} </div>
+      ))} <br />
+      adjectiveArray:
+      {adjectiveArray.map((adjective) => (
+        <div> {adjective} </div>
+      ))}
+      <br />
       ---output--- <br />
       hue: {hue} <br />
       saturation: {saturation} <br />
@@ -77,17 +84,17 @@ export function getColorCode() {
   return returnColorCode;
 }
 
-export function getHue(){
+export function getHue() {
   const returnHue = hue;
-  return returnHue ;
+  return returnHue;
 }
 
-export function getSaturation(){
+export function getSaturation() {
   const returnSaturation = saturation;
   return returnSaturation;
 }
 
-export function getValue(){
+export function getValue() {
   const returnValue = value;
   return returnValue;
 }
