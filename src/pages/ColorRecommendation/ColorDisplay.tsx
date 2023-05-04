@@ -8,6 +8,7 @@ export function ColorDisplay() {
   const sketch = (p: P5CanvasInstance) => {
 
     const CANVAS_WIDTH = 200, CANVAS_HEIGHT = 200;
+    let hue = 0, saturation = 50, value = 50;
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -21,7 +22,11 @@ export function ColorDisplay() {
       const saturationInput = getSaturation();
       const valueInput = getValue();
 
-      p.background(hueInput, saturationInput, valueInput);
+      if (hueInput != -2) { hue = hueInput; }
+      if (saturationInput != -2) { saturation = saturationInput; }
+      if (valueInput != -2) { value = valueInput; }
+
+      p.background(hue, saturation, value);
       p.noFill();
       p.stroke(0);
       p.strokeWeight(3);
