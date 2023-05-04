@@ -7,11 +7,11 @@ import { getColorCode, getHue, getSaturation, getValue } from './Compromise';
 export function ColorDisplay() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_WIDTH = 50, CANVAS_HEIGHT = 50;
-    
+    const CANVAS_WIDTH = 200, CANVAS_HEIGHT = 200;
+
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      p.background(0); 
+      p.background(0);
       p.colorMode(p.HSB, 360, 100, 100);
     };
 
