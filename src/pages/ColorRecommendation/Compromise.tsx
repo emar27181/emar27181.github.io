@@ -21,6 +21,7 @@ export function Compromise() {
   //const paragraph = "normal ";
   const doc = compromise(paragraph);
   const firstChar = compromise(paragraph).firstTerms().text();
+  const lastChar = compromise(paragraph).lastTerms().text();
   //const colorSentences = compromise(paragraph).sentences().filter((sentence) => sentence.has("color"));
   nounsArray = doc.nouns().out('array');
   adjectiveArray = doc.adjectives().out('array');
@@ -33,20 +34,19 @@ export function Compromise() {
 
     console.log("after: ");
     console.log("firstChar: " + firstChar);
+    console.log("lastChar: " + lastChar);
     console.log("nounsArray: " + nounsArray);
     console.log("adjectiveArray: " + adjectiveArray);
-    //console.log("colorSentences: " + colorSentences.map(colorSentence => colorSentence.text()));
-    //console.log("colorSentences: " + colorSentences.text());
   }
 
   //RGB, HSVへの変換
   colorCode = returnColorCode(firstChar);
 
-  hue = 0;
   //hue = returnHue(nounsArray[0]);
-  hue = returnHue(firstChar);
-  saturation = returnSaturation(adjectiveArray[1]);
-  value = returnValue(adjectiveArray[1]);
+  //hue = returnHue(firstChar);
+  hue = returnHue(lastChar);
+  saturation = returnSaturation(adjectiveArray[0]);
+  value = returnValue(adjectiveArray[0]);
 
   if (DEBUG) {
     //console.log("colorCode: " + colorCode);
@@ -57,11 +57,12 @@ export function Compromise() {
 
   return (
     <div>
-      ※"(名詞) + (形容詞)"の順番で入力してください。<br />
-      例: "red normal", "green dark"
-      <br /><br/>
+      ※"(形容詞) + (名詞)"の順番で入力してください。<br />
+      例: "normal red", "dark green" <br /><br/>
+      
       ---input---- <br />
       paragraph: {paragraph} <br />
+      firstChar: {firstChar} <br />
       nounsArray:
       {nounsArray.map((noun) => (
         <div> {noun} </div>
@@ -69,8 +70,8 @@ export function Compromise() {
       adjectiveArray:
       {adjectiveArray.map((adjective) => (
         <div> {adjective} </div>
-      ))}
-      <br />
+      ))}<br />
+
       ---output--- <br />
       hue: {hue} <br />
       saturation: {saturation} <br />
