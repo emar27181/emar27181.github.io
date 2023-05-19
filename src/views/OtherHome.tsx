@@ -5,8 +5,8 @@ import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 import Picture from '../pages/Picture';
 import WebGl from '../pages/WebGl';
 import OtherLinkTest from '../pages/OtherLinkTest';
-
-
+import ReceiveData from '../pages/ColorRecommendation/ReceiveData';
+import Home from './home';
 
 export function CameraHome() {
 
@@ -26,7 +26,9 @@ export function CameraHome() {
           外部リンクのテンプレート
         </NavLink><br />
 
-
+        <NavLink activeClassName="active" to="/receiveData">
+          flaskからのデータの受け取りテスト
+        </NavLink> <br />
 
       </ul>
 
@@ -41,6 +43,10 @@ export function CameraHome() {
 
         <Route path="/otherLinkTest">
           <OtherLinkTest />
+        </Route>
+
+        <Route path="/receiveData">
+          <ReceiveData />
         </Route>
       </Switch>
 
