@@ -3,21 +3,24 @@ import Color from 'color';
 const DEBUG = true;
 
 export function CompromiseTemplate() {
-  //const paragraph = "This is template paragraph. This is second paragraph. Is is verbs. Sample color is red and blue";
-  //const paragraph = "red and blue are test color";
-  const paragraph = "red is color";
+  const paragraph = "Bright reds is a hoge. deep green hoge the fuga. and clear blue";
+  //const paragraph = "";
   let colorsArray: Array<Color> = [];
   let nounsArray: Array<string> = [];
+  let adjectiveArray: Array<string> = [];
 
   if (DEBUG) { console.log("before: \ninput: " + paragraph); }
+
+
+  const doc = compromise(paragraph);
+  nounsArray = doc.nouns().out('array');
+  adjectiveArray = doc.adjectives().out('array');
 
   const sentences = compromise(paragraph).sentences();
   const terms = compromise(paragraph).terms();
   const firstChar = compromise(paragraph).firstTerms().text();
-  const doc = compromise(paragraph);
   const nouns1 = doc.nouns().map(noun => noun.text());
   const nouns2: string = doc.nouns().out('array');
-  nounsArray = doc.nouns().out('array');
   const verbs = doc.verbs().map(verb => verb.text());
   const adverbs = doc.adverbs().map(adverb => adverb.text());
   const prepositions = doc.prepositions().map(preposition => preposition.text());
@@ -36,21 +39,29 @@ export function CompromiseTemplate() {
     //console.log(terms.text());
     //console.log(firstChar);
     //console.log("doc: " + doc);
-    //console.log("nouns1: " + nouns1);
+    console.log("nouns1: " + nouns1);
     //console.log("nouns2: " + nouns2);
     //console.log("verbs: " + verbs);
     //console.log("adverbs: " + adverbs);
+    console.log("adjectives: " + adjectives);
     //console.log("prepositions: " + prepositions);
     //console.log("new paragraph: " + `The ${adjectives} ${nouns1} ${verbs} over the fence.`);
     //console.log("past paragraph: " + doc.sentences().toPastTense().out());
     //console.log("colorNouns: " + colorNouns);
-    console.log("nounsArray: ");
-    for(let i = 0; i < nounsArray.length; i++){console.log("[" + i + "]: " + nounsArray[i]);}
+    //console.log("nounsArray: ");
+    //for(let i = 0; i < nounsArray.length; i++){console.log("[" + i + "]: " + nounsArray[i]);}
   }
 
   return (
     <div>
-      This is test text.
+      nounsArray:
+      {nounsArray.map((noun, i) => (
+        <div>[{i}]: {noun}</div>
+      ))}<br/>
+      adjectiveArray:
+      {adjectiveArray.map((adjective, i)=>(
+        <div>[{i}]: {adjective}</div>
+      ))}
     </div>
   );
 }

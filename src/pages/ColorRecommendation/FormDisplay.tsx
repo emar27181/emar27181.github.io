@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 
 let colorInputGetter = "this is initial input";
 
-export function FormTemplate() {
+export function FormDisplay() {
   const [colorInput, setColorInput] = useState('');
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -39,4 +39,4 @@ export function getColorInput() {
   return colorInputGetter;
 }
 
-export default FormTemplate;
+export default FormDisplay;
