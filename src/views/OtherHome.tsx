@@ -6,7 +6,7 @@ import Picture from '../pages/Picture';
 import WebGl from '../pages/WebGl';
 import OtherLinkTest from '../pages/OtherLinkTest';
 import ReceiveData from '../pages/ColorRecommendation/ReceiveData';
-import Home from './home';
+import TestReceiveDataTDD from '../pages/ColorRecommendation/TestReceiveDataTDD';
 
 export function CameraHome() {
 
@@ -46,7 +46,7 @@ export function CameraHome() {
         </Route>
 
         <Route path="/receiveData">
-          <ReceiveData />
+          <TestReceiveDataTDD/>
         </Route>
       </Switch>
 
