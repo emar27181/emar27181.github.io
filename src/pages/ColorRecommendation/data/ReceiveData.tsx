@@ -12,7 +12,7 @@ const ReceiveData = () => {
     setMessage(data.message);
   };
 
-  console.log("message(receive): " + message);
+  console.log("message(receive):\n" + message);
 
   return (
     <div>

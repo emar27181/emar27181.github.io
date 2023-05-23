@@ -28,7 +28,8 @@ const SendData = () => {
 
   return (
     <div>
-      <button onClick={sendData}>Send Data</button>
+      <button onClick={sendData}>Send Data</button><br />
+      ※一つの入力データしか保持できない(2023/05/23時点)<br />
     </div>
   );
 };
