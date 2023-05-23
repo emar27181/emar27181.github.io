@@ -49,6 +49,8 @@ export function CameraHome() {
 
         <Route path="/receiveData">
           <DataTransmission />
+          <TestSendDataTDD />
+          <TestReceiveDataTDD />
         </Route>
       </Switch>
 
