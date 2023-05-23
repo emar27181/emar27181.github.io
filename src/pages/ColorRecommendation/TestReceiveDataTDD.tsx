@@ -4,7 +4,7 @@ const TestReceiveDataTDD = () => {
   //console.log('This is TestReceiveDataTDD.tsx');
   const [message, setMessage] = useState('');
 
-  const fetchData = async () => {
+  const receiveData = async () => {
     const response = await fetch('http://localhost:5000/api/send-data', {
       method: 'POST',
     });
@@ -12,11 +12,11 @@ const TestReceiveDataTDD = () => {
     setMessage(data.message);
   };
 
-  console.log("message(fetch): " + message );
+  console.log("message(receive): " + message );
 
   return (
     <div>
-      <button onClick={fetchData}>Receive Data</button>
+      <button onClick={receiveData}>Receive Data</button>
       <p>{message}</p>
     </div>
   );
