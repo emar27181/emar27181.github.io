@@ -14,6 +14,7 @@ export function FormDisplay() {
 
   function handleClick() {
     console.log('Button clicked');
+    console.log('colorInput:', colorInput);
   }
 
   return (
