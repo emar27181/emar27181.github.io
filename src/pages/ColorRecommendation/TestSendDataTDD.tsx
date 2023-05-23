@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const TestSendDataTDD = () => {
   console.log('This is TestSendDataTDD.tsx');
-  const [formData, setFormData] = useState('');
+  const [message, setMessage] = useState('');
   let data = "this is test data from TestSendDataTDD.tsx";
 
   const postData = async () => {
@@ -13,8 +13,14 @@ const TestSendDataTDD = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ data }) // フロントエンドから送信するデータ
-    })
+    });
+
+    const returndata = await response.json();
+    setMessage(returndata.message);
   };
+
+
+  console.log("message(return): " + message); // コンソール上に返ってきたデータを表示
 
 
   return (
