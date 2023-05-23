@@ -9,6 +9,8 @@ import ReceiveData from '../pages/ColorRecommendation/ReceiveData';
 import TestReceiveDataTDD from '../pages/ColorRecommendation/TestReceiveDataTDD';
 import TestSendDataTDD from '../pages/ColorRecommendation/TestSendDataTDD';
 import DataTransmission from '../pages/ColorRecommendation/DataTransmission';
+import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
+import { Form } from 'react-bootstrap';
 
 export function CameraHome() {
 
@@ -48,8 +50,9 @@ export function CameraHome() {
         </Route>
 
         <Route path="/receiveData">
+          <FormDisplay /> <br />
           <TestSendDataTDD /> <br />
-          <TestReceiveDataTDD /> 
+          <TestReceiveDataTDD />
         </Route>
       </Switch>
 
