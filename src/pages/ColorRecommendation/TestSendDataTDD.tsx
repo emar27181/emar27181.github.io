@@ -3,24 +3,23 @@ import React, { useState } from 'react';
 const TestSendDataTDD = () => {
   console.log('This is TestSendDataTDD.tsx');
   const [formData, setFormData] = useState('');
+  let data = "this is test data from TestSendDataTDD.tsx";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // フォームデータをFlaskアプリケーションに送信する処理を実装する
+  const postData = async () => {
+    const response = await fetch('http://localhost:5000/api/receive-data', {
+      mode: "cors",
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data }) // フロントエンドから送信するデータ
+    })
   };
-
-  const handleChange = (e) => {
-    setFormData(e.target.value);
-  };
-
 
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={formData} onChange={handleChange} /> < br />
-        <button type="submit">Submit</button>
-      </form>
+      <button onClick={postData}>Post Data</button>
     </div>
   );
 };
