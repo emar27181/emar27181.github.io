@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 const SendData = () => {
   console.log('This is TestSendDataTDD.tsx');
   const [message, setMessage] = useState('');
-  let data = "this is test data from TestSendDataTDD.tsx";
+  let data = "This is test data from TestSendDataTDD.tsx";
 
-  const postData = async () => {
+  const sendData = async () => {
     const response = await fetch('http://localhost:5000/api/receive-data', {
       mode: "cors",
       method: "post",
@@ -25,7 +25,7 @@ const SendData = () => {
 
   return (
     <div>
-      <button onClick={postData}>Post Data</button>
+      <button onClick={sendData}>Send Data</button>
     </div>
   );
 };
