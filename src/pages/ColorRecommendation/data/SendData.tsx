@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const TestSendDataTDD = () => {
+const SendData = () => {
   console.log('This is TestSendDataTDD.tsx');
   const [message, setMessage] = useState('');
   let data = "this is test data from TestSendDataTDD.tsx";
@@ -30,4 +30,4 @@ const TestSendDataTDD = () => {
   );
 };
 
-export default TestSendDataTDD;
+export default SendData;

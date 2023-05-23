@@ -5,9 +5,8 @@ import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 import Picture from '../pages/Picture';
 import WebGl from '../pages/WebGl';
 import OtherLinkTest from '../pages/OtherLinkTest';
-import ReceiveData from '../pages/ColorRecommendation/ReceiveData';
-import TestReceiveDataTDD from '../pages/ColorRecommendation/data/TestReceiveDataTDD';
-import TestSendDataTDD from '../pages/ColorRecommendation/data/TestSendDataTDD';
+import ReceiveData from '../pages/ColorRecommendation/data/ReceiveData';
+import SendData from '../pages/ColorRecommendation/data/SendData';
 import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
 import { Form } from 'react-bootstrap';
 
@@ -50,8 +49,8 @@ export function CameraHome() {
 
         <Route path="/receiveData">
           <FormDisplay /> <br />
-          <TestSendDataTDD /> <br />
-          <TestReceiveDataTDD />
+          <SendData /> <br />
+          <ReceiveData />
         </Route>
       </Switch>
 

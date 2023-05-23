@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const TestReceiveDataTDD = () => {
+const ReceiveData = () => {
   //console.log('This is TestReceiveDataTDD.tsx');
   const [message, setMessage] = useState('');
 
@@ -12,7 +12,7 @@ const TestReceiveDataTDD = () => {
     setMessage(data.message);
   };
 
-  console.log("message(receive): " + message );
+  console.log("message(receive): " + message);
 
   return (
     <div>
@@ -22,4 +22,4 @@ const TestReceiveDataTDD = () => {
   );
 };
 
-export default TestReceiveDataTDD;
+export default ReceiveData;
