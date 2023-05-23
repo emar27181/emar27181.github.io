@@ -6,9 +6,8 @@ import Picture from '../pages/Picture';
 import WebGl from '../pages/WebGl';
 import OtherLinkTest from '../pages/OtherLinkTest';
 import ReceiveData from '../pages/ColorRecommendation/ReceiveData';
-import TestReceiveDataTDD from '../pages/ColorRecommendation/TestReceiveDataTDD';
-import TestSendDataTDD from '../pages/ColorRecommendation/TestSendDataTDD';
-import DataTransmission from '../pages/ColorRecommendation/DataTransmission';
+import TestReceiveDataTDD from '../pages/ColorRecommendation/data/TestReceiveDataTDD';
+import TestSendDataTDD from '../pages/ColorRecommendation/data/TestSendDataTDD';
 import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
 import { Form } from 'react-bootstrap';
 
