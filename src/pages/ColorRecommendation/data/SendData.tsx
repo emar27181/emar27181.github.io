@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { getColorInput } from '../FormDisplay';
 
 const SendData = () => {
   console.log('This is TestSendDataTDD.tsx');
   const [message, setMessage] = useState('');
-  let data = "This is test data from TestSendDataTDD.tsx";
+  let data = "This is initial text (TestSendDataTDD.tsx)";
+  data = getColorInput();
+  // console.log("data: " + data);
 
   const sendData = async () => {
     const response = await fetch('http://localhost:5000/api/receive-data', {
