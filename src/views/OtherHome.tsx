@@ -8,6 +8,7 @@ import OtherLinkTest from '../pages/OtherLinkTest';
 import ReceiveData from '../pages/ColorRecommendation/ReceiveData';
 import TestReceiveDataTDD from '../pages/ColorRecommendation/TestReceiveDataTDD';
 import TestSendDataTDD from '../pages/ColorRecommendation/TestSendDataTDD';
+import DataTransmission from '../pages/ColorRecommendation/DataTransmission';
 
 export function CameraHome() {
 
@@ -47,8 +48,7 @@ export function CameraHome() {
         </Route>
 
         <Route path="/receiveData">
-          <TestSendDataTDD /> <br />
-          <TestReceiveDataTDD />
+          <DataTransmission />
         </Route>
       </Switch>
 
