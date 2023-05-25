@@ -10,7 +10,7 @@ import SendData from '../pages/ColorRecommendation/data/SendData';
 import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
 import { Form } from 'react-bootstrap';
 
-export function CameraHome() {
+export function OtherHome() {
 
 
   return (
@@ -58,4 +58,4 @@ export function CameraHome() {
   )
 }
 
-export default CameraHome
+export default OtherHome
