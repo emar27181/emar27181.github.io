@@ -12,7 +12,7 @@ const SendData = () => {
   // 読み込みバグのせいで2回ずつデータが格納されてしまっている
   // 前のログを誤って送信してしまうバグあり
   dataArray.push(getColorInput());
-  console.log("dataArray(num=" + dataArray.length + "):\n" + dataArray);
+  console.log("dataArray(length=" + dataArray.length + "):\n" + dataArray);
   data = dataArray[dataArray.length - 1]; //dataArrayの最後尾を送信データとして設定
   console.log("data: " + data);
 
