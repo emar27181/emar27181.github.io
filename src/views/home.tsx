@@ -1,5 +1,6 @@
 import '../App.css'
 import React from 'react';
+import ClockCountdown from '../pages/ClockCountdown';
 
 export function Home() {
 
@@ -9,6 +10,10 @@ export function Home() {
       <h2>p5.js演習ブラウザへようこそ!!</h2>
       このブラウザではp5.jsを用いた個人作品を展示しています。 <br />
       学習を目的としたブラウザであるため不備があると思いますがご容赦ください。<br /><br />
+
+      <h3>U22プログラミングコンテストカウントダウン</h3>
+      <ClockCountdown />
+      <a>※↑焦らせるのが目的なのでガバガバ実装です()</a> <br /><br />
 
       <h3>外部リンク</h3>
       <a href="https://gitlab.com/RyunosukeEma" target="_blank">GitLab</a><br />
