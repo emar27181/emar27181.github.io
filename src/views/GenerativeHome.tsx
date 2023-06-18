@@ -10,6 +10,7 @@ import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
 import ColorDisplay from '../pages/ColorRecommendation/ColorDisplay';
 import CompromiseTemplate from '../pages/CompromiseTemplate';
 import ColorTemplate from '../pages/ColorTemplate';
+import BounceColorful from '../pages/BounceColorful';
 
 
 export function GenerativeHome() {
@@ -40,6 +41,10 @@ export function GenerativeHome() {
 
         <NavLink activeClassName='active' to="/colorTemplate">
           colorの動作確認
+        </NavLink><br />
+
+        <NavLink activeClassName='active' to="/bounceColorful">
+          弾むカラフル
         </NavLink>
 
       </ul>
@@ -48,12 +53,15 @@ export function GenerativeHome() {
         <Route path="/growArt">
           <GrowArt />
         </Route>
+
         <Route path="/ripples">
           <Ripples />
         </Route>
+
         <Route path="/colorGanerate">
           <ColorGanerate />
         </Route>
+
         <Route path="/colorGenerateProttype">
           <FormDisplay />
           <Compromise />
@@ -61,12 +69,19 @@ export function GenerativeHome() {
           <br />
           <ColorGanerate />
         </Route>
+
         <Route path="/compromiseTemplate">
           <CompromiseTemplate />
         </Route>
+
         <Route path="/colorTemplate">
           <ColorTemplate />
         </Route>
+
+        <Route path="/bounceColorful">
+          <BounceColorful />
+        </Route>
+
       </Switch>
 
     </BrowserRouter>
