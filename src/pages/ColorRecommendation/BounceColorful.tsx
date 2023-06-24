@@ -73,6 +73,18 @@ export function BounceColorful() {
       }
     }
 
+    class ColorOfEmotion {
+      hue: number;
+      intense: number;
+      drawMoverNum: number = -1;
+
+      constructor(hue: number, intense: number) {
+        this.hue = hue;
+        this.intense = intense;
+        //this.drawMoverNum = getDrawMoverNum(); //多分このコードは要らない
+      }
+    }
+
   }
 
   return (
