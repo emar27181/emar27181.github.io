@@ -2,7 +2,7 @@ import '../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
-export function Template() {
+export function TemplateP5() {
   const sketch = (p: P5CanvasInstance) => {
 
     const CANVAS_SIZE = 512;
@@ -23,4 +23,4 @@ export function Template() {
   )
 }
 
-export default Template
+export default TemplateP5
