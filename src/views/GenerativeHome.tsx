@@ -10,7 +10,7 @@ import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
 import ColorDisplay from '../pages/ColorRecommendation/ColorDisplay';
 import CompromiseTemplate from '../pages/CompromiseTemplate';
 import ColorTemplate from '../pages/ColorTemplate';
-import BounceColorful from '../pages/BounceColorful';
+import BounceColorful from '../pages/ColorRecommendation/BounceColorful';
 
 
 export function GenerativeHome() {
