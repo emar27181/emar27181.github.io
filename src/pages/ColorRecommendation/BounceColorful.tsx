@@ -9,6 +9,7 @@ export function BounceColorful() {
   const sketch = (p: P5CanvasInstance) => {
     //let movers = []; // Moverオブジェクトを格納する配列
     let movers: Mover[] = [];
+    let ColorOfEmotionArray: ColorOfEmotion[] = [];
     let numMovers = NUM_MOVERS; // Moverオブジェクトの数
     let angle = 0; // 円運動の角度
     let radius = 0; // 円運動の半径
@@ -18,6 +19,14 @@ export function BounceColorful() {
       p.createCanvas(p.windowWidth, p.windowHeight);
       if (DEBUG) { p.frameRate(FPS); }
       p.colorMode(p.HSB, 360, 100, 100, 100);
+
+      //感情の色のインスタンスの生成
+      for (let i = 0; i < 8; i++) {
+        ColorOfEmotionArray[i] = new ColorOfEmotion(50, 5); //仮実装として(Hue, Intense) = (50, 5)として生成
+      }
+      getDrawMoverNum(); //それぞれの色における生成する円の数の計算
+
+      //動く円のインスタンスの生成
       for (let i = 0; i < numMovers; i++) {
         movers[i] = new Mover(p.random(p.width), p.random(p.height));
       }
@@ -83,6 +92,23 @@ export function BounceColorful() {
         this.intense = intense;
         //this.drawMoverNum = getDrawMoverNum(); //多分このコードは要らない
       }
+    }
+
+    //8大感情のそれぞれに対する描画数を計算する関数
+    function getDrawMoverNum() {
+      let sumIntense = 0;
+      //8感情の強さの合計の計算
+      for (let i = 0; i < 8; i++) {
+        sumIntense += ColorOfEmotionArray[i].intense;
+      }
+      // 各感情において描画数の計算
+      for (let i = 0; i < 8; i++) {
+        ColorOfEmotionArray[i].drawMoverNum = Math.floor(NUM_MOVERS * ColorOfEmotionArray[i].intense / sumIntense);
+        if (DEBUG) {
+          //console.log("ColorOfEmotionArray[" + i + "].drawMoverNum: " + ColorOfEmotionArray[i].drawMoverNum);
+        }
+      }
+
     }
 
   }
