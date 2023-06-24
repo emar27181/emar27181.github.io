@@ -2,24 +2,28 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
+const X = 10, Y = 10;
+
 export function TemplateClass() {
-  const sketch = (p: P5CanvasInstance) => {
+  class XY {
+    x: number = X;
+    y: number = Y;
 
-    const CANVAS_SIZE = 512;
-    
-    p.setup = () => {
-      p.createCanvas(CANVAS_SIZE, CANVAS_SIZE);
-      p.background(0); 
-    };
+    constructor(inputX: number, inputY: number) {
+      this.x = inputX;
+      this.y = inputY;
+    }
 
-    p.draw = () => {
-      p.fill(255); 
-      p.ellipse(p.width / 2, p.height / 2, 100, 100); 
-    };
+    printXY() {
+      console.log("this.x: " + this.x + ", this.y: " + this.y);
+    }
   }
 
+  let instanceXY = new XY(20, 20);
+  instanceXY.printXY();
+
   return (
-    <ReactP5Wrapper sketch={sketch} />
+    <div></div>
   )
 }
 

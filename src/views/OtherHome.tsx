@@ -35,7 +35,7 @@ export function OtherHome() {
         </NavLink> <br />
 
         <NavLink activeClassName="active" to="/test">
-          ColorOfEmotionクラスのテスト
+          TemplateClassのテスト
         </NavLink>
 
       </ul>
