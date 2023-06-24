@@ -3,18 +3,20 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { Vector, Color } from 'p5';
 
+const DEBUG = true, FPS = 1, NUM_MOVERS = 30;
+
 export function BounceColorful() {
   const sketch = (p: P5CanvasInstance) => {
     //let movers = []; // Moverオブジェクトを格納する配列
     let movers: Mover[] = [];
-    let numMovers = 30; // Moverオブジェクトの数
+    let numMovers = NUM_MOVERS; // Moverオブジェクトの数
     let angle = 0; // 円運動の角度
     let radius = 0; // 円運動の半径
     let speed = 1; // 円運動のスピード
 
     p.setup = () => {
       p.createCanvas(p.windowWidth, p.windowHeight);
-      //frameRate(1);
+      if (DEBUG) { p.frameRate(FPS); }
       p.colorMode(p.HSB, 360, 100, 100, 100);
       for (let i = 0; i < numMovers; i++) {
         movers[i] = new Mover(p.random(p.width), p.random(p.height));
