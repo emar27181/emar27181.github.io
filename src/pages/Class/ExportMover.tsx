@@ -4,7 +4,7 @@ import React from 'react';
 
 const X = 10, Y = 10;
 
-export function TemplateClass() {
+export function ExportMover() {
   class XY {
     x: number = X;
     y: number = Y;
@@ -20,12 +20,13 @@ export function TemplateClass() {
   }
 
   let instanceXY = new XY(20, 20);
-  //instanceXY.printXY();
-  console.log("This is TemplateClass.tsx");
+  instanceXY.printXY();
+
+  console.log("This is ExportMover.tsx");
 
   return (
     <div></div>
   )
 }
 
-export default TemplateClass
+export default ExportMover

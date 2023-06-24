@@ -10,6 +10,7 @@ import SendData from '../pages/ColorRecommendation/data/SendData';
 import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
 import ColorOfEmotion from '../pages/Class/ExportColorOfEmotion';
 import TemplateClass from '../pages/Class/TemplateClass';
+import Mover from '../pages/Class/ExportMover';
 import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -35,7 +36,7 @@ export function OtherHome() {
         </NavLink> <br />
 
         <NavLink activeClassName="active" to="/test">
-          ColorOfEmotionのテスト
+          Classのエクスポートのテスト
         </NavLink>
 
       </ul>
@@ -60,7 +61,9 @@ export function OtherHome() {
         </Route>
 
         <Route path="/test">
-          <ColorOfEmotion/>
+          <TemplateClass />
+          <ColorOfEmotion />
+          <Mover />
         </Route>
       </Switch>
 
