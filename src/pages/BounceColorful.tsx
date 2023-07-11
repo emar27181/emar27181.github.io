@@ -3,25 +3,19 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { Vector, Color } from 'p5';
 
-const DEBUG = true, FPS = 20, NUM_MOVERS = 8, WINDOW_SIZE = 100;
+const DEBUG = true, FPS = 10, NUM_MOVERS = 15, WINDOW_SIZE = 100;
 const WINDOW_WIDTH = WINDOW_SIZE, WINDOW_HEIGHT = WINDOW_SIZE;
 const MIN_RADIUS = WINDOW_SIZE / 200, MAX_RADIUS = WINDOW_SIZE / 200;
 const ALPHA = 15;
 
-// データの取得と解析
-/*
-const response = await fetch('/data/colorData.json');
-const data = await response.json();
-
-
-// 確認用出力
-console.log("data: " + data);
-*/
+// データの取得
+const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
+const DATA = await response.json();
+//console.log("DATA: " + DATA);// 確認用出力
 
 export function BounceColorful() {
   const sketch = (p: P5CanvasInstance) => {
-    //let movers = []; // Moverオブジェクトを格納する配列
-    let movers: Mover[] = [];
+    let movers: Mover[] = []; // Moverオブジェクトを格納する配列
     let ColorOfEmotionArray: ColorOfEmotion[] = [];
     let actualNumMovers = -1;
     let angle = 0; // 円運動の角度
@@ -32,14 +26,18 @@ export function BounceColorful() {
 
       if (DEBUG) { p.createCanvas(WINDOW_WIDTH, WINDOW_HEIGHT); }
       else { p.createCanvas(p.windowWidth, p.windowHeight); }
-      //p.createCanvas(p.windowWidth, p.windowHeight);
       if (DEBUG) { p.frameRate(FPS); }
       p.colorMode(p.HSB, 360, 100, 100, 100);
 
       //感情の色のインスタンスの生成
       for (let i = 0; i < 8; i++) {
-        //ColorOfEmotionArray[i] = new ColorOfEmotion(300, 5); //仮実装として(Hue, Intense) = (50, 5)として生成
-        ColorOfEmotionArray[i] = new ColorOfEmotion((360 / 8) * i, 5); //本来はバックエンドから受け取ったデータ(json形式？)を代入
+
+        let data = DATA[i];
+        let hue = data.hue;
+        let intense = data.intense;
+        //console.log("data[" + i + "]: " + data);
+        //console.log("hue[" + i + "]: "+ hue + ", intense[" + i  + "]: "+ intense);
+        ColorOfEmotionArray[i] = new ColorOfEmotion(hue, intense); 
       }
       getDrawMoverNum(); //それぞれの色における生成する円の数の計算
 
