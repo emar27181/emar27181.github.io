@@ -8,7 +8,8 @@ import OtherLinkTest from '../pages/OtherLinkTest';
 import ReceiveData from '../pages/ColorRecommendation/data/ReceiveData';
 import SendData from '../pages/ColorRecommendation/data/SendData';
 import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
-import { Form } from 'react-bootstrap';
+import TemplatePage from './TemplatePage';
+//import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
 
@@ -32,6 +33,10 @@ export function OtherHome() {
           flaskからのデータの受け取りテスト
         </NavLink> <br />
 
+        <NavLink activeClassName="active" to="/template">
+          テンプレートページ
+        </NavLink>
+
       </ul>
 
       <Switch>
@@ -52,6 +57,11 @@ export function OtherHome() {
           <SendData /> <br />
           <ReceiveData />
         </Route>
+
+        <Route path="/template">
+          <TemplatePage />
+        </Route>
+
       </Switch>
 
     </BrowserRouter>
