@@ -6,6 +6,10 @@ export function WorkMenu() {
   return (
     <div>
       <ul>
+        <NavLink activeClassName='active' to="/researchHome">
+          研究系
+        </NavLink><br />
+
         <NavLink activeClassName="active" to="/gameHome">
           ゲーム系
         </NavLink><br />
@@ -35,6 +39,8 @@ export function WorkMenu() {
         </NavLink>
 
       </ul>
+
+
 
     </div>
   )
