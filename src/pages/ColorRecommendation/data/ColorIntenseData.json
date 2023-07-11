@@ -1,7 +1,11 @@
 [
-  { "hue": "0", "intense": 8 },
-  { "hue": "30", "intense": 0 },
-  { "hue": "60", "intense": 0 },
-  { "hue": "90", "intense": 0 },
-  { "hue": "120", "intense": 8 }
+  { "hue": "19", "intense": 8 },
+  { "hue": "37", "intense": 0 },
+  { "hue": "53", "intense": 0 },
+  { "hue": "66", "intense": 0 },
+  { "hue": "153", "intense": 4 },
+  { "hue": "201", "intense": 0 },
+  { "hue": "209", "intense": 0 },
+  { "hue": "300", "intense": 0 },
+  { "hue": "344", "intense": 0 }
 ]
