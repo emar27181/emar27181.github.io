@@ -6,6 +6,8 @@ const CANVAS_WIDTH = 512, CANVAS_HEIGHT = CANVAS_WIDTH / 4;
 const STARTLINE_MONTH = 7, STARTLINE_DAY = 1;
 const DEADLINE_MONTH = 8, DEADLINE_DAY = 31;
 
+const DEADLINE_MONTH_2 = 8, DEADLINE_DAY_2 = 6;
+
 export function ClockCountdown() {
   const sketch = (p: P5CanvasInstance) => {
 
@@ -23,6 +25,7 @@ export function ClockCountdown() {
         let time = new Date();
         //console.log(time);
 
+        //現在の時刻の取得
         let month = time.getMonth() + 1;
         let date = time.getDate();
         let hours = time.getHours();
@@ -31,6 +34,7 @@ export function ClockCountdown() {
         console.log(month + "/" + date + "  " + hours + ":" + minutes + ":" + seconds);
         let nowTime = month + "/" + date + " " + hours + ":" + minutes + ":" + seconds;
 
+        //U22プログラミングコンテストまでの日数の計算
         let deadlineDiffMonth = DEADLINE_MONTH - month;
         let deadlineDiffDay = DEADLINE_DAY - date;
         let startlineDiffMonth = STARTLINE_MONTH - month;
@@ -40,21 +44,27 @@ export function ClockCountdown() {
         let commentStartline = "(※応募開始まであと " + startlineStillDays + "日！)";
         let commentDeadline = "応募締切まであと " + deadlineStillDays + " 日！";
 
+        //オープンキャンパスまでの日数の計算
+        //本来、関数を用いた方が良いですが簡単のため直書き()
+        let deadlineDiffMonth2 = DEADLINE_MONTH_2 - month;
+        let deadlineDiffDay2 = DEADLINE_DAY_2 - date;
+        let deadlineStillDays2 = deadlineDiffMonth2 * 31 + deadlineDiffDay2;
+        let commentDeadline2 = "オープンキャンパスまであと " + deadlineStillDays2 + " 日！";
+
         let r = (255 / 12) * hours;
         let g = (255 / 60) * minutes;
         let b = (255 / 60) * seconds;
         //console.log("r: " + r + ", g: " + g + ", b: " + b);
 
         p.fill(r, g, b);
-        p.textSize(10);
+        p.textSize(25);
+        p.text(commentDeadline2, p.width / 2, p.height - 10);
 
-        p.text(commentStartline, p.width / 2, p.height -10);
-
-        p.fill(r, g, b);
         p.textSize(40);
         p.text(commentDeadline, p.width / 2, p.height / 2);
 
-
+        p.textSize(20);
+        p.text("U-22プログラミングコンテスト", p.width / 2, p.height - 105);
       };
     };
   }
