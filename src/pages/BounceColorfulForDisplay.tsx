@@ -3,10 +3,10 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { Vector, Color } from 'p5';
 
-const DEBUG = true, FPS = 10, NUM_MOVERS = 15, WINDOW_SIZE = 100;
+const DEBUG = true, FPS = 25, NUM_MOVERS = 15, WINDOW_SIZE = 100;
 const CANVAS_WIDTH = 512 / 4, CANVAS_HEIGHT = CANVAS_WIDTH ;
 const MIN_RADIUS = WINDOW_SIZE / 200, MAX_RADIUS = WINDOW_SIZE / 200;
-const ALPHA = 15;
+const ALPHA = 20;
 
 // データの取得
 const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
