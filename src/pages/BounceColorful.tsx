@@ -3,7 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { Vector, Color } from 'p5';
 
-const DEBUG = true, FPS = 10, NUM_MOVERS = 15, WINDOW_SIZE = 100;
+const DEBUG = true, FPS = 10, NUM_MOVERS = 15, WINDOW_SIZE = 128;
 const WINDOW_WIDTH = WINDOW_SIZE, WINDOW_HEIGHT = WINDOW_SIZE;
 const MIN_RADIUS = WINDOW_SIZE / 200, MAX_RADIUS = WINDOW_SIZE / 200;
 const ALPHA = 15;
