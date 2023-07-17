@@ -3,17 +3,17 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { Vector, Color } from 'p5';
 
-const DEBUG = true, FPS = 10, NUM_MOVERS = 15, WINDOW_SIZE = 128;
-const WINDOW_WIDTH = WINDOW_SIZE, WINDOW_HEIGHT = WINDOW_SIZE;
+const DEBUG = true, FPS = 25, NUM_MOVERS = 15, WINDOW_SIZE = 100;
+const CANVAS_WIDTH = 512 / 4, CANVAS_HEIGHT = CANVAS_WIDTH ;
 const MIN_RADIUS = WINDOW_SIZE / 200, MAX_RADIUS = WINDOW_SIZE / 200;
-const ALPHA = 15;
+const ALPHA = 20;
 
 // データの取得
 const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
 const DATA = await response.json();
 //console.log("DATA: " + DATA);// 確認用出力
 
-export function BounceColorful() {
+export function BounceColorfulForDisplay() {
   const sketch = (p: P5CanvasInstance) => {
     let movers: Mover[] = []; // Moverオブジェクトを格納する配列
     let ColorOfEmotionArray: ColorOfEmotion[] = [];
@@ -24,7 +24,7 @@ export function BounceColorful() {
 
     p.setup = () => {
 
-      if (DEBUG) { p.createCanvas(WINDOW_WIDTH, WINDOW_HEIGHT); }
+      if (DEBUG) { p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT); }
       else { p.createCanvas(p.windowWidth, p.windowHeight); }
       if (DEBUG) { p.frameRate(FPS); }
       p.colorMode(p.HSB, 360, 100, 100, 100);
@@ -137,4 +137,4 @@ export function BounceColorful() {
   )
 }
 
-export default BounceColorful
+export default BounceColorfulForDisplay

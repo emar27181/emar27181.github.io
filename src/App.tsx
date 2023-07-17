@@ -16,7 +16,9 @@ import ToolHome from './views/ToolHome';
 import GenerativeHome from './views/GenerativeHome';
 import OtherHome from './views/OtherHome';
 import ExplainPage from './views/ExplainPage';
+import ReserchHome from './views/ResearchHome';
 import logo from './assets/icon2.png';
+import ResearchHome from './views/ResearchHome';
 
 function App() {
 
@@ -84,6 +86,10 @@ function App() {
 
         <Route path="/otherHome">
           <OtherHome />
+        </Route>
+
+        <Route path="/researchHome">
+          <ResearchHome />
         </Route>
 
         <Route>
