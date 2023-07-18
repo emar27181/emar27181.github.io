@@ -10,7 +10,7 @@ const DATA = await response.json();
 export function DisplayEmotionColorRatio() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_WIDTH = 128, CANVAS_HEIGHT = 16;
+    const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 16;
     let hue: number[] = [];
     let intense: number[] = [];
     let colorWidth: number[] = [];
