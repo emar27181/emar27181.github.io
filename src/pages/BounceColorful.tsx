@@ -3,7 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { Vector, Color } from 'p5';
 
-const DEBUG = true, FPS = 20, NUM_MOVERS = 30, WINDOW_SIZE = 256;
+const LOW_FPS_MODE = true, LOW_FPS = 1, DEBUG = true, FPS = 20, NUM_MOVERS = 30, WINDOW_SIZE = 256;
 const WINDOW_WIDTH = WINDOW_SIZE, WINDOW_HEIGHT = WINDOW_SIZE;
 const MIN_RADIUS = WINDOW_SIZE / 150, MAX_RADIUS = WINDOW_SIZE / 150;
 const ALPHA = 10;
@@ -26,7 +26,8 @@ export function BounceColorful() {
 
       if (DEBUG) { p.createCanvas(WINDOW_WIDTH, WINDOW_HEIGHT); }
       else { p.createCanvas(p.windowWidth, p.windowHeight); }
-      if (DEBUG) { p.frameRate(FPS); }
+      if (LOW_FPS_MODE) { p.frameRate(LOW_FPS); }
+      else { p.frameRate(FPS); }
       p.colorMode(p.HSB, 360, 100, 100, 100);
 
       //感情の色のインスタンスの生成
@@ -37,7 +38,7 @@ export function BounceColorful() {
         let intense = data.intense;
         //console.log("data[" + i + "]: " + data);
         //console.log("hue[" + i + "]: "+ hue + ", intense[" + i  + "]: "+ intense);
-        ColorOfEmotionArray[i] = new ColorOfEmotion(hue, intense); 
+        ColorOfEmotionArray[i] = new ColorOfEmotion(hue, intense);
       }
       getDrawMoverNum(); //それぞれの色における生成する円の数の計算
 
