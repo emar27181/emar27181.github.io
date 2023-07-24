@@ -5,10 +5,10 @@ import React from 'react';
 export function ExplainPluticCircle() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_SIZE = 512;
+    const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 
     p.setup = () => {
-      p.createCanvas(CANVAS_SIZE, CANVAS_SIZE);
+      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(0);
     };
 
