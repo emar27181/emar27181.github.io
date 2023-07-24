@@ -15,6 +15,7 @@ export function ExplainPluticCircle() {
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      p.colorMode(p.HSB, 360, 100, 100, 100);
       p.background(0);
       p.frameRate(0); //余計な負荷を掛けないため、fpsを0に設定
 
@@ -25,16 +26,16 @@ export function ExplainPluticCircle() {
         intense[i] = data.intense;
       }
 
-      let testOutput = displayEmotionExplanation("test input", hue[0]);
-      p.fill(255);
-      p.text(testOutput, p.width / 2, p.height / 2);
+      displayEmotionExplanation("angry", hue[0]);
+      
     };
 
     p.draw = () => {
     };
 
     function displayEmotionExplanation(hueName: string, hueValue: number) {
-      return "test output";
+      p.fill(hueValue, 80, 100, 255);
+      p.text(hueName, p.width / 2, p.height / 2);
     }
 
   }
