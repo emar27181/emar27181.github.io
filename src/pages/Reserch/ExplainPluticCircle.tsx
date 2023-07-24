@@ -3,7 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
 // データの取得
-const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
+const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseDataName.json');
 const DATA = await response.json();
 
 export function ExplainPluticCircle() {
@@ -26,7 +26,7 @@ export function ExplainPluticCircle() {
         intense[i] = data.intense;
       }
 
-      displayEmotionExplanation("angry", hue[0]);
+      displayEmotionExplanation("angry!", hue[0]);
       
     };
 
