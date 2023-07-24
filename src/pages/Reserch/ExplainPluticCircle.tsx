@@ -10,8 +10,8 @@ export function ExplainPluticCircle() {
   const sketch = (p: P5CanvasInstance) => {
 
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
-    let hue: number[] = [];
-    let intense: number[] = [];
+    let hueValue: number[] = [];
+    let emotionIntense: number[] = [];
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -22,12 +22,13 @@ export function ExplainPluticCircle() {
       //hueとintenseの値を代入
       for (let i = 0; i < 8; i++) {
         let data = DATA[i];
-        hue[i] = data.hue;
-        intense[i] = data.intense;
+
+        hueValue[i] = data.hue;
+        emotionIntense[i] = data.intense;
       }
 
-      displayEmotionExplanation("angry!", hue[0]);
-      
+      displayEmotionExplanation("angry!", hueValue[0]);
+
     };
 
     p.draw = () => {
