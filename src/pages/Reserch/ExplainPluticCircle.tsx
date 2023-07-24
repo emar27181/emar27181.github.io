@@ -12,6 +12,7 @@ export function ExplainPluticCircle() {
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
     let hueValue: number[] = [];
     let emotionIntense: number[] = [];
+    let emotionName: string[] = [];
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -25,9 +26,10 @@ export function ExplainPluticCircle() {
 
         hueValue[i] = data.hue;
         emotionIntense[i] = data.intense;
+        emotionName[i] = data.name;
       }
 
-      displayEmotionExplanation("angry!", hueValue[0]);
+      displayEmotionExplanation(emotionName[0], hueValue[0]);
 
     };
 
