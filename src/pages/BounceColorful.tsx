@@ -54,7 +54,11 @@ export function BounceColorful() {
       }
     }
     p.draw = () => {
+      p.blendMode(p.DARKEST);
+      //p.background(0);
       p.background(0, 0, 0, BACKGROUND_ALPHA);
+      p.blendMode(p.ADD);
+
       angle += speed; // 円運動の角度を更新
       let x = p.width / 2 + p.cos(angle) * radius; // 中心座標の計算
       let y = p.height / 2 + p.sin(angle) * radius;
