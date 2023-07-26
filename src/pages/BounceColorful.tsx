@@ -3,10 +3,15 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { Vector, Color } from 'p5';
 
-const DEBUG = true, FPS = 10, NUM_MOVERS = 15, WINDOW_SIZE = 128;
+const LOW_FPS_MODE = false, DEBUG = true;
+const LOW_FPS = 1, FPS = 10, NUM_MOVERS = 20, WINDOW_SIZE = 256;
 const WINDOW_WIDTH = WINDOW_SIZE, WINDOW_HEIGHT = WINDOW_SIZE;
-const MIN_RADIUS = WINDOW_SIZE / 200, MAX_RADIUS = WINDOW_SIZE / 200;
-const ALPHA = 15;
+const BALL_SIZE_RANGE = 0, BALL_SIZE_DIV = 70; 
+const MIN_RADIUS = WINDOW_SIZE / BALL_SIZE_DIV, MAX_RADIUS = WINDOW_SIZE / BALL_SIZE_DIV + BALL_SIZE_RANGE;
+//BACKGROUND_ALPHA: 背景色の不透明度(移動体の軌跡の焼き付き度合い)
+//MOVER_ALPHA: 移動体の色の不透明度(移動体の色の濃さ)
+const BACKGROUND_ALPHA = 20, MOVER_ALPHA = 7;
+
 
 // データの取得
 const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
@@ -26,8 +31,10 @@ export function BounceColorful() {
 
       if (DEBUG) { p.createCanvas(WINDOW_WIDTH, WINDOW_HEIGHT); }
       else { p.createCanvas(p.windowWidth, p.windowHeight); }
-      if (DEBUG) { p.frameRate(FPS); }
+      if (LOW_FPS_MODE) { p.frameRate(LOW_FPS); }
+      else { p.frameRate(FPS); }
       p.colorMode(p.HSB, 360, 100, 100, 100);
+      p.background(0);
 
       //感情の色のインスタンスの生成
       for (let i = 0; i < 8; i++) {
@@ -37,7 +44,7 @@ export function BounceColorful() {
         let intense = data.intense;
         //console.log("data[" + i + "]: " + data);
         //console.log("hue[" + i + "]: "+ hue + ", intense[" + i  + "]: "+ intense);
-        ColorOfEmotionArray[i] = new ColorOfEmotion(hue, intense); 
+        ColorOfEmotionArray[i] = new ColorOfEmotion(hue, intense);
       }
       getDrawMoverNum(); //それぞれの色における生成する円の数の計算
 
@@ -50,7 +57,11 @@ export function BounceColorful() {
       }
     }
     p.draw = () => {
-      p.background(0, 0, 0, ALPHA);
+      p.blendMode(p.DARKEST);
+      //p.background(0);
+      p.background(0, 0, 0, BACKGROUND_ALPHA);
+      p.blendMode(p.ADD);
+
       angle += speed; // 円運動の角度を更新
       let x = p.width / 2 + p.cos(angle) * radius; // 中心座標の計算
       let y = p.height / 2 + p.sin(angle) * radius;
@@ -77,7 +88,7 @@ export function BounceColorful() {
         this.velocity = p.createVector();
         this.acceleration = p.createVector();
         this.mass = p.random(MIN_RADIUS, MAX_RADIUS);
-        this.color = p.color(hue, 80, 100, 255);
+        this.color = p.color(hue, 80, 100, MOVER_ALPHA);
       }
 
       applyForce(force: Vector) {
