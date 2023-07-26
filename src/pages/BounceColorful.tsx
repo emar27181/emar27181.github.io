@@ -3,11 +3,15 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { Vector, Color } from 'p5';
 
-const LOW_FPS_MODE = true, DEBUG = true;
-const LOW_FPS = 1, FPS = 20, NUM_MOVERS = 30, WINDOW_SIZE = 256;
+const LOW_FPS_MODE = false, DEBUG = true;
+const LOW_FPS = 1, FPS = 10, NUM_MOVERS = 20, WINDOW_SIZE = 256;
 const WINDOW_WIDTH = WINDOW_SIZE, WINDOW_HEIGHT = WINDOW_SIZE;
-const MIN_RADIUS = WINDOW_SIZE / 150, MAX_RADIUS = WINDOW_SIZE / 150;
-const BACKGROUND_ALPHA = 20, MOVER_ALPHA = 50;
+const BALL_SIZE_RANGE = 0, BALL_SIZE_DIV = 70; 
+const MIN_RADIUS = WINDOW_SIZE / BALL_SIZE_DIV, MAX_RADIUS = WINDOW_SIZE / BALL_SIZE_DIV + BALL_SIZE_RANGE;
+//BACKGROUND_ALPHA: 背景色の不透明度(移動体の軌跡の焼き付き度合い)
+//MOVER_ALPHA: 移動体の色の不透明度(移動体の色の濃さ)
+const BACKGROUND_ALPHA = 20, MOVER_ALPHA = 7;
+
 
 // データの取得
 const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
@@ -31,7 +35,6 @@ export function BounceColorful() {
       else { p.frameRate(FPS); }
       p.colorMode(p.HSB, 360, 100, 100, 100);
       p.background(0);
-      //p.blendMode(p.DARKEST);
 
       //感情の色のインスタンスの生成
       for (let i = 0; i < 8; i++) {
