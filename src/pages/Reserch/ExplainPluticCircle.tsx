@@ -33,8 +33,10 @@ export function ExplainPluticCircle() {
 
     };
 
+    /*
     p.draw = () => {
     };
+    */
 
     function displayEmotionExplanation(hueName: string, hueValue: number) {
       p.fill(hueValue, 80, 100, 255);
