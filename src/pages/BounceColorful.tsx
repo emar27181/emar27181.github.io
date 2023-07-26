@@ -3,10 +3,11 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { Vector, Color } from 'p5';
 
-const LOW_FPS_MODE = true, LOW_FPS = 1, DEBUG = true, FPS = 20, NUM_MOVERS = 30, WINDOW_SIZE = 256;
+const LOW_FPS_MODE = true, DEBUG = true;
+const LOW_FPS = 1, FPS = 20, NUM_MOVERS = 30, WINDOW_SIZE = 256;
 const WINDOW_WIDTH = WINDOW_SIZE, WINDOW_HEIGHT = WINDOW_SIZE;
 const MIN_RADIUS = WINDOW_SIZE / 150, MAX_RADIUS = WINDOW_SIZE / 150;
-const ALPHA = 10;
+const BACKGROUND_ALPHA = 20, MOVER_ALPHA = 50;
 
 // データの取得
 const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
@@ -29,6 +30,8 @@ export function BounceColorful() {
       if (LOW_FPS_MODE) { p.frameRate(LOW_FPS); }
       else { p.frameRate(FPS); }
       p.colorMode(p.HSB, 360, 100, 100, 100);
+      p.background(0);
+      //p.blendMode(p.DARKEST);
 
       //感情の色のインスタンスの生成
       for (let i = 0; i < 8; i++) {
@@ -51,7 +54,7 @@ export function BounceColorful() {
       }
     }
     p.draw = () => {
-      p.background(0, 0, 0, ALPHA);
+      p.background(0, 0, 0, BACKGROUND_ALPHA);
       angle += speed; // 円運動の角度を更新
       let x = p.width / 2 + p.cos(angle) * radius; // 中心座標の計算
       let y = p.height / 2 + p.sin(angle) * radius;
@@ -78,7 +81,7 @@ export function BounceColorful() {
         this.velocity = p.createVector();
         this.acceleration = p.createVector();
         this.mass = p.random(MIN_RADIUS, MAX_RADIUS);
-        this.color = p.color(hue, 80, 100, 255);
+        this.color = p.color(hue, 80, 100, MOVER_ALPHA);
       }
 
       applyForce(force: Vector) {
