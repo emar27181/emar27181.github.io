@@ -22,9 +22,17 @@ export function Canvas() {
     p.draw = () => {
       p.fill(255); 
 
-      //p.ellipse(p.width / 2, p.height / 2, 100, 100); 
-      p.ellipse(p.mouseX, p.mouseY, 10, 10); 
+      displayMenuBar();
     };
+    function displayMenuBar (){
+      p.textSize(textSize);
+      p.fill("#cccccc");
+      p.rect(0, p.height - textSize, p.width, p.height);
+      p.fill("#000000");
+      p.text("(" + Math.floor(p.mouseX) + ", " + Math.floor(p.mouseY) + 
+        "), size: " + Math.floor(drawingWeight) , 0, p.height);
+    }
+
   }
 
   return (
