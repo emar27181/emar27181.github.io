@@ -8,7 +8,7 @@ import React from 'react';
 
 const IS_NO_STROKE = true;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
-let drawingWeight = 10, backgroundColor = "#000000", textSize = 10;
+let drawingWeight = 10, drawingColor="#FFFFFF", backgroundColor = "#000000", textSize = 10;
 
 export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
@@ -38,6 +38,7 @@ export function Canvas() {
     }
 
     function MouseControl (){
+      p.fill(drawingColor);
       p.ellipse(p.mouseX, p.mouseY, drawingWeight, drawingWeight);
     }
 
