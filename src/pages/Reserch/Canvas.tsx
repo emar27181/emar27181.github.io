@@ -22,6 +22,7 @@ export function Canvas() {
     p.draw = () => {
       p.fill(255); 
 
+      if (p.mouseIsPressed) { MouseControl(); }
       displayMenuBar();
     };
     function displayMenuBar (){
@@ -32,6 +33,11 @@ export function Canvas() {
       p.text("(" + Math.floor(p.mouseX) + ", " + Math.floor(p.mouseY) + 
         "), size: " + Math.floor(drawingWeight) , 0, p.height);
     }
+
+    function MouseControl (){
+      p.ellipse(p.mouseX, p.mouseY, drawingWeight, drawingWeight);
+    }
+
 
   }
 
