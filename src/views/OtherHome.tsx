@@ -36,7 +36,7 @@ export function OtherHome() {
 
         <NavLink activeClassName="active" to="/template">
           テンプレートページ
-        </NavLink>
+        </NavLink> <br />
 
         <NavLink activeClassName="active" to="/freeResearch">
           数学の自由研究用のページ？
