@@ -7,25 +7,27 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
 const IS_NO_STROKE = true;
+const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
+let drawingWeight = 10, backgroundColor = "#000000", textSize = 10;
 
 export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
-    
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      p.background(0); 
-      if(IS_NO_STROKE){p.noStroke();}
+      p.background(backgroundColor);
+      if (IS_NO_STROKE) { p.noStroke(); }
     };
 
     p.draw = () => {
-      p.fill(255); 
+      p.fill(255);
 
       if (p.keyIsPressed){KeyboardControl(p.key);}
       if (p.mouseIsPressed) { MouseControl(); }
       displayMenuBar();
+    
     };
+
     function displayMenuBar (){
       p.textSize(textSize);
       p.fill("#cccccc");
