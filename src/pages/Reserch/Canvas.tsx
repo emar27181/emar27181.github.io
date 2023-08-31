@@ -22,6 +22,7 @@ export function Canvas() {
     p.draw = () => {
       p.fill(255); 
 
+      if (p.keyIsPressed){KeyboardControl(p.key);}
       if (p.mouseIsPressed) { MouseControl(); }
       displayMenuBar();
     };
@@ -36,6 +37,11 @@ export function Canvas() {
 
     function MouseControl (){
       p.ellipse(p.mouseX, p.mouseY, drawingWeight, drawingWeight);
+    }
+
+    function KeyboardControl (inputKey: string){
+      if(inputKey === "+"){ drawingWeight++;}
+      if(inputKey === "-"){ drawingWeight--;}
     }
 
 
