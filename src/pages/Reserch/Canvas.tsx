@@ -14,7 +14,7 @@ const DATA = await response.json();
 const IS_NO_STROKE = true;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DRAWING_WEIGHT_CHANGE_SPEED = 0.1;
-let drawingWeight = 10, drawingColor="#FFFFFF", backgroundColor = "#000000", textSize = 10;
+let drawingWeight = 10, drawingColor = "#FFFFFF", backgroundColor = "#000000", textSize = 10;
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
@@ -34,14 +34,14 @@ export function Canvas() {
     p.draw = () => {
       p.fill(255);
 
-      if (p.keyIsPressed){KeyboardControl(p.key);}
+      if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
       DisplayEmotionColorRatio();
       displayMenuBar();
-    
+
     };
 
-    function displayColorPalette(){
+    function displayColorPalette() {
       //hueとintenseの値を代入
       for (let i = 0; i < 8; i++) {
 
@@ -63,7 +63,7 @@ export function Canvas() {
       let startWidth = 0, endWidth = colorWidth[0];
       for (let i = 0; i < 8; i++) {
         p.fill(hue[i], 80, 100, 255);
-        p.rect(startWidth, CANVAS_WIDTH -20, endWidth, CANVAS_HEIGHT);
+        p.rect(startWidth, CANVAS_HEIGHT - 20, endWidth, CANVAS_HEIGHT);
 
         startWidth += colorWidth[i];
         endWidth += colorWidth[i];
@@ -71,26 +71,26 @@ export function Canvas() {
       }
     }
 
-    function displayMenuBar (){
+    function displayMenuBar() {
       p.textSize(textSize);
       p.fill("#cccccc");
       p.rect(0, p.height - textSize, p.width, p.height);
       p.fill("#000000");
       let mouseColor = p.get(p.mouseX, p.mouseY);
-      p.text("(" + Math.floor(p.mouseX) + ", " + Math.floor(p.mouseY) + 
+      p.text("(" + Math.floor(p.mouseX) + ", " + Math.floor(p.mouseY) +
         "), size: " + Math.floor(drawingWeight) + ", (" + mouseColor + ")", 0, p.height - 2);
-    
+
 
     }
 
-    function MouseControl (){
+    function MouseControl() {
       p.fill(drawingColor);
       p.ellipse(p.mouseX, p.mouseY, drawingWeight, drawingWeight);
     }
 
-    function KeyboardControl (inputKey: string){
-      if(inputKey === "+"){ drawingWeight += DRAWING_WEIGHT_CHANGE_SPEED;}
-      if(inputKey === "-"){ if(drawingWeight > 1)drawingWeight -= DRAWING_WEIGHT_CHANGE_SPEED;}
+    function KeyboardControl(inputKey: string) {
+      if (inputKey === "+") { drawingWeight += DRAWING_WEIGHT_CHANGE_SPEED; }
+      if (inputKey === "-") { if (drawingWeight > 1) drawingWeight -= DRAWING_WEIGHT_CHANGE_SPEED; }
     }
 
 
