@@ -5,7 +5,6 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import DisplayEmotionColorRatio from './DisplayEmotionColorRatio';
 
 // データの取得
 const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
@@ -36,7 +35,6 @@ export function Canvas() {
 
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
-      DisplayEmotionColorRatio();
       displayMenuBar();
 
     };
