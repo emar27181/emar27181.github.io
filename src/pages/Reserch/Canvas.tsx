@@ -28,7 +28,20 @@ export function Canvas() {
       p.background(backgroundColor);
       p.colorMode(p.HSB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
+      displayColorPalette();
+    };
 
+    p.draw = () => {
+      p.fill(255);
+
+      if (p.keyIsPressed){KeyboardControl(p.key);}
+      if (p.mouseIsPressed) { MouseControl(); }
+      DisplayEmotionColorRatio();
+      displayMenuBar();
+    
+    };
+
+    function displayColorPalette(){
       //hueとintenseの値を代入
       for (let i = 0; i < 8; i++) {
 
@@ -50,24 +63,13 @@ export function Canvas() {
       let startWidth = 0, endWidth = colorWidth[0];
       for (let i = 0; i < 8; i++) {
         p.fill(hue[i], 80, 100, 255);
-        p.rect(startWidth, 0, endWidth, CANVAS_HEIGHT);
+        p.rect(startWidth, CANVAS_WIDTH -20, endWidth, CANVAS_HEIGHT);
 
         startWidth += colorWidth[i];
         endWidth += colorWidth[i];
         console.log("hue[i] = " + hue[i] + ", startWidth: " + startWidth + ", endWidth: " + endWidth);
       }
-
-    };
-
-    p.draw = () => {
-      p.fill(255);
-
-      if (p.keyIsPressed){KeyboardControl(p.key);}
-      if (p.mouseIsPressed) { MouseControl(); }
-      DisplayEmotionColorRatio();
-      displayMenuBar();
-    
-    };
+    }
 
     function displayMenuBar (){
       p.textSize(textSize);
