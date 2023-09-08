@@ -27,7 +27,15 @@ export function Canvas() {
       p.background(backgroundColor);
       p.colorMode(p.HSB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
-      displayColorPalette();
+
+      //hueとintenseの値を代入
+      for (let i = 0; i < 8; i++) {
+        let data = DATA[i];
+        hue[i] = data.hue;
+        intense[i] = data.intense;
+        sumIntense += data.intense;
+      }
+
     };
 
     p.draw = () => {
@@ -35,21 +43,11 @@ export function Canvas() {
 
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
+      displayColorPalette();
       displayMenuBar();
-
     };
 
     function displayColorPalette() {
-      //hueとintenseの値を代入
-      for (let i = 0; i < 8; i++) {
-
-        let data = DATA[i];
-        hue[i] = data.hue;
-        intense[i] = data.intense;
-        sumIntense += data.intense;
-        //console.log("data[" + i + "]: " + data);
-        //console.log("hue[" + i + "]: " + hue + ", intense[" + i + "]: " + intense);
-      }
 
       //描画する横幅の計算と代入
       for (let i = 0; i < 8; i++) {
