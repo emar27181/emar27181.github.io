@@ -13,13 +13,11 @@ const DATA = await response.json();
 const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DRAWING_WEIGHT_CHANGE_SPEED = 0.1;
-let drawingWeight = 10, drawingColor = "#FFFFFF", backgroundColor = "#000000", textSize = 10;
-let isSpuitUsed = false;
+let drawingWeight = 10, backgroundColor = "#000000", textSize = 10;
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
 let sumIntense = 0;
-//let inputColor;
 
 export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
@@ -84,10 +82,7 @@ export function Canvas() {
     }
 
     function MouseControl() {
-      if (isSpuitUsed) { p.fill(drawingColor); }
-      else {
-        p.fill(drawingColor);
-      }
+      p.fill(drawingColor);
       p.ellipse(p.mouseX, p.mouseY, drawingWeight, drawingWeight);
     }
 
@@ -100,9 +95,6 @@ export function Canvas() {
 
         console.log("drawingColor: " + drawingColor);
         console.log("typeof:" + typeof (drawingColor));
-
-        isSpuitUsed = true;
-        //drawingColor = inputColor;
       }
     }
 
