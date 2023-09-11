@@ -19,13 +19,12 @@ let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
 let sumIntense = 0;
-let inputColor;
+//let inputColor;
 
 export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
 
-    let inputColor = p.color(255, 255, 255, 100);
-    //drawing
+    let drawingColor = p.color(255, 255, 255, 100);
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -85,9 +84,9 @@ export function Canvas() {
     }
 
     function MouseControl() {
-      if (isSpuitUsed) { p.fill(inputColor); }
+      if (isSpuitUsed) { p.fill(drawingColor); }
       else {
-        p.fill(inputColor);
+        p.fill(drawingColor);
       }
       p.ellipse(p.mouseX, p.mouseY, drawingWeight, drawingWeight);
     }
@@ -97,14 +96,11 @@ export function Canvas() {
       if (inputKey === "-") { if (drawingWeight > 1) drawingWeight -= DRAWING_WEIGHT_CHANGE_SPEED; }
       if (inputKey === "s") {
         let input = p.get(p.mouseX, p.mouseY);
-        inputColor = p.color(input[0], input[1], input[2], input[3])
+        drawingColor = p.color(input[0], input[1], input[2], input[3])
 
-        
-        console.log("inputColor: " + inputColor);
-        console.log("typeof:" + typeof (inputColor));
         console.log("drawingColor: " + drawingColor);
         console.log("typeof:" + typeof (drawingColor));
-        
+
         isSpuitUsed = true;
         //drawingColor = inputColor;
       }
