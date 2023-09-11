@@ -22,7 +22,7 @@ let sumIntense = 0;
 export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
 
-    let drawingColor = p.color(255, 255, 255, 100);
+    let drawingColor = p.color(255, 51, 105);
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
