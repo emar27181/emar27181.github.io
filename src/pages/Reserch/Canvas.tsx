@@ -10,7 +10,7 @@ import React from 'react';
 const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
 const DATA = await response.json();
 
-const IS_NO_STROKE = true;
+const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DRAWING_WEIGHT_CHANGE_SPEED = 0.1;
 let drawingWeight = 10, drawingColor = "#FFFFFF", backgroundColor = "#000000", textSize = 10;
@@ -52,7 +52,7 @@ export function Canvas() {
       //描画する横幅の計算と代入
       for (let i = 0; i < 8; i++) {
         colorWidth[i] = CANVAS_WIDTH * intense[i] / sumIntense;
-        console.log("colorWidth[" + i + "] = " + colorWidth[i]);
+        if (DEBUG) { console.log("colorWidth[" + i + "] = " + colorWidth[i]); }
       }
 
       //色の割合に基づいて描画
@@ -63,7 +63,7 @@ export function Canvas() {
 
         startWidth += colorWidth[i];
         endWidth += colorWidth[i];
-        console.log("hue[i] = " + hue[i] + ", startWidth: " + startWidth + ", endWidth: " + endWidth);
+        if (DEBUG) { console.log("hue[i] = " + hue[i] + ", startWidth: " + startWidth + ", endWidth: " + endWidth); }
       }
     }
 
