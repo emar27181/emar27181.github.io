@@ -14,13 +14,18 @@ const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DRAWING_WEIGHT_CHANGE_SPEED = 0.1;
 let drawingWeight = 10, drawingColor = "#FFFFFF", backgroundColor = "#000000", textSize = 10;
+let isSpuitUsed = false;
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
 let sumIntense = 0;
+let inputColor;
 
 export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
+
+    let inputColor = p.color(255, 255, 255, 100);
+    //drawing
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -80,13 +85,29 @@ export function Canvas() {
     }
 
     function MouseControl() {
-      p.fill(drawingColor);
+      if (isSpuitUsed) { p.fill(inputColor); }
+      else {
+        p.fill(inputColor);
+      }
       p.ellipse(p.mouseX, p.mouseY, drawingWeight, drawingWeight);
     }
 
     function KeyboardControl(inputKey: string) {
       if (inputKey === "+") { drawingWeight += DRAWING_WEIGHT_CHANGE_SPEED; }
       if (inputKey === "-") { if (drawingWeight > 1) drawingWeight -= DRAWING_WEIGHT_CHANGE_SPEED; }
+      if (inputKey === "s") {
+        let input = p.get(p.mouseX, p.mouseY);
+        inputColor = p.color(input[0], input[1], input[2], input[3])
+
+        
+        console.log("inputColor: " + inputColor);
+        console.log("typeof:" + typeof (inputColor));
+        console.log("drawingColor: " + drawingColor);
+        console.log("typeof:" + typeof (drawingColor));
+        
+        isSpuitUsed = true;
+        //drawingColor = inputColor;
+      }
     }
 
 
