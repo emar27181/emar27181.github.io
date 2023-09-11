@@ -27,7 +27,7 @@ export function Canvas() {
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(backgroundColor);
-      p.colorMode(p.HSB, 360, 100, 100, 100);
+      //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
 
       //hueとintenseの値を代入
@@ -41,6 +41,7 @@ export function Canvas() {
     };
 
     p.draw = () => {
+      p.colorMode(p.RGB); 
       p.fill(255);
 
       if (p.keyIsPressed) { KeyboardControl(p.key); }
@@ -60,6 +61,7 @@ export function Canvas() {
       //色の割合に基づいて描画
       let startWidth = 0, endWidth = colorWidth[0];
       for (let i = 0; i < 8; i++) {
+        p.colorMode(p.HSB, 360, 100, 100, 100);
         p.fill(hue[i], 80, 100, 255);
         p.rect(startWidth, CANVAS_HEIGHT - 20, endWidth, CANVAS_HEIGHT);
 
