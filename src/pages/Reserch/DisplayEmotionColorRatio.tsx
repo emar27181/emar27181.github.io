@@ -37,7 +37,7 @@ export function DisplayEmotionColorRatio() {
       //描画する横幅の計算と代入
       for (let i = 0; i < 8; i++) {
         colorWidth[i] = CANVAS_WIDTH * intense[i] / sumIntense;
-        console.log("colorWidth[" + i + "] = " + colorWidth[i]);
+        //console.log("colorWidth[" + i + "] = " + colorWidth[i]);
       }
 
       //色の割合に基づいて描画
@@ -48,7 +48,7 @@ export function DisplayEmotionColorRatio() {
 
         startWidth += colorWidth[i];
         endWidth += colorWidth[i];
-        console.log("hue[i] = " + hue[i] + ", startWidth: " + startWidth + ", endWidth: " + endWidth);
+       //console.log("hue[i] = " + hue[i] + ", startWidth: " + startWidth + ", endWidth: " + endWidth);
       }
 
     };

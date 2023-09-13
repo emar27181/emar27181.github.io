@@ -9,6 +9,7 @@ import ReceiveData from '../pages/ColorRecommendation/data/ReceiveData';
 import SendData from '../pages/ColorRecommendation/data/SendData';
 import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
 import TemplatePage from './TemplatePage';
+import FreeResearch from '../pages/FreeResearch';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -35,6 +36,10 @@ export function OtherHome() {
 
         <NavLink activeClassName="active" to="/template">
           テンプレートページ
+        </NavLink> <br />
+
+        <NavLink activeClassName="active" to="/freeResearch">
+          数学の自由研究用のページ？
         </NavLink>
 
       </ul>
@@ -60,6 +65,10 @@ export function OtherHome() {
 
         <Route path="/template">
           <TemplatePage />
+        </Route>
+
+        <Route path="/freeResearch">
+          <FreeResearch />
         </Route>
 
       </Switch>

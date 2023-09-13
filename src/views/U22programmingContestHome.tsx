@@ -1,23 +1,22 @@
 import '../App.css'
 import React from 'react';
 import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
+import Template from '../pages/template';
 import BounceColorful from '../pages/BounceColorful';
 import DisplayEmotionColorRatio from '../pages/Reserch/DisplayEmotionColorRatio';
 import ExplainPluticCircle from '../pages/Reserch/ExplainPluticCircle';
-import Canvas from '../pages/Reserch/Canvas';
 
-export function ResearchHome() {
+export function U22programmingContestHome() {
 
 
   return (
     <div>
-      <h3>以下卒業研究用ページ</h3>
-      <Canvas />
+      <h3>以下 U-22プログラミングコンテスト用ページ</h3>
+      <BounceColorful />
       <DisplayEmotionColorRatio /> <br />
       <ExplainPluticCircle /> <br />
-      <a href="https://docs.google.com/presentation/d/1N21mXeW3NV-ODW7jHCPQ2FYsSbpZpuSNzAaHix2wRyc/edit?usp=sharing" target="_blank">卒業研究 説明スライド</a><br />
     </div>
   )
 }
 
-export default ResearchHome
+export default U22programmingContestHome
