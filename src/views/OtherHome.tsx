@@ -10,6 +10,7 @@ import SendData from '../pages/ColorRecommendation/data/SendData';
 import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
 import TemplatePage from './TemplatePage';
 import FreeResearch from '../pages/FreeResearch';
+import AxiosTest from '../pages/test/AxiosTest';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -40,6 +41,10 @@ export function OtherHome() {
 
         <NavLink activeClassName="active" to="/freeResearch">
           数学の自由研究用のページ？
+        </NavLink> <br />
+
+        <NavLink activeClassName="active" to="/axiosTest">
+          AxiosによるChatGPTAPI利用テスト
         </NavLink>
 
       </ul>
@@ -69,6 +74,10 @@ export function OtherHome() {
 
         <Route path="/freeResearch">
           <FreeResearch />
+        </Route>
+
+        <Route path="/axiosTest">
+          <AxiosTest />
         </Route>
 
       </Switch>
