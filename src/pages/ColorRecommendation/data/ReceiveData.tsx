@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import * as fs from 'fs';
 
 const ReceiveData = () => {
   //console.log('This is TestReceiveDataTDD.tsx');
@@ -13,6 +14,9 @@ const ReceiveData = () => {
   };
 
   console.log("message(receive):\n" + message);
+  const jsonMessage = JSON.stringify({ message }); 
+  console.log("jsonMessage: " + jsonMessage);
+  //fs.writeFileSync('OutputData.json', jsonMessage); //代入されたjson形式のメッセージのファイル出力が出来ない(2023/09/13)
 
   return (
     <div>
