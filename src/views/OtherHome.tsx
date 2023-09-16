@@ -11,6 +11,7 @@ import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
 import TemplatePage from './TemplatePage';
 import FreeResearch from '../pages/FreeResearch';
 import AxiosTest from '../pages/test/AxiosTest';
+import ReceiveDataUseEffect from '../pages/ColorRecommendation/ReceiveData';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -37,6 +38,10 @@ export function OtherHome() {
 
         <NavLink activeClassName="active" to="/template">
           テンプレートページ
+        </NavLink> <br />
+
+        <NavLink activeClassName="active" to="/receiveDataUseEffect">
+          flaskからのデータの受け取りテスト(useEffectを使用)
         </NavLink> <br />
 
         <NavLink activeClassName="active" to="/freeResearch">
@@ -66,6 +71,10 @@ export function OtherHome() {
           <FormDisplay /> <br />
           <SendData /> <br />
           <ReceiveData />
+        </Route>
+
+        <Route path="/receiveDataUseEffect">
+          <ReceiveDataUseEffect />
         </Route>
 
         <Route path="/template">
