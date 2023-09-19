@@ -7,45 +7,6 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
 
-// データの取得
-const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
-const DATA = await response.json();
-console.log("DATA[0].hue: " + DATA[0].hue);
-
-// バックエンドからJSONデータの取得
-async function fetchData() {
-  try {
-    const response = await axios.get('http://localhost:5000/api/send-data');
-    const jsonData = response.data;
-    const parsedData = JSON.parse(jsonData.message);
-    console.log('response: ', response);
-    console.log('jsonData: ', jsonData);
-    console.log('parsedData: ' + parsedData);
-    console.log('parsedData[4].hue: ' + parsedData[4].hue);
-
-    //hueとintenseの値を代入
-    for (let i = 0; i < 8; i++) {
-      let data = parsedData[i];
-      hue[i] = data.hue;
-      intense[i] = data.intense;
-      sumIntense += data.intense;
-      console.log('hue[i]: ' + hue[i]);
-      console.log('intense[i]: ' + intense[i]);
-    }
-
-    /*
-    let testData = jsonData[0];
-
-    console.log('response: ', response);
-    console.log('jsonData: ', jsonData);
-    console.log('testData.hue: ' + testData.hue);
-    */
-  } catch (error) {
-    console.error('エラーが発生しました:', error);
-  }
-}
-
-
 const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DRAWING_WEIGHT_CHANGE_SPEED = 0.1;
@@ -59,24 +20,13 @@ export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
 
     let drawingColor = p.color(255, 51, 105);
-    fetchData();
+    fetchData(); //データの取得
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
-
-      //hueとintenseの値を代入
-      /*
-      for (let i = 0; i < 8; i++) {
-        let data = DATA[i];
-        hue[i] = data.hue;
-        intense[i] = data.intense;
-        sumIntense += data.intense;
-      }
-      */
-
     };
 
     p.draw = () => {
@@ -141,6 +91,27 @@ export function Canvas() {
       }
     }
 
+    // バックエンドからJSONデータの取得
+    async function fetchData() {
+      try {
+        const response = await axios.get('http://localhost:5000/api/send-data');
+        const jsonData = response.data;
+        const parsedData = JSON.parse(jsonData.message);
+
+        //hueとintenseの値を代入
+        for (let i = 0; i < 8; i++) {
+          let data = parsedData[i];
+          hue[i] = data.hue;
+          intense[i] = data.intense;
+          sumIntense += data.intense;
+          console.log('hue[i]: ' + hue[i]);
+          console.log('intense[i]: ' + intense[i]);
+        }
+
+      } catch (error) {
+        console.error('エラーが発生しました:', error);
+      }
+    }
 
   }
 
