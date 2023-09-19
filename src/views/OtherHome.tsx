@@ -40,10 +40,6 @@ export function OtherHome() {
           テンプレートページ
         </NavLink> <br />
 
-        <NavLink activeClassName="active" to="/receiveDataUseEffect">
-          flaskからのデータの受け取りテスト(useEffectを使用)
-        </NavLink> <br />
-
         <NavLink activeClassName="active" to="/freeResearch">
           数学の自由研究用のページ？
         </NavLink> <br />
@@ -71,10 +67,6 @@ export function OtherHome() {
           <FormDisplay /> <br />
           <SendData /> <br />
           <ReceiveData />
-        </Route>
-
-        <Route path="/receiveDataUseEffect">
-          <ReceiveDataUseEffect />
         </Route>
 
         <Route path="/template">
