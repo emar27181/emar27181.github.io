@@ -95,7 +95,7 @@ export function DisplayEmotionColorRatio() {
 
     async function fetchData() {
       try {
-        console.log("fetchData is called");
+        if (DEBUG) { console.log("fetchData is called"); }
         const response = await axios.get('http://localhost:5000/api/send-data');
         const jsonData = response.data;
         const parsedData = JSON.parse(jsonData.message);
@@ -106,8 +106,8 @@ export function DisplayEmotionColorRatio() {
           hue[i] = data.hue;
           intense[i] = data.intense;
           sumIntense += data.intense;
-          console.log('hue[i]: ' + hue[i]);
-          console.log('intense[i]: ' + intense[i]);
+          //console.log('hue[i]: ' + hue[i]);
+          //console.log('intense[i]: ' + intense[i]);
         }
 
       } catch (error) {
