@@ -48,6 +48,8 @@ export function Canvas() {
       }
 
       //色の割合に基づいて描画
+      //一番右側に表示される色が長く表示されてしまうバグあり(2023/09/19時点)
+      //再読み込み時にのみ発生する(キャッシュが関係している？...)
       let startWidth = 0, endWidth = colorWidth[0];
       for (let i = 0; i < 8; i++) {
         p.colorMode(p.HSB, 360, 100, 100, 100);
