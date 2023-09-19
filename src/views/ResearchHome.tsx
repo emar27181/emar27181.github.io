@@ -6,6 +6,9 @@ import DisplayEmotionColorRatio from '../pages/Reserch/DisplayEmotionColorRatio'
 import ExplainPluticCircle from '../pages/Reserch/ExplainPluticCircle';
 import Canvas from '../pages/Reserch/Canvas';
 import ColorGanerate from '../pages/ColorRecommendation/ColorGenerate';
+import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
+import SendData from '../pages/ColorRecommendation/data/SendData';
+import ReceiveData from '../pages/ColorRecommendation/data/ReceiveData';
 
 export function ResearchHome() {
 
@@ -13,6 +16,9 @@ export function ResearchHome() {
   return (
     <div>
       <h3>以下卒業研究用ページ</h3>
+      <FormDisplay /> <br />
+      <SendData /> <br />
+      <ReceiveData />
       <Canvas />
       <DisplayEmotionColorRatio /> <br />
       <ColorGanerate />
