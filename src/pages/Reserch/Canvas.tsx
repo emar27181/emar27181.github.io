@@ -5,10 +5,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-
-// データの取得
-const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
-const DATA = await response.json();
+import axios from 'axios';
 
 const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
@@ -23,25 +20,17 @@ export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
 
     let drawingColor = p.color(255, 51, 105);
+    fetchData(); //データの取得
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
-
-      //hueとintenseの値を代入
-      for (let i = 0; i < 8; i++) {
-        let data = DATA[i];
-        hue[i] = data.hue;
-        intense[i] = data.intense;
-        sumIntense += data.intense;
-      }
-
     };
 
     p.draw = () => {
-      p.colorMode(p.RGB); 
+      p.colorMode(p.RGB);
       p.fill(255);
 
       if (p.keyIsPressed) { KeyboardControl(p.key); }
@@ -81,7 +70,7 @@ export function Canvas() {
       p.text("(" + Math.floor(p.mouseX) + ", " + Math.floor(p.mouseY) +
         "), size: " + Math.floor(drawingWeight) + ", (" + mouseColor + ")", 0, p.height - 2);
       p.fill(drawingColor);
-      p.rect(p.width - 20 , p.height - textSize, p.width, p.height);
+      p.rect(p.width - 20, p.height - textSize, p.width, p.height);
 
     }
 
@@ -102,6 +91,29 @@ export function Canvas() {
       }
     }
 
+    // バックエンドからJSONデータの取得
+    async function fetchData() {
+      try {
+        const response = await axios.get('http://localhost:5000/api/send-data');
+        const jsonData = response.data;
+        const parsedData = JSON.parse(jsonData.message);
+
+        //hueとintenseの値を代入
+        for (let i = 0; i < 8; i++) {
+          let data = parsedData[i];
+          hue[i] = data.hue;
+          intense[i] = data.intense;
+          sumIntense += data.intense;
+          if (DEBUG) {
+            console.log('hue[i]: ' + hue[i]);
+            console.log('intense[i]: ' + intense[i]);
+          }
+        }
+
+      } catch (error) {
+        console.error('エラーが発生しました:', error);
+      }
+    }
 
   }
 

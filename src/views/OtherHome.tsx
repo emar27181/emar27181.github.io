@@ -10,6 +10,8 @@ import SendData from '../pages/ColorRecommendation/data/SendData';
 import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
 import TemplatePage from './TemplatePage';
 import FreeResearch from '../pages/FreeResearch';
+import AxiosTest from '../pages/test/AxiosTest';
+import ReceiveDataUseEffect from '../pages/ColorRecommendation/ReceiveData';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -38,8 +40,16 @@ export function OtherHome() {
           テンプレートページ
         </NavLink> <br />
 
+        <NavLink activeClassName="active" to="/receiveDataUseEffect">
+          flaskからのデータの受け取りテスト(useEffectを使用)
+        </NavLink> <br />
+
         <NavLink activeClassName="active" to="/freeResearch">
           数学の自由研究用のページ？
+        </NavLink> <br />
+
+        <NavLink activeClassName="active" to="/axiosTest">
+          AxiosによるChatGPTAPI利用テスト
         </NavLink>
 
       </ul>
@@ -63,12 +73,20 @@ export function OtherHome() {
           <ReceiveData />
         </Route>
 
+        <Route path="/receiveDataUseEffect">
+          <ReceiveDataUseEffect />
+        </Route>
+
         <Route path="/template">
           <TemplatePage />
         </Route>
 
         <Route path="/freeResearch">
           <FreeResearch />
+        </Route>
+
+        <Route path="/axiosTest">
+          <AxiosTest />
         </Route>
 
       </Switch>
