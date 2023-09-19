@@ -10,30 +10,36 @@ import axios from 'axios';
 // データの取得
 const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
 const DATA = await response.json();
-
-const responseTry = await fetch('http://localhost:5000/api/send-data', {
-  method: 'POST',
-});
-const DATA_TRY = await responseTry.json();
-
 console.log("DATA[0].hue: " + DATA[0].hue);
-/*
-console.log("response: " + response);
-console.log("responseTry: " + responseTry);
-console.log("DATA[0]" + DATA[0]);
-console.log("DATA_TRY[0]: " + DATA_TRY[0]);
-*/
 
 // バックエンドからJSONデータの取得
 async function fetchData() {
   try {
     const response = await axios.get('http://localhost:5000/api/send-data');
     const jsonData = response.data;
+    const parsedData = JSON.parse(jsonData.message);
+    console.log('response: ', response);
+    console.log('jsonData: ', jsonData);
+    console.log('parsedData: ' + parsedData);
+    console.log('parsedData[4].hue: ' + parsedData[4].hue);
+
+    //hueとintenseの値を代入
+    for (let i = 0; i < 8; i++) {
+      let data = parsedData[i];
+      hue[i] = data.hue;
+      intense[i] = data.intense;
+      sumIntense += data.intense;
+      console.log('hue[i]: ' + hue[i]);
+      console.log('intense[i]: ' + intense[i]);
+    }
+
+    /*
     let testData = jsonData[0];
 
     console.log('response: ', response);
     console.log('jsonData: ', jsonData);
     console.log('testData.hue: ' + testData.hue);
+    */
   } catch (error) {
     console.error('エラーが発生しました:', error);
   }
@@ -62,12 +68,14 @@ export function Canvas() {
       if (IS_NO_STROKE) { p.noStroke(); }
 
       //hueとintenseの値を代入
+      /*
       for (let i = 0; i < 8; i++) {
         let data = DATA[i];
         hue[i] = data.hue;
         intense[i] = data.intense;
         sumIntense += data.intense;
       }
+      */
 
     };
 
