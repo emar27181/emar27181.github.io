@@ -21,7 +21,6 @@ const ReceiveData = () => {
   return (
     <div>
       <button onClick={receiveData}>Receive Data</button>
-      <p>{message}</p>
     </div>
   );
 };
