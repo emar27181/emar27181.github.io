@@ -9,6 +9,7 @@ import ColorGanerate from '../pages/ColorRecommendation/ColorGenerate';
 import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
 import SendData from '../pages/ColorRecommendation/data/SendData';
 import ReceiveData from '../pages/ColorRecommendation/data/ReceiveData';
+import DisplayInfo from '../pages/Reserch/DisplayInfo';
 
 export function ResearchHome() {
 
@@ -16,6 +17,7 @@ export function ResearchHome() {
   return (
     <div>
       <h3>以下卒業研究用ページ</h3>
+      <DisplayInfo />
       <FormDisplay /> <br />
       <SendData /> <br />
       <ReceiveData />
