@@ -13,10 +13,8 @@ const ReceiveData = () => {
     setMessage(data.message);
   };
 
-  console.log("message(receive):\n" + message);
-  const jsonMessage = JSON.stringify({ message }); 
-  console.log("jsonMessage: " + jsonMessage);
-  //fs.writeFileSync('OutputData.json', jsonMessage); //代入されたjson形式のメッセージのファイル出力が出来ない(2023/09/13)
+  console.log("message(receive): \n" + message);
+  const jsonMessage = JSON.stringify({ message });
 
   return (
     <div>
