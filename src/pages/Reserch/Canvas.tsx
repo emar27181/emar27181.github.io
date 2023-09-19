@@ -104,8 +104,10 @@ export function Canvas() {
           hue[i] = data.hue;
           intense[i] = data.intense;
           sumIntense += data.intense;
-          console.log('hue[i]: ' + hue[i]);
-          console.log('intense[i]: ' + intense[i]);
+          if (DEBUG) {
+            console.log('hue[i]: ' + hue[i]);
+            console.log('intense[i]: ' + intense[i]);
+          }
         }
 
       } catch (error) {
