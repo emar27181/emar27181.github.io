@@ -5,10 +5,40 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
+import axios from 'axios';
 
 // データの取得
 const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
 const DATA = await response.json();
+
+const responseTry = await fetch('http://localhost:5000/api/send-data', {
+  method: 'POST',
+});
+const DATA_TRY = await responseTry.json();
+
+console.log("DATA[0].hue: " + DATA[0].hue);
+/*
+console.log("response: " + response);
+console.log("responseTry: " + responseTry);
+console.log("DATA[0]" + DATA[0]);
+console.log("DATA_TRY[0]: " + DATA_TRY[0]);
+*/
+
+// バックエンドからJSONデータの取得
+async function fetchData() {
+  try {
+    const response = await axios.get('http://localhost:5000/api/send-data');
+    const jsonData = response.data;
+    let testData = jsonData[0];
+
+    console.log('response: ', response);
+    console.log('jsonData: ', jsonData);
+    console.log('testData.hue: ' + testData.hue);
+  } catch (error) {
+    console.error('エラーが発生しました:', error);
+  }
+}
+
 
 const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
@@ -23,6 +53,7 @@ export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
 
     let drawingColor = p.color(255, 51, 105);
+    fetchData();
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -41,7 +72,7 @@ export function Canvas() {
     };
 
     p.draw = () => {
-      p.colorMode(p.RGB); 
+      p.colorMode(p.RGB);
       p.fill(255);
 
       if (p.keyIsPressed) { KeyboardControl(p.key); }
@@ -81,7 +112,7 @@ export function Canvas() {
       p.text("(" + Math.floor(p.mouseX) + ", " + Math.floor(p.mouseY) +
         "), size: " + Math.floor(drawingWeight) + ", (" + mouseColor + ")", 0, p.height - 2);
       p.fill(drawingColor);
-      p.rect(p.width - 20 , p.height - textSize, p.width, p.height);
+      p.rect(p.width - 20, p.height - textSize, p.width, p.height);
 
     }
 
