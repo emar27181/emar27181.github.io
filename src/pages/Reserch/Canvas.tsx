@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
-const DRAWING_WEIGHT_CHANGE_SPEED = 0.1;
+const DRAWING_WEIGHT_CHANGE_SPEED = 0.1, FPS = 1;
 let drawingWeight = 10, backgroundColor = "#000000", textSize = 10;
 let hue: number[] = [];
 let intense: number[] = [];
@@ -37,6 +37,7 @@ export function Canvas() {
       if (p.mouseIsPressed) { MouseControl(); }
       displayColorPalette();
       displayMenuBar();
+      p.frameRate(FPS);
     };
 
     function displayColorPalette() {
