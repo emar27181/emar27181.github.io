@@ -7,7 +7,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
 
-const IS_NO_STROKE = true, DEBUG = false;
+const IS_NO_STROKE = true, DEBUG = true;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DRAWING_WEIGHT_CHANGE_SPEED = 0.1, FPS = 0.2;
 let drawingWeight = 10, backgroundColor = "#000000", textSize = 10;
@@ -24,11 +24,12 @@ export function Canvas() {
     fetchData(); //データの取得
 
     p.setup = () => {
-      //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      p.createCanvas(p.windowWidth /2, p.windowHeight/2);
+      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      //p.createCanvas(p.windowWidth /2, p.windowHeight/2);
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
+      displayColorPalette();
     };
 
     p.draw = () => {
@@ -44,7 +45,6 @@ export function Canvas() {
 
     //感情の割合を基にカラーパレットを描画
     function displayColorPalette() {
-
       //描画する横幅の計算と代入
       if (DEBUG) { console.log("------------------------"); }
       for (let i = 0; i < 8; i++) {
@@ -56,6 +56,7 @@ export function Canvas() {
 
       //色の割合に基づいて描画
       //一番右側に表示される色が長く表示されてしまうバグあり(2023/09/19時点)
+      //VSCodeの保存(Ctrl x + s)による再読み込みとブラウザの再読み込みで挙動が異なる、
       //再読み込み時にのみ発生する(キャッシュが関係している？...)
       let startWidth = 0, endWidth = colorWidth[0];
       for (let i = 0; i < 8; i++) {
@@ -63,11 +64,12 @@ export function Canvas() {
         p.fill(hue[i], 80, 100, 255);
         p.rect(startWidth, p.height - 20, endWidth, p.height);
 
-        startWidth += colorWidth[i];
-        endWidth += colorWidth[i];
         if (DEBUG) {
-          //console.log("hue[i] = " + hue[i] + ", startWidth: " + p.round(startWidth) + ", endWidth: " + p.round(endWidth));
+          console.log("hue[i] = " + hue[i] + ", startWidth: " + p.round(startWidth) + ", endWidth: " + p.round(endWidth));
         }
+
+        startWidth += colorWidth[i];
+        endWidth += colorWidth[i+1];
       }
     }
 
@@ -122,9 +124,7 @@ export function Canvas() {
           emotionName[i] = data.name;
           sumIntense += data.intense;
           if (DEBUG) {
-            //console.log("hue: [" + i+ "]: "+ hue[i]);
-            //console.log("intense: [" + i+ "]: " + intense[i]);
-            console.log("emotionName: [" + i + "]: " + emotionName[i]);
+            console.log("hue[" + i + "]: " + hue[i] + ", intense[" + i + "]: " + intense[i] + ", emotionName[" + i + "]: " + emotionName[i]);
           }
         }
 

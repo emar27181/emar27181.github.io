@@ -88,7 +88,7 @@ export function DisplayEmotionColorRatio() {
         p.rect(startWidth, 0, endWidth, CANVAS_HEIGHT);
 
         startWidth += colorWidth[i];
-        endWidth += colorWidth[i];
+        endWidth += colorWidth[i+1];
         if (DEBUG) { console.log("hue[i] = " + hue[i] + ", startWidth: " + startWidth + ", endWidth: " + endWidth); }
       }
     }
