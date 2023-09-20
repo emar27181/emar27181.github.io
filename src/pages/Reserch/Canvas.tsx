@@ -14,13 +14,18 @@ class Ball {
   dy: number = 2;
   r: number = 100;
   color: string = "red";
+  emotionNumber: number = 0; //drawingEmotionNumber: 各感情の色に対して割り振られる0~7の数値
   boundCount: number = 0;
 
-  constructor(x: number, y: number, r: number, color: string) {
+  constructor(x: number, y: number, r: number, color: string, emotionNumber: number) {
     this.x = x;
     this.y = y;
     this.r = r;
     this.color = color;
+    this.emotionNumber = emotionNumber;
+    if (DEBUG) {
+      //console.log("emotionNumber: " + this.emotionNumber);
+    }
   }
 }
 
@@ -32,8 +37,10 @@ let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
 let emotionName: string[] = [];
+let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
 
+//描画ボールに関する変数宣言
 let balls: Array<Ball> = [];
 let dx = 1, dy = 2;
 let isChangeColor = false;
@@ -68,6 +75,7 @@ export function Canvas() {
       if (DEBUG) { p.frameRate(FPS); }
     };
 
+    //描画ボールを移動/反射させ描画する関数
     function moveBalls() {
       for (let i = 0; i < balls.length; i++) {
         if (isBallCollisionDetected) {
@@ -97,11 +105,8 @@ export function Canvas() {
         balls[i].x += balls[i].dx;
         balls[i].y += balls[i].dy;
 
-        if (isChangeColor) { p.fill(255 - balls[i].boundCount * 30); }
-        else if (balls[i].color === 'red') { p.fill(SATURATION, 0, 0); }
-        else if (balls[i].color === 'green') { p.fill(0, SATURATION, 0); }
-        else if (balls[i].color === 'blue') { p.fill(0, 0, SATURATION); }
-        else if (balls[i].color === 'black') { p.fill(0, 0, 0, 0); }
+        p.colorMode(p.HSB, 360, 100, 100, 100);
+        p.fill(hue[balls[i].emotionNumber], 100, 100);
         p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
       }
     }
@@ -152,9 +157,9 @@ export function Canvas() {
 
     //マウスのクリック中の動作
     function MouseControl() {
-      balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor));
+      balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
       p.fill(drawingColor);
-      p.ellipse(p.mouseX, p.mouseY, drawingWeight, drawingWeight);
+      //p.ellipse(p.mouseX, p.mouseY, drawingWeight, drawingWeight);
     }
 
     //キーボードによる描画モードの変更
@@ -171,6 +176,14 @@ export function Canvas() {
           //console.log("typeof:" + typeof (drawingColor));
         }
       }
+      if (inputKey === "0") { drawingEmotionNumber = 0; }
+      if (inputKey === "1") { drawingEmotionNumber = 1; }
+      if (inputKey === "2") { drawingEmotionNumber = 2; }
+      if (inputKey === "3") { drawingEmotionNumber = 3; }
+      if (inputKey === "4") { drawingEmotionNumber = 4; }
+      if (inputKey === "5") { drawingEmotionNumber = 5; }
+      if (inputKey === "6") { drawingEmotionNumber = 6; }
+      if (inputKey === "7") { drawingEmotionNumber = 7; }
     }
 
     // バックエンドからJSONデータの取得と色に関するデータの代入
