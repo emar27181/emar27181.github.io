@@ -12,6 +12,7 @@ import TemplatePage from './TemplatePage';
 import FreeResearch from '../pages/FreeResearch';
 import AxiosTest from '../pages/test/AxiosTest';
 import ReceiveDataUseEffect from '../pages/ColorRecommendation/ReceiveData';
+import ControlGravityField from '../pages/ControlGravityField';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -46,6 +47,10 @@ export function OtherHome() {
 
         <NavLink activeClassName="active" to="/axiosTest">
           AxiosによるChatGPTAPI利用テスト
+        </NavLink> <br />
+
+        <NavLink activeClassName="active" to="/controlGravityField">
+        重力場の操作
         </NavLink>
 
       </ul>
@@ -79,6 +84,10 @@ export function OtherHome() {
 
         <Route path="/axiosTest">
           <AxiosTest />
+        </Route>
+
+        <Route path="/controlGravityField">
+          <ControlGravityField/>
         </Route>
 
       </Switch>
