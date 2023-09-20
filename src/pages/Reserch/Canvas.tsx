@@ -7,13 +7,14 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
 
-const IS_NO_STROKE = true, DEBUG = false;
+const IS_NO_STROKE = true, DEBUG = true;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
-const DRAWING_WEIGHT_CHANGE_SPEED = 0.1, FPS = 30;
+const DRAWING_WEIGHT_CHANGE_SPEED = 0.1, FPS = 0.2;
 let drawingWeight = 10, backgroundColor = "#000000", textSize = 10;
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
+let emotionName: string[] = [];
 let sumIntense = 0;
 
 export function Canvas() {
@@ -117,10 +118,12 @@ export function Canvas() {
           let data = parsedData[i];
           hue[i] = data.hue;
           intense[i] = data.intense;
+          emotionName[i] = data.name;
           sumIntense += data.intense;
           if (DEBUG) {
-            //console.log('hue[i]: ' + hue[i]);
-            //console.log('intense[i]: ' + intense[i]);
+            //console.log("hue: [" + i+ "]: "+ hue[i]);
+            //console.log("intense: [" + i+ "]: " + intense[i]);
+            console.log("emotionName: [" + i+ "]: " + emotionName[i]);
           }
         }
 
