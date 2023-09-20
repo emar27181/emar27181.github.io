@@ -13,6 +13,7 @@ import FreeResearch from '../pages/FreeResearch';
 import AxiosTest from '../pages/test/AxiosTest';
 import ReceiveDataUseEffect from '../pages/ColorRecommendation/ReceiveData';
 import ControlGravityField from '../pages/ControlGravityField';
+import ControlGravityField2 from '../pages/ControlGravityField2';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -50,8 +51,13 @@ export function OtherHome() {
         </NavLink> <br />
 
         <NavLink activeClassName="active" to="/controlGravityField">
-        重力場の操作
+        重力場の操作(既存のコピー(バグ有))
+        </NavLink><br />
+
+        <NavLink activeClassName="active" to="/controlGravityField2">
+        重力場の操作(改めて実装)
         </NavLink>
+
 
       </ul>
 
@@ -88,6 +94,10 @@ export function OtherHome() {
 
         <Route path="/controlGravityField">
           <ControlGravityField/>
+        </Route>
+
+        <Route path="/controlGravityField2">
+          <ControlGravityField2/>
         </Route>
 
       </Switch>
