@@ -10,6 +10,7 @@ import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
 import SendData from '../pages/ColorRecommendation/data/SendData';
 import ReceiveData from '../pages/ColorRecommendation/data/ReceiveData';
 import DisplayInfo from '../pages/Reserch/DisplayInfo';
+import ExplainPluticCircleEnglish from '../pages/Reserch/ExplainPluticCircleEnglish';
 
 export function ResearchHome() {
 
@@ -24,6 +25,7 @@ export function ResearchHome() {
       <Canvas />
       <a>↓のバーが正しい表記になっています</a>
       <DisplayEmotionColorRatio /> <br />
+      <ExplainPluticCircleEnglish/>
       <ExplainPluticCircle /> <br />
       <ColorGanerate />
       <a href="https://docs.google.com/presentation/d/1N21mXeW3NV-ODW7jHCPQ2FYsSbpZpuSNzAaHix2wRyc/edit?usp=sharing" target="_blank">卒業研究 説明スライド</a><br />
