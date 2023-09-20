@@ -40,12 +40,16 @@ export function Canvas() {
       p.frameRate(FPS);
     };
 
+    //感情の割合を基にカラーパレットを描画
     function displayColorPalette() {
 
       //描画する横幅の計算と代入
+      if (DEBUG) { console.log("------------------------"); }
       for (let i = 0; i < 8; i++) {
         colorWidth[i] = CANVAS_WIDTH * intense[i] / sumIntense;
-        if (DEBUG) { console.log("colorWidth[" + i + "] = " + colorWidth[i]); }
+        if (DEBUG) {
+          console.log("colorWidth[" + i + "] = " + p.round(colorWidth[i]));
+        }
       }
 
       //色の割合に基づいて描画
@@ -59,7 +63,9 @@ export function Canvas() {
 
         startWidth += colorWidth[i];
         endWidth += colorWidth[i];
-        if (DEBUG) { console.log("hue[i] = " + hue[i] + ", startWidth: " + startWidth + ", endWidth: " + endWidth); }
+        if (DEBUG) {
+          //console.log("hue[i] = " + hue[i] + ", startWidth: " + p.round(startWidth) + ", endWidth: " + p.round(endWidth));
+        }
       }
     }
 
@@ -77,24 +83,29 @@ export function Canvas() {
 
     }
 
+    //マウスのクリック中の動作
     function MouseControl() {
       p.fill(drawingColor);
       p.ellipse(p.mouseX, p.mouseY, drawingWeight, drawingWeight);
     }
 
+    //キーボードによる描画モードの変更
     function KeyboardControl(inputKey: string) {
       if (inputKey === "+") { drawingWeight += DRAWING_WEIGHT_CHANGE_SPEED; }
       if (inputKey === "-") { if (drawingWeight > 1) drawingWeight -= DRAWING_WEIGHT_CHANGE_SPEED; }
       if (inputKey === "s") {
+        //スポイト機能
         let input = p.get(p.mouseX, p.mouseY);
         drawingColor = p.color(input[0], input[1], input[2], input[3])
 
-        console.log("drawingColor: " + drawingColor);
-        console.log("typeof:" + typeof (drawingColor));
+        if (DEBUG) {
+          //console.log("drawingColor: " + drawingColor);
+          //console.log("typeof:" + typeof (drawingColor));
+        }
       }
     }
 
-    // バックエンドからJSONデータの取得
+    // バックエンドからJSONデータの取得と色に関するデータの代入
     async function fetchData() {
       try {
         const response = await axios.get('http://localhost:5000/api/send-data');
@@ -108,8 +119,8 @@ export function Canvas() {
           intense[i] = data.intense;
           sumIntense += data.intense;
           if (DEBUG) {
-            console.log('hue[i]: ' + hue[i]);
-            console.log('intense[i]: ' + intense[i]);
+            //console.log('hue[i]: ' + hue[i]);
+            //console.log('intense[i]: ' + intense[i]);
           }
         }
 
