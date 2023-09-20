@@ -7,7 +7,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
 
-const IS_NO_STROKE = true, DEBUG = true;
+const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DRAWING_WEIGHT_CHANGE_SPEED = 0.1, FPS = 0.2;
 let drawingWeight = 10, backgroundColor = "#000000", textSize = 10;
@@ -24,7 +24,8 @@ export function Canvas() {
     fetchData(); //データの取得
 
     p.setup = () => {
-      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      p.createCanvas(p.windowWidth /2, p.windowHeight/2);
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
@@ -38,7 +39,7 @@ export function Canvas() {
       if (p.mouseIsPressed) { MouseControl(); }
       displayColorPalette();
       displayMenuBar();
-      p.frameRate(FPS);
+      if (DEBUG) { p.frameRate(FPS); }
     };
 
     //感情の割合を基にカラーパレットを描画
@@ -47,7 +48,7 @@ export function Canvas() {
       //描画する横幅の計算と代入
       if (DEBUG) { console.log("------------------------"); }
       for (let i = 0; i < 8; i++) {
-        colorWidth[i] = CANVAS_WIDTH * intense[i] / sumIntense;
+        colorWidth[i] = p.width * intense[i] / sumIntense;
         if (DEBUG) {
           console.log("colorWidth[" + i + "] = " + p.round(colorWidth[i]));
         }
@@ -60,7 +61,7 @@ export function Canvas() {
       for (let i = 0; i < 8; i++) {
         p.colorMode(p.HSB, 360, 100, 100, 100);
         p.fill(hue[i], 80, 100, 255);
-        p.rect(startWidth, CANVAS_HEIGHT - 20, endWidth, CANVAS_HEIGHT);
+        p.rect(startWidth, p.height - 20, endWidth, p.height);
 
         startWidth += colorWidth[i];
         endWidth += colorWidth[i];
@@ -123,7 +124,7 @@ export function Canvas() {
           if (DEBUG) {
             //console.log("hue: [" + i+ "]: "+ hue[i]);
             //console.log("intense: [" + i+ "]: " + intense[i]);
-            console.log("emotionName: [" + i+ "]: " + emotionName[i]);
+            console.log("emotionName: [" + i + "]: " + emotionName[i]);
           }
         }
 
