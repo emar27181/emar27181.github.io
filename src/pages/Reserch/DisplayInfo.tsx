@@ -4,6 +4,7 @@ import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import axios from 'axios';
+const DEBUG = false;
 
 export function DisplayInfo() {
   //console.log('This is DisplayInfo.tsx');
@@ -18,39 +19,23 @@ export function DisplayInfo() {
 
     try {
       const response = await axios.get('http://localhost:5000/api/input-sentence-now');
-      //console.log("response:" + JSON.stringify(response));
-      //console.log(response);
-      jsonData = response.data;;
-      //console.log("jsonData: " + jsonData);
-      //console.log("typeof(jsonData): " + typeof (jsonData));
 
+      jsonData = response.data;
       jsonDataString = JSON.stringify(jsonData);
-      console.log("jsonDataString: " + jsonDataString);
-      //console.log("typeof(jsonDataString): " + typeof (jsonDataString));
-
+      if (DEBUG) {
+        //console.log("response:" + JSON.stringify(response));
+        //console.log(response);
+        //console.log("jsonData: " + jsonData);
+        //console.log("typeof(jsonData): " + typeof (jsonData));
+        console.log("jsonDataString: " + jsonDataString);
+        //console.log("typeof(jsonDataString): " + typeof (jsonDataString));
+      }
 
     } catch (error) {
       console.error('エラーが発生しました:', error);
     }
 
   }
-
-  /*
-  const [message, setMessage] = useState('');
-  
-  const receiveData = async () => {
-    const response = await fetch('http://localhost:5000/api/input-sentence-now', {
-      method: 'POST',
-    });
-    const data = await response.json();
-    setMessage(data.message);
-  };
-  
-  console.log("message(receive):\n" + message);
-  const jsonMessage = JSON.stringify({ message });
-  console.log("jsonMessage: " + jsonMessage);
-  //fs.writeFileSync('OutputData.json', jsonMessage); //代入されたjson形式のメッセージのファイル出力が出来ない(2023/09/13)
-  */
 
   return (
     <div>
