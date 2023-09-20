@@ -7,7 +7,24 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
 
-const IS_NO_STROKE = true, DEBUG = true;
+class Ball {
+  x: number = 0;
+  y: number = 0;
+  dx: number = 1;
+  dy: number = 2;
+  r: number = 100;
+  color: string = "red";
+  boundCount: number = 0;
+
+  constructor(x: number, y: number, r: number, color: string) {
+    this.x = x;
+    this.y = y;
+    this.r = r;
+    this.color = color;
+  }
+}
+
+const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DRAWING_WEIGHT_CHANGE_SPEED = 0.1, FPS = 0.2;
 let drawingWeight = 10, backgroundColor = "#000000", textSize = 10;
@@ -16,6 +33,13 @@ let intense: number[] = [];
 let colorWidth: number[] = [];
 let emotionName: string[] = [];
 let sumIntense = 0;
+
+let balls: Array<Ball> = [];
+let dx = 1, dy = 2;
+let isChangeColor = false;
+let isColor = "red";
+let isBallCollisionDetected = false;
+const BALL_SIZE = 2, SATURATION = 255; // SATURATION: 彩度
 
 export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
@@ -38,12 +62,51 @@ export function Canvas() {
 
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
+      moveBalls();
       displayColorPalette();
       displayMenuBar();
       if (DEBUG) { p.frameRate(FPS); }
     };
 
-    //感情の割合を基にカラーパレットを描画
+    function moveBalls() {
+      for (let i = 0; i < balls.length; i++) {
+        if (isBallCollisionDetected) {
+          let nextColorX = p.get(balls[i].x + dx, balls[i].y);
+          let nextColorY = p.get(balls[i].x, balls[i].y + dy);
+
+          if (nextColorX[0] != 0) {
+            balls[i].dx = -balls[i].dx;
+            balls[i].boundCount++;
+          }
+          else if (nextColorY[0] != 0) {
+            balls[i].dy = -balls[i].dy;
+            balls[i].boundCount++;
+          }
+        }
+
+        if (balls[i].x > p.width || balls[i].x < 0) {
+          balls[i].dx = -balls[i].dx;
+          balls[i].boundCount++;
+        }
+
+        else if (balls[i].y > p.height || balls[i].y < 0) {
+          balls[i].dy = -balls[i].dy;
+          balls[i].boundCount++;
+        }
+
+        balls[i].x += balls[i].dx;
+        balls[i].y += balls[i].dy;
+
+        if (isChangeColor) { p.fill(255 - balls[i].boundCount * 30); }
+        else if (balls[i].color === 'red') { p.fill(SATURATION, 0, 0); }
+        else if (balls[i].color === 'green') { p.fill(0, SATURATION, 0); }
+        else if (balls[i].color === 'blue') { p.fill(0, 0, SATURATION); }
+        else if (balls[i].color === 'black') { p.fill(0, 0, 0, 0); }
+        p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
+      }
+    }
+
+    //感情の割合を基にカラーパレットを描画する関数
     function displayColorPalette() {
       //描画する横幅の計算と代入
       if (DEBUG) { console.log("------------------------"); }
@@ -69,7 +132,7 @@ export function Canvas() {
         }
 
         startWidth += colorWidth[i];
-        endWidth += colorWidth[i+1];
+        endWidth += colorWidth[i + 1];
       }
     }
 
@@ -89,6 +152,7 @@ export function Canvas() {
 
     //マウスのクリック中の動作
     function MouseControl() {
+      balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor));
       p.fill(drawingColor);
       p.ellipse(p.mouseX, p.mouseY, drawingWeight, drawingWeight);
     }
