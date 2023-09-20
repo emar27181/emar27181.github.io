@@ -13,7 +13,7 @@ const ReceiveData = () => {
     setMessage(data.message);
   };
 
-  console.log("message(receive): \n" + message);
+  //console.log("message(receive): \n" + message);
   const jsonMessage = JSON.stringify({ message });
 
   return (
