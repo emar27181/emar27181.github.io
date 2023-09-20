@@ -22,7 +22,6 @@ export function BallsReflectColors() {
         this.r = r;
         this.color = color;
       }
-
     }
 
     p.setup = () => {
@@ -54,7 +53,11 @@ export function BallsReflectColors() {
         else if (p.key === "b") { isColor = "blue"; }
         else if (p.key === "0") { isColor = "black"; }
       }
+      moveBalls();
+      p.noStroke();
+    };
 
+    function moveBalls() {
       for (let i = 0; i < balls.length; i++) {
         if (isBallCollisionDetected) {
           let nextColorX = p.get(balls[i].x + dx, balls[i].y);
@@ -90,9 +93,7 @@ export function BallsReflectColors() {
         else if (balls[i].color === 'black') { p.fill(0, 0, 0, 0); }
         p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
       }
-
-      p.noStroke();
-    };
+    }
   }
 
   return (
