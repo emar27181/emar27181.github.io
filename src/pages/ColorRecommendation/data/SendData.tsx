@@ -5,16 +5,15 @@ let data = "This is initial data"
 let dataArray: string[] = [];
 
 const SendData = () => {
-  console.log('This is TestSendDataTDD.tsx');
   const [message, setMessage] = useState('');
 
   // console.log("getColorInput: " + getColorInput());
   // 読み込みバグのせいで2回ずつデータが格納されてしまっている
   // 前のログを誤って送信してしまうバグあり
   dataArray.push(getColorInput());
-  console.log("dataArray(length=" + dataArray.length + "):\n" + dataArray);
+  // console.log("dataArray(length=" + dataArray.length + "):\n" + dataArray);
   data = dataArray[dataArray.length - 1]; //dataArrayの最後尾を送信データとして設定
-  console.log("data: " + data);
+  //console.log("data: " + data);
 
   const sendData = async () => {
     const response = await fetch('http://localhost:5000/api/receive-data', {
@@ -31,7 +30,7 @@ const SendData = () => {
   };
 
 
-  console.log("message(return): " + message); // コンソール上に返ってきたデータを表示
+  //console.log("message(return): " + message); // コンソール上に返ってきたデータを表示
 
 
   return (

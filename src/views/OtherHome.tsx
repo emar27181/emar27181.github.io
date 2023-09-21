@@ -12,6 +12,8 @@ import TemplatePage from './TemplatePage';
 import FreeResearch from '../pages/FreeResearch';
 import AxiosTest from '../pages/test/AxiosTest';
 import ReceiveDataUseEffect from '../pages/ColorRecommendation/ReceiveData';
+import ControlGravityField from '../pages/ControlGravityField';
+import ControlGravityField2 from '../pages/ControlGravityField2';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -40,17 +42,22 @@ export function OtherHome() {
           テンプレートページ
         </NavLink> <br />
 
-        <NavLink activeClassName="active" to="/receiveDataUseEffect">
-          flaskからのデータの受け取りテスト(useEffectを使用)
-        </NavLink> <br />
-
         <NavLink activeClassName="active" to="/freeResearch">
           数学の自由研究用のページ？
         </NavLink> <br />
 
         <NavLink activeClassName="active" to="/axiosTest">
           AxiosによるChatGPTAPI利用テスト
+        </NavLink> <br />
+
+        <NavLink activeClassName="active" to="/controlGravityField">
+        重力場の操作(既存のコピー(バグ有))
+        </NavLink><br />
+
+        <NavLink activeClassName="active" to="/controlGravityField2">
+        重力場の操作(改めて実装)
         </NavLink>
+
 
       </ul>
 
@@ -73,10 +80,6 @@ export function OtherHome() {
           <ReceiveData />
         </Route>
 
-        <Route path="/receiveDataUseEffect">
-          <ReceiveDataUseEffect />
-        </Route>
-
         <Route path="/template">
           <TemplatePage />
         </Route>
@@ -87,6 +90,14 @@ export function OtherHome() {
 
         <Route path="/axiosTest">
           <AxiosTest />
+        </Route>
+
+        <Route path="/controlGravityField">
+          <ControlGravityField/>
+        </Route>
+
+        <Route path="/controlGravityField2">
+          <ControlGravityField2/>
         </Route>
 
       </Switch>
