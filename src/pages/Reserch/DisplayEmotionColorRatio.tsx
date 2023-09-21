@@ -27,43 +27,7 @@ export function DisplayEmotionColorRatio() {
       p.colorMode(p.HSB, 360, 100, 100, 100);
       p.frameRate(1);
       p.noStroke();
-
-      //hueとintenseの値を代入
-      /*
-      for (let i = 0; i < 8; i++) {
-
-        let data = DATA[i];
-        hue[i] = data.hue;
-        intense[i] = data.intense;
-        sumIntense += data.intense;
-        //console.log("data[" + i + "]: " + data);
-        //console.log("hue[" + i + "]: " + hue + ", intense[" + i + "]: " + intense);
-      }
-      */
-
       fetchData();
-
-      //描画する横幅の計算と代入
-      /*
-      for (let i = 0; i < 8; i++) {
-        colorWidth[i] = CANVAS_WIDTH * intense[i] / sumIntense;
-        console.log('intense[i]: ' + intense[i]);
-        console.log("colorWidth[" + i + "] = " + colorWidth[i]);
-      }
-
-      //色の割合に基づいて描画
-      let startWidth = 0, endWidth = colorWidth[0];
-      for (let i = 0; i < 8; i++) {
-        p.fill(hue[i], 80, 100, 255);
-        p.rect(startWidth, 0, endWidth, CANVAS_HEIGHT);
-
-        startWidth += colorWidth[i];
-        endWidth += colorWidth[i];
-        //console.log("hue[i] = " + hue[i] + ", startWidth: " + startWidth + ", endWidth: " + endWidth);
-      }
-      */
-      //displayColorPalette();
-
     };
 
 
@@ -83,9 +47,6 @@ export function DisplayEmotionColorRatio() {
       }
 
       //色の割合に基づいて描画
-      //一番右側に表示される色が長く表示されてしまうバグあり(2023/09/19時点)
-      //VSCodeの保存(Ctrl x + s)による再読み込みとブラウザの再読み込みで挙動が異なる、
-      //再読み込み時にのみ発生する(キャッシュが関係している？...)
       let startWidth = 0, endWidth = colorWidth[0];
       for (let i = 0; i < 8; i++) {
         p.colorMode(p.HSB, 360, 100, 100, 100);
