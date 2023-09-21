@@ -81,7 +81,7 @@ export function Canvas() {
 
       if (isPaused) { return; }
 
-      if (isMoved) { moveBalls(); }
+      if (isMoved) { displayMoveBalls(); }
       //displayColorPalette();
       //displayMenuBar();
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
@@ -96,7 +96,7 @@ export function Canvas() {
     }
 
     //移動体を移動/反射させる関数(※生成された移動体全てを移動)
-    function moveBalls() {
+    function displayMoveBalls() {
       for (let i = 0; i < balls.length; i++) {
         if (isBallCollisionDetected) {
           let nextColorX = p.get(balls[i].x + dx, balls[i].y);
