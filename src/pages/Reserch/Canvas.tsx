@@ -172,21 +172,24 @@ export function Canvas() {
 
     //キーボードによる描画モードの変更
     function KeyboardControl(inputKey: string) {
+      //描画サイズの拡大縮小
       if (inputKey === "+") { drawingWeight += DRAWING_WEIGHT_CHANGE_SPEED; }
       if (inputKey === "-") { if (drawingWeight > 1) drawingWeight -= DRAWING_WEIGHT_CHANGE_SPEED; }
+
       if (inputKey === "s") {
         //スポイト機能
         let input = p.get(p.mouseX, p.mouseY);
         drawingColor = p.color(input[0], input[1], input[2], input[3])
-
         if (DEBUG) {
           //console.log("drawingColor: " + drawingColor);
           //console.log("typeof:" + typeof (drawingColor));
         }
       }
-      
+
+      //ポーズモードの切り替え
       if (inputKey === "p") { isPaused = !isPaused; }
 
+      //描画色の変更
       if (inputKey === "0") { drawingEmotionNumber = 0; }
       if (inputKey === "1") { drawingEmotionNumber = 1; }
       if (inputKey === "2") { drawingEmotionNumber = 2; }
