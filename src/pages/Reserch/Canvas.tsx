@@ -7,6 +7,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
 
+//移動体の自作クラス
 class Ball {
   x: number = 0;
   y: number = 0;
@@ -31,7 +32,7 @@ class Ball {
 
 const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
-const DRAWING_WEIGHT_CHANGE_SPEED = 0.1, FPS = 0.2;
+const DRAWING_WEIGHT_CHANGE_SPEED = 0.1, DEBUG_FPS = 0.2, DEFAULT_FPS = 60;
 let drawingWeight = 10, backgroundColor = "#000000", textSize = 10;
 let hue: number[] = [];
 let intense: number[] = [];
@@ -39,6 +40,7 @@ let colorWidth: number[] = [];
 let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
+let fps = DEFAULT_FPS;
 
 //描画ボールに関する変数宣言
 let balls: Array<Ball> = [];
@@ -64,6 +66,7 @@ export function Canvas() {
     };
 
     p.draw = () => {
+
       p.colorMode(p.RGB);
       p.fill(255);
 
@@ -72,7 +75,8 @@ export function Canvas() {
       moveBalls();
       displayColorPalette();
       displayMenuBar();
-      if (DEBUG) { p.frameRate(FPS); }
+      if (DEBUG) { p.frameRate(DEBUG_FPS); }
+      else { p.frameRate(fps); }
     };
 
     //描画ボールを移動/反射させ描画する関数
