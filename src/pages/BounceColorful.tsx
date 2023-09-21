@@ -14,12 +14,13 @@ const BACKGROUND_ALPHA = 20, MOVER_ALPHA = 7;
 
 
 // データの取得
-const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
-const DATA = await response.json();
+//const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
+//const DATA = await response.json();
 //console.log("DATA: " + DATA);// 確認用出力
 
 export function BounceColorful() {
   const sketch = (p: P5CanvasInstance) => {
+/*
     let movers: Mover[] = []; // Moverオブジェクトを格納する配列
     let ColorOfEmotionArray: ColorOfEmotion[] = [];
     let actualNumMovers = -1;
@@ -141,6 +142,7 @@ export function BounceColorful() {
 
     }
 
+    */
   }
 
   return (

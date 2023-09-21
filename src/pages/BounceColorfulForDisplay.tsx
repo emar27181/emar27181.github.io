@@ -9,12 +9,13 @@ const MIN_RADIUS = WINDOW_SIZE / 200, MAX_RADIUS = WINDOW_SIZE / 200;
 const ALPHA = 20;
 
 // データの取得
-const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
-const DATA = await response.json();
+//const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
+//const DATA = await response.json();
 //console.log("DATA: " + DATA);// 確認用出力
 
 export function BounceColorfulForDisplay() {
   const sketch = (p: P5CanvasInstance) => {
+    /*
     let movers: Mover[] = []; // Moverオブジェクトを格納する配列
     let ColorOfEmotionArray: ColorOfEmotion[] = [];
     let actualNumMovers = -1;
@@ -129,6 +130,7 @@ export function BounceColorfulForDisplay() {
       }
 
     }
+    */
 
   }
 

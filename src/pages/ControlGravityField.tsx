@@ -3,7 +3,9 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
 export function ControlGravityField() {
+  
   const sketch = (p: P5CanvasInstance) => {
+    /*
     let isBackground = true,
       isSymmetry = false,
       isOneGravity = false,
@@ -209,7 +211,7 @@ export function ControlGravityField() {
       }
     }
 
-
+*/
     /*
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
     
