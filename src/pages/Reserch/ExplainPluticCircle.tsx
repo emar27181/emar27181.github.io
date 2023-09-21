@@ -3,11 +3,12 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
 // データの取得
-const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseDataName.json');
-const DATA = await response.json();
+//const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseDataName.json');
+//const DATA = await response.json();
 
 export function ExplainPluticCircle() {
   const sketch = (p: P5CanvasInstance) => {
+    /*
 
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
     const TEXT_SIZE = 30;
@@ -37,10 +38,10 @@ export function ExplainPluticCircle() {
 
     };
 
-    /*
+    
     p.draw = () => {
     };
-    */
+    
 
     function displayEmotionExplanation(hueName: string, hueValue: number) {
       p.textSize(TEXT_SIZE);
@@ -48,6 +49,7 @@ export function ExplainPluticCircle() {
       p.text(hueName, p.width / 2, displayY);
     }
 
+    */
   }
 
   return (
