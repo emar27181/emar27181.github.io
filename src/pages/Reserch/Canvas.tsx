@@ -59,7 +59,7 @@ export function Canvas() {
 
     p.setup = () => {
       //.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      p.createCanvas(p.windowWidth / 2, p.windowHeight / 2);
+      p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
