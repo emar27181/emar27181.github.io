@@ -23,7 +23,6 @@ export function ResearchHome() {
       <SendData /> <br />
       <ReceiveData />
       <Canvas />
-      <a>↓のバーが正しい比率になっています</a>
       <DisplayEmotionColorRatio /> <br />
       <ExplainPluticCircleEnglish/>
       <ExplainPluticCircle /> <br />
