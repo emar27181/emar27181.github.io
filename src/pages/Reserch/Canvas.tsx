@@ -32,7 +32,7 @@ class Ball {
 
 const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
-const DRAWING_WEIGHT_CHANGE_SPEED = 0.1, DEBUG_FPS = 0.2, DEFAULT_FPS = 60;
+const DRAWING_WEIGHT_CHANGE_SPEED = 0.1, DEBUG_FPS = 0.2, DEFAULT_FPS = 10;
 const ALPHA = 15;
 let drawingWeight = 100, backgroundColor = "#000000", textSize = 10;
 let hue: number[] = [];
@@ -82,8 +82,8 @@ export function Canvas() {
       if (isPaused) { return; }
 
       if (isMoved) { moveBalls(); }
-      displayColorPalette();
-      displayMenuBar();
+      //displayColorPalette();
+      //displayMenuBar();
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
       else { p.frameRate(fps); }
     };
@@ -198,6 +198,7 @@ export function Canvas() {
           //console.log("typeof:" + typeof (drawingColor));
         }
       }
+      if(inputKey === "e"){p.saveCanvas('saveCanvas', 'png');}
 
       //ポーズモードの切り替え
       if (inputKey === "p") { isPaused = !isPaused; }
