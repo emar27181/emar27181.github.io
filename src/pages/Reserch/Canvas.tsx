@@ -21,7 +21,7 @@ class Ball {
   constructor(x: number, y: number, r: number, color: string, emotionNumber: number) {
     this.x = x;
     this.y = y;
-    this.r = r;
+    this.r = drawingWeight;
     this.color = color;
     this.emotionNumber = emotionNumber;
     if (DEBUG) {
@@ -33,7 +33,8 @@ class Ball {
 const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DRAWING_WEIGHT_CHANGE_SPEED = 0.1, DEBUG_FPS = 0.2, DEFAULT_FPS = 60;
-let drawingWeight = 10, backgroundColor = "#000000", textSize = 10;
+const ALPHA = 15;
+let drawingWeight = 100, backgroundColor = "#000000", textSize = 10;
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
@@ -46,7 +47,6 @@ let isPaused = false;
 //描画ボールに関する変数宣言
 let balls: Array<Ball> = [];
 let dx = 1, dy = 2;
-let isChangeColor = false;
 let isColor = "red";
 let isBallCollisionDetected = false;
 const BALL_SIZE = 2, SATURATION = 255; // SATURATION: 彩度
@@ -58,8 +58,8 @@ export function Canvas() {
     fetchData(); //データの取得
 
     p.setup = () => {
-      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      //p.createCanvas(p.windowWidth /2, p.windowHeight/2);
+      //.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      p.createCanvas(p.windowWidth /2, p.windowHeight/2);
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
@@ -69,7 +69,10 @@ export function Canvas() {
     p.draw = () => {
 
       p.colorMode(p.RGB);
-      p.fill(255);
+
+      p.blendMode(p.DARKEST);
+      p.background(0);
+      p.blendMode(p.ADD);
 
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
@@ -114,7 +117,7 @@ export function Canvas() {
         balls[i].y += balls[i].dy;
 
         p.colorMode(p.HSB, 360, 100, 100, 100);
-        p.fill(hue[balls[i].emotionNumber], 100, 100);
+        p.fill(hue[balls[i].emotionNumber], 100, 100, ALPHA);
         p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
       }
     }
@@ -166,7 +169,7 @@ export function Canvas() {
     //マウスのクリック中の動作
     function MouseControl() {
       balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
-      p.fill(drawingColor);
+      //p.fill(drawingColor);
       //p.ellipse(p.mouseX, p.mouseY, drawingWeight, drawingWeight);
     }
 
