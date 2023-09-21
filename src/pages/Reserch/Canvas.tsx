@@ -32,7 +32,8 @@ class Ball {
 
 const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
-const DRAWING_WEIGHT_CHANGE_SPEED = 0.1, DEBUG_FPS = 0.2, DEFAULT_FPS = 10;
+const DEBUG_FPS = 0.2, DEFAULT_FPS = 10;
+const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS/3;
 const ALPHA = 15;
 let drawingWeight = 100, backgroundColor = "#000000", textSize = 10;
 let hue: number[] = [];
