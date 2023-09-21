@@ -59,7 +59,7 @@ export function Canvas() {
 
     p.setup = () => {
       //.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      p.createCanvas(p.windowWidth /2, p.windowHeight/2);
+      p.createCanvas(p.windowWidth / 2, p.windowHeight / 2);
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
@@ -86,7 +86,14 @@ export function Canvas() {
       else { p.frameRate(fps); }
     };
 
-    //描画ボールを移動/反射させ描画する関数
+    //移動体を描画する関数
+    function displayBall(i: number) {
+      p.colorMode(p.HSB, 360, 100, 100, 100);
+      p.fill(hue[balls[i].emotionNumber], 100, 100, ALPHA);
+      p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
+    }
+
+    //移動体を移動/反射させる関数(※生成された移動体全てを移動)
     function moveBalls() {
       for (let i = 0; i < balls.length; i++) {
         if (isBallCollisionDetected) {
@@ -115,10 +122,7 @@ export function Canvas() {
 
         balls[i].x += balls[i].dx;
         balls[i].y += balls[i].dy;
-
-        p.colorMode(p.HSB, 360, 100, 100, 100);
-        p.fill(hue[balls[i].emotionNumber], 100, 100, ALPHA);
-        p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
+        displayBall(i);
       }
     }
 
