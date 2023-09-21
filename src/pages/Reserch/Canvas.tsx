@@ -42,7 +42,7 @@ let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
 let fps = DEFAULT_FPS;
-let isPaused = false;
+let isPaused = false, isMoved = true;
 
 //描画ボールに関する変数宣言
 let balls: Array<Ball> = [];
@@ -70,16 +70,18 @@ export function Canvas() {
 
       p.colorMode(p.RGB);
 
-      p.blendMode(p.DARKEST);
-      p.background(0);
-      p.blendMode(p.ADD);
+      if (isMoved) {
+        p.blendMode(p.DARKEST);
+        p.background(0);
+        p.blendMode(p.ADD);
+      }
 
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
 
       if (isPaused) { return; }
 
-      moveBalls();
+      if (isMoved) { moveBalls(); }
       displayColorPalette();
       displayMenuBar();
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
@@ -172,9 +174,13 @@ export function Canvas() {
 
     //マウスのクリック中の動作
     function MouseControl() {
-      balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
-      //p.fill(drawingColor);
-      //p.ellipse(p.mouseX, p.mouseY, drawingWeight, drawingWeight);
+      if (isMoved) {
+        balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
+      }
+      else {
+        p.fill(drawingColor);
+        p.ellipse(p.mouseX, p.mouseY, drawingWeight, drawingWeight);
+      }
     }
 
     //キーボードによる描画モードの変更
@@ -195,6 +201,9 @@ export function Canvas() {
 
       //ポーズモードの切り替え
       if (inputKey === "p") { isPaused = !isPaused; }
+
+      //描画された点が動くかどうかの切り替え
+      if (inputKey === "m") { isMoved = !isMoved; }
 
       //描画色の変更
       if (inputKey === "0") { drawingEmotionNumber = 0; }
