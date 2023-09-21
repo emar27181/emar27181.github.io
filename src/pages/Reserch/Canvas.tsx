@@ -69,15 +69,14 @@ export function Canvas() {
     p.draw = () => {
 
       p.colorMode(p.RGB);
+      if (p.keyIsPressed) { KeyboardControl(p.key); }
+      if (p.mouseIsPressed) { MouseControl(); }
 
       if (isMoved) {
         p.blendMode(p.DARKEST);
         p.background(0);
         p.blendMode(p.ADD);
       }
-
-      if (p.keyIsPressed) { KeyboardControl(p.key); }
-      if (p.mouseIsPressed) { MouseControl(); }
 
       if (isPaused) { return; }
 
