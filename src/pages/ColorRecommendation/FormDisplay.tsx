@@ -20,10 +20,9 @@ export function FormDisplay() {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="colorInput">
-        <Form.Label>Color Input</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter a color"
+          placeholder="enter"
           value={colorInput}
           onChange={(event) => setColorInput(event.target.value)}
         />
