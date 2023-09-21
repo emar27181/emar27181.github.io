@@ -41,6 +41,7 @@ let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
 let fps = DEFAULT_FPS;
+let isPaused = false;
 
 //描画ボールに関する変数宣言
 let balls: Array<Ball> = [];
@@ -72,6 +73,9 @@ export function Canvas() {
 
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
+
+      if (isPaused) { return; }
+
       moveBalls();
       displayColorPalette();
       displayMenuBar();
@@ -180,6 +184,9 @@ export function Canvas() {
           //console.log("typeof:" + typeof (drawingColor));
         }
       }
+      
+      if (inputKey === "p") { isPaused = !isPaused; }
+
       if (inputKey === "0") { drawingEmotionNumber = 0; }
       if (inputKey === "1") { drawingEmotionNumber = 1; }
       if (inputKey === "2") { drawingEmotionNumber = 2; }
