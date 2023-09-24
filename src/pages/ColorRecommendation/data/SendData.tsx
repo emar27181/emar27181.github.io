@@ -13,7 +13,7 @@ const SendData = () => {
   dataArray.push(getColorInput());
   // console.log("dataArray(length=" + dataArray.length + "):\n" + dataArray);
   data = dataArray[dataArray.length - 1]; //dataArrayの最後尾を送信データとして設定
-  //console.log("data: " + data);
+  console.log("data: " + data);
 
   const sendData = async () => {
     const response = await fetch('http://localhost:5000/api/receive-data', {
@@ -35,6 +35,8 @@ const SendData = () => {
 
   return (
     <div>
+
+<p>※エディタ上のファイルの保存をしないとSendDataで送るデータが更新されない</p>
       <button onClick={sendData}>Send Data</button><br />
       ※前のログを誤って送信してしまうバグあり(2023/05/25時点)<br />
     </div>
