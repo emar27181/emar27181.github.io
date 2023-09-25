@@ -22,12 +22,14 @@ export function DisplayInfo() {
 
       jsonData = response.data;
       jsonDataString = JSON.stringify(jsonData);
+
+      console.log("jsonDataString: " + jsonDataString);
       if (DEBUG) {
         //console.log("response:" + JSON.stringify(response));
         //console.log(response);
         //console.log("jsonData: " + jsonData);
         //console.log("typeof(jsonData): " + typeof (jsonData));
-        console.log("jsonDataString: " + jsonDataString);
+        //console.log("jsonDataString: " + jsonDataString);
         //console.log("typeof(jsonDataString): " + typeof (jsonDataString));
       }
 
