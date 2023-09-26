@@ -48,11 +48,42 @@ export function ExplainPluticCircle() {
     p.draw = () => {
     };
 
+    function returnJapaneseEmotionName(emotionName: string) {
+      switch (emotionName) {
+        case "anger":
+          return "怒り";
+          break;
+        case "anticipation":
+          return "期待";
+          break;
+        case "joy":
+          return "喜び";
+          break;
+        case "trust":
+          return "信頼";
+          break;
+        case "fear":
+          return "恐れ";
+          break;
+        case "surprise":
+          return "驚き"
+          break;
+        case "sadness":
+          return "悲しみ";
+          break;
+        case "disgust":
+          return "嫌悪";
+          break;
+        default:
+          return "error";
+          break;
+      }
+    }
 
     function displayEmotionExplanation(hueName: string, hueValue: number) {
       p.textSize(TEXT_SIZE);
       p.fill(hueValue, 80, 100, 255);
-      p.text(hueName, p.width / 2, displayY);
+      p.text(returnJapaneseEmotionName(hueName), p.width / 2, displayY);
     }
 
     // バックエンドからJSONデータの取得
