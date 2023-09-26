@@ -12,6 +12,7 @@ import ReceiveData from '../pages/ColorRecommendation/data/ReceiveData';
 import DisplayInfo from '../pages/Reserch/DisplayInfo';
 import ExplainPluticCircleEnglish from '../pages/Reserch/ExplainPluticCircleEnglish';
 import ExplainDrawing from '../pages/Reserch/ExplainDrawing';
+import EmotionAnalyzeButton from '../pages/ColorRecommendation/data/AnalyzeEmotionRequest';
 
 export function ResearchHome() {
   return (
@@ -20,6 +21,7 @@ export function ResearchHome() {
       <DisplayInfo />
       <FormDisplay /> <br />
       <SendData /> <br />
+      <EmotionAnalyzeButton />
       <ReceiveData />
       <ExplainDrawing />
       <Canvas />
@@ -28,7 +30,7 @@ export function ResearchHome() {
         <ExplainPluticCircleEnglish />
         <ExplainPluticCircle /> <br />
       </div>
-      <ColorGanerate />
+  
       <a href="https://docs.google.com/presentation/d/1N21mXeW3NV-ODW7jHCPQ2FYsSbpZpuSNzAaHix2wRyc/edit?usp=sharing" target="_blank">卒業研究 説明スライド</a><br />
     </div>
   )
