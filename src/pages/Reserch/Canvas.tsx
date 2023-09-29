@@ -40,6 +40,7 @@ let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
 let colorTank: number[] = [];
+let consumeSpeed = 4;
 let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
@@ -175,7 +176,7 @@ export function Canvas() {
 
     function ConsumeColor(drawingEmotionNumber: number) {
       if (colorTank[drawingEmotionNumber] > 0) {
-        colorTank[drawingEmotionNumber] -= 1;
+        colorTank[drawingEmotionNumber] -= consumeSpeed;
       }
     }
 
