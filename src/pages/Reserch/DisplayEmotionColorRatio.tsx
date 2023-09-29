@@ -17,7 +17,7 @@ export function DisplayEmotionColorRatio() {
     const DEBUG = false;
 
     p.setup = () => {
-      p.createCanvas(p.windowHeight / 2, 20);
+      p.createCanvas(p.windowHeight / 2 + 100, 20);
       p.background(0);
       p.colorMode(p.HSB, 360, 100, 100, 100);
       p.frameRate(1);

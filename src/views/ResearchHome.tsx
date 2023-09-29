@@ -29,7 +29,9 @@ export function ResearchHome() {
         <Canvas />
         <DisplayDrawingInfo />
       </div>
-      <DisplayEmotionColorRatio /> <br />
+      <div style={{ display: 'flex' }}>
+        <DisplayEmotionColorRatio /> <br />
+      </div>
       <div style={{ display: 'flex' }}>
         <ExplainPluticCircleEnglish />
         <ExplainPluticCircle /> <br />
