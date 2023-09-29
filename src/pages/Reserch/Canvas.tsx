@@ -39,7 +39,7 @@ let drawingWeight = 100, backgroundColor = "#000000", textSize = 10;
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
-
+let colorTank: number[] = [];
 let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
@@ -87,6 +87,7 @@ export function Canvas() {
       //displayMenuBar();
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
       else { p.frameRate(fps); }
+      console.log("colorTank: " + colorTank);
     };
 
     //移動体を描画する関数
@@ -172,10 +173,17 @@ export function Canvas() {
 
     }
 
+    function ConsumeColor (drawingEmotionNumber: number) {
+      if(colorTank[drawingEmotionNumber] > 0){
+        colorTank[drawingEmotionNumber]-= 10;
+      }
+    }
+
     //マウスのクリック中の動作
     function MouseControl() {
       if (isMoved) {
         balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
+        ConsumeColor(drawingEmotionNumber);
       }
       else {
         p.fill(drawingColor);
@@ -230,6 +238,7 @@ export function Canvas() {
           hue[i] = data.hue;
           intense[i] = data.intense;
           emotionName[i] = data.name;
+          colorTank[i] = data.intense*10;
           sumIntense += data.intense;
           if (DEBUG) {
             console.log("hue[" + i + "]: " + hue[i] + ", intense[" + i + "]: " + intense[i] + ", emotionName[" + i + "]: " + emotionName[i]);
