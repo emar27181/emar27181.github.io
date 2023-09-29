@@ -265,4 +265,8 @@ export function Canvas() {
   )
 }
 
+export function ReturnColorTank(){
+  return colorTank;
+}
+
 export default Canvas
