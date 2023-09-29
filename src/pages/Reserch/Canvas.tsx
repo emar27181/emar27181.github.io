@@ -33,7 +33,7 @@ class Ball {
 const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DEBUG_FPS = 0.2, DEFAULT_FPS = 10;
-const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS/3;
+const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
 const ALPHA = 15;
 let drawingWeight = 100, backgroundColor = "#000000", textSize = 10;
 let hue: number[] = [];
@@ -173,17 +173,24 @@ export function Canvas() {
 
     }
 
-    function ConsumeColor (drawingEmotionNumber: number) {
-      if(colorTank[drawingEmotionNumber] > 0){
-        colorTank[drawingEmotionNumber]-= 10;
+    function ConsumeColor(drawingEmotionNumber: number) {
+      if (colorTank[drawingEmotionNumber] > 0) {
+        colorTank[drawingEmotionNumber] -= 1;
       }
     }
 
     //マウスのクリック中の動作
     function MouseControl() {
       if (isMoved) {
-        balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
-        ConsumeColor(drawingEmotionNumber);
+        //感情の色の残量がある場合
+        if (colorTank[drawingEmotionNumber] > 0) {
+          balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
+          ConsumeColor(drawingEmotionNumber);
+        }
+        //感情の色がない場合
+        else {
+          console.error("色の残量がありません。" + (emotionName[drawingEmotionNumber]));
+        }
       }
       else {
         p.fill(drawingColor);
@@ -206,7 +213,7 @@ export function Canvas() {
           //console.log("typeof:" + typeof (drawingColor));
         }
       }
-      if(inputKey === "e"){p.saveCanvas('saveCanvas', 'png');}
+      if (inputKey === "e") { p.saveCanvas('saveCanvas', 'png'); }
 
       //ポーズモードの切り替え
       if (inputKey === "p") { isPaused = !isPaused; }
@@ -238,7 +245,7 @@ export function Canvas() {
           hue[i] = data.hue;
           intense[i] = data.intense;
           emotionName[i] = data.name;
-          colorTank[i] = data.intense*10;
+          colorTank[i] = data.intense * 10;
           sumIntense += data.intense;
           if (DEBUG) {
             console.log("hue[" + i + "]: " + hue[i] + ", intense[" + i + "]: " + intense[i] + ", emotionName[" + i + "]: " + emotionName[i]);
