@@ -28,6 +28,7 @@ export function DisplayEmotionColorRatio() {
 
 
     p.draw = () => {
+      p.background(0);
       displayColorPalette();
       colorTank = ReturnColorTank();
       //console.log("colorTank: " + colorTank);
