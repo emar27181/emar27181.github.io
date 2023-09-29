@@ -11,6 +11,7 @@ export function DisplayEmotionColorRatio() {
     let hue: number[] = [];
     let intense: number[] = [];
     let colorWidth: number[] = [];
+    let drawingColorWidth: number[] = [];
     let sumIntense = 0;
     let colorTank: number[] = [];
     const DEBUG = false;
@@ -38,8 +39,8 @@ export function DisplayEmotionColorRatio() {
       //描画する横幅の計算と代入
       if (DEBUG) { console.log("------------------------"); }
       for (let i = 0; i < 8; i++) {
-        colorWidth[i] = p.width * colorTank[i] / sumIntense;
-        //colorWidth[i] = p.width * intense[i] / sumIntense;
+        drawingColorWidth[i] = p.width * colorTank[i] / sumIntense;
+        colorWidth[i] = p.width * intense[i] / sumIntense;
         if (DEBUG) {
           console.log("colorWidth[" + i + "] = " + p.round(colorWidth[i]));
         }
@@ -50,7 +51,8 @@ export function DisplayEmotionColorRatio() {
       for (let i = 0; i < 8; i++) {
         p.colorMode(p.HSB, 360, 100, 100, 100);
         p.fill(hue[i], 80, 100, 255);
-        p.rect(startWidth, p.height - 20, endWidth, p.height);
+        //p.rect(startWidth, p.height - 20, endWidth, p.height);
+        p.rect(startWidth, p.height - 20, drawingColorWidth[i], p.height);
 
         if (DEBUG) {
           console.log("hue[i] = " + hue[i] + ", startWidth: " + p.round(startWidth) + ", endWidth: " + p.round(endWidth));
