@@ -7,7 +7,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
 
-let isRandomMove = true;
+let isRandomMove = false;
 const MOVE_SPEED = 10;
 
 //移動体の自作クラス
