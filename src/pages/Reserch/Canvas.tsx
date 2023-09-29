@@ -238,4 +238,12 @@ export function ReturnColorTank() {
   return colorTank;
 }
 
+export function ReturnHue() {
+  return hue[drawingEmotionNumber];
+}
+
+export function ReturnDrawingWeight() {
+  return drawingWeight;
+}
+
 export default Canvas
