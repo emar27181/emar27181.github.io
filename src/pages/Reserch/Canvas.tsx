@@ -7,6 +7,9 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
 
+let isRandomMove = true;
+const MOVE_SPEED = 10;
+
 //移動体の自作クラス
 class Ball {
   x: number = 0;
@@ -21,6 +24,10 @@ class Ball {
   constructor(x: number, y: number, r: number, color: string, emotionNumber: number) {
     this.x = x;
     this.y = y;
+    if (isRandomMove) {
+      this.dx = MOVE_SPEED * Math.random() - MOVE_SPEED / 2;
+      this.dy = MOVE_SPEED * Math.random() - MOVE_SPEED / 2;
+    }
     this.r = drawingWeight;
     this.color = color;
     this.emotionNumber = emotionNumber;
@@ -45,7 +52,7 @@ let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
 let fps = DEFAULT_FPS;
-let isPaused = false, isMoved = true;
+let isPaused = false, isMoved = false;
 
 //描画ボールに関する変数宣言
 let balls: Array<Ball> = [];
@@ -190,6 +197,7 @@ export function Canvas() {
 
       //描画された点が動くかどうかの切り替え
       if (inputKey === "m") { isMoved = !isMoved; }
+      if(inputKey === "r"){ isRandomMove = !isRandomMove; }
 
       //描画色の変更
       if (inputKey === "0") { drawingEmotionNumber = 0; }
