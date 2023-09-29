@@ -82,21 +82,27 @@ export function Canvas() {
 
       if (isPaused) { return; }
 
-      if (isMoved) { displayMoveBalls(); }
+      if (isMoved) {
+        moveBalls();
+        displayBalls();
+      }
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
       else { p.frameRate(fps); }
       console.log("colorTank: " + colorTank);
     };
 
     //移動体を描画する関数
-    function displayBall(i: number) {
-      p.colorMode(p.HSB, 360, 100, 100, 100);
-      p.fill(hue[balls[i].emotionNumber], 100, 100, ALPHA);
-      p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
+    function displayBalls() {
+
+      for (let i = 0; i < balls.length; i++) {
+        p.colorMode(p.HSB, 360, 100, 100, 100);
+        p.fill(hue[balls[i].emotionNumber], 100, 100, ALPHA);
+        p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
+      }
     }
 
     //移動体を移動/反射させる関数(※生成された移動体全てを移動)
-    function displayMoveBalls() {
+    function moveBalls() {
       for (let i = 0; i < balls.length; i++) {
         if (isBallCollisionDetected) {
           let nextColorX = p.get(balls[i].x + dx, balls[i].y);
@@ -124,7 +130,7 @@ export function Canvas() {
 
         balls[i].x += balls[i].dx;
         balls[i].y += balls[i].dy;
-        displayBall(i);
+        //displayBall(i);
       }
     }
 
@@ -233,7 +239,7 @@ export function Canvas() {
   )
 }
 
-export function ReturnColorTank(){
+export function ReturnColorTank() {
   return colorTank;
 }
 
