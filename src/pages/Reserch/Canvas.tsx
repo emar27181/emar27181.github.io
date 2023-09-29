@@ -88,7 +88,8 @@ export function Canvas() {
 
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
       else { p.frameRate(fps); }
-      console.log("colorTank: " + colorTank);
+
+      if (DEBUG) { console.log("colorTank: " + colorTank); }
     };
 
     //移動体を描画する関数
