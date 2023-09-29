@@ -164,7 +164,7 @@ export function Canvas() {
       }
       //感情の色がない場合
       else {
-        console.error("色の残量がありません。" + (emotionName[drawingEmotionNumber]));
+        console.error("色の残量がありません。(" + (emotionName[drawingEmotionNumber]) + ")");
       }
     }
 
