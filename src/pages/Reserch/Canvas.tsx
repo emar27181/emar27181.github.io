@@ -66,7 +66,6 @@ export function Canvas() {
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
-      //displayColorPalette();
     };
 
     p.draw = () => {
@@ -84,8 +83,6 @@ export function Canvas() {
       if (isPaused) { return; }
 
       if (isMoved) { displayMoveBalls(); }
-      //displayColorPalette();
-      //displayMenuBar();
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
       else { p.frameRate(fps); }
       console.log("colorTank: " + colorTank);
@@ -130,35 +127,6 @@ export function Canvas() {
         displayBall(i);
       }
     }
-
-    //感情の割合を基にカラーパレットを描画する関数
-    /*
-    function displayColorPalette() {
-      //描画する横幅の計算と代入
-      if (DEBUG) { console.log("------------------------"); }
-      for (let i = 0; i < 8; i++) {
-        colorWidth[i] = p.width * intense[i] / sumIntense;
-        if (DEBUG) {
-          console.log("colorWidth[" + i + "] = " + p.round(colorWidth[i]));
-        }
-      }
-
-      //色の割合に基づいて描画
-      let startWidth = 0, endWidth = colorWidth[0];
-      for (let i = 0; i < 8; i++) {
-        p.colorMode(p.HSB, 360, 100, 100, 100);
-        p.fill(hue[i], 80, 100, 255);
-        p.rect(startWidth, p.height - 20, endWidth, p.height);
-
-        if (DEBUG) {
-          console.log("hue[i] = " + hue[i] + ", startWidth: " + p.round(startWidth) + ", endWidth: " + p.round(endWidth));
-        }
-
-        startWidth += colorWidth[i];
-        endWidth += colorWidth[i + 1];
-      }
-    }
-    */
 
     function displayMenuBar() {
       p.textSize(textSize);
