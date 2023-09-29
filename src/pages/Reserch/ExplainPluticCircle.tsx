@@ -80,10 +80,10 @@ export function ExplainPluticCircle() {
       }
     }
 
-    function displayEmotionExplanation(hueName: string, hueValue: number) {
+    function displayEmotionExplanation(emotionNumber: number, hueName: string, hueValue: number) {
       p.textSize(TEXT_SIZE);
       p.fill(hueValue, 80, 100, 255);
-      p.text(returnJapaneseEmotionName(hueName), p.width / 2, displayY);
+      p.text(returnJapaneseEmotionName(hueName) + "(キー: " + emotionNumber + ")", p.width / 2, displayY);
     }
 
     // バックエンドからJSONデータの取得
@@ -119,7 +119,7 @@ export function ExplainPluticCircle() {
           console.log('intense[i]: ' + emotionIntense[i]);
         }
 
-        displayEmotionExplanation(emotionName[i], hueValue[i]);
+        displayEmotionExplanation(i, emotionName[i], hueValue[i]);
         //displayEmotionExplanation(emotionName[i], hueValue[i], emotionIntense[i]);
         //displayEmotionExplanation("red", 30);
         displayY += TEXT_SIZE;
