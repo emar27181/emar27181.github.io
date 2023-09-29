@@ -41,8 +41,9 @@ const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DEBUG_FPS = 0.2, DEFAULT_FPS = 10;
 const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
-const ALPHA = 15;
-let drawingWeight = 100, backgroundColor = "#000000", textSize = 10;
+const ALPHA = 5, BACK_GROUND_ALPHA = 15;
+let alpha = 5, backgroundAlpha = 15;
+let drawingWeight = 50, backgroundColor = "#000000", textSize = 10;
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
@@ -82,7 +83,7 @@ export function Canvas() {
       if (p.mouseIsPressed) { MouseControl(); }
 
       p.blendMode(p.DARKEST);
-      p.background(0);
+      p.background(0, 0, 0, backgroundAlpha);
       p.blendMode(p.ADD);
 
       if (isPaused) { return; }
@@ -104,7 +105,7 @@ export function Canvas() {
 
       for (let i = 0; i < balls.length; i++) {
         p.colorMode(p.HSB, 360, 100, 100, 100);
-        p.fill(hue[balls[i].emotionNumber], 100, 100, ALPHA);
+        p.fill(hue[balls[i].emotionNumber], 100, 100, alpha);
         p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
       }
     }
@@ -197,7 +198,7 @@ export function Canvas() {
 
       //描画された点が動くかどうかの切り替え
       if (inputKey === "m") { isMoved = !isMoved; }
-      if(inputKey === "r"){ isRandomMove = !isRandomMove; }
+      if (inputKey === "r") { isRandomMove = !isRandomMove; }
 
       //描画色の変更
       if (inputKey === "0") { drawingEmotionNumber = 0; }
@@ -242,20 +243,11 @@ export function Canvas() {
   )
 }
 
-export function ReturnColorTank() {
-  return colorTank;
-}
-
-export function ReturnHue() {
-  return hue[drawingEmotionNumber];
-}
-
-export function ReturnDrawingWeight() {
-  return drawingWeight;
-}
-
-export function ReturnIsRandomMove(){
-  return isRandomMove;
-}
+export function ReturnColorTank() { return colorTank; }
+export function ReturnHue() { return hue[drawingEmotionNumber]; }
+export function ReturnDrawingWeight() { return drawingWeight; }
+export function ReturnIsRandomMove() { return isRandomMove; }
+export function ReturnAlpha() { return alpha; }
+export function ReturnBackgroundAlpha() { return backgroundAlpha; }
 
 export default Canvas
