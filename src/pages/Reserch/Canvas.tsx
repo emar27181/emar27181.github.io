@@ -74,18 +74,18 @@ export function Canvas() {
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
 
-      if (isMoved) {
-        p.blendMode(p.DARKEST);
-        p.background(0);
-        p.blendMode(p.ADD);
-      }
+      p.blendMode(p.DARKEST);
+      p.background(0);
+      p.blendMode(p.ADD);
 
       if (isPaused) { return; }
 
       if (isMoved) {
         moveBalls();
-        displayBalls();
       }
+
+      displayBalls();
+
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
       else { p.frameRate(fps); }
       console.log("colorTank: " + colorTank);
@@ -156,20 +156,14 @@ export function Canvas() {
 
     //マウスのクリック中の動作
     function MouseControl() {
-      if (isMoved) {
-        //感情の色の残量がある場合
-        if (colorTank[drawingEmotionNumber] > 0) {
-          balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
-          ConsumeColor(drawingEmotionNumber);
-        }
-        //感情の色がない場合
-        else {
-          console.error("色の残量がありません。" + (emotionName[drawingEmotionNumber]));
-        }
+      //感情の色の残量がある場合
+      if (colorTank[drawingEmotionNumber] > 0) {
+        balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
+        ConsumeColor(drawingEmotionNumber);
       }
+      //感情の色がない場合
       else {
-        p.fill(drawingColor);
-        p.ellipse(p.mouseX, p.mouseY, drawingWeight, drawingWeight);
+        console.error("色の残量がありません。" + (emotionName[drawingEmotionNumber]));
       }
     }
 
