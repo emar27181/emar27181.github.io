@@ -64,7 +64,7 @@ export function Canvas() {
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
-      displayColorPalette();
+      //displayColorPalette();
     };
 
     p.draw = () => {
