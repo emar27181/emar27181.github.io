@@ -254,4 +254,8 @@ export function ReturnDrawingWeight() {
   return drawingWeight;
 }
 
+export function ReturnIsRandomMove(){
+  return isRandomMove;
+}
+
 export default Canvas
