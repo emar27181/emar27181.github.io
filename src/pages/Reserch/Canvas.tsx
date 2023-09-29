@@ -39,6 +39,7 @@ let drawingWeight = 100, backgroundColor = "#000000", textSize = 10;
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
+
 let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
@@ -129,6 +130,7 @@ export function Canvas() {
     }
 
     //感情の割合を基にカラーパレットを描画する関数
+    /*
     function displayColorPalette() {
       //描画する横幅の計算と代入
       if (DEBUG) { console.log("------------------------"); }
@@ -154,6 +156,7 @@ export function Canvas() {
         endWidth += colorWidth[i + 1];
       }
     }
+    */
 
     function displayMenuBar() {
       p.textSize(textSize);
