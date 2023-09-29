@@ -24,8 +24,10 @@ export function DisplayDrawingInfo() {
       hue = ReturnHue();
       drawingWeight = ReturnDrawingWeight();
       isRandomMove = ReturnIsRandomMove();
+      alpha = ReturnAlpha();
+      backgroundAlpha = ReturnBackgroundAlpha();
       p.fill(0);
-      p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + alpha + "\nbackgroundAlpha: \n" + backgroundAlpha, 0, 20);
+      p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) + "\nbackgroundAlpha: \n" + p.round(backgroundAlpha), 0, 20);
       p.fill(hue, 100, 100, 100);
       p.ellipse(p.width / 2, p.height - 50, drawingWeight);
     };

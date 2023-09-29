@@ -44,6 +44,7 @@ const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
 const ALPHA = 5, BACK_GROUND_ALPHA = 15;
 let alpha = 5, backgroundAlpha = 15;
 let drawingWeight = 50, backgroundColor = "#000000", textSize = 10;
+let adjustMode = "w";
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
@@ -179,8 +180,29 @@ export function Canvas() {
     //キーボードによる描画モードの変更
     function KeyboardControl(inputKey: string) {
       //描画サイズの拡大縮小
-      if (inputKey === "+") { drawingWeight += DRAWING_WEIGHT_CHANGE_SPEED; }
-      if (inputKey === "-") { if (drawingWeight > 1) drawingWeight -= DRAWING_WEIGHT_CHANGE_SPEED; }
+      if (inputKey === "+") {
+        if (adjustMode === "w") { drawingWeight += DRAWING_WEIGHT_CHANGE_SPEED; }
+        else if (adjustMode === "a") { alpha += 0.1 * DRAWING_WEIGHT_CHANGE_SPEED; }
+        else if (adjustMode === "b") { backgroundAlpha += 0.1 * DRAWING_WEIGHT_CHANGE_SPEED; }
+      }
+      if (inputKey === "-") {
+
+        if (adjustMode === "w") {
+          if (drawingWeight > 0) {
+            drawingWeight -= DRAWING_WEIGHT_CHANGE_SPEED;
+          }
+        }
+        else if (adjustMode === "a") {
+          if (alpha > 0) {
+            alpha -= 0.1 * DRAWING_WEIGHT_CHANGE_SPEED;
+          }
+        }
+        else if (adjustMode === "b") {
+          if (backgroundAlpha > 0) {
+            backgroundAlpha = 0.1 * DRAWING_WEIGHT_CHANGE_SPEED;
+          }
+        }
+      }
 
       if (inputKey === "s") {
         //スポイト機能
@@ -192,6 +214,9 @@ export function Canvas() {
         }
       }
       if (inputKey === "e") { p.saveCanvas('saveCanvas', 'png'); }
+      if (inputKey === "w") { adjustMode = "w"; }
+      if (inputKey === "b") { adjustMode = "b"; }
+      if (inputKey === "a") { adjustMode = "a"; }
 
       //ポーズモードの切り替え
       if (inputKey === "p") { isPaused = !isPaused; }
