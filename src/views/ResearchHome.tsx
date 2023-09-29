@@ -25,14 +25,16 @@ export function ResearchHome() {
       <EmotionAnalyzeButton />
       <ReceiveData />
       <ExplainDrawing />
-      <Canvas />
+      <div style={{ display: 'flex' }}>
+        <Canvas />
+        <DisplayDrawingInfo />
+      </div>
       <DisplayEmotionColorRatio /> <br />
-      <DisplayDrawingInfo/>
       <div style={{ display: 'flex' }}>
         <ExplainPluticCircleEnglish />
         <ExplainPluticCircle /> <br />
       </div>
-  
+
       <a href="https://docs.google.com/presentation/d/1N21mXeW3NV-ODW7jHCPQ2FYsSbpZpuSNzAaHix2wRyc/edit?usp=sharing" target="_blank">卒業研究 説明スライド</a><br />
     </div>
   )

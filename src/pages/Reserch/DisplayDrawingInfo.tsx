@@ -9,20 +9,19 @@ export function DisplayDrawingInfo() {
     const CANVAS_WIDTH = 100, CANVAS_HEIGHT = CANVAS_WIDTH;
     let hue = ReturnHue();
     let drawingWeight = ReturnDrawingWeight();
-    
+
     p.setup = () => {
       p.colorMode(p.HSB, 360, 100, 100, 100);
-      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      p.background(0);
+      p.createCanvas(CANVAS_WIDTH, p.windowHeight / 2);
       p.noStroke();
     };
 
     p.draw = () => {
-      p.background(0);
+      p.background(80);
       hue = ReturnHue();
       drawingWeight = ReturnDrawingWeight();
-      p.fill(hue, 100, 100, 100); 
-      p.ellipse(p.width / 2, p.height / 2, drawingWeight); 
+      p.fill(hue, 100, 100, 100);
+      p.ellipse(p.width / 2, p.height -100, drawingWeight);
     };
   }
 
