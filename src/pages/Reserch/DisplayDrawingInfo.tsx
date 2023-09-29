@@ -21,7 +21,7 @@ export function DisplayDrawingInfo() {
       hue = ReturnHue();
       drawingWeight = ReturnDrawingWeight();
       p.fill(hue, 100, 100, 100);
-      p.ellipse(p.width / 2, p.height -100, drawingWeight);
+      p.ellipse(p.width / 2, p.height - 50, drawingWeight);
     };
   }
 
