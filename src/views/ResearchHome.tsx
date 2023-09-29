@@ -13,6 +13,7 @@ import DisplayInfo from '../pages/Reserch/DisplayInfo';
 import ExplainPluticCircleEnglish from '../pages/Reserch/ExplainPluticCircleEnglish';
 import ExplainDrawing from '../pages/Reserch/ExplainDrawing';
 import EmotionAnalyzeButton from '../pages/ColorRecommendation/data/AnalyzeEmotionRequest';
+import DisplayDrawingInfo from '../pages/Reserch/DisplayDrawingInfo';
 
 export function ResearchHome() {
   return (
@@ -26,6 +27,7 @@ export function ResearchHome() {
       <ExplainDrawing />
       <Canvas />
       <DisplayEmotionColorRatio /> <br />
+      <DisplayDrawingInfo/>
       <div style={{ display: 'flex' }}>
         <ExplainPluticCircleEnglish />
         <ExplainPluticCircle /> <br />
