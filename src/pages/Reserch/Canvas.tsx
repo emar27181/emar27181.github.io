@@ -40,7 +40,7 @@ let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
 let colorTank: number[] = [];
-let consumeSpeed = 4;
+let consumeSpeed = 0.5;
 let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
@@ -246,7 +246,7 @@ export function Canvas() {
           hue[i] = data.hue;
           intense[i] = data.intense;
           emotionName[i] = data.name;
-          colorTank[i] = data.intense * 10;
+          colorTank[i] = data.intense;
           sumIntense += data.intense;
           if (DEBUG) {
             console.log("hue[" + i + "]: " + hue[i] + ", intense[" + i + "]: " + intense[i] + ", emotionName[" + i + "]: " + emotionName[i]);
