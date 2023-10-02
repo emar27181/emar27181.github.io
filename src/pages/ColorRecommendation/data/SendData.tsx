@@ -30,7 +30,7 @@ const SendData = () => {
   };
 
 
-  //console.log("message(return): " + message); // コンソール上に返ってきたデータを表示
+  console.log("message(return): " + message); // コンソール上に返ってきたデータを表示
 
 
   return (

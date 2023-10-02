@@ -3,10 +3,11 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
 const CANVAS_WIDTH = 512, CANVAS_HEIGHT = CANVAS_WIDTH / 4;
-const STARTLINE_MONTH = 7, STARTLINE_DAY = 1;
-const DEADLINE_MONTH = 8, DEADLINE_DAY = 31;
+const STARTLINE_MONTH = 10, STARTLINE_DAY = 2;
+const DEADLINE_MONTH = 12, DEADLINE_DAY = 22;
 
-const DEADLINE_MONTH_2 = 8, DEADLINE_DAY_2 = 6;
+const DEADLINE_MONTH_2 = 10, DEADLINE_DAY_2 = 22;
+const DEBUG = false;
 
 export function ClockCountdown() {
   const sketch = (p: P5CanvasInstance) => {
@@ -31,7 +32,7 @@ export function ClockCountdown() {
         let hours = time.getHours();
         let minutes = time.getMinutes();
         let seconds = time.getSeconds();
-        console.log(month + "/" + date + "  " + hours + ":" + minutes + ":" + seconds);
+        if (DEBUG) { console.log(month + "/" + date + "  " + hours + ":" + minutes + ":" + seconds); }
         let nowTime = month + "/" + date + " " + hours + ":" + minutes + ":" + seconds;
 
         //U22プログラミングコンテストまでの日数の計算
@@ -49,7 +50,7 @@ export function ClockCountdown() {
         let deadlineDiffMonth2 = DEADLINE_MONTH_2 - month;
         let deadlineDiffDay2 = DEADLINE_DAY_2 - date;
         let deadlineStillDays2 = deadlineDiffMonth2 * 31 + deadlineDiffDay2;
-        let commentDeadline2 = "オープンキャンパスまであと " + deadlineStillDays2 + " 日！";
+        let commentDeadline2 = "デモ完成まであと " + deadlineStillDays2 + " 日！";
 
         let r = (255 / 12) * hours;
         let g = (255 / 60) * minutes;
@@ -64,7 +65,7 @@ export function ClockCountdown() {
         p.text(commentDeadline, p.width / 2, p.height / 2);
 
         p.textSize(20);
-        p.text("U-22プログラミングコンテスト", p.width / 2, p.height - 105);
+        p.text("インタラクション2024", p.width / 2, p.height - 105);
       };
     };
   }

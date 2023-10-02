@@ -13,6 +13,7 @@ import DisplayInfo from '../pages/Reserch/DisplayInfo';
 import ExplainPluticCircleEnglish from '../pages/Reserch/ExplainPluticCircleEnglish';
 import ExplainDrawing from '../pages/Reserch/ExplainDrawing';
 import EmotionAnalyzeButton from '../pages/ColorRecommendation/data/AnalyzeEmotionRequest';
+import DisplayDrawingInfo from '../pages/Reserch/DisplayDrawingInfo';
 
 export function ResearchHome() {
   return (
@@ -24,13 +25,18 @@ export function ResearchHome() {
       <EmotionAnalyzeButton />
       <ReceiveData />
       <ExplainDrawing />
-      <Canvas />
-      <DisplayEmotionColorRatio /> <br />
+      <div style={{ display: 'flex' }}>
+        <Canvas />
+        <DisplayDrawingInfo />
+      </div>
+      <div style={{ display: 'flex' }}>
+        <DisplayEmotionColorRatio /> <br />
+      </div>
       <div style={{ display: 'flex' }}>
         <ExplainPluticCircleEnglish />
         <ExplainPluticCircle /> <br />
       </div>
-  
+
       <a href="https://docs.google.com/presentation/d/1N21mXeW3NV-ODW7jHCPQ2FYsSbpZpuSNzAaHix2wRyc/edit?usp=sharing" target="_blank">卒業研究 説明スライド</a><br />
     </div>
   )

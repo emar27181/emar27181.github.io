@@ -2,14 +2,7 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
-
-
-// データの取得
-/*
-const response = await fetch('src/pages/ColorRecommendation/data/ColorIntenseData.json');
-const DATA = await response.json();
-*/
-//console.log("DATA: " + DATA);// 確認用出力
+import { ReturnColorTank } from './Canvas';
 
 export function DisplayEmotionColorRatio() {
   const sketch = (p: P5CanvasInstance) => {
@@ -18,28 +11,35 @@ export function DisplayEmotionColorRatio() {
     let hue: number[] = [];
     let intense: number[] = [];
     let colorWidth: number[] = [];
+    let drawingColorWidth: number[] = [];
     let sumIntense = 0;
+    let colorTank: number[] = [];
     const DEBUG = false;
 
     p.setup = () => {
-      p.createCanvas(p.windowHeight/2, 20);
+      p.createCanvas(p.windowHeight / 2 + 100, 20);
       p.background(0);
       p.colorMode(p.HSB, 360, 100, 100, 100);
       p.frameRate(1);
       p.noStroke();
       fetchData();
+      colorTank = ReturnColorTank();
     };
 
 
 
     p.draw = () => {
+      p.background(0);
       displayColorPalette();
+      colorTank = ReturnColorTank();
+      //console.log("colorTank: " + colorTank);
     };
 
     function displayColorPalette() {
       //描画する横幅の計算と代入
       if (DEBUG) { console.log("------------------------"); }
       for (let i = 0; i < 8; i++) {
+        drawingColorWidth[i] = p.width * colorTank[i] / sumIntense;
         colorWidth[i] = p.width * intense[i] / sumIntense;
         if (DEBUG) {
           console.log("colorWidth[" + i + "] = " + p.round(colorWidth[i]));
@@ -51,7 +51,8 @@ export function DisplayEmotionColorRatio() {
       for (let i = 0; i < 8; i++) {
         p.colorMode(p.HSB, 360, 100, 100, 100);
         p.fill(hue[i], 80, 100, 255);
-        p.rect(startWidth, p.height - 20, endWidth, p.height);
+        //p.rect(startWidth, p.height - 20, endWidth, p.height);
+        p.rect(startWidth, p.height - 20, drawingColorWidth[i], p.height);
 
         if (DEBUG) {
           console.log("hue[i] = " + hue[i] + ", startWidth: " + p.round(startWidth) + ", endWidth: " + p.round(endWidth));
