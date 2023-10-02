@@ -7,6 +7,7 @@ const STARTLINE_MONTH = 10, STARTLINE_DAY = 2;
 const DEADLINE_MONTH = 12, DEADLINE_DAY = 22;
 
 const DEADLINE_MONTH_2 = 10, DEADLINE_DAY_2 = 22;
+const DEBUG = false;
 
 export function ClockCountdown() {
   const sketch = (p: P5CanvasInstance) => {
@@ -31,7 +32,7 @@ export function ClockCountdown() {
         let hours = time.getHours();
         let minutes = time.getMinutes();
         let seconds = time.getSeconds();
-        console.log(month + "/" + date + "  " + hours + ":" + minutes + ":" + seconds);
+        if (DEBUG) { console.log(month + "/" + date + "  " + hours + ":" + minutes + ":" + seconds); }
         let nowTime = month + "/" + date + " " + hours + ":" + minutes + ":" + seconds;
 
         //U22プログラミングコンテストまでの日数の計算
