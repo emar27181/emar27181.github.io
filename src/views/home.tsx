@@ -2,6 +2,7 @@ import '../App.css'
 import React from 'react';
 import ClockCountdown from '../pages/ClockCountdown';
 import BounceColorfulForDisplay from '../pages/BounceColorfulForDisplay';
+import BounceColorful from '../pages/BounceColorful';
 
 export function Home() {
 
@@ -13,9 +14,6 @@ export function Home() {
       学習を目的としたブラウザであるため不備があると思いますがご容赦ください。<br /><br />
 
       <ClockCountdown />
-      <a>※↑焦らせるのが目的なのでガバガバ実装です()</a> <br /><br />
-
-      <BounceColorfulForDisplay /> <br /><br />
 
       <h3>外部リンク</h3>
       <a href="https://gitlab.com/RyunosukeEma" target="_blank">GitLab</a><br />
