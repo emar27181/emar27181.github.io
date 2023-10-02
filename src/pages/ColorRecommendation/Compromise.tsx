@@ -1,7 +1,9 @@
 import compromise from 'compromise';
 import sentences from 'compromise-sentences';
-import { getColorInput } from './FormDisplay';
-import { FormDisplay } from './FormDisplay';
+//import { getColorInput } from './FormDisplay';
+import { getColorInput } from '../Reserch/FormDisplay';
+//import { FormDisplay } from './FormDisplay';
+import FormDisplay from '../Reserch/FormDisplay';
 import { returnColorCode } from './returnColorCode';
 import { returnHue } from './returnHue';
 import { returnSaturation } from './returnSaturation';

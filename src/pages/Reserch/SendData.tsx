@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getColorInput } from '../FormDisplay';
+import { getColorInput } from './FormDisplay';
 
 let data = "This is initial data"
 let dataArray: string[] = [];
