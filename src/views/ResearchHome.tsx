@@ -18,7 +18,7 @@ import DisplayDrawingInfo from '../pages/Reserch/DisplayDrawingInfo';
 export function ResearchHome() {
   return (
     <div>
-      <h3>以下卒業研究用ページ</h3>
+      <h3>卒業研究用ページ</h3> <br />
       <DisplayInfo />
       <FormDisplay /> <br />
       <SendData /> <br />
