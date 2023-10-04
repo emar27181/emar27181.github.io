@@ -36,7 +36,7 @@ const SendData = () => {
   return (
     <div>
       <button onClick={sendData}>Send Data</button><br />
-      ※前のログを誤って送信してしまうバグあり(2023/05/25時点)<br />
+      ※前のログを送信してしまうためボタンを二回クリックする必要あり<br />
     </div>
   );
 };
