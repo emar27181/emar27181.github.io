@@ -9,6 +9,7 @@ const EmotionAnalyzeButton = () => {
       const response = await axios.get('http://localhost:5000/api/analyze-emotion');
       console.log('Response:', response.data);
       // ここでサーバーからの応答を処理できます
+      window.location.reload();
     } catch (error) {
       console.error('Error:', error);
     }
