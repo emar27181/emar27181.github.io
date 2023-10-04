@@ -42,7 +42,7 @@ const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DEBUG_FPS = 0.2, DEFAULT_FPS = 10;
 const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
 const ALPHA = 5, BACK_GROUND_ALPHA = 15;
-const MAX_TANK_VALUE = 50;
+const MAX_TANK_VALUE = 10;
 let alpha = 5, backgroundAlpha = 15;
 let drawingWeight = 50, backgroundColor = "#000000", textSize = 10;
 let adjustMode = "w";
@@ -102,12 +102,18 @@ export function Canvas() {
       if (DEBUG) { console.log("colorTank: " + colorTank); }
     };
 
+    function setColor(emotionNumber: number) {
+      if (emotionNumber <= 7) {p.fill(hue[emotionNumber], 100, 100, alpha);}
+      else if (emotionNumber === 8) {p.fill(0);}
+      else if (emotionNumber === 9) {p.fill(255);}
+    }3
+
     //移動体を描画する関数
     function displayBalls() {
 
       for (let i = 0; i < balls.length; i++) {
         p.colorMode(p.HSB, 360, 100, 100, 100);
-        p.fill(hue[balls[i].emotionNumber], 100, 100, alpha);
+        setColor(balls[i].emotionNumber);
         p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
       }
     }
@@ -167,11 +173,17 @@ export function Canvas() {
 
     //マウスのクリック中の動作
     function MouseControl() {
-      //感情の色の残量がある場合
-      if (colorTank[drawingEmotionNumber] > 0) {
+      if (drawingEmotionNumber >= 8) {
         balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
         ConsumeColor(drawingEmotionNumber);
       }
+
+      //感情の色の残量がある場合
+      else if (colorTank[drawingEmotionNumber] > 0) {
+        balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
+        ConsumeColor(drawingEmotionNumber);
+      }
+
       //感情の色がない場合
       else {
         console.error("色の残量がありません。(" + (emotionName[drawingEmotionNumber]) + ")");
@@ -219,6 +231,9 @@ export function Canvas() {
       if (inputKey === "b") { adjustMode = "b"; }
       if (inputKey === "a") { adjustMode = "a"; }
 
+      if (inputKey === 'LEFT_ARROW') { fps -= 0.1; console.log("LEFT_ARROW"); }
+      if (inputKey === 'RIGHT_ARROW') { fps += 0.1; }
+
       //ポーズモードの切り替え
       if (inputKey === "p") { isPaused = !isPaused; }
 
@@ -235,6 +250,8 @@ export function Canvas() {
       if (inputKey === "5") { drawingEmotionNumber = 5; }
       if (inputKey === "6") { drawingEmotionNumber = 6; }
       if (inputKey === "7") { drawingEmotionNumber = 7; }
+      if (inputKey === "8") { drawingEmotionNumber = 8; }
+      if (inputKey === "9") { drawingEmotionNumber = 9; }
     }
 
     // バックエンドからJSONデータの取得と色に関するデータの代入
