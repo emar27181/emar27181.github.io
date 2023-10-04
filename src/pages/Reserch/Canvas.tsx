@@ -42,6 +42,7 @@ const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DEBUG_FPS = 0.2, DEFAULT_FPS = 10;
 const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
 const ALPHA = 5, BACK_GROUND_ALPHA = 15;
+const MAX_TANK_VALUE = 50;
 let alpha = 5, backgroundAlpha = 15;
 let drawingWeight = 50, backgroundColor = "#000000", textSize = 10;
 let adjustMode = "w";
@@ -249,7 +250,7 @@ export function Canvas() {
           hue[i] = data.hue;
           intense[i] = data.intense;
           emotionName[i] = data.name;
-          colorTank[i] = data.intense;
+          colorTank[i] = 0.1 * MAX_TANK_VALUE * data.intense;
           sumIntense += data.intense;
           if (DEBUG) {
             console.log("hue[" + i + "]: " + hue[i] + ", intense[" + i + "]: " + intense[i] + ", emotionName[" + i + "]: " + emotionName[i]);
