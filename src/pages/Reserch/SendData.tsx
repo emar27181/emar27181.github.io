@@ -35,8 +35,6 @@ const SendData = () => {
 
   return (
     <div>
-
-<p>※エディタ上のファイルの保存をしないとSendDataで送るデータが更新されない</p>
       <button onClick={sendData}>Send Data</button><br />
       ※前のログを誤って送信してしまうバグあり(2023/05/25時点)<br />
     </div>
