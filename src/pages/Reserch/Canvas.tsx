@@ -7,7 +7,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
 
-let isRandomMove = false;
+let isRandomMove = true;
 const MOVE_SPEED = 10;
 
 //移動体の自作クラス
@@ -42,9 +42,9 @@ const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DEBUG_FPS = 0.2, DEFAULT_FPS = 10;
 const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
 const ALPHA = 5, BACK_GROUND_ALPHA = 15;
-const MAX_TANK_VALUE = 10;
+const MAX_TANK_VALUE = 100;
 let alpha = 5, backgroundAlpha = 15;
-let drawingWeight = 50, backgroundColor = "#000000", textSize = 10;
+let drawingWeight = 20, backgroundColor = "#000000", textSize = 10;
 let adjustMode = "w";
 let hue: number[] = [];
 let intense: number[] = [];
