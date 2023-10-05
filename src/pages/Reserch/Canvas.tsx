@@ -30,13 +30,19 @@ let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の�
 let sumIntense = 0;
 let fps = DEFAULT_FPS;
 let isPaused = false, isMoved = false;
+let angle = 0, radius = 0, speed = 1;
 
 export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
 
+    let gravityX = p.width / 2, gravityY = p.height / 2;
+
     //移動体の自作クラス
     class Ball {
       position: p5.Vector;
+      velocity: p5.Vector;
+      acceleration: p5.Vector;
+      mass: number;
       dx: number = 1;
       dy: number = 2;
       r: number = 100;
@@ -46,6 +52,9 @@ export function Canvas() {
 
       constructor(x: number, y: number, r: number, color: string, emotionNumber: number) {
         this.position = p.createVector(x, y);
+        this.velocity = p.createVector();
+        this.acceleration = p.createVector();
+        this.mass = drawingWeight;
 
         if (isRandomMove) {
           this.dx = MOVE_SPEED * Math.random() - MOVE_SPEED / 2;
@@ -58,6 +67,19 @@ export function Canvas() {
           //console.log("emotionNumber: " + this.emotionNumber);
         }
       }
+
+      applyForce(force: p5.Vector) {
+        let f = force.copy().div(this.mass);
+        this.acceleration.add(f);
+      }
+
+      update() {
+        this.velocity.add(this.acceleration);
+        this.velocity.limit(10);
+        this.position.add(this.velocity);
+        this.acceleration.mult(0);
+      }
+
     }
 
     //描画ボールに関する変数宣言
@@ -79,6 +101,8 @@ export function Canvas() {
     };
 
     p.draw = () => {
+
+
 
 
       p.colorMode(p.RGB);
