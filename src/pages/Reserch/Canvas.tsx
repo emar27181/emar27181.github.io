@@ -6,36 +6,10 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
+import p5 from 'p5';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
-
-//移動体の自作クラス
-class Ball {
-  x: number = 0;
-  y: number = 0;
-  dx: number = 1;
-  dy: number = 2;
-  r: number = 100;
-  color: string = "red";
-  emotionNumber: number = 0; //drawingEmotionNumber: 各感情の色に対して割り振られる0~7の数値
-  boundCount: number = 0;
-
-  constructor(x: number, y: number, r: number, color: string, emotionNumber: number) {
-    this.x = x;
-    this.y = y;
-    if (isRandomMove) {
-      this.dx = MOVE_SPEED * Math.random() - MOVE_SPEED / 2;
-      this.dy = MOVE_SPEED * Math.random() - MOVE_SPEED / 2;
-    }
-    this.r = drawingWeight;
-    this.color = color;
-    this.emotionNumber = emotionNumber;
-    if (DEBUG) {
-      //console.log("emotionNumber: " + this.emotionNumber);
-    }
-  }
-}
 
 const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
@@ -57,15 +31,41 @@ let sumIntense = 0;
 let fps = DEFAULT_FPS;
 let isPaused = false, isMoved = false;
 
-//描画ボールに関する変数宣言
-let balls: Array<Ball> = [];
-let dx = 1, dy = 2;
-let isColor = "red";
-let isBallCollisionDetected = false;
-const BALL_SIZE = 2, SATURATION = 255; // SATURATION: 彩度
-
 export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
+
+    //移動体の自作クラス
+    class Ball {
+      position: p5.Vector;
+      dx: number = 1;
+      dy: number = 2;
+      r: number = 100;
+      color: string = "red";
+      emotionNumber: number = 0; //drawingEmotionNumber: 各感情の色に対して割り振られる0~7の数値
+      boundCount: number = 0;
+
+      constructor(x: number, y: number, r: number, color: string, emotionNumber: number) {
+        this.position = p.createVector(x, y);
+
+        if (isRandomMove) {
+          this.dx = MOVE_SPEED * Math.random() - MOVE_SPEED / 2;
+          this.dy = MOVE_SPEED * Math.random() - MOVE_SPEED / 2;
+        }
+        this.r = drawingWeight;
+        this.color = color;
+        this.emotionNumber = emotionNumber;
+        if (DEBUG) {
+          //console.log("emotionNumber: " + this.emotionNumber);
+        }
+      }
+    }
+
+    //描画ボールに関する変数宣言
+    let balls: Array<Ball> = [];
+    let dx = 1, dy = 2;
+    let isColor = "red";
+    let isBallCollisionDetected = false;
+    const BALL_SIZE = 2;
 
     let drawingColor = p.color(255, 51, 105);
     fetchData(); //データの取得
@@ -104,9 +104,9 @@ export function Canvas() {
     };
 
     function setColor(emotionNumber: number) {
-      if (emotionNumber <= 7) {p.fill(hue[emotionNumber], 100, 100, alpha);}
-      else if (emotionNumber === 8) {p.fill(0);}
-      else if (emotionNumber === 9) {p.fill(255);}
+      if (emotionNumber <= 7) { p.fill(hue[emotionNumber], 100, 100, alpha); }
+      else if (emotionNumber === 8) { p.fill(0); }
+      else if (emotionNumber === 9) { p.fill(255); }
     }
 
     //移動体を描画する関数
@@ -115,7 +115,7 @@ export function Canvas() {
       for (let i = 0; i < balls.length; i++) {
         p.colorMode(p.HSB, 360, 100, 100, 100);
         setColor(balls[i].emotionNumber);
-        p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
+        p.ellipse(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].r);
       }
     }
 
@@ -123,8 +123,8 @@ export function Canvas() {
     function moveBalls() {
       for (let i = 0; i < balls.length; i++) {
         if (isBallCollisionDetected) {
-          let nextColorX = p.get(balls[i].x + dx, balls[i].y);
-          let nextColorY = p.get(balls[i].x, balls[i].y + dy);
+          let nextColorX = p.get(balls[i].position.x + dx, balls[i].position.y);
+          let nextColorY = p.get(balls[i].position.x, balls[i].position.y + dy);
 
           if (nextColorX[0] != 0) {
             balls[i].dx = -balls[i].dx;
@@ -136,18 +136,18 @@ export function Canvas() {
           }
         }
 
-        if (balls[i].x > p.width || balls[i].x < 0) {
+        if (balls[i].position.x > p.width || balls[i].position.x < 0) {
           balls[i].dx = -balls[i].dx;
           balls[i].boundCount++;
         }
 
-        else if (balls[i].y > p.height || balls[i].y < 0) {
+        else if (balls[i].position.y > p.height || balls[i].position.y < 0) {
           balls[i].dy = -balls[i].dy;
           balls[i].boundCount++;
         }
 
-        balls[i].x += balls[i].dx;
-        balls[i].y += balls[i].dy;
+        balls[i].position.x += balls[i].dx;
+        balls[i].position.y += balls[i].dy;
         //displayBall(i);
       }
     }
