@@ -19,7 +19,7 @@ const ALPHA = 5, BACK_GROUND_ALPHA = 15;
 const MAX_TANK_VALUE = 100;
 let alpha = 5, backgroundAlpha = 15;
 let drawingWeight = 20, backgroundColor = "#000000", textSize = 10;
-let adjustMode = "w", figureMode = "ellipse";
+let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
@@ -166,7 +166,7 @@ export function Canvas() {
       }
     }
 
-    function moveBallStraight(ball: Ball){
+    function moveBallStraight(ball: Ball) {
       if (isBallCollisionDetected) {
         let nextColorX = p.get(ball.position.x + dx, ball.position.y);
         let nextColorY = p.get(ball.position.x, ball.position.y + dy);
@@ -208,8 +208,7 @@ export function Canvas() {
       }
     }
 
-    //マウスのクリック中の動作
-    function MouseControl() {
+    function addBall(){
       if (drawingEmotionNumber >= 8) {
         balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
         ConsumeColor(drawingEmotionNumber);
@@ -225,6 +224,11 @@ export function Canvas() {
       else {
         console.error("色の残量がありません。(" + (emotionName[drawingEmotionNumber]) + ")");
       }
+    }
+
+    //マウスのクリック中の動作
+    function MouseControl() {
+      addBall();
     }
 
     //キーボードによる描画モードの変更
@@ -281,6 +285,11 @@ export function Canvas() {
       //描画された点が動くかどうかの切り替え
       if (inputKey === "m") { isMoved = !isMoved; }
       if (inputKey === "r") { isRandomMove = !isRandomMove; }
+
+      if (inputKey === "g") {
+        if (clickMode === "draw") { clickMode = "gravity"; }
+        else if (clickMode === "gravity") { clickMode = "draw"; }
+      }
 
       //描画色の変更
       if (inputKey === "0") { drawingEmotionNumber = 0; }
