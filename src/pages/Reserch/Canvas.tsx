@@ -19,7 +19,7 @@ const ALPHA = 5, BACK_GROUND_ALPHA = 15;
 const MAX_TANK_VALUE = 100;
 let alpha = 5, backgroundAlpha = 15;
 let drawingWeight = 20, backgroundColor = "#000000", textSize = 10;
-let adjustMode = "w", figureMode = 1;
+let adjustMode = "w", figureMode = 2;
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
@@ -134,6 +134,10 @@ export function Canvas() {
     }
 
     function displayFigure(i: number){
+      let x = balls[i].position.x;
+      let y = balls[i].position.y;
+      let r = balls[i].r;
+
       switch (figureMode) {
         case 0:
           p.ellipse(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].r);
@@ -142,6 +146,9 @@ export function Canvas() {
         case 1:
           p.rect(balls[i].position.x, balls[i].position.y, balls[i].r);
           break;
+
+        case 2: 
+          p.triangle(x, y, x-r/2, y + r, x + r/2, y + r);
       
         default:
           console.error("Invalid figure mode");
