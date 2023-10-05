@@ -32,8 +32,29 @@ export function DisplayDrawingInfo() {
         "\nbackgroundAlpha: \n" + p.round(backgroundAlpha) + "\nfigure: " + figureMode,
         0, 20);
       p.fill(hue, 100, 100, 100);
-      p.ellipse(p.width / 2, p.height - 50, drawingWeight);
+      //p.ellipse(p.width / 2, p.height - 50, drawingWeight);
+      displayFigure(p.width / 2, p.height - 50, drawingWeight);
     };
+
+    function displayFigure(x: number, y: number, r: number) {
+
+      switch (figureMode) {
+        case "ellipse":
+          p.ellipse(x, y, r, r);
+          break;
+
+        case "rect": 1
+          p.rect(x, y, r);
+          break;
+
+        case "triangle":
+          p.triangle(x, y, x - r / 2, y + r, x + r / 2, y + r);
+
+        default:
+          console.error("Invalid figure mode");
+          break;
+      }
+    }
   }
 
   return (

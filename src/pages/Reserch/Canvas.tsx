@@ -19,7 +19,7 @@ const ALPHA = 5, BACK_GROUND_ALPHA = 15;
 const MAX_TANK_VALUE = 100;
 let alpha = 5, backgroundAlpha = 15;
 let drawingWeight = 20, backgroundColor = "#000000", textSize = 10;
-let adjustMode = "w", figureMode = "ellipse";
+let adjustMode = "w", figureMode = "rect";
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
