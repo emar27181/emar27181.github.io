@@ -14,6 +14,7 @@ import ExplainPluticCircleEnglish from '../pages/Reserch/ExplainPluticCircleEngl
 import ExplainDrawing from '../pages/Reserch/ExplainDrawing';
 import EmotionAnalyzeButton from '../pages/Reserch/AnalyzeEmotionRequest';
 import DisplayDrawingInfo from '../pages/Reserch/DisplayDrawingInfo';
+import GravityBall from '../pages/GravityBall';
 
 export function ResearchHome() {
   return (
@@ -32,6 +33,7 @@ export function ResearchHome() {
       <div style={{ display: 'flex' }}>
         <DisplayEmotionColorRatio /> <br />
       </div>
+      <GravityBall />
       <div style={{ display: 'flex' }}>
         <ExplainPluticCircleEnglish />
         <ExplainPluticCircle /> <br />
