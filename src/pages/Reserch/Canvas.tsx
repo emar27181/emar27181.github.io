@@ -80,15 +80,16 @@ export function Canvas() {
 
     p.draw = () => {
 
+
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
 
+      if (isPaused) { return; }
+
       p.blendMode(p.DARKEST);
       p.background(0, 0, 0, backgroundAlpha);
       p.blendMode(p.ADD);
-
-      if (isPaused) { return; }
 
       if (isMoved) {
         moveBalls();
@@ -106,7 +107,7 @@ export function Canvas() {
       if (emotionNumber <= 7) {p.fill(hue[emotionNumber], 100, 100, alpha);}
       else if (emotionNumber === 8) {p.fill(0);}
       else if (emotionNumber === 9) {p.fill(255);}
-    }3
+    }
 
     //移動体を描画する関数
     function displayBalls() {
