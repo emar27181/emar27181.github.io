@@ -133,18 +133,15 @@ export function Canvas() {
       else if (emotionNumber === 9) { p.fill(255); }
     }
 
-    function displayFigure(i: number){
-      let x = balls[i].position.x;
-      let y = balls[i].position.y;
-      let r = balls[i].r;
+    function displayFigure(x: number, y: number, r: number){
 
       switch (figureMode) {
         case "ellipse":
-          p.ellipse(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].r);
+          p.ellipse(x, y, r, r);
           break;
 
-        case "rect":
-          p.rect(balls[i].position.x, balls[i].position.y, balls[i].r);
+        case "rect":1
+          p.rect(x, y, r);
           break;
 
         case "triangle": 
@@ -163,7 +160,7 @@ export function Canvas() {
         p.colorMode(p.HSB, 360, 100, 100, 100);
         setColor(balls[i].emotionNumber);
         //p.ellipse(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].r);
-        displayFigure(i);
+        displayFigure(balls[i].position.x, balls[i].position.y, balls[i].r);
       }
     }
 
