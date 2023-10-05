@@ -199,20 +199,6 @@ export function Canvas() {
       }
     }
 
-    function displayMenuBar() {
-      p.textSize(textSize);
-      p.fill("#cccccc");
-      p.rect(0, p.height - textSize, p.width, p.height);
-      p.fill("#000000");
-      //p.fill(drawingColor);
-      let mouseColor = p.get(p.mouseX, p.mouseY);
-      p.text("(" + Math.floor(p.mouseX) + ", " + Math.floor(p.mouseY) +
-        "), size: " + Math.floor(drawingWeight) + ", (" + mouseColor + ")", 0, p.height - 2);
-      p.fill(drawingColor);
-      p.rect(p.width - 20, p.height - textSize, p.width, p.height);
-
-    }
-
     function ConsumeColor(drawingEmotionNumber: number) {
       if (colorTank[drawingEmotionNumber] > 0) {
         colorTank[drawingEmotionNumber] -= consumeSpeed;
