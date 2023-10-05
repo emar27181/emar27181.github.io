@@ -27,6 +27,7 @@ export function DisplayDrawingInfo() {
       isRandomMove = ReturnIsRandomMove();
       alpha = ReturnAlpha();
       backgroundAlpha = ReturnBackgroundAlpha();
+      figureMode = ReturnFigureMode();
       p.fill(0);
       p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) +
         "\nbackgroundAlpha: \n" + p.round(backgroundAlpha) + "\nfigure: " + figureMode,
