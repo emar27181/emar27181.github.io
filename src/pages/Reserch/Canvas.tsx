@@ -19,7 +19,7 @@ const ALPHA = 5, BACK_GROUND_ALPHA = 15;
 const MAX_TANK_VALUE = 100;
 let alpha = 5, backgroundAlpha = 15;
 let drawingWeight = 20, backgroundColor = "#000000", textSize = 10;
-let adjustMode = "w";
+let adjustMode = "w", figureMode = 1;
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
@@ -133,13 +133,30 @@ export function Canvas() {
       else if (emotionNumber === 9) { p.fill(255); }
     }
 
+    function displayFigure(i: number){
+      switch (figureMode) {
+        case 0:
+          p.ellipse(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].r);
+          break;
+
+        case 1:
+          p.rect(balls[i].position.x, balls[i].position.y, balls[i].r);
+          break;
+      
+        default:
+          console.error("Invalid figure mode");
+          break;
+      }
+    }
+
     //移動体を描画する関数
     function displayBalls() {
 
       for (let i = 0; i < balls.length; i++) {
         p.colorMode(p.HSB, 360, 100, 100, 100);
         setColor(balls[i].emotionNumber);
-        p.ellipse(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].r);
+        //p.ellipse(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].r);
+        displayFigure(i);
       }
     }
 
