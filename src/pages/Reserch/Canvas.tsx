@@ -166,7 +166,7 @@ export function Canvas() {
       }
     }
 
-    function moveBallStraight(ball: Ball) {
+    function moveStraight(ball: Ball) {
       if (isBallCollisionDetected) {
         let nextColorX = p.get(ball.position.x + dx, ball.position.y);
         let nextColorY = p.get(ball.position.x, ball.position.y + dy);
@@ -198,7 +198,8 @@ export function Canvas() {
     //移動体を移動/反射させる関数(※生成された移動体全てを移動)
     function moveBalls() {
       for (let i = 0; i < balls.length; i++) {
-        moveBallStraight(balls[i]);
+        moveStraight(balls[i]);
+        //moveBallGravity(balls[i]); 
       }
     }
 
@@ -208,19 +209,20 @@ export function Canvas() {
       }
     }
 
-    function addBall(){
+    function addBall() {
       if (drawingEmotionNumber >= 8) {
         balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
         ConsumeColor(drawingEmotionNumber);
       }
-
       //感情の色の残量がある場合
       else if (colorTank[drawingEmotionNumber] > 0) {
         balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
         ConsumeColor(drawingEmotionNumber);
       }
-
       //感情の色がない場合
+      else {console.error("色の残量がありません。(" + (emotionName[drawingEmotionNumber]) + ")");}
+    }
+
       else {
         console.error("色の残量がありません。(" + (emotionName[drawingEmotionNumber]) + ")");
       }
