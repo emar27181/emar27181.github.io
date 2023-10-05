@@ -13,6 +13,11 @@ export function GravityBall() {
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(0);
+
+      for (let i = 0; i < 5; i++) {
+        let ball = new Ball(i, 0);
+        balls.push(ball);
+      }
     };
 
     p.draw = () => {
@@ -20,28 +25,26 @@ export function GravityBall() {
       p.background(0);
       //p.ellipse(p.width / 2, p.height / 2, 100, 100);
 
-      if(p.mouseIsPressed){
-        mousePressed();
-      }
+      
 
       for (let ball of balls) {
-        let gravity = p.createVector(p.mouseX, p.mouseY);
-        gravity.sub(ball.position);
-        let distanceSq = gravity.magSq();
-        distanceSq = p.constrain(distanceSq, 10, 1000); // 距離が0になるのを防止
-        let strength = 5 / distanceSq; // 引力の強さ
-        gravity.setMag(strength);
-        ball.applyForce(gravity);
-    
+        if (p.mouseIsPressed) {
+          moveBall(ball);
+        }
         ball.update();
         ball.display();
       }
     };
 
-    function mousePressed() {
-      // クリックした位置に新しいボールを追加
-      let ball = new Ball(p.mouseX, p.mouseY);
-      balls.push(ball);
+    function moveBall(ball: Ball) {
+
+      let gravity = p.createVector(p.mouseX, p.mouseY);
+      gravity.sub(ball.position);
+      let distanceSq = gravity.magSq();
+      distanceSq = p.constrain(distanceSq, 10, 1000); // 距離が0になるのを防止
+      let strength = 5 / distanceSq; // 引力の強さ
+      gravity.setMag(strength);
+      ball.applyForce(gravity);
     }
 
     //移動体の自作クラス
@@ -57,7 +60,7 @@ export function GravityBall() {
         this.velocity = p.createVector();
         this.acceleration = p.createVector();
         this.radius = drawingWeight;
-        this.mass = 10;
+        this.mass = 1;
       }
 
       applyForce(force: p5.Vector) {
@@ -68,6 +71,7 @@ export function GravityBall() {
       update() {
         this.velocity.add(this.acceleration);
         this.velocity.limit(10);
+        this.velocity.mult(0.99);
         this.position.add(this.velocity);
         this.acceleration.mult(0);
       }
