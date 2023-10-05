@@ -29,7 +29,7 @@ let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
 let fps = DEFAULT_FPS;
-let isPaused = false, isMoved = false;
+let isPaused = false, isMoved = true;
 let angle = 0, radius = 0, speed = 1;
 
 export function Canvas() {
@@ -55,7 +55,7 @@ export function Canvas() {
         this.position = p.createVector(x, y);
         this.velocity = p.createVector();
         this.acceleration = p.createVector();
-        this.mass = drawingWeight;
+        this.mass = 1;
         this.figure = figureMode;
 
         if (isRandomMove) {
@@ -77,7 +77,8 @@ export function Canvas() {
 
       update() {
         this.velocity.add(this.acceleration);
-        this.velocity.limit(10);
+        this.velocity.limit(50);
+        this.velocity.mult(0.99);
         this.position.add(this.velocity);
         this.acceleration.mult(0);
       }
@@ -103,10 +104,6 @@ export function Canvas() {
     };
 
     p.draw = () => {
-
-
-
-
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
@@ -117,15 +114,11 @@ export function Canvas() {
       p.background(0, 0, 0, backgroundAlpha);
       p.blendMode(p.ADD);
 
-      if (isMoved) {
-        moveBalls();
-      }
-
+      if (isMoved) {moveBalls();}
       displayBalls();
 
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
       else { p.frameRate(fps); }
-
       if (DEBUG) { console.log("colorTank: " + colorTank); }
     };
 
@@ -195,11 +188,23 @@ export function Canvas() {
       ball.position.y += ball.dy;
     }
 
+    function moveGravity(ball: Ball) {
+      //let gravity = p.createVector(p.mouseX, p.mouseY);
+      let gravity = p.createVector(p.width/2, p.height/2);
+      gravity.sub(ball.position);
+      let distanceSq = gravity.magSq();
+      distanceSq = p.constrain(distanceSq, 10, 1000); // 距離が0になるのを防止
+      let strength = 10 / distanceSq; // 引力の強さ
+      gravity.setMag(strength);
+      ball.applyForce(gravity);
+      ball.update();
+    }
+
     //移動体を移動/反射させる関数(※生成された移動体全てを移動)
     function moveBalls() {
       for (let i = 0; i < balls.length; i++) {
-        moveStraight(balls[i]);
-        //moveBallGravity(balls[i]); 
+        //moveStraight(balls[i]);
+        moveGravity(balls[i]); 
       }
     }
 
@@ -223,10 +228,14 @@ export function Canvas() {
       else {console.error("色の残量がありません。(" + (emotionName[drawingEmotionNumber]) + ")");}
     }
 
-      else {
-        console.error("色の残量がありません。(" + (emotionName[drawingEmotionNumber]) + ")");
+    /*
+    function moveBallsGravity() {
+      for (let ball of balls) {
+        moveBallGravity(ball);
+        ball.update();
       }
     }
+    */
 
     //マウスのクリック中の動作
     function MouseControl() {
