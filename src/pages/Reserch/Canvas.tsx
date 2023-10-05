@@ -166,7 +166,7 @@ export function Canvas() {
       }
     }
 
-    function moveBall(ball: Ball){
+    function moveBallStraight(ball: Ball){
       if (isBallCollisionDetected) {
         let nextColorX = p.get(ball.position.x + dx, ball.position.y);
         let nextColorY = p.get(ball.position.x, ball.position.y + dy);
@@ -198,7 +198,7 @@ export function Canvas() {
     //移動体を移動/反射させる関数(※生成された移動体全てを移動)
     function moveBalls() {
       for (let i = 0; i < balls.length; i++) {
-        moveBall(balls[i]);
+        moveBallStraight(balls[i]);
       }
     }
 
