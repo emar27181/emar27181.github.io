@@ -43,6 +43,7 @@ export function Canvas() {
       velocity: p5.Vector;
       acceleration: p5.Vector;
       mass: number;
+      figure: string;
       dx: number = 1;
       dy: number = 2;
       r: number = 100;
@@ -55,6 +56,7 @@ export function Canvas() {
         this.velocity = p.createVector();
         this.acceleration = p.createVector();
         this.mass = drawingWeight;
+        this.figure = figureMode;
 
         if (isRandomMove) {
           this.dx = MOVE_SPEED * Math.random() - MOVE_SPEED / 2;
@@ -133,21 +135,20 @@ export function Canvas() {
       else if (emotionNumber === 9) { p.fill(255); }
     }
 
-    function displayFigure(x: number, y: number, r: number){
-
+    function displayFigure(x: number, y: number, r: number, figureMode: string) {
       switch (figureMode) {
         case "ellipse":
           p.ellipse(x, y, r, r);
           break;
 
-        case "rect":1
+        case "rect":
           p.rect(x, y, r);
           break;
 
-        case "triangle": 
-          p.triangle(x, y, x-r/2, y + r, x + r/2, y + r);
+        case "triangle":
+          p.triangle(x, y, x - r / 2, y + r, x + r / 2, y + r);
           break;
-      
+
         default:
           console.error("Invalid figure mode");
           break;
@@ -161,7 +162,7 @@ export function Canvas() {
         p.colorMode(p.HSB, 360, 100, 100, 100);
         setColor(balls[i].emotionNumber);
         //p.ellipse(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].r);
-        displayFigure(balls[i].position.x, balls[i].position.y, balls[i].r);
+        displayFigure(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].figure);
       }
     }
 
@@ -278,9 +279,9 @@ export function Canvas() {
       if (inputKey === "b") { adjustMode = "b"; }
       if (inputKey === "a") { adjustMode = "a"; }
 
-      if(inputKey === "i"){figureMode = "ellipse";}
-      if (inputKey === "o"){figureMode = "rect";}
-      if(inputKey === "p"){figureMode = "triangle";}
+      if (inputKey === "i") { figureMode = "ellipse"; }
+      if (inputKey === "o") { figureMode = "rect"; }
+      if (inputKey === "p") { figureMode = "triangle"; }
 
       if (inputKey === 'LEFT_ARROW') { fps -= 0.1; console.log("LEFT_ARROW"); }
       if (inputKey === 'RIGHT_ARROW') { fps += 0.1; }
