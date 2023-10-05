@@ -166,36 +166,39 @@ export function Canvas() {
       }
     }
 
+    function moveBall(ball: Ball){
+      if (isBallCollisionDetected) {
+        let nextColorX = p.get(ball.position.x + dx, ball.position.y);
+        let nextColorY = p.get(ball.position.x, ball.position.y + dy);
+
+        if (nextColorX[0] != 0) {
+          ball.dx = -ball.dx;
+          ball.boundCount++;
+        }
+        else if (nextColorY[0] != 0) {
+          ball.dy = -ball.dy;
+          ball.boundCount++;
+        }
+      }
+
+      if (ball.position.x > p.width || ball.position.x < 0) {
+        ball.dx = -ball.dx;
+        ball.boundCount++;
+      }
+
+      else if (ball.position.y > p.height || ball.position.y < 0) {
+        ball.dy = -ball.dy;
+        ball.boundCount++;
+      }
+
+      ball.position.x += ball.dx;
+      ball.position.y += ball.dy;
+    }
+
     //移動体を移動/反射させる関数(※生成された移動体全てを移動)
     function moveBalls() {
       for (let i = 0; i < balls.length; i++) {
-        if (isBallCollisionDetected) {
-          let nextColorX = p.get(balls[i].position.x + dx, balls[i].position.y);
-          let nextColorY = p.get(balls[i].position.x, balls[i].position.y + dy);
-
-          if (nextColorX[0] != 0) {
-            balls[i].dx = -balls[i].dx;
-            balls[i].boundCount++;
-          }
-          else if (nextColorY[0] != 0) {
-            balls[i].dy = -balls[i].dy;
-            balls[i].boundCount++;
-          }
-        }
-
-        if (balls[i].position.x > p.width || balls[i].position.x < 0) {
-          balls[i].dx = -balls[i].dx;
-          balls[i].boundCount++;
-        }
-
-        else if (balls[i].position.y > p.height || balls[i].position.y < 0) {
-          balls[i].dy = -balls[i].dy;
-          balls[i].boundCount++;
-        }
-
-        balls[i].position.x += balls[i].dx;
-        balls[i].position.y += balls[i].dy;
-        //displayBall(i);
+        moveBall(balls[i]);
       }
     }
 
