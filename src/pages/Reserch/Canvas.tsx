@@ -341,5 +341,6 @@ export function ReturnDrawingWeight() { return drawingWeight; }
 export function ReturnIsRandomMove() { return isRandomMove; }
 export function ReturnAlpha() { return alpha; }
 export function ReturnBackgroundAlpha() { return backgroundAlpha; }
+export function ReturnFigureMode() { return figureMode; }
 
 export default Canvas

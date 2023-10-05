@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha } from './Canvas';
+import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode } from './Canvas';
 
 export function DisplayDrawingInfo() {
   const sketch = (p: P5CanvasInstance) => {
@@ -12,6 +12,7 @@ export function DisplayDrawingInfo() {
     let isRandomMove = ReturnIsRandomMove();
     let alpha = ReturnAlpha();
     let backgroundAlpha = ReturnBackgroundAlpha();
+    let figureMode = ReturnFigureMode();
 
     p.setup = () => {
       p.colorMode(p.HSB, 360, 100, 100, 100);
@@ -27,7 +28,9 @@ export function DisplayDrawingInfo() {
       alpha = ReturnAlpha();
       backgroundAlpha = ReturnBackgroundAlpha();
       p.fill(0);
-      p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) + "\nbackgroundAlpha: \n" + p.round(backgroundAlpha), 0, 20);
+      p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) +
+        "\nbackgroundAlpha: \n" + p.round(backgroundAlpha) + "\nfigure: " + figureMode,
+        0, 20);
       p.fill(hue, 100, 100, 100);
       p.ellipse(p.width / 2, p.height - 50, drawingWeight);
     };
