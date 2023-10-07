@@ -190,7 +190,7 @@ export function Canvas() {
 
     function moveGravity(ball: Ball) {
       //let gravity = p.createVector(p.mouseX, p.mouseY);
-      let gravity = p.createVector(p.width / 2, p.height / 2);
+      let gravity = p.createVector(p.mouseX, p.mouseY);
       gravity.sub(ball.position);
       let distanceSq = gravity.magSq();
       distanceSq = p.constrain(distanceSq, 10, 1000); // 距離が0になるのを防止
@@ -203,8 +203,14 @@ export function Canvas() {
     //移動体を移動/反射させる関数(※生成された移動体全てを移動)
     function moveBalls() {
       for (let i = 0; i < balls.length; i++) {
-        //moveStraight(balls[i]);
-        if (p.mouseIsPressed) { moveGravity(balls[i]); }
+        moveStraight(balls[i]);
+        //if (p.mouseIsPressed) { moveGravity(balls[i]); }
+      }
+    }
+
+    function moveBallsGravity() {
+      for (let i = 0; i < balls.length; i++) {
+        moveGravity(balls[i]);
       }
     }
 
@@ -230,7 +236,8 @@ export function Canvas() {
 
     //マウスのクリック中の動作
     function MouseControl() {
-      addBall();
+      if (clickMode === "draw") { addBall(); }
+      else if (clickMode === "gravity") {moveBallsGravity(); }
     }
 
     //キーボードによる描画モードの変更
