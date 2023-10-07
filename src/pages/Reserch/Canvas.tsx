@@ -114,7 +114,7 @@ export function Canvas() {
       p.background(0, 0, 0, backgroundAlpha);
       p.blendMode(p.ADD);
 
-      if (isMoved) {moveBalls();}
+      if (isMoved) { moveBalls(); }
       displayBalls();
 
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
@@ -190,7 +190,7 @@ export function Canvas() {
 
     function moveGravity(ball: Ball) {
       //let gravity = p.createVector(p.mouseX, p.mouseY);
-      let gravity = p.createVector(p.width/2, p.height/2);
+      let gravity = p.createVector(p.width / 2, p.height / 2);
       gravity.sub(ball.position);
       let distanceSq = gravity.magSq();
       distanceSq = p.constrain(distanceSq, 10, 1000); // 距離が0になるのを防止
@@ -204,7 +204,7 @@ export function Canvas() {
     function moveBalls() {
       for (let i = 0; i < balls.length; i++) {
         //moveStraight(balls[i]);
-        moveGravity(balls[i]); 
+        if (p.mouseIsPressed) { moveGravity(balls[i]); }
       }
     }
 
@@ -225,7 +225,7 @@ export function Canvas() {
         ConsumeColor(drawingEmotionNumber);
       }
       //感情の色がない場合
-      else {console.error("色の残量がありません。(" + (emotionName[drawingEmotionNumber]) + ")");}
+      else { console.error("色の残量がありません。(" + (emotionName[drawingEmotionNumber]) + ")"); }
     }
 
     /*
