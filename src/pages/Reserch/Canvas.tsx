@@ -274,9 +274,9 @@ export function Canvas() {
       if (inputKey === "b") { adjustMode = "b"; }
       if (inputKey === "a") { adjustMode = "a"; }
 
-      if (inputKey === "i") { figureMode = "ellipse"; }
-      if (inputKey === "o") { figureMode = "rect"; }
-      if (inputKey === "p") { figureMode = "triangle"; }
+      if (inputKey === "j") { figureMode = "ellipse"; }
+      if (inputKey === "k") { figureMode = "rect"; }
+      if (inputKey === "l") { figureMode = "triangle"; }
 
       if (inputKey === 'LEFT_ARROW') { fps -= 0.1; console.log("LEFT_ARROW"); }
       if (inputKey === 'RIGHT_ARROW') { fps += 0.1; }
