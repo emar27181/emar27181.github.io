@@ -228,15 +228,6 @@ export function Canvas() {
       else { console.error("色の残量がありません。(" + (emotionName[drawingEmotionNumber]) + ")"); }
     }
 
-    /*
-    function moveBallsGravity() {
-      for (let ball of balls) {
-        moveBallGravity(ball);
-        ball.update();
-      }
-    }
-    */
-
     //マウスのクリック中の動作
     function MouseControl() {
       addBall();
