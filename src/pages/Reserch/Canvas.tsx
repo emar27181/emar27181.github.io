@@ -124,8 +124,8 @@ export function Canvas() {
 
     function setColor(emotionNumber: number) {
       if (emotionNumber <= 7) { p.fill(hue[emotionNumber], 100, 100, alpha); }
-      else if (emotionNumber === 8) { p.fill(0); }
-      else if (emotionNumber === 9) { p.fill(255); }
+      else if (emotionNumber === 8) { p.fill(0, alpha); }
+      else if (emotionNumber === 9) { p.fill(255, alpha); }
     }
 
     function displayFigure(x: number, y: number, r: number, figureMode: string) {
