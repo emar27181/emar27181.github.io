@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha } from './Canvas';
+import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode } from './Canvas';
 
 export function DisplayDrawingInfo() {
   const sketch = (p: P5CanvasInstance) => {
@@ -12,6 +12,8 @@ export function DisplayDrawingInfo() {
     let isRandomMove = ReturnIsRandomMove();
     let alpha = ReturnAlpha();
     let backgroundAlpha = ReturnBackgroundAlpha();
+    let figureMode = ReturnFigureMode();
+    let clickMode = ReturnClickMode();
 
     p.setup = () => {
       p.colorMode(p.HSB, 360, 100, 100, 100);
@@ -26,11 +28,37 @@ export function DisplayDrawingInfo() {
       isRandomMove = ReturnIsRandomMove();
       alpha = ReturnAlpha();
       backgroundAlpha = ReturnBackgroundAlpha();
+      figureMode = ReturnFigureMode();
+      clickMode = ReturnClickMode();
       p.fill(0);
-      p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) + "\nbackgroundAlpha: \n" + p.round(backgroundAlpha), 0, 20);
+      p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) +
+        "\nbackgroundAlpha: \n" + p.round(backgroundAlpha) + "\nfigure: " + figureMode +
+        "\nclickMode: " + clickMode,
+        0, 20);
       p.fill(hue, 100, 100, 100);
-      p.ellipse(p.width / 2, p.height - 50, drawingWeight);
+      //p.ellipse(p.width / 2, p.height - 50, drawingWeight);
+      displayFigure(p.width / 2, p.height - 50, drawingWeight);
     };
+
+    function displayFigure(x: number, y: number, r: number) {
+
+      switch (figureMode) {
+        case "ellipse":
+          p.ellipse(x, y, r, r);
+          break;
+
+        case "rect": 1
+          p.rect(x, y, r);
+          break;
+
+        case "triangle":
+          p.triangle(x, y, x - r / 2, y + r, x + r / 2, y + r);
+
+        default:
+          console.error("Invalid figure mode");
+          break;
+      }
+    }
   }
 
   return (

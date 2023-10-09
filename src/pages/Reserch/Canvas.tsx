@@ -6,45 +6,20 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
+import p5 from 'p5';
 
-let isRandomMove = false;
+let isRandomMove = true;
 const MOVE_SPEED = 10;
-
-//移動体の自作クラス
-class Ball {
-  x: number = 0;
-  y: number = 0;
-  dx: number = 1;
-  dy: number = 2;
-  r: number = 100;
-  color: string = "red";
-  emotionNumber: number = 0; //drawingEmotionNumber: 各感情の色に対して割り振られる0~7の数値
-  boundCount: number = 0;
-
-  constructor(x: number, y: number, r: number, color: string, emotionNumber: number) {
-    this.x = x;
-    this.y = y;
-    if (isRandomMove) {
-      this.dx = MOVE_SPEED * Math.random() - MOVE_SPEED / 2;
-      this.dy = MOVE_SPEED * Math.random() - MOVE_SPEED / 2;
-    }
-    this.r = drawingWeight;
-    this.color = color;
-    this.emotionNumber = emotionNumber;
-    if (DEBUG) {
-      //console.log("emotionNumber: " + this.emotionNumber);
-    }
-  }
-}
 
 const IS_NO_STROKE = true, DEBUG = false;
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DEBUG_FPS = 0.2, DEFAULT_FPS = 10;
 const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
 const ALPHA = 5, BACK_GROUND_ALPHA = 15;
+const MAX_TANK_VALUE = 100;
 let alpha = 5, backgroundAlpha = 15;
-let drawingWeight = 50, backgroundColor = "#000000", textSize = 10;
-let adjustMode = "w";
+let drawingWeight = 20, backgroundColor = "#000000", textSize = 10;
+let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
@@ -54,17 +29,68 @@ let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
 let fps = DEFAULT_FPS;
-let isPaused = false, isMoved = false;
-
-//描画ボールに関する変数宣言
-let balls: Array<Ball> = [];
-let dx = 1, dy = 2;
-let isColor = "red";
-let isBallCollisionDetected = false;
-const BALL_SIZE = 2, SATURATION = 255; // SATURATION: 彩度
+let isPaused = false, isMoved = true;
+let angle = 0, radius = 0, speed = 1;
 
 export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
+
+    let gravityX = p.width / 2, gravityY = p.height / 2;
+
+    //移動体の自作クラス
+    class Ball {
+      position: p5.Vector;
+      velocity: p5.Vector;
+      acceleration: p5.Vector;
+      mass: number;
+      figure: string;
+      dx: number = 1;
+      dy: number = 2;
+      r: number = 100;
+      color: string = "red";
+      emotionNumber: number = 0; //drawingEmotionNumber: 各感情の色に対して割り振られる0~7の数値
+      boundCount: number = 0;
+
+      constructor(x: number, y: number, r: number, color: string, emotionNumber: number) {
+        this.position = p.createVector(x, y);
+        this.velocity = p.createVector();
+        this.acceleration = p.createVector();
+        this.mass = 1;
+        this.figure = figureMode;
+
+        if (isRandomMove) {
+          this.dx = MOVE_SPEED * Math.random() - MOVE_SPEED / 2;
+          this.dy = MOVE_SPEED * Math.random() - MOVE_SPEED / 2;
+        }
+        this.r = drawingWeight;
+        this.color = color;
+        this.emotionNumber = emotionNumber;
+        if (DEBUG) {
+          //console.log("emotionNumber: " + this.emotionNumber);
+        }
+      }
+
+      applyForce(force: p5.Vector) {
+        let f = force.copy().div(this.mass);
+        this.acceleration.add(f);
+      }
+
+      update() {
+        this.velocity.add(this.acceleration);
+        this.velocity.limit(50);
+        this.velocity.mult(0.99);
+        this.position.add(this.velocity);
+        this.acceleration.mult(0);
+      }
+
+    }
+
+    //描画ボールに関する変数宣言
+    let balls: Array<Ball> = [];
+    let dx = 1, dy = 2;
+    let isColor = "red";
+    let isBallCollisionDetected = false;
+    const BALL_SIZE = 2;
 
     let drawingColor = p.color(255, 51, 105);
     fetchData(); //データの取得
@@ -78,84 +104,114 @@ export function Canvas() {
     };
 
     p.draw = () => {
-
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
+
+      if (isPaused) { return; }
 
       p.blendMode(p.DARKEST);
       p.background(0, 0, 0, backgroundAlpha);
       p.blendMode(p.ADD);
 
-      if (isPaused) { return; }
-
-      if (isMoved) {
-        moveBalls();
-      }
-
+      if (isMoved) { moveBalls(); }
       displayBalls();
 
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
       else { p.frameRate(fps); }
-
       if (DEBUG) { console.log("colorTank: " + colorTank); }
     };
+
+    function setColor(emotionNumber: number) {
+      if (emotionNumber <= 7) { p.fill(hue[emotionNumber], 100, 100, alpha); }
+      else if (emotionNumber === 8) { p.fill(0, alpha); }
+      else if (emotionNumber === 9) { p.fill(255, alpha); }
+    }
+
+    function displayFigure(x: number, y: number, r: number, figureMode: string) {
+      switch (figureMode) {
+        case "ellipse":
+          p.ellipse(x, y, r, r);
+          break;
+
+        case "rect":
+          p.rect(x, y, r);
+          break;
+
+        case "triangle":
+          p.triangle(x, y, x - r / 2, y + r, x + r / 2, y + r);
+          break;
+
+        default:
+          console.error("Invalid figure mode");
+          break;
+      }
+    }
 
     //移動体を描画する関数
     function displayBalls() {
 
       for (let i = 0; i < balls.length; i++) {
         p.colorMode(p.HSB, 360, 100, 100, 100);
-        p.fill(hue[balls[i].emotionNumber], 100, 100, alpha);
-        p.ellipse(balls[i].x, balls[i].y, balls[i].r, balls[i].r);
+        setColor(balls[i].emotionNumber);
+        //p.ellipse(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].r);
+        displayFigure(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].figure);
       }
+    }
+
+    function moveStraight(ball: Ball) {
+      if (isBallCollisionDetected) {
+        let nextColorX = p.get(ball.position.x + dx, ball.position.y);
+        let nextColorY = p.get(ball.position.x, ball.position.y + dy);
+
+        if (nextColorX[0] != 0) {
+          ball.dx = -ball.dx;
+          ball.boundCount++;
+        }
+        else if (nextColorY[0] != 0) {
+          ball.dy = -ball.dy;
+          ball.boundCount++;
+        }
+      }
+
+      if (ball.position.x > p.width || ball.position.x < 0) {
+        ball.dx = -ball.dx;
+        ball.boundCount++;
+      }
+
+      else if (ball.position.y > p.height || ball.position.y < 0) {
+        ball.dy = -ball.dy;
+        ball.boundCount++;
+      }
+
+      ball.position.x += ball.dx;
+      ball.position.y += ball.dy;
+    }
+
+    function moveGravity(ball: Ball) {
+      //let gravity = p.createVector(p.mouseX, p.mouseY);
+      let gravity = p.createVector(p.mouseX, p.mouseY);
+      gravity.sub(ball.position);
+      let distanceSq = gravity.magSq();
+      distanceSq = p.constrain(distanceSq, 10, 1000); // 距離が0になるのを防止
+      let strength = 10 / distanceSq; // 引力の強さ
+      gravity.setMag(strength);
+      ball.applyForce(gravity);
+      ball.update();
     }
 
     //移動体を移動/反射させる関数(※生成された移動体全てを移動)
     function moveBalls() {
       for (let i = 0; i < balls.length; i++) {
-        if (isBallCollisionDetected) {
-          let nextColorX = p.get(balls[i].x + dx, balls[i].y);
-          let nextColorY = p.get(balls[i].x, balls[i].y + dy);
-
-          if (nextColorX[0] != 0) {
-            balls[i].dx = -balls[i].dx;
-            balls[i].boundCount++;
-          }
-          else if (nextColorY[0] != 0) {
-            balls[i].dy = -balls[i].dy;
-            balls[i].boundCount++;
-          }
-        }
-
-        if (balls[i].x > p.width || balls[i].x < 0) {
-          balls[i].dx = -balls[i].dx;
-          balls[i].boundCount++;
-        }
-
-        else if (balls[i].y > p.height || balls[i].y < 0) {
-          balls[i].dy = -balls[i].dy;
-          balls[i].boundCount++;
-        }
-
-        balls[i].x += balls[i].dx;
-        balls[i].y += balls[i].dy;
-        //displayBall(i);
+        moveStraight(balls[i]);
+        //if (p.mouseIsPressed) { moveGravity(balls[i]); }
       }
     }
 
-    function displayMenuBar() {
-      p.textSize(textSize);
-      p.fill("#cccccc");
-      p.rect(0, p.height - textSize, p.width, p.height);
-      p.fill("#000000");
-      //p.fill(drawingColor);
-      let mouseColor = p.get(p.mouseX, p.mouseY);
-      p.text("(" + Math.floor(p.mouseX) + ", " + Math.floor(p.mouseY) +
-        "), size: " + Math.floor(drawingWeight) + ", (" + mouseColor + ")", 0, p.height - 2);
-      p.fill(drawingColor);
-      p.rect(p.width - 20, p.height - textSize, p.width, p.height);
-
+    function moveBallsGravity() {
+      for (let i = 0; i < balls.length; i++) {
+        moveGravity(balls[i]);
+      }
     }
 
     function ConsumeColor(drawingEmotionNumber: number) {
@@ -164,17 +220,24 @@ export function Canvas() {
       }
     }
 
-    //マウスのクリック中の動作
-    function MouseControl() {
+    function addBall() {
+      if (drawingEmotionNumber >= 8) {
+        balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
+        ConsumeColor(drawingEmotionNumber);
+      }
       //感情の色の残量がある場合
-      if (colorTank[drawingEmotionNumber] > 0) {
+      else if (colorTank[drawingEmotionNumber] > 0) {
         balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
         ConsumeColor(drawingEmotionNumber);
       }
       //感情の色がない場合
-      else {
-        console.error("色の残量がありません。(" + (emotionName[drawingEmotionNumber]) + ")");
-      }
+      else { console.error("色の残量がありません。(" + (emotionName[drawingEmotionNumber]) + ")"); }
+    }
+
+    //マウスのクリック中の動作
+    function MouseControl() {
+      if (clickMode === "draw") { addBall(); }
+      else if (clickMode === "gravity") {moveBallsGravity(); }
     }
 
     //キーボードによる描画モードの変更
@@ -218,12 +281,24 @@ export function Canvas() {
       if (inputKey === "b") { adjustMode = "b"; }
       if (inputKey === "a") { adjustMode = "a"; }
 
+      if (inputKey === "j") { figureMode = "ellipse"; }
+      if (inputKey === "k") { figureMode = "rect"; }
+      if (inputKey === "l") { figureMode = "triangle"; }
+
+      if (inputKey === 'LEFT_ARROW') { fps -= 0.1; console.log("LEFT_ARROW"); }
+      if (inputKey === 'RIGHT_ARROW') { fps += 0.1; }
+
       //ポーズモードの切り替え
       if (inputKey === "p") { isPaused = !isPaused; }
 
       //描画された点が動くかどうかの切り替え
       if (inputKey === "m") { isMoved = !isMoved; }
       if (inputKey === "r") { isRandomMove = !isRandomMove; }
+
+      if (inputKey === "g") {
+        if (clickMode === "draw") { clickMode = "gravity"; }
+        else if (clickMode === "gravity") { clickMode = "draw"; }
+      }
 
       //描画色の変更
       if (inputKey === "0") { drawingEmotionNumber = 0; }
@@ -234,6 +309,8 @@ export function Canvas() {
       if (inputKey === "5") { drawingEmotionNumber = 5; }
       if (inputKey === "6") { drawingEmotionNumber = 6; }
       if (inputKey === "7") { drawingEmotionNumber = 7; }
+      if (inputKey === "8") { drawingEmotionNumber = 8; }
+      if (inputKey === "9") { drawingEmotionNumber = 9; }
     }
 
     // バックエンドからJSONデータの取得と色に関するデータの代入
@@ -249,7 +326,7 @@ export function Canvas() {
           hue[i] = data.hue;
           intense[i] = data.intense;
           emotionName[i] = data.name;
-          colorTank[i] = data.intense;
+          colorTank[i] = 0.1 * MAX_TANK_VALUE * data.intense;
           sumIntense += data.intense;
           if (DEBUG) {
             console.log("hue[" + i + "]: " + hue[i] + ", intense[" + i + "]: " + intense[i] + ", emotionName[" + i + "]: " + emotionName[i]);
@@ -274,5 +351,7 @@ export function ReturnDrawingWeight() { return drawingWeight; }
 export function ReturnIsRandomMove() { return isRandomMove; }
 export function ReturnAlpha() { return alpha; }
 export function ReturnBackgroundAlpha() { return backgroundAlpha; }
+export function ReturnFigureMode() { return figureMode; }
+export function ReturnClickMode() { return clickMode; }
 
 export default Canvas
