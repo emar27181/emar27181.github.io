@@ -31,7 +31,7 @@ let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
 let fps = DEFAULT_FPS;
-let isPaused = false, isMoved = false, isFixedGravity = true;
+let isPaused = false, isMoved = false, isFixedGravity = true, isMovedGravity = true;
 let angle = 0, radius = 0, speed = 1;
 
 export function Canvas() {
@@ -120,8 +120,16 @@ export function Canvas() {
 
       if (isMoved) { moveBalls(); }
       displayBalls();
-      moveBallsGravity(ballGravity.position.x, ballGravity.position.y);
-      //moveGravity(ballGravity, ballGravity.position.x, ballGravity.position.y);
+
+      if (isMovedGravity) {
+        //if (isFixedGravity) {
+        moveBallsGravity(ballGravity.position.x, ballGravity.position.y);
+        //}
+        //if(clickMode === "gravity") {
+        moveBallsGravity(p.mouseX, p.mouseY);
+        //}
+
+      }
 
 
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
@@ -197,7 +205,7 @@ export function Canvas() {
 
     function moveGravity(ball: Ball, x: number, y: number) {
       //let gravity = p.createVector(p.mouseX, p.mouseY);
-      if (isFixedGravity) {
+      if (isFixedGravity || clickMode === "gravity") {
         let gravity = p.createVector(x, y);
         gravity.sub(ball.position);
         let distanceSq = gravity.magSq();
@@ -304,6 +312,7 @@ export function Canvas() {
       //描画された点が動くかどうかの切り替え
       if (inputKey === "m") { isMoved = !isMoved; }
       if (inputKey === "r") { isRandomMove = !isRandomMove; }
+      if (inputKey === "g") { isMovedGravity = !isMovedGravity; }
 
       if (inputKey === "c") {
         if (clickMode === "draw") { clickMode = "gravity"; }
@@ -363,6 +372,6 @@ export function ReturnAlpha() { return alpha; }
 export function ReturnBackgroundAlpha() { return backgroundAlpha; }
 export function ReturnFigureMode() { return figureMode; }
 export function ReturnClickMode() { return clickMode; }
-export function ReturnIsFixedGravity () { return isFixedGravity; }
+export function ReturnIsFixedGravity() { return isFixedGravity; }
 
 export default Canvas
