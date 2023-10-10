@@ -16,6 +16,7 @@ const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DEBUG_FPS = 0.2, DEFAULT_FPS = 10;
 const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
 const ALPHA = 5, BACK_GROUND_ALPHA = 15;
+const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
 let alpha = 5, backgroundAlpha = 15;
 let drawingWeight = 20, backgroundColor = "#000000", textSize = 10;
@@ -194,7 +195,7 @@ export function Canvas() {
       gravity.sub(ball.position);
       let distanceSq = gravity.magSq();
       distanceSq = p.constrain(distanceSq, 10, 1000); // 距離が0になるのを防止
-      let strength = 10 / distanceSq; // 引力の強さ
+      let strength = GRAVITY_MAX / distanceSq; // 引力の強さ
       gravity.setMag(strength);
       ball.applyForce(gravity);
       ball.update();
