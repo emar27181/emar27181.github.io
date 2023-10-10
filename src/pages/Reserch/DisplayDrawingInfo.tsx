@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode } from './Canvas';
+import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity } from './Canvas';
 
 export function DisplayDrawingInfo() {
   const sketch = (p: P5CanvasInstance) => {
@@ -14,6 +14,7 @@ export function DisplayDrawingInfo() {
     let backgroundAlpha = ReturnBackgroundAlpha();
     let figureMode = ReturnFigureMode();
     let clickMode = ReturnClickMode();
+    let isFixedGravity = ReturnIsFixedGravity();
 
     p.setup = () => {
       p.colorMode(p.HSB, 360, 100, 100, 100);
@@ -30,10 +31,11 @@ export function DisplayDrawingInfo() {
       backgroundAlpha = ReturnBackgroundAlpha();
       figureMode = ReturnFigureMode();
       clickMode = ReturnClickMode();
+      isFixedGravity = ReturnIsFixedGravity();
       p.fill(0);
       p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) +
         "\nbackgroundAlpha: \n" + p.round(backgroundAlpha) + "\nfigure: " + figureMode +
-        "\nclickMode: " + clickMode,
+        "\nclickMode: " + clickMode + "\nisFixedGravity: \n" + isFixedGravity,
         0, 20);
       p.fill(hue, 100, 100, 100);
       //p.ellipse(p.width / 2, p.height - 50, drawingWeight);

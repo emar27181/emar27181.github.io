@@ -18,6 +18,7 @@ const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
 const ALPHA = 5, BACK_GROUND_ALPHA = 15;
 const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
+const IS_TEST_MODE = true;
 let alpha = 5, backgroundAlpha = 15;
 let drawingWeight = 20, backgroundColor = "#000000", textSize = 10;
 let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
@@ -30,7 +31,7 @@ let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
 let fps = DEFAULT_FPS;
-let isPaused = false, isMoved = true;
+let isPaused = false, isMoved = false, isFixedGravity = true;
 let angle = 0, radius = 0, speed = 1;
 
 export function Canvas() {
@@ -90,6 +91,7 @@ export function Canvas() {
     let balls: Array<Ball> = [];
     let dx = 1, dy = 2;
     let isColor = "red";
+    let ballGravity: Ball;
     let isBallCollisionDetected = false;
     const BALL_SIZE = 2;
 
@@ -97,8 +99,9 @@ export function Canvas() {
     fetchData(); //データの取得
 
     p.setup = () => {
-      //.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+
       p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
+      ballGravity = new Ball(p.width / 2, p.height / 2, 10, "red", 9);
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
@@ -117,6 +120,9 @@ export function Canvas() {
 
       if (isMoved) { moveBalls(); }
       displayBalls();
+      moveBallsGravity(ballGravity.position.x, ballGravity.position.y);
+      //moveGravity(ballGravity, ballGravity.position.x, ballGravity.position.y);
+
 
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
       else { p.frameRate(fps); }
@@ -189,15 +195,17 @@ export function Canvas() {
       ball.position.y += ball.dy;
     }
 
-    function moveGravity(ball: Ball) {
+    function moveGravity(ball: Ball, x: number, y: number) {
       //let gravity = p.createVector(p.mouseX, p.mouseY);
-      let gravity = p.createVector(p.mouseX, p.mouseY);
-      gravity.sub(ball.position);
-      let distanceSq = gravity.magSq();
-      distanceSq = p.constrain(distanceSq, 10, 1000); // 距離が0になるのを防止
-      let strength = GRAVITY_MAX / distanceSq; // 引力の強さ
-      gravity.setMag(strength);
-      ball.applyForce(gravity);
+      if (isFixedGravity) {
+        let gravity = p.createVector(x, y);
+        gravity.sub(ball.position);
+        let distanceSq = gravity.magSq();
+        distanceSq = p.constrain(distanceSq, 10, 1000); // 距離が0になるのを防止
+        let strength = GRAVITY_MAX / distanceSq; // 引力の強さ
+        gravity.setMag(strength);
+        ball.applyForce(gravity);
+      }
       ball.update();
     }
 
@@ -209,9 +217,9 @@ export function Canvas() {
       }
     }
 
-    function moveBallsGravity() {
+    function moveBallsGravity(gravityX: number, gravityY: number) {
       for (let i = 0; i < balls.length; i++) {
-        moveGravity(balls[i]);
+        moveGravity(balls[i], gravityX, gravityY);
       }
     }
 
@@ -238,7 +246,7 @@ export function Canvas() {
     //マウスのクリック中の動作
     function MouseControl() {
       if (clickMode === "draw") { addBall(); }
-      else if (clickMode === "gravity") {moveBallsGravity(); }
+      else if (clickMode === "gravity") { moveBallsGravity(p.mouseX, p.mouseY); }
     }
 
     //キーボードによる描画モードの変更
@@ -291,6 +299,7 @@ export function Canvas() {
 
       //ポーズモードの切り替え
       if (inputKey === "p") { isPaused = !isPaused; }
+      if (inputKey === "f") { isFixedGravity = !isFixedGravity; }
 
       //描画された点が動くかどうかの切り替え
       if (inputKey === "m") { isMoved = !isMoved; }
@@ -354,5 +363,6 @@ export function ReturnAlpha() { return alpha; }
 export function ReturnBackgroundAlpha() { return backgroundAlpha; }
 export function ReturnFigureMode() { return figureMode; }
 export function ReturnClickMode() { return clickMode; }
+export function ReturnIsFixedGravity () { return isFixedGravity; }
 
 export default Canvas
