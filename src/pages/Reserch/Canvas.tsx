@@ -305,7 +305,7 @@ export function Canvas() {
       if (inputKey === "m") { isMoved = !isMoved; }
       if (inputKey === "r") { isRandomMove = !isRandomMove; }
 
-      if (inputKey === "g") {
+      if (inputKey === "c") {
         if (clickMode === "draw") { clickMode = "gravity"; }
         else if (clickMode === "gravity") { clickMode = "draw"; }
       }
