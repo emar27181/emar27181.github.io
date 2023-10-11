@@ -272,7 +272,7 @@ export function Canvas() {
         }
         else if (adjustMode === "b") {
           if (backgroundAlpha > 0) {
-            backgroundAlpha = 0.1 * DRAWING_WEIGHT_CHANGE_SPEED;
+            backgroundAlpha -= 0.1 * DRAWING_WEIGHT_CHANGE_SPEED;
           }
         }
       }
