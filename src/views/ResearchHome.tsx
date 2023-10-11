@@ -33,7 +33,6 @@ export function ResearchHome() {
       <div style={{ display: 'flex' }}>
         <DisplayEmotionColorRatio /> <br />
       </div>
-      <GravityBall />
       <div style={{ display: 'flex' }}>
         <ExplainPluticCircleEnglish />
         <ExplainPluticCircle /> <br />
