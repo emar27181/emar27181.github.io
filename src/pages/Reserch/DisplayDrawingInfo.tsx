@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity, ReturnIsMovedGravity } from './Canvas';
+import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity, ReturnIsMovedGravity, ReturnIsMovedStraight } from './Canvas';
 
 export function DisplayDrawingInfo() {
   const sketch = (p: P5CanvasInstance) => {
@@ -16,6 +16,7 @@ export function DisplayDrawingInfo() {
     let clickMode = ReturnClickMode();
     let isFixedGravity = ReturnIsFixedGravity();
     let isMovedGravity = ReturnIsMovedGravity();
+    let isMovedStraight = ReturnIsMovedStraight();
 
     p.setup = () => {
       p.colorMode(p.HSB, 360, 100, 100, 100);
@@ -33,12 +34,13 @@ export function DisplayDrawingInfo() {
       figureMode = ReturnFigureMode();
       clickMode = ReturnClickMode();
       isFixedGravity = ReturnIsFixedGravity();
-      isMovedGravity = ReturnIsMovedGravity(); 
+      isMovedGravity = ReturnIsMovedGravity();
+      isMovedStraight = ReturnIsMovedStraight();
       p.fill(0);
       p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) +
         "\nbackgroundAlpha: \n" + p.round(backgroundAlpha) + "\nfigure: " + figureMode +
-        "\nclickMode: " + clickMode + "\nisFixedGravity: \n" + isFixedGravity + 
-        "\nisMovedGravity:\n" + isMovedGravity,
+        "\nclickMode: " + clickMode + "\nisFixedGravity: \n" + isFixedGravity +
+        "\nisMovedGravity:\n" + isMovedGravity + "\nisMovedStraight: \n" + isMovedStraight,
         0, 20);
       p.fill(hue, 100, 100, 100);
       //p.ellipse(p.width / 2, p.height - 50, drawingWeight);
