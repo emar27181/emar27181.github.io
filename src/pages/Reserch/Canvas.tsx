@@ -371,5 +371,6 @@ export function ReturnClickMode() { return clickMode; }
 export function ReturnIsFixedGravity() { return isFixedGravity; }
 export function ReturnIsMovedGravity() { return isMovedGravity; }
 export function ReturnIsMovedStraight() { return isMovedStraight; }
+export function ReturnIsBackground(){ return isBackground; }
 
 export default Canvas
