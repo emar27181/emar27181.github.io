@@ -373,5 +373,6 @@ export function ReturnBackgroundAlpha() { return backgroundAlpha; }
 export function ReturnFigureMode() { return figureMode; }
 export function ReturnClickMode() { return clickMode; }
 export function ReturnIsFixedGravity() { return isFixedGravity; }
+export function ReturnIsMovedGravity() { return isMovedGravity; }
 
 export default Canvas
