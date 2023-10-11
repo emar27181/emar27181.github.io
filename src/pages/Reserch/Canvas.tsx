@@ -31,7 +31,7 @@ let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
 let fps = DEFAULT_FPS;
-let isPaused = false, isMoved = false, isFixedGravity = true, isMovedGravity = true;
+let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true;
 let angle = 0, radius = 0, speed = 1;
 
 export function Canvas() {
@@ -118,7 +118,7 @@ export function Canvas() {
       p.background(0, 0, 0, backgroundAlpha);
       p.blendMode(p.ADD);
 
-      if (isMoved) { moveBalls(); }
+      if (isMovedStraight) { moveBalls(); }
       displayBalls();
 
       if (isMovedGravity) { moveBallsGravity(); }
@@ -303,7 +303,7 @@ export function Canvas() {
       if (inputKey === "f") { isFixedGravity = !isFixedGravity; }
 
       //描画された点が動くかどうかの切り替え
-      if (inputKey === "m") { isMoved = !isMoved; }
+      if (inputKey === "m") { isMovedStraight = !isMovedStraight; }
       if (inputKey === "r") { isRandomMove = !isRandomMove; }
       if (inputKey === "g") { isMovedGravity = !isMovedGravity; }
 
