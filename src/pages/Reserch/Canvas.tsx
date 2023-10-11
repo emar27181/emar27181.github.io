@@ -121,15 +121,7 @@ export function Canvas() {
       if (isMoved) { moveBalls(); }
       displayBalls();
 
-      if (isMovedGravity) {
-        //if (isFixedGravity) {
-        moveBallsGravity(ballGravity.position.x, ballGravity.position.y);
-        //}
-        //if(clickMode === "gravity") {
-        moveBallsGravity(p.mouseX, p.mouseY);
-        //}
-
-      }
+      if (isMovedGravity) { moveBallsGravity(); }
 
 
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
@@ -205,7 +197,7 @@ export function Canvas() {
 
     function moveGravity(ball: Ball, x: number, y: number) {
       //let gravity = p.createVector(p.mouseX, p.mouseY);
-      if (isFixedGravity || clickMode === "gravity") {
+      if (x != -1 && y != -1) {
         let gravity = p.createVector(x, y);
         gravity.sub(ball.position);
         let distanceSq = gravity.magSq();
@@ -225,9 +217,11 @@ export function Canvas() {
       }
     }
 
-    function moveBallsGravity(gravityX: number, gravityY: number) {
+    function moveBallsGravity() {
       for (let i = 0; i < balls.length; i++) {
-        moveGravity(balls[i], gravityX, gravityY);
+        if (isFixedGravity) { moveGravity(balls[i], ballGravity.position.x, ballGravity.position.y); }
+        if (clickMode === "gravity") { moveGravity(balls[i], p.mouseX, p.mouseY); }
+        moveGravity(balls[i], -1, -1);
       }
     }
 
@@ -254,7 +248,7 @@ export function Canvas() {
     //マウスのクリック中の動作
     function MouseControl() {
       if (clickMode === "draw") { addBall(); }
-      else if (clickMode === "gravity") { moveBallsGravity(p.mouseX, p.mouseY); }
+      //else if (clickMode === "gravity") { moveBallsGravity(p.mouseX, p.mouseY); }
     }
 
     //キーボードによる描画モードの変更
@@ -266,7 +260,6 @@ export function Canvas() {
         else if (adjustMode === "b") { backgroundAlpha += 0.1 * DRAWING_WEIGHT_CHANGE_SPEED; }
       }
       if (inputKey === "-") {
-
         if (adjustMode === "w") {
           if (drawingWeight > 0) {
             drawingWeight -= DRAWING_WEIGHT_CHANGE_SPEED;
