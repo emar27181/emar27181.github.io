@@ -15,6 +15,7 @@ import ExplainDrawing from '../pages/Reserch/ExplainDrawing';
 import EmotionAnalyzeButton from '../pages/Reserch/AnalyzeEmotionRequest';
 import DisplayDrawingInfo from '../pages/Reserch/DisplayDrawingInfo';
 import GravityBall from '../pages/GravityBall';
+import ReturnCameraInfo from '../pages/Reserch/ReturnCameraInfo';
 
 export function ResearchHome() {
   return (
@@ -26,6 +27,7 @@ export function ResearchHome() {
       <EmotionAnalyzeButton />
       <ReceiveData />
       <ExplainDrawing />
+      <ReturnCameraInfo />
       <div style={{ display: 'flex' }}>
         <Canvas />
         <DisplayDrawingInfo />
