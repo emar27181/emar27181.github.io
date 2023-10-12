@@ -7,6 +7,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
 import p5 from 'p5';
+import { ReturnColorsInfo } from './ReturnCameraInfo';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
@@ -108,6 +109,9 @@ export function Canvas() {
     };
 
     p.draw = () => {
+
+      console.log(ReturnColorsInfo());
+
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
@@ -371,6 +375,6 @@ export function ReturnClickMode() { return clickMode; }
 export function ReturnIsFixedGravity() { return isFixedGravity; }
 export function ReturnIsMovedGravity() { return isMovedGravity; }
 export function ReturnIsMovedStraight() { return isMovedStraight; }
-export function ReturnIsBackground(){ return isBackground; }
+export function ReturnIsBackground() { return isBackground; }
 
 export default Canvas
