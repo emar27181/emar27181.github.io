@@ -13,15 +13,27 @@ export function ReturnCameraInfo() {
       capture = p.createCapture(p.VIDEO);
       capture.hide();
       p.noStroke();
+      getColors();
     };
 
-    let x = 100, y = 100, dx = 20, dy = 10;
+    let returnX: number, returnY: number, returnColor: number[];
+    let i = 0;
 
     p.draw = () => {
-      //let img = capture.get();
-      //p.image(img, 0, 0);
-
       p.image(capture, 0, 0);
+      //if (++i === 1) { getColors(); }
+      getColors();
+    };
+
+    function getColors() {
+      for (let i = 0; i < 10; i++) {
+        for (let j = 0; j < 10; j++) {
+          p.get(i, j)
+          console.log(p.get(i, j));
+        }
+      }
+    }
+
     class ColorInfo {
       x: number;
       y: number;
