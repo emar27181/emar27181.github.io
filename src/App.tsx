@@ -36,7 +36,7 @@ function App() {
           <Nav.Link href="/">ホーム</Nav.Link>
           <Nav.Link href="/workMenu">作品集</Nav.Link>
           <Nav.Link href='/researchHome'> 卒業研究 </Nav.Link>
-          <Nav.Link href='/u22programmingContestHome'> キャンバス </Nav.Link>
+          <Nav.Link href='/canvas'> キャンバス </Nav.Link>
         </Nav>
         <Form className="ml-auto d-flex">
           <FormControl type="text" placeholder="Search(Preparing)" className="ml-sm-2" />
@@ -94,7 +94,7 @@ function App() {
           <ResearchHome />
         </Route>
 
-        <Route path="/u22programmingContestHome">
+        <Route path="/canvas">
           <U22programmingContestHome />
         </Route>
 
