@@ -3,6 +3,9 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { Element } from 'p5';
 
+
+let colorsInfo: Array<ColorInfo> = [];
+
 export function ReturnCameraInfo() {
   const sketch = (p: P5CanvasInstance) => {
 
@@ -18,7 +21,6 @@ export function ReturnCameraInfo() {
     let returnX: number, returnY: number, returnColor: number[];
     let frameCount = 0;
     let i = 0;
-    let colorsInfo: Array<ColorInfo> = [];
 
     p.draw = () => {
       if (frameCount <= 20) { p.image(capture, 0, 0); }
@@ -40,22 +42,26 @@ export function ReturnCameraInfo() {
       }
     }
 
-    class ColorInfo {
-      x: number;
-      y: number;
-      color: number[];
 
-      constructor(x: number, y: number, color: number[]) {
-        this.x = x;
-        this.y = y;
-        this.color = color;
-      }
-    }
   }
 
   return (
     <ReactP5Wrapper sketch={sketch} />
   )
 }
+
+
+class ColorInfo {
+  x: number;
+  y: number;
+  color: number[];
+
+  constructor(x: number, y: number, color: number[]) {
+    this.x = x;
+    this.y = y;
+    this.color = color;
+  }
+}
+export function ReturnColorsInfo(){return colorsInfo;}
 
 export default ReturnCameraInfo
