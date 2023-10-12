@@ -18,18 +18,12 @@ export function ReturnCameraInfo() {
       p.noStroke();
     };
 
-    let returnX: number, returnY: number, returnColor: number[];
-    let frameCount = 0;
-    let i = 0;
-
     p.draw = () => {
-      if (frameCount <= 20) { p.image(capture, 0, 0); }
-      if (frameCount === 10) {
+      if (p.frameCount <= 20) { p.image(capture, 0, 0); }
+      if (p.frameCount === 10) {
         getColors();
         console.log("colorsInfo: " + colorsInfo)
       }
-      //getColors();
-      frameCount++;
     };
 
     function getColors() {
