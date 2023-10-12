@@ -13,23 +13,29 @@ export function ReturnCameraInfo() {
       capture = p.createCapture(p.VIDEO);
       capture.hide();
       p.noStroke();
-      getColors();
     };
 
     let returnX: number, returnY: number, returnColor: number[];
     let frameCount = 0;
     let i = 0;
+    let colorsInfo: Array<ColorInfo> = [];
 
     p.draw = () => {
-      p.image(capture, 0, 0);
+      if (frameCount <= 20) { p.image(capture, 0, 0); }
+      if (frameCount === 10) {
+        getColors();
+        console.log("colorsInfo: " + colorsInfo)
+      }
+      //getColors();
       frameCount++;
     };
 
     function getColors() {
+      let indexNum = 0;
       for (let i = 0; i < 10; i++) {
         for (let j = 0; j < 10; j++) {
-          p.get(i, j)
           console.log(p.get(i, j));
+          colorsInfo[indexNum++] = new ColorInfo(i, j, p.get(i, j));
         }
       }
     }
