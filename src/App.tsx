@@ -19,7 +19,7 @@ import ExplainPage from './views/ExplainPage';
 import ReserchHome from './views/ResearchHome';
 import logo from './assets/icon2.png';
 import ResearchHome from './views/ResearchHome';
-import U22programmingContestHome from './views/U22programmingContestHome';
+import CanvasHome from './views/CanvasHome';
 
 function App() {
 
@@ -95,7 +95,7 @@ function App() {
         </Route>
 
         <Route path="/canvas">
-          <U22programmingContestHome />
+          <CanvasHome />
         </Route>
 
         <Route>
