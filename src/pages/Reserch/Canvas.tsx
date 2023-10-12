@@ -110,7 +110,9 @@ export function Canvas() {
 
     p.draw = () => {
 
-      console.log(ReturnColorsInfo());
+      if (p.frameCount === 20) {
+        console.log(ReturnColorsInfo());
+      }
 
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
