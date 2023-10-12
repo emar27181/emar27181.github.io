@@ -22,8 +22,17 @@ export function ReturnCameraInfo() {
       //p.image(img, 0, 0);
 
       p.image(capture, 0, 0);
+    class ColorInfo {
+      x: number;
+      y: number;
+      color: number[];
 
-    };
+      constructor(x: number, y: number, color: number[]) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+      }
+    }
   }
 
   return (
