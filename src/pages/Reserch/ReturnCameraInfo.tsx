@@ -17,12 +17,12 @@ export function ReturnCameraInfo() {
     };
 
     let returnX: number, returnY: number, returnColor: number[];
+    let frameCount = 0;
     let i = 0;
 
     p.draw = () => {
       p.image(capture, 0, 0);
-      //if (++i === 1) { getColors(); }
-      getColors();
+      frameCount++;
     };
 
     function getColors() {
