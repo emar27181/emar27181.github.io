@@ -10,6 +10,7 @@ export function ReturnCameraInfo() {
   const sketch = (p: P5CanvasInstance) => {
 
     let capture: Element;
+    const DIV_VALUE = 10;
 
     p.setup = () => {
       p.createCanvas(512, 512);
@@ -28,10 +29,13 @@ export function ReturnCameraInfo() {
 
     function getColors() {
       let indexNum = 0;
-      for (let i = 0; i < 10; i++) {
-        for (let j = 0; j < 10; j++) {
+      let intervalLength = p.width / DIV_VALUE;
+      for (let i = 0; i < DIV_VALUE; i++) {
+        for (let j = 0; j < DIV_VALUE; j++) {
           //console.log(p.get(i, j));
-          colorsInfo[indexNum++] = new ColorInfo(i, j, p.get(i, j));
+          let x = p.width * (i / DIV_VALUE);
+          let y = p.height * (j / DIV_VALUE);
+          colorsInfo[indexNum++] = new ColorInfo(x, y, p.get(x, y));
         }
       }
     }
