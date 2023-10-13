@@ -19,7 +19,7 @@ import ExplainPage from './views/ExplainPage';
 import ReserchHome from './views/ResearchHome';
 import logo from './assets/icon2.png';
 import ResearchHome from './views/ResearchHome';
-import U22programmingContestHome from './views/U22programmingContestHome';
+import CanvasHome from './views/CanvasHome';
 
 function App() {
 
@@ -36,7 +36,7 @@ function App() {
           <Nav.Link href="/">ホーム</Nav.Link>
           <Nav.Link href="/workMenu">作品集</Nav.Link>
           <Nav.Link href='/researchHome'> 卒業研究 </Nav.Link>
-          <Nav.Link href='/u22programmingContestHome'> U-22 </Nav.Link>
+          <Nav.Link href='/canvas'> キャンバス </Nav.Link>
         </Nav>
         <Form className="ml-auto d-flex">
           <FormControl type="text" placeholder="Search(Preparing)" className="ml-sm-2" />
@@ -94,8 +94,8 @@ function App() {
           <ResearchHome />
         </Route>
 
-        <Route path="/u22programmingContestHome">
-          <U22programmingContestHome />
+        <Route path="/canvas">
+          <CanvasHome />
         </Route>
 
         <Route>

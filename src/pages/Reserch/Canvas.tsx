@@ -7,6 +7,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
 import p5 from 'p5';
+import { ReturnColorsInfo, ColorInfo } from './ReturnCameraInfo';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
@@ -20,8 +21,8 @@ const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
 const IS_TEST_MODE = true;
 let alpha = 5, backgroundAlpha = 15;
-let drawingWeight = 20, backgroundColor = "#000000", textSize = 10;
-let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
+let drawingWeight = 1, backgroundColor = "#000000", textSize = 10;
+let adjustMode = "w", figureMode = "ellipse", clickMode = "gravity";
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
@@ -31,7 +32,7 @@ let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
 let fps = DEFAULT_FPS;
-let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true;
+let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = true;
 let angle = 0, radius = 0, speed = 1;
 
 export function Canvas() {
@@ -49,11 +50,11 @@ export function Canvas() {
       dx: number = 1;
       dy: number = 2;
       r: number = 100;
-      color: string = "red";
+      color: p5.Color;
       emotionNumber: number = 0; //drawingEmotionNumber: 各感情の色に対して割り振られる0~7の数値
       boundCount: number = 0;
 
-      constructor(x: number, y: number, r: number, color: string, emotionNumber: number) {
+      constructor(x: number, y: number, r: number, color: p5.Color, emotionNumber: number) {
         this.position = p.createVector(x, y);
         this.velocity = p.createVector();
         this.acceleration = p.createVector();
@@ -67,9 +68,7 @@ export function Canvas() {
         this.r = drawingWeight;
         this.color = color;
         this.emotionNumber = emotionNumber;
-        if (DEBUG) {
-          //console.log("emotionNumber: " + this.emotionNumber);
-        }
+        if (DEBUG) {console.log("emotionNumber: " + this.emotionNumber);}
       }
 
       applyForce(force: p5.Vector) {
@@ -85,38 +84,54 @@ export function Canvas() {
         this.acceleration.mult(0);
       }
 
+      display() {
+        p.fill(this.color);
+        displayFigure(this.position.x, this.position.y, this.r, this.figure);
+      }
+
     }
 
     //描画ボールに関する変数宣言
     let balls: Array<Ball> = [];
     let dx = 1, dy = 2;
-    let isColor = "red";
+    let isColor = p.color(255, 0, 0);
     let ballGravity: Ball;
     let isBallCollisionDetected = false;
     const BALL_SIZE = 2;
+    let ColorsInfo: Array<ColorInfo>;
 
     let drawingColor = p.color(255, 51, 105);
     fetchData(); //データの取得
 
     p.setup = () => {
-
       p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
-      ballGravity = new Ball(p.width / 2, p.height / 2, 10, "red", 9);
+      ballGravity = new Ball(p.width / 2, p.height / 2, 10, p.color(255, 0, 0), 9);
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
     };
 
     p.draw = () => {
+
+      if (p.frameCount === 100) {
+        ColorsInfo = ReturnColorsInfo();
+        if (DEBUG) { console.log(ColorsInfo); }
+        for (let i = 0; i < ColorsInfo.length; i++) {
+          balls.push(new Ball(ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight, p.color(ColorsInfo[i].color), -1))
+        }
+      }
+
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
 
       if (isPaused) { return; }
 
-      p.blendMode(p.DARKEST);
-      p.background(0, 0, 0, backgroundAlpha);
-      p.blendMode(p.ADD);
+      if (isBackground) {
+        p.blendMode(p.DARKEST);
+        p.background(0, 0, 0, backgroundAlpha);
+        p.blendMode(p.ADD);
+      }
 
       if (isMovedStraight) { moveBalls(); }
       displayBalls();
@@ -133,6 +148,7 @@ export function Canvas() {
       if (emotionNumber <= 7) { p.fill(hue[emotionNumber], 100, 100, alpha); }
       else if (emotionNumber === 8) { p.fill(0, alpha); }
       else if (emotionNumber === 9) { p.fill(255, alpha); }
+      else { }
     }
 
     function displayFigure(x: number, y: number, r: number, figureMode: string) {
@@ -157,12 +173,18 @@ export function Canvas() {
 
     //移動体を描画する関数
     function displayBalls() {
-
       for (let i = 0; i < balls.length; i++) {
-        p.colorMode(p.HSB, 360, 100, 100, 100);
-        setColor(balls[i].emotionNumber);
-        //p.ellipse(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].r);
-        displayFigure(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].figure);
+        //感情の色の出力だった場合
+        if (balls[i].emotionNumber != -1) {
+          p.colorMode(p.HSB, 360, 100, 100, 100);
+          setColor(balls[i].emotionNumber);
+          //p.ellipse(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].r);
+          displayFigure(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].figure);
+        }
+        //感情の色以外の出力だった場合
+        else {
+          balls[i].display();
+        }
       }
     }
 
@@ -272,7 +294,7 @@ export function Canvas() {
         }
         else if (adjustMode === "b") {
           if (backgroundAlpha > 0) {
-            backgroundAlpha = 0.1 * DRAWING_WEIGHT_CHANGE_SPEED;
+            backgroundAlpha -= 0.1 * DRAWING_WEIGHT_CHANGE_SPEED;
           }
         }
       }
@@ -306,6 +328,7 @@ export function Canvas() {
       if (inputKey === "m") { isMovedStraight = !isMovedStraight; }
       if (inputKey === "r") { isRandomMove = !isRandomMove; }
       if (inputKey === "g") { isMovedGravity = !isMovedGravity; }
+      if (inputKey === "u") { isBackground = !isBackground; }
 
       if (inputKey === "c") {
         if (clickMode === "draw") { clickMode = "gravity"; }
@@ -368,5 +391,6 @@ export function ReturnClickMode() { return clickMode; }
 export function ReturnIsFixedGravity() { return isFixedGravity; }
 export function ReturnIsMovedGravity() { return isMovedGravity; }
 export function ReturnIsMovedStraight() { return isMovedStraight; }
+export function ReturnIsBackground() { return isBackground; }
 
 export default Canvas
