@@ -22,7 +22,7 @@ const MAX_TANK_VALUE = 100;
 const IS_TEST_MODE = true;
 let alpha = 5, backgroundAlpha = 15;
 let drawingWeight = 20, backgroundColor = "#000000", textSize = 10;
-let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
+let adjustMode = "w", figureMode = "ellipse", clickMode = "gravity";
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
