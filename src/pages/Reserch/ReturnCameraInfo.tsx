@@ -45,7 +45,7 @@ export function ReturnCameraInfo() {
 }
 
 
-class ColorInfo {
+export class ColorInfo {
   x: number;
   y: number;
   color: number[];

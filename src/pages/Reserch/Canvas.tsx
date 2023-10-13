@@ -7,7 +7,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
 import p5 from 'p5';
-import { ReturnColorsInfo } from './ReturnCameraInfo';
+import { ReturnColorsInfo, ColorInfo } from './ReturnCameraInfo';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
@@ -95,6 +95,7 @@ export function Canvas() {
     let ballGravity: Ball;
     let isBallCollisionDetected = false;
     const BALL_SIZE = 2;
+    let ColorsInfo: Array<ColorInfo>;
 
     let drawingColor = p.color(255, 51, 105);
     fetchData(); //データの取得
@@ -111,7 +112,8 @@ export function Canvas() {
     p.draw = () => {
 
       if (p.frameCount === 20) {
-        console.log(ReturnColorsInfo());
+        ColorsInfo = ReturnColorsInfo();
+        console.log(ColorsInfo);
       }
 
       p.colorMode(p.RGB);
