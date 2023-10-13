@@ -50,11 +50,11 @@ export function Canvas() {
       dx: number = 1;
       dy: number = 2;
       r: number = 100;
-      color: string = "red";
+      color: p5.Color;
       emotionNumber: number = 0; //drawingEmotionNumber: 各感情の色に対して割り振られる0~7の数値
       boundCount: number = 0;
 
-      constructor(x: number, y: number, r: number, color: string, emotionNumber: number) {
+      constructor(x: number, y: number, r: number, color: p5.Color, emotionNumber: number) {
         this.position = p.createVector(x, y);
         this.velocity = p.createVector();
         this.acceleration = p.createVector();
@@ -91,7 +91,7 @@ export function Canvas() {
     //描画ボールに関する変数宣言
     let balls: Array<Ball> = [];
     let dx = 1, dy = 2;
-    let isColor = "red";
+    let isColor = p.color(255, 0, 0);
     let ballGravity: Ball;
     let isBallCollisionDetected = false;
     const BALL_SIZE = 2;
@@ -103,7 +103,7 @@ export function Canvas() {
     p.setup = () => {
 
       p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
-      ballGravity = new Ball(p.width / 2, p.height / 2, 10, "red", 9);
+      ballGravity = new Ball(p.width / 2, p.height / 2, 10, p.color(255, 0, 0), 9);
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
