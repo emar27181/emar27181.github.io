@@ -86,6 +86,11 @@ export function Canvas() {
         this.acceleration.mult(0);
       }
 
+      display() {
+        p.fill(this.color);
+        displayFigure(this.position.x, this.position.y, this.r, this.figure);
+      }
+
     }
 
     //描画ボールに関する変数宣言
@@ -111,12 +116,13 @@ export function Canvas() {
 
     p.draw = () => {
 
-      if (p.frameCount === 20) {
+      if (p.frameCount === 100) {
         ColorsInfo = ReturnColorsInfo();
         //console.log(ColorsInfo);
-        //console.log( ColorsInfo[0].x + " " + ColorsInfo[0].y + " " + ColorsInfo[0].color );
-        for (let i = 0; i < ColorsInfo.length; i++){
+        console.log( ColorsInfo[0].x + " " + ColorsInfo[0].y + " " + ColorsInfo[0].color );
+        for (let i = 0; i < ColorsInfo.length; i++) {
           balls.push(new Ball( ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight, p.color(ColorsInfo[i].color), -1))
+          //balls.push(new Ball(ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight, p.color(255, 0, 0, 100), -1))
         }
       }
 
@@ -147,6 +153,7 @@ export function Canvas() {
       if (emotionNumber <= 7) { p.fill(hue[emotionNumber], 100, 100, alpha); }
       else if (emotionNumber === 8) { p.fill(0, alpha); }
       else if (emotionNumber === 9) { p.fill(255, alpha); }
+      else { }
     }
 
     function displayFigure(x: number, y: number, r: number, figureMode: string) {
@@ -171,12 +178,18 @@ export function Canvas() {
 
     //移動体を描画する関数
     function displayBalls() {
-
       for (let i = 0; i < balls.length; i++) {
-        p.colorMode(p.HSB, 360, 100, 100, 100);
-        setColor(balls[i].emotionNumber);
-        //p.ellipse(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].r);
-        displayFigure(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].figure);
+        //感情の色の出力だった場合
+        if (balls[i].emotionNumber != -1) {
+          p.colorMode(p.HSB, 360, 100, 100, 100);
+          setColor(balls[i].emotionNumber);
+          //p.ellipse(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].r);
+          displayFigure(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].figure);
+        }
+        //感情の色以外の出力だった場合
+        else{
+          balls[i].display();
+        }
       }
     }
 
