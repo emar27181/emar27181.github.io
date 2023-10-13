@@ -19,10 +19,10 @@ export function ReturnCameraInfo() {
     };
 
     p.draw = () => {
-      if (p.frameCount <= 20) { p.image(capture, 0, 0); }
-      if (p.frameCount === 10) {
+      if (p.frameCount <= 100) { p.image(capture, 0, 0); }
+      if (p.frameCount === 100) {
         getColors();
-        console.log("colorsInfo: " + colorsInfo)
+        //console.log("colorsInfo: " + colorsInfo)
       }
     };
 
@@ -30,7 +30,7 @@ export function ReturnCameraInfo() {
       let indexNum = 0;
       for (let i = 0; i < 10; i++) {
         for (let j = 0; j < 10; j++) {
-          console.log(p.get(i, j));
+          //console.log(p.get(i, j));
           colorsInfo[indexNum++] = new ColorInfo(i, j, p.get(i, j));
         }
       }
