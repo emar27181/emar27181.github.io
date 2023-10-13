@@ -68,9 +68,7 @@ export function Canvas() {
         this.r = drawingWeight;
         this.color = color;
         this.emotionNumber = emotionNumber;
-        if (DEBUG) {
-          //console.log("emotionNumber: " + this.emotionNumber);
-        }
+        if (DEBUG) {console.log("emotionNumber: " + this.emotionNumber);}
       }
 
       applyForce(force: p5.Vector) {
@@ -106,7 +104,6 @@ export function Canvas() {
     fetchData(); //データの取得
 
     p.setup = () => {
-
       p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
       ballGravity = new Ball(p.width / 2, p.height / 2, 10, p.color(255, 0, 0), 9);
       p.background(backgroundColor);
@@ -118,11 +115,9 @@ export function Canvas() {
 
       if (p.frameCount === 100) {
         ColorsInfo = ReturnColorsInfo();
-        //console.log(ColorsInfo);
-        console.log( ColorsInfo[0].x + " " + ColorsInfo[0].y + " " + ColorsInfo[0].color );
+        if (DEBUG) { console.log(ColorsInfo); }
         for (let i = 0; i < ColorsInfo.length; i++) {
-          balls.push(new Ball( ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight, p.color(ColorsInfo[i].color), -1))
-          //balls.push(new Ball(ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight, p.color(255, 0, 0, 100), -1))
+          balls.push(new Ball(ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight, p.color(ColorsInfo[i].color), -1))
         }
       }
 
@@ -187,7 +182,7 @@ export function Canvas() {
           displayFigure(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].figure);
         }
         //感情の色以外の出力だった場合
-        else{
+        else {
           balls[i].display();
         }
       }
