@@ -113,7 +113,11 @@ export function Canvas() {
 
       if (p.frameCount === 20) {
         ColorsInfo = ReturnColorsInfo();
-        console.log(ColorsInfo);
+        //console.log(ColorsInfo);
+        //console.log( ColorsInfo[0].x + " " + ColorsInfo[0].y + " " + ColorsInfo[0].color );
+        for (let i = 0; i < ColorsInfo.length; i++){
+          balls.push(new Ball( ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight, p.color(ColorsInfo[i].color), -1))
+        }
       }
 
       p.colorMode(p.RGB);
