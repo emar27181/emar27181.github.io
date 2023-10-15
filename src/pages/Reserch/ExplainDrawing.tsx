@@ -16,6 +16,7 @@ export function ExplainDrawing() {
       <p style={paragraphStyle}>m: 移動体の直線移動の切り替え</p>
       <p style={paragraphStyle}>g: 移動体の重力移動の切り替え</p>
       <p style={paragraphStyle}>c: マウスモードの切り替え(描画モード/重力モード)</p>
+      <p style={paragraphStyle}>u: 背景の更新の切り替え</p>
       <p style={paragraphStyle}>a: 移動体の不透明度変更モードの待機</p>
       <p style={paragraphStyle}>b: 背景の不透明度変更モードの待機</p>
       <p style={paragraphStyle}>w: 描画の太さ変更モードの待機</p>
