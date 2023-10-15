@@ -10,7 +10,7 @@ export function ReturnCameraInfo() {
   const sketch = (p: P5CanvasInstance) => {
 
     let capture: Element;
-    const DIV_VALUE = 100;
+    const DIV_VALUE = 30;
 
     p.setup = () => {
       p.createCanvas(512, 512);
