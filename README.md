@@ -44,6 +44,13 @@ Author: ema_ryu-note-pc <ee207008@meiji.ac.jp>
 Committer: ema_ryu-note-pc <ee207008@meiji.ac.jp>
 Date: Thu Sep 21 2023 19:55:50 GMT+0900 (日本標準時))
 
+### 2023/10/18
+#### デプロイをする際に行う手順
+- ① `$npm run build` を実行し、distディレクトリの内容を更新
+- ② distディレクトリの内容をdocsディレクトリに反映
+  - この際、index.html内のscriptタグに書かれているjsファイルを更新するのを忘れないように
+- ③ 変更をmainブランチに反映させて, デプロイが完了するのを待つ
+
 ## 利用方法
 
 - いずれ記入予定...
