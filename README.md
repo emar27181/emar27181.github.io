@@ -44,6 +44,13 @@ Author: ema_ryu-note-pc <ee207008@meiji.ac.jp>
 Committer: ema_ryu-note-pc <ee207008@meiji.ac.jp>
 Date: Thu Sep 21 2023 19:55:50 GMT+0900 (日本標準時))
 
+### 2023/10/18
+#### デプロイをする際に行う手順
+- ① `$npm run build` を実行し、distディレクトリの内容を更新
+- ② distディレクトリの内容をdocsディレクトリに反映
+  - この際、index.html内のscriptタグに書かれているjsファイルを更新するのを忘れないように
+- ③ 変更をmainブランチに反映させて, デプロイが完了するのを待つ
+
 ## 利用方法
 
 - いずれ記入予定...
@@ -75,6 +82,12 @@ Date: Thu Sep 21 2023 19:55:50 GMT+0900 (日本標準時))
 - GitHub Pages では、サイト用のエントリ ファイルとして index.html、index.md、または README.md ファイルを検索します。
 - 上の公式文章からREADME.mdの名前を変更することでindex.htmlにエントリーファイルを間接的に変更できる？
 - 以前のページではgithub上の/Setting/Pages/Branchの対象ファイルを/docsに指定することでエントリーファイルを指定していた(2023/06/27時点)
+
+<br>
+
+- 恐らく現状のデプロイはdocsディレクトリに保存されているdocs/assets/index-~.css, ~.jsをindex.htmlのscriptタグで呼び出すことでbuildされたファイルを読み込んでいる(2023/10/18現在)
+  - ただし、 パスの依存関係が正しく解釈されていないため、ページ遷移は実装できていない 
+
 
 <br>
 
