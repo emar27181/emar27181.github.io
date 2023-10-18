@@ -27,10 +27,10 @@ export function ResearchHome() {
       <EmotionAnalyzeButton />
       <ReceiveData />
       <ExplainDrawing />
-      <ReturnCameraInfo />
       <div style={{ display: 'flex' }}>
         <Canvas />
         <DisplayDrawingInfo />
+        <ReturnCameraInfo />
       </div>
       <div style={{ display: 'flex' }}>
         <DisplayEmotionColorRatio /> <br />

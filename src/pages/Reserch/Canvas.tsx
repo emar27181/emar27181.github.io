@@ -20,7 +20,7 @@ const ALPHA = 5, BACK_GROUND_ALPHA = 15;
 const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
 const IS_TEST_MODE = true;
-let alpha = 5, backgroundAlpha = 15;
+let alpha = 100, backgroundAlpha = 15;
 let drawingWeight = 1, backgroundColor = "#000000", textSize = 10;
 let adjustMode = "w", figureMode = "ellipse", clickMode = "gravity";
 let hue: number[] = [];
@@ -68,7 +68,7 @@ export function Canvas() {
         this.r = drawingWeight;
         this.color = color;
         this.emotionNumber = emotionNumber;
-        if (DEBUG) {console.log("emotionNumber: " + this.emotionNumber);}
+        if (DEBUG) { console.log("emotionNumber: " + this.emotionNumber); }
       }
 
       applyForce(force: p5.Vector) {
@@ -111,14 +111,20 @@ export function Canvas() {
       if (IS_NO_STROKE) { p.noStroke(); }
     };
 
+    function addCameraBalls() {
+      ColorsInfo = ReturnColorsInfo();
+      if (DEBUG) { console.log(ColorsInfo); }
+      for (let i = 0; i < ColorsInfo.length; i++) {
+        balls.push(new Ball(ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight,
+          p.color(ColorsInfo[i].color[0], ColorsInfo[i].color[1], ColorsInfo[i].color[2], alpha), -1));
+      }
+    }
+
     p.draw = () => {
 
-      if (p.frameCount === 100) {
-        ColorsInfo = ReturnColorsInfo();
-        if (DEBUG) { console.log(ColorsInfo); }
-        for (let i = 0; i < ColorsInfo.length; i++) {
-          balls.push(new Ball(ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight, p.color(ColorsInfo[i].color), -1))
-        }
+      //if (p.frameCount === 100) {
+      if (p.keyIsPressed && p.key === "d") {
+        addCameraBalls();
       }
 
       p.colorMode(p.RGB);

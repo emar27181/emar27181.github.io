@@ -13,7 +13,7 @@ export function ReturnCameraInfo() {
     const DIV_VALUE = 100;
 
     p.setup = () => {
-      p.createCanvas(512, 512);
+      p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
       capture = p.createCapture(p.VIDEO);
       capture.hide();
       p.noStroke();
