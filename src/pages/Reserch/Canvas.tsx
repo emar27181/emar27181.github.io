@@ -284,24 +284,18 @@ export function Canvas() {
       //描画サイズの拡大縮小
       if (inputKey === "+") {
         if (adjustMode === "w") { drawingWeight += DRAWING_WEIGHT_CHANGE_SPEED; }
-        else if (adjustMode === "a") { alpha += 0.1 * DRAWING_WEIGHT_CHANGE_SPEED; }
-        else if (adjustMode === "b") { backgroundAlpha += 0.1 * DRAWING_WEIGHT_CHANGE_SPEED; }
+        else if (adjustMode === "a") { alpha += DRAWING_WEIGHT_CHANGE_SPEED; }
+        else if (adjustMode === "b") { backgroundAlpha += DRAWING_WEIGHT_CHANGE_SPEED; }
       }
       if (inputKey === "-") {
         if (adjustMode === "w") {
-          if (drawingWeight > 0) {
-            drawingWeight -= DRAWING_WEIGHT_CHANGE_SPEED;
-          }
+          if (drawingWeight > 0) { drawingWeight -= DRAWING_WEIGHT_CHANGE_SPEED; }
         }
         else if (adjustMode === "a") {
-          if (alpha > 0) {
-            alpha -= 0.1 * DRAWING_WEIGHT_CHANGE_SPEED;
-          }
+          if (alpha > 0) { alpha -= DRAWING_WEIGHT_CHANGE_SPEED; }
         }
         else if (adjustMode === "b") {
-          if (backgroundAlpha > 0) {
-            backgroundAlpha -= 0.1 * DRAWING_WEIGHT_CHANGE_SPEED;
-          }
+          if (backgroundAlpha > 0) { backgroundAlpha -= DRAWING_WEIGHT_CHANGE_SPEED; }
         }
       }
 
