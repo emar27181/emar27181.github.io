@@ -121,12 +121,6 @@ export function Canvas() {
     }
 
     p.draw = () => {
-
-      //if (p.frameCount === 100) {
-      if (p.keyIsPressed && p.key === "d") {
-        addCameraBalls();
-      }
-
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
@@ -314,6 +308,7 @@ export function Canvas() {
           //console.log("typeof:" + typeof (drawingColor));
         }
       }
+      if (inputKey === "d") { addCameraBalls(); }
       if (inputKey === "e") { p.saveCanvas('saveCanvas', 'png'); }
       if (inputKey === "w") { adjustMode = "w"; }
       if (inputKey === "b") { adjustMode = "b"; }
