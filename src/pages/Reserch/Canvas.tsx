@@ -139,10 +139,15 @@ export function Canvas() {
       if (isMovedGravity) { moveBallsGravity(); }
 
 
+      getMouseColor();
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
       else { p.frameRate(fps); }
       if (DEBUG) { console.log("colorTank: " + colorTank); }
     };
+
+    function getMouseColor() {
+      console.log(p.get(p.mouseX, p.mouseY));
+    }
 
     function displayFigure(x: number, y: number, r: number, figureMode: string) {
       switch (figureMode) {
