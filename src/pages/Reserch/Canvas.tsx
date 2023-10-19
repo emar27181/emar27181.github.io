@@ -255,12 +255,17 @@ export function Canvas() {
 
     function addBall() {
       //感情の色ではない色を追加する場合
+      /*
       if (drawingEmotionNumber >= 8) {
+        isColor = p.color(hue[drawingEmotionNumber], 100, 100, alpha);
         balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
         ConsumeColor(drawingEmotionNumber);
       }
+      */
       //感情の色の残量がある場合
-      else if (colorTank[drawingEmotionNumber] > 0) {
+      if (colorTank[drawingEmotionNumber] > 0) {
+        p.colorMode(p.HSB, 360, 100, 100, 100);
+        isColor = p.color(hue[drawingEmotionNumber], 100, 100, alpha);
         balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
         ConsumeColor(drawingEmotionNumber);
       }
@@ -303,7 +308,7 @@ export function Canvas() {
       if (inputKey === "s") {
         //スポイト機能
         let input = p.get(p.mouseX, p.mouseY);
-        drawingColor = p.color(input[0], input[1], input[2], input[3])
+        drawingColor = p.color(input[0], input[1], input[2], input[3]);
         if (DEBUG) {
           //console.log("drawingColor: " + drawingColor);
           //console.log("typeof:" + typeof (drawingColor));
