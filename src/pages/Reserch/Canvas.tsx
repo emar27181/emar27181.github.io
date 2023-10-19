@@ -144,13 +144,6 @@ export function Canvas() {
       if (DEBUG) { console.log("colorTank: " + colorTank); }
     };
 
-    function setColor(emotionNumber: number) {
-      if (emotionNumber <= 7) { p.fill(hue[emotionNumber], 100, 100, alpha); }
-      else if (emotionNumber === 8) { p.fill(0, alpha); }
-      else if (emotionNumber === 9) { p.fill(255, alpha); }
-      else { }
-    }
-
     function displayFigure(x: number, y: number, r: number, figureMode: string) {
       switch (figureMode) {
         case "ellipse":
@@ -174,17 +167,7 @@ export function Canvas() {
     //移動体を描画する関数
     function displayBalls() {
       for (let i = 0; i < balls.length; i++) {
-        //感情の色の出力だった場合
-        if (balls[i].emotionNumber != -1) {
-          p.colorMode(p.HSB, 360, 100, 100, 100);
-          setColor(balls[i].emotionNumber);
-          //displayFigure(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].figure);
-          balls[i].display();
-        }
-        //感情の色以外の出力だった場合
-        else {
-          balls[i].display();
-        }
+        balls[i].display();
       }
     }
 
