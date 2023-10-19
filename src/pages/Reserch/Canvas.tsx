@@ -21,8 +21,8 @@ const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
 const IS_TEST_MODE = true;
 let alpha = 100, backgroundAlpha = 15;
-let drawingWeight = 1, backgroundColor = "#000000", textSize = 10;
-let adjustMode = "w", figureMode = "ellipse", clickMode = "gravity";
+let drawingWeight = 20, backgroundColor = "#000000", textSize = 10;
+let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
@@ -178,8 +178,8 @@ export function Canvas() {
         if (balls[i].emotionNumber != -1) {
           p.colorMode(p.HSB, 360, 100, 100, 100);
           setColor(balls[i].emotionNumber);
-          //p.ellipse(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].r);
-          displayFigure(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].figure);
+          //displayFigure(balls[i].position.x, balls[i].position.y, balls[i].r, balls[i].figure);
+          balls[i].display();
         }
         //感情の色以外の出力だった場合
         else {
@@ -254,6 +254,7 @@ export function Canvas() {
     }
 
     function addBall() {
+      //感情の色ではない色を追加する場合
       if (drawingEmotionNumber >= 8) {
         balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, isColor, drawingEmotionNumber));
         ConsumeColor(drawingEmotionNumber);
