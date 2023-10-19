@@ -21,7 +21,7 @@ const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
 const IS_TEST_MODE = true;
 let alpha = 100, backgroundAlpha = 15;
-let drawingWeight = 20, backgroundColor = "#000000", textSize = 10;
+let drawingWeight = 2, backgroundColor = "#000000", textSize = 10;
 let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
 let hue: number[] = [];
 let intense: number[] = [];
@@ -31,7 +31,6 @@ let consumeSpeed = 0.5;
 let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
-//let mouseColor: [number, number, number, number];
 let mouseColor = [0, 0, 0, 0];
 let fps = DEFAULT_FPS;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = true;
@@ -178,7 +177,12 @@ export function Canvas() {
     //移動体を描画する関数
     function displayBalls() {
       for (let i = 0; i < balls.length; i++) {
-        balls[i].display();
+        let r = p.red(balls[i].color);
+        let g = p.green(balls[i].color);
+        let b = p.blue(balls[i].color);
+        //console.log(r, g, b);
+        if (r >= 200 && g >= 200 && b >= 200) { break; }
+        else { balls[i].display(); }
       }
     }
 
