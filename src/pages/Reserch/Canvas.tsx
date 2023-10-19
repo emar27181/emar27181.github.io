@@ -31,6 +31,8 @@ let consumeSpeed = 0.5;
 let emotionName: string[] = [];
 let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の色のインデックス番号
 let sumIntense = 0;
+//let mouseColor: [number, number, number, number];
+let mouseColor = [0, 0, 0, 0];
 let fps = DEFAULT_FPS;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = true;
 let angle = 0, radius = 0, speed = 1;
@@ -146,7 +148,12 @@ export function Canvas() {
     };
 
     function getMouseColor() {
-      console.log(p.get(p.mouseX, p.mouseY));
+      let getColor = p.get(p.mouseX, p.mouseY);
+      mouseColor[0] = getColor[0];
+      mouseColor[1] = getColor[1];
+      mouseColor[2] = getColor[2];
+      mouseColor[3] = getColor[3];
+      console.log(mouseColor);
     }
 
     function displayFigure(x: number, y: number, r: number, figureMode: string) {
