@@ -126,6 +126,7 @@ export function Canvas() {
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
+      getMouseColor();
 
       if (isPaused) { return; }
 
@@ -140,8 +141,6 @@ export function Canvas() {
 
       if (isMovedGravity) { moveBallsGravity(); }
 
-
-      getMouseColor();
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
       else { p.frameRate(fps); }
       if (DEBUG) { console.log("colorTank: " + colorTank); }
@@ -153,7 +152,7 @@ export function Canvas() {
       mouseColor[1] = getColor[1];
       mouseColor[2] = getColor[2];
       mouseColor[3] = getColor[3];
-      console.log(mouseColor);
+      //console.log(mouseColor);
     }
 
     function displayFigure(x: number, y: number, r: number, figureMode: string) {
@@ -388,5 +387,6 @@ export function ReturnIsFixedGravity() { return isFixedGravity; }
 export function ReturnIsMovedGravity() { return isMovedGravity; }
 export function ReturnIsMovedStraight() { return isMovedStraight; }
 export function ReturnIsBackground() { return isBackground; }
+export function ReturnMouseColor() { return mouseColor; }
 
 export default Canvas
