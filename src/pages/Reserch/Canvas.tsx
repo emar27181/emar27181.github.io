@@ -411,5 +411,6 @@ export function ReturnIsMovedGravity() { return isMovedGravity; }
 export function ReturnIsMovedStraight() { return isMovedStraight; }
 export function ReturnIsBackground() { return isBackground; }
 export function ReturnMouseColor() { return mouseColor; }
+export function ReturnStandardDeviationLimit() { return standardDeviationLimit; }
 
 export default Canvas
