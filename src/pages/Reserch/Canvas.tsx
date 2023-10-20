@@ -33,6 +33,7 @@ let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の�
 let sumIntense = 0;
 let mouseColor = [0, 0, 0, 0];
 let fps = DEFAULT_FPS;
+let standardDeviationLimit = 20;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = true;
 let angle = 0, radius = 0, speed = 1;
 
@@ -178,7 +179,7 @@ export function Canvas() {
       let ave = (r + g + b) / 3;
       let variance = ((r - ave) * (r - ave) + (g - ave) * (g - ave) + (b - ave) * (b - ave)) / 3;
       let sd = Math.sqrt(variance);
-      return (sd >= 15);
+      return (sd >= standardDeviationLimit);
       //return (!(r >= 200 && g >= 200 && b >= 200));
     }
 
@@ -292,6 +293,7 @@ export function Canvas() {
         if (adjustMode === "w") { drawingWeight += DRAWING_WEIGHT_CHANGE_SPEED; }
         else if (adjustMode === "a") { alpha += DRAWING_WEIGHT_CHANGE_SPEED; }
         else if (adjustMode === "b") { backgroundAlpha += DRAWING_WEIGHT_CHANGE_SPEED; }
+        else if (adjustMode === "sd") { standardDeviationLimit += DRAWING_WEIGHT_CHANGE_SPEED; }
       }
       if (inputKey === "-") {
         if (adjustMode === "w") {
@@ -303,6 +305,10 @@ export function Canvas() {
         else if (adjustMode === "b") {
           if (backgroundAlpha > 0) { backgroundAlpha -= DRAWING_WEIGHT_CHANGE_SPEED; }
         }
+        else if (adjustMode === "sd") {
+          if (standardDeviationLimit > 0) { standardDeviationLimit -= DRAWING_WEIGHT_CHANGE_SPEED; }
+        }
+
       }
 
       if (inputKey === "s") {
@@ -323,6 +329,7 @@ export function Canvas() {
       if (inputKey === "w") { adjustMode = "w"; }
       if (inputKey === "b") { adjustMode = "b"; }
       if (inputKey === "a") { adjustMode = "a"; }
+      if (inputKey === "v") { adjustMode = "sd"; }
 
       if (inputKey === "j") { figureMode = "ellipse"; }
       if (inputKey === "k") { figureMode = "rect"; }
