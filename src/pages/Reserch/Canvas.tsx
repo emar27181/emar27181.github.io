@@ -174,15 +174,19 @@ export function Canvas() {
       }
     }
 
+    function isDisplayColor(r: number, g: number, b: number): boolean {
+      return (!(r >= 200 && g >= 200 && b >= 200));
+    }
+
     //移動体を描画する関数
     function displayBalls() {
       for (let i = 0; i < balls.length; i++) {
         let r = p.red(balls[i].color);
         let g = p.green(balls[i].color);
         let b = p.blue(balls[i].color);
-        //console.log(r, g, b);
-        if (r >= 200 && g >= 200 && b >= 200) { break; }
-        else { balls[i].display(); }
+        //条件を満たす場合にのみ
+        if (isDisplayColor(r, g, b)) { balls[i].display() }
+        //else { balls[i].display(); }
       }
     }
 
