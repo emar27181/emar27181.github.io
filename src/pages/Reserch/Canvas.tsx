@@ -294,6 +294,7 @@ export function Canvas() {
         else if (adjustMode === "a") { alpha += DRAWING_WEIGHT_CHANGE_SPEED; }
         else if (adjustMode === "b") { backgroundAlpha += DRAWING_WEIGHT_CHANGE_SPEED; }
         else if (adjustMode === "sd") { standardDeviationLimit += DRAWING_WEIGHT_CHANGE_SPEED; }
+        else if (adjustMode === "resistance") { resistanceValue += 0.01 * DRAWING_WEIGHT_CHANGE_SPEED; }
       }
       if (inputKey === "-") {
         if (adjustMode === "w") {
@@ -308,7 +309,11 @@ export function Canvas() {
         else if (adjustMode === "sd") {
           if (standardDeviationLimit > 0) { standardDeviationLimit -= DRAWING_WEIGHT_CHANGE_SPEED; }
         }
-
+        else if (adjustMode === "resistance") {
+          if (resistanceValue > 0) {
+            resistanceValue -= 0.01 * DRAWING_WEIGHT_CHANGE_SPEED;
+          }
+        }
       }
 
       if (inputKey === "s") {
@@ -330,6 +335,7 @@ export function Canvas() {
       if (inputKey === "b") { adjustMode = "b"; }
       if (inputKey === "a") { adjustMode = "a"; }
       if (inputKey === "v") { adjustMode = "sd"; }
+      if (inputKey === "t") { adjustMode = "resistance"; }
 
       if (inputKey === "j") { figureMode = "ellipse"; }
       if (inputKey === "k") { figureMode = "rect"; }
@@ -412,5 +418,6 @@ export function ReturnIsMovedStraight() { return isMovedStraight; }
 export function ReturnIsBackground() { return isBackground; }
 export function ReturnMouseColor() { return mouseColor; }
 export function ReturnStandardDeviationLimit() { return standardDeviationLimit; }
+export function ReturnResistanceValue() { return resistanceValue; }
 
 export default Canvas
