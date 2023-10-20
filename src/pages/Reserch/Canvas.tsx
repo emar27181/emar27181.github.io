@@ -316,6 +316,7 @@ export function Canvas() {
       }
       if (inputKey === "d") {
         addCameraBalls();
+        displayBalls();
         p.saveCanvas('saveInitialCanvas', 'png');
       }
       if (inputKey === "e") { p.saveCanvas('saveCanvas', 'png'); }
