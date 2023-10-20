@@ -22,6 +22,7 @@ export function ReturnCameraInfo() {
     p.draw = () => {
       if (p.frameCount <= 100) { p.image(capture, 0, 0); }
       if (p.frameCount === 100) {
+        p.saveCanvas('saveCameraImage', 'png');
         getColors();
         //console.log("colorsInfo: " + colorsInfo)
       }
