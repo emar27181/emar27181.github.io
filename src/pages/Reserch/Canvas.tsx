@@ -306,7 +306,10 @@ export function Canvas() {
           //console.log("typeof:" + typeof (drawingColor));
         }
       }
-      if (inputKey === "d") { addCameraBalls(); }
+      if (inputKey === "d") {
+        addCameraBalls();
+        p.saveCanvas('saveInitialCanvas', 'png');
+      }
       if (inputKey === "e") { p.saveCanvas('saveCanvas', 'png'); }
       if (inputKey === "w") { adjustMode = "w"; }
       if (inputKey === "b") { adjustMode = "b"; }
