@@ -23,9 +23,9 @@ export function DisplayGravityPlace() {
     p.draw = () => {
       p.background(0);
       UpdateVariables();
-      DrawGravityPlace();
-      p.textSize(20);
+      if (isFixedGravity) { DrawGravityPlace(); }
 
+      p.textSize(20);
       p.fill(255);
       p.text("isFixGravity: " + isFixedGravity +
         "\nfixedGravity(x, y) = (" + p.round(gravityX) + "," + p.round(gravityY) + ")" +
