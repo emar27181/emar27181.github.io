@@ -36,11 +36,10 @@ let fps = DEFAULT_FPS;
 let standardDeviationLimit = 20, resistanceValue = 0.99;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = true;
 let angle = 0, radius = 0, speed = 1;
+let gravityX = 0, gravityY = 0;
 
 export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
-
-    let gravityX = p.width / 2, gravityY = p.height / 2;
 
     //移動体の自作クラス
     class Ball {
@@ -107,7 +106,9 @@ export function Canvas() {
 
     p.setup = () => {
       p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
-      ballGravity = new Ball(p.width / 2, p.height / 2, 10, p.color(255, 0, 0), 9);
+      gravityX = p.width / 2, gravityY = p.height / 2;
+      ballGravity = new Ball(gravityX, gravityY, 10, p.color(255, 0, 0), 9);
+      //console.log(gravityX, gravityY);
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
