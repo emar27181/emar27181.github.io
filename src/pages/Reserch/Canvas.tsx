@@ -37,7 +37,7 @@ let standardDeviationLimit = 20, resistanceValue = 0.99;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = true;
 let angle = 0, radius = 0, speed = 1;
 let gravityX = 0, gravityY = 0;
-let canvasWidth = 0, canvasHeight = 0;
+let canvasWidth = 0, canvasHeight = 0, mouseX = 0, mouseY = 0;
 
 export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
@@ -126,6 +126,7 @@ export function Canvas() {
     }
 
     p.draw = () => {
+      mouseX = p.mouseX, mouseY = p.mouseY;
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
@@ -424,5 +425,6 @@ export function ReturnStandardDeviationLimit() { return standardDeviationLimit; 
 export function ReturnResistanceValue() { return resistanceValue; }
 export function ReturnGravityXY() { return [gravityX, gravityY]; }
 export function ReturnCanvasSize() { return [canvasWidth, canvasHeight]; }
+export function ReturnMouseXY() { return [mouseX, mouseY]; }
 
 export default Canvas
