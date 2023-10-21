@@ -29,21 +29,21 @@ export function DisplayGravityPlace() {
     p.draw = () => {
       p.background(0);
       UpdateVariables();
-      if (isFixedGravity) { DrawGravityPlace(); }
+      if (isFixedGravity) { DrawGravityPlace(gravityX, gravityY); }
 
       p.textSize(20);
       p.fill(255);
       p.text("isFixGravity: " + isFixedGravity +
         "\nfixedGravity(x, y) = (" + p.round(gravityX) + "," + p.round(gravityY) + ")" +
-        "\ncanvas(x, y) = (" + p.round(canvasWidth) + "," + p.round(canvasHeight) + ")" + 
+        "\ncanvas(x, y) = (" + p.round(canvasWidth) + "," + p.round(canvasHeight) + ")" +
         "\nmouse(x, y) = (" + p.round(mouseX) + "," + p.round(mouseY) + ")",
         0, 20);
     };
 
-    function DrawGravityPlace() {
+    function DrawGravityPlace(inputX: number, inputY: number) {
       p.fill(255, 0, 0);
-      let x = gravityX * (p.width / canvasWidth);
-      let y = gravityY * (p.height / canvasHeight);
+      let x = inputX * (p.width / canvasWidth);
+      let y = inputY * (p.height / canvasHeight);
       p.ellipse(x, y, 5);
     }
 
