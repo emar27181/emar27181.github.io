@@ -13,8 +13,10 @@ export function DisplayGravityPlace() {
     };
 
     p.draw = () => {
+      p.textSize(20);
       p.fill(255);
-      p.ellipse(p.width / 2, p.height / 2, 100, 100);
+      //p.text("this is test text. \n aaa", p.width / 2, p.height / 2);
+      p.text("this is test text. \n aaa", 0, 20);
     };
   }
 
