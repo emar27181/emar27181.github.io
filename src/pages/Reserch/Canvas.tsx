@@ -35,6 +35,7 @@ let mouseColor = [0, 0, 0, 0];
 let fps = DEFAULT_FPS;
 let standardDeviationLimit = 20, resistanceValue = 0.99;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = true;
+let isMouseGravity = false;
 let angle = 0, radius = 0, speed = 1;
 let gravityX = 0, gravityY = 0;
 let canvasWidth = 0, canvasHeight = 0, mouseX = 0, mouseY = 0;
@@ -359,8 +360,15 @@ export function Canvas() {
       if (inputKey === "u") { isBackground = !isBackground; }
 
       if (inputKey === "c") {
-        if (clickMode === "draw") { clickMode = "gravity"; }
-        else if (clickMode === "gravity") { clickMode = "draw"; }
+        if (clickMode === "draw") {
+          clickMode = "gravity"
+          isMouseGravity = true;
+          ;
+        }
+        else if (clickMode === "gravity") {
+          clickMode = "draw";
+          isMouseGravity = false;
+        }
       }
 
       //描画色の変更
@@ -426,5 +434,6 @@ export function ReturnResistanceValue() { return resistanceValue; }
 export function ReturnGravityXY() { return [gravityX, gravityY]; }
 export function ReturnCanvasSize() { return [canvasWidth, canvasHeight]; }
 export function ReturnMouseXY() { return [mouseX, mouseY]; }
+export function ReturnIsMouseGravity() { return isMouseGravity; }
 
 export default Canvas

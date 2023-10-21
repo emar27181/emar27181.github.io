@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnCanvasSize, ReturnGravityXY, ReturnIsFixedGravity, ReturnMouseXY } from './Canvas';
+import { ReturnCanvasSize, ReturnGravityXY, ReturnIsFixedGravity, ReturnIsMouseGravity, ReturnMouseXY } from './Canvas';
 
 export function DisplayGravityPlace() {
   const sketch = (p: P5CanvasInstance) => {
@@ -17,9 +17,7 @@ export function DisplayGravityPlace() {
     let mouse = ReturnMouseXY();
     let mouseX = mouse[0];
     let mouseY = mouse[1];
-
-    let number: number = 1;
-    let number2: string = "aiueo";
+    let isMouseGravity = ReturnIsMouseGravity();
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -30,7 +28,7 @@ export function DisplayGravityPlace() {
       p.background(0);
       UpdateVariables();
       if (isFixedGravity) { DrawGravityPlace(gravityX, gravityY); }
-      DrawGravityPlace(mouseX, mouseY);
+      if (isMouseGravity) { DrawGravityPlace(mouseX, mouseY); }
 
       p.textSize(20);
       p.fill(255);
@@ -59,6 +57,7 @@ export function DisplayGravityPlace() {
       mouse = ReturnMouseXY();
       mouseX = mouse[0];
       mouseY = mouse[1];
+      isMouseGravity = ReturnIsMouseGravity();
     }
   }
 
