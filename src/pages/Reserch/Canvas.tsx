@@ -108,7 +108,6 @@ export function Canvas() {
 
     p.setup = () => {
       p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
-      //gravityX = p.width / 2, gravityY = p.height / 2;
       canvasWidth = p.width, canvasHeight = p.height;
       ballGravity = new Ball(p.width / 2, p.height / 2, 10, p.color(255, 0, 0), 9);
       p.background(backgroundColor);
@@ -128,6 +127,7 @@ export function Canvas() {
     p.draw = () => {
       mouseX = p.mouseX, mouseY = p.mouseY;
       gravityX = ballGravity.position.x, gravityY = ballGravity.position.y;
+
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
       if (p.mouseIsPressed) { MouseControl(); }
@@ -142,9 +142,9 @@ export function Canvas() {
       }
 
       if (isMovedStraight) { moveBalls(); }
-      displayBalls();
-
       if (isMovedGravity) { moveBallsGravity(); }
+      moveStraight(ballGravity);
+      displayBalls();
 
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
       else { p.frameRate(fps); }
