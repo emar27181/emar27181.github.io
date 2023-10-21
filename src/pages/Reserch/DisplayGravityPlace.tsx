@@ -30,6 +30,7 @@ export function DisplayGravityPlace() {
       p.background(0);
       UpdateVariables();
       if (isFixedGravity) { DrawGravityPlace(gravityX, gravityY); }
+      DrawGravityPlace(mouseX, mouseY);
 
       p.textSize(20);
       p.fill(255);
