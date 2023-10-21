@@ -420,5 +420,7 @@ export function ReturnIsBackground() { return isBackground; }
 export function ReturnMouseColor() { return mouseColor; }
 export function ReturnStandardDeviationLimit() { return standardDeviationLimit; }
 export function ReturnResistanceValue() { return resistanceValue; }
+export function ReturnGravityXY() { return [gravityX, gravityY]; }
+
 
 export default Canvas
