@@ -21,14 +21,8 @@ export function DisplayGravityPlace() {
     };
 
     p.draw = () => {
-      isFixedGravity = ReturnIsFixedGravity();
-      gravity = ReturnGravityXY();
-      gravityX = gravity[0];
-      gravityY = gravity[1];
-      canvasSize = ReturnCanvasSize();
-      canvasWidth = canvasSize[0];
-      canvasHeight = canvasSize[1];
-
+      p.background(0);
+      UpdateVariables();
       p.textSize(20);
       p.fill(255);
       p.text("isFixGravity: " + isFixedGravity +
@@ -36,6 +30,16 @@ export function DisplayGravityPlace() {
         "\ncanvas(x, y) = (" + p.round(canvasWidth) + "," + p.round(canvasHeight) + ")",
         0, 20);
     };
+
+    function UpdateVariables() {
+      isFixedGravity = ReturnIsFixedGravity();
+      gravity = ReturnGravityXY();
+      gravityX = gravity[0];
+      gravityY = gravity[1];
+      canvasSize = ReturnCanvasSize();
+      canvasWidth = canvasSize[0];
+      canvasHeight = canvasSize[1];
+    }
   }
 
   return (
