@@ -37,6 +37,7 @@ let standardDeviationLimit = 20, resistanceValue = 0.99;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = true;
 let angle = 0, radius = 0, speed = 1;
 let gravityX = 0, gravityY = 0;
+let canvasWidth = 0, canvasHeight = 0;
 
 export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
@@ -107,6 +108,7 @@ export function Canvas() {
     p.setup = () => {
       p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
       gravityX = p.width / 2, gravityY = p.height / 2;
+      canvasWidth = p.width, canvasHeight = p.height;
       ballGravity = new Ball(gravityX, gravityY, 10, p.color(255, 0, 0), 9);
       //console.log(gravityX, gravityY);
       p.background(backgroundColor);
@@ -421,6 +423,6 @@ export function ReturnMouseColor() { return mouseColor; }
 export function ReturnStandardDeviationLimit() { return standardDeviationLimit; }
 export function ReturnResistanceValue() { return resistanceValue; }
 export function ReturnGravityXY() { return [gravityX, gravityY]; }
-
+export function ReturnCanvasSize() { return [canvasWidth, canvasHeight]; }
 
 export default Canvas
