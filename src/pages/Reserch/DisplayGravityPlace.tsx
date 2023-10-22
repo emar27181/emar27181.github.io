@@ -32,11 +32,13 @@ export function DisplayGravityPlace() {
 
       p.textSize(20);
       p.fill(255);
+      /*
       p.text("isFixGravity: " + isFixedGravity +
         "\nfixedGravity(x, y) = (" + p.round(gravityX) + "," + p.round(gravityY) + ")" +
         "\ncanvas(x, y) = (" + p.round(canvasWidth) + "," + p.round(canvasHeight) + ")" +
         "\nmouse(x, y) = (" + p.round(mouseX) + "," + p.round(mouseY) + ")",
         0, 20);
+      */
     };
 
     function DrawGravityPlace(inputX: number, inputY: number) {
