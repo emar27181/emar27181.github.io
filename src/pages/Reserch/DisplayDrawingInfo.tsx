@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity, ReturnIsMovedGravity, ReturnIsMovedStraight, ReturnIsBackground } from './Canvas';
+import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity, ReturnIsMovedGravity, ReturnIsMovedStraight, ReturnIsBackground, ReturnMouseColor, ReturnStandardDeviationLimit, ReturnResistanceValue } from './Canvas';
 
 export function DisplayDrawingInfo() {
   const sketch = (p: P5CanvasInstance) => {
@@ -18,6 +18,9 @@ export function DisplayDrawingInfo() {
     let isMovedGravity = ReturnIsMovedGravity();
     let isMovedStraight = ReturnIsMovedStraight();
     let isBackground = ReturnIsBackground();
+    let mouseColor = ReturnMouseColor();
+    let standardDeviationLimit = ReturnStandardDeviationLimit();
+    let resistanceValue = ReturnResistanceValue();
 
     p.setup = () => {
       p.colorMode(p.HSB, 360, 100, 100, 100);
@@ -38,12 +41,18 @@ export function DisplayDrawingInfo() {
       isMovedGravity = ReturnIsMovedGravity();
       isMovedStraight = ReturnIsMovedStraight();
       isBackground = ReturnIsBackground();
+      mouseColor = ReturnMouseColor();
+      standardDeviationLimit = ReturnStandardDeviationLimit();
+      resistanceValue = ReturnResistanceValue();
+
       p.fill(0);
       p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) +
         "\nbackgroundAlpha: \n" + p.round(backgroundAlpha) + "\nfigure: " + figureMode +
         "\nclickMode: " + clickMode + "\nisFixedGravity: \n" + isFixedGravity +
         "\nisMovedGravity:\n" + isMovedGravity + "\nisMovedStraight: \n" + isMovedStraight +
-        "\nisBackground: \n" + isBackground,
+        "\nisBackground: \n" + isBackground + "\ncolor: \n(" + mouseColor + ")\n" +
+        "SDLimit: " + p.round(standardDeviationLimit) + "\n" +
+        "\nresistance: " + resistanceValue + "\n",
         0, 20);
       p.fill(hue, 100, 100, 100);
       //p.ellipse(p.width / 2, p.height - 50, drawingWeight);

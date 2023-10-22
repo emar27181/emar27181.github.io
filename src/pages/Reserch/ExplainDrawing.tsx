@@ -20,6 +20,7 @@ export function ExplainDrawing() {
       <p style={paragraphStyle}>a: 移動体の不透明度変更モードの待機</p>
       <p style={paragraphStyle}>b: 背景の不透明度変更モードの待機</p>
       <p style={paragraphStyle}>w: 描画の太さ変更モードの待機</p>
+      <p style={paragraphStyle}>v: 表示の基準値変更モードの待機 </p>
       <p style={paragraphStyle}>+/-: 対応する変更モードの調整</p>
       <p style={paragraphStyle}>j: 描画図形を円に変更</p>
       <p style={paragraphStyle}>k: 描画図形を四角に変更</p>

@@ -11,6 +11,7 @@ export function ReturnCameraInfo() {
 
     let capture: Element;
     const DIV_VALUE = 100;
+    let isLooped = true;
 
     p.setup = () => {
       p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
@@ -20,10 +21,14 @@ export function ReturnCameraInfo() {
     };
 
     p.draw = () => {
-      if (p.frameCount <= 100) { p.image(capture, 0, 0); }
-      if (p.frameCount === 100) {
-        getColors();
-        //console.log("colorsInfo: " + colorsInfo)
+
+      if (isLooped) {
+        p.image(capture, 0, 0);
+        if (p.mouseIsPressed) {
+          p.saveCanvas('saveCameraImage', 'png');
+          getColors();
+          isLooped = false;
+        }
       }
     };
 
@@ -60,6 +65,6 @@ export class ColorInfo {
     this.color = color;
   }
 }
-export function ReturnColorsInfo(){return colorsInfo;}
+export function ReturnColorsInfo() { return colorsInfo; }
 
 export default ReturnCameraInfo
