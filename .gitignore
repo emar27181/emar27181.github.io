@@ -24,6 +24,7 @@ src/pages/ColorRecommendation/data
 *.sln
 *.sw?
 tmp*
+data/
 
 # production
 # /build
