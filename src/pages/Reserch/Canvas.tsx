@@ -35,6 +35,7 @@ let mouseColor = [0, 0, 0, 0];
 let fps = DEFAULT_FPS;
 let standardDeviationLimit = 20, resistanceValue = 0.99;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = true;
+let isMoveBallGravity = false;
 let isMouseGravity = false;
 let angle = 0, radius = 0, speed = 1;
 let gravityX = 0, gravityY = 0;
@@ -143,7 +144,7 @@ export function Canvas() {
 
       if (isMovedStraight) { moveBalls(); }
       if (isMovedGravity) { moveBallsGravity(); }
-      moveStraight(ballGravity);
+      if (isMoveBallGravity) { moveStraight(ballGravity); }
       displayBalls();
 
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
