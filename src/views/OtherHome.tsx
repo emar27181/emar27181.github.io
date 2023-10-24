@@ -18,6 +18,7 @@ import AxiosTest from '../pages/test/AxiosTest';
 
 import ControlGravityField from '../pages/ControlGravityField';
 import ControlGravityField2 from '../pages/ControlGravityField2';
+import TestDisplayImage from '../pages/TestDisplayImage';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -55,13 +56,16 @@ export function OtherHome() {
         </NavLink> <br />
 
         <NavLink activeClassName="active" to="/controlGravityField">
-        重力場の操作(既存のコピー(バグ有))
+          重力場の操作(既存のコピー(バグ有))
         </NavLink><br />
 
         <NavLink activeClassName="active" to="/controlGravityField2">
-        重力場の操作(改めて実装)
-        </NavLink>
+          重力場の操作(改めて実装)
+        </NavLink><br />
 
+        <NavLink activeClassName="active" to="/testDisplayImage">
+          画像読み込みのテスト
+        </NavLink>
 
       </ul>
 
@@ -97,11 +101,15 @@ export function OtherHome() {
         </Route>
 
         <Route path="/controlGravityField">
-          <ControlGravityField/>
+          <ControlGravityField />
         </Route>
 
         <Route path="/controlGravityField2">
-          <ControlGravityField2/>
+          <ControlGravityField2 />
+        </Route>
+
+        <Route path="/testDisplayImage">
+          <TestDisplayImage />
         </Route>
 
       </Switch>
