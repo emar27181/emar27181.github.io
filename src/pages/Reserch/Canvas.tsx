@@ -8,6 +8,7 @@ import React from 'react';
 import axios from 'axios';
 import p5 from 'p5';
 import { ReturnColorsInfo, ColorInfo } from './ReturnCameraInfo';
+import { ReturnImageColorsInfo } from './ReturnImageInfo';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
@@ -118,6 +119,15 @@ export function Canvas() {
 
     function addCameraBalls() {
       ColorsInfo = ReturnColorsInfo();
+      if (DEBUG) { console.log(ColorsInfo); }
+      for (let i = 0; i < ColorsInfo.length; i++) {
+        balls.push(new Ball(ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight,
+          p.color(ColorsInfo[i].color[0], ColorsInfo[i].color[1], ColorsInfo[i].color[2], alpha), -1));
+      }
+    }
+
+    function addImageBalls() {
+      ColorsInfo = ReturnImageColorsInfo();
       if (DEBUG) { console.log(ColorsInfo); }
       for (let i = 0; i < ColorsInfo.length; i++) {
         balls.push(new Ball(ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight,
@@ -336,6 +346,11 @@ export function Canvas() {
         displayBalls();
         p.saveCanvas('saveInitialCanvas', 'png');
       }
+      if (inputKey === "i") {
+        addImageBalls();
+        displayBalls();
+      }
+
       if (inputKey === "e") { p.saveCanvas('saveCanvas', 'png'); }
       if (inputKey === "w") { adjustMode = "w"; }
       if (inputKey === "b") { adjustMode = "b"; }
