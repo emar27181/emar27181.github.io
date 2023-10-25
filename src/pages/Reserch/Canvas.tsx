@@ -39,7 +39,7 @@ let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGra
 let isMoveBallGravity = false;
 let isMouseGravity = false;
 let angle = 0, radius = 0, speed = 1;
-let gravityX = 0, gravityY = 0;
+let gravityX: number[] = [], gravityY: number[] = [];
 let canvasWidth = 0, canvasHeight = 0, mouseX = 0, mouseY = 0;
 
 export function Canvas() {
@@ -137,7 +137,7 @@ export function Canvas() {
 
     p.draw = () => {
       mouseX = p.mouseX, mouseY = p.mouseY;
-      gravityX = ballsGravity[0].position.x, gravityY = ballsGravity[0].position.y;
+      gravityX.push(ballsGravity[0].position.x), gravityY.push(ballsGravity[0].position.y);
 
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
@@ -311,6 +311,13 @@ export function Canvas() {
       //else if (clickMode === "gravity") { moveBallsGravity(p.mouseX, p.mouseY); }
       if (clickMode === "newGravityBall") {
         ballsGravity.push(new Ball(p.mouseX, p.mouseY, 10, p.color(255, 0, 0), 9));
+        gravityX.push(p.mouseX);
+        gravityY.push(p.mouseY);
+
+        console.log("gravityX");
+        console.log(gravityX);
+        console.log("gravityY");
+        console.log(gravityY);
       }
     }
 
@@ -467,7 +474,8 @@ export function ReturnIsBackground() { return isBackground; }
 export function ReturnMouseColor() { return mouseColor; }
 export function ReturnStandardDeviationLimit() { return standardDeviationLimit; }
 export function ReturnResistanceValue() { return resistanceValue; }
-export function ReturnGravityXY() { return [gravityX, gravityY]; }
+export function ReturnGravityX() { return gravityX; }
+export function ReturnGravityY() { return gravityY; }
 export function ReturnCanvasSize() { return [canvasWidth, canvasHeight]; }
 export function ReturnMouseXY() { return [mouseX, mouseY]; }
 export function ReturnIsMouseGravity() { return isMouseGravity; }
