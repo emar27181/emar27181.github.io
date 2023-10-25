@@ -395,16 +395,16 @@ export function Canvas() {
           isMouseGravity = true;
           ;
         }
-        else if (clickMode === "gravity") {
+        else if (clickMode === "newGravityBall") {
           clickMode = "draw";
           isMouseGravity = false;
         }
-        else {
+        else if (clickMode === "draw") {
           clickMode = "gravity";
         }
-      }
-      if (inputKey === "n") {
-        clickMode = "newGravityBall";
+        else if (clickMode === "gravity") {
+          clickMode = "newGravityBall"
+        }
       }
 
       //描画色の変更
