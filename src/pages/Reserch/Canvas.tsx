@@ -408,11 +408,9 @@ export function Canvas() {
           clickMode = "draw";
           isMouseGravity = false;
         }
-        else if (clickMode === "draw") {
-          clickMode = "gravity";
-        }
         else if (clickMode === "gravity") {
-          clickMode = "newGravityBall"
+          clickMode = "newGravityBall";
+          isMouseGravity = false;
         }
       }
 
