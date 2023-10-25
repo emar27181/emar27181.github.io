@@ -90,7 +90,7 @@ export function Canvas() {
       }
 
       display() {
-        p.fill(this.color);
+        setColor(this.color);
         displayFigure(this.position.x, this.position.y, this.r, this.figure);
       }
 
@@ -169,6 +169,13 @@ export function Canvas() {
       mouseColor[2] = getColor[2];
       mouseColor[3] = getColor[3];
       //console.log(mouseColor);
+    }
+
+    function setColor(color: p5.Color) {
+      let r = p.red(color);
+      let g = p.green(color);
+      let b = p.blue(color);
+      p.fill(r, g, b, alpha);
     }
 
     function displayFigure(x: number, y: number, r: number, figureMode: string) {
