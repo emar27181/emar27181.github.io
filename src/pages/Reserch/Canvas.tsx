@@ -209,6 +209,11 @@ export function Canvas() {
         if (isDisplayColor(r, g, b)) { balls[i].display() }
         //else { balls[i].display(); }
       }
+      /*
+      for (let i = 0; i < ballsGravity.length; i++) {
+        ballsGravity[i].display();
+      }
+      */
     }
 
     function moveStraight(ball: Ball) {
@@ -264,7 +269,11 @@ export function Canvas() {
 
     function moveBallsGravity() {
       for (let i = 0; i < balls.length; i++) {
-        if (isFixedGravity) { moveGravity(balls[i], ballsGravity[0].position.x, ballsGravity[0].position.y); }
+        if (isFixedGravity) {
+          for (let j = 0; j < ballsGravity.length; j++) {
+            moveGravity(balls[i], ballsGravity[j].position.x, ballsGravity[j].position.y);
+          }
+        }
         if (clickMode === "gravity") { moveGravity(balls[i], p.mouseX, p.mouseY); }
         moveGravity(balls[i], -1, -1);
       }
@@ -300,6 +309,9 @@ export function Canvas() {
     function MouseControl() {
       if (clickMode === "draw") { addBall(); }
       //else if (clickMode === "gravity") { moveBallsGravity(p.mouseX, p.mouseY); }
+      if (clickMode === "newGravityBall") {
+        ballsGravity.push(new Ball(p.mouseX, p.mouseY, 10, p.color(255, 0, 0), 9));
+      }
     }
 
     //キーボードによる描画モードの変更
@@ -387,6 +399,12 @@ export function Canvas() {
           clickMode = "draw";
           isMouseGravity = false;
         }
+        else {
+          clickMode = "gravity";
+        }
+      }
+      if (inputKey === "n") {
+        clickMode = "newGravityBall";
       }
 
       //描画色の変更
