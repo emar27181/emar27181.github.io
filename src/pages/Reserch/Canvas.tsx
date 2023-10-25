@@ -100,7 +100,7 @@ export function Canvas() {
     let balls: Array<Ball> = [];
     let dx = 1, dy = 2;
     let isColor = p.color(255, 0, 0);
-    let ballGravity: Ball;
+    let ballsGravity: Array<Ball> = [];
     let isBallCollisionDetected = false;
     const BALL_SIZE = 2;
     let ColorsInfo: Array<ColorInfo>;
@@ -111,7 +111,7 @@ export function Canvas() {
     p.setup = () => {
       p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
       canvasWidth = p.width, canvasHeight = p.height;
-      ballGravity = new Ball(p.width / 2, p.height / 2, 10, p.color(255, 0, 0), 9);
+      ballsGravity.push(new Ball(p.width / 2, p.height / 2, 10, p.color(255, 0, 0), 9));
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
@@ -137,7 +137,7 @@ export function Canvas() {
 
     p.draw = () => {
       mouseX = p.mouseX, mouseY = p.mouseY;
-      gravityX = ballGravity.position.x, gravityY = ballGravity.position.y;
+      gravityX = ballsGravity[0].position.x, gravityY = ballsGravity[0].position.y;
 
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
@@ -154,7 +154,7 @@ export function Canvas() {
 
       if (isMovedStraight) { moveBalls(); }
       if (isMovedGravity) { moveBallsGravity(); }
-      if (isMoveBallGravity) { moveStraight(ballGravity); }
+      if (isMoveBallGravity) { moveStraight(ballsGravity[0]); }
       displayBalls();
 
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
@@ -264,7 +264,7 @@ export function Canvas() {
 
     function moveBallsGravity() {
       for (let i = 0; i < balls.length; i++) {
-        if (isFixedGravity) { moveGravity(balls[i], ballGravity.position.x, ballGravity.position.y); }
+        if (isFixedGravity) { moveGravity(balls[i], ballsGravity[0].position.x, ballsGravity[0].position.y); }
         if (clickMode === "gravity") { moveGravity(balls[i], p.mouseX, p.mouseY); }
         moveGravity(balls[i], -1, -1);
       }
