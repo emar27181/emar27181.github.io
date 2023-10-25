@@ -24,7 +24,7 @@ export function ReturnCameraInfo() {
 
       if (isLooped) {
         p.image(capture, 0, 0);
-        if (p.mouseIsPressed) {
+        if (p.keyIsPressed && p.key === 'n') {
           p.saveCanvas('saveCameraImage', 'png');
           getColors();
           isLooped = false;
