@@ -365,6 +365,8 @@ export function Canvas() {
       if (inputKey === 'LEFT_ARROW') { fps -= 0.1; console.log("LEFT_ARROW"); }
       if (inputKey === 'RIGHT_ARROW') { fps += 0.1; }
 
+      if (inputKey === 'k') { balls.splice(0, balls.length); }
+
       //ポーズモードの切り替え
       if (inputKey === "p") { isPaused = !isPaused; }
       if (inputKey === "f") { isFixedGravity = !isFixedGravity; }
