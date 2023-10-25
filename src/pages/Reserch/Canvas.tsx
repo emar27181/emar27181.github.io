@@ -314,10 +314,12 @@ export function Canvas() {
         gravityX.push(p.mouseX);
         gravityY.push(p.mouseY);
 
+        /*
         console.log("gravityX");
         console.log(gravityX);
         console.log("gravityY");
         console.log(gravityY);
+        */
       }
     }
 
