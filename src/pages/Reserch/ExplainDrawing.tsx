@@ -64,7 +64,7 @@ export function ExplainDrawing() {
           <td>:</td>
         </tr><tr>
           <td>描画図形を三角に変更</td>
-          <td>']'</td>
+          <td>]</td>
         </tr><tr>
           <td>キャンバスのスクリーンショットの保存</td>
           <td>e</td>
