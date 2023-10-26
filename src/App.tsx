@@ -34,7 +34,7 @@ function App() {
         </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/">ホーム</Nav.Link>
-          <Nav.Link href="/workMenu">作品集</Nav.Link>
+          <Nav.Link href="/emar27181.github.io/workMenu">作品集</Nav.Link>
           <Nav.Link href='/researchHome'> 卒業研究 </Nav.Link>
           <Nav.Link href='/canvas'> キャンバス </Nav.Link>
         </Nav>
@@ -54,7 +54,7 @@ function App() {
           <ExplainPage />
         </Route>
 
-        <Route exact path="/workMenu">
+        <Route exact path="/emar27181.github.io/workMenu">
           <WorkMenu />
         </Route>
 
