@@ -18,6 +18,7 @@ import GravityBall from '../pages/GravityBall';
 import ReturnCameraInfo from '../pages/Reserch/ReturnCameraInfo';
 import DisplayGravityPlace from '../pages/Reserch/DisplayGravityPlace';
 import ReturnImageInfo from '../pages/Reserch/ReturnImageInfo';
+import TestHandsfree from '../pages/TestHandsfree';
 
 export function ResearchHome() {
   return (
@@ -34,6 +35,7 @@ export function ResearchHome() {
         <DisplayGravityPlace />
         <ReturnImageInfo />
       </div>
+      <TestHandsfree />
       <div style={{ display: 'flex' }}>
         <Canvas />
         <DisplayDrawingInfo />
