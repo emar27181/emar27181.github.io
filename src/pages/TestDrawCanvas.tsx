@@ -8,6 +8,7 @@ import { HAND_CONNECTIONS, NormalizedLandmarkListList, Results } from '@mediapip
  * @param ctx canvas context
  * @param results 手の検出結果
  */
+
 export const TestDrawCanvas = (ctx: CanvasRenderingContext2D, results: Results) => {
   const width = ctx.canvas.width
   const height = ctx.canvas.height
@@ -30,6 +31,15 @@ export const TestDrawCanvas = (ctx: CanvasRenderingContext2D, results: Results) 
     //drawCircle(ctx, results.multiHandLandmarks)
   }
   ctx.restore()
+}
+
+export function ReturnTrackingData(ctx: CanvasRenderingContext2D, handLandmarks: NormalizedLandmarkListList) {
+  if (handLandmarks.length === 2 && handLandmarks[0].length > 8 && handLandmarks[1].length > 8) {
+    const width = ctx.canvas.width
+    const height = ctx.canvas.height
+    const [x1, y1] = [handLandmarks[0][8].x * width, handLandmarks[0][8].y * height]
+    return [x1, y1]
+  }
 }
 
 /**
