@@ -21,7 +21,7 @@ export function ExplainDrawing() {
           <td>ポーズモードの切り替え</td>
           <td>p</td>
         </tr>
-        <tr>xd
+        <tr>
           <td>移動体の直線移動の切り替え</td>
           <td>m</td>
         </tr>
