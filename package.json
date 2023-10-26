@@ -8,10 +8,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d build", 
+    "deploy": "npm run build && gh-pages -d build",
     "update": "tsc && vite build && ./update_file.sh"
   },
   "dependencies": {
+    "@mediapipe/hands": "^0.4.1675469240",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
