@@ -19,6 +19,8 @@ import AxiosTest from '../pages/test/AxiosTest';
 import ControlGravityField from '../pages/ControlGravityField';
 import ControlGravityField2 from '../pages/ControlGravityField2';
 import TestDisplayImage from '../pages/TestDisplayImage';
+//import TestHandsfree from '../pages/TestHandsfree';
+import { TestDrawCanvas } from '../pages/TestDrawCanvas';
 import TestHandsfree from '../pages/TestHandsfree';
 //import { Form } from 'react-bootstrap';
 
