@@ -4,6 +4,7 @@ import ClockCountdown from '../pages/ClockCountdown';
 import BounceColorfulForDisplay from '../pages/BounceColorfulForDisplay';
 import BounceColorful from '../pages/BounceColorful';
 import ResearchHome from './ResearchHome';
+import ResearchHomeForDisplay from './ResearchHomeForDisplay';
 
 export function Home() {
 
@@ -12,14 +13,15 @@ export function Home() {
     <div>
       <h2>p5.js演習ブラウザへようこそ!!</h2>
       このブラウザではp5.jsを用いた個人作品を展示しています。 <br />
-      学習を目的としたブラウザであるため不備があると思いますがご容赦ください。<br /><br />
+      学習を目的としたブラウザであるため不備があると思いますがご容赦ください。<br />
+      レスポンシブデザインに対応していないため、スマートフォンでは上手く表示されないことがあります。<br /><br />
 
       <ClockCountdown />
 
       <br />
       <hr />
 
-      <ResearchHome />
+      <ResearchHomeForDisplay />
 
       <br />
       <hr />
@@ -37,7 +39,7 @@ export function Home() {
       <a href="mailto: ryunosukeema.2001@gmail.com">Gmail</a><br /><br />
 
       <h3>SNS</h3>
-      <a href="https://twitter.com/emaemaemaaa?s=21&t=5iiinLRt_xOvBVXA5bLmPA" target="_blank">twitter</a><br />
+      <a href="https://twitter.com/emachan27181?s=21&t=5iiinLRt_xOvBVXA5bLmPA" target="_blank">twitter</a><br />
       <a href="https://www.instagram.com/emachan27181/" target="_blank">Instagram</a><br />
 
     </div>
