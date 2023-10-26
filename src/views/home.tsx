@@ -39,7 +39,7 @@ export function Home() {
       <a href="mailto: ryunosukeema.2001@gmail.com">Gmail</a><br /><br />
 
       <h3>SNS</h3>
-      <a href="https://twitter.com/emaemaemaaa?s=21&t=5iiinLRt_xOvBVXA5bLmPA" target="_blank">twitter</a><br />
+      <a href="https://twitter.com/emachan27181?s=21&t=5iiinLRt_xOvBVXA5bLmPA" target="_blank">twitter</a><br />
       <a href="https://www.instagram.com/emachan27181/" target="_blank">Instagram</a><br />
 
     </div>
