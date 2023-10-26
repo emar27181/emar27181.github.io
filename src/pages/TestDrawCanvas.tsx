@@ -27,7 +27,7 @@ export const TestDrawCanvas = (ctx: CanvasRenderingContext2D, results: Results) 
       drawLandmarks(ctx, landmarks, { color: '#FF0000', lineWidth: 1, radius: 2 })
     }
     // 円の描画
-    drawCircle(ctx, results.multiHandLandmarks)
+    //drawCircle(ctx, results.multiHandLandmarks)
   }
   ctx.restore()
 }
@@ -37,6 +37,8 @@ export const TestDrawCanvas = (ctx: CanvasRenderingContext2D, results: Results) 
  * @param ctx
  * @param handLandmarks
  */
+
+/*
 const drawCircle = (ctx: CanvasRenderingContext2D, handLandmarks: NormalizedLandmarkListList) => {
   if (handLandmarks.length === 2 && handLandmarks[0].length > 8 && handLandmarks[1].length > 8) {
     const width = ctx.canvas.width
@@ -54,5 +56,6 @@ const drawCircle = (ctx: CanvasRenderingContext2D, handLandmarks: NormalizedLand
     ctx.stroke()
   }
 }
+*/
 
 export default TestDrawCanvas
