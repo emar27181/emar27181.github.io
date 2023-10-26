@@ -12,6 +12,7 @@
     "update": "tsc && vite build && ./update_file.sh"
   },
   "dependencies": {
+    "@mediapipe/camera_utils": "^0.3.1675466862",
     "@mediapipe/hands": "^0.4.1675469240",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
