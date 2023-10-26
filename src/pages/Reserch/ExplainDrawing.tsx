@@ -3,16 +3,12 @@ import React from 'react';
 import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 
 export function ExplainDrawing() {
-  const paragraphStyle = {
-    lineHeight: '0px', // 任意のピクセル数を指定
-  }
-  
 
   return (
     <div >
       <br />
 
-      <table border='1'  >
+      <table border={1}>
         <tr>
           <th>機能</th>
           <th>キー</th>
