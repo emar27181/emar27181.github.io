@@ -4,6 +4,7 @@ import ClockCountdown from '../pages/ClockCountdown';
 import BounceColorfulForDisplay from '../pages/BounceColorfulForDisplay';
 import BounceColorful from '../pages/BounceColorful';
 import ResearchHome from './ResearchHome';
+import ResearchHomeForDisplay from './ResearchHomeForDisplay';
 
 export function Home() {
 
@@ -20,7 +21,7 @@ export function Home() {
       <br />
       <hr />
 
-      <ResearchHome />
+      <ResearchHomeForDisplay />
 
       <br />
       <hr />
