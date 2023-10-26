@@ -17,6 +17,7 @@ import DisplayDrawingInfo from '../pages/Reserch/DisplayDrawingInfo';
 import GravityBall from '../pages/GravityBall';
 import ReturnCameraInfo from '../pages/Reserch/ReturnCameraInfo';
 import DisplayGravityPlace from '../pages/Reserch/DisplayGravityPlace';
+import ReturnImageInfo from '../pages/Reserch/ReturnImageInfo';
 
 export function ResearchHome() {
   return (
@@ -28,7 +29,11 @@ export function ResearchHome() {
       <EmotionAnalyzeButton />
       <ReceiveData />
       <ExplainDrawing />
-      <DisplayGravityPlace />
+
+      <div style={{ display: 'flex' }}>
+        <DisplayGravityPlace />
+        <ReturnImageInfo />
+      </div>
       <div style={{ display: 'flex' }}>
         <Canvas />
         <DisplayDrawingInfo />

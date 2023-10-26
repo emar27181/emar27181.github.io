@@ -8,6 +8,7 @@ import React from 'react';
 import axios from 'axios';
 import p5 from 'p5';
 import { ReturnColorsInfo, ColorInfo } from './ReturnCameraInfo';
+import { ReturnImageColorsInfo } from './ReturnImageInfo';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
@@ -35,9 +36,10 @@ let mouseColor = [0, 0, 0, 0];
 let fps = DEFAULT_FPS;
 let standardDeviationLimit = 20, resistanceValue = 0.99;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = true;
+let isMoveBallGravity = false;
 let isMouseGravity = false;
 let angle = 0, radius = 0, speed = 1;
-let gravityX = 0, gravityY = 0;
+let gravityX: number[] = [], gravityY: number[] = [];
 let canvasWidth = 0, canvasHeight = 0, mouseX = 0, mouseY = 0;
 
 export function Canvas() {
@@ -88,7 +90,7 @@ export function Canvas() {
       }
 
       display() {
-        p.fill(this.color);
+        setColor(this.color);
         displayFigure(this.position.x, this.position.y, this.r, this.figure);
       }
 
@@ -98,7 +100,7 @@ export function Canvas() {
     let balls: Array<Ball> = [];
     let dx = 1, dy = 2;
     let isColor = p.color(255, 0, 0);
-    let ballGravity: Ball;
+    let ballsGravity: Array<Ball> = [];
     let isBallCollisionDetected = false;
     const BALL_SIZE = 2;
     let ColorsInfo: Array<ColorInfo>;
@@ -109,7 +111,7 @@ export function Canvas() {
     p.setup = () => {
       p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
       canvasWidth = p.width, canvasHeight = p.height;
-      ballGravity = new Ball(p.width / 2, p.height / 2, 10, p.color(255, 0, 0), 9);
+      //ballsGravity.push(new Ball(p.width / 2, p.height / 2, 10, p.color(255, 0, 0), 9));
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
@@ -124,9 +126,18 @@ export function Canvas() {
       }
     }
 
+    function addImageBalls() {
+      ColorsInfo = ReturnImageColorsInfo();
+      if (DEBUG) { console.log(ColorsInfo); }
+      for (let i = 0; i < ColorsInfo.length; i++) {
+        balls.push(new Ball(ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight,
+          p.color(ColorsInfo[i].color[0], ColorsInfo[i].color[1], ColorsInfo[i].color[2], alpha), -1));
+      }
+    }
+
     p.draw = () => {
       mouseX = p.mouseX, mouseY = p.mouseY;
-      gravityX = ballGravity.position.x, gravityY = ballGravity.position.y;
+      //gravityX.push(ballsGravity[0].position.x), gravityY.push(ballsGravity[0].position.y);
 
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
@@ -143,7 +154,7 @@ export function Canvas() {
 
       if (isMovedStraight) { moveBalls(); }
       if (isMovedGravity) { moveBallsGravity(); }
-      moveStraight(ballGravity);
+      if (isMoveBallGravity) { moveStraight(ballsGravity[0]); }
       displayBalls();
 
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
@@ -158,6 +169,13 @@ export function Canvas() {
       mouseColor[2] = getColor[2];
       mouseColor[3] = getColor[3];
       //console.log(mouseColor);
+    }
+
+    function setColor(color: p5.Color) {
+      let r = p.red(color);
+      let g = p.green(color);
+      let b = p.blue(color);
+      p.fill(r, g, b, alpha);
     }
 
     function displayFigure(x: number, y: number, r: number, figureMode: string) {
@@ -198,6 +216,11 @@ export function Canvas() {
         if (isDisplayColor(r, g, b)) { balls[i].display() }
         //else { balls[i].display(); }
       }
+      /*
+      for (let i = 0; i < ballsGravity.length; i++) {
+        ballsGravity[i].display();
+      }
+      */
     }
 
     function moveStraight(ball: Ball) {
@@ -253,7 +276,11 @@ export function Canvas() {
 
     function moveBallsGravity() {
       for (let i = 0; i < balls.length; i++) {
-        if (isFixedGravity) { moveGravity(balls[i], ballGravity.position.x, ballGravity.position.y); }
+        if (isFixedGravity) {
+          for (let j = 0; j < ballsGravity.length; j++) {
+            moveGravity(balls[i], ballsGravity[j].position.x, ballsGravity[j].position.y);
+          }
+        }
         if (clickMode === "gravity") { moveGravity(balls[i], p.mouseX, p.mouseY); }
         moveGravity(balls[i], -1, -1);
       }
@@ -289,6 +316,18 @@ export function Canvas() {
     function MouseControl() {
       if (clickMode === "draw") { addBall(); }
       //else if (clickMode === "gravity") { moveBallsGravity(p.mouseX, p.mouseY); }
+      if (clickMode === "newGravityBall") {
+        ballsGravity.push(new Ball(p.mouseX, p.mouseY, 10, p.color(255, 0, 0), 9));
+        gravityX.push(p.mouseX);
+        gravityY.push(p.mouseY);
+
+        /*
+        console.log("gravityX");
+        console.log(gravityX);
+        console.log("gravityY");
+        console.log(gravityY);
+        */
+      }
     }
 
     //キーボードによる描画モードの変更
@@ -335,6 +374,11 @@ export function Canvas() {
         displayBalls();
         p.saveCanvas('saveInitialCanvas', 'png');
       }
+      if (inputKey === "i") {
+        addImageBalls();
+        displayBalls();
+      }
+
       if (inputKey === "e") { p.saveCanvas('saveCanvas', 'png'); }
       if (inputKey === "w") { adjustMode = "w"; }
       if (inputKey === "b") { adjustMode = "b"; }
@@ -342,12 +386,14 @@ export function Canvas() {
       if (inputKey === "v") { adjustMode = "sd"; }
       if (inputKey === "t") { adjustMode = "resistance"; }
 
-      if (inputKey === "j") { figureMode = "ellipse"; }
-      if (inputKey === "k") { figureMode = "rect"; }
-      if (inputKey === "l") { figureMode = "triangle"; }
+      if (inputKey === ";") { figureMode = "ellipse"; }
+      if (inputKey === ":") { figureMode = "rect"; }
+      if (inputKey === "]") { figureMode = "triangle"; }
 
       if (inputKey === 'LEFT_ARROW') { fps -= 0.1; console.log("LEFT_ARROW"); }
       if (inputKey === 'RIGHT_ARROW') { fps += 0.1; }
+
+      if (inputKey === 'k') { balls.splice(0, balls.length); }
 
       //ポーズモードの切り替え
       if (inputKey === "p") { isPaused = !isPaused; }
@@ -365,8 +411,12 @@ export function Canvas() {
           isMouseGravity = true;
           ;
         }
-        else if (clickMode === "gravity") {
+        else if (clickMode === "newGravityBall") {
           clickMode = "draw";
+          isMouseGravity = false;
+        }
+        else if (clickMode === "gravity") {
+          clickMode = "newGravityBall";
           isMouseGravity = false;
         }
       }
@@ -431,7 +481,8 @@ export function ReturnIsBackground() { return isBackground; }
 export function ReturnMouseColor() { return mouseColor; }
 export function ReturnStandardDeviationLimit() { return standardDeviationLimit; }
 export function ReturnResistanceValue() { return resistanceValue; }
-export function ReturnGravityXY() { return [gravityX, gravityY]; }
+export function ReturnGravityX() { return gravityX; }
+export function ReturnGravityY() { return gravityY; }
 export function ReturnCanvasSize() { return [canvasWidth, canvasHeight]; }
 export function ReturnMouseXY() { return [mouseX, mouseY]; }
 export function ReturnIsMouseGravity() { return isMouseGravity; }

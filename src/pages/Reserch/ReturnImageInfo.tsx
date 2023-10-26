@@ -1,34 +1,35 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { Element } from 'p5';
-
+import p5 from 'p5'
 
 let colorsInfo: Array<ColorInfo> = [];
+let isGetColors = false;
 
-export function ReturnCameraInfo() {
+export function ReturnImageInfo() {
   const sketch = (p: P5CanvasInstance) => {
 
-    let capture: Element;
+    const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
     const DIV_VALUE = 100;
-    let isLooped = true;
+    let img: p5.Image;
+
+    p.preload = () => {
+      img = p.loadImage("src/data/saveCanvas-2023-10-23T130343.793.png")
+    }
 
     p.setup = () => {
-      p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
-      capture = p.createCapture(p.VIDEO);
-      capture.hide();
-      p.noStroke();
+      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      p.image(img, 0, 0);
     };
 
     p.draw = () => {
 
-      if (isLooped) {
-        p.image(capture, 0, 0);
-        if (p.keyIsPressed && p.key === 'n') {
-          p.saveCanvas('saveCameraImage', 'png');
-          getColors();
-          isLooped = false;
-        }
+      if (isGetColors) {
+        
+      }
+      else {
+        getColors();
+        isGetColors = true;
       }
     };
 
@@ -44,15 +45,12 @@ export function ReturnCameraInfo() {
         }
       }
     }
-
-
   }
 
   return (
     <ReactP5Wrapper sketch={sketch} />
   )
 }
-
 
 export class ColorInfo {
   x: number;
@@ -65,6 +63,7 @@ export class ColorInfo {
     this.color = color;
   }
 }
-export function ReturnColorsInfo() { return colorsInfo; }
 
-export default ReturnCameraInfo
+export function ReturnImageColorsInfo() { return colorsInfo; }
+
+export default ReturnImageInfo

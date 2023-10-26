@@ -1,16 +1,15 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnCanvasSize, ReturnGravityXY, ReturnIsFixedGravity, ReturnIsMouseGravity, ReturnMouseXY } from './Canvas';
+import { ReturnCanvasSize, ReturnGravityX, ReturnGravityY, ReturnIsFixedGravity, ReturnIsMouseGravity, ReturnMouseXY } from './Canvas';
 
 export function DisplayGravityPlace() {
   const sketch = (p: P5CanvasInstance) => {
 
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
     let isFixedGravity = ReturnIsFixedGravity();
-    let gravity = ReturnGravityXY();
-    let gravityX = gravity[0];
-    let gravityY = gravity[1];
+    let gravityX: number[] = [];
+    let gravityY: number[] = [];
     let canvasSize = ReturnCanvasSize();
     let canvasWidth = canvasSize[0];
     let canvasHeight = canvasSize[1];
@@ -27,22 +26,23 @@ export function DisplayGravityPlace() {
     p.draw = () => {
       p.background(0);
       UpdateVariables();
-      if (isFixedGravity) { DrawGravityPlace(gravityX, gravityY); }
-      if (isMouseGravity) { DrawGravityPlace(mouseX, mouseY); }
 
-      p.textSize(20);
-      p.fill(255);
-      /*
-      p.text("isFixGravity: " + isFixedGravity +
-        "\nfixedGravity(x, y) = (" + p.round(gravityX) + "," + p.round(gravityY) + ")" +
-        "\ncanvas(x, y) = (" + p.round(canvasWidth) + "," + p.round(canvasHeight) + ")" +
-        "\nmouse(x, y) = (" + p.round(mouseX) + "," + p.round(mouseY) + ")",
-        0, 20);
-      */
+      for (let i = 0; i < gravityX.length; i++) {
+        setColor(isFixedGravity);
+        DrawGravityPlace(gravityX[i], gravityY[i]);
+      }
+
+      setColor(isMouseGravity);
+      DrawGravityPlace(mouseX, mouseY);
+
     };
 
+    function setColor(isColor: boolean) {
+      if (isColor) { p.fill(255, 0, 0); }
+      else { p.fill(255); }
+    }
+
     function DrawGravityPlace(inputX: number, inputY: number) {
-      p.fill(255, 0, 0);
       let x = inputX * (p.width / canvasWidth);
       let y = inputY * (p.height / canvasHeight);
       p.ellipse(x, y, 5);
@@ -50,9 +50,8 @@ export function DisplayGravityPlace() {
 
     function UpdateVariables() {
       isFixedGravity = ReturnIsFixedGravity();
-      gravity = ReturnGravityXY();
-      gravityX = gravity[0];
-      gravityY = gravity[1];
+      gravityX = ReturnGravityX();
+      gravityY = ReturnGravityY();
       canvasSize = ReturnCanvasSize();
       canvasWidth = canvasSize[0];
       canvasHeight = canvasSize[1];

@@ -6,7 +6,7 @@ const CANVAS_WIDTH = 512, CANVAS_HEIGHT = CANVAS_WIDTH / 4;
 const STARTLINE_MONTH = 10, STARTLINE_DAY = 2;
 const DEADLINE_MONTH = 12, DEADLINE_DAY = 22;
 
-const DEADLINE_MONTH_2 = 10, DEADLINE_DAY_2 = 22;
+const DEADLINE_MONTH_2 = 11, DEADLINE_DAY_2 = 22;
 const DEBUG = false;
 
 export function ClockCountdown() {
@@ -50,7 +50,7 @@ export function ClockCountdown() {
         let deadlineDiffMonth2 = DEADLINE_MONTH_2 - month;
         let deadlineDiffDay2 = DEADLINE_DAY_2 - date;
         let deadlineStillDays2 = deadlineDiffMonth2 * 31 + deadlineDiffDay2;
-        let commentDeadline2 = "デモ完成まであと " + deadlineStillDays2 + " 日！";
+        let commentDeadline2 = "実験終了まであと " + deadlineStillDays2 + " 日！";
 
         let r = (255 / 12) * hours;
         let g = (255 / 60) * minutes;
