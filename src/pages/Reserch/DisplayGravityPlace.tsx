@@ -2,6 +2,7 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ReturnCanvasSize, ReturnGravityX, ReturnGravityY, ReturnIsFixedGravity, ReturnIsMouseGravity, ReturnMouseXY } from './Canvas';
+import { TestHandsfree, ReturnTrackingData } from '../TestHandsfree';
 
 export function DisplayGravityPlace() {
   const sketch = (p: P5CanvasInstance) => {
@@ -18,9 +19,18 @@ export function DisplayGravityPlace() {
     let mouseY = mouse[1];
     let isMouseGravity = ReturnIsMouseGravity();
 
+    /*
+    let trackignData = ReturnTrackingData(); //このコードを実行すると画面が描画されなくなってしまう(2023/10/27)
+    let trackignX = trackignData[0];
+    let trackignY = trackignData[1];
+    console.log(trackignX, trackignY);
+    */
+
+
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(0);
+      //console.log(trackignData);
     };
 
     p.draw = () => {
