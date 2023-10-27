@@ -19,6 +19,11 @@ export function DisplayGravityPlace() {
     let mouseY = mouse[1];
     let isMouseGravity = ReturnIsMouseGravity();
 
+    let trackingData = ReturnTrackingData();
+    let trackingX = trackingData[0];
+    let trackingY = trackingData[1];
+
+    //console.log("trackignData: ", trackingData);
     /*
     let trackignData = ReturnTrackingData(); //このコードを実行すると画面が描画されなくなってしまう(2023/10/27)
     let trackignX = trackignData[0];
@@ -45,6 +50,9 @@ export function DisplayGravityPlace() {
       setColor(isMouseGravity);
       DrawGravityPlace(mouseX, mouseY);
 
+      p.fill(0, 255, 0);
+      DrawGravityPlace(trackingX, trackingY);
+
     };
 
     function setColor(isColor: boolean) {
@@ -69,6 +77,9 @@ export function DisplayGravityPlace() {
       mouseX = mouse[0];
       mouseY = mouse[1];
       isMouseGravity = ReturnIsMouseGravity();
+      trackingData = ReturnTrackingData();
+      trackingX = trackingData[0];
+      trackingY = trackingData[1];
     }
   }
 
