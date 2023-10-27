@@ -24,11 +24,6 @@ export function ResearchHome() {
   return (
     <div>
       <h3>卒業研究用ページ</h3> <br />
-      <DisplayInfo />
-      <FormDisplay /> <br />
-      <SendData /> <br />
-      <EmotionAnalyzeButton />
-      <ReceiveData />
       <ExplainDrawing />
 
       <div style={{ display: 'flex' }}>
@@ -43,10 +38,6 @@ export function ResearchHome() {
       </div>
       <div style={{ display: 'flex' }}>
         <DisplayEmotionColorRatio /> <br />
-      </div>
-      <div style={{ display: 'flex' }}>
-        <ExplainPluticCircleEnglish />
-        <ExplainPluticCircle /> <br />
       </div>
 
       <a href="https://docs.google.com/presentation/d/1N21mXeW3NV-ODW7jHCPQ2FYsSbpZpuSNzAaHix2wRyc/edit?usp=sharing" target="_blank">卒業研究 説明スライド</a><br />
