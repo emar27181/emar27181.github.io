@@ -33,13 +33,17 @@ export const TestDrawCanvas = (ctx: CanvasRenderingContext2D, results: Results) 
   ctx.restore()
 }
 
-export function ReturnTrackingData(ctx: CanvasRenderingContext2D, handLandmarks: NormalizedLandmarkListList) {
+export function GetTrackingData(ctx: CanvasRenderingContext2D, handLandmarks: NormalizedLandmarkListList): number[] {
+  let x1 = 0, y1 = 0
   if (handLandmarks.length === 2 && handLandmarks[0].length > 8 && handLandmarks[1].length > 8) {
     const width = ctx.canvas.width
     const height = ctx.canvas.height
-    const [x1, y1] = [handLandmarks[0][8].x * width, handLandmarks[0][8].y * height]
-    return [x1, y1]
+    x1 = handLandmarks[0][8].x * width
+    y1 = handLandmarks[0][8].y * height
+    //console.log("(x1, y1) = ", x1, y1)
   }
+
+  return [x1, y1]
 }
 
 /**
