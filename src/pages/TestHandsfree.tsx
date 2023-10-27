@@ -9,6 +9,7 @@ import { GetTrackingData, TestDrawCanvas } from './TestDrawCanvas';
 
 let canvasCtx: CanvasRenderingContext2D;
 let returnResults: Results;
+let returnTrackingData: number[] = [];
 
 export const TestHandsfree: VFC = () => {
   const webcamRef = useRef<Webcam>(null)
@@ -21,7 +22,7 @@ export const TestHandsfree: VFC = () => {
       resultsRef.current = results
       canvasCtx = canvasRef.current!.getContext('2d')!
       TestDrawCanvas(canvasCtx, results)
-      ReturnTrackingData();
+      returnTrackingData = GetTrackingData(canvasCtx, returnResults.multiHandLandmarks)
     },
     []
   )
@@ -123,11 +124,6 @@ const styles = {
   `
 }
 
-export function ReturnTrackingData() {
-  //console.log(GetTrackingData(canvasCtx, returnResults.multiHandLandmarks))
-  let data = GetTrackingData(canvasCtx, returnResults.multiHandLandmarks)
-  //console.log("(data[0], data[1]) = ", data[0], data[1])
-  return data;
-}
+export function ReturnTrackingData() { return returnTrackingData; }
 
 export default TestHandsfree
