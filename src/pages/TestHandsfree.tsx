@@ -126,7 +126,7 @@ const styles = {
 export function ReturnTrackingData() {
   //console.log(GetTrackingData(canvasCtx, returnResults.multiHandLandmarks))
   let data = GetTrackingData(canvasCtx, returnResults.multiHandLandmarks)
-  console.log("(data[0], data[1]) = ", data[0], data[1])
+  //console.log("(data[0], data[1]) = ", data[0], data[1])
   return data;
 }
 
