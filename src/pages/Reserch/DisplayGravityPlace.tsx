@@ -2,7 +2,7 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ReturnCanvasSize, ReturnGravityX, ReturnGravityY, ReturnIsFixedGravity, ReturnIsMouseGravity, ReturnMouseXY } from './Canvas';
-import { TestHandsfree, ReturnTrackingData } from '../TestHandsfree';
+import { TestHandsfree, ReturnTrackingData, ReturnTrackingCanvasSize } from '../TestHandsfree';
 
 export function DisplayGravityPlace() {
   const sketch = (p: P5CanvasInstance) => {
@@ -22,15 +22,9 @@ export function DisplayGravityPlace() {
     let trackingData = ReturnTrackingData();
     let trackingX = trackingData[0];
     let trackingY = trackingData[1];
-
-    //console.log("trackignData: ", trackingData);
-    /*
-    let trackignData = ReturnTrackingData(); //このコードを実行すると画面が描画されなくなってしまう(2023/10/27)
-    let trackignX = trackignData[0];
-    let trackignY = trackignData[1];
-    console.log(trackignX, trackignY);
-    */
-
+    let trackingCanvasSize = ReturnTrackingCanvasSize();
+    let trackingCanvasWidth = trackingCanvasSize[0];
+    let trackingCanvasHeight = trackingCanvasSize[1];
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -44,15 +38,16 @@ export function DisplayGravityPlace() {
 
       for (let i = 0; i < gravityX.length; i++) {
         setColor(isFixedGravity);
-        DrawGravityPlace(gravityX[i], gravityY[i]);
+        DrawGravityPlace(gravityX[i], gravityY[i], canvasWidth, canvasHeight);
       }
 
       setColor(isMouseGravity);
-      DrawGravityPlace(mouseX, mouseY);
+      DrawGravityPlace(mouseX, mouseY, canvasWidth, canvasHeight);
 
       p.fill(0, 255, 0);
-      DrawGravityPlace(trackingX, trackingY);
-
+      //console.log("taracingCanvasWidth: " + trackingCanvasWidth + ", trackingCanvasHeight: " + trackingCanvasHeight);
+      //DrawGravityPlace(trackingX, trackingY, trackingCanvasWidth, trackingCanvasHeight);
+      DrawGravityPlace(trackingX, trackingY, 300, 150);
     };
 
     function setColor(isColor: boolean) {
@@ -60,9 +55,9 @@ export function DisplayGravityPlace() {
       else { p.fill(255); }
     }
 
-    function DrawGravityPlace(inputX: number, inputY: number) {
-      let x = inputX * (p.width / canvasWidth);
-      let y = inputY * (p.height / canvasHeight);
+    function DrawGravityPlace(inputX: number, inputY: number, width: number, height: number) {
+      let x = inputX * (p.width / width);
+      let y = inputY * (p.height / height);
       p.ellipse(x, y, 5);
     }
 
@@ -80,6 +75,9 @@ export function DisplayGravityPlace() {
       trackingData = ReturnTrackingData();
       trackingX = trackingData[0];
       trackingY = trackingData[1];
+      trackingCanvasSize = ReturnCanvasSize();
+      trackingCanvasWidth = trackingCanvasSize[0];
+      trackingCanvasHeight = trackingCanvasSize[1];
     }
   }
 
