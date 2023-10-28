@@ -35,7 +35,7 @@ export const TestDrawCanvas = (ctx: CanvasRenderingContext2D, results: Results) 
 
 export function GetTrackingData(ctx: CanvasRenderingContext2D, handLandmarks: NormalizedLandmarkListList): number[] {
   let x1 = 0, y1 = 0
-  if (handLandmarks.length === 2 && handLandmarks[0].length > 8 && handLandmarks[1].length > 8) {
+  if (handLandmarks.length >= 1 && handLandmarks[0].length > 8) {
     const width = ctx.canvas.width
     const height = ctx.canvas.height
     //console.log("(width, height) = " + width + ", " + height)
