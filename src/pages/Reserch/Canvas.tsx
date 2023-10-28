@@ -304,6 +304,10 @@ export function Canvas() {
       }
     }
 
+    function moveBallTrackingGravity(ball: Ball) {
+      moveGravity(ball, ballsTrackigGravity[0].position.x, ballsTrackigGravity[0].position.y);
+    }
+
     function moveBallsGravity() {
       for (let i = 0; i < balls.length; i++) {
         //固定された重力場での重力移動
@@ -315,7 +319,7 @@ export function Canvas() {
         // マウスの座標での重力移動
         if (clickMode === "gravity") { moveGravity(balls[i], p.mouseX, p.mouseY); }
         // トラッキングの手の座標での重力移動
-        if (isTrackingGravity()) { moveGravity(balls[i], ballsTrackigGravity[0].position.x, ballsTrackigGravity[0].position.y); }
+        if (isTrackingGravity()) { moveBallTrackingGravity(balls[i]); }
         // 慣性移動
         moveGravity(balls[i], -1, -1);
       }
