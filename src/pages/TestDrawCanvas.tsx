@@ -38,12 +38,19 @@ export function GetTrackingData(ctx: CanvasRenderingContext2D, handLandmarks: No
   if (handLandmarks.length === 2 && handLandmarks[0].length > 8 && handLandmarks[1].length > 8) {
     const width = ctx.canvas.width
     const height = ctx.canvas.height
+    //console.log("(width, height) = " + width + ", " + height)
     x1 = handLandmarks[0][8].x * width
     y1 = handLandmarks[0][8].y * height
     //console.log("(x1, y1) = ", x1, y1)
   }
 
   return [x1, y1]
+}
+
+export function GetCanvasSize(ctx: CanvasRenderingContext2D) {
+  const width = ctx.canvas.width
+  const height = ctx.canvas.height
+  return [width, height]
 }
 
 /**
