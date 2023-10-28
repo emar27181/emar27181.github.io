@@ -44,7 +44,16 @@ let isMoveBallGravity = false;
 let isMouseGravity = false;
 let angle = 0, radius = 0, speed = 1;
 let gravityX: number[] = [], gravityY: number[] = [];
-let trackingX = 0, trackingY = 0;
+let trackingData = ReturnTrackingData();
+let trackingX1 = trackingData[0]; //人差し指のx座標
+let trackingY1 = trackingData[1]; //人差し指のy座標
+let trackingX2 = trackingData[2]; //親指のx座標
+let trackingY2 = trackingData[3]; //親指のy座標
+
+let trackingX3 = trackingData[4]; //人差し指のx座標
+let trackingY3 = trackingData[5]; //人差し指のy座標
+let trackingX4 = trackingData[6]; //親指のx座標
+let trackingY4 = trackingData[7]; //親指のy座標
 
 let canvasWidth = 0, canvasHeight = 0, mouseX = 0, mouseY = 0;
 
@@ -106,7 +115,8 @@ export function Canvas() {
     let balls: Array<Ball> = [];
     let ballsGravity: Array<Ball> = [];
     let ballsTrackigGravity: Array<Ball> = [];
-    ballsTrackigGravity.push(new Ball(0, 0, 10, p.color(0, 255, 0), 9))
+    ballsTrackigGravity.push(new Ball(0, 0, 10, p.color(0, 255, 0), 9)); //1番目に認識される手
+    ballsTrackigGravity.push(new Ball(0, 0, 10, p.color(0, 255, 0), 9)); //2番目に認識される手
     let dx = 1, dy = 2;
     let isColor = p.color(255, 0, 0);
     let isBallCollisionDetected = false;
@@ -146,13 +156,18 @@ export function Canvas() {
     p.draw = () => {
       mouseX = p.mouseX, mouseY = p.mouseY;
       let trackingData = ReturnTrackingData();
-      trackingX = trackingData[0];
-      trackingY = trackingData[1];
-      ballsTrackigGravity[0].position.x = trackingX * (p.width / TRACKING_WIDTH);
-      ballsTrackigGravity[0].position.y = trackingY * (p.height / TRACKING_HEIGHT);
-
-      //gravityX.push(ballsGravity[0].position.x), gravityY.push(ballsGravity[0].position.y);
-
+      trackingX1 = trackingData[0];
+      trackingY1 = trackingData[1];
+      trackingX2 = trackingData[2]; //親指のx座標
+      trackingY2 = trackingData[3]; //親指のy座標
+      trackingX3 = trackingData[4]; //人差し指のx座標
+      trackingY3 = trackingData[5]; //人差し指のy座標
+      trackingX4 = trackingData[6]; //親指のx座標
+      trackingY4 = trackingData[7]; //親指のy座標
+      ballsTrackigGravity[0].position.x = trackingX1 * (p.width / TRACKING_WIDTH);
+      ballsTrackigGravity[0].position.y = trackingY1 * (p.height / TRACKING_HEIGHT);
+      ballsTrackigGravity[1].position.x = trackingX3 * (p.width / TRACKING_WIDTH);
+      ballsTrackigGravity[1].position.y = trackingY3 * (p.height / TRACKING_HEIGHT);
 
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
