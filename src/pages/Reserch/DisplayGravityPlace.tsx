@@ -31,14 +31,6 @@ export function DisplayGravityPlace() {
     let mouseX = mouse[0];
     let mouseY = mouse[1];
     let isMouseGravity = ReturnIsMouseGravity();
-
-    /*
-    let trackingData = ReturnTrackingData();
-    let trackingX1 = trackingData[0]; //人差し指のx座標
-    let trackingY1 = trackingData[1]; //人差し指のy座標
-    let trackingX2 = trackingData[2]; //親指のx座標
-    let trackingY2 = trackingData[3]; //親指のy座標
-    */
     let trackingCanvasSize = ReturnTrackingCanvasSize();
     let trackingCanvasWidth = trackingCanvasSize[0];
     let trackingCanvasHeight = trackingCanvasSize[1];
