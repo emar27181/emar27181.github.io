@@ -2,6 +2,7 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { Element } from 'p5';
+import { ReturnCanvasSize } from './Canvas';
 
 
 let colorsInfo: Array<ColorInfo> = [];
@@ -13,8 +14,12 @@ export function ReturnCameraInfo() {
     const DIV_VALUE = 100;
     let isLooped = true;
 
+    let canvasSize = ReturnCanvasSize();
+    let canvasWidth = canvasSize[0];
+    let canvasHeight = canvasSize[1];
+
     p.setup = () => {
-      p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
+      p.createCanvas(256, 256);
       capture = p.createCapture(p.VIDEO);
       capture.hide();
       p.noStroke();
@@ -23,6 +28,10 @@ export function ReturnCameraInfo() {
     p.draw = () => {
 
       if (isLooped) {
+
+        canvasSize = ReturnCanvasSize();
+        canvasWidth = canvasSize[0];
+        canvasHeight = canvasSize[1];
         p.image(capture, 0, 0);
         if (p.keyIsPressed && p.key === 'n') {
           p.saveCanvas('saveCameraImage', 'png');
@@ -35,12 +44,13 @@ export function ReturnCameraInfo() {
     function getColors() {
       let indexNum = 0;
       let intervalLength = p.width / DIV_VALUE;
+      let ratioX = canvasWidth / p.width;
+      let ratioY = canvasHeight / p.height;
       for (let i = 0; i < DIV_VALUE; i++) {
         for (let j = 0; j < DIV_VALUE; j++) {
-          //console.log(p.get(i, j));
           let x = p.width * (i / DIV_VALUE);
           let y = p.height * (j / DIV_VALUE);
-          colorsInfo[indexNum++] = new ColorInfo(x, y, p.get(x, y));
+          colorsInfo[indexNum++] = new ColorInfo(ratioX * x, ratioY * y, p.get(x, y));
         }
       }
     }

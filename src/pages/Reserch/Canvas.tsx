@@ -9,6 +9,9 @@ import axios from 'axios';
 import p5 from 'p5';
 import { ReturnColorsInfo, ColorInfo } from './ReturnCameraInfo';
 import { ReturnImageColorsInfo } from './ReturnImageInfo';
+import { ReturnTrackingData } from './ReturnTrackingInfo';
+import { isTrackingGravity } from './DisplayGravityPlace';
+//import { ReturnTrackingData } from '../TestHandsfree';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
@@ -20,6 +23,7 @@ const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
 const ALPHA = 5, BACK_GROUND_ALPHA = 15;
 const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
+const TRACKING_WIDTH = 300, TRACKING_HEIGHT = 150;
 const IS_TEST_MODE = true;
 let alpha = 50, backgroundAlpha = 15;
 let drawingWeight = 2, backgroundColor = "#000000", textSize = 10;
@@ -40,6 +44,8 @@ let isMoveBallGravity = false;
 let isMouseGravity = false;
 let angle = 0, radius = 0, speed = 1;
 let gravityX: number[] = [], gravityY: number[] = [];
+let trackingX = 0, trackingY = 0;
+
 let canvasWidth = 0, canvasHeight = 0, mouseX = 0, mouseY = 0;
 
 export function Canvas() {
@@ -98,9 +104,11 @@ export function Canvas() {
 
     //描画ボールに関する変数宣言
     let balls: Array<Ball> = [];
+    let ballsGravity: Array<Ball> = [];
+    let ballsTrackigGravity: Array<Ball> = [];
+    ballsTrackigGravity.push(new Ball(0, 0, 10, p.color(0, 255, 0), 9))
     let dx = 1, dy = 2;
     let isColor = p.color(255, 0, 0);
-    let ballsGravity: Array<Ball> = [];
     let isBallCollisionDetected = false;
     const BALL_SIZE = 2;
     let ColorsInfo: Array<ColorInfo>;
@@ -137,7 +145,14 @@ export function Canvas() {
 
     p.draw = () => {
       mouseX = p.mouseX, mouseY = p.mouseY;
+      let trackingData = ReturnTrackingData();
+      trackingX = trackingData[0];
+      trackingY = trackingData[1];
+      ballsTrackigGravity[0].position.x = trackingX * (p.width / TRACKING_WIDTH);
+      ballsTrackigGravity[0].position.y = trackingY * (p.height / TRACKING_HEIGHT);
+
       //gravityX.push(ballsGravity[0].position.x), gravityY.push(ballsGravity[0].position.y);
+
 
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
@@ -276,12 +291,17 @@ export function Canvas() {
 
     function moveBallsGravity() {
       for (let i = 0; i < balls.length; i++) {
+        //固定された重力場での重力移動
         if (isFixedGravity) {
           for (let j = 0; j < ballsGravity.length; j++) {
             moveGravity(balls[i], ballsGravity[j].position.x, ballsGravity[j].position.y);
           }
         }
+        // マウスの座標での重力移動
         if (clickMode === "gravity") { moveGravity(balls[i], p.mouseX, p.mouseY); }
+        // トラッキングの手の座標での重力移動
+        if (isTrackingGravity()) { moveGravity(balls[i], ballsTrackigGravity[0].position.x, ballsTrackigGravity[0].position.y); }
+        // 慣性移動
         moveGravity(balls[i], -1, -1);
       }
     }

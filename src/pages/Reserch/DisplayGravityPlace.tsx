@@ -2,6 +2,15 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ReturnCanvasSize, ReturnGravityX, ReturnGravityY, ReturnIsFixedGravity, ReturnIsMouseGravity, ReturnMouseXY } from './Canvas';
+//import { TestHandsfree, ReturnTrackingData, ReturnTrackingCanvasSize } from '../TestHandsfree';
+import { ReturnTrackingInfo, ReturnTrackingData, ReturnTrackingCanvasSize } from './ReturnTrackingInfo';
+
+
+let trackingData = ReturnTrackingData();
+let trackingX1 = trackingData[0]; //人差し指のx座標
+let trackingY1 = trackingData[1]; //人差し指のy座標
+let trackingX2 = trackingData[2]; //親指のx座標
+let trackingY2 = trackingData[3]; //親指のy座標
 
 export function DisplayGravityPlace() {
   const sketch = (p: P5CanvasInstance) => {
@@ -18,9 +27,21 @@ export function DisplayGravityPlace() {
     let mouseY = mouse[1];
     let isMouseGravity = ReturnIsMouseGravity();
 
+    /*
+    let trackingData = ReturnTrackingData();
+    let trackingX1 = trackingData[0]; //人差し指のx座標
+    let trackingY1 = trackingData[1]; //人差し指のy座標
+    let trackingX2 = trackingData[2]; //親指のx座標
+    let trackingY2 = trackingData[3]; //親指のy座標
+    */
+    let trackingCanvasSize = ReturnTrackingCanvasSize();
+    let trackingCanvasWidth = trackingCanvasSize[0];
+    let trackingCanvasHeight = trackingCanvasSize[1];
+
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(0);
+      //console.log(trackignData);
     };
 
     p.draw = () => {
@@ -29,12 +50,16 @@ export function DisplayGravityPlace() {
 
       for (let i = 0; i < gravityX.length; i++) {
         setColor(isFixedGravity);
-        DrawGravityPlace(gravityX[i], gravityY[i]);
+        DrawGravityPlace(gravityX[i], gravityY[i], canvasWidth, canvasHeight);
       }
 
       setColor(isMouseGravity);
-      DrawGravityPlace(mouseX, mouseY);
+      DrawGravityPlace(mouseX, mouseY, canvasWidth, canvasHeight);
 
+      if (isTrackingGravity()) { p.fill(255, 0, 0); }
+      else { p.fill(0, 255, 0); }
+      DrawGravityPlace(trackingX1, trackingY1, 300, 150);
+      DrawGravityPlace(trackingX2, trackingY2, 300, 150);
     };
 
     function setColor(isColor: boolean) {
@@ -42,9 +67,9 @@ export function DisplayGravityPlace() {
       else { p.fill(255); }
     }
 
-    function DrawGravityPlace(inputX: number, inputY: number) {
-      let x = inputX * (p.width / canvasWidth);
-      let y = inputY * (p.height / canvasHeight);
+    function DrawGravityPlace(inputX: number, inputY: number, width: number, height: number) {
+      let x = inputX * (p.width / width);
+      let y = inputY * (p.height / height);
       p.ellipse(x, y, 5);
     }
 
@@ -59,12 +84,26 @@ export function DisplayGravityPlace() {
       mouseX = mouse[0];
       mouseY = mouse[1];
       isMouseGravity = ReturnIsMouseGravity();
+      trackingData = ReturnTrackingData();
+      trackingX1 = trackingData[0];
+      trackingY1 = trackingData[1];
+      trackingX2 = trackingData[2];
+      trackingY2 = trackingData[3];
+      trackingCanvasSize = ReturnCanvasSize();
+      trackingCanvasWidth = trackingCanvasSize[0];
+      trackingCanvasHeight = trackingCanvasSize[1];
     }
   }
 
   return (
     <ReactP5Wrapper sketch={sketch} />
   )
+}
+
+export function isTrackingGravity() {
+  if (trackingX1 === 0 && trackingY1 === 0 && trackingX2 === 0 && trackingY2 === 0) { return false; }
+  let distance = Math.sqrt((trackingX1 - trackingX2) * (trackingX1 - trackingX2) + (trackingY1 - trackingY2) * (trackingY1 - trackingY2))
+  return (distance < 10)
 }
 
 export default DisplayGravityPlace

@@ -5,14 +5,14 @@ import Webcam from 'react-webcam';
 import { css } from '@emotion/css';
 import { Camera } from '@mediapipe/camera_utils';
 import { Hands, Results } from '@mediapipe/hands';
-import { GetTrackingData, GetCanvasSize, TestDrawCanvas } from './TestDrawCanvas';
+import { GetTrackingData, GetCanvasSize, TestDrawCanvas } from '../TestDrawCanvas';
 
 let canvasCtx: CanvasRenderingContext2D;
 let returnResults: Results;
 let returnTrackingData: number[] = [];
 let returnCanvasSize: number[] = [];
 
-export const TestHandsfree: VFC = () => {
+export const ReturnTrackingInfo: VFC = () => {
   const webcamRef = useRef<Webcam>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const resultsRef = useRef<any>(null)
@@ -24,6 +24,7 @@ export const TestHandsfree: VFC = () => {
       canvasCtx = canvasRef.current!.getContext('2d')!
       TestDrawCanvas(canvasCtx, results)
       returnTrackingData = GetTrackingData(canvasCtx, returnResults.multiHandLandmarks)
+      console.log(returnTrackingData);
       returnCanvasSize = GetCanvasSize(canvasCtx)
       //console.log(returnCanvasSize);
     },
@@ -130,4 +131,4 @@ const styles = {
 export function ReturnTrackingData() { return returnTrackingData; }
 export function ReturnTrackingCanvasSize() { return returnCanvasSize; }
 
-export default TestHandsfree
+export default ReturnTrackingInfo
