@@ -40,6 +40,7 @@ export function GetTrackingData(ctx: CanvasRenderingContext2D, handLandmarks: No
     const height = ctx.canvas.height
     //console.log("(width, height) = " + width + ", " + height)
     x1 = handLandmarks[0][8].x * width
+    x1 = width - x1 // x座標を反転(左右反転)
     y1 = handLandmarks[0][8].y * height
     //console.log("(x1, y1) = ", x1, y1)
   }
