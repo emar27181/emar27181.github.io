@@ -21,8 +21,10 @@ export function DisplayGravityPlace() {
     let isMouseGravity = ReturnIsMouseGravity();
 
     let trackingData = ReturnTrackingData();
-    let trackingX = trackingData[0];
-    let trackingY = trackingData[1];
+    let trackingX1 = trackingData[0]; //人差し指のx座標
+    let trackingY1 = trackingData[1]; //人差し指のy座標
+    let trackingX2 = trackingData[2]; //親指のx座標
+    let trackingY2 = trackingData[3]; //親指のy座標
     let trackingCanvasSize = ReturnTrackingCanvasSize();
     let trackingCanvasWidth = trackingCanvasSize[0];
     let trackingCanvasHeight = trackingCanvasSize[1];
@@ -48,7 +50,8 @@ export function DisplayGravityPlace() {
       p.fill(0, 255, 0);
       //console.log("taracingCanvasWidth: " + trackingCanvasWidth + ", trackingCanvasHeight: " + trackingCanvasHeight);
       //DrawGravityPlace(trackingX, trackingY, trackingCanvasWidth, trackingCanvasHeight);
-      DrawGravityPlace(trackingX, trackingY, 300, 150);
+      DrawGravityPlace(trackingX1, trackingY1, 300, 150);
+      DrawGravityPlace(trackingX2, trackingY2, 300, 150);
     };
 
     function setColor(isColor: boolean) {
@@ -74,8 +77,10 @@ export function DisplayGravityPlace() {
       mouseY = mouse[1];
       isMouseGravity = ReturnIsMouseGravity();
       trackingData = ReturnTrackingData();
-      trackingX = trackingData[0];
-      trackingY = trackingData[1];
+      trackingX1 = trackingData[0];
+      trackingY1 = trackingData[1];
+      trackingX2 = trackingData[2];
+      trackingY2 = trackingData[3];
       trackingCanvasSize = ReturnCanvasSize();
       trackingCanvasWidth = trackingCanvasSize[0];
       trackingCanvasHeight = trackingCanvasSize[1];
