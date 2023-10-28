@@ -12,6 +12,11 @@ let trackingY1 = trackingData[1]; //人差し指のy座標
 let trackingX2 = trackingData[2]; //親指のx座標
 let trackingY2 = trackingData[3]; //親指のy座標
 
+let trackingX3 = trackingData[4]; //人差し指のx座標
+let trackingY3 = trackingData[5]; //人差し指のy座標
+let trackingX4 = trackingData[6]; //親指のx座標
+let trackingY4 = trackingData[7]; //親指のy座標
+
 export function DisplayGravityPlace() {
   const sketch = (p: P5CanvasInstance) => {
 
@@ -60,6 +65,8 @@ export function DisplayGravityPlace() {
       else { p.fill(0, 255, 0); }
       DrawGravityPlace(trackingX1, trackingY1, 300, 150);
       DrawGravityPlace(trackingX2, trackingY2, 300, 150);
+      DrawGravityPlace(trackingX3, trackingY3, 300, 150);
+      DrawGravityPlace(trackingX4, trackingY4, 300, 150);
     };
 
     function setColor(isColor: boolean) {
@@ -89,6 +96,10 @@ export function DisplayGravityPlace() {
       trackingY1 = trackingData[1];
       trackingX2 = trackingData[2];
       trackingY2 = trackingData[3];
+      trackingX3 = trackingData[4];
+      trackingY3 = trackingData[5];
+      trackingX4 = trackingData[6];
+      trackingY4 = trackingData[7];
       trackingCanvasSize = ReturnCanvasSize();
       trackingCanvasWidth = trackingCanvasSize[0];
       trackingCanvasHeight = trackingCanvasSize[1];

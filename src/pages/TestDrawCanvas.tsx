@@ -34,23 +34,35 @@ export const TestDrawCanvas = (ctx: CanvasRenderingContext2D, results: Results) 
 }
 
 export function GetTrackingData(ctx: CanvasRenderingContext2D, handLandmarks: NormalizedLandmarkListList): number[] {
-  let x1 = 0, y1 = 0, x2 = 0, y2 = 0
+  let x1 = 0, y1 = 0, x2 = 0, y2 = 0, x3 = 0, y3 = 0, x4 = 0, y4 = 0
   if (handLandmarks.length >= 1 && handLandmarks[0].length > 8) {
     const width = ctx.canvas.width
     const height = ctx.canvas.height
 
+    //一つ目の手の認識
     //人差し指の座標の取得
     x1 = handLandmarks[0][8].x * width
     x1 = width - x1 // x座標を反転(左右反転)
     y1 = handLandmarks[0][8].y * height
-
     //親指の座標の取得
     x2 = handLandmarks[0][4].x * width
     x2 = width - x2 // x座標を反転(左右反転)
     y2 = handLandmarks[0][4].y * height
+
+    //二つ目の手の認識
+    if (handLandmarks.length === 2 && handLandmarks[0].length > 8 && handLandmarks[1].length > 8) {
+      //人差し指の座標の取得
+      x3 = handLandmarks[1][8].x * width
+      x3 = width - x3 // x座標を反転(左右反転)
+      y3 = handLandmarks[1][8].y * height
+      //親指の座標の取得
+      x4 = handLandmarks[1][4].x * width
+      x4 = width - x4 // x座標を反転(左右反転)
+      y4 = handLandmarks[1][4].y * height
+    }
   }
 
-  return [x1, y1, x2, y2]
+  return [x1, y1, x2, y2, x3, y3, x4, y4]
 }
 
 export function GetCanvasSize(ctx: CanvasRenderingContext2D) {
