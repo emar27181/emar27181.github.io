@@ -103,9 +103,9 @@ export function DisplayGravityPlace() {
   )
 }
 
-export function isTrackingGravity() {
-  if (trackingX1 === 0 && trackingY1 === 0 && trackingX2 === 0 && trackingY2 === 0) { return false; }
-  let distance = Math.sqrt((trackingX1 - trackingX2) * (trackingX1 - trackingX2) + (trackingY1 - trackingY2) * (trackingY1 - trackingY2))
+export function isTrackingGravity(x1: number, y1: number, x2: number, y2: number) {
+  if (x1 === 0 && y1 === 0 && x2 === 0 && y2 === 0) { return false; }
+  let distance = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))
   return (distance < 10)
 }
 
