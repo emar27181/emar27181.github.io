@@ -305,7 +305,13 @@ export function Canvas() {
     }
 
     function moveBallTrackingGravity(ball: Ball, x1: number, y1: number, x2: number, y2: number) {
-      moveGravity(ball, x1, y1);
+      let judgeX1 = x1 * (TRACKING_WIDTH / p.width);
+      let judgeY1 = y1 * (TRACKING_HEIGHT / p.height);
+      let judgeX2 = x2 * (TRACKING_WIDTH / p.width);
+      let judgeY2 = y2 * (TRACKING_HEIGHT / p.height);
+      //本来はtrackingData[]側がキャンバスに合った座標を保存しておくべき
+      if (isTrackingGravity(judgeX1, judgeY1, judgeX2, judgeY2)) { moveGravity(ball, x1, y1); }
+      //moveGravity(ball, x1, y1);
     }
 
     function moveBallsGravity() {
@@ -319,9 +325,7 @@ export function Canvas() {
         // マウスの座標での重力移動
         if (clickMode === "gravity") { moveGravity(balls[i], p.mouseX, p.mouseY); }
         // トラッキングの手の座標での重力移動
-        if (isTrackingGravity()) {
-          moveBallTrackingGravity(balls[i], trackingX1, trackingY1, trackingX2, trackingY2);
-        }
+        moveBallTrackingGravity(balls[i], trackingX1, trackingY1, trackingX2, trackingY2);
         // 慣性移動
         moveGravity(balls[i], -1, -1);
       }
