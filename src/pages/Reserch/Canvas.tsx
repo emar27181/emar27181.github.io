@@ -10,6 +10,7 @@ import p5 from 'p5';
 import { ReturnColorsInfo, ColorInfo } from './ReturnCameraInfo';
 import { ReturnImageColorsInfo } from './ReturnImageInfo';
 import { ReturnTrackingData } from './ReturnTrackingInfo';
+import { isTrackingGravity } from './DisplayGravityPlace';
 //import { ReturnTrackingData } from '../TestHandsfree';
 
 let isRandomMove = true;
@@ -299,7 +300,7 @@ export function Canvas() {
         // マウスの座標での重力移動
         if (clickMode === "gravity") { moveGravity(balls[i], p.mouseX, p.mouseY); }
         // トラッキングの手の座標での重力移動
-        if (true) { moveGravity(balls[i], ballsTrackigGravity[0].position.x, ballsTrackigGravity[0].position.y); }
+        if (isTrackingGravity()) { moveGravity(balls[i], ballsTrackigGravity[0].position.x, ballsTrackigGravity[0].position.y); }
         // 慣性移動
         moveGravity(balls[i], -1, -1);
       }
