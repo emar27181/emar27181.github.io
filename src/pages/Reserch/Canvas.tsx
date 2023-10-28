@@ -164,10 +164,10 @@ export function Canvas() {
       trackingY3 = trackingData[5] * (p.height / TRACKING_HEIGHT); //人差し指のy座標
       trackingX4 = trackingData[6] * (p.width / TRACKING_WIDTH); //親指のx座標
       trackingY4 = trackingData[7] * (p.height / TRACKING_HEIGHT); //親指のy座標
-      ballsTrackigGravity[0].position.x = trackingX1 * (p.width / TRACKING_WIDTH);
-      ballsTrackigGravity[0].position.y = trackingY1 * (p.height / TRACKING_HEIGHT);
-      ballsTrackigGravity[1].position.x = trackingX3 * (p.width / TRACKING_WIDTH);
-      ballsTrackigGravity[1].position.y = trackingY3 * (p.height / TRACKING_HEIGHT);
+      //ballsTrackigGravity[0].position.x = trackingX1 * (p.width / TRACKING_WIDTH);
+      //ballsTrackigGravity[0].position.y = trackingY1 * (p.height / TRACKING_HEIGHT);
+      //ballsTrackigGravity[1].position.x = trackingX3 * (p.width / TRACKING_WIDTH);
+      //ballsTrackigGravity[1].position.y = trackingY3 * (p.height / TRACKING_HEIGHT);
 
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
@@ -304,8 +304,8 @@ export function Canvas() {
       }
     }
 
-    function moveBallTrackingGravity(ball: Ball) {
-      moveGravity(ball, ballsTrackigGravity[0].position.x, ballsTrackigGravity[0].position.y);
+    function moveBallTrackingGravity(ball: Ball, x1: number, y1: number, x2: number, y2: number) {
+      moveGravity(ball, x1, y1);
     }
 
     function moveBallsGravity() {
@@ -319,7 +319,9 @@ export function Canvas() {
         // マウスの座標での重力移動
         if (clickMode === "gravity") { moveGravity(balls[i], p.mouseX, p.mouseY); }
         // トラッキングの手の座標での重力移動
-        if (isTrackingGravity()) { moveBallTrackingGravity(balls[i]); }
+        if (isTrackingGravity()) {
+          moveBallTrackingGravity(balls[i], trackingX1, trackingY1, trackingX2, trackingY2);
+        }
         // 慣性移動
         moveGravity(balls[i], -1, -1);
       }
