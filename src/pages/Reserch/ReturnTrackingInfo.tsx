@@ -24,7 +24,7 @@ export const ReturnTrackingInfo: VFC = () => {
       canvasCtx = canvasRef.current!.getContext('2d')!
       TestDrawCanvas(canvasCtx, results)
       returnTrackingData = GetTrackingData(canvasCtx, returnResults.multiHandLandmarks)
-      console.log(returnTrackingData);
+      //console.log(returnTrackingData);
       returnCanvasSize = GetCanvasSize(canvasCtx)
       //console.log(returnCanvasSize);
     },
@@ -73,7 +73,7 @@ export const ReturnTrackingInfo: VFC = () => {
 
   const OutputData = () => {
     const results = resultsRef.current as Results
-    console.log(results.multiHandLandmarks)
+    //console.log(results.multiHandLandmarks)
   }
 
   const videoConstraints = {
