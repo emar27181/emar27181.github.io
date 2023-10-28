@@ -30,7 +30,6 @@ export function ResearchHome() {
         <DisplayGravityPlace />
         <ReturnImageInfo />
       </div>
-      <TestHandsfree />
       <div style={{ display: 'flex' }}>
         <Canvas />
         <DisplayDrawingInfo />
@@ -39,6 +38,7 @@ export function ResearchHome() {
       <div style={{ display: 'flex' }}>
         <DisplayEmotionColorRatio /> <br />
       </div>
+      <TestHandsfree />
 
       <a href="https://docs.google.com/presentation/d/1N21mXeW3NV-ODW7jHCPQ2FYsSbpZpuSNzAaHix2wRyc/edit?usp=sharing" target="_blank">卒業研究 説明スライド</a><br />
     </div>
