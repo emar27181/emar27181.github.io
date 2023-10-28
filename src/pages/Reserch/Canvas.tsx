@@ -156,14 +156,14 @@ export function Canvas() {
     p.draw = () => {
       mouseX = p.mouseX, mouseY = p.mouseY;
       let trackingData = ReturnTrackingData();
-      trackingX1 = trackingData[0];
-      trackingY1 = trackingData[1];
-      trackingX2 = trackingData[2]; //親指のx座標
-      trackingY2 = trackingData[3]; //親指のy座標
-      trackingX3 = trackingData[4]; //人差し指のx座標
-      trackingY3 = trackingData[5]; //人差し指のy座標
-      trackingX4 = trackingData[6]; //親指のx座標
-      trackingY4 = trackingData[7]; //親指のy座標
+      trackingX1 = trackingData[0] * (p.width / TRACKING_WIDTH);
+      trackingY1 = trackingData[1] * (p.height / TRACKING_HEIGHT);
+      trackingX2 = trackingData[2] * (p.width / TRACKING_WIDTH); //親指のx座標
+      trackingY2 = trackingData[3] * (p.height / TRACKING_HEIGHT); //親指のy座標
+      trackingX3 = trackingData[4] * (p.width / TRACKING_WIDTH); //人差し指のx座標
+      trackingY3 = trackingData[5] * (p.height / TRACKING_HEIGHT); //人差し指のy座標
+      trackingX4 = trackingData[6] * (p.width / TRACKING_WIDTH); //親指のx座標
+      trackingY4 = trackingData[7] * (p.height / TRACKING_HEIGHT); //親指のy座標
       ballsTrackigGravity[0].position.x = trackingX1 * (p.width / TRACKING_WIDTH);
       ballsTrackigGravity[0].position.y = trackingY1 * (p.height / TRACKING_HEIGHT);
       ballsTrackigGravity[1].position.x = trackingX3 * (p.width / TRACKING_WIDTH);
