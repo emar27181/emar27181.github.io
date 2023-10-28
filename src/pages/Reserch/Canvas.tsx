@@ -9,7 +9,8 @@ import axios from 'axios';
 import p5 from 'p5';
 import { ReturnColorsInfo, ColorInfo } from './ReturnCameraInfo';
 import { ReturnImageColorsInfo } from './ReturnImageInfo';
-import { ReturnTrackingData } from '../TestHandsfree';
+import { ReturnTrackingData } from './ReturnTrackingInfo';
+//import { ReturnTrackingData } from '../TestHandsfree';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
