@@ -21,6 +21,7 @@ const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
 const ALPHA = 5, BACK_GROUND_ALPHA = 15;
 const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
+const TRACKING_WIDTH = 300, TRACKING_HEIGHT = 150;
 const IS_TEST_MODE = true;
 let alpha = 50, backgroundAlpha = 15;
 let drawingWeight = 2, backgroundColor = "#000000", textSize = 10;
@@ -42,6 +43,7 @@ let isMouseGravity = false;
 let angle = 0, radius = 0, speed = 1;
 let gravityX: number[] = [], gravityY: number[] = [];
 let trackingX = 0, trackingY = 0;
+
 let canvasWidth = 0, canvasHeight = 0, mouseX = 0, mouseY = 0;
 
 export function Canvas() {
@@ -144,8 +146,8 @@ export function Canvas() {
       let trackingData = ReturnTrackingData();
       trackingX = trackingData[0];
       trackingY = trackingData[1];
-      ballsTrackigGravity[0].position.x = trackingX;
-      ballsTrackigGravity[0].position.y = trackingY;
+      ballsTrackigGravity[0].position.x = trackingX * (p.width / TRACKING_WIDTH);
+      ballsTrackigGravity[0].position.y = trackingY * (p.height / TRACKING_HEIGHT);
 
       //gravityX.push(ballsGravity[0].position.x), gravityY.push(ballsGravity[0].position.y);
 
