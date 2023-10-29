@@ -169,6 +169,7 @@ export function Canvas() {
       if (isMovedStraight) { moveBalls(); }
       if (isMovedGravity) { moveBallsGravity(); }
       if (isMoveBallGravity) { moveStraight(ballsGravity[0]); }
+
       displayBalls();
 
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
@@ -179,18 +180,18 @@ export function Canvas() {
     function UpdateVariables() {
       mouseX = p.mouseX, mouseY = p.mouseY;
       trackingData = ReturnTrackingData();
-      trackingX1 = trackingData[0] * (p.width / TRACKING_WIDTH);
-      trackingY1 = trackingData[1] * (p.height / TRACKING_HEIGHT);
+      trackingX1 = trackingData[0] * (p.width / TRACKING_WIDTH); //人差し指のx座標
+      trackingY1 = trackingData[1] * (p.height / TRACKING_HEIGHT); //人差し指のy座標
       trackingX2 = trackingData[2] * (p.width / TRACKING_WIDTH); //親指のx座標
       trackingY2 = trackingData[3] * (p.height / TRACKING_HEIGHT); //親指のy座標
       trackingX3 = trackingData[4] * (p.width / TRACKING_WIDTH); //人差し指のx座標
       trackingY3 = trackingData[5] * (p.height / TRACKING_HEIGHT); //人差し指のy座標
       trackingX4 = trackingData[6] * (p.width / TRACKING_WIDTH); //親指のx座標
       trackingY4 = trackingData[7] * (p.height / TRACKING_HEIGHT); //親指のy座標
-      //ballsTrackigGravity[0].position.x = trackingX1 * (p.width / TRACKING_WIDTH);
-      //ballsTrackigGravity[0].position.y = trackingY1 * (p.height / TRACKING_HEIGHT);
-      //ballsTrackigGravity[1].position.x = trackingX3 * (p.width / TRACKING_WIDTH);
-      //ballsTrackigGravity[1].position.y = trackingY3 * (p.height / TRACKING_HEIGHT);
+      ballsTrackigGravity[0].position.x = trackingX1 * (p.width / TRACKING_WIDTH);
+      ballsTrackigGravity[0].position.y = trackingY1 * (p.height / TRACKING_HEIGHT);
+      ballsTrackigGravity[1].position.x = trackingX3 * (p.width / TRACKING_WIDTH);
+      ballsTrackigGravity[1].position.y = trackingY3 * (p.height / TRACKING_HEIGHT);
     }
 
     function getMouseColor() {
@@ -207,6 +208,7 @@ export function Canvas() {
       let g = p.green(color);
       let b = p.blue(color);
       p.fill(r, g, b, alpha);
+      //console.log(r, g, b, alpha);
     }
 
     function displayFigure(x: number, y: number, r: number, figureMode: string) {
@@ -239,6 +241,7 @@ export function Canvas() {
 
     //移動体を描画する関数
     function displayBalls() {
+      //移動体の描画
       for (let i = 0; i < balls.length; i++) {
         let r = p.red(balls[i].color);
         let g = p.green(balls[i].color);
@@ -247,11 +250,14 @@ export function Canvas() {
         if (isDisplayColor(r, g, b)) { balls[i].display() }
         //else { balls[i].display(); }
       }
-      /*
-      for (let i = 0; i < ballsGravity.length; i++) {
-        ballsGravity[i].display();
+
+      //トラッキングの描画
+
+      if (true) {
+        ballsTrackigGravity[0].display();
+        ballsTrackigGravity[1].display();
       }
-      */
+
     }
 
     function moveStraight(ball: Ball) {
