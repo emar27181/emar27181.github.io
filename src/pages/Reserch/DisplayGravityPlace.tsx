@@ -59,6 +59,8 @@ export function DisplayGravityPlace() {
       else { p.fill(0, 255, 0); }
       DrawGravityPlace(trackingX3, trackingY3, canvasWidth, canvasHeight);
       DrawGravityPlace(trackingX4, trackingY4, canvasWidth, canvasHeight);
+      DrawGravityPlace(trackingData[0][4], trackingData[0][5], canvasWidth, canvasHeight);
+      DrawGravityPlace(trackingData[1][4], trackingData[1][5], canvasWidth, canvasHeight);
     };
 
     function setColor(isColor: boolean) {
