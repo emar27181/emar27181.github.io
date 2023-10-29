@@ -42,7 +42,7 @@ export function GetTrackingData(ctx: CanvasRenderingContext2D, handLandmarks: No
   const CANVAS_HEIGHT = CANVAS_SIZE[1];
   const RATIO_X = CANVAS_WIDTH / width // 描画キャンバスとの比率
   const RATIO_Y = CANVAS_HEIGHT / height // 描画キャンバスとの比率
-  let x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+  let x1 = 0, y1 = 0, x2 = 0, y2 = 0, x3 = 0, y3 = 0
   let firstHand = [0, 0, 0, 0], secondHand = [0, 0, 0, 0];
 
   if (handLandmarks.length >= 1 && handLandmarks[0].length > 8) {
@@ -56,6 +56,11 @@ export function GetTrackingData(ctx: CanvasRenderingContext2D, handLandmarks: No
     x2 = (width - x2) * RATIO_X// x座標を反転(左右反転)
     y2 = handLandmarks[0][4].y * height * RATIO_Y
     firstHand = [x1, y1, x2, y2];
+    //中指の座標の取得
+    x3 = handLandmarks[0][12].x * width
+    x3 = (width - x3) * RATIO_X// x座標を反転(左右反転)
+    y3 = handLandmarks[0][12].y * height * RATIO_Y
+    firstHand = [x1, y1, x2, y2, x3, y3];
 
     //二つ目の手の認識
     if (handLandmarks.length === 2 && handLandmarks[0].length > 8 && handLandmarks[1].length > 8) {
@@ -67,7 +72,11 @@ export function GetTrackingData(ctx: CanvasRenderingContext2D, handLandmarks: No
       x2 = handLandmarks[1][4].x * width
       x2 = (width - x2) * RATIO_X // x座標を反転(左右反転)
       y2 = handLandmarks[1][4].y * height * RATIO_Y
-      secondHand = [x1, y1, x2, y2]
+      //中指の座標の取得
+      x3 = handLandmarks[1][12].x * width
+      x3 = (width - x3) * RATIO_X// x座標を反転(左右反転)
+      y3 = handLandmarks[1][12].y * height * RATIO_Y
+      secondHand = [x1, y1, x2, y2, x3, y3]
     }
   }
   //return [[x1, y1, x2, y2], [x3, y3, x4, y4]]
