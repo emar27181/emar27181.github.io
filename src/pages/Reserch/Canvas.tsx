@@ -154,7 +154,7 @@ export function Canvas() {
       UpdateVariables();
 
       p.colorMode(p.RGB);
-      //if (p.keyIsPressed) { p.keyPressed(); }
+      if (p.keyIsPressed) { p.keyPressed(); }
       if (p.mouseIsPressed) { MouseControl(); }
       getMouseColor();
 
@@ -385,9 +385,8 @@ export function Canvas() {
       }
     }
 
-    //キーボードによる描画モードの変更
-    p.keyTyped = () => {
-
+    //キーボードによる操作(タイプして離れるまで繰り返し呼び出し)
+    p.keyPressed = () => {
       //描画サイズの拡大縮小
       if (p.key === "+") {
         if (adjustMode === "w") { drawingWeight += DRAWING_WEIGHT_CHANGE_SPEED; }
@@ -415,7 +414,10 @@ export function Canvas() {
           }
         }
       }
+    }
 
+    //キーボードによる操作(タイプして離れるまでに1度だけ呼び出し)
+    p.keyTyped = () => {
       if (p.key === "s") {
         //スポイト機能
         let input = p.get(p.mouseX, p.mouseY);
