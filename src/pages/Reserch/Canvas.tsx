@@ -259,9 +259,10 @@ export function Canvas() {
       }
 
       //トラッキングの描画
-
-      if (true) {
+      if (isTrackingGravity(trackingData[0][2], trackingData[0][3], trackingData[0][4], trackingData[0][5])) {
         ballsTrackigGravity[0].display();
+      }
+      if (isTrackingGravity(trackingData[1][2], trackingData[1][3], trackingData[1][4], trackingData[1][5])) {
         ballsTrackigGravity[1].display();
       }
 
