@@ -154,7 +154,7 @@ export function Canvas() {
       UpdateVariables();
 
       p.colorMode(p.RGB);
-      if (p.keyIsPressed) { KeyboardControl(p.key); }
+      //if (p.keyIsPressed) { p.keyPressed(); }
       if (p.mouseIsPressed) { MouseControl(); }
       getMouseColor();
 
@@ -386,16 +386,17 @@ export function Canvas() {
     }
 
     //キーボードによる描画モードの変更
-    function KeyboardControl(inputKey: string) {
+    p.keyTyped = () => {
+
       //描画サイズの拡大縮小
-      if (inputKey === "+") {
+      if (p.key === "+") {
         if (adjustMode === "w") { drawingWeight += DRAWING_WEIGHT_CHANGE_SPEED; }
         else if (adjustMode === "a") { alpha += DRAWING_WEIGHT_CHANGE_SPEED; }
         else if (adjustMode === "b") { backgroundAlpha += DRAWING_WEIGHT_CHANGE_SPEED; }
         else if (adjustMode === "sd") { standardDeviationLimit += DRAWING_WEIGHT_CHANGE_SPEED; }
         else if (adjustMode === "resistance") { resistanceValue += 0.01 * DRAWING_WEIGHT_CHANGE_SPEED; }
       }
-      if (inputKey === "-") {
+      if (p.key === "-") {
         if (adjustMode === "w") {
           if (drawingWeight > 0) { drawingWeight -= DRAWING_WEIGHT_CHANGE_SPEED; }
         }
@@ -415,7 +416,7 @@ export function Canvas() {
         }
       }
 
-      if (inputKey === "s") {
+      if (p.key === "s") {
         //スポイト機能
         let input = p.get(p.mouseX, p.mouseY);
         drawingColor = p.color(input[0], input[1], input[2], input[3]);
@@ -424,43 +425,43 @@ export function Canvas() {
           //console.log("typeof:" + typeof (drawingColor));
         }
       }
-      if (inputKey === "d") {
+      if (p.key === "d") {
         addCameraBalls();
         displayBalls();
         p.saveCanvas('saveInitialCanvas', 'png');
       }
-      if (inputKey === "i") {
+      if (p.key === "i") {
         addImageBalls();
         displayBalls();
       }
 
-      if (inputKey === "e") { p.saveCanvas('saveCanvas', 'png'); }
-      if (inputKey === "w") { adjustMode = "w"; }
-      if (inputKey === "b") { adjustMode = "b"; }
-      if (inputKey === "a") { adjustMode = "a"; }
-      if (inputKey === "v") { adjustMode = "sd"; }
-      if (inputKey === "t") { adjustMode = "resistance"; }
+      if (p.key === "e") { p.saveCanvas('saveCanvas', 'png'); }
+      if (p.key === "w") { adjustMode = "w"; }
+      if (p.key === "b") { adjustMode = "b"; }
+      if (p.key === "a") { adjustMode = "a"; }
+      if (p.key === "v") { adjustMode = "sd"; }
+      if (p.key === "t") { adjustMode = "resistance"; }
 
-      if (inputKey === ";") { figureMode = "ellipse"; }
-      if (inputKey === ":") { figureMode = "rect"; }
-      if (inputKey === "]") { figureMode = "triangle"; }
+      if (p.key === ";") { figureMode = "ellipse"; }
+      if (p.key === ":") { figureMode = "rect"; }
+      if (p.key === "]") { figureMode = "triangle"; }
 
-      if (inputKey === 'LEFT_ARROW') { fps -= 0.1; console.log("LEFT_ARROW"); }
-      if (inputKey === 'RIGHT_ARROW') { fps += 0.1; }
+      if (p.key === 'LEFT_ARROW') { fps -= 0.1; console.log("LEFT_ARROW"); }
+      if (p.key === 'RIGHT_ARROW') { fps += 0.1; }
 
-      if (inputKey === 'k') { balls.splice(0, balls.length); }
+      if (p.key === 'k') { balls.splice(0, balls.length); }
 
       //ポーズモードの切り替え
-      if (inputKey === "p") { isPaused = !isPaused; }
-      if (inputKey === "f") { isFixedGravity = !isFixedGravity; }
+      if (p.key === "p") { isPaused = !isPaused; }
+      if (p.key === "f") { isFixedGravity = !isFixedGravity; }
 
       //描画された点が動くかどうかの切り替え
-      if (inputKey === "m") { isMovedStraight = !isMovedStraight; }
-      if (inputKey === "r") { isRandomMove = !isRandomMove; }
-      if (inputKey === "g") { isMovedGravity = !isMovedGravity; }
-      if (inputKey === "u") { isBackground = !isBackground; }
+      if (p.key === "m") { isMovedStraight = !isMovedStraight; }
+      if (p.key === "r") { isRandomMove = !isRandomMove; }
+      if (p.key === "g") { isMovedGravity = !isMovedGravity; }
+      if (p.key === "u") { isBackground = !isBackground; }
 
-      if (inputKey === "c") {
+      if (p.key === "c") {
         if (clickMode === "draw") {
           clickMode = "gravity"
           isMouseGravity = true;
@@ -477,16 +478,16 @@ export function Canvas() {
       }
 
       //描画色の変更
-      if (inputKey === "0") { drawingEmotionNumber = 0; }
-      if (inputKey === "1") { drawingEmotionNumber = 1; }
-      if (inputKey === "2") { drawingEmotionNumber = 2; }
-      if (inputKey === "3") { drawingEmotionNumber = 3; }
-      if (inputKey === "4") { drawingEmotionNumber = 4; }
-      if (inputKey === "5") { drawingEmotionNumber = 5; }
-      if (inputKey === "6") { drawingEmotionNumber = 6; }
-      if (inputKey === "7") { drawingEmotionNumber = 7; }
-      if (inputKey === "8") { drawingEmotionNumber = 8; }
-      if (inputKey === "9") { drawingEmotionNumber = 9; }
+      if (p.key === "0") { drawingEmotionNumber = 0; }
+      if (p.key === "1") { drawingEmotionNumber = 1; }
+      if (p.key === "2") { drawingEmotionNumber = 2; }
+      if (p.key === "3") { drawingEmotionNumber = 3; }
+      if (p.key === "4") { drawingEmotionNumber = 4; }
+      if (p.key === "5") { drawingEmotionNumber = 5; }
+      if (p.key === "6") { drawingEmotionNumber = 6; }
+      if (p.key === "7") { drawingEmotionNumber = 7; }
+      if (p.key === "8") { drawingEmotionNumber = 8; }
+      if (p.key === "9") { drawingEmotionNumber = 9; }
     }
 
     // バックエンドからJSONデータの取得と色に関するデータの代入
