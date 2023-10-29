@@ -51,15 +51,22 @@ export function DisplayGravityPlace() {
       setColor(isMouseGravity);
       DrawGravityPlace(mouseX, mouseY, canvasWidth, canvasHeight);
 
+
+      p.fill(0, 255, 0);
+      DrawGravityPlace(trackingX2, trackingY2, canvasWidth, canvasHeight);
+      DrawGravityPlace(trackingX4, trackingY4, canvasWidth, canvasHeight);
+
       if (isTrackingGravity(trackingX1, trackingY1, trackingX2, trackingY2)) { p.fill(255, 0, 0); }
       else { p.fill(0, 255, 0); }
       DrawGravityPlace(trackingX1, trackingY1, canvasWidth, canvasHeight);
-      DrawGravityPlace(trackingX2, trackingY2, canvasWidth, canvasHeight);
       if (isTrackingGravity(trackingX3, trackingY3, trackingX4, trackingY4)) { p.fill(255, 0, 0); }
       else { p.fill(0, 255, 0); }
       DrawGravityPlace(trackingX3, trackingY3, canvasWidth, canvasHeight);
-      DrawGravityPlace(trackingX4, trackingY4, canvasWidth, canvasHeight);
+      if (isTrackingGravity(trackingData[0][2], trackingData[0][3], trackingData[0][4], trackingData[0][5])) { p.fill(255, 128, 0); }
+      else { p.fill(0, 255, 0); }
       DrawGravityPlace(trackingData[0][4], trackingData[0][5], canvasWidth, canvasHeight);
+      if (isTrackingGravity(trackingData[1][2], trackingData[1][3], trackingData[1][4], trackingData[1][5])) { p.fill(255, 128, 0); }
+      else { p.fill(0, 255, 0); }
       DrawGravityPlace(trackingData[1][4], trackingData[1][5], canvasWidth, canvasHeight);
     };
 
@@ -108,7 +115,7 @@ export function DisplayGravityPlace() {
 export function isTrackingGravity(x1: number, y1: number, x2: number, y2: number) {
   if (x1 === 0 && y1 === 0 && x2 === 0 && y2 === 0) { return false; }
   let distance = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))
-  return (distance < 10)
+  return (distance < 20)
 }
 
 export default DisplayGravityPlace
