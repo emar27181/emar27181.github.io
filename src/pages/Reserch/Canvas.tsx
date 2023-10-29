@@ -49,7 +49,6 @@ let trackingX1 = trackingData[0]; //人差し指のx座標
 let trackingY1 = trackingData[1]; //人差し指のy座標
 let trackingX2 = trackingData[2]; //親指のx座標
 let trackingY2 = trackingData[3]; //親指のy座標
-
 let trackingX3 = trackingData[4]; //人差し指のx座標
 let trackingY3 = trackingData[5]; //人差し指のy座標
 let trackingX4 = trackingData[6]; //親指のx座標
@@ -154,20 +153,7 @@ export function Canvas() {
     }
 
     p.draw = () => {
-      mouseX = p.mouseX, mouseY = p.mouseY;
-      let trackingData = ReturnTrackingData();
-      trackingX1 = trackingData[0] * (p.width / TRACKING_WIDTH);
-      trackingY1 = trackingData[1] * (p.height / TRACKING_HEIGHT);
-      trackingX2 = trackingData[2] * (p.width / TRACKING_WIDTH); //親指のx座標
-      trackingY2 = trackingData[3] * (p.height / TRACKING_HEIGHT); //親指のy座標
-      trackingX3 = trackingData[4] * (p.width / TRACKING_WIDTH); //人差し指のx座標
-      trackingY3 = trackingData[5] * (p.height / TRACKING_HEIGHT); //人差し指のy座標
-      trackingX4 = trackingData[6] * (p.width / TRACKING_WIDTH); //親指のx座標
-      trackingY4 = trackingData[7] * (p.height / TRACKING_HEIGHT); //親指のy座標
-      //ballsTrackigGravity[0].position.x = trackingX1 * (p.width / TRACKING_WIDTH);
-      //ballsTrackigGravity[0].position.y = trackingY1 * (p.height / TRACKING_HEIGHT);
-      //ballsTrackigGravity[1].position.x = trackingX3 * (p.width / TRACKING_WIDTH);
-      //ballsTrackigGravity[1].position.y = trackingY3 * (p.height / TRACKING_HEIGHT);
+      UpdateVariables();
 
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { KeyboardControl(p.key); }
@@ -191,6 +177,23 @@ export function Canvas() {
       else { p.frameRate(fps); }
       if (DEBUG) { console.log("colorTank: " + colorTank); }
     };
+
+    function UpdateVariables() {
+      mouseX = p.mouseX, mouseY = p.mouseY;
+      trackingData = ReturnTrackingData();
+      trackingX1 = trackingData[0] * (p.width / TRACKING_WIDTH);
+      trackingY1 = trackingData[1] * (p.height / TRACKING_HEIGHT);
+      trackingX2 = trackingData[2] * (p.width / TRACKING_WIDTH); //親指のx座標
+      trackingY2 = trackingData[3] * (p.height / TRACKING_HEIGHT); //親指のy座標
+      trackingX3 = trackingData[4] * (p.width / TRACKING_WIDTH); //人差し指のx座標
+      trackingY3 = trackingData[5] * (p.height / TRACKING_HEIGHT); //人差し指のy座標
+      trackingX4 = trackingData[6] * (p.width / TRACKING_WIDTH); //親指のx座標
+      trackingY4 = trackingData[7] * (p.height / TRACKING_HEIGHT); //親指のy座標
+      //ballsTrackigGravity[0].position.x = trackingX1 * (p.width / TRACKING_WIDTH);
+      //ballsTrackigGravity[0].position.y = trackingY1 * (p.height / TRACKING_HEIGHT);
+      //ballsTrackigGravity[1].position.x = trackingX3 * (p.width / TRACKING_WIDTH);
+      //ballsTrackigGravity[1].position.y = trackingY3 * (p.height / TRACKING_HEIGHT);
+    }
 
     function getMouseColor() {
       let getColor = p.get(p.mouseX, p.mouseY);
