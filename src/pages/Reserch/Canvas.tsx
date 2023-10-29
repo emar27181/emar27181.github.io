@@ -44,15 +44,15 @@ let isMoveBallGravity = false;
 let isMouseGravity = false;
 let angle = 0, radius = 0, speed = 1;
 let gravityX: number[] = [], gravityY: number[] = [];
-let trackingData = ReturnTrackingData();
-let trackingX1 = trackingData[0]; //人差し指のx座標
-let trackingY1 = trackingData[1]; //人差し指のy座標
-let trackingX2 = trackingData[2]; //親指のx座標
-let trackingY2 = trackingData[3]; //親指のy座標
-let trackingX3 = trackingData[4]; //人差し指のx座標
-let trackingY3 = trackingData[5]; //人差し指のy座標
-let trackingX4 = trackingData[6]; //親指のx座標
-let trackingY4 = trackingData[7]; //親指のy座標
+let trackingData: number[][] = [[0, 0, 0, 0], [0, 0, 0, 0]];
+let trackingX1 = trackingData[0][0]; //人差し指のx座標
+let trackingY1 = trackingData[0][1]; //人差し指のy座標
+let trackingX2 = trackingData[0][2]; //親指のx座標
+let trackingY2 = trackingData[0][3]; //親指のy座標
+let trackingX3 = trackingData[1][0]; //人差し指のx座標
+let trackingY3 = trackingData[1][1]; //人差し指のy座標
+let trackingX4 = trackingData[1][2]; //親指のx座標
+let trackingY4 = trackingData[1][3]; //親指のy座標
 
 let canvasWidth = 0, canvasHeight = 0, mouseX = 0, mouseY = 0;
 
@@ -179,19 +179,25 @@ export function Canvas() {
 
     function UpdateVariables() {
       mouseX = p.mouseX, mouseY = p.mouseY;
-      trackingData = ReturnTrackingData();
-      trackingX1 = trackingData[0]; //人差し指のx座標
-      trackingY1 = trackingData[1]; //人差し指のy座標
-      trackingX2 = trackingData[2]; //親指のx座標
-      trackingY2 = trackingData[3]; //親指のy座標
-      trackingX3 = trackingData[4]; //人差し指のx座標
-      trackingY3 = trackingData[5]; //人差し指のy座標
-      trackingX4 = trackingData[6]; //親指のx座標
-      trackingY4 = trackingData[7]; //親指のy座標
+      if (ReturnTrackingData().length === 2) { trackingData = ReturnTrackingData(); }
+      //console.log(trackingData);
+      trackingX1 = trackingData[0][0]; //人差し指のx座標
+      trackingY1 = trackingData[0][1]; //人差し指のy座標
+      trackingX2 = trackingData[0][2]; //親指のx座標
+      trackingY2 = trackingData[0][3]; //親指のy座標
+      trackingX3 = trackingData[1][0]; //人差し指のx座標
+      trackingY3 = trackingData[1][1]; //人差し指のy座標
+      trackingX4 = trackingData[1][2]; //親指のx座標
+      trackingY4 = trackingData[1][3]; //親指のy座標
       ballsTrackigGravity[0].position.x = trackingX1;
       ballsTrackigGravity[0].position.y = trackingY1;
       ballsTrackigGravity[1].position.x = trackingX3;
       ballsTrackigGravity[1].position.y = trackingY3;
+
+      /*
+      let testArray = [[0, 1, 2, 3], [4, 5, 6, 7]];
+      console.log(testArray[0][2]);
+      */
       //console.log("(x, y) = " + ballsTrackigGravity[0].position.x + ", " + ballsTrackigGravity[0].position.y);
     }
 

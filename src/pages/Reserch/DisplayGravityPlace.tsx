@@ -5,17 +5,15 @@ import { ReturnCanvasSize, ReturnGravityX, ReturnGravityY, ReturnIsFixedGravity,
 //import { TestHandsfree, ReturnTrackingData, ReturnTrackingCanvasSize } from '../TestHandsfree';
 import { ReturnTrackingInfo, ReturnTrackingData, ReturnTrackingCanvasSize } from './ReturnTrackingInfo';
 
-
-let trackingData = ReturnTrackingData();
-let trackingX1 = trackingData[0]; //人差し指のx座標
-let trackingY1 = trackingData[1]; //人差し指のy座標
-let trackingX2 = trackingData[2]; //親指のx座標
-let trackingY2 = trackingData[3]; //親指のy座標
-
-let trackingX3 = trackingData[4]; //人差し指のx座標
-let trackingY3 = trackingData[5]; //人差し指のy座標
-let trackingX4 = trackingData[6]; //親指のx座標
-let trackingY4 = trackingData[7]; //親指のy座標
+let trackingData: number[][] = [[0, 0, 0, 0], [0, 0, 0, 0]];
+let trackingX1 = trackingData[0][0]; //人差し指のx座標
+let trackingY1 = trackingData[0][1]; //人差し指のy座標
+let trackingX2 = trackingData[0][2]; //親指のx座標
+let trackingY2 = trackingData[0][3]; //親指のy座標
+let trackingX3 = trackingData[1][0]; //人差し指のx座標
+let trackingY3 = trackingData[1][1]; //人差し指のy座標
+let trackingX4 = trackingData[1][2]; //親指のx座標
+let trackingY4 = trackingData[1][3]; //親指のy座標
 
 export function DisplayGravityPlace() {
   const sketch = (p: P5CanvasInstance) => {
@@ -85,15 +83,15 @@ export function DisplayGravityPlace() {
       mouseX = mouse[0];
       mouseY = mouse[1];
       isMouseGravity = ReturnIsMouseGravity();
-      trackingData = ReturnTrackingData();
-      trackingX1 = trackingData[0];
-      trackingY1 = trackingData[1];
-      trackingX2 = trackingData[2];
-      trackingY2 = trackingData[3];
-      trackingX3 = trackingData[4];
-      trackingY3 = trackingData[5];
-      trackingX4 = trackingData[6];
-      trackingY4 = trackingData[7];
+      if (ReturnTrackingData().length === 2) { trackingData = ReturnTrackingData(); }
+      trackingX1 = trackingData[0][0]; //人差し指のx座標
+      trackingY1 = trackingData[0][1]; //人差し指のy座標
+      trackingX2 = trackingData[0][2]; //親指のx座標
+      trackingY2 = trackingData[0][3]; //親指のy座標
+      trackingX3 = trackingData[1][0]; //人差し指のx座標
+      trackingY3 = trackingData[1][1]; //人差し指のy座標
+      trackingX4 = trackingData[1][2]; //親指のx座標
+      trackingY4 = trackingData[1][3]; //親指のy座標
       trackingCanvasSize = ReturnCanvasSize();
       trackingCanvasWidth = trackingCanvasSize[0];
       trackingCanvasHeight = trackingCanvasSize[1];
