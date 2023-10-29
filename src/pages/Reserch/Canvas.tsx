@@ -26,7 +26,7 @@ const MAX_TANK_VALUE = 100;
 const TRACKING_WIDTH = 300, TRACKING_HEIGHT = 150;
 const IS_TEST_MODE = true;
 let alpha = 50, backgroundAlpha = 15;
-let drawingWeight = 2, backgroundColor = "#000000", textSize = 10;
+let drawingWeight = 100, backgroundColor = "#000000", textSize = 10;
 let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
 let hue: number[] = [];
 let intense: number[] = [];
@@ -114,8 +114,8 @@ export function Canvas() {
     let balls: Array<Ball> = [];
     let ballsGravity: Array<Ball> = [];
     let ballsTrackigGravity: Array<Ball> = [];
-    ballsTrackigGravity.push(new Ball(0, 0, 10, p.color(0, 255, 0), 9)); //1番目に認識される手
-    ballsTrackigGravity.push(new Ball(0, 0, 10, p.color(0, 255, 0), 9)); //2番目に認識される手
+    ballsTrackigGravity.push(new Ball(0, 0, 100, p.color(0, 255, 0), 9)); //1番目に認識される手
+    ballsTrackigGravity.push(new Ball(0, 0, 100, p.color(0, 255, 0), 9)); //2番目に認識される手
     let dx = 1, dy = 2;
     let isColor = p.color(255, 0, 0);
     let isBallCollisionDetected = false;
@@ -180,18 +180,19 @@ export function Canvas() {
     function UpdateVariables() {
       mouseX = p.mouseX, mouseY = p.mouseY;
       trackingData = ReturnTrackingData();
-      trackingX1 = trackingData[0] * (p.width / TRACKING_WIDTH); //人差し指のx座標
-      trackingY1 = trackingData[1] * (p.height / TRACKING_HEIGHT); //人差し指のy座標
-      trackingX2 = trackingData[2] * (p.width / TRACKING_WIDTH); //親指のx座標
-      trackingY2 = trackingData[3] * (p.height / TRACKING_HEIGHT); //親指のy座標
-      trackingX3 = trackingData[4] * (p.width / TRACKING_WIDTH); //人差し指のx座標
-      trackingY3 = trackingData[5] * (p.height / TRACKING_HEIGHT); //人差し指のy座標
-      trackingX4 = trackingData[6] * (p.width / TRACKING_WIDTH); //親指のx座標
-      trackingY4 = trackingData[7] * (p.height / TRACKING_HEIGHT); //親指のy座標
-      ballsTrackigGravity[0].position.x = trackingX1 * (p.width / TRACKING_WIDTH);
-      ballsTrackigGravity[0].position.y = trackingY1 * (p.height / TRACKING_HEIGHT);
-      ballsTrackigGravity[1].position.x = trackingX3 * (p.width / TRACKING_WIDTH);
-      ballsTrackigGravity[1].position.y = trackingY3 * (p.height / TRACKING_HEIGHT);
+      trackingX1 = trackingData[0]; //人差し指のx座標
+      trackingY1 = trackingData[1]; //人差し指のy座標
+      trackingX2 = trackingData[2]; //親指のx座標
+      trackingY2 = trackingData[3]; //親指のy座標
+      trackingX3 = trackingData[4]; //人差し指のx座標
+      trackingY3 = trackingData[5]; //人差し指のy座標
+      trackingX4 = trackingData[6]; //親指のx座標
+      trackingY4 = trackingData[7]; //親指のy座標
+      ballsTrackigGravity[0].position.x = trackingX1;
+      ballsTrackigGravity[0].position.y = trackingY1;
+      ballsTrackigGravity[1].position.x = trackingX3;
+      ballsTrackigGravity[1].position.y = trackingY3;
+      //console.log("(x, y) = " + ballsTrackigGravity[0].position.x + ", " + ballsTrackigGravity[0].position.y);
     }
 
     function getMouseColor() {
@@ -312,13 +313,7 @@ export function Canvas() {
     }
 
     function moveBallTrackingGravity(ball: Ball, x1: number, y1: number, x2: number, y2: number) {
-      let judgeX1 = x1 * (TRACKING_WIDTH / p.width);
-      let judgeY1 = y1 * (TRACKING_HEIGHT / p.height);
-      let judgeX2 = x2 * (TRACKING_WIDTH / p.width);
-      let judgeY2 = y2 * (TRACKING_HEIGHT / p.height);
-      //本来はtrackingData[]側がキャンバスに合った座標を保存しておくべき
-      if (isTrackingGravity(judgeX1, judgeY1, judgeX2, judgeY2)) { moveGravity(ball, x1, y1); }
-      //moveGravity(ball, x1, y1);
+      if (isTrackingGravity(x1, y1, x2, y2)) { moveGravity(ball, x1, y1); }
     }
 
     function moveBallsGravity() {

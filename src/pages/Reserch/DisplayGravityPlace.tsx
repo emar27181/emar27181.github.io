@@ -55,12 +55,12 @@ export function DisplayGravityPlace() {
 
       if (isTrackingGravity(trackingX1, trackingY1, trackingX2, trackingY2)) { p.fill(255, 0, 0); }
       else { p.fill(0, 255, 0); }
-      DrawGravityPlace(trackingX1, trackingY1, 300, 150);
-      DrawGravityPlace(trackingX2, trackingY2, 300, 150);
+      DrawGravityPlace(trackingX1, trackingY1, canvasWidth, canvasHeight);
+      DrawGravityPlace(trackingX2, trackingY2, canvasWidth, canvasHeight);
       if (isTrackingGravity(trackingX3, trackingY3, trackingX4, trackingY4)) { p.fill(255, 0, 0); }
       else { p.fill(0, 255, 0); }
-      DrawGravityPlace(trackingX3, trackingY3, 300, 150);
-      DrawGravityPlace(trackingX4, trackingY4, 300, 150);
+      DrawGravityPlace(trackingX3, trackingY3, canvasWidth, canvasHeight);
+      DrawGravityPlace(trackingX4, trackingY4, canvasWidth, canvasHeight);
     };
 
     function setColor(isColor: boolean) {
