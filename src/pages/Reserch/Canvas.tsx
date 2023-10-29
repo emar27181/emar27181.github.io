@@ -121,18 +121,8 @@ export function Canvas() {
     let isBallCollisionDetected = false;
     const BALL_SIZE = 2;
     let ColorsInfo: Array<ColorInfo>;
-
     let drawingColor = p.color(255, 51, 105);
     fetchData(); //データの取得
-
-    p.setup = () => {
-      p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
-      canvasWidth = p.width, canvasHeight = p.height;
-      //ballsGravity.push(new Ball(p.width / 2, p.height / 2, 10, p.color(255, 0, 0), 9));
-      p.background(backgroundColor);
-      //p.colorMode(p.RGB, 360, 100, 100, 100);
-      if (IS_NO_STROKE) { p.noStroke(); }
-    };
 
     function addCameraBalls() {
       ColorsInfo = ReturnColorsInfo();
@@ -142,7 +132,6 @@ export function Canvas() {
           p.color(ColorsInfo[i].color[0], ColorsInfo[i].color[1], ColorsInfo[i].color[2], alpha), -1));
       }
     }
-
     function addImageBalls() {
       ColorsInfo = ReturnImageColorsInfo();
       if (DEBUG) { console.log(ColorsInfo); }
@@ -151,6 +140,15 @@ export function Canvas() {
           p.color(ColorsInfo[i].color[0], ColorsInfo[i].color[1], ColorsInfo[i].color[2], alpha), -1));
       }
     }
+
+    p.setup = () => {
+      p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
+      canvasWidth = p.width, canvasHeight = p.height;
+      //ballsGravity.push(new Ball(p.width / 2, p.height / 2, 10, p.color(255, 0, 0), 9));
+      p.background(backgroundColor);
+      //p.colorMode(p.RGB, 360, 100, 100, 100);
+      if (IS_NO_STROKE) { p.noStroke(); }
+    };
 
     p.draw = () => {
       UpdateVariables();
