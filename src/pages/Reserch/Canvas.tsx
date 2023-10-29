@@ -26,7 +26,7 @@ const MAX_TANK_VALUE = 100;
 const TRACKING_WIDTH = 300, TRACKING_HEIGHT = 150;
 const IS_TEST_MODE = true;
 let alpha = 50, backgroundAlpha = 15;
-let drawingWeight = 100, backgroundColor = "#000000", textSize = 10;
+let drawingWeight = 1, backgroundColor = "#000000", textSize = 10;
 let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
 let hue: number[] = [];
 let intense: number[] = [];
