@@ -85,13 +85,13 @@ export function GetTrackingData(ctx: CanvasRenderingContext2D, handLandmarks: No
       x3 = (width - x3) * RATIO_X// x座標を反転(左右反転)
       y3 = handLandmarks[1][12].y * height * RATIO_Y
       //薬指の座標の取得
-      x4 = handLandmarks[0][16].x * width
+      x4 = handLandmarks[1][16].x * width
       x4 = (width - x4) * RATIO_X// x座標を反転(左右反転)
-      y4 = handLandmarks[0][16].y * height * RATIO_Y
+      y4 = handLandmarks[1][16].y * height * RATIO_Y
       //小指の座標の取得
-      x5 = handLandmarks[0][20].x * width
+      x5 = handLandmarks[1][20].x * width
       x5 = (width - x5) * RATIO_X// x座標を反転(左右反転)
-      y5 = handLandmarks[0][20].y * height * RATIO_Y
+      y5 = handLandmarks[1][20].y * height * RATIO_Y
       secondHand = [x1, y1, x2, y2, x3, y3, x4, y4, x5, y5]
     }
   }
