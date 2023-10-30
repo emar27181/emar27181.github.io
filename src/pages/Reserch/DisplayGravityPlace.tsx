@@ -55,6 +55,10 @@ export function DisplayGravityPlace() {
       p.fill(0, 255, 0);
       DrawGravityPlace(trackingX2, trackingY2, canvasWidth, canvasHeight);
       DrawGravityPlace(trackingX4, trackingY4, canvasWidth, canvasHeight);
+      DrawGravityPlace(trackingData[0][6], trackingData[0][7], canvasWidth, canvasHeight);
+      DrawGravityPlace(trackingData[0][8], trackingData[0][9], canvasWidth, canvasHeight);
+      DrawGravityPlace(trackingData[1][6], trackingData[1][7], canvasWidth, canvasHeight);
+      DrawGravityPlace(trackingData[1][8], trackingData[1][9], canvasWidth, canvasHeight);
 
       if (isTrackingGravity(trackingX1, trackingY1, trackingX2, trackingY2)) { p.fill(255, 0, 0); }
       else { p.fill(0, 255, 0); }
