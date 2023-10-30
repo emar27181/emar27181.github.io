@@ -22,11 +22,7 @@ export function DisplayDrawingInfo() {
     let mouseColor = ReturnMouseColor();
     let standardDeviationLimit = ReturnStandardDeviationLimit();
     let resistanceValue = ReturnResistanceValue();
-    let trackingData = ReturnTrackingData();
-    let trackingX1 = trackingData[0]; //人差し指のx座標
-    let trackingY1 = trackingData[1]; //人差し指のy座標
-    let trackingX2 = trackingData[2]; //親指のx座標
-    let trackingY2 = trackingData[3]; //親指のy座標
+    let trackingData: number[][];
 
 
     p.setup = () => {
@@ -51,12 +47,7 @@ export function DisplayDrawingInfo() {
       mouseColor = ReturnMouseColor();
       standardDeviationLimit = ReturnStandardDeviationLimit();
       resistanceValue = ReturnResistanceValue();
-      trackingData = ReturnTrackingData();
-      trackingX1 = trackingData[0]; //人差し指のx座標
-      trackingY1 = trackingData[1]; //人差し指のy座標
-      trackingX2 = trackingData[2]; //親指のx座標
-      trackingY2 = trackingData[3]; //親指のy座標
-
+      if (ReturnTrackingData().length === 2) { trackingData = ReturnTrackingData(); }
 
       p.fill(0);
       p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) +
@@ -65,9 +56,7 @@ export function DisplayDrawingInfo() {
         "\nisMovedGravity:\n" + isMovedGravity + "\nisMovedStraight: \n" + isMovedStraight +
         "\nisBackground: \n" + isBackground + "\ncolor: \n(" + mouseColor + ")\n" +
         "SDLimit: " + p.round(standardDeviationLimit) + "\n" +
-        "\nresistance: " + resistanceValue + "\n" +
-        "\n(x,y)=(" + p.round(trackingX1) + ", " + p.round(trackingY1) + ")" +
-        "\n(x,y)=(" + p.round(trackingX2) + ", " + p.round(trackingY2) + ")",
+        "\nresistance: " + resistanceValue + "\n",
         0, 20);
       p.fill(hue, 100, 100, 100);
       //p.ellipse(p.width / 2, p.height - 50, drawingWeight);
