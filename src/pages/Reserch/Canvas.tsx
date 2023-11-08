@@ -40,7 +40,7 @@ let mouseColor = [0, 0, 0, 0];
 let fps = DEFAULT_FPS;
 let standardDeviationLimit = 20, resistanceValue = 0.99;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = true;
-let isMoveBallGravity = false;
+let isMoveBallGravity = false, isTrackingGravity = false;
 let isMouseGravity = false;
 let angle = 0, radius = 0, speed = 1;
 let gravityX: number[] = [], gravityY: number[] = [];
@@ -334,8 +334,10 @@ export function Canvas() {
         // マウスの座標での重力移動
         if (clickMode === "gravity" && p.mouseIsPressed) { moveGravity(balls[i], p.mouseX, p.mouseY); }
         // トラッキングの手の座標での重力移動
-        moveBallTrackingGravity(balls[i], trackingX1, trackingY1, trackingX2, trackingY2);
-        moveBallTrackingGravity(balls[i], trackingX3, trackingY3, trackingX4, trackingY4);
+        if (isTrackingGravity) {
+          moveBallTrackingGravity(balls[i], trackingX1, trackingY1, trackingX2, trackingY2);
+          moveBallTrackingGravity(balls[i], trackingX3, trackingY3, trackingX4, trackingY4);
+        }
         // 慣性移動
         moveGravity(balls[i], -1, -1);
       }
@@ -456,6 +458,7 @@ export function Canvas() {
       //ポーズモードの切り替え
       if (p.key === "p") { isPaused = !isPaused; }
       if (p.key === "f") { isFixedGravity = !isFixedGravity; }
+      if (p.key === "y") { isTrackingGravity = !isTrackingGravity; }
 
       //描画された点が動くかどうかの切り替え
       if (p.key === "m") { isMovedStraight = !isMovedStraight; }
@@ -544,5 +547,6 @@ export function ReturnGravityY() { return gravityY; }
 export function ReturnCanvasSize() { return [canvasWidth, canvasHeight]; }
 export function ReturnMouseXY() { return [mouseX, mouseY]; }
 export function ReturnIsMouseGravity() { return isMouseGravity; }
+export function ReturnIsTrackingGravity() { return isTrackingGravity; }
 
 export default Canvas

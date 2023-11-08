@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity, ReturnIsMovedGravity, ReturnIsMovedStraight, ReturnIsBackground, ReturnMouseColor, ReturnStandardDeviationLimit, ReturnResistanceValue } from './Canvas';
+import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity, ReturnIsMovedGravity, ReturnIsMovedStraight, ReturnIsBackground, ReturnMouseColor, ReturnStandardDeviationLimit, ReturnResistanceValue, ReturnIsTrackingGravity } from './Canvas';
 import { ReturnTrackingInfo, ReturnTrackingData, ReturnTrackingCanvasSize } from './ReturnTrackingInfo';
 
 export function DisplayDrawingInfo() {
@@ -23,6 +23,7 @@ export function DisplayDrawingInfo() {
     let standardDeviationLimit = ReturnStandardDeviationLimit();
     let resistanceValue = ReturnResistanceValue();
     let trackingData: number[][];
+    let isTrackingGravity = ReturnIsTrackingGravity();
 
 
     p.setup = () => {
@@ -48,6 +49,7 @@ export function DisplayDrawingInfo() {
       standardDeviationLimit = ReturnStandardDeviationLimit();
       resistanceValue = ReturnResistanceValue();
       if (ReturnTrackingData().length === 2) { trackingData = ReturnTrackingData(); }
+      isTrackingGravity = ReturnIsTrackingGravity();
 
       p.fill(0);
       p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) +
@@ -55,8 +57,9 @@ export function DisplayDrawingInfo() {
         "\nclickMode: " + clickMode + "\nisFixedGravity: \n" + isFixedGravity +
         "\nisMovedGravity:\n" + isMovedGravity + "\nisMovedStraight: \n" + isMovedStraight +
         "\nisBackground: \n" + isBackground + "\ncolor: \n(" + mouseColor + ")\n" +
-        "SDLimit: " + p.round(standardDeviationLimit) + "\n" +
-        "\nresistance: " + resistanceValue + "\n",
+        "SDLimit: " + p.round(standardDeviationLimit) +
+        "\nresistance: " + resistanceValue +
+        "\nisTrackingGravity: \n" + isTrackingGravity,
         0, 20);
       p.fill(hue, 100, 100, 100);
       //p.ellipse(p.width / 2, p.height - 50, drawingWeight);
