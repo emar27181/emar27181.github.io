@@ -332,7 +332,7 @@ export function Canvas() {
           }
         }
         // マウスの座標での重力移動
-        if (clickMode === "gravity") { moveGravity(balls[i], p.mouseX, p.mouseY); }
+        if (clickMode === "gravity" && p.mouseIsPressed) { moveGravity(balls[i], p.mouseX, p.mouseY); }
         // トラッキングの手の座標での重力移動
         moveBallTrackingGravity(balls[i], trackingX1, trackingY1, trackingX2, trackingY2);
         moveBallTrackingGravity(balls[i], trackingX3, trackingY3, trackingX4, trackingY4);
