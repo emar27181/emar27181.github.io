@@ -13,7 +13,8 @@ export function ColorGanerate() {
     let hueBarX = 100, HUE_BAR_Y = CANVAS_HEIGHT - MENU_BAR_HEIGHT + MARGIN_HEIGHT;
 
     p.setup = () => {
-      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      p.createCanvas(256, 256);
       p.background(0);
       p.frameRate(10);
       p.colorMode(p.HSB, 360, 100, 100);
@@ -66,7 +67,7 @@ export function ColorGanerate() {
       text = '#' + p.hex(getColor);
       //text = '#' + p.hex(getColorObject); 
       //text = getColor.toString("rrggbb");
-      p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE * 2);
+      //p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE * 2);
     }
 
     function generateColor(hue: number) {
