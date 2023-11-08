@@ -34,7 +34,8 @@ export function DisplayGravityPlace() {
     let trackingCanvasHeight = trackingCanvasSize[1];
 
     p.setup = () => {
-      p.createCanvas(canvasWidth, canvasHeight);
+      //p.createCanvas(canvasWidth, canvasHeight);
+      p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
       p.background(0);
       //console.log(trackignData);
     };
