@@ -72,7 +72,7 @@ export function DisplayGravityPlace() {
     };
 
     function setTrackingColor(x1: number, y1: number, x2: number, y2: number) {
-      if (isTrackingGravity(x1, y1, x2, y2)) { p.fill(255, 0, 0); }
+      if (judgeDistance(x1, y1, x2, y2)) { p.fill(255, 0, 0); }
       else { p.fill(0, 255, 0); }
     }
 
@@ -118,7 +118,7 @@ export function DisplayGravityPlace() {
   )
 }
 
-export function isTrackingGravity(x1: number, y1: number, x2: number, y2: number) {
+export function judgeDistance(x1: number, y1: number, x2: number, y2: number) {
   if (x1 === 0 && y1 === 0 && x2 === 0 && y2 === 0) { return false; }
   let distance = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))
   return (distance < 20)

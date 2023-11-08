@@ -10,7 +10,7 @@ import p5 from 'p5';
 import { ReturnColorsInfo, ColorInfo } from './ReturnCameraInfo';
 import { ReturnImageColorsInfo } from './ReturnImageInfo';
 import { ReturnTrackingData } from './ReturnTrackingInfo';
-import { isTrackingGravity } from './DisplayGravityPlace';
+import { judgeDistance } from './DisplayGravityPlace';
 //import { ReturnTrackingData } from '../TestHandsfree';
 
 let isRandomMove = true;
@@ -259,10 +259,10 @@ export function Canvas() {
       }
 
       //トラッキングの描画
-      if (isTrackingGravity(trackingData[0][2], trackingData[0][3], trackingData[0][4], trackingData[0][5])) {
+      if (judgeDistance(trackingData[0][2], trackingData[0][3], trackingData[0][4], trackingData[0][5])) {
         ballsTrackigGravity[0].display();
       }
-      if (isTrackingGravity(trackingData[1][2], trackingData[1][3], trackingData[1][4], trackingData[1][5])) {
+      if (judgeDistance(trackingData[1][2], trackingData[1][3], trackingData[1][4], trackingData[1][5])) {
         ballsTrackigGravity[1].display();
       }
 
@@ -320,7 +320,7 @@ export function Canvas() {
     }
 
     function moveBallTrackingGravity(ball: Ball, x1: number, y1: number, x2: number, y2: number) {
-      if (isTrackingGravity(x1, y1, x2, y2)) { moveGravity(ball, x1, y1); }
+      if (judgeDistance(x1, y1, x2, y2)) { moveGravity(ball, x1, y1); }
     }
 
     function moveBallsGravity() {
