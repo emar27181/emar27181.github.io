@@ -164,7 +164,7 @@ export function Canvas() {
 
       if (isPaused) { return; }
 
-      addTrackingBall();
+      if (isTracking) { addTrackingBall(); }
 
       if (isBackground) {
         p.blendMode(p.DARKEST);
