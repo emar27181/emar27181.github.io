@@ -9,7 +9,7 @@ import { GetTrackingData, GetCanvasSize, TestDrawCanvas } from './TestDrawCanvas
 
 let canvasCtx: CanvasRenderingContext2D;
 let returnResults: Results;
-let returnTrackingData: number[] = [];
+let returnTrackingData: number[][];
 let returnCanvasSize: number[] = [];
 
 export const TestHandsfree: VFC = () => {

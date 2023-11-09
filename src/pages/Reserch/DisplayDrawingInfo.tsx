@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity, ReturnIsMovedGravity, ReturnIsMovedStraight, ReturnIsBackground, ReturnMouseColor, ReturnStandardDeviationLimit, ReturnResistanceValue } from './Canvas';
+import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity, ReturnIsMovedGravity, ReturnIsMovedStraight, ReturnIsBackground, ReturnMouseColor, ReturnStandardDeviationLimit, ReturnResistanceValue, ReturnIsTracking, ReturnDrawingColor } from './Canvas';
 import { ReturnTrackingInfo, ReturnTrackingData, ReturnTrackingCanvasSize } from './ReturnTrackingInfo';
 
 export function DisplayDrawingInfo() {
@@ -22,11 +22,9 @@ export function DisplayDrawingInfo() {
     let mouseColor = ReturnMouseColor();
     let standardDeviationLimit = ReturnStandardDeviationLimit();
     let resistanceValue = ReturnResistanceValue();
-    let trackingData = ReturnTrackingData();
-    let trackingX1 = trackingData[0]; //人差し指のx座標
-    let trackingY1 = trackingData[1]; //人差し指のy座標
-    let trackingX2 = trackingData[2]; //親指のx座標
-    let trackingY2 = trackingData[3]; //親指のy座標
+    let trackingData: number[][];
+    let isTrackingGravity = ReturnIsTracking();
+    let drawingColor = ReturnDrawingColor();
 
 
     p.setup = () => {
@@ -51,12 +49,9 @@ export function DisplayDrawingInfo() {
       mouseColor = ReturnMouseColor();
       standardDeviationLimit = ReturnStandardDeviationLimit();
       resistanceValue = ReturnResistanceValue();
-      trackingData = ReturnTrackingData();
-      trackingX1 = trackingData[0]; //人差し指のx座標
-      trackingY1 = trackingData[1]; //人差し指のy座標
-      trackingX2 = trackingData[2]; //親指のx座標
-      trackingY2 = trackingData[3]; //親指のy座標
-
+      if (ReturnTrackingData().length === 2) { trackingData = ReturnTrackingData(); }
+      isTrackingGravity = ReturnIsTracking();
+      drawingColor = ReturnDrawingColor();
 
       p.fill(0);
       p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) +
@@ -64,12 +59,13 @@ export function DisplayDrawingInfo() {
         "\nclickMode: " + clickMode + "\nisFixedGravity: \n" + isFixedGravity +
         "\nisMovedGravity:\n" + isMovedGravity + "\nisMovedStraight: \n" + isMovedStraight +
         "\nisBackground: \n" + isBackground + "\ncolor: \n(" + mouseColor + ")\n" +
-        "SDLimit: " + p.round(standardDeviationLimit) + "\n" +
-        "\nresistance: " + resistanceValue + "\n" +
-        "\n(x,y)=(" + p.round(trackingX1) + ", " + p.round(trackingY1) + ")" +
-        "\n(x,y)=(" + p.round(trackingX2) + ", " + p.round(trackingY2) + ")",
+        "SDLimit: " + p.round(standardDeviationLimit) +
+        "\nresistance: " + resistanceValue +
+        "\nisTrackingGravity: \n" + isTrackingGravity,
         0, 20);
-      p.fill(hue, 100, 100, 100);
+      //p.fill(hue, 100, 100, 100);
+      p.fill(drawingColor);
+
       //p.ellipse(p.width / 2, p.height - 50, drawingWeight);
       displayFigure(p.width / 2, p.height - 50, drawingWeight);
     };

@@ -34,7 +34,8 @@ export function DisplayGravityPlace() {
     let trackingCanvasHeight = trackingCanvasSize[1];
 
     p.setup = () => {
-      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      //p.createCanvas(canvasWidth, canvasHeight);
+      p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
       p.background(0);
       //console.log(trackignData);
     };
@@ -55,20 +56,25 @@ export function DisplayGravityPlace() {
       p.fill(0, 255, 0);
       DrawGravityPlace(trackingX2, trackingY2, canvasWidth, canvasHeight);
       DrawGravityPlace(trackingX4, trackingY4, canvasWidth, canvasHeight);
+      DrawGravityPlace(trackingData[0][6], trackingData[0][7], canvasWidth, canvasHeight);
+      DrawGravityPlace(trackingData[0][8], trackingData[0][9], canvasWidth, canvasHeight);
+      DrawGravityPlace(trackingData[1][6], trackingData[1][7], canvasWidth, canvasHeight);
+      DrawGravityPlace(trackingData[1][8], trackingData[1][9], canvasWidth, canvasHeight);
 
-      if (isTrackingGravity(trackingX1, trackingY1, trackingX2, trackingY2)) { p.fill(255, 0, 0); }
-      else { p.fill(0, 255, 0); }
+      setTrackingColor(trackingX1, trackingY1, trackingX2, trackingY2);
       DrawGravityPlace(trackingX1, trackingY1, canvasWidth, canvasHeight);
-      if (isTrackingGravity(trackingX3, trackingY3, trackingX4, trackingY4)) { p.fill(255, 0, 0); }
-      else { p.fill(0, 255, 0); }
+      setTrackingColor(trackingX3, trackingY3, trackingX4, trackingY4);
       DrawGravityPlace(trackingX3, trackingY3, canvasWidth, canvasHeight);
-      if (isTrackingGravity(trackingData[0][2], trackingData[0][3], trackingData[0][4], trackingData[0][5])) { p.fill(255, 128, 0); }
-      else { p.fill(0, 255, 0); }
+      setTrackingColor(trackingData[0][2], trackingData[0][3], trackingData[0][4], trackingData[0][5]);
       DrawGravityPlace(trackingData[0][4], trackingData[0][5], canvasWidth, canvasHeight);
-      if (isTrackingGravity(trackingData[1][2], trackingData[1][3], trackingData[1][4], trackingData[1][5])) { p.fill(255, 128, 0); }
-      else { p.fill(0, 255, 0); }
+      setTrackingColor(trackingData[1][2], trackingData[1][3], trackingData[1][4], trackingData[1][5]);
       DrawGravityPlace(trackingData[1][4], trackingData[1][5], canvasWidth, canvasHeight);
     };
+
+    function setTrackingColor(x1: number, y1: number, x2: number, y2: number) {
+      if (judgeDistance(x1, y1, x2, y2)) { p.fill(255, 0, 0); }
+      else { p.fill(0, 255, 0); }
+    }
 
     function setColor(isColor: boolean) {
       if (isColor) { p.fill(255, 0, 0); }
@@ -112,7 +118,7 @@ export function DisplayGravityPlace() {
   )
 }
 
-export function isTrackingGravity(x1: number, y1: number, x2: number, y2: number) {
+export function judgeDistance(x1: number, y1: number, x2: number, y2: number) {
   if (x1 === 0 && y1 === 0 && x2 === 0 && y2 === 0) { return false; }
   let distance = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))
   return (distance < 20)

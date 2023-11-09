@@ -28,16 +28,14 @@ export function ResearchHome() {
       <ExplainDrawing />
 
       <div style={{ display: 'flex' }}>
-        <DisplayGravityPlace />
+        <ReturnCameraInfo />
         <ReturnImageInfo />
+        <ColorGanerate />
       </div>
       <div style={{ display: 'flex' }}>
         <Canvas />
         <DisplayDrawingInfo />
-        <ReturnCameraInfo />
-      </div>
-      <div style={{ display: 'flex' }}>
-        <DisplayEmotionColorRatio /> <br />
+        <DisplayGravityPlace />
       </div>
       <ReturnTrackingInfo />
 

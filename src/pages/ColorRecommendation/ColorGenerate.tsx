@@ -1,6 +1,10 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
+import p5 from 'p5';
+
+let red = 255, green = 255, blue = 255, alpha = 255;
+let returnColor: p5.Color;
 
 export function ColorGanerate() {
   const sketch = (p: P5CanvasInstance) => {
@@ -13,7 +17,8 @@ export function ColorGanerate() {
     let hueBarX = 100, HUE_BAR_Y = CANVAS_HEIGHT - MENU_BAR_HEIGHT + MARGIN_HEIGHT;
 
     p.setup = () => {
-      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      p.createCanvas(256, 256);
       p.background(0);
       p.frameRate(10);
       p.colorMode(p.HSB, 360, 100, 100);
@@ -41,7 +46,6 @@ export function ColorGanerate() {
       // 色相バーの表示
       p.fill(255);
       p.rect(hueBarX, HUE_BAR_Y, HUE_BAR_WIDTH, HUE_BAR_HEIGHT);
-
     }
 
     function oparateMouse() {
@@ -49,13 +53,34 @@ export function ColorGanerate() {
       if (HUE_BAR_Y < p.mouseY && p.mouseY < HUE_BAR_Y + HUE_BAR_HEIGHT) {
         hueBarX = p.mouseX;
       }
+    }
 
+    function setColor() {
 
+      //p.colorMode(p.RGB);
+      let getColor = p.get(p.mouseX, p.mouseY);
+      let getColorObject = p.color(getColor);
+      red = p.red(getColorObject);
+      green = p.green(getColorObject);
+      blue = p.blue(getColorObject);
+      console.log(getColor);
+      console.log(getColorObject);
+      console.log(red, green, blue);
     }
 
     function displayColorInfo() {
       let getColor = p.get(p.mouseX, p.mouseY);
       let getColorObject = p.color(getColor);
+      //console.log(getColor);
+      //console.log(getColorObject);
+      if (p.keyIsPressed && p.key === "s") {
+        red = getColor[0];
+        green = getColor[1];
+        blue = getColor[2];
+        alpha = getColor[3];
+        //console.log(red, green, blue);
+        returnColor = getColorObject;
+      }
       let h = p.round(p.hue(getColorObject));
       let s = p.round(p.saturation(getColorObject));
       let b = p.round(p.brightness(getColorObject));
@@ -66,7 +91,7 @@ export function ColorGanerate() {
       text = '#' + p.hex(getColor);
       //text = '#' + p.hex(getColorObject); 
       //text = getColor.toString("rrggbb");
-      p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE * 2);
+      //p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE * 2);
     }
 
     function generateColor(hue: number) {
@@ -90,7 +115,15 @@ export function ColorGanerate() {
       }
       generateObject();
       displayColorInfo();
+      displayDrawingColor();
 
+    }
+
+    function displayDrawingColor() {
+      p.colorMode(p.RGB);
+      p.fill(red, green, blue, alpha);
+      p.ellipse(p.width - 15, p.height - 12, 15);
+      p.colorMode(p.HSB);
     }
 
     function oparateKeyboard(key: string) {
@@ -105,6 +138,11 @@ export function ColorGanerate() {
   return (
     <ReactP5Wrapper sketch={sketch} />
   )
+}
+
+export function ReturnColorPaletteValue() {
+  return [red, green, blue, alpha];
+  //return returnColor;
 }
 
 export default ColorGanerate

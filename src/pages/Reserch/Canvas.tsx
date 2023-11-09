@@ -10,7 +10,8 @@ import p5 from 'p5';
 import { ReturnColorsInfo, ColorInfo } from './ReturnCameraInfo';
 import { ReturnImageColorsInfo } from './ReturnImageInfo';
 import { ReturnTrackingData } from './ReturnTrackingInfo';
-import { isTrackingGravity } from './DisplayGravityPlace';
+import { judgeDistance } from './DisplayGravityPlace';
+import { ReturnColorPaletteValue } from '../ColorRecommendation/ColorGenerate';
 //import { ReturnTrackingData } from '../TestHandsfree';
 
 let isRandomMove = true;
@@ -25,7 +26,7 @@ const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
 const TRACKING_WIDTH = 300, TRACKING_HEIGHT = 150;
 const IS_TEST_MODE = true;
-let alpha = 50, backgroundAlpha = 15;
+let alpha = 100, backgroundAlpha = 15;
 let drawingWeight = 1, backgroundColor = "#000000", textSize = 10;
 let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
 let hue: number[] = [];
@@ -40,7 +41,7 @@ let mouseColor = [0, 0, 0, 0];
 let fps = DEFAULT_FPS;
 let standardDeviationLimit = 20, resistanceValue = 0.99;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = true;
-let isMoveBallGravity = false;
+let isMoveBallGravity = false, isTracking = true;
 let isMouseGravity = false;
 let angle = 0, radius = 0, speed = 1;
 let gravityX: number[] = [], gravityY: number[] = [];
@@ -53,6 +54,8 @@ let trackingX3 = trackingData[1][0]; //人差し指のx座標
 let trackingY3 = trackingData[1][1]; //人差し指のy座標
 let trackingX4 = trackingData[1][2]; //親指のx座標
 let trackingY4 = trackingData[1][3]; //親指のy座標
+//let returnDrawingColor: p5.Color = new p5.Color();
+let returnDrawingColor: p5.Color;
 
 let canvasWidth = 0, canvasHeight = 0, mouseX = 0, mouseY = 0;
 
@@ -122,6 +125,7 @@ export function Canvas() {
     const BALL_SIZE = 2;
     let ColorsInfo: Array<ColorInfo>;
     let drawingColor = p.color(255, 51, 105);
+    returnDrawingColor = p.color(255, 0, 0);
     fetchData(); //データの取得
 
     function addCameraBalls() {
@@ -160,6 +164,8 @@ export function Canvas() {
 
       if (isPaused) { return; }
 
+      if (isTracking) { addTrackingBall(); }
+
       if (isBackground) {
         p.blendMode(p.DARKEST);
         p.background(0, 0, 0, backgroundAlpha);
@@ -193,6 +199,16 @@ export function Canvas() {
       ballsTrackigGravity[0].position.y = trackingY1;
       ballsTrackigGravity[1].position.x = trackingX3;
       ballsTrackigGravity[1].position.y = trackingY3;
+      let color = ReturnColorPaletteValue();
+      drawingColor = p.color(color[0], color[1], color[2], color[3]);
+      returnDrawingColor = drawingColor;
+
+      /*
+      p.fill(0);
+      p.ellipse(p.width / 2, p.height / 2, 100);
+      p.fill(color[0], color[1], color[2], color[3]);
+      p.ellipse(p.width / 2, p.height / 2, 100);
+      */
 
       /*
       let testArray = [[0, 1, 2, 3], [4, 5, 6, 7]];
@@ -259,12 +275,14 @@ export function Canvas() {
       }
 
       //トラッキングの描画
-      if (isTrackingGravity(trackingData[0][2], trackingData[0][3], trackingData[0][4], trackingData[0][5])) {
+      /*
+      if (judgeDistance(trackingData[0][2], trackingData[0][3], trackingData[0][4], trackingData[0][5])) {
         ballsTrackigGravity[0].display();
       }
-      if (isTrackingGravity(trackingData[1][2], trackingData[1][3], trackingData[1][4], trackingData[1][5])) {
+      if (judgeDistance(trackingData[1][2], trackingData[1][3], trackingData[1][4], trackingData[1][5])) {
         ballsTrackigGravity[1].display();
       }
+      */
 
     }
 
@@ -320,7 +338,7 @@ export function Canvas() {
     }
 
     function moveBallTrackingGravity(ball: Ball, x1: number, y1: number, x2: number, y2: number) {
-      if (isTrackingGravity(x1, y1, x2, y2)) { moveGravity(ball, x1, y1); }
+      if (judgeDistance(x1, y1, x2, y2)) { moveGravity(ball, x1, y1); }
     }
 
     function moveBallsGravity() {
@@ -332,10 +350,12 @@ export function Canvas() {
           }
         }
         // マウスの座標での重力移動
-        if (clickMode === "gravity") { moveGravity(balls[i], p.mouseX, p.mouseY); }
+        if (clickMode === "gravity" && p.mouseIsPressed) { moveGravity(balls[i], p.mouseX, p.mouseY); }
         // トラッキングの手の座標での重力移動
-        moveBallTrackingGravity(balls[i], trackingX1, trackingY1, trackingX2, trackingY2);
-        moveBallTrackingGravity(balls[i], trackingX3, trackingY3, trackingX4, trackingY4);
+        if (isTracking) {
+          moveBallTrackingGravity(balls[i], trackingX1, trackingY1, trackingX2, trackingY2);
+          moveBallTrackingGravity(balls[i], trackingX3, trackingY3, trackingX4, trackingY4);
+        }
         // 慣性移動
         moveGravity(balls[i], -1, -1);
       }
@@ -347,7 +367,18 @@ export function Canvas() {
       }
     }
 
+    function addTrackingBall() {
+      if (judgeDistance(trackingData[0][2], trackingData[0][3], trackingData[0][4], trackingData[0][5])) {
+        balls.push(new Ball(trackingData[0][2], trackingData[0][3], drawingWeight, drawingColor, drawingEmotionNumber));
+      }
+      if (judgeDistance(trackingData[1][2], trackingData[1][3], trackingData[1][4], trackingData[1][5])) {
+        balls.push(new Ball(trackingData[1][2], trackingData[1][3], drawingWeight, drawingColor, drawingEmotionNumber));
+      }
+    }
+
     function addBall() {
+      balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, drawingColor, drawingEmotionNumber));
+
       //感情の色ではない色を追加する場合
       /*
       if (drawingEmotionNumber >= 8) {
@@ -357,6 +388,7 @@ export function Canvas() {
       }
       */
       //感情の色の残量がある場合
+      /*
       if (colorTank[drawingEmotionNumber] > 0) {
         p.colorMode(p.HSB, 360, 100, 100, 100);
         isColor = p.color(hue[drawingEmotionNumber], 100, 100, alpha);
@@ -365,6 +397,7 @@ export function Canvas() {
       }
       //感情の色がない場合
       else { console.error("色の残量がありません。(" + (emotionName[drawingEmotionNumber]) + ")"); }
+      */
     }
 
     //マウスのクリック中の動作
@@ -456,6 +489,7 @@ export function Canvas() {
       //ポーズモードの切り替え
       if (p.key === "p") { isPaused = !isPaused; }
       if (p.key === "f") { isFixedGravity = !isFixedGravity; }
+      if (p.key === "y") { isTracking = !isTracking; }
 
       //描画された点が動くかどうかの切り替え
       if (p.key === "m") { isMovedStraight = !isMovedStraight; }
@@ -544,5 +578,7 @@ export function ReturnGravityY() { return gravityY; }
 export function ReturnCanvasSize() { return [canvasWidth, canvasHeight]; }
 export function ReturnMouseXY() { return [mouseX, mouseY]; }
 export function ReturnIsMouseGravity() { return isMouseGravity; }
+export function ReturnIsTracking() { return isTracking; }
+export function ReturnDrawingColor() { return returnDrawingColor; }
 
 export default Canvas
