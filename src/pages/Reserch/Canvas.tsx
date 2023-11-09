@@ -195,7 +195,11 @@ export function Canvas() {
       ballsTrackigGravity[1].position.x = trackingX3;
       ballsTrackigGravity[1].position.y = trackingY3;
       let color = ReturnColorPaletteValue();
-      console.log(color);
+      //console.log(color);
+      //p.colorMode(p.HSB);
+      p.background(0);
+      p.fill(color[0], color[1], color[2]);
+      p.ellipse(p.width / 2, p.height / 2, 100);
 
       /*
       let testArray = [[0, 1, 2, 3], [4, 5, 6, 7]];
