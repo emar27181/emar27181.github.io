@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity, ReturnIsMovedGravity, ReturnIsMovedStraight, ReturnIsBackground, ReturnMouseColor, ReturnStandardDeviationLimit, ReturnResistanceValue, ReturnIsTrackingGravity, ReturnDrawingColor } from './Canvas';
+import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity, ReturnIsMovedGravity, ReturnIsMovedStraight, ReturnIsBackground, ReturnMouseColor, ReturnStandardDeviationLimit, ReturnResistanceValue, ReturnIsTracking, ReturnDrawingColor } from './Canvas';
 import { ReturnTrackingInfo, ReturnTrackingData, ReturnTrackingCanvasSize } from './ReturnTrackingInfo';
 
 export function DisplayDrawingInfo() {
@@ -23,7 +23,7 @@ export function DisplayDrawingInfo() {
     let standardDeviationLimit = ReturnStandardDeviationLimit();
     let resistanceValue = ReturnResistanceValue();
     let trackingData: number[][];
-    let isTrackingGravity = ReturnIsTrackingGravity();
+    let isTrackingGravity = ReturnIsTracking();
     let drawingColor = ReturnDrawingColor();
 
 
@@ -50,7 +50,7 @@ export function DisplayDrawingInfo() {
       standardDeviationLimit = ReturnStandardDeviationLimit();
       resistanceValue = ReturnResistanceValue();
       if (ReturnTrackingData().length === 2) { trackingData = ReturnTrackingData(); }
-      isTrackingGravity = ReturnIsTrackingGravity();
+      isTrackingGravity = ReturnIsTracking();
       drawingColor = ReturnDrawingColor();
 
       p.fill(0);

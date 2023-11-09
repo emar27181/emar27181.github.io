@@ -578,7 +578,7 @@ export function ReturnGravityY() { return gravityY; }
 export function ReturnCanvasSize() { return [canvasWidth, canvasHeight]; }
 export function ReturnMouseXY() { return [mouseX, mouseY]; }
 export function ReturnIsMouseGravity() { return isMouseGravity; }
-export function ReturnisTracking() { return isTracking; }
+export function ReturnIsTracking() { return isTracking; }
 export function ReturnDrawingColor() { return returnDrawingColor; }
 
 export default Canvas
