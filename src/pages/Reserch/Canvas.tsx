@@ -195,11 +195,14 @@ export function Canvas() {
       ballsTrackigGravity[1].position.x = trackingX3;
       ballsTrackigGravity[1].position.y = trackingY3;
       let color = ReturnColorPaletteValue();
-      //console.log(color);
-      //p.colorMode(p.HSB);
-      p.background(0);
-      p.fill(color[0], color[1], color[2]);
+      drawingColor = p.color(color[0], color[1], color[2], color[3]);
+
+      /*
+      p.fill(0);
       p.ellipse(p.width / 2, p.height / 2, 100);
+      p.fill(color[0], color[1], color[2], color[3]);
+      p.ellipse(p.width / 2, p.height / 2, 100);
+      */
 
       /*
       let testArray = [[0, 1, 2, 3], [4, 5, 6, 7]];
@@ -357,6 +360,8 @@ export function Canvas() {
     }
 
     function addBall() {
+      balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, drawingColor, drawingEmotionNumber));
+
       //感情の色ではない色を追加する場合
       /*
       if (drawingEmotionNumber >= 8) {
@@ -366,6 +371,7 @@ export function Canvas() {
       }
       */
       //感情の色の残量がある場合
+      /*
       if (colorTank[drawingEmotionNumber] > 0) {
         p.colorMode(p.HSB, 360, 100, 100, 100);
         isColor = p.color(hue[drawingEmotionNumber], 100, 100, alpha);
@@ -374,6 +380,7 @@ export function Canvas() {
       }
       //感情の色がない場合
       else { console.error("色の残量がありません。(" + (emotionName[drawingEmotionNumber]) + ")"); }
+      */
     }
 
     //マウスのクリック中の動作
