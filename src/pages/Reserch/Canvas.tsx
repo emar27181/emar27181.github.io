@@ -164,6 +164,8 @@ export function Canvas() {
 
       if (isPaused) { return; }
 
+      addTrackingBall();
+
       if (isBackground) {
         p.blendMode(p.DARKEST);
         p.background(0, 0, 0, backgroundAlpha);
@@ -273,12 +275,14 @@ export function Canvas() {
       }
 
       //トラッキングの描画
+      /*
       if (judgeDistance(trackingData[0][2], trackingData[0][3], trackingData[0][4], trackingData[0][5])) {
         ballsTrackigGravity[0].display();
       }
       if (judgeDistance(trackingData[1][2], trackingData[1][3], trackingData[1][4], trackingData[1][5])) {
         ballsTrackigGravity[1].display();
       }
+      */
 
     }
 
@@ -360,6 +364,15 @@ export function Canvas() {
     function ConsumeColor(drawingEmotionNumber: number) {
       if (colorTank[drawingEmotionNumber] > 0) {
         colorTank[drawingEmotionNumber] -= consumeSpeed;
+      }
+    }
+
+    function addTrackingBall() {
+      if (judgeDistance(trackingData[0][2], trackingData[0][3], trackingData[0][4], trackingData[0][5])) {
+        balls.push(new Ball(trackingData[0][2], trackingData[0][3], drawingWeight, drawingColor, drawingEmotionNumber));
+      }
+      if (judgeDistance(trackingData[1][2], trackingData[1][3], trackingData[1][4], trackingData[1][5])) {
+        balls.push(new Ball(trackingData[1][2], trackingData[1][3], drawingWeight, drawingColor, drawingEmotionNumber));
       }
     }
 
