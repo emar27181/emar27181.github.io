@@ -30,6 +30,10 @@ export function ExplainDrawing() {
           <td>g</td>
         </tr>
         <tr>
+          <td>移動体のトラッキングによる重力移動の切り替え</td>
+          <td>y</td>
+        </tr>
+        <tr>
           <td>マウスモードの切り替え(描画モード/重力モード/重力場追加モード)</td>
           <td>c</td>
         </tr>
