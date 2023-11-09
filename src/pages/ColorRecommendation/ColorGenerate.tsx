@@ -3,7 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import p5 from 'p5';
 
-let red = 0, green = 0, blue = 0, alpha = 0;
+let red = 255, green = 255, blue = 255, alpha = 255;
 let returnColor: p5.Color;
 
 export function ColorGanerate() {
@@ -115,7 +115,15 @@ export function ColorGanerate() {
       }
       generateObject();
       displayColorInfo();
+      displayDrawingColor();
 
+    }
+
+    function displayDrawingColor() {
+      p.colorMode(p.RGB);
+      p.fill(red, green, blue, alpha);
+      p.ellipse(p.width - 15, p.height - 12, 15);
+      p.colorMode(p.HSB);
     }
 
     function oparateKeyboard(key: string) {
