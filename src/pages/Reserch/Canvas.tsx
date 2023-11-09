@@ -11,6 +11,7 @@ import { ReturnColorsInfo, ColorInfo } from './ReturnCameraInfo';
 import { ReturnImageColorsInfo } from './ReturnImageInfo';
 import { ReturnTrackingData } from './ReturnTrackingInfo';
 import { judgeDistance } from './DisplayGravityPlace';
+import { ReturnColorPaletteValue } from '../ColorRecommendation/ColorGenerate';
 //import { ReturnTrackingData } from '../TestHandsfree';
 
 let isRandomMove = true;
@@ -193,6 +194,8 @@ export function Canvas() {
       ballsTrackigGravity[0].position.y = trackingY1;
       ballsTrackigGravity[1].position.x = trackingX3;
       ballsTrackigGravity[1].position.y = trackingY3;
+      let color = ReturnColorPaletteValue();
+      console.log(color);
 
       /*
       let testArray = [[0, 1, 2, 3], [4, 5, 6, 7]];

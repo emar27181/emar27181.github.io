@@ -4,6 +4,7 @@ import React from 'react';
 import p5 from 'p5';
 
 let red = 0, green = 0, blue = 0;
+let returnColor: p5.Color;
 
 export function ColorGanerate() {
   const sketch = (p: P5CanvasInstance) => {
@@ -76,7 +77,8 @@ export function ColorGanerate() {
         red = getColor[0];
         green = getColor[1];
         blue = getColor[2];
-        console.log(red, green, blue);
+        //console.log(red, green, blue);
+        returnColor = getColorObject;
       }
       let h = p.round(p.hue(getColorObject));
       let s = p.round(p.saturation(getColorObject));
@@ -129,8 +131,9 @@ export function ColorGanerate() {
   )
 }
 
-export function returnRGBValue() {
-  return [red, green, blue];
+export function ReturnColorPaletteValue() {
+  //return [red, green, blue];
+  return returnColor;
 }
 
 export default ColorGanerate
