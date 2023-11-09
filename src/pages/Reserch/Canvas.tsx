@@ -27,7 +27,7 @@ const MAX_TANK_VALUE = 100;
 const TRACKING_WIDTH = 300, TRACKING_HEIGHT = 150;
 const IS_TEST_MODE = true;
 let alpha = 50, backgroundAlpha = 15;
-let drawingWeight = 1, backgroundColor = "#000000", textSize = 10;
+let drawingWeight = 10, backgroundColor = "#000000", textSize = 10;
 let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
 let hue: number[] = [];
 let intense: number[] = [];
@@ -54,6 +54,8 @@ let trackingX3 = trackingData[1][0]; //人差し指のx座標
 let trackingY3 = trackingData[1][1]; //人差し指のy座標
 let trackingX4 = trackingData[1][2]; //親指のx座標
 let trackingY4 = trackingData[1][3]; //親指のy座標
+//let returnDrawingColor: p5.Color = new p5.Color();
+let returnDrawingColor: p5.Color;
 
 let canvasWidth = 0, canvasHeight = 0, mouseX = 0, mouseY = 0;
 
@@ -123,6 +125,7 @@ export function Canvas() {
     const BALL_SIZE = 2;
     let ColorsInfo: Array<ColorInfo>;
     let drawingColor = p.color(255, 51, 105);
+    returnDrawingColor = p.color(255, 0, 0);
     fetchData(); //データの取得
 
     function addCameraBalls() {
@@ -196,6 +199,7 @@ export function Canvas() {
       ballsTrackigGravity[1].position.y = trackingY3;
       let color = ReturnColorPaletteValue();
       drawingColor = p.color(color[0], color[1], color[2], color[3]);
+      returnDrawingColor = drawingColor;
 
       /*
       p.fill(0);
@@ -562,5 +566,6 @@ export function ReturnCanvasSize() { return [canvasWidth, canvasHeight]; }
 export function ReturnMouseXY() { return [mouseX, mouseY]; }
 export function ReturnIsMouseGravity() { return isMouseGravity; }
 export function ReturnIsTrackingGravity() { return isTrackingGravity; }
+export function ReturnDrawingColor() { return returnDrawingColor; }
 
 export default Canvas

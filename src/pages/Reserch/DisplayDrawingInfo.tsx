@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity, ReturnIsMovedGravity, ReturnIsMovedStraight, ReturnIsBackground, ReturnMouseColor, ReturnStandardDeviationLimit, ReturnResistanceValue, ReturnIsTrackingGravity } from './Canvas';
+import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity, ReturnIsMovedGravity, ReturnIsMovedStraight, ReturnIsBackground, ReturnMouseColor, ReturnStandardDeviationLimit, ReturnResistanceValue, ReturnIsTrackingGravity, ReturnDrawingColor } from './Canvas';
 import { ReturnTrackingInfo, ReturnTrackingData, ReturnTrackingCanvasSize } from './ReturnTrackingInfo';
 
 export function DisplayDrawingInfo() {
@@ -24,6 +24,7 @@ export function DisplayDrawingInfo() {
     let resistanceValue = ReturnResistanceValue();
     let trackingData: number[][];
     let isTrackingGravity = ReturnIsTrackingGravity();
+    let drawingColor = ReturnDrawingColor();
 
 
     p.setup = () => {
@@ -50,6 +51,7 @@ export function DisplayDrawingInfo() {
       resistanceValue = ReturnResistanceValue();
       if (ReturnTrackingData().length === 2) { trackingData = ReturnTrackingData(); }
       isTrackingGravity = ReturnIsTrackingGravity();
+      drawingColor = ReturnDrawingColor();
 
       p.fill(0);
       p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) +
@@ -61,7 +63,9 @@ export function DisplayDrawingInfo() {
         "\nresistance: " + resistanceValue +
         "\nisTrackingGravity: \n" + isTrackingGravity,
         0, 20);
-      p.fill(hue, 100, 100, 100);
+      //p.fill(hue, 100, 100, 100);
+      p.fill(drawingColor);
+
       //p.ellipse(p.width / 2, p.height - 50, drawingWeight);
       displayFigure(p.width / 2, p.height - 50, drawingWeight);
     };
