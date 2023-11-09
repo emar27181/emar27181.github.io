@@ -1,6 +1,9 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
+import p5 from 'p5';
+
+let red = 0, green = 0, blue = 0;
 
 export function ColorGanerate() {
   const sketch = (p: P5CanvasInstance) => {
@@ -42,7 +45,6 @@ export function ColorGanerate() {
       // 色相バーの表示
       p.fill(255);
       p.rect(hueBarX, HUE_BAR_Y, HUE_BAR_WIDTH, HUE_BAR_HEIGHT);
-
     }
 
     function oparateMouse() {
@@ -50,13 +52,32 @@ export function ColorGanerate() {
       if (HUE_BAR_Y < p.mouseY && p.mouseY < HUE_BAR_Y + HUE_BAR_HEIGHT) {
         hueBarX = p.mouseX;
       }
+    }
 
+    function setColor() {
 
+      //p.colorMode(p.RGB);
+      let getColor = p.get(p.mouseX, p.mouseY);
+      let getColorObject = p.color(getColor);
+      red = p.red(getColorObject);
+      green = p.green(getColorObject);
+      blue = p.blue(getColorObject);
+      console.log(getColor);
+      console.log(getColorObject);
+      console.log(red, green, blue);
     }
 
     function displayColorInfo() {
       let getColor = p.get(p.mouseX, p.mouseY);
       let getColorObject = p.color(getColor);
+      //console.log(getColor);
+      //console.log(getColorObject);
+      if (p.keyIsPressed && p.key === "s") {
+        red = getColor[0];
+        green = getColor[1];
+        blue = getColor[2];
+        console.log(red, green, blue);
+      }
       let h = p.round(p.hue(getColorObject));
       let s = p.round(p.saturation(getColorObject));
       let b = p.round(p.brightness(getColorObject));
@@ -106,6 +127,10 @@ export function ColorGanerate() {
   return (
     <ReactP5Wrapper sketch={sketch} />
   )
+}
+
+export function returnRGBValue() {
+  return [red, green, blue];
 }
 
 export default ColorGanerate
