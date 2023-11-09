@@ -132,8 +132,8 @@ export function ColorGanerate() {
 }
 
 export function ReturnColorPaletteValue() {
-  //return [red, green, blue];
-  return returnColor;
+  return [red, green, blue];
+  //return returnColor;
 }
 
 export default ColorGanerate
