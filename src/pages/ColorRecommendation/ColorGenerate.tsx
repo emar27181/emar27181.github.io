@@ -3,7 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import p5 from 'p5';
 
-let red = 0, green = 0, blue = 0;
+let red = 0, green = 0, blue = 0, alpha = 0;
 let returnColor: p5.Color;
 
 export function ColorGanerate() {
@@ -77,6 +77,7 @@ export function ColorGanerate() {
         red = getColor[0];
         green = getColor[1];
         blue = getColor[2];
+        alpha = getColor[3];
         //console.log(red, green, blue);
         returnColor = getColorObject;
       }
@@ -132,7 +133,7 @@ export function ColorGanerate() {
 }
 
 export function ReturnColorPaletteValue() {
-  return [red, green, blue];
+  return [red, green, blue, alpha];
   //return returnColor;
 }
 
