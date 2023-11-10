@@ -20,6 +20,7 @@ import ReserchHome from './views/ResearchHome';
 import logo from './assets/icon2.png';
 import ResearchHome from './views/ResearchHome';
 import CanvasHome from './views/CanvasHome';
+import SoftwareKisoHome from './views/SoftwareKisoHome';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <Nav.Link href="/workMenu">作品集</Nav.Link>
           <Nav.Link href='/researchHome'> 卒業研究 </Nav.Link>
           <Nav.Link href='/canvas'> キャンバス </Nav.Link>
+          <Nav.Link href='/softwareKisoHome'> ソフトウェア基礎特論</Nav.Link>
         </Nav>
         <Form className="ml-auto d-flex">
           <FormControl type="text" placeholder="Search(Preparing)" className="ml-sm-2" />
@@ -96,6 +98,10 @@ function App() {
 
         <Route path="/canvas">
           <CanvasHome />
+        </Route>
+
+        <Route path="/softwareKisoHome">
+          <SoftwareKisoHome />
         </Route>
 
         <Route>
