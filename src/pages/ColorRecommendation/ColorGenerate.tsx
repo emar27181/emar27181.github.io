@@ -128,6 +128,8 @@ export function ColorGanerate() {
 
     function oparateKeyboard(key: string) {
       if (key === "c") { generateColor(randomSeed); }
+      if (key === "ArrowRight") { hueBarX += 5; }
+      if (key === "ArrowLeft") { hueBarX -= 5; }
     }
 
   }
