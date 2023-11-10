@@ -23,13 +23,19 @@ export function MatchBoGame() {
       displayScore();
       displayMatchValue(0);
       displayMatchValue(1);
-      //console.log("(" + matchValue[0][0] + ", " + matchValue[0][1] + ")\n(" + matchValue[1][0] + ", " + matchValue[1][1] + ")");
+      console.log("(" + matchValue[0][0] + ", " + matchValue[0][1] + ")\n(" + matchValue[1][0] + ", " + matchValue[1][1] + ")");
 
       judgeGameEnded();
       //試合が続いている場合
       if (isGameEnded === -1) {
-        if (p.frameCount % 2 === 0) { attackRandom(0, 1); }
-        else { attackRandom(1, 0); }
+        if (p.frameCount % 2 === 0) {
+          attackRandom(0, 1);
+          //attackHeuristic(0, 1);
+        }
+        else {
+          //attackRandom(1, 0);
+          attackHeuristic(1, 0);
+        }
       }
       //試合が終わっている場合
       else { resetGame(); }
@@ -60,7 +66,7 @@ export function MatchBoGame() {
       p.textSize(30);
       if (displaySideNumber === isGameEnded) { p.fill(255, 0, 0); }
       else { p.fill(255); }
-      p.text("(" + matchValue[displaySideNumber][0] + ", " + matchValue[displaySideNumber][1] + ")", 30, 30 + displaySideNumber * 50);
+      p.text("P" + displaySideNumber + ": (" + matchValue[displaySideNumber][0] + ", " + matchValue[displaySideNumber][1] + ")", 30, 30 + displaySideNumber * 50);
     }
 
     function judgeGameEnded() {
@@ -103,6 +109,44 @@ export function MatchBoGame() {
         matchValue[receiveSideNumber][0] += matchValue[attackSideNumber][attackHandNumber];
       }
       // 1を攻撃する場合
+      else {
+        matchValue[receiveSideNumber][1] += matchValue[attackSideNumber][attackHandNumber];
+      }
+    }
+
+    function attackHeuristic(attackSideNumber: number, receiveSideNumber: number) {
+      let attackHandNumber: number; // どちらの手で攻撃するかを保存する変数
+
+      // 自分のどちらの手で攻撃するかの決定
+      // どちらかの自分の手が5以上の場合
+      if (matchValue[attackSideNumber][0] >= 5) {
+        attackHandNumber = 1;
+      }
+      else if (matchValue[attackSideNumber][1] >= 5) {
+        attackHandNumber = 0;
+      }
+
+      // どちらの自分の手も5未満の場合
+      else if (matchValue[attackSideNumber][0] > matchValue[attackSideNumber][1]) {
+        attackHandNumber = 0;
+      }
+      else {
+        attackHandNumber = 1;
+      }
+
+      // 相手のどちらかの手を攻撃するかの決定と攻撃
+      // どちらかの相手の手が5以上の場合
+      if (matchValue[receiveSideNumber][0] >= 5) {
+        matchValue[receiveSideNumber][1] += matchValue[attackSideNumber][attackHandNumber];
+      }
+      else if (matchValue[receiveSideNumber][1] >= 5) {
+        matchValue[receiveSideNumber][0] += matchValue[attackSideNumber][attackHandNumber];
+      }
+
+      // どちらの自分の手も5未満の場合
+      else if (matchValue[receiveSideNumber][0] > matchValue[receiveSideNumber][1]) {
+        matchValue[receiveSideNumber][0] += matchValue[attackSideNumber][attackHandNumber];
+      }
       else {
         matchValue[receiveSideNumber][1] += matchValue[attackSideNumber][attackHandNumber];
       }
