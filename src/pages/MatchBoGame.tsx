@@ -5,7 +5,7 @@ import React from 'react';
 export function MatchBoGame() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
+    const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256, FPS = 10;
 
     let matchValue = [[1, 1], [1, 1]];
     let isGameEnded = -1;
@@ -16,7 +16,7 @@ export function MatchBoGame() {
     };
 
     p.draw = () => {
-      p.frameRate(1);
+      p.frameRate(FPS);
       p.background(0);
       p.fill(255);
       p.textSize(30);
