@@ -20,6 +20,7 @@ export function MatchBoGame() {
       p.frameRate(FPS);
       p.background(0);
 
+      displayScore();
       displayMatchValue(0);
       displayMatchValue(1);
       //console.log("(" + matchValue[0][0] + ", " + matchValue[0][1] + ")\n(" + matchValue[1][0] + ", " + matchValue[1][1] + ")");
@@ -44,13 +45,22 @@ export function MatchBoGame() {
       //変数のリセット
       isGameEnded = -1;
       matchValue = [[1, 1], [1, 1]];
-      console.log("player0 win:player1 win = " + player0Win + ":" + player1Win);
+      console.log("player0 win : player1 win = " + player0Win + ":" + player1Win);
+    }
+
+    function displayScore() {
+      p.textSize(10);
+      let player0WinRate = 100 * (player0Win / (player0Win + player1Win));
+      let player1WinRate = 100 * (player1Win / (player0Win + player1Win));
+      p.text("player0 win : player1 win = " + player0Win + ":" + player1Win +
+        "\nplayer0 win rate = " + player0WinRate + "\nplayer1 win rate = " + player1WinRate, 0, p.height - 50);
     }
 
     function displayMatchValue(displaySideNumber: number) {
+      p.textSize(30);
       if (displaySideNumber === isGameEnded) { p.fill(255, 0, 0); }
       else { p.fill(255); }
-      p.text(matchValue[displaySideNumber][0] + ", " + matchValue[displaySideNumber][1], p.width / 2 - 15, p.height / 2 + displaySideNumber * 50);
+      p.text("(" + matchValue[displaySideNumber][0] + ", " + matchValue[displaySideNumber][1] + ")", 30, 30 + displaySideNumber * 50);
     }
 
     function judgeGameEnded() {
