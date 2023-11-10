@@ -26,8 +26,8 @@ export function MatchBoGame() {
 
       judgeGameEnded();
       if (isGameEnded === -1) {
-        if (p.frameCount % 2 === 0) { attackMatchBo(0, 1); }
-        else { attackMatchBo(1, 0); }
+        if (p.frameCount % 2 === 0) { attackRandom(0, 1); }
+        else { attackRandom(1, 0); }
       }
     };
 
@@ -42,7 +42,7 @@ export function MatchBoGame() {
       else if (matchValue[1][0] >= 5 && matchValue[1][1] >= 5) { isGameEnded = 0; }
     }
 
-    function attackMatchBo(attackSideNumber: number, receiveSideNumber: number) {
+    function attackRandom(attackSideNumber: number, receiveSideNumber: number) {
       let attackHandNumber: number; // どちらの手で攻撃するかを保存する変数
 
       // 自分のどちらの手で攻撃するかの決定
