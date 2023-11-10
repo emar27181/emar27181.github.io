@@ -13,14 +13,15 @@ export function MatchBoGame() {
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(0);
+      p.textSize(30);
     };
 
     p.draw = () => {
       p.frameRate(FPS);
       p.background(0);
-      p.fill(255);
-      p.textSize(30);
-      p.text(matchValue[0][0] + ", " + matchValue[0][1] + "\n\n" + matchValue[1][0] + ", " + matchValue[1][1], 0, p.height / 2 - 15);
+
+      displayScore(0);
+      displayScore(1);
       if (isGameEnded === -1) { console.log("(" + matchValue[0][0] + ", " + matchValue[0][1] + ")\n(" + matchValue[1][0] + ", " + matchValue[1][1] + ")"); }
 
       judgeGameEnded();
@@ -29,6 +30,12 @@ export function MatchBoGame() {
         else { attackMatchBo(1, 0); }
       }
     };
+
+    function displayScore(displaySideNumber: number) {
+      if (displaySideNumber === isGameEnded) { p.fill(255, 0, 0); }
+      else { p.fill(255); }
+      p.text(matchValue[displaySideNumber][0] + ", " + matchValue[displaySideNumber][1], p.width / 2 - 15, p.height / 2 + displaySideNumber * 50);
+    }
 
     function judgeGameEnded() {
       if (matchValue[0][0] >= 5 && matchValue[0][1] >= 5) { isGameEnded = 1; }
