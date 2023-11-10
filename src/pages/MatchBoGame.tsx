@@ -6,7 +6,7 @@ export function MatchBoGame() {
   const sketch = (p: P5CanvasInstance) => {
 
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256, FPS = 60;
-    let firstAttackWin = 0, secondAttackWin = 0;
+    let player1Win = 0, player0Win = 0;
     let matchValue = [[1, 1], [1, 1]];
     let isGameEnded = -1;
 
@@ -36,15 +36,15 @@ export function MatchBoGame() {
 
     function resetGame() {
       if (isGameEnded === 0) {
-        secondAttackWin++;
+        player0Win++;
       }
       else if (isGameEnded === 1) {
-        firstAttackWin++;
+        player1Win++;
       }
       //変数のリセット
       isGameEnded = -1;
       matchValue = [[1, 1], [1, 1]];
-      console.log("firstWin:SecondWin = " + firstAttackWin + ":" + secondAttackWin);
+      console.log("player0 win:player1 win = " + player0Win + ":" + player1Win);
     }
 
     function displayMatchValue(displaySideNumber: number) {
