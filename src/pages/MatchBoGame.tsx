@@ -20,8 +20,8 @@ export function MatchBoGame() {
       p.frameRate(FPS);
       p.background(0);
 
-      displayScore(0);
-      displayScore(1);
+      displayMatchValue(0);
+      displayMatchValue(1);
       if (isGameEnded === -1) {
         //console.log("(" + matchValue[0][0] + ", " + matchValue[0][1] + ")\n(" + matchValue[1][0] + ", " + matchValue[1][1] + ")");
       }
@@ -50,7 +50,7 @@ export function MatchBoGame() {
 
     };
 
-    function displayScore(displaySideNumber: number) {
+    function displayMatchValue(displaySideNumber: number) {
       if (displaySideNumber === isGameEnded) { p.fill(255, 0, 0); }
       else { p.fill(255); }
       p.text(matchValue[displaySideNumber][0] + ", " + matchValue[displaySideNumber][1], p.width / 2 - 15, p.height / 2 + displaySideNumber * 50);
