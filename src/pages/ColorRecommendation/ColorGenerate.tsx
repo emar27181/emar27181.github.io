@@ -127,10 +127,7 @@ export function ColorGanerate() {
     }
 
     function oparateKeyboard(key: string) {
-      switch (key) {
-        case "c": generateColor(randomSeed); break;
-        default: break;
-      }
+      if (key === "c") { generateColor(randomSeed); }
     }
 
   }
