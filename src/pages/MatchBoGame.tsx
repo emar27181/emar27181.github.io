@@ -8,6 +8,7 @@ export function MatchBoGame() {
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 
     let matchValue = [[1, 1], [1, 1]];
+    let isGameEnded = -1;
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -15,15 +16,23 @@ export function MatchBoGame() {
     };
 
     p.draw = () => {
-      p.frameRate(0.3);
+      p.frameRate(1);
       p.background(0);
       p.fill(255);
       p.textSize(30);
       p.text(matchValue[0][0] + ", " + matchValue[0][1] + "\n\n" + matchValue[1][0] + ", " + matchValue[1][1], 0, p.height / 2 - 15);
 
-      if (p.frameCount % 2 === 0) { attackMatchBo(0, 1); }
-      else { attackMatchBo(1, 0); }
+      judgeGameEnded();
+      if (isGameEnded === -1) {
+        if (p.frameCount % 2 === 0) { attackMatchBo(0, 1); }
+        else { attackMatchBo(1, 0); }
+      }
     };
+
+    function judgeGameEnded() {
+      if (matchValue[0][0] >= 5 && matchValue[0][1] >= 5) { isGameEnded = 1; }
+      else if (matchValue[1][0] >= 5 && matchValue[1][1] >= 5) { isGameEnded = 0; }
+    }
 
     function attackMatchBo(attackSideNumber: number, receiveSideNumber: number) {
       let attackHandNumber: number; // どちらの手で攻撃するかを保存する変数
