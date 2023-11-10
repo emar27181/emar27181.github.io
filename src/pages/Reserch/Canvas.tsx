@@ -39,7 +39,7 @@ let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の�
 let sumIntense = 0;
 let mouseColor = [0, 0, 0, 0];
 let fps = DEFAULT_FPS;
-let standardDeviationLimit = 20, resistanceValue = 0.99;
+let standardDeviationLimit = 20, resistanceValue = 0.9;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = true;
 let isMoveBallGravity = false, isTracking = true;
 let isMouseGravity = false;
