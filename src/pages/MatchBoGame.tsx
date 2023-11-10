@@ -21,6 +21,7 @@ export function MatchBoGame() {
       p.fill(255);
       p.textSize(30);
       p.text(matchValue[0][0] + ", " + matchValue[0][1] + "\n\n" + matchValue[1][0] + ", " + matchValue[1][1], 0, p.height / 2 - 15);
+      if (isGameEnded === -1) { console.log("(" + matchValue[0][0] + ", " + matchValue[0][1] + ")\n(" + matchValue[1][0] + ", " + matchValue[1][1] + ")"); }
 
       judgeGameEnded();
       if (isGameEnded === -1) {
@@ -38,8 +39,16 @@ export function MatchBoGame() {
       let attackHandNumber: number; // どちらの手で攻撃するかを保存する変数
 
       // 自分のどちらの手で攻撃するかの決定
+      // どちらかの自分の手が5以上の場合
+      if (matchValue[attackSideNumber][0] >= 5) {
+        attackHandNumber = 1;
+      }
+      else if (matchValue[attackSideNumber][1] >= 5) {
+        attackHandNumber = 0;
+      }
+      // どちらの自分の手も5未満の場合
       // 0で攻撃する場合
-      if (p.random() < 0.5) {
+      else if (p.random() < 0.5) {
         attackHandNumber = 0;
       }
       // 1で攻撃する場合
@@ -48,8 +57,16 @@ export function MatchBoGame() {
       }
 
       // 相手のどちらかの手を攻撃するかの決定と攻撃
+      // どちらかの相手の手が5以上の場合
+      if (matchValue[receiveSideNumber][0] >= 5) {
+        matchValue[receiveSideNumber][1] += matchValue[attackSideNumber][attackHandNumber];
+      }
+      else if (matchValue[receiveSideNumber][1] >= 5) {
+        matchValue[receiveSideNumber][0] += matchValue[attackSideNumber][attackHandNumber];
+      }
+      // どちらの自分の手も5未満の場合
       // 0を攻撃する場合
-      if (p.random() < 0.5) {
+      else if (p.random() < 0.5) {
         matchValue[receiveSideNumber][0] += matchValue[attackSideNumber][attackHandNumber];
       }
       // 1を攻撃する場合
