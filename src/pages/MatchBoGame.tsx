@@ -22,9 +22,7 @@ export function MatchBoGame() {
 
       displayMatchValue(0);
       displayMatchValue(1);
-      if (isGameEnded === -1) {
-        //console.log("(" + matchValue[0][0] + ", " + matchValue[0][1] + ")\n(" + matchValue[1][0] + ", " + matchValue[1][1] + ")");
-      }
+      //console.log("(" + matchValue[0][0] + ", " + matchValue[0][1] + ")\n(" + matchValue[1][0] + ", " + matchValue[1][1] + ")");
 
       judgeGameEnded();
       //試合が続いている場合
@@ -32,23 +30,22 @@ export function MatchBoGame() {
         if (p.frameCount % 2 === 0) { attackRandom(0, 1); }
         else { attackRandom(1, 0); }
       }
-
       //試合が終わっている場合
-      else {
-        if (isGameEnded === 0) {
-          secondAttackWin++;
-        }
-        else if (isGameEnded === 1) {
-          firstAttackWin++;
-        }
-        //変数のリセット
-        isGameEnded = -1;
-        matchValue = [[1, 1], [1, 1]];
-        console.log("firstWin:SecondWin = " + firstAttackWin + ":" + secondAttackWin);
-      }
-
-
+      else { resetGame(); }
     };
+
+    function resetGame() {
+      if (isGameEnded === 0) {
+        secondAttackWin++;
+      }
+      else if (isGameEnded === 1) {
+        firstAttackWin++;
+      }
+      //変数のリセット
+      isGameEnded = -1;
+      matchValue = [[1, 1], [1, 1]];
+      console.log("firstWin:SecondWin = " + firstAttackWin + ":" + secondAttackWin);
+    }
 
     function displayMatchValue(displaySideNumber: number) {
       if (displaySideNumber === isGameEnded) { p.fill(255, 0, 0); }
