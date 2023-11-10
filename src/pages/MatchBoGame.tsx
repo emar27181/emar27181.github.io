@@ -5,7 +5,7 @@ import React from 'react';
 export function MatchBoGame() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256, FPS = 1;
+    const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256, FPS = 60;
     let firstAttackWin = 0, secondAttackWin = 0;
     let matchValue = [[1, 1], [1, 1]];
     let isGameEnded = -1;
@@ -22,7 +22,9 @@ export function MatchBoGame() {
 
       displayScore(0);
       displayScore(1);
-      if (isGameEnded === -1) { console.log("(" + matchValue[0][0] + ", " + matchValue[0][1] + ")\n(" + matchValue[1][0] + ", " + matchValue[1][1] + ")"); }
+      if (isGameEnded === -1) {
+        //console.log("(" + matchValue[0][0] + ", " + matchValue[0][1] + ")\n(" + matchValue[1][0] + ", " + matchValue[1][1] + ")");
+      }
 
       judgeGameEnded();
       //試合が続いている場合
@@ -42,6 +44,7 @@ export function MatchBoGame() {
         //変数のリセット
         isGameEnded = -1;
         matchValue = [[1, 1], [1, 1]];
+        console.log("firstWin:SecondWin = " + firstAttackWin + ":" + secondAttackWin);
       }
 
 
