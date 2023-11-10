@@ -6,7 +6,7 @@ export function MatchBoGame() {
   const sketch = (p: P5CanvasInstance) => {
 
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256, FPS = 60;
-    let player1Win = 0, player0Win = 0;
+    let player1Win = 0, player0Win = 0, hueristicPlayerNumber = 1;
     let matchValue = [[1, 1], [1, 1]];
     let isGameEnded = -1;
 
@@ -28,13 +28,15 @@ export function MatchBoGame() {
       judgeGameEnded();
       //試合が続いている場合
       if (isGameEnded === -1) {
-        if (p.frameCount % 2 === 0) {
-          attackRandom(0, 1);
-          //attackHeuristic(0, 1);
+        //先攻プレイヤーの行動
+        if (p.frameCount % 2 != 1) {
+          if (hueristicPlayerNumber === 0) { attackHeuristic(0, 1); }
+          else { attackRandom(0, 1); }
         }
+        //後攻プレイヤーの行動
         else {
-          //attackRandom(1, 0);
-          attackHeuristic(1, 0);
+          if (hueristicPlayerNumber === 1) { attackHeuristic(1, 0); }
+          else { attackRandom(1, 0); }
         }
       }
       //試合が終わっている場合
@@ -58,8 +60,9 @@ export function MatchBoGame() {
       p.textSize(10);
       let player0WinRate = 100 * (player0Win / (player0Win + player1Win));
       let player1WinRate = 100 * (player1Win / (player0Win + player1Win));
-      p.text("player0 win : player1 win = " + player0Win + ":" + player1Win +
-        "\nplayer0 win rate = " + player0WinRate + "\nplayer1 win rate = " + player1WinRate, 0, p.height - 50);
+      p.text("player0 win(先攻) : player1 win(後攻) = " + player0Win + ":" + player1Win +
+        "\nplayer0 win rate = " + player0WinRate + "\nplayer1 win rate = " + player1WinRate +
+        "\n※player" + hueristicPlayerNumber + "がヒューリスティックプレイヤー", 0, p.height - 50);
     }
 
     function displayMatchValue(displaySideNumber: number) {
