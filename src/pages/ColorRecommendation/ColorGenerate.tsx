@@ -122,7 +122,9 @@ export function ColorGanerate() {
     function displayDrawingColor() {
       p.colorMode(p.RGB);
       p.fill(red, green, blue, alpha);
-      p.ellipse(p.width - 15, p.height - 12, 15);
+      //p.ellipse(p.width - 15, p.height - 12, 15);
+
+      p.rect(p.width - 20, p.height - 20, 15);
       p.colorMode(p.HSB);
     }
 
