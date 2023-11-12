@@ -3,7 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import p5 from 'p5';
 
-let red = 255, green = 255, blue = 255, alpha = 255;
+let red = 255, green = 0, blue = 0, alpha = 255;
 let returnColor: p5.Color;
 
 export function ColorGanerate() {
