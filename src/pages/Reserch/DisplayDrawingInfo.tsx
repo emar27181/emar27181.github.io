@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity, ReturnIsMovedGravity, ReturnIsMovedStraight, ReturnIsBackground, ReturnMouseColor, ReturnStandardDeviationLimit, ReturnResistanceValue, ReturnIsTracking, ReturnDrawingColor } from './Canvas';
+import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity, ReturnIsMovedGravity, ReturnIsMovedStraight, ReturnIsBackground, ReturnMouseColor, ReturnStandardDeviationLimit, ReturnResistanceValue, ReturnIsTracking, ReturnDrawingColor, ReturnIsRepulsion } from './Canvas';
 import { ReturnTrackingInfo, ReturnTrackingData, ReturnTrackingCanvasSize } from './ReturnTrackingInfo';
 
 export function DisplayDrawingInfo() {
@@ -25,6 +25,7 @@ export function DisplayDrawingInfo() {
     let trackingData: number[][];
     let isTrackingGravity = ReturnIsTracking();
     let drawingColor = ReturnDrawingColor();
+    let isRepulsion = ReturnIsRepulsion();
 
 
     p.setup = () => {
@@ -52,6 +53,7 @@ export function DisplayDrawingInfo() {
       if (ReturnTrackingData().length === 2) { trackingData = ReturnTrackingData(); }
       isTrackingGravity = ReturnIsTracking();
       drawingColor = ReturnDrawingColor();
+      isRepulsion = ReturnIsRepulsion();
 
       p.fill(0);
       p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) +
@@ -61,7 +63,9 @@ export function DisplayDrawingInfo() {
         "\nisBackground: \n" + isBackground + "\ncolor: \n(" + mouseColor + ")\n" +
         "SDLimit: " + p.round(standardDeviationLimit) +
         "\nresistance: " + resistanceValue +
-        "\nisTrackingGravity: \n" + isTrackingGravity,
+        "\nisTrackingGravity: \n" + isTrackingGravity +
+        "\nisReplusion: " + isRepulsion
+        ,
         0, 20);
       //p.fill(hue, 100, 100, 100);
       p.fill(drawingColor);

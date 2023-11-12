@@ -3,14 +3,14 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import p5 from 'p5';
 
-let red = 255, green = 255, blue = 255, alpha = 255;
+let red = 255, green = 0, blue = 0, alpha = 255, h = 0, s = 50, b = 50;
 let returnColor: p5.Color;
 
 export function ColorGanerate() {
   const sketch = (p: P5CanvasInstance) => {
 
     const CANVAS_WIDTH = 200, CANVAS_HEIGHT = 300, MENU_BAR_WIDTH = 0, MENU_BAR_HEIGHT = 100,
-      DRAWING_WIDTH = CANVAS_WIDTH - MENU_BAR_WIDTH, DRAWING_HEIGHT = CANVAS_HEIGHT - MENU_BAR_HEIGHT,
+      PALETTE_WIDTH = CANVAS_WIDTH - MENU_BAR_WIDTH, PALETTE_HEIGHT = CANVAS_HEIGHT - MENU_BAR_HEIGHT,
       HUE_BAR_WIDTH = 3, HUE_BAR_HEIGHT = 20, MARGIN_HEIGHT = 10, TEXT_SIZE = 10,
       SPLIT = 20, DEBUG = true;
     let isColorChanged = false, hue = 100, saturation = 0, value = 0;
@@ -53,45 +53,44 @@ export function ColorGanerate() {
       if (HUE_BAR_Y < p.mouseY && p.mouseY < HUE_BAR_Y + HUE_BAR_HEIGHT) {
         hueBarX = p.mouseX;
       }
+
     }
 
     function setColor() {
-
-      //p.colorMode(p.RGB);
-      let getColor = p.get(p.mouseX, p.mouseY);
-      let getColorObject = p.color(getColor);
-      red = p.red(getColorObject);
-      green = p.green(getColorObject);
-      blue = p.blue(getColorObject);
-      console.log(getColor);
-      console.log(getColorObject);
-      console.log(red, green, blue);
-    }
-
-    function displayColorInfo() {
-      let getColor = p.get(p.mouseX, p.mouseY);
-      let getColorObject = p.color(getColor);
-      //console.log(getColor);
-      //console.log(getColorObject);
-      if (p.keyIsPressed && p.key === "s") {
+      if (0 <= p.mouseX && p.mouseX <= PALETTE_WIDTH && 0 <= p.mouseY && p.mouseY <= PALETTE_HEIGHT) {
+        let getColor = p.get(p.mouseX, p.mouseY);
+        let getColorObject = p.color(getColor);
         red = getColor[0];
         green = getColor[1];
         blue = getColor[2];
         alpha = getColor[3];
-        //console.log(red, green, blue);
         returnColor = getColorObject;
       }
-      let h = p.round(p.hue(getColorObject));
-      let s = p.round(p.saturation(getColorObject));
-      let b = p.round(p.brightness(getColorObject));
+    }
+
+    function setColorHSB() {
+      let getColor = p.get(p.mouseX, p.mouseY);
+      let getColorObject = p.color(getColor);
+      h = p.round(p.hue(getColorObject));
+      s = p.round(p.saturation(getColorObject));
+      b = p.round(p.brightness(getColorObject));
+    }
+
+    function displayColorHSB() {
+      let getColor = p.get(p.mouseX, p.mouseY);
+      let getColorObject = p.color(getColor);
       p.textSize(TEXT_SIZE);
       p.text(getColorObject, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT);
       let text = "hsb(" + h + "," + s + "," + b + ")" + "←なんかバグってる";
       p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE);
       text = '#' + p.hex(getColor);
-      //text = '#' + p.hex(getColorObject); 
-      //text = getColor.toString("rrggbb");
-      //p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE * 2);
+    }
+
+    function displayColorInfo() {
+      //if (p.keyIsPressed && p.key === "s") { setColor(); }
+      if (p.mouseIsPressed) { setColor(); } //何故かp.draw()やoparateMouse()でsetColor()を呼ぶとバグる(2023/11/12)
+      setColorHSB();
+      displayColorHSB();
     }
 
     function generateColor(hue: number) {
@@ -104,7 +103,7 @@ export function ColorGanerate() {
           value = j * 100 / SPLIT;
 
           p.fill(hue, saturation, value);
-          p.rect(DRAWING_WIDTH / SPLIT * j, DRAWING_HEIGHT / SPLIT * i, DRAWING_WIDTH / SPLIT + 1, DRAWING_HEIGHT / SPLIT + 1);
+          p.rect(PALETTE_WIDTH / SPLIT * j, PALETTE_HEIGHT / SPLIT * i, PALETTE_WIDTH / SPLIT + 1, PALETTE_HEIGHT / SPLIT + 1);
         }
       }
 
@@ -122,15 +121,16 @@ export function ColorGanerate() {
     function displayDrawingColor() {
       p.colorMode(p.RGB);
       p.fill(red, green, blue, alpha);
-      p.ellipse(p.width - 15, p.height - 12, 15);
+      //p.ellipse(p.width - 15, p.height - 12, 15);
+
+      p.rect(p.width - 20, p.height - 20, 15);
       p.colorMode(p.HSB);
     }
 
     function oparateKeyboard(key: string) {
-      switch (key) {
-        case "c": generateColor(randomSeed); break;
-        default: break;
-      }
+      if (key === "c") { generateColor(randomSeed); }
+      if (key === "ArrowRight") { hueBarX += 5; }
+      if (key === "ArrowLeft") { hueBarX -= 5; }
     }
 
   }

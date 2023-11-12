@@ -21,7 +21,7 @@ export function Home() {
       <br />
       <hr />
 
-      <ResearchHome />
+      <ResearchHomeForDisplay />
 
       <br />
       <hr />

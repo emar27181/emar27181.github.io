@@ -22,6 +22,10 @@ export function ExplainDrawing() {
           <td>p</td>
         </tr>
         <tr>
+          <td>斥力モードの切り替え</td>
+          <td>h</td>
+        </tr>
+        <tr>
           <td>移動体の直線移動の切り替え</td>
           <td>m</td>
         </tr>
@@ -52,6 +56,10 @@ export function ExplainDrawing() {
         <tr>
           <td>移動体の削除</td>
           <td>k</td>
+        </tr>
+        <tr>
+          <td>固定された重力場の削除</td>
+          <td>l</td>
         </tr>
         <tr>
           <td>背景の更新の切り替え</td>

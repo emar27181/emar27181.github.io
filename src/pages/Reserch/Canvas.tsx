@@ -39,9 +39,9 @@ let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の�
 let sumIntense = 0;
 let mouseColor = [0, 0, 0, 0];
 let fps = DEFAULT_FPS;
-let standardDeviationLimit = 20, resistanceValue = 0.99;
+let standardDeviationLimit = 20, resistanceValue = 0.9;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = true;
-let isMoveBallGravity = false, isTracking = true;
+let isMoveBallGravity = false, isTracking = true, isRepulsion = false;
 let isMouseGravity = false;
 let angle = 0, radius = 0, speed = 1;
 let gravityX: number[] = [], gravityY: number[] = [];
@@ -323,6 +323,7 @@ export function Canvas() {
         let distanceSq = gravity.magSq();
         distanceSq = p.constrain(distanceSq, 10, 1000); // 距離が0になるのを防止
         let strength = GRAVITY_MAX / distanceSq; // 引力の強さ
+        if (isRepulsion) { strength = -strength; }
         gravity.setMag(strength);
         ball.applyForce(gravity);
       }
@@ -337,8 +338,13 @@ export function Canvas() {
       }
     }
 
-    function moveBallTrackingGravity(ball: Ball, x1: number, y1: number, x2: number, y2: number) {
-      if (judgeDistance(x1, y1, x2, y2)) { moveGravity(ball, x1, y1); }
+    function moveBallTrackingGravity(ball: Ball, x1: number, y1: number, x2: number, y2: number, repulsionMode: boolean) {
+      if (judgeDistance(x1, y1, x2, y2)) {
+        let tmp = isRepulsion;
+        if (repulsionMode) { isRepulsion = true; }
+        moveGravity(ball, x1, y1);
+        if (repulsionMode) { isRepulsion = tmp; }
+      }
     }
 
     function moveBallsGravity() {
@@ -353,8 +359,12 @@ export function Canvas() {
         if (clickMode === "gravity" && p.mouseIsPressed) { moveGravity(balls[i], p.mouseX, p.mouseY); }
         // トラッキングの手の座標での重力移動
         if (isTracking) {
-          moveBallTrackingGravity(balls[i], trackingX1, trackingY1, trackingX2, trackingY2);
-          moveBallTrackingGravity(balls[i], trackingX3, trackingY3, trackingX4, trackingY4);
+          //引力を働かせる処理(親指(2,3)と人差し指(0,1))
+          moveBallTrackingGravity(balls[i], trackingX1, trackingY1, trackingX2, trackingY2, false);
+          moveBallTrackingGravity(balls[i], trackingX3, trackingY3, trackingX4, trackingY4, false);
+          //斥力を働かせる処理(親指(2,3)と中指(6,7))
+          moveBallTrackingGravity(balls[i], trackingData[0][2], trackingData[0][3], trackingData[0][6], trackingData[0][7], true);
+          moveBallTrackingGravity(balls[i], trackingData[1][2], trackingData[1][3], trackingData[1][6], trackingData[1][7], true);
         }
         // 慣性移動
         moveGravity(balls[i], -1, -1);
@@ -377,7 +387,9 @@ export function Canvas() {
     }
 
     function addBall() {
-      balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, drawingColor, drawingEmotionNumber));
+      if (0 <= p.mouseX && p.mouseX <= p.width && 0 <= p.mouseY && p.mouseY <= p.height) {
+        balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, drawingColor, drawingEmotionNumber));
+      }
 
       //感情の色ではない色を追加する場合
       /*
@@ -405,10 +417,11 @@ export function Canvas() {
       if (clickMode === "draw") { addBall(); }
       //else if (clickMode === "gravity") { moveBallsGravity(p.mouseX, p.mouseY); }
       if (clickMode === "newGravityBall") {
-        ballsGravity.push(new Ball(p.mouseX, p.mouseY, 10, p.color(255, 0, 0), 9));
-        gravityX.push(p.mouseX);
-        gravityY.push(p.mouseY);
-
+        if (0 <= p.mouseX && p.mouseX <= p.width && 0 <= p.mouseY && p.mouseY <= p.height) {
+          ballsGravity.push(new Ball(p.mouseX, p.mouseY, 10, p.color(255, 0, 0), 9));
+          gravityX.push(p.mouseX);
+          gravityY.push(p.mouseY);
+        }
         /*
         console.log("gravityX");
         console.log(gravityX);
@@ -485,11 +498,17 @@ export function Canvas() {
       if (p.key === 'RIGHT_ARROW') { fps += 0.1; }
 
       if (p.key === 'k') { balls.splice(0, balls.length); }
+      if (p.key === 'l') {
+        ballsGravity.splice(0, ballsGravity.length);
+        gravityX.splice(0, gravityX.length);
+        gravityY.splice(0, gravityY.length);
+      }
 
       //ポーズモードの切り替え
       if (p.key === "p") { isPaused = !isPaused; }
       if (p.key === "f") { isFixedGravity = !isFixedGravity; }
       if (p.key === "y") { isTracking = !isTracking; }
+      if (p.key === "h") { isRepulsion = !isRepulsion; }
 
       //描画された点が動くかどうかの切り替え
       if (p.key === "m") { isMovedStraight = !isMovedStraight; }
@@ -580,5 +599,6 @@ export function ReturnMouseXY() { return [mouseX, mouseY]; }
 export function ReturnIsMouseGravity() { return isMouseGravity; }
 export function ReturnIsTracking() { return isTracking; }
 export function ReturnDrawingColor() { return returnDrawingColor; }
+export function ReturnIsRepulsion() { return isRepulsion; }
 
 export default Canvas
