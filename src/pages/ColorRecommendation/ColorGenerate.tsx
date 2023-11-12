@@ -56,31 +56,19 @@ export function ColorGanerate() {
     }
 
     function setColor() {
-
-      //p.colorMode(p.RGB);
       let getColor = p.get(p.mouseX, p.mouseY);
       let getColorObject = p.color(getColor);
-      red = p.red(getColorObject);
-      green = p.green(getColorObject);
-      blue = p.blue(getColorObject);
-      console.log(getColor);
-      console.log(getColorObject);
-      console.log(red, green, blue);
+      red = getColor[0];
+      green = getColor[1];
+      blue = getColor[2];
+      alpha = getColor[3];
+      returnColor = getColorObject;
     }
 
     function displayColorInfo() {
       let getColor = p.get(p.mouseX, p.mouseY);
       let getColorObject = p.color(getColor);
-      //console.log(getColor);
-      //console.log(getColorObject);
-      if (p.keyIsPressed && p.key === "s") {
-        red = getColor[0];
-        green = getColor[1];
-        blue = getColor[2];
-        alpha = getColor[3];
-        //console.log(red, green, blue);
-        returnColor = getColorObject;
-      }
+      if (p.keyIsPressed && p.key === "s") { setColor(); }
       let h = p.round(p.hue(getColorObject));
       let s = p.round(p.saturation(getColorObject));
       let b = p.round(p.brightness(getColorObject));
