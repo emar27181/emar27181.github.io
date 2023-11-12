@@ -2,6 +2,7 @@ import '../App.css'
 import React from 'react';
 import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 import Template from '../pages/template';
+import MediaQuery from "react-responsive";
 
 export function TestResponsiveHome() {
 
@@ -9,21 +10,9 @@ export function TestResponsiveHome() {
   return (
     <div>
       <h2> This is template page!!</h2>
-      <BrowserRouter>
-        <ul>
-          <NavLink activeClassName="active" to="/template">
-            テンプレートページ
-          </NavLink> <br />
-
-        </ul>
-
-        <Switch>
-          <Route path="/template" >
-            <Template />
-          </Route>
-        </Switch>
-
-      </BrowserRouter>
+      <Template />
+      <Template />
+      <Template />
     </div>
   )
 }
