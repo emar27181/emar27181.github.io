@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,28 +24,58 @@ import SoftwareKisoHome from './views/SoftwareKisoHome';
 
 function App() {
 
+  const [isNavbarVisible, setNavbarVisibility] = useState(true);
+
+  useEffect(() => {
+    // ページがスクロールされたときに呼び出されるイベントリスナーを追加
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+
+      // スクロール位置が一定の値よりも大きい場合、ナビゲーションバーを非表示にする
+      if (scrollPosition > 100) {
+        setNavbarVisibility(false);
+      } else {
+        setNavbarVisibility(true);
+      }
+    };
+
+    // イベントリスナーを追加
+    window.addEventListener('scroll', handleScroll);
+
+    // コンポーネントがアンマウントされたときにイベントリスナーを削除
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <BrowserRouter>
 
-      <Navbar bg="dark" variant="dark" fixed="top">
-
-        <Navbar.Brand >
+      {/*<Navbar bg="dark" variant="dark" fixed="top" style={{ display: isNavbarVisible ? 'block' : 'none' }}>*/}
+      <Navbar bg="dark" variant="dark" fixed="top" className="ml-auto" style={{ display: isNavbarVisible ? 'block' : 'none' }}>
+        <Navbar.Brand className="d-flex">
           <img src={logo} height="30" className="d-inline-block align-top" alt="Logo" />
           <span style={{ marginLeft: "10px" }}>p5.js演習ブラウザ</span>
         </Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link href="/">ホーム</Nav.Link>
-          <Nav.Link href="/workMenu">作品集</Nav.Link>
-          <Nav.Link href='/researchHome'> 卒業研究 </Nav.Link>
-          <Nav.Link href='/canvas'> キャンバス </Nav.Link>
-          <Nav.Link href='/softwareKisoHome'> ソフトウェア基礎特論</Nav.Link>
-        </Nav>
-        <Form className="ml-auto d-flex">
-          <FormControl type="text" placeholder="Search(Preparing)" className="ml-sm-2" />
-          <Button variant="outline-primary">Search</Button>
-        </Form>
-      </Navbar >
-      <br /><br />
+
+        <Navbar.Toggle aria-controls="navbarNav" />
+
+        <Navbar.Collapse id="navbarNav">
+          <Nav className="ml-auto d-flex">
+            <Nav.Link href="/">ホーム</Nav.Link>
+            <Nav.Link href="/workMenu">作品集</Nav.Link>
+            <Nav.Link href='/researchHome'> 卒業研究 </Nav.Link>
+            <Nav.Link href='/canvas'> キャンバス </Nav.Link>
+            <Nav.Link href='/softwareKisoHome'> ソフトウェア基礎特論</Nav.Link>
+          </Nav>
+
+          <Form className="ml-auto d-flex">
+            <FormControl type="text" placeholder="Search(Preparing)" className="mr-sm-2" />
+            <Button variant="outline-primary">Search</Button>
+          </Form>
+        </Navbar.Collapse>
+      </Navbar>
+      <br /><br /> <br />
 
       <Switch>
         <Route exact path="/">
