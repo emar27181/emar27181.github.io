@@ -57,13 +57,15 @@ export function ColorGanerate() {
     }
 
     function setColor() {
-      let getColor = p.get(p.mouseX, p.mouseY);
-      let getColorObject = p.color(getColor);
-      red = getColor[0];
-      green = getColor[1];
-      blue = getColor[2];
-      alpha = getColor[3];
-      returnColor = getColorObject;
+      if (0 <= p.mouseX && p.mouseX <= DRAWING_WIDTH && 0 <= p.mouseY && p.mouseY <= DRAWING_HEIGHT) {
+        let getColor = p.get(p.mouseX, p.mouseY);
+        let getColorObject = p.color(getColor);
+        red = getColor[0];
+        green = getColor[1];
+        blue = getColor[2];
+        alpha = getColor[3];
+        returnColor = getColorObject;
+      }
     }
 
     function setColorHSB() {
