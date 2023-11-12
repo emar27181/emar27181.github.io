@@ -15,6 +15,8 @@ let trackingY3 = trackingData[1][1]; //人差し指のy座標
 let trackingX4 = trackingData[1][2]; //親指のx座標
 let trackingY4 = trackingData[1][3]; //親指のy座標
 
+let gravityMouseX = 0, gravityMouseY = 0, isTouched = false;
+
 export function DisplayGravityPlace() {
   const sketch = (p: P5CanvasInstance) => {
 
@@ -53,7 +55,6 @@ export function DisplayGravityPlace() {
 
       setColor(isMouseGravity);
       DrawGravityPlace(mouseX, mouseY, canvasWidth, canvasHeight);
-
 
       p.fill(0, 255, 0);
       DrawGravityPlace(trackingX2, trackingY2, canvasWidth, canvasHeight);
@@ -112,6 +113,12 @@ export function DisplayGravityPlace() {
       trackingCanvasSize = ReturnCanvasSize();
       trackingCanvasWidth = trackingCanvasSize[0];
       trackingCanvasHeight = trackingCanvasSize[1];
+      if (0 <= p.mouseX && p.mouseX <= p.width && 0 <= p.mouseY && p.mouseY <= p.height) {
+        gravityMouseX = p.mouseX;
+        gravityMouseY = p.mouseY;
+        if (p.mouseIsPressed) { isTouched = true; }
+        else { isTouched = false; }
+      }
     }
   }
 
@@ -125,5 +132,9 @@ export function judgeDistance(x1: number, y1: number, x2: number, y2: number) {
   let distance = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))
   return (distance < 20)
 }
+
+export function ReturnTouchedGravityX() { return gravityMouseX }
+export function ReturnTouchedGravityY() { return gravityMouseY }
+export function ReturnIsTouched() { return isTouched; }
 
 export default DisplayGravityPlace
