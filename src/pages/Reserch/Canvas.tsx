@@ -377,7 +377,9 @@ export function Canvas() {
     }
 
     function addBall() {
-      balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, drawingColor, drawingEmotionNumber));
+      if (0 <= p.mouseX && p.mouseX <= p.width && 0 <= p.mouseY && p.mouseY <= p.height) {
+        balls.push(new Ball(p.mouseX, p.mouseY, BALL_SIZE, drawingColor, drawingEmotionNumber));
+      }
 
       //感情の色ではない色を追加する場合
       /*
@@ -405,10 +407,11 @@ export function Canvas() {
       if (clickMode === "draw") { addBall(); }
       //else if (clickMode === "gravity") { moveBallsGravity(p.mouseX, p.mouseY); }
       if (clickMode === "newGravityBall") {
-        ballsGravity.push(new Ball(p.mouseX, p.mouseY, 10, p.color(255, 0, 0), 9));
-        gravityX.push(p.mouseX);
-        gravityY.push(p.mouseY);
-
+        if (0 <= p.mouseX && p.mouseX <= p.width && 0 <= p.mouseY && p.mouseY <= p.height) {
+          ballsGravity.push(new Ball(p.mouseX, p.mouseY, 10, p.color(255, 0, 0), 9));
+          gravityX.push(p.mouseX);
+          gravityY.push(p.mouseY);
+        }
         /*
         console.log("gravityX");
         console.log(gravityX);
