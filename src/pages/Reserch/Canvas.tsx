@@ -338,8 +338,13 @@ export function Canvas() {
       }
     }
 
-    function moveBallTrackingGravity(ball: Ball, x1: number, y1: number, x2: number, y2: number) {
-      if (judgeDistance(x1, y1, x2, y2)) { moveGravity(ball, x1, y1); }
+    function moveBallTrackingGravity(ball: Ball, x1: number, y1: number, x2: number, y2: number, repulsionMode: boolean) {
+      if (judgeDistance(x1, y1, x2, y2)) {
+        let tmp = isRepulsion;
+        if (repulsionMode) { isRepulsion = true; }
+        moveGravity(ball, x1, y1);
+        if (repulsionMode) { isRepulsion = tmp; }
+      }
     }
 
     function moveBallsGravity() {
@@ -355,13 +360,11 @@ export function Canvas() {
         // トラッキングの手の座標での重力移動
         if (isTracking) {
           //引力を働かせる処理(親指(2,3)と人差し指(0,1))
-          moveBallTrackingGravity(balls[i], trackingX1, trackingY1, trackingX2, trackingY2);
-          moveBallTrackingGravity(balls[i], trackingX3, trackingY3, trackingX4, trackingY4);
+          moveBallTrackingGravity(balls[i], trackingX1, trackingY1, trackingX2, trackingY2, false);
+          moveBallTrackingGravity(balls[i], trackingX3, trackingY3, trackingX4, trackingY4, false);
           //斥力を働かせる処理(親指(2,3)と中指(6,7))
-          isRepulsion = true;
-          moveBallTrackingGravity(balls[i], trackingData[0][2], trackingData[0][3], trackingData[0][6], trackingData[0][7]);
-          moveBallTrackingGravity(balls[i], trackingData[1][2], trackingData[1][3], trackingData[1][6], trackingData[1][7]);
-          isRepulsion = false;
+          moveBallTrackingGravity(balls[i], trackingData[0][2], trackingData[0][3], trackingData[0][6], trackingData[0][7], true);
+          moveBallTrackingGravity(balls[i], trackingData[1][2], trackingData[1][3], trackingData[1][6], trackingData[1][7], true);
         }
         // 慣性移動
         moveGravity(balls[i], -1, -1);
