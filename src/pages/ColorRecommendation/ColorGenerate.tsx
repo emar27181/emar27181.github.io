@@ -53,6 +53,7 @@ export function ColorGanerate() {
       if (HUE_BAR_Y < p.mouseY && p.mouseY < HUE_BAR_Y + HUE_BAR_HEIGHT) {
         hueBarX = p.mouseX;
       }
+
     }
 
     function setColor() {
@@ -68,7 +69,8 @@ export function ColorGanerate() {
     function displayColorInfo() {
       let getColor = p.get(p.mouseX, p.mouseY);
       let getColorObject = p.color(getColor);
-      if (p.keyIsPressed && p.key === "s") { setColor(); }
+      //if (p.keyIsPressed && p.key === "s") { setColor(); }
+      if (p.mouseIsPressed) { setColor(); } //何故かp.draw()やoparateMouse()でsetColor()を呼ぶとバグる(2023/11/12)
       let h = p.round(p.hue(getColorObject));
       let s = p.round(p.saturation(getColorObject));
       let b = p.round(p.brightness(getColorObject));
