@@ -41,7 +41,7 @@ let mouseColor = [0, 0, 0, 0];
 let fps = DEFAULT_FPS;
 let standardDeviationLimit = 20, resistanceValue = 0.9;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = true;
-let isMoveBallGravity = false, isTracking = true;
+let isMoveBallGravity = false, isTracking = true, isRepulsion = false;
 let isMouseGravity = false;
 let angle = 0, radius = 0, speed = 1;
 let gravityX: number[] = [], gravityY: number[] = [];
@@ -323,6 +323,7 @@ export function Canvas() {
         let distanceSq = gravity.magSq();
         distanceSq = p.constrain(distanceSq, 10, 1000); // 距離が0になるのを防止
         let strength = GRAVITY_MAX / distanceSq; // 引力の強さ
+        if (isRepulsion) { strength = -strength; }
         gravity.setMag(strength);
         ball.applyForce(gravity);
       }
@@ -353,8 +354,14 @@ export function Canvas() {
         if (clickMode === "gravity" && p.mouseIsPressed) { moveGravity(balls[i], p.mouseX, p.mouseY); }
         // トラッキングの手の座標での重力移動
         if (isTracking) {
+          //引力を働かせる処理(親指(2,3)と人差し指(0,1))
           moveBallTrackingGravity(balls[i], trackingX1, trackingY1, trackingX2, trackingY2);
           moveBallTrackingGravity(balls[i], trackingX3, trackingY3, trackingX4, trackingY4);
+          //斥力を働かせる処理(親指(2,3)と中指(6,7))
+          isRepulsion = true;
+          moveBallTrackingGravity(balls[i], trackingData[0][2], trackingData[0][3], trackingData[0][6], trackingData[0][7]);
+          moveBallTrackingGravity(balls[i], trackingData[1][2], trackingData[1][3], trackingData[1][6], trackingData[1][7]);
+          isRepulsion = false;
         }
         // 慣性移動
         moveGravity(balls[i], -1, -1);
@@ -498,6 +505,7 @@ export function Canvas() {
       if (p.key === "p") { isPaused = !isPaused; }
       if (p.key === "f") { isFixedGravity = !isFixedGravity; }
       if (p.key === "y") { isTracking = !isTracking; }
+      if (p.key === "h") { isRepulsion = !isRepulsion; }
 
       //描画された点が動くかどうかの切り替え
       if (p.key === "m") { isMovedStraight = !isMovedStraight; }
