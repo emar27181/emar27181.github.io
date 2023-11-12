@@ -10,7 +10,7 @@ export function ColorGanerate() {
   const sketch = (p: P5CanvasInstance) => {
 
     const CANVAS_WIDTH = 200, CANVAS_HEIGHT = 300, MENU_BAR_WIDTH = 0, MENU_BAR_HEIGHT = 100,
-      DRAWING_WIDTH = CANVAS_WIDTH - MENU_BAR_WIDTH, DRAWING_HEIGHT = CANVAS_HEIGHT - MENU_BAR_HEIGHT,
+      PALETTE_WIDTH = CANVAS_WIDTH - MENU_BAR_WIDTH, PALETTE_HEIGHT = CANVAS_HEIGHT - MENU_BAR_HEIGHT,
       HUE_BAR_WIDTH = 3, HUE_BAR_HEIGHT = 20, MARGIN_HEIGHT = 10, TEXT_SIZE = 10,
       SPLIT = 20, DEBUG = true;
     let isColorChanged = false, hue = 100, saturation = 0, value = 0;
@@ -57,7 +57,7 @@ export function ColorGanerate() {
     }
 
     function setColor() {
-      if (0 <= p.mouseX && p.mouseX <= DRAWING_WIDTH && 0 <= p.mouseY && p.mouseY <= DRAWING_HEIGHT) {
+      if (0 <= p.mouseX && p.mouseX <= PALETTE_WIDTH && 0 <= p.mouseY && p.mouseY <= PALETTE_HEIGHT) {
         let getColor = p.get(p.mouseX, p.mouseY);
         let getColorObject = p.color(getColor);
         red = getColor[0];
@@ -103,7 +103,7 @@ export function ColorGanerate() {
           value = j * 100 / SPLIT;
 
           p.fill(hue, saturation, value);
-          p.rect(DRAWING_WIDTH / SPLIT * j, DRAWING_HEIGHT / SPLIT * i, DRAWING_WIDTH / SPLIT + 1, DRAWING_HEIGHT / SPLIT + 1);
+          p.rect(PALETTE_WIDTH / SPLIT * j, PALETTE_HEIGHT / SPLIT * i, PALETTE_WIDTH / SPLIT + 1, PALETTE_HEIGHT / SPLIT + 1);
         }
       }
 
