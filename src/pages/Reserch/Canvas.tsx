@@ -596,5 +596,6 @@ export function ReturnMouseXY() { return [mouseX, mouseY]; }
 export function ReturnIsMouseGravity() { return isMouseGravity; }
 export function ReturnIsTracking() { return isTracking; }
 export function ReturnDrawingColor() { return returnDrawingColor; }
+export function ReturnIsRepulsion() { return isRepulsion; }
 
 export default Canvas
