@@ -146,7 +146,9 @@ export function Canvas() {
     }
 
     p.setup = () => {
-      p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
+      //p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
+      let rate = 0.35;
+      p.createCanvas(rate * p.windowWidth, rate * p.windowWidth);
       canvasWidth = p.width, canvasHeight = p.height;
       //ballsGravity.push(new Ball(p.width / 2, p.height / 2, 10, p.color(255, 0, 0), 9));
       p.background(backgroundColor);

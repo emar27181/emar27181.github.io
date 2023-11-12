@@ -35,7 +35,9 @@ export function DisplayGravityPlace() {
 
     p.setup = () => {
       //p.createCanvas(canvasWidth, canvasHeight);
-      p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
+      //p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
+      let rate = 0.35;
+      p.createCanvas(rate * p.windowWidth, rate * p.windowWidth);
       p.background(0);
       //console.log(trackignData);
     };

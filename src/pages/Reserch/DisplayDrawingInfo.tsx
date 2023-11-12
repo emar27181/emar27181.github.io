@@ -30,7 +30,9 @@ export function DisplayDrawingInfo() {
 
     p.setup = () => {
       p.colorMode(p.HSB, 360, 100, 100, 100);
-      p.createCanvas(CANVAS_WIDTH, p.windowHeight / 2);
+      //p.createCanvas(CANVAS_WIDTH, p.windowHeight / 2);
+      let rate = 0.35;
+      p.createCanvas(rate / 3 * p.windowWidth, rate * p.windowWidth);
       p.noStroke();
     };
 
@@ -55,6 +57,7 @@ export function DisplayDrawingInfo() {
       drawingColor = ReturnDrawingColor();
       isRepulsion = ReturnIsRepulsion();
 
+      p.textSize(0.032 * p.height);
       p.fill(0);
       p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) +
         "\nbackgroundAlpha: \n" + p.round(backgroundAlpha) + "\nfigure: " + figureMode +
