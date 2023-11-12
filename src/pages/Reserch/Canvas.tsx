@@ -485,6 +485,11 @@ export function Canvas() {
       if (p.key === 'RIGHT_ARROW') { fps += 0.1; }
 
       if (p.key === 'k') { balls.splice(0, balls.length); }
+      if (p.key === 'l') {
+        ballsGravity.splice(0, ballsGravity.length);
+        gravityX.splice(0, gravityX.length);
+        gravityY.splice(0, gravityY.length);
+      }
 
       //ポーズモードの切り替え
       if (p.key === "p") { isPaused = !isPaused; }
