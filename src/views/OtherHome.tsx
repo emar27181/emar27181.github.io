@@ -22,6 +22,7 @@ import TestDisplayImage from '../pages/TestDisplayImage';
 //import TestHandsfree from '../pages/TestHandsfree';
 import { TestDrawCanvas } from '../pages/TestDrawCanvas';
 import TestHandsfree from '../pages/TestHandsfree';
+import TestResponsiveHome from './TestResponsiveHome';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -72,6 +73,10 @@ export function OtherHome() {
 
         <NavLink activeClassName='active' to="/testHandsfree">
           Handsfreeのテスト
+        </NavLink><br />
+
+        <NavLink activeClassName='active' to="/testResponsiveHome">
+          レスポンシブデザインのテストページ
         </NavLink>
 
       </ul>
@@ -122,6 +127,11 @@ export function OtherHome() {
         <Route path="/testHandsfree">
           <TestHandsfree />
         </Route>
+
+        <Route path="/testResponsiveHome">
+          <TestResponsiveHome />
+        </Route>
+
 
       </Switch>
 

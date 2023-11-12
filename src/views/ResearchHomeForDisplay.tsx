@@ -27,7 +27,6 @@ export function ResearchHomeForDisplay() {
 
       <div style={{ display: 'flex' }}>
         <ReturnCameraInfo />
-        <ReturnImageInfo />
         <ColorGanerate />
       </div>
       <div style={{ display: 'flex' }}>
