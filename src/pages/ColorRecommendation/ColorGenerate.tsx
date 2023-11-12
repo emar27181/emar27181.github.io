@@ -3,7 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import p5 from 'p5';
 
-let red = 255, green = 0, blue = 0, alpha = 255;
+let red = 255, green = 0, blue = 0, alpha = 255, h = 0, s = 50, b = 50;
 let returnColor: p5.Color;
 
 export function ColorGanerate() {
@@ -66,22 +66,29 @@ export function ColorGanerate() {
       returnColor = getColorObject;
     }
 
-    function displayColorInfo() {
+    function setColorHSB() {
       let getColor = p.get(p.mouseX, p.mouseY);
       let getColorObject = p.color(getColor);
-      //if (p.keyIsPressed && p.key === "s") { setColor(); }
-      if (p.mouseIsPressed) { setColor(); } //何故かp.draw()やoparateMouse()でsetColor()を呼ぶとバグる(2023/11/12)
-      let h = p.round(p.hue(getColorObject));
-      let s = p.round(p.saturation(getColorObject));
-      let b = p.round(p.brightness(getColorObject));
+      h = p.round(p.hue(getColorObject));
+      s = p.round(p.saturation(getColorObject));
+      b = p.round(p.brightness(getColorObject));
+    }
+
+    function displayColorHSB() {
+      let getColor = p.get(p.mouseX, p.mouseY);
+      let getColorObject = p.color(getColor);
       p.textSize(TEXT_SIZE);
       p.text(getColorObject, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT);
       let text = "hsb(" + h + "," + s + "," + b + ")" + "←なんかバグってる";
       p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE);
       text = '#' + p.hex(getColor);
-      //text = '#' + p.hex(getColorObject); 
-      //text = getColor.toString("rrggbb");
-      //p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE * 2);
+    }
+
+    function displayColorInfo() {
+      //if (p.keyIsPressed && p.key === "s") { setColor(); }
+      if (p.mouseIsPressed) { setColor(); } //何故かp.draw()やoparateMouse()でsetColor()を呼ぶとバグる(2023/11/12)
+      setColorHSB();
+      displayColorHSB();
     }
 
     function generateColor(hue: number) {
