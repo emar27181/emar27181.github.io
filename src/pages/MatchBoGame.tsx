@@ -9,6 +9,7 @@ export function MatchBoGame() {
     let player1Win = 0, player0Win = 0, hueristicPlayerNumber = 1;
     let matchValue = [[1, 1], [1, 1]];
     let isGameEnded = -1;
+    let turnCount = 1;
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -28,8 +29,9 @@ export function MatchBoGame() {
       judgeGameEnded();
       //試合が続いている場合
       if (isGameEnded === -1) {
+
         //先攻プレイヤーの行動
-        if (p.frameCount % 2 != 1) {
+        if (turnCount % 2 === 1) {
           if (hueristicPlayerNumber === 0) { attackHeuristic(0, 1); }
           else { attackRandom(0, 1); }
         }
@@ -38,6 +40,7 @@ export function MatchBoGame() {
           if (hueristicPlayerNumber === 1) { attackHeuristic(1, 0); }
           else { attackRandom(1, 0); }
         }
+        turnCount++;
       }
       //試合が終わっている場合
       else { resetGame(); }
@@ -52,6 +55,7 @@ export function MatchBoGame() {
       }
       //変数のリセット
       isGameEnded = -1;
+      turnCount = 1;
       matchValue = [[1, 1], [1, 1]];
       console.log("player0 win : player1 win = " + player0Win + ":" + player1Win);
     }
