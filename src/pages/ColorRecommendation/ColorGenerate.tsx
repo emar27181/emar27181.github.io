@@ -17,8 +17,8 @@ export function ColorGanerate() {
     let hueBarX = 100, HUE_BAR_Y = CANVAS_HEIGHT - MENU_BAR_HEIGHT + MARGIN_HEIGHT;
 
     p.setup = () => {
-      //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      p.createCanvas(256, 256);
+      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      //p.createCanvas(256, 256);
       p.background(0);
       p.frameRate(10);
       p.colorMode(p.HSB, 360, 100, 100);
@@ -108,9 +108,10 @@ export function ColorGanerate() {
       }
 
       // 色相バーの表示
-      for (let i = 0; i < p.width; i++) {
-        p.fill(360 * i / p.width, 100, 100);
-        p.rect(i, HUE_BAR_Y, p.width / 360, HUE_BAR_HEIGHT);
+      for (let i = 0; i < PALETTE_WIDTH; i++) {
+        p.noStroke();
+        p.fill(360 * i / PALETTE_WIDTH, 100, 100);
+        p.rect(i, HUE_BAR_Y, PALETTE_WIDTH / 360 + 1, HUE_BAR_HEIGHT);
       }
       generateObject();
       displayColorInfo();
