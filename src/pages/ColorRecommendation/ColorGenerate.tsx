@@ -50,7 +50,7 @@ export function ColorGanerate() {
 
     function oparateMouse() {
       //色相バーの処理
-      if (HUE_BAR_Y < p.mouseY && p.mouseY < HUE_BAR_Y + HUE_BAR_HEIGHT) {
+      if (0 < p.mouseX && p.mouseX < p.width && HUE_BAR_Y < p.mouseY && p.mouseY < HUE_BAR_Y + HUE_BAR_HEIGHT) {
         hueBarX = p.mouseX;
       }
 
