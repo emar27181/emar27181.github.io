@@ -12,13 +12,13 @@ export function ColorGanerate() {
     const CANVAS_WIDTH = 200, CANVAS_HEIGHT = 300, MENU_BAR_WIDTH = 0, MENU_BAR_HEIGHT = 100,
       PALETTE_WIDTH = CANVAS_WIDTH - MENU_BAR_WIDTH, PALETTE_HEIGHT = CANVAS_HEIGHT - MENU_BAR_HEIGHT,
       HUE_BAR_WIDTH = 3, HUE_BAR_HEIGHT = 20, MARGIN_HEIGHT = 10, TEXT_SIZE = 10,
-      SPLIT = 20, DEBUG = true;
+      SPLIT = 100, DEBUG = true;
     let isColorChanged = false, hue = 100, saturation = 0, value = 0;
     let hueBarX = 100, HUE_BAR_Y = CANVAS_HEIGHT - MENU_BAR_HEIGHT + MARGIN_HEIGHT;
 
     p.setup = () => {
-      //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      p.createCanvas(256, 256);
+      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      //p.createCanvas(256, 256);
       p.background(0);
       p.frameRate(10);
       p.colorMode(p.HSB, 360, 100, 100);
@@ -50,7 +50,7 @@ export function ColorGanerate() {
 
     function oparateMouse() {
       //色相バーの処理
-      if (HUE_BAR_Y < p.mouseY && p.mouseY < HUE_BAR_Y + HUE_BAR_HEIGHT) {
+      if (0 < p.mouseX && p.mouseX < p.width && HUE_BAR_Y < p.mouseY && p.mouseY < HUE_BAR_Y + HUE_BAR_HEIGHT) {
         hueBarX = p.mouseX;
       }
 
@@ -82,7 +82,7 @@ export function ColorGanerate() {
       p.textSize(TEXT_SIZE);
       p.text(getColorObject, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT);
       let text = "hsb(" + h + "," + s + "," + b + ")" + "←なんかバグってる";
-      p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE);
+      //p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE);
       text = '#' + p.hex(getColor);
     }
 
@@ -108,9 +108,10 @@ export function ColorGanerate() {
       }
 
       // 色相バーの表示
-      for (let i = 0; i < p.width; i++) {
-        p.fill(360 * i / p.width, 100, 100);
-        p.rect(i, HUE_BAR_Y, p.width / 360, HUE_BAR_HEIGHT);
+      for (let i = 0; i < PALETTE_WIDTH; i++) {
+        p.noStroke();
+        p.fill(360 * i / PALETTE_WIDTH, 100, 100);
+        p.rect(i, HUE_BAR_Y, PALETTE_WIDTH / 360 + 1, HUE_BAR_HEIGHT);
       }
       generateObject();
       displayColorInfo();
