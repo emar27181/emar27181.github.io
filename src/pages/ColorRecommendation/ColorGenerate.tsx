@@ -12,7 +12,7 @@ export function ColorGanerate() {
     const CANVAS_WIDTH = 200, CANVAS_HEIGHT = 300, MENU_BAR_WIDTH = 0, MENU_BAR_HEIGHT = 100,
       PALETTE_WIDTH = CANVAS_WIDTH - MENU_BAR_WIDTH, PALETTE_HEIGHT = CANVAS_HEIGHT - MENU_BAR_HEIGHT,
       HUE_BAR_WIDTH = 3, HUE_BAR_HEIGHT = 20, MARGIN_HEIGHT = 10, TEXT_SIZE = 10,
-      SPLIT = 20, DEBUG = true;
+      SPLIT = 100, DEBUG = true;
     let isColorChanged = false, hue = 100, saturation = 0, value = 0;
     let hueBarX = 100, HUE_BAR_Y = CANVAS_HEIGHT - MENU_BAR_HEIGHT + MARGIN_HEIGHT;
 
@@ -82,7 +82,7 @@ export function ColorGanerate() {
       p.textSize(TEXT_SIZE);
       p.text(getColorObject, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT);
       let text = "hsb(" + h + "," + s + "," + b + ")" + "←なんかバグってる";
-      p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE);
+      //p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE);
       text = '#' + p.hex(getColor);
     }
 
