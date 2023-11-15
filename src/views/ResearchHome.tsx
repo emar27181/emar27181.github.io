@@ -25,6 +25,11 @@ export function ResearchHome() {
   return (
     <div>
       <h3>卒業研究用ページ</h3> <br />
+      <DisplayInfo />
+      <FormDisplay /> <br />
+      <SendData /> <br />
+      <EmotionAnalyzeButton />
+      <ReceiveData />
       <ExplainDrawing />
 
       <div style={{ display: 'flex' }}>
@@ -36,6 +41,13 @@ export function ResearchHome() {
         <Canvas />
         <DisplayDrawingInfo />
         <DisplayGravityPlace />
+      </div>
+      <div style={{ display: 'flex' }}>
+        <DisplayEmotionColorRatio /> <br />
+      </div>
+      <div style={{ display: 'flex' }}>
+        <ExplainPluticCircleEnglish />
+        <ExplainPluticCircle /> <br />
       </div>
       <ReturnTrackingInfo />
 
