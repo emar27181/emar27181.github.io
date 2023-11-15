@@ -144,14 +144,10 @@ export function Canvas() {
     }
 
     p.setup = () => {
-      //p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
       let rate = 0.7;
       if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
       else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
-
-      //p.createCanvas(rate * p.windowWidth, rate * p.windowWidth);
       canvasWidth = p.width, canvasHeight = p.height;
-      //ballsGravity.push(new Ball(p.width / 2, p.height / 2, 10, p.color(255, 0, 0), 9));
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
