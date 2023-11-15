@@ -145,7 +145,7 @@ export function Canvas() {
 
     p.setup = () => {
       //p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
-      let rate = 0.5;
+      let rate = 0.7;
       if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
       else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
 
