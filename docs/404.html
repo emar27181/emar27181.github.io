@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./assets/icon2-c2a70829.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- import handsfree -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/addons/p5.sound.min.js"></script>
+  <script src="https://unpkg.com/handsfree@8.1.1/build/lib/handsfree.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/handsfree@8.1.1/build/lib/assets/handsfree.css">
+
+  <!-- for GitHub Pages function(SPA address) -->
+  <script>
+    (function () {
+      const query = window.location.search;
+      if (query.startsWith('?p=')) {
+        const route = decodeURIComponent(query.substr(3));
+        window.history.replaceState(null, null, route);
+      }
+    })();
+  </script>
+
+  <title>p5.js演習ブラウザ</title>
+
+  <script type="module" crossorigin src="./assets/index-5a23afaa.js"></script>
+  <link rel="stylesheet" href="./assets/index-0c810d13.css">
+</head>
+
+<body>
+  <div id="root"></div>
+  
+</body>
+
+</html>
