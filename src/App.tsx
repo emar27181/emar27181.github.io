@@ -22,9 +22,36 @@ import ResearchHome from './views/ResearchHome';
 import CanvasHome from './views/CanvasHome';
 import SoftwareKisoHome from './views/SoftwareKisoHome';
 
+let isDesktop = false;
+
 function App() {
 
   const [isNavbarVisible, setNavbarVisibility] = useState(true);
+
+  useEffect(() => {
+    // ウィンドウのサイズが変更されたときに実行されるハンドラーを登録
+    const handleResize = () => {
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      isDesktop = windowWidth > windowHeight;
+
+      // ここで取得した windowWidth と windowHeight を使って必要な処理を行う
+      console.log('Window Width:', windowWidth);
+      console.log('Window Height:', windowHeight);
+      console.log("isDesktop: ", isDesktop);
+    };
+
+    // コンポーネントがマウントされたときに初回実行
+    handleResize();
+
+    // ウィンドウのリサイズイベントにハンドラーを追加
+    window.addEventListener('resize', handleResize);
+
+    // コンポーネントがアンマウントされたときにハンドラーをクリーンアップ
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []); // 空の依存配列を渡して初回のみ実行されるようにする
 
   useEffect(() => {
     // ページがスクロールされたときに呼び出されるイベントリスナーを追加
@@ -32,7 +59,7 @@ function App() {
       const scrollPosition = window.scrollY;
 
       // スクロール位置が一定の値よりも大きい場合、ナビゲーションバーを非表示にする
-      if (scrollPosition > 100) {
+      if (scrollPosition > 10) {
         setNavbarVisibility(false);
       } else {
         setNavbarVisibility(true);
@@ -149,3 +176,4 @@ function NotFound() {
 }
 
 export default App
+export function ReturnIsDesktop() { return isDesktop; };

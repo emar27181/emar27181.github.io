@@ -13,19 +13,16 @@ import { ReturnTrackingData } from './ReturnTrackingInfo';
 import { ReturnTouchedGravityX, ReturnTouchedGravityY, judgeDistance } from './DisplayGravityPlace';
 import { ReturnColorPaletteValue } from '../ColorRecommendation/ColorGenerate';
 import { ReturnIsTouched } from './DisplayGravityPlace';
-//import { ReturnTrackingData } from '../TestHandsfree';
+import { ReturnIsDesktop } from '../../App';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
 
 const IS_NO_STROKE = true, DEBUG = false;
-const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const DEBUG_FPS = 0.2, DEFAULT_FPS = 10;
 const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
-const ALPHA = 5, BACK_GROUND_ALPHA = 15;
 const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
-const TRACKING_WIDTH = 300, TRACKING_HEIGHT = 150;
 const IS_TEST_MODE = true;
 let alpha = 100, backgroundAlpha = 15;
 let drawingWeight = 1, backgroundColor = "#000000", textSize = 10;
@@ -148,8 +145,11 @@ export function Canvas() {
 
     p.setup = () => {
       //p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
-      let rate = 0.35;
-      p.createCanvas(rate * p.windowWidth, rate * p.windowWidth);
+      let rate = 0.5;
+      if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
+      else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
+
+      //p.createCanvas(rate * p.windowWidth, rate * p.windowWidth);
       canvasWidth = p.width, canvasHeight = p.height;
       //ballsGravity.push(new Ball(p.width / 2, p.height / 2, 10, p.color(255, 0, 0), 9));
       p.background(backgroundColor);

@@ -1,5 +1,5 @@
 import '../App.css'
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 import BounceColorful from '../pages/BounceColorful';
 import DisplayEmotionColorRatio from '../pages/Reserch/DisplayEmotionColorRatio';
@@ -18,37 +18,17 @@ import GravityBall from '../pages/GravityBall';
 import ReturnCameraInfo from '../pages/Reserch/ReturnCameraInfo';
 import DisplayGravityPlace from '../pages/Reserch/DisplayGravityPlace';
 import ReturnImageInfo from '../pages/Reserch/ReturnImageInfo';
-import CanvasForDesktopComponent from '../pages/CanvasForDesktopComponent';
-import CanvasForMobileComponent from '../pages/CanvasForMobileComponent';
-import { ReturnIsDesktop } from '../App';
 
-export function ResearchHomeForDisplay() {
-
-  let isDesktop = ReturnIsDesktop();
-
+export function CanvasForDesktopComponent() {
   return (
     <div>
-      <h3>卒業研究用ページ</h3> <br />
-      <ExplainDrawing />
-
       <div style={{ display: 'flex' }}>
-        <ReturnCameraInfo />
-        <ColorGanerate />
+        <Canvas />
+        <DisplayDrawingInfo />
+        <DisplayGravityPlace />
       </div>
-
-
-      <div>
-        {isDesktop && <CanvasForDesktopComponent />}
-        {!isDesktop && <CanvasForMobileComponent />}
-      </div>
-
-      {/* 
-        <ReturnTrackingInfo />
-      */}
-
-      <a href="https://docs.google.com/presentation/d/1N21mXeW3NV-ODW7jHCPQ2FYsSbpZpuSNzAaHix2wRyc/edit?usp=sharing" target="_blank">卒業研究 説明スライド</a><br />
     </div>
   )
 }
 
-export default ResearchHomeForDisplay
+export default CanvasForDesktopComponent
