@@ -50,3 +50,8 @@
   width: 100%;
   z-index: 100;
 }
+
+body{
+  -webkit-touch-callout: none ;
+  user-select: none;
+}
