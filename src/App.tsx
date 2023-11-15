@@ -102,7 +102,6 @@ function App() {
           </Form>
         </Navbar.Collapse>
       </Navbar>
-      <br /><br /> <br />
 
       <Switch>
         <Route exact path="/">
