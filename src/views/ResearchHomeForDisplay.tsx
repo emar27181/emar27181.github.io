@@ -1,5 +1,5 @@
 import '../App.css'
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 import BounceColorful from '../pages/BounceColorful';
 import DisplayEmotionColorRatio from '../pages/Reserch/DisplayEmotionColorRatio';
@@ -18,8 +18,14 @@ import GravityBall from '../pages/GravityBall';
 import ReturnCameraInfo from '../pages/Reserch/ReturnCameraInfo';
 import DisplayGravityPlace from '../pages/Reserch/DisplayGravityPlace';
 import ReturnImageInfo from '../pages/Reserch/ReturnImageInfo';
+import CanvasForDesktopComponent from '../pages/CanvasForDesktopComponent';
+import CanvasForMobileComponent from '../pages/CanvasForMobileComponent';
+import { ReturnIsDesktop } from '../App';
 
 export function ResearchHomeForDisplay() {
+
+  let isDesktop = ReturnIsDesktop();
+
   return (
     <div>
       <h3>卒業研究用ページ</h3> <br />
@@ -29,11 +35,13 @@ export function ResearchHomeForDisplay() {
         <ReturnCameraInfo />
         <ColorGanerate />
       </div>
-      <div style={{ display: 'flex' }}>
-        <Canvas />
-        <DisplayDrawingInfo />
-        <DisplayGravityPlace />
+
+
+      <div>
+        {isDesktop && <CanvasForDesktopComponent />}
+        {!isDesktop && <CanvasForMobileComponent />}
       </div>
+
       {/* 
         <ReturnTrackingInfo />
       */}
