@@ -3,6 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ReturnHue, ReturnDrawingWeight, ReturnIsRandomMove, ReturnBackgroundAlpha, ReturnAlpha, ReturnFigureMode, ReturnClickMode, ReturnIsFixedGravity, ReturnIsMovedGravity, ReturnIsMovedStraight, ReturnIsBackground, ReturnMouseColor, ReturnStandardDeviationLimit, ReturnResistanceValue, ReturnIsTracking, ReturnDrawingColor, ReturnIsRepulsion } from './Canvas';
 import { ReturnTrackingInfo, ReturnTrackingData, ReturnTrackingCanvasSize } from './ReturnTrackingInfo';
+import { ReturnIsDesktop } from '../../App';
 
 export function DisplayDrawingInfo() {
   const sketch = (p: P5CanvasInstance) => {
@@ -31,8 +32,11 @@ export function DisplayDrawingInfo() {
     p.setup = () => {
       p.colorMode(p.HSB, 360, 100, 100, 100);
       //p.createCanvas(CANVAS_WIDTH, p.windowHeight / 2);
-      let rate = 0.35;
-      p.createCanvas(rate / 3 * p.windowWidth, rate * p.windowWidth);
+
+      let rate = 0.5;
+      if (ReturnIsDesktop()) { p.createCanvas(rate / 3 * p.windowWidth / 2, rate * p.windowWidth / 2); }
+      else { p.createCanvas(rate / 3 * p.windowWidth, rate * p.windowWidth); }
+      //p.createCanvas(rate / 3 * p.windowWidth, rate * p.windowWidth);
       p.noStroke();
     };
 
