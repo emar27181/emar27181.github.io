@@ -6,14 +6,20 @@ import DisplayEmotionColorRatio from '../pages/Reserch/DisplayEmotionColorRatio'
 import ColorGanerate from '../pages/ColorRecommendation/ColorGenerate';
 import DisplayGravityPlace from '../pages/Reserch/DisplayGravityPlace';
 
+let isCanvasHome = false;
+
 export function U22programmingContestHome() {
 
+  isCanvasHome = true;
 
   return (
     <div>
 
       <div style={{ display: 'flex' }}>
-        <ColorGanerate />
+        <div>
+          <ColorGanerate />
+          <DisplayGravityPlace />
+        </div>
         <Canvas />
         <DisplayDrawingInfo />
       </div>
@@ -23,3 +29,4 @@ export function U22programmingContestHome() {
 }
 
 export default U22programmingContestHome
+export function ReturnIsCanvasHome() { return isCanvasHome; }

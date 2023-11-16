@@ -5,6 +5,7 @@ import { ReturnCanvasSize, ReturnGravityX, ReturnGravityY, ReturnIsFixedGravity,
 //import { TestHandsfree, ReturnTrackingData, ReturnTrackingCanvasSize } from '../TestHandsfree';
 import { ReturnTrackingInfo, ReturnTrackingData, ReturnTrackingCanvasSize } from './ReturnTrackingInfo';
 import { ReturnIsDesktop } from '../../App';
+import { ReturnIsCanvasHome } from '../../views/CanvasHome';
 
 let trackingData: number[][] = [[0, 0, 0, 0], [0, 0, 0, 0]];
 let trackingX1 = trackingData[0][0]; //人差し指のx座標
@@ -40,7 +41,8 @@ export function DisplayGravityPlace() {
       //p.createCanvas(canvasWidth, canvasHeight);
       //p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
       let rate = 0.7;
-      if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
+      if (ReturnIsCanvasHome()) { p.createCanvas(200, 200) }
+      else if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
       else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
       //let rate = 0.35;
       //p.createCanvas(rate * p.windowWidth, rate * p.windowWidth);
