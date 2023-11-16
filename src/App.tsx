@@ -21,6 +21,7 @@ import logo from './assets/icon2.png';
 import ResearchHome from './views/ResearchHome';
 import CanvasHome from './views/CanvasHome';
 import SoftwareKisoHome from './views/SoftwareKisoHome';
+import CanvasHomeForMobile from './views/CanvasHomeForMobile';
 
 let isDesktop = false;
 
@@ -93,7 +94,7 @@ function App() {
             <Nav.Link href="/workMenu">作品集</Nav.Link>
             <Nav.Link href='/researchHome'> 卒業研究 </Nav.Link>
             <Nav.Link href='/canvas'> キャンバス </Nav.Link>
-            <Nav.Link href='/softwareKisoHome'> ソフトウェア基礎特論</Nav.Link>
+            <Nav.Link href='/canvasForMobile'> キャンバス(モバイル用)</Nav.Link>
           </Nav>
 
           <Form className="ml-auto d-flex">
@@ -156,8 +157,8 @@ function App() {
           <CanvasHome />
         </Route>
 
-        <Route path="/softwareKisoHome">
-          <SoftwareKisoHome />
+        <Route path="/canvasForMobile">
+          <CanvasHomeForMobile />
         </Route>
 
         <Route>
