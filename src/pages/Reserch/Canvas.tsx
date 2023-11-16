@@ -253,12 +253,14 @@ export function Canvas() {
       }
     }
 
+    //移動体が描画されるかどうかを判断する関数
     function isDisplayColor(r: number, g: number, b: number): boolean {
       let ave = (r + g + b) / 3;
       let variance = ((r - ave) * (r - ave) + (g - ave) * (g - ave) + (b - ave) * (b - ave)) / 3;
       let sd = Math.sqrt(variance);
-      return (sd >= standardDeviationLimit);
-      //return (!(r >= 200 && g >= 200 && b >= 200));
+      //return (!(r === 255 && g === 255 && b === 255));
+      //return (sd >= standardDeviationLimit);
+      return (!(r >= 200 && g >= 200 && b >= 200));
     }
 
     //移動体を描画する関数
