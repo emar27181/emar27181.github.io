@@ -19,7 +19,8 @@ export function ReturnCameraInfo() {
     let canvasHeight = canvasSize[1];
 
     p.setup = () => {
-      p.createCanvas(256, 256);
+      //p.createCanvas(256, 256);
+      p.createCanvas(640, 480);
       capture = p.createCapture(p.VIDEO);
       capture.hide();
       p.noStroke();
