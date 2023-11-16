@@ -1,9 +1,10 @@
 import '../App.css'
 import React from 'react';
-import { BrowserRouter, Route, NavLink} from 'react-router-dom';
+import { BrowserRouter, Route, NavLink } from 'react-router-dom';
 
 import LineGame from '../pages/LineGame';
 import CameraMosaicBallRPG from '../pages/CameraMosaicBallRPG';
+import MatchBoGame from '../pages/MatchBoGame';
 
 
 
@@ -19,7 +20,11 @@ export function GameHome() {
 
         <NavLink activeClassName="active" to="/CameraMosaicBallRPG">
           カメラがフィールドのRPG
-          </NavLink>
+        </NavLink><br />
+
+        <NavLink activeClassName="active" to="/matchBoGame">
+          マッチ棒
+        </NavLink>
       </ul>
 
 
@@ -29,8 +34,11 @@ export function GameHome() {
           <LineGame />
         </Route>
         <Route path="/CameraMosaicBallRPG" >
-          <CameraMosaicBallRPG/>
-          </Route>
+          <CameraMosaicBallRPG />
+        </Route>
+        <Route path="/matchBoGame" >
+          <MatchBoGame />
+        </Route>
       </switch>
 
     </BrowserRouter>
