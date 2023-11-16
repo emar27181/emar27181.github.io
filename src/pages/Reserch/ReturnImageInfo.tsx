@@ -44,8 +44,10 @@ export function ReturnImageInfo() {
     function getColors() {
       let indexNum = 0;
       let intervalLength = p.width / DIV_VALUE;
-      let ratioX = canvasWidth / p.width;
-      let ratioY = canvasHeight / p.height;
+      //let ratioX = canvasWidth / p.width;
+      //let ratioY = canvasHeight / p.height;
+      let ratioX = 1 / canvasWidth * 100;
+      let ratioY = 1 / canvasHeight * 300;
       for (let i = 0; i < DIV_VALUE; i++) {
         for (let j = 0; j < DIV_VALUE; j++) {
           let x = p.width * (i / DIV_VALUE);
