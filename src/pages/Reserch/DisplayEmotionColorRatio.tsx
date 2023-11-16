@@ -18,7 +18,7 @@ export function DisplayEmotionColorRatio() {
     const DEBUG = false;
 
     p.setup = () => {
-      let rate = 0.7;
+      let rate = 0.65;
       if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, 20); }
       else { p.createCanvas(rate * p.windowWidth, 20); }
       p.background(0);
