@@ -519,17 +519,19 @@ export function Canvas() {
 
       if (p.key === "c") {
         if (clickMode === "draw") {
-          clickMode = "gravity"
+          clickMode = "gravity";
           isMouseGravity = true;
-          ;
+          p.cursor(p.HAND);
         }
         else if (clickMode === "newGravityBall") {
           clickMode = "draw";
           isMouseGravity = false;
+          p.cursor(p.ARROW);
         }
         else if (clickMode === "gravity") {
           clickMode = "newGravityBall";
           isMouseGravity = false;
+          p.cursor(p.CROSS);
         }
       }
 
