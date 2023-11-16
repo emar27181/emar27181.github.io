@@ -37,7 +37,7 @@ let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の�
 let sumIntense = 0;
 let mouseColor = [0, 0, 0, 0];
 let fps = DEFAULT_FPS;
-let standardDeviationLimit = 0, resistanceValue = 0.9;
+let standardDeviationLimit = 0, resistanceValue = 0.95;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = false;
 let isMoveBallGravity = false, isTracking = false, isRepulsion = false;
 let isMouseGravity = false;
@@ -98,7 +98,7 @@ export function Canvas() {
 
       update() {
         this.velocity.add(this.acceleration);
-        this.velocity.limit(50);
+        this.velocity.limit(3);
         this.velocity.mult(resistanceValue);
         this.position.add(this.velocity);
         this.acceleration.mult(0);
@@ -144,14 +144,10 @@ export function Canvas() {
     }
 
     p.setup = () => {
-      //p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
       let rate = 0.7;
       if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
       else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
-
-      //p.createCanvas(rate * p.windowWidth, rate * p.windowWidth);
       canvasWidth = p.width, canvasHeight = p.height;
-      //ballsGravity.push(new Ball(p.width / 2, p.height / 2, 10, p.color(255, 0, 0), 9));
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
@@ -257,12 +253,14 @@ export function Canvas() {
       }
     }
 
+    //移動体が描画されるかどうかを判断する関数
     function isDisplayColor(r: number, g: number, b: number): boolean {
       let ave = (r + g + b) / 3;
       let variance = ((r - ave) * (r - ave) + (g - ave) * (g - ave) + (b - ave) * (b - ave)) / 3;
       let sd = Math.sqrt(variance);
-      return (sd >= standardDeviationLimit);
-      //return (!(r >= 200 && g >= 200 && b >= 200));
+      //return (!(r === 255 && g === 255 && b === 255));
+      //return (sd >= standardDeviationLimit);
+      return (!(r >= 200 && g >= 200 && b >= 200));
     }
 
     //移動体を描画する関数
@@ -523,17 +521,19 @@ export function Canvas() {
 
       if (p.key === "c") {
         if (clickMode === "draw") {
-          clickMode = "gravity"
+          clickMode = "gravity";
           isMouseGravity = true;
-          ;
+          p.cursor(p.HAND);
         }
         else if (clickMode === "newGravityBall") {
           clickMode = "draw";
           isMouseGravity = false;
+          p.cursor(p.ARROW);
         }
         else if (clickMode === "gravity") {
           clickMode = "newGravityBall";
           isMouseGravity = false;
+          p.cursor(p.CROSS);
         }
       }
 

@@ -19,7 +19,8 @@ export function ReturnCameraInfo() {
     let canvasHeight = canvasSize[1];
 
     p.setup = () => {
-      p.createCanvas(256, 256);
+      //p.createCanvas(256, 256);
+      p.createCanvas(640, 480);
       capture = p.createCapture(p.VIDEO);
       capture.hide();
       p.noStroke();
@@ -44,8 +45,10 @@ export function ReturnCameraInfo() {
     function getColors() {
       let indexNum = 0;
       let intervalLength = p.width / DIV_VALUE;
-      let ratioX = canvasWidth / p.width;
-      let ratioY = canvasHeight / p.height;
+      //let ratioX = canvasWidth / p.width; //
+      let ratioX = 1 / canvasWidth; //敢えてキャンバスの左端に色を集める
+      //let ratioY = canvasHeight / p.height;
+      let ratioY = 1 / canvasHeight;
       for (let i = 0; i < DIV_VALUE; i++) {
         for (let j = 0; j < DIV_VALUE; j++) {
           let x = p.width * (i / DIV_VALUE);

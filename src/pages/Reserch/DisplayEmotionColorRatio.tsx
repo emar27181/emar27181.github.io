@@ -3,6 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
 import { ReturnColorTank } from './Canvas';
+import { ReturnIsDesktop } from '../../App';
 
 export function DisplayEmotionColorRatio() {
   const sketch = (p: P5CanvasInstance) => {
@@ -17,7 +18,9 @@ export function DisplayEmotionColorRatio() {
     const DEBUG = false;
 
     p.setup = () => {
-      p.createCanvas(p.windowHeight / 2 + 100, 20);
+      let rate = 0.7;
+      if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, 20); }
+      else { p.createCanvas(rate * p.windowWidth, 20); }
       p.background(0);
       p.colorMode(p.HSB, 360, 100, 100, 100);
       p.frameRate(1);
