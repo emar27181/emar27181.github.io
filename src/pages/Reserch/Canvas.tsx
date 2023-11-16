@@ -37,7 +37,7 @@ let drawingEmotionNumber = 0; //drawingEmotionNumber: 描画される感情の�
 let sumIntense = 0;
 let mouseColor = [0, 0, 0, 0];
 let fps = DEFAULT_FPS;
-let standardDeviationLimit = 0, resistanceValue = 0.93;
+let standardDeviationLimit = 0, resistanceValue = 0.95;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = false;
 let isMoveBallGravity = false, isTracking = false, isRepulsion = false;
 let isMouseGravity = false;
@@ -98,7 +98,7 @@ export function Canvas() {
 
       update() {
         this.velocity.add(this.acceleration);
-        this.velocity.limit(50);
+        this.velocity.limit(3);
         this.velocity.mult(resistanceValue);
         this.position.add(this.velocity);
         this.acceleration.mult(0);
