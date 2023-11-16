@@ -18,6 +18,7 @@ let trackingX4 = trackingData[1][2]; //親指のx座標
 let trackingY4 = trackingData[1][3]; //親指のy座標
 
 let gravityMouseX = 0, gravityMouseY = 0, isTouched = false;
+let gravityCanvasX = 0, gravityCanvasY = 0;
 
 export function DisplayGravityPlace() {
   const sketch = (p: P5CanvasInstance) => {
@@ -44,6 +45,8 @@ export function DisplayGravityPlace() {
       if (ReturnIsCanvasHome()) { p.createCanvas(200, 200) }
       else if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
       else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
+      gravityCanvasX = p.width;
+      gravityCanvasY = p.height;
       //let rate = 0.35;
       //p.createCanvas(rate * p.windowWidth, rate * p.windowWidth);
       p.background(0);
@@ -142,5 +145,7 @@ export function judgeDistance(x1: number, y1: number, x2: number, y2: number) {
 export function ReturnTouchedGravityX() { return gravityMouseX }
 export function ReturnTouchedGravityY() { return gravityMouseY }
 export function ReturnIsTouched() { return isTouched; }
+export function ReturnGravityCanvasSizeX() { return gravityCanvasX; }
+export function ReturnGravityCanvasSizeY() { return gravityCanvasY; }
 
 export default DisplayGravityPlace
