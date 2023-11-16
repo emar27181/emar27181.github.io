@@ -33,7 +33,7 @@ export function DisplayDrawingInfo() {
       p.colorMode(p.HSB, 360, 100, 100, 100);
       //p.createCanvas(CANVAS_WIDTH, p.windowHeight / 2);
 
-      let rate = 0.7;
+      let rate = 0.65;
       if (ReturnIsDesktop()) { p.createCanvas(rate / 3 * p.windowWidth / 2, rate * p.windowWidth / 2); }
       else { p.createCanvas(rate / 3 * p.windowWidth, rate * p.windowWidth); }
       //p.createCanvas(rate / 3 * p.windowWidth, rate * p.windowWidth);

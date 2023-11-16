@@ -10,7 +10,7 @@ import p5 from 'p5';
 import { ReturnColorsInfo, ColorInfo } from './ReturnCameraInfo';
 import { ReturnImageColorsInfo } from './ReturnImageInfo';
 import { ReturnTrackingData } from './ReturnTrackingInfo';
-import { ReturnTouchedGravityX, ReturnTouchedGravityY, judgeDistance } from './DisplayGravityPlace';
+import { ReturnGravityCanvasSizeX, ReturnGravityCanvasSizeY, ReturnTouchedGravityX, ReturnTouchedGravityY, judgeDistance } from './DisplayGravityPlace';
 import { ReturnColorPaletteValue } from '../ColorRecommendation/ColorGenerate';
 import { ReturnIsTouched } from './DisplayGravityPlace';
 import { ReturnIsDesktop } from '../../App';
@@ -144,7 +144,7 @@ export function Canvas() {
     }
 
     p.setup = () => {
-      let rate = 0.7;
+      let rate = 0.65;
       if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
       else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
       canvasWidth = p.width, canvasHeight = p.height;
@@ -359,7 +359,9 @@ export function Canvas() {
         // マウスの座標での重力移動
         if (clickMode === "gravity" && p.mouseIsPressed) { moveGravity(balls[i], p.mouseX, p.mouseY); }
         // 画面タッチでの重力移動
-        if (ReturnIsTouched()) { moveGravity(balls[i], ReturnTouchedGravityX(), ReturnTouchedGravityY()); }
+        let ratioX = p.width / ReturnGravityCanvasSizeX();
+        let ratioY = p.height / ReturnGravityCanvasSizeY();
+        if (ReturnIsTouched()) { moveGravity(balls[i], ratioX * ReturnTouchedGravityX(), ratioY * ReturnTouchedGravityY()); }
         // トラッキングの手の座標での重力移動
         if (isTracking) {
           //引力を働かせる処理(親指(2,3)と人差し指(0,1))

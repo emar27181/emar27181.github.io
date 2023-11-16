@@ -8,7 +8,7 @@ import DisplayGravityPlace from '../pages/Reserch/DisplayGravityPlace';
 
 let isCanvasHome = false;
 
-export function U22programmingContestHome() {
+export function CanvasHomeForMobile() {
 
   isCanvasHome = true;
 
@@ -16,17 +16,13 @@ export function U22programmingContestHome() {
     <div>
 
       <div style={{ display: 'flex' }}>
-        <div>
-          <ColorGanerate />
-          <DisplayGravityPlace />
-        </div>
         <Canvas />
-        <DisplayDrawingInfo />
+        <DisplayGravityPlace />
       </div>
 
     </div>
   )
 }
 
-export default U22programmingContestHome
+export default CanvasHomeForMobile
 export function ReturnIsCanvasHome() { return isCanvasHome; }

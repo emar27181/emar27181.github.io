@@ -5,6 +5,7 @@ import { ReturnCanvasSize, ReturnGravityX, ReturnGravityY, ReturnIsFixedGravity,
 //import { TestHandsfree, ReturnTrackingData, ReturnTrackingCanvasSize } from '../TestHandsfree';
 import { ReturnTrackingInfo, ReturnTrackingData, ReturnTrackingCanvasSize } from './ReturnTrackingInfo';
 import { ReturnIsDesktop } from '../../App';
+import { ReturnIsCanvasHome } from '../../views/CanvasHome';
 
 let trackingData: number[][] = [[0, 0, 0, 0], [0, 0, 0, 0]];
 let trackingX1 = trackingData[0][0]; //人差し指のx座標
@@ -17,6 +18,7 @@ let trackingX4 = trackingData[1][2]; //親指のx座標
 let trackingY4 = trackingData[1][3]; //親指のy座標
 
 let gravityMouseX = 0, gravityMouseY = 0, isTouched = false;
+let gravityCanvasX = 0, gravityCanvasY = 0;
 
 export function DisplayGravityPlace() {
   const sketch = (p: P5CanvasInstance) => {
@@ -39,9 +41,12 @@ export function DisplayGravityPlace() {
     p.setup = () => {
       //p.createCanvas(canvasWidth, canvasHeight);
       //p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
-      let rate = 0.7;
-      if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
+      let rate = 0.65;
+      if (ReturnIsCanvasHome()) { p.createCanvas(200, 200) }
+      else if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
       else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
+      gravityCanvasX = p.width;
+      gravityCanvasY = p.height;
       //let rate = 0.35;
       //p.createCanvas(rate * p.windowWidth, rate * p.windowWidth);
       p.background(0);
@@ -140,5 +145,7 @@ export function judgeDistance(x1: number, y1: number, x2: number, y2: number) {
 export function ReturnTouchedGravityX() { return gravityMouseX }
 export function ReturnTouchedGravityY() { return gravityMouseY }
 export function ReturnIsTouched() { return isTouched; }
+export function ReturnGravityCanvasSizeX() { return gravityCanvasX; }
+export function ReturnGravityCanvasSizeY() { return gravityCanvasY; }
 
 export default DisplayGravityPlace
