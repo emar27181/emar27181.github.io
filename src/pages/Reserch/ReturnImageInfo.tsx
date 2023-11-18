@@ -3,6 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ReturnCanvasSize } from './Canvas';
 import p5 from 'p5'
+import photoImage from "../../assets/IMG_9563.jpg"
 
 let colorsInfo: Array<ColorInfo> = [];
 let isGetColors = false;
@@ -19,7 +20,9 @@ export function ReturnImageInfo() {
 
     p.preload = () => {
       //img = p.loadImage("src/data/saveCanvas-2023-10-23T130343.793.png")
-      img = p.loadImage("src/assets/IMG_9563.jpg")
+      //img = p.loadImage("src/assets/IMG_9563.jpg")
+      //img = p.loadImage("./assets/IMG_9563.jpg")
+      img = p.loadImage(photoImage);
     }
 
     p.setup = () => {
