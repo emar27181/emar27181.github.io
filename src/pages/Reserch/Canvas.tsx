@@ -170,6 +170,9 @@ export function Canvas() {
         p.background(0, 0, 0, backgroundAlpha);
         p.blendMode(p.ADD);
       }
+      else {
+        p.blendMode(p.BLEND);
+      }
 
       if (isMovedStraight) { moveBalls(); }
       if (isMovedGravity) { moveBallsGravity(); }
