@@ -11,7 +11,7 @@ import { ReturnColorsInfo, ColorInfo } from './ReturnCameraInfo';
 import { ReturnImageColorsInfo } from './ReturnImageInfo';
 import { ReturnTrackingData } from './ReturnTrackingInfo';
 import { ReturnGravityCanvasSizeX, ReturnGravityCanvasSizeY, ReturnTouchedGravityX, ReturnTouchedGravityY, judgeDistance } from './DisplayGravityPlace';
-import { ReturnColorPaletteValue } from '../ColorRecommendation/ColorGenerate';
+import { ReturnColorPaletteValue, ReturnIsTouchedColorGenerate } from '../ColorRecommendation/ColorGenerate';
 import { ReturnIsTouched } from './DisplayGravityPlace';
 import { ReturnIsDesktop } from '../../App';
 
@@ -170,6 +170,9 @@ export function Canvas() {
         p.background(0, 0, 0, backgroundAlpha);
         p.blendMode(p.ADD);
       }
+      else {
+        p.blendMode(p.BLEND);
+      }
 
       if (isMovedStraight) { moveBalls(); }
       if (isMovedGravity) { moveBallsGravity(); }
@@ -199,7 +202,7 @@ export function Canvas() {
       ballsTrackigGravity[1].position.x = trackingX3;
       ballsTrackigGravity[1].position.y = trackingY3;
       let color = ReturnColorPaletteValue();
-      drawingColor = p.color(color[0], color[1], color[2], color[3]);
+      if (ReturnIsTouchedColorGenerate()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
       returnDrawingColor = drawingColor;
 
       /*
@@ -473,6 +476,7 @@ export function Canvas() {
         //スポイト機能
         let input = p.get(p.mouseX, p.mouseY);
         drawingColor = p.color(input[0], input[1], input[2], input[3]);
+        console.log(drawingColor);
         if (DEBUG) {
           //console.log("drawingColor: " + drawingColor);
           //console.log("typeof:" + typeof (drawingColor));

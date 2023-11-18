@@ -5,6 +5,7 @@ import p5 from 'p5';
 
 let red = 255, green = 0, blue = 0, alpha = 255, h = 0, s = 50, b = 50;
 let returnColor: p5.Color;
+let isTouchedColorGenerate = false;
 
 export function ColorGanerate() {
   const sketch = (p: P5CanvasInstance) => {
@@ -28,11 +29,16 @@ export function ColorGanerate() {
     let randomSeed: number;
 
     p.draw = () => {
-
+      isTouchedColorGenerate = false;
       p.background(0);
       randomSeed = p.round(p.random(0, 360));
       if (p.keyIsPressed) { oparateKeyboard(p.key); }
-      if (p.mouseIsPressed) { oparateMouse(); }
+      if (p.mouseIsPressed) {
+        oparateMouse();
+        if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
+          isTouchedColorGenerate = true;
+        }
+      }
 
       hue = 360 * hueBarX / CANVAS_WIDTH;
       generateColor(hue);
@@ -144,6 +150,9 @@ export function ColorGanerate() {
 export function ReturnColorPaletteValue() {
   return [red, green, blue, alpha];
   //return returnColor;
+}
+export function ReturnIsTouchedColorGenerate() {
+  return isTouchedColorGenerate;
 }
 
 export default ColorGanerate
