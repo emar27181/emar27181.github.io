@@ -29,7 +29,8 @@ export function DisplayColorRatio() {
     p.draw = () => {
       p.colorMode(p.HSL, 360, 100, 100);
       isTouchedColorRatio = false;
-      //p.background(hue, saturation, lightness);
+
+      if (p.mouseIsPressed) { mouseControl(); }
     };
 
     function displayColors() {
@@ -40,8 +41,7 @@ export function DisplayColorRatio() {
       }
     }
 
-    p.mouseClicked = () => {
-
+    function mouseControl() {
       if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
         isTouchedColorRatio = true;
         p.colorMode(p.RGB);
