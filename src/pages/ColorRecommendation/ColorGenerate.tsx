@@ -2,6 +2,7 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import p5 from 'p5';
+import { ReturnDrawingColor } from '../Reserch/Canvas';
 
 let red = 255, green = 0, blue = 0, alpha = 255, h = 0, s = 50, b = 50;
 let returnColor: p5.Color;
@@ -30,6 +31,12 @@ export function ColorGanerate() {
 
     p.draw = () => {
       isTouchedColorGenerate = false;
+      let drawingColor = ReturnDrawingColor();
+      red = p.red(drawingColor);
+      green = p.green(drawingColor);
+      blue = p.blue(drawingColor);
+      alpha = p.alpha(drawingColor);
+
       p.background(0);
       randomSeed = p.round(p.random(0, 360));
       if (p.keyIsPressed) { oparateKeyboard(p.key); }
