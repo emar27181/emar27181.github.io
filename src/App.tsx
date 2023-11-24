@@ -38,9 +38,11 @@ function App() {
       isDesktop = windowWidth > windowHeight;
 
       // ここで取得した windowWidth と windowHeight を使って必要な処理を行う
+      /*
       console.log('Window Width:', windowWidth);
       console.log('Window Height:', windowHeight);
       console.log("isDesktop: ", isDesktop);
+      */
     };
 
     // コンポーネントがマウントされたときに初回実行
