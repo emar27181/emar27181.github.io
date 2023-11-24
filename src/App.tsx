@@ -22,6 +22,7 @@ import ResearchHome from './views/ResearchHome';
 import CanvasHome from './views/CanvasHome';
 import SoftwareKisoHome from './views/SoftwareKisoHome';
 import CanvasHomeForMobile from './views/CanvasHomeForMobile';
+import ColorRecommendHome from './views/ColorRecommendHome';
 
 let isDesktop = false;
 
@@ -94,7 +95,7 @@ function App() {
             <Nav.Link href="/workMenu">作品集</Nav.Link>
             <Nav.Link href='/researchHome'> 卒業研究 </Nav.Link>
             <Nav.Link href='/canvas'> キャンバス </Nav.Link>
-            <Nav.Link href='/canvasForMobile'> キャンバス(モバイル用)</Nav.Link>
+            <Nav.Link href='/colorRecommendHome'> 色の推薦</Nav.Link>
           </Nav>
 
           <Form className="ml-auto d-flex">
@@ -159,6 +160,10 @@ function App() {
 
         <Route path="/canvasForMobile">
           <CanvasHomeForMobile />
+        </Route>
+
+        <Route path="/colorRecommendHome">
+          <ColorRecommendHome />
         </Route>
 
         <Route>
