@@ -14,6 +14,7 @@ import { ReturnGravityCanvasSizeX, ReturnGravityCanvasSizeY, ReturnTouchedGravit
 import { ReturnColorPaletteValue, ReturnIsTouchedColorGenerate } from '../ColorRecommendation/ColorGenerate';
 import { ReturnIsTouched } from './DisplayGravityPlace';
 import { ReturnIsDesktop } from '../../App';
+import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecommendation/DisplayColorRatio';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
@@ -201,8 +202,11 @@ export function Canvas() {
       ballsTrackigGravity[0].position.y = trackingY1;
       ballsTrackigGravity[1].position.x = trackingX3;
       ballsTrackigGravity[1].position.y = trackingY3;
+
       let color = ReturnColorPaletteValue();
       if (ReturnIsTouchedColorGenerate()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
+      color = ReturnColorRatioValue();
+      if (ReturnIsTouchedColorRatio()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
       returnDrawingColor = drawingColor;
 
       /*

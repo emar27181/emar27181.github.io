@@ -2,7 +2,11 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ReturnCanvasSize } from '../Reserch/Canvas';
-import ColorTestData from '../../data/colorTestData.json'
+import ColorTestData from '../../data/colorTestData.json';
+
+
+let isTouchedColorRatio = false;
+let red = 0, green = 0, blue = 0, alpha = 0;
 
 export function DisplayColorRatio() {
   const sketch = (p: P5CanvasInstance) => {
@@ -18,12 +22,13 @@ export function DisplayColorRatio() {
       p.background(0);
       p.noStroke();
       displayColors();
-      
+
     };
 
 
     p.draw = () => {
-      //p.colorMode(p.HSL, 360, 100, 100);
+      p.colorMode(p.HSL, 360, 100, 100);
+      isTouchedColorRatio = false;
       //p.background(hue, saturation, lightness);
     };
 
@@ -35,11 +40,33 @@ export function DisplayColorRatio() {
       }
     }
 
+    p.mouseClicked = () => {
+
+      if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
+        isTouchedColorRatio = true;
+        p.colorMode(p.RGB);
+        let getColor = p.get(p.mouseX, p.mouseY);
+        let getColorObject = p.color(getColor);
+        red = getColor[0];
+        green = getColor[1];
+        blue = getColor[2];
+        alpha = getColor[3];
+        // console.log(red, green, blue, alpha);
+      }
+    }
+
   }
 
   return (
     <ReactP5Wrapper sketch={sketch} />
   )
+}
+
+export function ReturnColorRatioValue() {
+  return [red, green, blue, alpha];
+}
+export function ReturnIsTouchedColorRatio() {
+  return isTouchedColorRatio;
 }
 
 export default DisplayColorRatio
