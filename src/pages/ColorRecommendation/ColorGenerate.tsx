@@ -82,28 +82,35 @@ export function ColorGanerate() {
     }
 
     function setColorHSB() {
-      let getColor = p.get(p.mouseX, p.mouseY);
-      let getColorObject = p.color(getColor);
-      h = p.round(p.hue(getColorObject));
-      s = p.round(p.saturation(getColorObject));
-      b = p.round(p.brightness(getColorObject));
+      //let getColor = p.get(p.mouseX, p.mouseY);
+      //let getColorObject = p.color(getColor);
+      //p.colorMode(p.HSL, 360, 100, 100);
+      p.colorMode(p.HSL);
+      let drawingColor = ReturnDrawingColor()
+      h = p.round(p.hue(drawingColor));
+      s = p.round(p.saturation(drawingColor));
+      b = p.round(p.brightness(drawingColor));
     }
 
     function displayColorHSB() {
-      let getColor = p.get(p.mouseX, p.mouseY);
-      let getColorObject = p.color(getColor);
+      //let getColor = p.get(p.mouseX, p.mouseY);
+      //let getColorObject = p.color(getColor);
       p.textSize(TEXT_SIZE);
-      p.text(getColorObject, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT);
-      let text = "hsb(" + h + "," + s + "," + b + ")" + "←なんかバグってる";
-      //p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE);
-      text = '#' + p.hex(getColor);
+      //p.text(getColorObject, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT);
+      let text = "hsl(" + h + "," + s + "," + b + ")" + "←なんかバグってる";
+      p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE);
+      //text = '#' + p.hex(getColor);
     }
+
 
     function displayColorInfo() {
       //if (p.keyIsPressed && p.key === "s") { setColor(); }
       if (p.mouseIsPressed) { setColor(); } //何故かp.draw()やoparateMouse()でsetColor()を呼ぶとバグる(2023/11/12)
       setColorHSB();
       displayColorHSB();
+      let drawingColor = ReturnDrawingColor();
+
+      p.text(drawingColor, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT);
     }
 
     function generateColor(hue: number) {
