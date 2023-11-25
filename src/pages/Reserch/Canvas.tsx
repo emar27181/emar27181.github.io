@@ -169,7 +169,8 @@ export function Canvas() {
       if (isBackground) {
         p.blendMode(p.DARKEST);
         p.background(0, 0, 0, backgroundAlpha);
-        p.blendMode(p.ADD);
+        //p.blendMode(p.ADD);
+        p.blendMode(p.BLEND);
       }
       else {
         p.blendMode(p.BLEND);
