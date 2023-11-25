@@ -6,6 +6,7 @@ import ColorGanerate from '../pages/ColorRecommendation/ColorGenerate';
 import Canvas from '../pages/Reserch/Canvas';
 import DisplayEmotionColorRatio from '../pages/Reserch/DisplayEmotionColorRatio';
 import DisplayColorRatio from '../pages/ColorRecommendation/DisplayColorRatio';
+import DisplayDrawingInfo from '../pages/Reserch/DisplayDrawingInfo';
 
 export function ColorRecommendHome() {
 
@@ -15,8 +16,13 @@ export function ColorRecommendHome() {
       <div style={{ display: 'flex' }}>
         <ColorGanerate />
         <div>
-          <Canvas />
-          <DisplayColorRatio />
+          <div style={{ display: 'flex' }}>
+            <Canvas />
+            <DisplayDrawingInfo />
+          </div>
+          <div style={{ display: 'flex' }}>
+            <DisplayColorRatio />
+          </div>
         </div>
       </div>
     </div>
