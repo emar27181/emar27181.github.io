@@ -16,13 +16,11 @@ let jsonFilePath = 'src/data/colorTestData.json';
 let isTouchedColorRatio = false;
 let red = 0, green = 0, blue = 0, alpha = 0;
 let hue: number[] = [], saturation: number[] = [], lightness: number[] = [];
-//fetchData();
 
 export function DisplayColorRatioOnlyFrontendontend() {
   const sketch = (p: P5CanvasInstance) => {
     const CANVAS_SIZE = ReturnCanvasSize();
     let drawingColor: p5.Color = ReturnDrawingColor();
-    //fetchData();
 
     p.setup = () => {
       let rate = 0.65;
@@ -78,42 +76,6 @@ export function DisplayColorRatioOnlyFrontendontend() {
   return (
     <ReactP5Wrapper sketch={sketch} />
   )
-}
-
-async function fetchData() {
-  /*
-  try {
-    const response = await axios.get('http://localhost:5000/api/send-color-combination-data');
-    const jsonData = response.data;
-    const parsedJsonData = JSON.parse(jsonData);
-
-    for (let i = 0; i < parsedJsonData.length; i++) {
-      let data = parsedJsonData[i];
-      hue[i] = data.hue;
-      saturation[i] = data.saturation;
-      lightness[i] = data.lightness;
-      //console.log("hue[" + i + "]: " + hue[i] + ", saturation[" + i + "]: " + saturation[i] + ", lightness[" + i + "]: " + lightness[i]);
-    }
-  } catch (error) {
-    console.error('バックエンドから正常に色情報を取得できませんでした.', error);
-
-    fetch(jsonFilePath)
-      .then(response => response.json())
-      .then(jsonData => {
-        // JSONデータの読み込み
-        //console.log(jsonData);
-
-        for (let i = 0; i < jsonData.length; i++) {
-          let data = jsonData[i];
-          hue[i] = data.hue;
-          saturation[i] = data.saturation;
-          lightness[i] = data.lightness;
-          //console.log("hue[" + i + "]: " + hue[i] + ", saturation[" + i + "]: " + saturation[i] + ", lightness[" + i + "]: " + lightness[i]);
-        }
-      })
-      .catch(error => console.error('JSONファイルの読み込みエラー:', error));
-    }
-  */
 }
 
 export function ReturnColorRatioValue() {
