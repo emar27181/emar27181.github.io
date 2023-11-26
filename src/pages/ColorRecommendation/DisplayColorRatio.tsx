@@ -16,6 +16,7 @@ fetchData();
 export function DisplayColorRatio() {
   const sketch = (p: P5CanvasInstance) => {
     const CANVAS_SIZE = ReturnCanvasSize();
+    fetchData();
 
     p.setup = () => {
       let rate = 0.65;
@@ -24,7 +25,6 @@ export function DisplayColorRatio() {
       p.background(0);
       p.noStroke();
       displayColors();
-      console.log(hue[0])
     };
 
 
@@ -135,7 +135,24 @@ async function fetchData() {
       //console.log("hue[" + i + "]: " + hue[i] + ", saturation[" + i + "]: " + saturation[i] + ", lightness[" + i + "]: " + lightness[i]);
     }
   } catch (error) {
-    console.error('エラーが発生しました:', error);
+    console.error('バックエンドから正常に色情報を取得できませんでした.', error);
+
+    fetch(jsonFilePath)
+      .then(response => response.json())
+      .then(jsonData => {
+        // JSONデータの読み込み
+        //console.log(jsonData);
+
+        for (let i = 0; i < jsonData.length; i++) {
+          let data = jsonData[i];
+          hue[i] = data.hue;
+          saturation[i] = data.saturation;
+          lightness[i] = data.lightness;
+          //console.log("hue[" + i + "]: " + hue[i] + ", saturation[" + i + "]: " + saturation[i] + ", lightness[" + i + "]: " + lightness[i]);
+        }
+      })
+      .catch(error => console.error('JSONファイルの読み込みエラー:', error));
+
   }
 }
 
