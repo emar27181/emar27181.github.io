@@ -21,16 +21,18 @@ export function DisplayColorRatioOnlyFrontendontend() {
   const sketch = (p: P5CanvasInstance) => {
     const CANVAS_SIZE = ReturnCanvasSize();
     let drawingColor: p5.Color = ReturnDrawingColor();
-    let colors: p5.Color[] = [];
+    let colors: p5.Color[][] = [];
+    for (let i = 0; i < 12; i++) { colors[i] = []; }
     let colorsNumber = 5;
     let hueDifferenceValue = 4;
 
     p.setup = () => {
       let rate = 0.65;
-      p.createCanvas(rate * p.windowWidth / 2, 20);
+      p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2);
       //p.createCanvas(CANVAS_SIZE[0], 20);
       p.background(0);
       p.noStroke();
+      updateVariables();
       displayColors();
     };
 
@@ -50,26 +52,33 @@ export function DisplayColorRatioOnlyFrontendontend() {
 
     function caluculateColors() {
       p.colorMode(p.HSL);
-      colors[0] = (drawingColor);
-      let hue = p.hue(colors[0]);
-      let saturation = p.saturation(colors[0]);
-      let lightness = p.lightness(colors[0]);
 
-      for (let i = 1; i < colorsNumber; i++) {
-        hue += hueDifferenceValue * 15;
-        hue = hue % 360;
-        saturation -= 15;
-        lightness -= 15;
-        colors[i] = p.color(hue, saturation, lightness);
-        //console.log(colors[i]);
+      for (let i = 0; i < 12; i++) {
+        let hue = p.hue(drawingColor);
+        let saturation = p.saturation(drawingColor);
+        let lightness = p.lightness(drawingColor);
+        for (let j = 0; j < colorsNumber; j++) {
+          //hue += hueDifferenceValue * 15;
+          colors[i][j] = p.color(hue, saturation, lightness);
+          hue += i * 15;
+          hue = hue % 360;
+          saturation -= 15;
+          saturation = saturation % 100;
+          lightness -= 15;
+          lightness = lightness % 100;
+          //console.log(colors[i][j]);
+          //console.log("(" + i + "," + j + ")=" + "(" + p.round(p.hue(colors[i][j])) + "," + p.round(p.saturation(colors[i][j])) + "," + p.round(p.lightness(colors[i][j])) + ")");
+        }
       }
     }
 
     function displayColors() {
       p.colorMode(p.HSL);
-      for (let i = 0; i < colors.length; i++) {
-        p.fill(colors[i]);
-        p.rect(p.width / colors.length * i, 0, p.width / colors.length, p.height);
+      for (let i = 0; i < 12; i++) {
+        for (let j = 0; j < colorsNumber; j++) {
+          p.fill(colors[i][j]);
+          p.rect(p.width / colorsNumber * j, p.height / 12 * i, p.width / colorsNumber, p.height / 12);
+        }
       }
 
     }
