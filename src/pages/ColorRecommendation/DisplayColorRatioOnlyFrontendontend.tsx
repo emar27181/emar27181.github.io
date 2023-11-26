@@ -7,18 +7,22 @@ import { ReturnCanvasSize } from '../Reserch/Canvas';
 import ColorTestData from '../../data/colorTestData.json';
 import * as fs from 'fs';
 import axios from 'axios';
+import { ReturnDrawingColor } from '../Reserch/Canvas';
+import p5 from 'p5';
+
 
 //let jsonFilePath = '../../data/colorTestData.json';
 let jsonFilePath = 'src/data/colorTestData.json';
 let isTouchedColorRatio = false;
 let red = 0, green = 0, blue = 0, alpha = 0;
 let hue: number[] = [], saturation: number[] = [], lightness: number[] = [];
-fetchData();
+//fetchData();
 
 export function DisplayColorRatioOnlyFrontendontend() {
   const sketch = (p: P5CanvasInstance) => {
     const CANVAS_SIZE = ReturnCanvasSize();
-    fetchData();
+    let drawingColor: p5.Color = ReturnDrawingColor();
+    //fetchData();
 
     p.setup = () => {
       let rate = 0.65;
@@ -32,17 +36,28 @@ export function DisplayColorRatioOnlyFrontendontend() {
 
     p.draw = () => {
       p.colorMode(p.HSL, 360, 100, 100);
-      isTouchedColorRatio = false;
-
+      UpdateVariables();
+      displayColors();
       if (p.mouseIsPressed) { mouseControl(); }
     };
 
+    function UpdateVariables() {
+      drawingColor = ReturnDrawingColor();
+      isTouchedColorRatio = false;
+    }
+
     function displayColors() {
+
+      p.fill(drawingColor);
+      p.rect(0, 0, p.width, p.height);
+
+      /*
       for (let i = 0; i < hue.length; i++) {
         p.colorMode(p.HSL);
         p.fill(hue[i], saturation[i], lightness[i]);
         p.rect(p.width / hue.length * i, 0, p.width / hue.length, p.height);
       }
+      */
     }
 
     function mouseControl() {
@@ -66,6 +81,7 @@ export function DisplayColorRatioOnlyFrontendontend() {
 }
 
 async function fetchData() {
+  /*
   try {
     const response = await axios.get('http://localhost:5000/api/send-color-combination-data');
     const jsonData = response.data;
@@ -96,8 +112,8 @@ async function fetchData() {
         }
       })
       .catch(error => console.error('JSONファイルの読み込みエラー:', error));
-
-  }
+    }
+  */
 }
 
 export function ReturnColorRatioValue() {
