@@ -14,7 +14,7 @@ import { ReturnGravityCanvasSizeX, ReturnGravityCanvasSizeY, ReturnTouchedGravit
 import { ReturnColorPaletteValue, ReturnIsTouchedColorGenerate } from '../ColorRecommendation/ColorGenerate';
 import { ReturnIsTouched } from './DisplayGravityPlace';
 import { ReturnIsDesktop } from '../../App';
-import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecommendation/DisplayColorRatio';
+import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecommendation/DisplayColorRatioOnlyFrontendontend';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
@@ -125,7 +125,7 @@ export function Canvas() {
     let ColorsInfo: Array<ColorInfo>;
     let drawingColor = p.color(255, 51, 105);
     returnDrawingColor = p.color(255, 0, 0);
-    fetchData(); //データの取得
+    //fetchData(); //データの取得
 
     function addCameraBalls() {
       ColorsInfo = ReturnColorsInfo();
