@@ -22,6 +22,7 @@ import ResearchHome from './views/ResearchHome';
 import CanvasHome from './views/CanvasHome';
 import SoftwareKisoHome from './views/SoftwareKisoHome';
 import CanvasHomeForMobile from './views/CanvasHomeForMobile';
+import ColorRecommendHome from './views/ColorRecommendHome';
 
 let isDesktop = false;
 
@@ -37,9 +38,11 @@ function App() {
       isDesktop = windowWidth > windowHeight;
 
       // ここで取得した windowWidth と windowHeight を使って必要な処理を行う
+      /*
       console.log('Window Width:', windowWidth);
       console.log('Window Height:', windowHeight);
       console.log("isDesktop: ", isDesktop);
+      */
     };
 
     // コンポーネントがマウントされたときに初回実行
@@ -80,7 +83,11 @@ function App() {
     <BrowserRouter>
 
       {/*<Navbar bg="dark" variant="dark" fixed="top" style={{ display: isNavbarVisible ? 'block' : 'none' }}>*/}
-      <Navbar bg="dark" variant="dark" fixed="top" className="ml-auto" style={{ display: isNavbarVisible ? 'block' : 'none' }}>
+      {/*<Navbar bg="dark" variant="dark" fixed="top" className="ml-auto" style={{ display: isNavbarVisible ? 'block' : 'none' }}>*/}
+      {/*<Navbar bg="dark" variant="dark" className="ml-auto" style={{ position: 'relative', width: '100%' }}>*/}
+      {/*<Navbar bg="dark" variant="dark" style={{ width: '100%' }}>*/}
+      {/*<Navbar bg="dark" variant="dark" className="ml-auto" style={{ position: 'absolute', top: 0, width: '100%' }}>*/}
+      <Navbar bg="dark" variant="dark" fixed="top">
         <Navbar.Brand className="d-flex">
           <img src={logo} height="30" className="d-inline-block align-top" alt="Logo" />
           <span style={{ marginLeft: "10px" }}>p5.js演習ブラウザ</span>
@@ -92,9 +99,9 @@ function App() {
           <Nav className="ml-auto d-flex">
             <Nav.Link href="/">ホーム</Nav.Link>
             <Nav.Link href="/workMenu">作品集</Nav.Link>
-            <Nav.Link href='/researchHome'> 卒業研究 </Nav.Link>
+            <Nav.Link href='/researchHome'> 重力操作 </Nav.Link>
             <Nav.Link href='/canvas'> キャンバス </Nav.Link>
-            <Nav.Link href='/canvasForMobile'> キャンバス(モバイル用)</Nav.Link>
+            <Nav.Link href='/colorRecommendHome'> 色の推薦</Nav.Link>
           </Nav>
 
           <Form className="ml-auto d-flex">
@@ -161,11 +168,15 @@ function App() {
           <CanvasHomeForMobile />
         </Route>
 
+        <Route path="/colorRecommendHome">
+          <ColorRecommendHome />
+        </Route>
+
         <Route>
           <NotFound />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 
 }

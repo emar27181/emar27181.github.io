@@ -2,6 +2,7 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import p5 from 'p5';
+import { ReturnDrawingColor } from '../Reserch/Canvas';
 
 let red = 255, green = 0, blue = 0, alpha = 255, h = 0, s = 50, b = 50;
 let returnColor: p5.Color;
@@ -30,6 +31,12 @@ export function ColorGanerate() {
 
     p.draw = () => {
       isTouchedColorGenerate = false;
+      let drawingColor = ReturnDrawingColor();
+      red = p.red(drawingColor);
+      green = p.green(drawingColor);
+      blue = p.blue(drawingColor);
+      alpha = p.alpha(drawingColor);
+
       p.background(0);
       randomSeed = p.round(p.random(0, 360));
       if (p.keyIsPressed) { oparateKeyboard(p.key); }
@@ -75,28 +82,35 @@ export function ColorGanerate() {
     }
 
     function setColorHSB() {
-      let getColor = p.get(p.mouseX, p.mouseY);
-      let getColorObject = p.color(getColor);
-      h = p.round(p.hue(getColorObject));
-      s = p.round(p.saturation(getColorObject));
-      b = p.round(p.brightness(getColorObject));
+      //let getColor = p.get(p.mouseX, p.mouseY);
+      //let getColorObject = p.color(getColor);
+      //p.colorMode(p.HSL, 360, 100, 100);
+      p.colorMode(p.HSL);
+      let drawingColor = ReturnDrawingColor()
+      h = p.round(p.hue(drawingColor));
+      s = p.round(p.saturation(drawingColor));
+      b = p.round(p.brightness(drawingColor));
     }
 
     function displayColorHSB() {
-      let getColor = p.get(p.mouseX, p.mouseY);
-      let getColorObject = p.color(getColor);
+      //let getColor = p.get(p.mouseX, p.mouseY);
+      //let getColorObject = p.color(getColor);
       p.textSize(TEXT_SIZE);
-      p.text(getColorObject, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT);
-      let text = "hsb(" + h + "," + s + "," + b + ")" + "←なんかバグってる";
-      //p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE);
-      text = '#' + p.hex(getColor);
+      //p.text(getColorObject, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT);
+      let text = "hsl(" + h + "," + s + "," + b + ")" + "←なんかバグってる";
+      p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE);
+      //text = '#' + p.hex(getColor);
     }
+
 
     function displayColorInfo() {
       //if (p.keyIsPressed && p.key === "s") { setColor(); }
       if (p.mouseIsPressed) { setColor(); } //何故かp.draw()やoparateMouse()でsetColor()を呼ぶとバグる(2023/11/12)
       setColorHSB();
       displayColorHSB();
+      let drawingColor = ReturnDrawingColor();
+
+      p.text(drawingColor, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT);
     }
 
     function generateColor(hue: number) {
