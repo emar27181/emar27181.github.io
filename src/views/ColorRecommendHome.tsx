@@ -7,6 +7,7 @@ import Canvas from '../pages/Reserch/Canvas';
 import DisplayEmotionColorRatio from '../pages/Reserch/DisplayEmotionColorRatio';
 import DisplayColorRatio from '../pages/ColorRecommendation/DisplayColorRatio';
 import DisplayDrawingInfo from '../pages/Reserch/DisplayDrawingInfo';
+import DisplayColorRatioOnlyFrontendontend from '../pages/ColorRecommendation/DisplayColorRatioOnlyFrontendontend';
 
 export function ColorRecommendHome() {
 
@@ -21,7 +22,7 @@ export function ColorRecommendHome() {
             <DisplayDrawingInfo />
           </div>
           <div style={{ display: 'flex' }}>
-            <DisplayColorRatio />
+            <DisplayColorRatioOnlyFrontendontend />
           </div>
         </div>
       </div>
