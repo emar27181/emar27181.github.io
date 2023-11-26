@@ -41,13 +41,6 @@ export function DisplayColorRatio() {
         p.fill(hue[i], saturation[i], lightness[i]);
         p.rect(p.width / hue.length * i, 0, p.width / hue.length, p.height);
       }
-      /*
-      for (let i = 0; i < jsonData.length; i++) {
-        p.colorMode(p.HSL, 360, 100, 100);
-        p.fill(ColorTestData[i].hue, ColorTestData[i].saturation, ColorTestData[i].lightness);
-        p.rect(p.width / jsonData.length * i, 0, p.width / jsonData.length, p.height);
-      }
-      */
     }
 
     function mouseControl() {
