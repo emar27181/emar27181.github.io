@@ -99,7 +99,7 @@ function App() {
           <Nav className="ml-auto d-flex">
             <Nav.Link href="/">ホーム</Nav.Link>
             <Nav.Link href="/workMenu">作品集</Nav.Link>
-            <Nav.Link href='/researchHome'> 卒業研究 </Nav.Link>
+            <Nav.Link href='/researchHome'> 重力操作 </Nav.Link>
             <Nav.Link href='/canvas'> キャンバス </Nav.Link>
             <Nav.Link href='/colorRecommendHome'> 色の推薦</Nav.Link>
           </Nav>
