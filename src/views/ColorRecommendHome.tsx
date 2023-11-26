@@ -4,8 +4,6 @@ import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 import Template from '../pages/template';
 import ColorGanerate from '../pages/ColorRecommendation/ColorGenerate';
 import Canvas from '../pages/Reserch/Canvas';
-import DisplayEmotionColorRatio from '../pages/Reserch/DisplayEmotionColorRatio';
-import DisplayColorRatio from '../pages/ColorRecommendation/DisplayColorRatio';
 import DisplayDrawingInfo from '../pages/Reserch/DisplayDrawingInfo';
 import DisplayColorRatioOnlyFrontendontend from '../pages/ColorRecommendation/DisplayColorRatioOnlyFrontendontend';
 
@@ -20,9 +18,9 @@ export function ColorRecommendHome() {
           <div style={{ display: 'flex' }}>
             <Canvas />
             <DisplayDrawingInfo />
+            <DisplayColorRatioOnlyFrontendontend />
           </div>
           <div style={{ display: 'flex' }}>
-            <DisplayColorRatioOnlyFrontendontend />
           </div>
         </div>
       </div>
