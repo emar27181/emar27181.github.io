@@ -35,57 +35,6 @@ export function DisplayColorRatio() {
       if (p.mouseIsPressed) { mouseControl(); }
     };
 
-    function editJson() {
-      // JSON ファイルを読み込む
-      //const rawData = fs.readFileSync(jsonFilePath, 'utf-8');
-      //const jsonData = JSON.parse(rawData);
-      //console.log(jsonData);
-      // JSONファイルをフェッチする
-
-      // JSONファイルの読み込み
-      /*
-      const readJsonFile = (filePath: string): any => {
-        try {
-          const data = fs.readFileSync(filePath, 'utf-8');
-          return JSON.parse(data);
-        } catch (error) {
-          console.error('Error reading JSON file:', error);
-          return null;
-        }
-      };
-
-      // JSONファイルの書き込み
-      const writeJsonFile = (filePath: string, data: any): void => {
-        try {
-          const jsonData = JSON.stringify(data, null, 2);
-          fs.writeFileSync(filePath, jsonData, 'utf-8');
-          console.log('JSON file written successfully.');
-        } catch (error) {
-          console.error('Error writing JSON file:', error);
-        }
-      };
-
-      const jsonData = readJsonFile(jsonFilePath);
-      jsonData[0].hue = 45;
-      writeJsonFile(jsonFilePath, jsonData);
-      */
-
-
-      fetch(jsonFilePath)
-        .then(response => response.json())
-        .then(jsonData => {
-          // JSONデータを変更する（例： "name"プロパティを変更）
-          jsonData[0].hue = 45;
-          console.log(jsonData);
-        })
-        .catch(error => console.error('JSONの読み込みエラー:', error));
-
-
-      //fs.writeFileSync(jsonFilePath, JSON.stringify(jsonData, null, 2), 'utf-8');
-
-    }
-
-
     function displayColors() {
       for (let i = 0; i < hue.length; i++) {
         p.colorMode(p.HSL);
