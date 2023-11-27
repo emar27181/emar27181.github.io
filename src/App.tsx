@@ -102,6 +102,7 @@ function App() {
             <Nav.Link href='/researchHome'> 重力操作 </Nav.Link>
             <Nav.Link href='/canvas'> キャンバス </Nav.Link>
             <Nav.Link href='/colorRecommendHome'> 色の推薦</Nav.Link>
+            <Nav.Link href='/softwareKisoHome'> マッチ棒</Nav.Link>
           </Nav>
 
           <Form className="ml-auto d-flex">
@@ -170,6 +171,10 @@ function App() {
 
         <Route path="/colorRecommendHome">
           <ColorRecommendHome />
+        </Route>
+
+        <Route path="/softwareKisoHome">
+          <SoftwareKisoHome />
         </Route>
 
         <Route>
