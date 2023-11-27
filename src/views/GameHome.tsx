@@ -1,6 +1,6 @@
 import '../App.css'
 import React from 'react';
-import { BrowserRouter, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 
 import LineGame from '../pages/LineGame';
 import CameraMosaicBallRPG from '../pages/CameraMosaicBallRPG';
@@ -30,7 +30,7 @@ export function GameHome() {
 
 
 
-      <switch>
+      <Switch>
         <Route path="/lineGame" >
           <LineGame />
         </Route>
@@ -40,7 +40,7 @@ export function GameHome() {
         <Route path="/softWareKisoHome" >
           <SoftwareKisoHome />
         </Route>
-      </switch>
+      </Switch>
 
     </BrowserRouter>
   )
