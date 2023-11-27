@@ -29,7 +29,8 @@ export function DisplayColorRatioOnlyFrontendontend() {
 
     p.setup = () => {
       let rate = 0.65;
-      p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2);
+      //p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2);
+      p.createCanvas(256, 256);
       //p.createCanvas(CANVAS_SIZE[0], 20);
       p.background(0);
       p.noStroke();
