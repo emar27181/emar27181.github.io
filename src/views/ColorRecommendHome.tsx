@@ -6,6 +6,7 @@ import ColorGanerate from '../pages/ColorRecommendation/ColorGenerate';
 import Canvas from '../pages/Reserch/Canvas';
 import DisplayDrawingInfo from '../pages/Reserch/DisplayDrawingInfo';
 import DisplayColorRatioOnlyFrontendontend from '../pages/ColorRecommendation/DisplayColorRatioOnlyFrontendontend';
+import DisplayUsedColorRatio from '../pages/ColorRecommendation/DisplayUsedColorRatio';
 
 export function ColorRecommendHome() {
 
@@ -16,6 +17,7 @@ export function ColorRecommendHome() {
       <div style={{ display: 'flex' }}>
         <ColorGanerate />
         <DisplayColorRatioOnlyFrontendontend />
+        <DisplayUsedColorRatio />
       </div>
       <div style={{ display: 'flex' }}>
         <Canvas />
