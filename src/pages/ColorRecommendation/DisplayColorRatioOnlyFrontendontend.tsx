@@ -34,14 +34,15 @@ export function DisplayColorRatioOnlyFrontendontend() {
       p.background(0);
       p.noStroke();
       updateVariables();
-      displayColors();
+      //displayColors();
     };
 
 
     p.draw = () => {
       p.colorMode(p.HSL, 360, 100, 100);
       updateVariables();
-      displayColors();
+      //displayColors();
+      displayColorsRate();
       if (p.mouseIsPressed) { mouseControl(); }
     };
 
@@ -75,6 +76,7 @@ export function DisplayColorRatioOnlyFrontendontend() {
       }
     }
 
+    //色を均等な長さで表示する関数
     function displayColors() {
       p.colorMode(p.HSL);
       for (let i = 0; i < 12; i++) {
@@ -83,7 +85,33 @@ export function DisplayColorRatioOnlyFrontendontend() {
           p.rect(p.width / colorsNumber * j, p.height / 12 * i, p.width / colorsNumber, p.height / 12);
         }
       }
+    }
 
+    //色を比率に応じた長さで表示する関数
+    function displayColorsRate() {
+      p.colorMode(p.HSL);
+      for (let i = 0; i < 12; i++) {
+        let w = 0;
+        //参考: https://comic.smiles55.jp/guide/8903/
+        //ベースカラー(70%)
+        p.fill(colors[i][0]);
+        p.rect(0, p.height / 12 * i, p.width * 0.7, p.height / 12);
+
+        //アソートカラー(25%)
+        p.fill(colors[i][1]);
+        p.rect(p.width * 0.7, p.height / 12 * i, p.width * 0.25, p.height / 12);
+
+        //アクセントカラー(5%)
+        p.fill(colors[i][2]);
+        p.rect(p.width * 0.95, p.height / 12 * i, p.width * 0.05, p.height / 12);
+
+        /*
+        for (let j = 0; j < colorsNumber; j++) {
+          p.fill(colors[i][j]);
+          p.rect(p.width / colorsNumber * j, p.height / 12 * i, p.width / colorsNumber, p.height / 12);
+        }
+        */
+      }
     }
 
     function mouseControl() {
