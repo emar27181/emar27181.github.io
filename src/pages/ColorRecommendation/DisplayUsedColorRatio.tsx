@@ -28,11 +28,12 @@ export function DisplayUsedColorRatio() {
 
     p.draw = () => {
       p.fill(255);
-      //p.ellipse(p.width / 2, p.height / 2, 100, 100);
-      canvasColors = ReturnCanvasColors();
-      //console.log("(" + p.red(canvasColors[0][0]) + "," + p.green(canvasColors[0][0]) + "," + p.blue(canvasColors[0][0]) + ")");
-      //console.log(canvasColors[0][0]);
+      updateVariables();
     };
+
+    function updateVariables() {
+      canvasColors = ReturnCanvasColors();
+    }
   }
 
   return (
