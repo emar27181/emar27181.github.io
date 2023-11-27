@@ -12,17 +12,14 @@ export function ColorRecommendHome() {
 
   return (
     <div>
+      <br /><br /><br /><br />
       <div style={{ display: 'flex' }}>
         <ColorGanerate />
-        <div>
-          <div style={{ display: 'flex' }}>
-            <Canvas />
-            <DisplayDrawingInfo />
-            <DisplayColorRatioOnlyFrontendontend />
-          </div>
-          <div style={{ display: 'flex' }}>
-          </div>
-        </div>
+        <DisplayColorRatioOnlyFrontendontend />
+      </div>
+      <div style={{ display: 'flex' }}>
+        <Canvas />
+        <DisplayDrawingInfo />
       </div>
     </div>
   )
