@@ -21,7 +21,8 @@ let red = 0, green = 0, blue = 0, alpha = 0;
 export function DisplayColorRatioOnlyFrontendontend() {
   const sketch = (p: P5CanvasInstance) => {
     const CANVAS_SIZE = ReturnCanvasSize();
-    let drawingColor: p5.Color = ReturnDrawingColor();
+    //let drawingColor: p5.Color = ReturnDrawingColor();
+    let drawingColor: p5.Color = p.color(255, 0, 0);
     let colors: p5.Color[][] = [];
     for (let i = 0; i < 12; i++) { colors[i] = []; }
     let colorsNumber = 5;
