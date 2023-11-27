@@ -34,15 +34,14 @@ export function DisplayColorRatioOnlyFrontendontend() {
       p.background(0);
       p.noStroke();
       updateVariables();
-      //displayColors();
     };
 
 
     p.draw = () => {
       p.colorMode(p.HSL, 360, 100, 100);
       updateVariables();
-      //displayColors();
-      displayColorsRate();
+      displayColors();
+      //displayColorsRate();
       if (p.mouseIsPressed) { mouseControl(); }
     };
 
@@ -104,13 +103,6 @@ export function DisplayColorRatioOnlyFrontendontend() {
         //アクセントカラー(5%)
         p.fill(colors[i][2]);
         p.rect(p.width * 0.95, p.height / 12 * i, p.width * 0.05, p.height / 12);
-
-        /*
-        for (let j = 0; j < colorsNumber; j++) {
-          p.fill(colors[i][j]);
-          p.rect(p.width / colorsNumber * j, p.height / 12 * i, p.width / colorsNumber, p.height / 12);
-        }
-        */
       }
     }
 
