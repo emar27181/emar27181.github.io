@@ -10,21 +10,21 @@ export function DisplayUsedColorRatio() {
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
     let canvasColors: p5.Color[][] = [];
     for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
-    let backGroundColor = p.color(0, 0, 0, 255);
-    let canvasWidth = 0, canvasHeight = 0;
-
-    /*
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
         canvasColors[i][j] = p.color(0, 0, 0);
       }
     }
-    */
-
+    let backGroundColor = p.color(0, 0, 0, 255);
+    let canvasWidth = 0, canvasHeight = 0;
+    //let colorsAmount: Array<ColorAmount> = new ColorAmount(p.color(0,0,0), 1);
+    let colorsAmount: Array<ColorAmount> = [];
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(backGroundColor);
+      colorsAmount.push(new ColorAmount(p.color(0, 0, 0), SPLIT * SPLIT));
+      p.frameRate(1);
     };
 
 
@@ -69,6 +69,7 @@ export function DisplayUsedColorRatio() {
         }
       }
     }
+
     function resetColorsAmount() {
       //colorsAmount.splice(0, colorsAmount.length);
       colorsAmount = [];
@@ -76,6 +77,7 @@ export function DisplayUsedColorRatio() {
       //colorsAmount[0] = new ColorAmount(p.color(0, 0, 0), SPLIT * SPLIT);
       colorsAmount.push(new ColorAmount(p.color(0, 0, 0), 0));
     }
+
     function calculateColorsAmount() {
       resetColorsAmount();
       for (let i = 0; i < SPLIT; i++) {
