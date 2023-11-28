@@ -65,6 +65,14 @@ export function DisplayUsedColorRatio() {
       }
     }
 
+    function equalsColor(color1: p5.Color, color2: p5.Color) {
+      let red1 = p.red(color1), green1 = p.green(color1), blue1 = p.blue(color1);
+      let red2 = p.red(color2), green2 = p.green(color2), blue2 = p.blue(color2);
+      console.log("equalsColor((" + red1 + ", " + green1 + ", " + blue1 + "), (" + red2 + ", " + green2 + ", " + blue2 + "))= " + ((red1 === red2) && (green1 === green2) && (blue1 === blue2)));
+      return (((red1 === red2) && (green1 === green2) && (blue1 === blue2)));
+    }
+
+
     function updateVariables() {
       canvasColors = ReturnCanvasColors();
       let canvasSize = ReturnCanvasSize();
