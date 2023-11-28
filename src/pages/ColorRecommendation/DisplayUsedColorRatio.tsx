@@ -32,20 +32,14 @@ export function DisplayUsedColorRatio() {
       p.fill(255);
       updateVariables();
       displayChromaticColors();
-
-      //確認用出力
-      //console.log(colorsAmount.length);
-      //console.log(colorsAmount);
-      console.log("--- frameCount=" + p.frameCount + " ------");
-      for (let i = 0; i < colorsAmount.length; i++) {
-        console.log("colorsAmount[" + i + "] = ");
-        colorsAmount[i].display();
-      }
     }
 
     p.keyTyped = () => {
       if (p.key === "c") {
         calculateColorsAmount();
+        for (let i = 0; i < colorsAmount.length; i++) {
+          colorsAmount[i].display();
+        }
       }
     }
 
@@ -71,10 +65,7 @@ export function DisplayUsedColorRatio() {
     }
 
     function resetColorsAmount() {
-      //colorsAmount.splice(0, colorsAmount.length);
       colorsAmount = [];
-      //colorsAmount.push(new ColorAmount(p.color(0, 0, 0), SPLIT * SPLIT));
-      //colorsAmount[0] = new ColorAmount(p.color(0, 0, 0), SPLIT * SPLIT);
       colorsAmount.push(new ColorAmount(p.color(0, 0, 0), 0));
     }
 
@@ -84,7 +75,7 @@ export function DisplayUsedColorRatio() {
         for (let j = 0; j < SPLIT; j++) {
           let color = canvasColors[i][j];
           updateColorsAmount(color);
-          console.log("(" + i + "," + j + "): rgb(" + p.red(color) + ", " + p.green(color) + ", " + p.blue(color) + ")");
+          //console.log("(" + i + "," + j + "): rgb(" + p.red(color) + ", " + p.green(color) + ", " + p.blue(color) + ")");
         }
       }
     }
@@ -92,17 +83,15 @@ export function DisplayUsedColorRatio() {
     function equalsColor(color1: p5.Color, color2: p5.Color) {
       let red1 = p.red(color1), green1 = p.green(color1), blue1 = p.blue(color1);
       let red2 = p.red(color2), green2 = p.green(color2), blue2 = p.blue(color2);
-      console.log("equalsColor((" + red1 + ", " + green1 + ", " + blue1 + "), (" + red2 + ", " + green2 + ", " + blue2 + "))= " + ((red1 === red2) && (green1 === green2) && (blue1 === blue2)));
+      //console.log("equalsColor((" + red1 + ", " + green1 + ", " + blue1 + "), (" + red2 + ", " + green2 + ", " + blue2 + "))= " + ((red1 === red2) && (green1 === green2) && (blue1 === blue2)));
       return (((red1 === red2) && (green1 === green2) && (blue1 === blue2)));
     }
 
     function updateColorsAmount(color: p5.Color) {
       //color: 探索対象の色
       for (let i = 0; i < colorsAmount.length; i++) {
-        console.log("colorsAmount[" + i + "]");
         //すでに出てきた色であった場合
         if (equalsColor(colorsAmount[i].color, color)) {
-          //if (colorsAmount[i].color === color) {
           colorsAmount[i].amount++;
           return;
         }
