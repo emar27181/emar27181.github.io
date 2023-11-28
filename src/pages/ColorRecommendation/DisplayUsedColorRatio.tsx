@@ -15,7 +15,7 @@ export function DisplayUsedColorRatio() {
         canvasColors[i][j] = p.color(0, 0, 0);
       }
     }
-    let backGroundColor = p.color(0, 0, 0, 255);
+    let backGroundColor = p.color(255, 255, 255, 255);
     let canvasWidth = 0, canvasHeight = 0;
     //let colorsAmount: Array<ColorAmount> = new ColorAmount(p.color(0,0,0), 1);
     let colorsAmount: Array<ColorAmount> = [];
@@ -29,17 +29,26 @@ export function DisplayUsedColorRatio() {
 
 
     p.draw = () => {
-      p.fill(255);
       updateVariables();
-      displayChromaticColors();
+      //displayChromaticColors();
     }
 
     p.keyTyped = () => {
       if (p.key === "c") {
         calculateColorsAmount();
-        for (let i = 0; i < colorsAmount.length; i++) {
-          colorsAmount[i].display();
-        }
+        //確認用出力
+        for (let i = 0; i < colorsAmount.length; i++) { colorsAmount[i].display(); }
+        displayColorsAmountRate();
+      }
+    }
+
+    function displayColorsAmountRate() {
+      let x = 0, y = 0;
+      p.noStroke();
+      for (let i = 0; i < colorsAmount.length; i++) {
+        p.fill(colorsAmount[i].color);
+        p.rect(x, y, p.width, p.height * (colorsAmount[i].amount / (SPLIT * SPLIT)));
+        y += p.height * (colorsAmount[i].amount / (SPLIT * SPLIT));
       }
     }
 
