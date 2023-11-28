@@ -41,8 +41,13 @@ export function DisplayUsedColorRatio() {
         console.log("colorsAmount[" + i + "] = ");
         colorsAmount[i].display();
       }
-    };
+    }
 
+    p.keyTyped = () => {
+      if (p.key === "c") {
+        calculateColorsAmount();
+      }
+    }
 
     function displayChromaticColors() {
       let rateWidth = p.width / canvasWidth;
