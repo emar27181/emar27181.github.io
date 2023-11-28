@@ -71,6 +71,16 @@ export function DisplayUsedColorRatio() {
       //colorsAmount[0] = new ColorAmount(p.color(0, 0, 0), SPLIT * SPLIT);
       colorsAmount.push(new ColorAmount(p.color(0, 0, 0), 0));
     }
+    function calculateColorsAmount() {
+      resetColorsAmount();
+      for (let i = 0; i < SPLIT; i++) {
+        for (let j = 0; j < SPLIT; j++) {
+          let color = canvasColors[i][j];
+          updateColorsAmount(color);
+          console.log("(" + i + "," + j + "): rgb(" + p.red(color) + ", " + p.green(color) + ", " + p.blue(color) + ")");
+        }
+      }
+    }
 
     function equalsColor(color1: p5.Color, color2: p5.Color) {
       let red1 = p.red(color1), green1 = p.green(color1), blue1 = p.blue(color1);
