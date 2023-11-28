@@ -64,6 +64,13 @@ export function DisplayUsedColorRatio() {
         }
       }
     }
+    function resetColorsAmount() {
+      //colorsAmount.splice(0, colorsAmount.length);
+      colorsAmount = [];
+      //colorsAmount.push(new ColorAmount(p.color(0, 0, 0), SPLIT * SPLIT));
+      //colorsAmount[0] = new ColorAmount(p.color(0, 0, 0), SPLIT * SPLIT);
+      colorsAmount.push(new ColorAmount(p.color(0, 0, 0), 0));
+    }
 
     function equalsColor(color1: p5.Color, color2: p5.Color) {
       let red1 = p.red(color1), green1 = p.green(color1), blue1 = p.blue(color1);
