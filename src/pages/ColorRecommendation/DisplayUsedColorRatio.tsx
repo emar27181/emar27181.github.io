@@ -118,7 +118,8 @@ export function DisplayUsedColorRatio() {
       //color: 探索対象の色
       p.colorMode(p.RGB);
       //1の位を四捨五入した値に変更
-      color = p.color(p.round(p.red(color) / 10) * 10, p.round(p.green(color) / 10) * 10, p.round(p.blue(color) / 10) * 10);
+      let placeNumber = 10; // place/10の位を四捨五入
+      color = p.color(p.round(p.red(color) / placeNumber) * placeNumber, p.round(p.green(color) / placeNumber) * placeNumber, p.round(p.blue(color) / placeNumber) * placeNumber);
       for (let i = 0; i < colorsAmount.length; i++) {
         //すでに出てきた色であった場合
         if (equalsColor(colorsAmount[i].color, color)) {
