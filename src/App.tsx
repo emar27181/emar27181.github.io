@@ -63,11 +63,13 @@ function App() {
       const scrollPosition = window.scrollY;
 
       // スクロール位置が一定の値よりも大きい場合、ナビゲーションバーを非表示にする
+      /*
       if (scrollPosition > 10) {
         setNavbarVisibility(false);
       } else {
         setNavbarVisibility(true);
       }
+      */
     };
 
     // イベントリスナーを追加
