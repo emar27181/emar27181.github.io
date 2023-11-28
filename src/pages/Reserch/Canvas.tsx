@@ -57,7 +57,6 @@ let trackingY4 = trackingData[1][3]; //親指のy座標
 const SPLIT = 100;
 let returnDrawingColor: p5.Color;
 let canvasColors: p5.Color[][] = [];
-//let canvasColors: p5.Color[][] = new Array();
 for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
 
 let canvasWidth = 0, canvasHeight = 0, mouseX = 0, mouseY = 0;
