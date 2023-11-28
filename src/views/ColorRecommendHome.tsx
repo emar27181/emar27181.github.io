@@ -17,10 +17,10 @@ export function ColorRecommendHome() {
       <div style={{ display: 'flex' }}>
         <ColorGanerate />
         <DisplayColorRatioOnlyFrontendontend />
-        <DisplayUsedColorRatio />
       </div>
       <div style={{ display: 'flex' }}>
         <Canvas />
+        <DisplayUsedColorRatio />
         <DisplayDrawingInfo />
       </div>
     </div>

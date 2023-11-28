@@ -3,6 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ReturnCanvasColors, ReturnCanvasSize } from '../Reserch/Canvas';
 import p5 from 'p5';
+import { ReturnIsDesktop } from '../../App';
 
 export function DisplayUsedColorRatio() {
   const sketch = (p: P5CanvasInstance) => {
@@ -15,13 +16,16 @@ export function DisplayUsedColorRatio() {
         canvasColors[i][j] = p.color(0, 0, 0);
       }
     }
-    let backGroundColor = p.color(255, 255, 255, 255);
+    let backGroundColor = p.color(0, 0, 0, 255);
     let canvasWidth = 0, canvasHeight = 0;
     //let colorsAmount: Array<ColorAmount> = new ColorAmount(p.color(0,0,0), 1);
     let colorsAmount: Array<ColorAmount> = [];
 
     p.setup = () => {
-      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      let rate = 0.65;
+      if (ReturnIsDesktop()) { p.createCanvas(20, rate * p.windowWidth / 2); }
+      else { p.createCanvas(20, rate * p.windowWidth); }
+      //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(backGroundColor);
       colorsAmount.push(new ColorAmount(p.color(0, 0, 0), SPLIT * SPLIT));
       p.frameRate(1);
