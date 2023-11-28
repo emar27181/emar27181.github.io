@@ -31,13 +31,20 @@ export function DisplayUsedColorRatio() {
     p.draw = () => {
       p.fill(255);
       updateVariables();
-      calculateChromaticColors();
+      displayChromaticColors();
 
-      //console.log("(canvasWidth, canvasHeight) = (" + canvasWidth + ", " + canvasHeight + ")");
-      //console.log("width, height = (" + p.width + ", " + p.height + ")");
+      //確認用出力
+      //console.log(colorsAmount.length);
+      //console.log(colorsAmount);
+      console.log("--- frameCount=" + p.frameCount + " ------");
+      for (let i = 0; i < colorsAmount.length; i++) {
+        console.log("colorsAmount[" + i + "] = ");
+        colorsAmount[i].display();
+      }
     };
 
-    function calculateChromaticColors() {
+
+    function displayChromaticColors() {
       let rateWidth = p.width / canvasWidth;
       let rateHeight = p.height / canvasHeight;
 
@@ -46,13 +53,13 @@ export function DisplayUsedColorRatio() {
           let r = p.red(canvasColors[i][j]);
           let g = p.green(canvasColors[i][j]);
           let b = p.blue(canvasColors[i][j]);
+          //(i, j)の色が背景色以外だった場合
           if (!(r == 0 && g == 0 && b == 0)) {
-            //console.log("(canvasWidth, canvasHeight) = (" + canvasWidth + ", " + canvasHeight + ")");
-            //console.log("width, height = (" + p.width + ", " + p.height + ")");
             p.noStroke();
             p.fill(canvasColors[i][j]);
-            //p.rect(canvasWidth / p.width * i, canvasHeight / p.height * j, p.width / SPLIT, p.height / SPLIT);
             p.rect(canvasWidth / SPLIT * i * rateWidth, canvasHeight / SPLIT * j * rateHeight, p.width / SPLIT, p.height / SPLIT);
+            //色の量の更新
+            //updateColorsAmount(canvasColors[i][j]);
           }
         }
       }
