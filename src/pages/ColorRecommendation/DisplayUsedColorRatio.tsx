@@ -5,6 +5,7 @@ import { ReturnCanvasColors, ReturnCanvasSize } from '../Reserch/Canvas';
 import p5 from 'p5';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnCameraColors } from '../Reserch/ReturnCameraInfo';
+import { ReturnImageColors } from '../Reserch/ReturnImageInfo';
 
 export function DisplayUsedColorRatio() {
   const sketch = (p: P5CanvasInstance) => {
@@ -120,7 +121,8 @@ export function DisplayUsedColorRatio() {
 
     function updateVariables() {
       //canvasColors = ReturnCanvasColors();
-      canvasColors = ReturnCameraColors();
+      //canvasColors = ReturnCameraColors();
+      canvasColors = ReturnImageColors();
       let canvasSize = ReturnCanvasSize();
       canvasWidth = canvasSize[0];
       canvasHeight = canvasSize[1];
