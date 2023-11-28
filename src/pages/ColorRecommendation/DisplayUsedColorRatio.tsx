@@ -61,10 +61,10 @@ export function DisplayUsedColorRatio() {
       for (let i = 0; i < 360; i += hueRange) {
         for (let j = 0; j < colorsAmount.length; j++) {
           let hue = p.hue(colorsAmount[j].color);
-          if(i <= hue && hue < i + hueRange){
-          p.fill(colorsAmount[j].color);
-          p.rect(x, y, p.width, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT)));
-          y += p.height * (colorsAmount[j].amount / (SPLIT * SPLIT));
+          if (i <= hue && hue < i + hueRange) {
+            p.fill(colorsAmount[j].color);
+            p.rect(x, y, p.width, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT)));
+            y += p.height * (colorsAmount[j].amount / (SPLIT * SPLIT));
           }
         }
       }
@@ -116,6 +116,9 @@ export function DisplayUsedColorRatio() {
 
     function updateColorsAmount(color: p5.Color) {
       //color: 探索対象の色
+      p.colorMode(p.RGB);
+      //1の位を四捨五入した値に変更
+      color = p.color(p.round(p.red(color) / 10) * 10, p.round(p.green(color) / 10) * 10, p.round(p.blue(color) / 10) * 10);
       for (let i = 0; i < colorsAmount.length; i++) {
         //すでに出てきた色であった場合
         if (equalsColor(colorsAmount[i].color, color)) {
