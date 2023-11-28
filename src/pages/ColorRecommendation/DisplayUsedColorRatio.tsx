@@ -64,7 +64,21 @@ export function DisplayUsedColorRatio() {
       canvasWidth = canvasSize[0];
       canvasHeight = canvasSize[1];
     }
+    class ColorAmount {
+      color: p5.Color;
+      amount: number;
+
+      constructor(color: p5.Color, amount: number) {
+        this.color = color;
+        this.amount = amount;
+      }
+
+      display() {
+        console.log("(" + p.red(this.color) + "," + p.green(this.color) + "," + p.blue(this.color) + "): " + this.amount);
+      }
+    }
   }
+
 
   return (
     <ReactP5Wrapper sketch={sketch} />
