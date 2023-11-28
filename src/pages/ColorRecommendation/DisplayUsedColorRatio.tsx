@@ -24,6 +24,7 @@ export function DisplayUsedColorRatio() {
     let colorsAmount: Array<ColorAmount> = [];
 
     p.setup = () => {
+      p.colorMode(p.HSL);
       let rate = 0.65;
       if (ReturnIsDesktop()) { p.createCanvas(20, rate * p.windowWidth / 2); }
       else { p.createCanvas(20, rate * p.windowWidth); }
@@ -35,6 +36,7 @@ export function DisplayUsedColorRatio() {
 
 
     p.draw = () => {
+      p.colorMode(p.HSL);
       updateVariables();
       //displayChromaticColors();
     }
@@ -54,11 +56,17 @@ export function DisplayUsedColorRatio() {
 
     function displayColorsAmountRate() {
       let x = 0, y = 0;
+      let hueRange = 15;
       p.noStroke();
-      for (let i = 0; i < colorsAmount.length; i++) {
-        p.fill(colorsAmount[i].color);
-        p.rect(x, y, p.width, p.height * (colorsAmount[i].amount / (SPLIT * SPLIT)));
-        y += p.height * (colorsAmount[i].amount / (SPLIT * SPLIT));
+      for (let i = 0; i < 360; i += hueRange) {
+        for (let j = 0; j < colorsAmount.length; j++) {
+          let hue = p.hue(colorsAmount[j].color);
+          if(i <= hue && hue < i + hueRange){
+          p.fill(colorsAmount[j].color);
+          p.rect(x, y, p.width, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT)));
+          y += p.height * (colorsAmount[j].amount / (SPLIT * SPLIT));
+          }
+        }
       }
     }
 
