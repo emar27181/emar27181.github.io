@@ -38,13 +38,17 @@ export function DisplayUsedColorRatio() {
     }
 
     p.keyTyped = () => {
-      if (p.key === "c") {
+    }
+
+    p.mouseClicked = () => {
+      if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
         calculateColorsAmount();
         //確認用出力
         for (let i = 0; i < colorsAmount.length; i++) { colorsAmount[i].display(); }
         displayColorsAmountRate();
       }
     }
+
 
     function displayColorsAmountRate() {
       let x = 0, y = 0;
