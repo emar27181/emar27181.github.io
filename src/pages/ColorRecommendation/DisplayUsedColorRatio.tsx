@@ -72,6 +72,20 @@ export function DisplayUsedColorRatio() {
       return (((red1 === red2) && (green1 === green2) && (blue1 === blue2)));
     }
 
+    function updateColorsAmount(color: p5.Color) {
+      //color: 探索対象の色
+      for (let i = 0; i < colorsAmount.length; i++) {
+        console.log("colorsAmount[" + i + "]");
+        //すでに出てきた色であった場合
+        if (equalsColor(colorsAmount[i].color, color)) {
+          //if (colorsAmount[i].color === color) {
+          colorsAmount[i].amount++;
+          return;
+        }
+      }
+      //まだ出てきていない色であった場合
+      colorsAmount[colorsAmount.length] = new ColorAmount(color, 1);
+    }
 
     function updateVariables() {
       canvasColors = ReturnCanvasColors();
