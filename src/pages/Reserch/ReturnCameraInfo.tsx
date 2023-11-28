@@ -2,10 +2,14 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { Element } from 'p5';
+import p5 from 'p5';
 import { ReturnCanvasSize } from './Canvas';
 
 
+const SPLIT = 100;
 let colorsInfo: Array<ColorInfo> = [];
+let canvasColors: p5.Color[][] = [];
+for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
 
 export function ReturnCameraInfo() {
   const sketch = (p: P5CanvasInstance) => {
@@ -17,6 +21,11 @@ export function ReturnCameraInfo() {
     let canvasSize = ReturnCanvasSize();
     let canvasWidth = canvasSize[0];
     let canvasHeight = canvasSize[1];
+    for (let i = 0; i < SPLIT; i++) {
+      for (let j = 0; j < SPLIT; j++) {
+        canvasColors[i][j] = p.color(0, 0, 0);
+      }
+    }
 
     p.setup = () => {
       //p.createCanvas(256, 256);
@@ -29,7 +38,7 @@ export function ReturnCameraInfo() {
     p.draw = () => {
 
       if (isLooped) {
-
+        getCanvasColors();
         canvasSize = ReturnCanvasSize();
         canvasWidth = canvasSize[0];
         canvasHeight = canvasSize[1];
@@ -41,6 +50,15 @@ export function ReturnCameraInfo() {
         }
       }
     };
+
+    function getCanvasColors() {
+      for (let i = 0; i < SPLIT; i++) {
+        for (let j = 0; j < SPLIT; j++) {
+          canvasColors[i][j] = p.color(p.get(p.width / SPLIT * i, p.height / SPLIT * j));
+          //console.log(canvasColors[i][j]);
+        }
+      }
+    }
 
     function getColors() {
       let indexNum = 0;
@@ -79,5 +97,6 @@ export class ColorInfo {
   }
 }
 export function ReturnColorsInfo() { return colorsInfo; }
+export function ReturnCameraColors() { return canvasColors; }
 
 export default ReturnCameraInfo
