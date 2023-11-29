@@ -144,28 +144,6 @@ export function DisplayUsedColorRatio(displayMode: string) {
       return p.color(hue, saturation, lightness);
     }
 
-
-    function displayChromaticColors() {
-      let rateWidth = p.width / canvasWidth;
-      let rateHeight = p.height / canvasHeight;
-
-      for (let i = 0; i < SPLIT; i++) {
-        for (let j = 0; j < SPLIT; j++) {
-          let r = p.red(canvasColors[i][j]);
-          let g = p.green(canvasColors[i][j]);
-          let b = p.blue(canvasColors[i][j]);
-          //(i, j)の色が背景色以外だった場合
-          if (!(r == 0 && g == 0 && b == 0)) {
-            p.noStroke();
-            p.fill(canvasColors[i][j]);
-            p.rect(canvasWidth / SPLIT * i * rateWidth, canvasHeight / SPLIT * j * rateHeight, p.width / SPLIT, p.height / SPLIT);
-            //色の量の更新
-            //updateColorsAmount(canvasColors[i][j]);
-          }
-        }
-      }
-    }
-
     function resetColorsAmount() {
       colorsAmount = [];
       colorsAmount.push(new ColorAmount(p.color(0, 0, 0), 0));
