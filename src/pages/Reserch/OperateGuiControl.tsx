@@ -2,7 +2,7 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
-let returnValue = 0, canvasWidth = 0, canvasHeight = 0;
+let barValue = 0, canvasWidth = 0, canvasHeight = 0;
 let isTouched = false;
 
 
@@ -34,7 +34,7 @@ export function OperateGuiControl() {
 
     function updateVariables() {
       isTouched = false;
-      returnValue = barX;
+      barValue = barX;
       canvasWidth = p.width;
       canvasHeight = p.height;
     }
@@ -67,7 +67,7 @@ export function OperateGuiControl() {
   )
 }
 
-export function ReturnBarValue() { return [returnValue, canvasWidth]; }
+export function ReturnBarValue() { return [barValue, canvasWidth]; }
 export function ReturnIsTouchedGui() { return isTouched; }
 
 export default OperateGuiControl
