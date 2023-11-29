@@ -2,7 +2,8 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
-let barValue = 0, canvasWidth = 0, canvasHeight = 0;
+let barValue = 0, isButtonClicked = false;
+let canvasWidth = 0, canvasHeight = 0;
 let isTouched = false;
 
 
@@ -13,6 +14,7 @@ export function OperateGuiControl() {
     let barX = 0;
 
     p.setup = () => {
+      p.frameRate(30);
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(0);
     };
@@ -20,20 +22,18 @@ export function OperateGuiControl() {
     p.draw = () => {
       p.fill(255);
       p.background(0);
-      updateVariables();
       displayControlBar();
       displayButton();
+      updateVariables();
       if (p.mouseIsPressed) { mouseContorl() }
     };
 
     p.mouseClicked = () => {
-      if (judgeClicked(10, 50, 30, 30)) {
-        console.log(" called ");
-      }
     }
 
     function updateVariables() {
       isTouched = false;
+      isButtonClicked = false;
       barValue = barX;
       canvasWidth = p.width;
       canvasHeight = p.height;
@@ -44,6 +44,7 @@ export function OperateGuiControl() {
         barX = p.mouseX;
         isTouched = true;
       }
+      if (judgeClicked(10, 50, 30, 30)) { isButtonClicked = true; }
     }
 
     function judgeClicked(x: number, y: number, width: number, height: number) {
@@ -69,5 +70,6 @@ export function OperateGuiControl() {
 
 export function ReturnBarValue() { return [barValue, canvasWidth]; }
 export function ReturnIsTouchedGui() { return isTouched; }
+export function ReturnIsButtonClicked() { return isButtonClicked; }
 
 export default OperateGuiControl

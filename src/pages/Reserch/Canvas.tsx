@@ -16,13 +16,13 @@ import { ReturnIsTouched } from './DisplayGravityPlace';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecommendation/DisplayColorRatioOnlyFrontendontend';
 import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorRecommendation/DisplayUsedColorRatio';
-import { ReturnBarValue, ReturnIsTouchedGui } from './OperateGuiControl';
+import { ReturnBarValue, ReturnIsButtonClicked, ReturnIsTouchedGui } from './OperateGuiControl';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
 
 const IS_NO_STROKE = true, DEBUG = false;
-const DEBUG_FPS = 0.2, DEFAULT_FPS = 10;
+const DEBUG_FPS = 0.2, DEFAULT_FPS = 60;
 const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
 const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
@@ -224,6 +224,10 @@ export function Canvas() {
       getCanvasColors();
       let barValue = ReturnBarValue();
       if (ReturnIsTouchedGui()) { drawingWeight = barValue[0]; }
+      if (ReturnIsButtonClicked()) {
+        p.key = "c";
+        p.keyTyped();
+      }
 
       /*
       p.fill(0);
@@ -470,7 +474,6 @@ export function Canvas() {
         if (clickMode === "draw") {
           p.fill(p.red(drawingColor), p.green(drawingColor), p.blue(drawingColor), alpha);
           displayFigure(p.mouseX, p.mouseY, drawingWeight, figureMode);
-          console.log(alpha);
         }
       }
     }
