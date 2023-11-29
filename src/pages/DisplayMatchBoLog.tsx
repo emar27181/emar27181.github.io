@@ -12,17 +12,26 @@ export function DisplayMatchBoLog() {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(0);
       p.textAlign(p.CENTER, p.CENTER);
+      p.fill(255);
+      displayTree();
     };
 
     p.draw = () => {
-      p.fill(255);
-      displayTree();
     };
 
     function displayTree() {
       let depthMax = 10;
 
       for (let depth = 0; depth < depthMax; depth++) {
+        //深さがdepthのログがいくつあるか計測
+        let countLog = 0;
+        for (let index = 0; index < log.length; index++) {
+          if (log[index].depth === depth) {
+            countLog++;
+          }
+        }
+        //console.log(countLog);
+
         for (let index = 0; index < log.length; index++) {
           // 深さがdepthのログの描画
           if (log[index].depth === depth) {
