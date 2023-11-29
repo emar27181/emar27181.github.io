@@ -7,6 +7,9 @@ import { ReturnIsDesktop } from '../../App';
 import { ReturnCameraColors } from '../Reserch/ReturnCameraInfo';
 import { ReturnImageColors } from '../Reserch/ReturnImageInfo';
 
+let returnColor: number[] = [0, 0, 0, 255];
+let isTouched = false;
+
 export function DisplayUsedColorRatio(displayMode: string) {
   const sketch = (p: P5CanvasInstance) => {
     const SPLIT = 100, CANVAS_WIDTH = 40;
@@ -52,29 +55,32 @@ export function DisplayUsedColorRatio(displayMode: string) {
     }
 
     p.mouseClicked = () => {
+      p.colorMode(p.RGB);
       if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
-        calculateColorsAmount();
-        //確認用出力
-        for (let i = 0; i < colorsAmount.length; i++) { colorsAmount[i].display(); }
-        displayColorsAmountRate();
-        displayRecommendedColorsAmountRate();
+        isTouched = true;
+        let getColor = p.get(p.mouseX, p.mouseY);
+        returnColor = [p.red(getColor), p.green(getColor), p.blue(getColor), p.alpha(getColor)];
+
       }
     }
-
     function displayCanvas() {
       calculateColorsAmount();
-      displayColorsAmountRate();
+      //displayColorsAmountRate();
+      displayColorsAmountRateExcludeBackground();
       displayRecommendedColorsAmountRate();
     }
 
+    //背景色を含めて色の比率を表示させる関数
     function displayColorsAmountRate() {
       let y = 0;
       let hueRange = 15;
       p.noStroke();
       for (let i = 0; i < 360; i += hueRange) {
+        //色相の最初の値を330に設定
+        let hueValue = (330 + i) % 360;
         for (let j = 0; j < colorsAmount.length; j++) {
           let hue = p.hue(colorsAmount[j].color);
-          if (i <= hue && hue < i + hueRange) {
+          if (hueValue <= hue && hue < hueValue + hueRange) {
             p.fill(colorsAmount[j].color);
             p.rect(0, y, p.width / 2, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT)));
             y += p.height * (colorsAmount[j].amount / (SPLIT * SPLIT));
@@ -83,15 +89,49 @@ export function DisplayUsedColorRatio(displayMode: string) {
       }
     }
 
+    //背景色を除外して色の比率を表示させる関数
+    function displayColorsAmountRateExcludeBackground() {
+      let y = 0;
+      let saturationRange = 10;
+      p.noStroke();
+      //何も描かれていなかった場合
+      if (colorsAmount.length === 0) { return; }
+
+      //彩度を基準に上から描画
+      for (let i = 0; i <= 100; i += saturationRange) {
+        for (let j = 1; j < colorsAmount.length; j++) {
+          let saturation = p.saturation(colorsAmount[j].color);
+          if (i <= saturation && saturation < (i + saturationRange)) {
+            p.fill(colorsAmount[j].color);
+            p.rect(0, y, p.width / 2, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT - colorsAmount[0].amount)));
+            y += p.height * (colorsAmount[j].amount / (SPLIT * SPLIT - colorsAmount[0].amount));
+          }
+        }
+      }
+
+      //色相を基準に上から描画
+      /*
+      for (let i = 0; i < 360; i += hueRange) {
+        //色相の最初の値を330に設定
+        let hueValue = (330 + i) % 360;
+        for (let j = 1; j < colorsAmount.length; j++) {
+          let hue = p.hue(colorsAmount[j].color);
+          if (hueValue <= hue && hue < hueValue + hueRange) {
+            p.fill(colorsAmount[j].color);
+            p.rect(0, y, p.width / 2, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT - colorsAmount[0].amount)));
+            y += p.height * (colorsAmount[j].amount / (SPLIT * SPLIT - colorsAmount[0].amount));
+          }
+        }
+      }
+      */
+    }
+
+
     function displayRecommendedColorsAmountRate() {
       p.colorMode(p.RGB);
       let y = 0;
 
       //初期実装として、色の割合をベースカラー70%, アソートカラー25%, アクセントカラー5%で表示
-      //ベースカラーの描画
-      p.fill(calculateBaseColor());
-      p.rect(p.width / 2, y, p.width, 0.7 * p.height);
-      y += 0.7 * p.height;
 
       //アソートカラーの描画
       p.fill(calculateAssortedColor());
@@ -102,12 +142,21 @@ export function DisplayUsedColorRatio(displayMode: string) {
       p.fill(calculateAccentColor());
       p.rect(p.width / 2, y, p.width, 0.05 * p.height);
       y += 0.05 * p.height;
+
+      //ベースカラーの描画
+      p.fill(calculateBaseColor());
+      p.rect(p.width / 2, y, p.width, 0.7 * p.height);
+      y += 0.7 * p.height;
+
     }
 
     //現在のキャンバスの色の割合のうち最も多い色を返す関数
     function calculateBaseColor(): p5.Color {
-      let maxIndex = 0;
-      for (let i = 0; i < colorsAmount.length; i++) {
+      //何も塗られていなかった場合
+      if (colorsAmount.length === 1) { return colorsAmount[0].color; }
+
+      let maxIndex = 1;
+      for (let i = 1; i < colorsAmount.length; i++) {
         if (colorsAmount[i].amount > colorsAmount[maxIndex].amount) {
           maxIndex = i;
         }
@@ -133,28 +182,6 @@ export function DisplayUsedColorRatio(displayMode: string) {
       let saturation = 80;
       let lightness = 20;
       return p.color(hue, saturation, lightness);
-    }
-
-
-    function displayChromaticColors() {
-      let rateWidth = p.width / canvasWidth;
-      let rateHeight = p.height / canvasHeight;
-
-      for (let i = 0; i < SPLIT; i++) {
-        for (let j = 0; j < SPLIT; j++) {
-          let r = p.red(canvasColors[i][j]);
-          let g = p.green(canvasColors[i][j]);
-          let b = p.blue(canvasColors[i][j]);
-          //(i, j)の色が背景色以外だった場合
-          if (!(r == 0 && g == 0 && b == 0)) {
-            p.noStroke();
-            p.fill(canvasColors[i][j]);
-            p.rect(canvasWidth / SPLIT * i * rateWidth, canvasHeight / SPLIT * j * rateHeight, p.width / SPLIT, p.height / SPLIT);
-            //色の量の更新
-            //updateColorsAmount(canvasColors[i][j]);
-          }
-        }
-      }
     }
 
     function resetColorsAmount() {
@@ -205,6 +232,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
       let canvasSize = ReturnCanvasSize();
       canvasWidth = canvasSize[0];
       canvasHeight = canvasSize[1];
+      isTouched = false;
     }
     class ColorAmount {
       color: p5.Color;
@@ -226,5 +254,8 @@ export function DisplayUsedColorRatio(displayMode: string) {
     <ReactP5Wrapper sketch={sketch} />
   )
 }
+
+export function ReturnIsTouchedUsedColorRatio() { return isTouched; }
+export function ReturnRecommendedColor() { return returnColor; }
 
 export default DisplayUsedColorRatio

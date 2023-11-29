@@ -15,6 +15,7 @@ import { ReturnColorPaletteValue, ReturnIsTouchedColorGenerate } from '../ColorR
 import { ReturnIsTouched } from './DisplayGravityPlace';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecommendation/DisplayColorRatioOnlyFrontendontend';
+import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorRecommendation/DisplayUsedColorRatio';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
@@ -26,7 +27,7 @@ const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
 const IS_TEST_MODE = true;
 let alpha = 100, backgroundAlpha = 15;
-let drawingWeight = 1, backgroundColor = "#000000", textSize = 10;
+let drawingWeight = 100, backgroundColor = "#000000", textSize = 10;
 let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
 let hue: number[] = [];
 let intense: number[] = [];
@@ -216,6 +217,8 @@ export function Canvas() {
       if (ReturnIsTouchedColorGenerate()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
       color = ReturnColorRatioValue();
       if (ReturnIsTouchedColorRatio()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
+      color = ReturnRecommendedColor();
+      if (ReturnIsTouchedUsedColorRatio()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
       returnDrawingColor = drawingColor;
       getCanvasColors();
 
@@ -286,8 +289,8 @@ export function Canvas() {
       let variance = ((r - ave) * (r - ave) + (g - ave) * (g - ave) + (b - ave) * (b - ave)) / 3;
       let sd = Math.sqrt(variance);
       //return (!(r === 255 && g === 255 && b === 255));
-      //return (sd >= standardDeviationLimit);
-      return (!(r >= 200 && g >= 200 && b >= 200));
+      return (sd >= standardDeviationLimit);
+      //return (!(r >= 200 && g >= 200 && b >= 200));
     }
 
     //移動体を描画する関数
@@ -500,7 +503,6 @@ export function Canvas() {
         //スポイト機能
         let input = p.get(p.mouseX, p.mouseY);
         drawingColor = p.color(input[0], input[1], input[2], input[3]);
-        console.log(drawingColor);
         if (DEBUG) {
           //console.log("drawingColor: " + drawingColor);
           //console.log("typeof:" + typeof (drawingColor));
