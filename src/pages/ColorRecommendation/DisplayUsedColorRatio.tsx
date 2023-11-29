@@ -76,7 +76,7 @@ export function DisplayUsedColorRatio() {
 
       //初期実装として、色の割合をベースカラー70%, アソートカラー25%, アクセントカラー5%で表示
       //ベースカラーの描画
-      p.fill(17, 122, 122);
+      p.fill(calculateBaseColor());
       p.rect(p.width / 2, y, p.width, 0.7 * p.height);
       y += 0.7 * p.height;
 
@@ -89,6 +89,17 @@ export function DisplayUsedColorRatio() {
       p.fill(237, 104, 31);
       p.rect(p.width / 2, y, p.width, 0.05 * p.height);
       y += 0.05 * p.height;
+    }
+
+    //現在のキャンバスの色の割合のうち最も多い色を返す関数
+    function calculateBaseColor(): p5.Color {
+      let maxIndex = 0;
+      for (let i = 0; i < colorsAmount.length; i++) {
+        if (colorsAmount[i].amount > colorsAmount[maxIndex].amount) {
+          maxIndex = i;
+        }
+      }
+      return colorsAmount[maxIndex].color;
     }
 
     function displayChromaticColors() {
