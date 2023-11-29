@@ -90,20 +90,22 @@ export function DisplayUsedColorRatio(displayMode: string) {
       let y = 0;
 
       //初期実装として、色の割合をベースカラー70%, アソートカラー25%, アクセントカラー5%で表示
-      //ベースカラーの描画
-      p.fill(calculateBaseColor());
-      p.rect(p.width / 2, y, p.width, 0.7 * p.height);
-      y += 0.7 * p.height;
+
+      //アクセントカラーの描画
+      p.fill(calculateAccentColor());
+      p.rect(p.width / 2, y, p.width, 0.05 * p.height);
+      y += 0.05 * p.height;
 
       //アソートカラーの描画
       p.fill(calculateAssortedColor());
       p.rect(p.width / 2, y, p.width, 0.25 * p.height);
       y += 0.25 * p.height;
 
-      //アクセントカラーの描画
-      p.fill(calculateAccentColor());
-      p.rect(p.width / 2, y, p.width, 0.05 * p.height);
-      y += 0.05 * p.height;
+      //ベースカラーの描画
+      p.fill(calculateBaseColor());
+      p.rect(p.width / 2, y, p.width, 0.7 * p.height);
+      y += 0.7 * p.height;
+
     }
 
     //現在のキャンバスの色の割合のうち最も多い色を返す関数
