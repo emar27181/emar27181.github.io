@@ -16,6 +16,7 @@ import { ReturnIsTouched } from './DisplayGravityPlace';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecommendation/DisplayColorRatioOnlyFrontendontend';
 import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorRecommendation/DisplayUsedColorRatio';
+import { ReturnBarValue, ReturnIsTouchedGui } from './OperateGuiControl';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
@@ -221,6 +222,8 @@ export function Canvas() {
       if (ReturnIsTouchedUsedColorRatio()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
       returnDrawingColor = drawingColor;
       getCanvasColors();
+      let barValue = ReturnBarValue();
+      if (ReturnIsTouchedGui()) { drawingWeight = barValue[0]; }
 
       /*
       p.fill(0);
