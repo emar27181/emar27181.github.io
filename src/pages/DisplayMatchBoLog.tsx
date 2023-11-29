@@ -15,13 +15,17 @@ export function DisplayMatchBoLog() {
 
     p.draw = () => {
       p.fill(255);
+      displayTree();
+    };
+
+    function displayTree() {
       for (let i = 0; i < log.length; i++) {
         p.textAlign(p.CENTER, p.CENTER);
         let text = "[" + log[i].matchValue[0] + "] : [" + log[i].matchValue[1] + "]";
         p.text(text, p.width / 2, 10 + p.textSize() * log[i].depth);
         //console.log(log[i].matchValue);
       }
-    };
+    }
   }
 
   return (
