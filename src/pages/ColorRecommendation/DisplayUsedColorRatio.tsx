@@ -133,15 +133,15 @@ export function DisplayUsedColorRatio(displayMode: string) {
 
       //初期実装として、色の割合をベースカラー70%, アソートカラー25%, アクセントカラー5%で表示
 
-      //アクセントカラーの描画
-      p.fill(calculateAccentColor());
-      p.rect(p.width / 2, y, p.width, 0.05 * p.height);
-      y += 0.05 * p.height;
-
       //アソートカラーの描画
       p.fill(calculateAssortedColor());
       p.rect(p.width / 2, y, p.width, 0.25 * p.height);
       y += 0.25 * p.height;
+
+      //アクセントカラーの描画
+      p.fill(calculateAccentColor());
+      p.rect(p.width / 2, y, p.width, 0.05 * p.height);
+      y += 0.05 * p.height;
 
       //ベースカラーの描画
       p.fill(calculateBaseColor());
