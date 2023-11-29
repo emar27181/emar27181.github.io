@@ -5,7 +5,8 @@ import React from 'react';
 export function OperateGuiControl() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
+    const CANVAS_WIDTH = 200, CANVAS_HEIGHT = 300;
+    let barX = 40;
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -14,8 +15,13 @@ export function OperateGuiControl() {
 
     p.draw = () => {
       p.fill(255);
-      p.ellipse(p.width / 2, p.height / 2, 100, 100);
+      displayControlBar();
     };
+
+    function displayControlBar() {
+      p.rect(barX, 10, 10, 30);
+    }
+
   }
 
   return (
