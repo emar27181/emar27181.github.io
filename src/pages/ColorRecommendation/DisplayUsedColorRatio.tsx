@@ -86,7 +86,7 @@ export function DisplayUsedColorRatio() {
       y += 0.25 * p.height;
 
       //アクセントカラーの描画
-      p.fill(237, 104, 31);
+      p.fill(calculateAccentColor());
       p.rect(p.width / 2, y, p.width, 0.05 * p.height);
       y += 0.05 * p.height;
     }
@@ -109,6 +109,16 @@ export function DisplayUsedColorRatio() {
       let hue = p.hue(baseColor);
       let saturation = 20;
       let lightness = 80;
+      return p.color(hue, saturation, lightness);
+    }
+
+    function calculateAccentColor(): p5.Color {
+      p.colorMode(p.HSL);
+      let baseColor = calculateBaseColor();
+      let hue = p.hue(baseColor);
+      hue = (hue + 180) % 360;
+      let saturation = 80;
+      let lightness = 20;
       return p.color(hue, saturation, lightness);
     }
 
