@@ -45,6 +45,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
       p.colorMode(p.HSL);
       updateVariables();
       if (p.frameCount === 3) { displayCanvas(); }
+      if (p.frameCount % 3 === 0 && displayMode === "canvas") { displayCanvas(); }
     }
 
     p.keyTyped = () => {
