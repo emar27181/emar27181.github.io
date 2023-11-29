@@ -27,9 +27,9 @@ const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
 const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
 const IS_TEST_MODE = true;
-let alpha = 100, backgroundAlpha = 15;
-let drawingWeight = 100, backgroundColor = "#000000", textSize = 10;
-let adjustMode = "w", figureMode = "ellipse", clickMode = "add";
+let alpha = 255, backgroundAlpha = 15;
+let drawingWeight = 5, backgroundColor = "#000000", textSize = 10;
+let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
@@ -467,6 +467,11 @@ export function Canvas() {
         console.log(gravityY);
         */
       }
+      if (clickMode === "draw") {
+        p.fill(p.red(drawingColor), p.green(drawingColor), p.blue(drawingColor), alpha);
+        displayFigure(p.mouseX, p.mouseY, drawingWeight, figureMode);
+        console.log(alpha);
+      }
     }
 
     //キーボードによる操作(タイプして離れるまで繰り返し呼び出し)
@@ -556,14 +561,18 @@ export function Canvas() {
 
       if (p.key === "c") {
         if (clickMode === "add") {
-          clickMode = "gravity";
+          clickMode = "draw";
           isMouseGravity = true;
-          p.cursor(p.HAND);
+          p.cursor(p.ARROW);
+        }
+        else if (clickMode === "draw") {
+          clickMode = "gravity";
+          p.cursor(p.MOVE);
         }
         else if (clickMode === "newGravityBall") {
           clickMode = "add";
           isMouseGravity = false;
-          p.cursor(p.ARROW);
+          p.cursor(p.HAND);
         }
         else if (clickMode === "gravity") {
           clickMode = "newGravityBall";
