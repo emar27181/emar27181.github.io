@@ -81,7 +81,7 @@ export function DisplayUsedColorRatio() {
       y += 0.7 * p.height;
 
       //アソートカラーの描画
-      p.fill(181, 209, 209);
+      p.fill(calculateAssortedColor());
       p.rect(p.width / 2, y, p.width, 0.25 * p.height);
       y += 0.25 * p.height;
 
@@ -101,6 +101,17 @@ export function DisplayUsedColorRatio() {
       }
       return colorsAmount[maxIndex].color;
     }
+
+
+    function calculateAssortedColor(): p5.Color {
+      p.colorMode(p.HSL);
+      let baseColor = calculateBaseColor();
+      let hue = p.hue(baseColor);
+      let saturation = 20;
+      let lightness = 80;
+      return p.color(hue, saturation, lightness);
+    }
+
 
     function displayChromaticColors() {
       let rateWidth = p.width / canvasWidth;
