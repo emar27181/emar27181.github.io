@@ -289,8 +289,8 @@ export function Canvas() {
       let variance = ((r - ave) * (r - ave) + (g - ave) * (g - ave) + (b - ave) * (b - ave)) / 3;
       let sd = Math.sqrt(variance);
       //return (!(r === 255 && g === 255 && b === 255));
-      //return (sd >= standardDeviationLimit);
-      return (!(r >= 200 && g >= 200 && b >= 200));
+      return (sd >= standardDeviationLimit);
+      //return (!(r >= 200 && g >= 200 && b >= 200));
     }
 
     //移動体を描画する関数
