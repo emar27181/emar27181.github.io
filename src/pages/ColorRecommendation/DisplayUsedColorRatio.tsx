@@ -54,7 +54,7 @@ export function DisplayUsedColorRatio() {
 
 
     function displayColorsAmountRate() {
-      let x = 0, y = 0;
+      let y = 0;
       let hueRange = 15;
       p.noStroke();
       for (let i = 0; i < 360; i += hueRange) {
@@ -62,7 +62,7 @@ export function DisplayUsedColorRatio() {
           let hue = p.hue(colorsAmount[j].color);
           if (i <= hue && hue < i + hueRange) {
             p.fill(colorsAmount[j].color);
-            p.rect(x, y, p.width, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT)));
+            p.rect(0, y, p.width / 2, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT)));
             y += p.height * (colorsAmount[j].amount / (SPLIT * SPLIT));
           }
         }
