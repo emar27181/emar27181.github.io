@@ -7,6 +7,9 @@ import { ReturnIsDesktop } from '../../App';
 import { ReturnCameraColors } from '../Reserch/ReturnCameraInfo';
 import { ReturnImageColors } from '../Reserch/ReturnImageInfo';
 
+let returnColor: number[] = [0, 0, 0, 255];
+let isTouched = false;
+
 export function DisplayUsedColorRatio(displayMode: string) {
   const sketch = (p: P5CanvasInstance) => {
     const SPLIT = 100, CANVAS_WIDTH = 40;
@@ -52,7 +55,12 @@ export function DisplayUsedColorRatio(displayMode: string) {
     }
 
     p.mouseClicked = () => {
+      p.colorMode(p.RGB);
       if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
+        isTouched = true;
+        let getColor = p.get(p.mouseX, p.mouseY);
+        returnColor = [p.red(getColor), p.green(getColor), p.blue(getColor), p.alpha(getColor)];
+
       }
     }
     function displayCanvas() {
@@ -206,6 +214,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
       let canvasSize = ReturnCanvasSize();
       canvasWidth = canvasSize[0];
       canvasHeight = canvasSize[1];
+      isTouched = false;
     }
     class ColorAmount {
       color: p5.Color;
@@ -227,5 +236,8 @@ export function DisplayUsedColorRatio(displayMode: string) {
     <ReactP5Wrapper sketch={sketch} />
   )
 }
+
+export function ReturnIsTouchedUsedColorRatio() { return isTouched; }
+export function ReturnRecommendedColor() { return returnColor; }
 
 export default DisplayUsedColorRatio

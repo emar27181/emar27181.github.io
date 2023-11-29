@@ -15,6 +15,7 @@ import { ReturnColorPaletteValue, ReturnIsTouchedColorGenerate } from '../ColorR
 import { ReturnIsTouched } from './DisplayGravityPlace';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecommendation/DisplayColorRatioOnlyFrontendontend';
+import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorRecommendation/DisplayUsedColorRatio';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
@@ -216,6 +217,8 @@ export function Canvas() {
       if (ReturnIsTouchedColorGenerate()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
       color = ReturnColorRatioValue();
       if (ReturnIsTouchedColorRatio()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
+      color = ReturnRecommendedColor();
+      if (ReturnIsTouchedUsedColorRatio()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
       returnDrawingColor = drawingColor;
       getCanvasColors();
 
@@ -500,7 +503,6 @@ export function Canvas() {
         //スポイト機能
         let input = p.get(p.mouseX, p.mouseY);
         drawingColor = p.color(input[0], input[1], input[2], input[3]);
-        console.log(drawingColor);
         if (DEBUG) {
           //console.log("drawingColor: " + drawingColor);
           //console.log("typeof:" + typeof (drawingColor));
