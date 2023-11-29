@@ -15,8 +15,16 @@ export function OperateGuiControl() {
 
     p.draw = () => {
       p.fill(255);
+      p.background(0);
       displayControlBar();
+      if (p.mouseIsPressed) { mouseContorl() }
     };
+
+    function mouseContorl() {
+      if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
+        barX = p.mouseX;
+      }
+    }
 
     function displayControlBar() {
       p.rect(barX, 10, 10, 30);
