@@ -24,16 +24,22 @@ export function DisplayUsedColorRatio(displayMode: string) {
 
     p.setup = () => {
       p.colorMode(p.HSL);
-      let rate = 0.65;
-      if (ReturnIsDesktop()) { p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth / 2); }
-      else { p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth); }
-      //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      createCanvas();
       p.background(backGroundColor);
       colorsAmount.push(new ColorAmount(p.color(0, 0, 0), SPLIT * SPLIT));
       p.frameRate(1);
 
     };
 
+    function createCanvas() {
+      if (displayMode === "camera") { p.createCanvas(CANVAS_WIDTH, 480); }
+      else if (displayMode === "image") { p.createCanvas(CANVAS_WIDTH, 713); }
+      else if (displayMode === "canvas") {
+        let rate = 0.65;
+        if (ReturnIsDesktop()) { p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth / 2); }
+        else { p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth); }
+      }
+    }
 
     p.draw = () => {
       p.colorMode(p.HSL);
