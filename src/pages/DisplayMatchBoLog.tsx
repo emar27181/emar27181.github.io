@@ -11,6 +11,7 @@ export function DisplayMatchBoLog() {
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(0);
+      p.textAlign(p.CENTER, p.CENTER);
     };
 
     p.draw = () => {
@@ -19,12 +20,25 @@ export function DisplayMatchBoLog() {
     };
 
     function displayTree() {
+      let depthMax = 10;
+
+      for (let depth = 0; depth < depthMax; depth++) {
+        for (let index = 0; index < log.length; index++) {
+          // 深さがdepthのログの描画
+          if (log[index].depth === depth) {
+            let text = "[" + log[index].matchValue[0] + "] : [" + log[index].matchValue[1] + "]";
+            p.text(text, p.width / 2, 10 + p.textSize() * depth);
+          }
+        }
+      }
+
+      /*
       for (let i = 0; i < log.length; i++) {
-        p.textAlign(p.CENTER, p.CENTER);
         let text = "[" + log[i].matchValue[0] + "] : [" + log[i].matchValue[1] + "]";
         p.text(text, p.width / 2, 10 + p.textSize() * log[i].depth);
         //console.log(log[i].matchValue);
       }
+      */
     }
   }
 
