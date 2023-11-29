@@ -9,8 +9,7 @@ import { ReturnImageColors } from '../Reserch/ReturnImageInfo';
 
 export function DisplayUsedColorRatio() {
   const sketch = (p: P5CanvasInstance) => {
-    const SPLIT = 100;
-    const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
+    const SPLIT = 100, CANVAS_WIDTH = 40;
     let canvasColors: p5.Color[][] = [];
     for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
     for (let i = 0; i < SPLIT; i++) {
@@ -26,8 +25,8 @@ export function DisplayUsedColorRatio() {
     p.setup = () => {
       p.colorMode(p.HSL);
       let rate = 0.65;
-      if (ReturnIsDesktop()) { p.createCanvas(20, rate * p.windowWidth / 2); }
-      else { p.createCanvas(20, rate * p.windowWidth); }
+      if (ReturnIsDesktop()) { p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth / 2); }
+      else { p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth); }
       //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(backGroundColor);
       colorsAmount.push(new ColorAmount(p.color(0, 0, 0), SPLIT * SPLIT));
