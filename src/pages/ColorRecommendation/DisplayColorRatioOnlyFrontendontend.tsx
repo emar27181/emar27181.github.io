@@ -9,6 +9,7 @@ import * as fs from 'fs';
 import axios from 'axios';
 import { ReturnDrawingColor } from '../Reserch/Canvas';
 import p5 from 'p5';
+import { ReturnIsTouchedColorGenerate } from './ColorGenerate';
 
 
 //let jsonFilePath = '../../data/colorTestData.json';
@@ -20,7 +21,8 @@ let red = 0, green = 0, blue = 0, alpha = 0;
 export function DisplayColorRatioOnlyFrontendontend() {
   const sketch = (p: P5CanvasInstance) => {
     const CANVAS_SIZE = ReturnCanvasSize();
-    let drawingColor: p5.Color = ReturnDrawingColor();
+    //let drawingColor: p5.Color = ReturnDrawingColor();
+    let drawingColor: p5.Color = p.color(255, 0, 0);
     let colors: p5.Color[][] = [];
     for (let i = 0; i < 12; i++) { colors[i] = []; }
     let colorsNumber = 5;
@@ -28,12 +30,12 @@ export function DisplayColorRatioOnlyFrontendontend() {
 
     p.setup = () => {
       let rate = 0.65;
-      p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2);
+      //p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2);
+      p.createCanvas(256, 256);
       //p.createCanvas(CANVAS_SIZE[0], 20);
       p.background(0);
       p.noStroke();
       updateVariables();
-      displayColors();
     };
 
 
@@ -41,11 +43,14 @@ export function DisplayColorRatioOnlyFrontendontend() {
       p.colorMode(p.HSL, 360, 100, 100);
       updateVariables();
       displayColors();
+      //displayColorsRate();
       if (p.mouseIsPressed) { mouseControl(); }
     };
 
     function updateVariables() {
-      drawingColor = ReturnDrawingColor();
+      if (ReturnIsTouchedColorGenerate()) {
+        drawingColor = ReturnDrawingColor();
+      }
       caluculateColors();
       isTouchedColorRatio = false;
     }
@@ -72,6 +77,7 @@ export function DisplayColorRatioOnlyFrontendontend() {
       }
     }
 
+    //色を均等な長さで表示する関数
     function displayColors() {
       p.colorMode(p.HSL);
       for (let i = 0; i < 12; i++) {
@@ -80,7 +86,26 @@ export function DisplayColorRatioOnlyFrontendontend() {
           p.rect(p.width / colorsNumber * j, p.height / 12 * i, p.width / colorsNumber, p.height / 12);
         }
       }
+    }
 
+    //色を比率に応じた長さで表示する関数
+    function displayColorsRate() {
+      p.colorMode(p.HSL);
+      for (let i = 0; i < 12; i++) {
+        let w = 0;
+        //参考: https://comic.smiles55.jp/guide/8903/
+        //ベースカラー(70%)
+        p.fill(colors[i][0]);
+        p.rect(0, p.height / 12 * i, p.width * 0.7, p.height / 12);
+
+        //アソートカラー(25%)
+        p.fill(colors[i][1]);
+        p.rect(p.width * 0.7, p.height / 12 * i, p.width * 0.25, p.height / 12);
+
+        //アクセントカラー(5%)
+        p.fill(colors[i][2]);
+        p.rect(p.width * 0.95, p.height / 12 * i, p.width * 0.05, p.height / 12);
+      }
     }
 
     function mouseControl() {

@@ -97,8 +97,13 @@ export function ColorGanerate() {
       //let getColorObject = p.color(getColor);
       p.textSize(TEXT_SIZE);
       //p.text(getColorObject, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT);
-      let text = "hsl(" + h + "," + s + "," + b + ")" + "←なんかバグってる";
+      let text = "hsl(" + h + "," + s + "," + b + ")";
       p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE);
+      let drawingColor = ReturnDrawingColor();
+      let hex = p.hex([p.red(drawingColor), p.green(drawingColor), p.blue(drawingColor)], 2);
+      text = ("#" + hex[0] + hex[1] + hex[2]);
+      //console.log(hex);
+      p.text(text, 0, HUE_BAR_Y + MARGIN_HEIGHT + HUE_BAR_HEIGHT + TEXT_SIZE + TEXT_SIZE);
       //text = '#' + p.hex(getColor);
     }
 

@@ -54,7 +54,10 @@ let trackingY3 = trackingData[1][1]; //人差し指のy座標
 let trackingX4 = trackingData[1][2]; //親指のx座標
 let trackingY4 = trackingData[1][3]; //親指のy座標
 //let returnDrawingColor: p5.Color = new p5.Color();
+const SPLIT = 100;
 let returnDrawingColor: p5.Color;
+let canvasColors: p5.Color[][] = [];
+for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
 
 let canvasWidth = 0, canvasHeight = 0, mouseX = 0, mouseY = 0;
 
@@ -123,8 +126,13 @@ export function Canvas() {
     let isBallCollisionDetected = false;
     const BALL_SIZE = 2;
     let ColorsInfo: Array<ColorInfo>;
-    let drawingColor = p.color(255, 51, 105);
+    let drawingColor = p.color(255, 0, 0);
     returnDrawingColor = p.color(255, 0, 0);
+    for (let i = 0; i < SPLIT; i++) {
+      for (let j = 0; j < SPLIT; j++) {
+        canvasColors[i][j] = p.color(0, 0, 0);
+      }
+    }
     //fetchData(); //データの取得
 
     function addCameraBalls() {
@@ -209,6 +217,7 @@ export function Canvas() {
       color = ReturnColorRatioValue();
       if (ReturnIsTouchedColorRatio()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
       returnDrawingColor = drawingColor;
+      getCanvasColors();
 
       /*
       p.fill(0);
@@ -222,6 +231,16 @@ export function Canvas() {
       console.log(testArray[0][2]);
       */
       //console.log("(x, y) = " + ballsTrackigGravity[0].position.x + ", " + ballsTrackigGravity[0].position.y);
+    }
+
+    function getCanvasColors() {
+      for (let i = 0; i < SPLIT; i++) {
+        for (let j = 0; j < SPLIT; j++) {
+          canvasColors[i][j] = p.color(p.get(p.width / SPLIT * i, p.height / SPLIT * j));
+          //console.log(canvasColors[i][j]);
+        }
+      }
+
     }
 
     function getMouseColor() {
@@ -616,5 +635,6 @@ export function ReturnIsMouseGravity() { return isMouseGravity; }
 export function ReturnIsTracking() { return isTracking; }
 export function ReturnDrawingColor() { return returnDrawingColor; }
 export function ReturnIsRepulsion() { return isRepulsion; }
+export function ReturnCanvasColors() { return canvasColors; }
 
 export default Canvas

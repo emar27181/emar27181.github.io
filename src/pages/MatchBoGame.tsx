@@ -6,6 +6,7 @@ export function MatchBoGame() {
   const sketch = (p: P5CanvasInstance) => {
 
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256, FPS = 60;
+    const DEBUG = false;
     let player1Win = 0, player0Win = 0, hueristicPlayerNumber = 1;
     let matchValue = [[1, 1], [1, 1]];
     let isGameEnded = -1;
@@ -24,7 +25,9 @@ export function MatchBoGame() {
       displayScore();
       displayMatchValue(0);
       displayMatchValue(1);
-      console.log("(" + matchValue[0][0] + ", " + matchValue[0][1] + ")\n(" + matchValue[1][0] + ", " + matchValue[1][1] + ")");
+      if (DEBUG) {
+        console.log("(" + matchValue[0][0] + ", " + matchValue[0][1] + ")\n(" + matchValue[1][0] + ", " + matchValue[1][1] + ")");
+      }
 
       judgeGameEnded();
       //試合が続いている場合
@@ -57,7 +60,9 @@ export function MatchBoGame() {
       isGameEnded = -1;
       turnCount = 1;
       matchValue = [[1, 1], [1, 1]];
-      console.log("player0 win : player1 win = " + player0Win + ":" + player1Win);
+      if (DEBUG) {
+        console.log("player0 win : player1 win = " + player0Win + ":" + player1Win);
+      }
     }
 
     function displayScore() {

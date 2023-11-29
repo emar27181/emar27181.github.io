@@ -1,10 +1,11 @@
 import '../App.css'
 import React from 'react';
-import { BrowserRouter, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 
 import LineGame from '../pages/LineGame';
 import CameraMosaicBallRPG from '../pages/CameraMosaicBallRPG';
 import MatchBoGame from '../pages/MatchBoGame';
+import SoftwareKisoHome from './SoftwareKisoHome';
 
 
 
@@ -22,24 +23,24 @@ export function GameHome() {
           カメラがフィールドのRPG
         </NavLink><br />
 
-        <NavLink activeClassName="active" to="/matchBoGame">
+        <NavLink activeClassName="active" to="/softWareKisoHome">
           マッチ棒
         </NavLink>
       </ul>
 
 
 
-      <switch>
+      <Switch>
         <Route path="/lineGame" >
           <LineGame />
         </Route>
         <Route path="/CameraMosaicBallRPG" >
           <CameraMosaicBallRPG />
         </Route>
-        <Route path="/matchBoGame" >
-          <MatchBoGame />
+        <Route path="/softWareKisoHome" >
+          <SoftwareKisoHome />
         </Route>
-      </switch>
+      </Switch>
 
     </BrowserRouter>
   )

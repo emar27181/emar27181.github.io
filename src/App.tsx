@@ -63,11 +63,13 @@ function App() {
       const scrollPosition = window.scrollY;
 
       // スクロール位置が一定の値よりも大きい場合、ナビゲーションバーを非表示にする
+      /*
       if (scrollPosition > 10) {
         setNavbarVisibility(false);
       } else {
         setNavbarVisibility(true);
       }
+      */
     };
 
     // イベントリスナーを追加
@@ -102,6 +104,7 @@ function App() {
             <Nav.Link href='/researchHome'> 重力操作 </Nav.Link>
             <Nav.Link href='/canvas'> キャンバス </Nav.Link>
             <Nav.Link href='/colorRecommendHome'> 色の推薦</Nav.Link>
+            <Nav.Link href='/softwareKisoHome'> マッチ棒</Nav.Link>
           </Nav>
 
           <Form className="ml-auto d-flex">
@@ -170,6 +173,10 @@ function App() {
 
         <Route path="/colorRecommendHome">
           <ColorRecommendHome />
+        </Route>
+
+        <Route path="/softwareKisoHome">
+          <SoftwareKisoHome />
         </Route>
 
         <Route>

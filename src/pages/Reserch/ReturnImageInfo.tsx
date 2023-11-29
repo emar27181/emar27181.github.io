@@ -5,8 +5,11 @@ import { ReturnCanvasSize } from './Canvas';
 import p5 from 'p5'
 import photoImage from "../../assets/IMG_9563.jpg"
 
+const SPLIT = 100;
 let colorsInfo: Array<ColorInfo> = [];
 let isGetColors = false;
+let canvasColors: p5.Color[][] = [];
+for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
 
 export function ReturnImageInfo() {
   const sketch = (p: P5CanvasInstance) => {
@@ -17,6 +20,11 @@ export function ReturnImageInfo() {
     let canvasSize = ReturnCanvasSize();
     let canvasWidth = canvasSize[0];
     let canvasHeight = canvasSize[1];
+    for (let i = 0; i < SPLIT; i++) {
+      for (let j = 0; j < SPLIT; j++) {
+        canvasColors[i][j] = p.color(0, 0, 0);
+      }
+    }
 
     p.preload = () => {
       //img = p.loadImage("src/data/saveCanvas-2023-10-23T130343.793.png")
@@ -37,7 +45,7 @@ export function ReturnImageInfo() {
 
       }
       else {
-
+        getCanvasColors();
         canvasSize = ReturnCanvasSize();
         canvasWidth = canvasSize[0];
         canvasHeight = canvasSize[1];
@@ -45,6 +53,15 @@ export function ReturnImageInfo() {
         isGetColors = true;
       }
     };
+
+    function getCanvasColors() {
+      for (let i = 0; i < SPLIT; i++) {
+        for (let j = 0; j < SPLIT; j++) {
+          canvasColors[i][j] = p.color(p.get(p.width / SPLIT * i, p.height / SPLIT * j));
+          //console.log(canvasColors[i][j]);
+        }
+      }
+    }
 
     function getColors() {
       let indexNum = 0;
@@ -81,5 +98,6 @@ export class ColorInfo {
 }
 
 export function ReturnImageColorsInfo() { return colorsInfo; }
+export function ReturnImageColors() { return canvasColors; }
 
 export default ReturnImageInfo
