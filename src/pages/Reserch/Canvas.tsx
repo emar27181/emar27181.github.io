@@ -29,7 +29,7 @@ const MAX_TANK_VALUE = 100;
 const IS_TEST_MODE = true;
 let alpha = 100, backgroundAlpha = 15;
 let drawingWeight = 100, backgroundColor = "#000000", textSize = 10;
-let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
+let adjustMode = "w", figureMode = "ellipse", clickMode = "add";
 let hue: number[] = [];
 let intense: number[] = [];
 let colorWidth: number[] = [];
@@ -452,7 +452,7 @@ export function Canvas() {
 
     //マウスのクリック中の動作
     function MouseControl() {
-      if (clickMode === "draw") { addBall(); }
+      if (clickMode === "add") { addBall(); }
       //else if (clickMode === "gravity") { moveBallsGravity(p.mouseX, p.mouseY); }
       if (clickMode === "newGravityBall") {
         if (0 <= p.mouseX && p.mouseX <= p.width && 0 <= p.mouseY && p.mouseY <= p.height) {
@@ -555,13 +555,13 @@ export function Canvas() {
       if (p.key === "u") { isBackground = !isBackground; }
 
       if (p.key === "c") {
-        if (clickMode === "draw") {
+        if (clickMode === "add") {
           clickMode = "gravity";
           isMouseGravity = true;
           p.cursor(p.HAND);
         }
         else if (clickMode === "newGravityBall") {
-          clickMode = "draw";
+          clickMode = "add";
           isMouseGravity = false;
           p.cursor(p.ARROW);
         }
