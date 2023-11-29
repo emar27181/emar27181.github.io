@@ -16,18 +16,19 @@ import { ReturnIsTouched } from './DisplayGravityPlace';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecommendation/DisplayColorRatioOnlyFrontendontend';
 import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorRecommendation/DisplayUsedColorRatio';
+import { ReturnBarValue, ReturnIsButtonClicked, ReturnIsTouchedGui } from './OperateGuiControl';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
 
 const IS_NO_STROKE = true, DEBUG = false;
-const DEBUG_FPS = 0.2, DEFAULT_FPS = 10;
+const DEBUG_FPS = 0.2, DEFAULT_FPS = 60;
 const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
 const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
 const IS_TEST_MODE = true;
-let alpha = 100, backgroundAlpha = 15;
-let drawingWeight = 100, backgroundColor = "#000000", textSize = 10;
+let alpha = 255, backgroundAlpha = 15;
+let drawingWeight = 5, backgroundColor = "#000000", textSize = 10;
 let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
 let hue: number[] = [];
 let intense: number[] = [];
@@ -221,6 +222,12 @@ export function Canvas() {
       if (ReturnIsTouchedUsedColorRatio()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
       returnDrawingColor = drawingColor;
       getCanvasColors();
+      let barValue = ReturnBarValue();
+      if (ReturnIsTouchedGui()) { drawingWeight = barValue[0]; }
+      if (ReturnIsButtonClicked()) {
+        p.key = "c";
+        p.keyTyped();
+      }
 
       /*
       p.fill(0);
@@ -449,20 +456,25 @@ export function Canvas() {
 
     //マウスのクリック中の動作
     function MouseControl() {
-      if (clickMode === "draw") { addBall(); }
-      //else if (clickMode === "gravity") { moveBallsGravity(p.mouseX, p.mouseY); }
-      if (clickMode === "newGravityBall") {
-        if (0 <= p.mouseX && p.mouseX <= p.width && 0 <= p.mouseY && p.mouseY <= p.height) {
+      if (0 <= p.mouseX && p.mouseX <= p.width && 0 <= p.mouseY && p.mouseY <= p.height) {
+        if (clickMode === "add") { addBall(); }
+        //else if (clickMode === "gravity") { moveBallsGravity(p.mouseX, p.mouseY); }
+        if (clickMode === "newGravityBall") {
           ballsGravity.push(new Ball(p.mouseX, p.mouseY, 10, p.color(255, 0, 0), 9));
           gravityX.push(p.mouseX);
           gravityY.push(p.mouseY);
+
+          /*
+          console.log("gravityX");
+          console.log(gravityX);
+          console.log("gravityY");
+          console.log(gravityY);
+          */
         }
-        /*
-        console.log("gravityX");
-        console.log(gravityX);
-        console.log("gravityY");
-        console.log(gravityY);
-        */
+        if (clickMode === "draw") {
+          p.fill(p.red(drawingColor), p.green(drawingColor), p.blue(drawingColor), alpha);
+          displayFigure(p.mouseX, p.mouseY, drawingWeight, figureMode);
+        }
       }
     }
 
@@ -552,15 +564,19 @@ export function Canvas() {
       if (p.key === "u") { isBackground = !isBackground; }
 
       if (p.key === "c") {
-        if (clickMode === "draw") {
-          clickMode = "gravity";
+        if (clickMode === "add") {
+          clickMode = "draw";
           isMouseGravity = true;
-          p.cursor(p.HAND);
+          p.cursor(p.ARROW);
+        }
+        else if (clickMode === "draw") {
+          clickMode = "gravity";
+          p.cursor(p.MOVE);
         }
         else if (clickMode === "newGravityBall") {
-          clickMode = "draw";
+          clickMode = "add";
           isMouseGravity = false;
-          p.cursor(p.ARROW);
+          p.cursor(p.HAND);
         }
         else if (clickMode === "gravity") {
           clickMode = "newGravityBall";

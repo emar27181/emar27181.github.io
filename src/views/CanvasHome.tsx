@@ -6,6 +6,7 @@ import DisplayEmotionColorRatio from '../pages/Reserch/DisplayEmotionColorRatio'
 import ColorGanerate from '../pages/ColorRecommendation/ColorGenerate';
 import DisplayGravityPlace from '../pages/Reserch/DisplayGravityPlace';
 import DisplayUsedColorRatio from '../pages/ColorRecommendation/DisplayUsedColorRatio';
+import OperateGuiControl from '../pages/Reserch/OperateGuiControl';
 
 let isCanvasHome = false;
 
@@ -19,7 +20,7 @@ export function U22programmingContestHome() {
       <div style={{ display: 'flex' }}>
         <div>
           <ColorGanerate />
-          <DisplayGravityPlace />
+          <OperateGuiControl />
         </div>
         <Canvas />
         {DisplayUsedColorRatio("canvas")}
