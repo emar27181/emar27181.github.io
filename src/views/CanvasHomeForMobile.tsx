@@ -5,6 +5,7 @@ import DisplayDrawingInfo from '../pages/Reserch/DisplayDrawingInfo';
 import DisplayEmotionColorRatio from '../pages/Reserch/DisplayEmotionColorRatio';
 import ColorGanerate from '../pages/ColorRecommendation/ColorGenerate';
 import DisplayGravityPlace from '../pages/Reserch/DisplayGravityPlace';
+import DisplayUsedColorRatio from '../pages/ColorRecommendation/DisplayUsedColorRatio';
 
 let isCanvasHome = false;
 
@@ -17,6 +18,7 @@ export function CanvasHomeForMobile() {
 
       <div style={{ display: 'flex' }}>
         <Canvas />
+        {DisplayUsedColorRatio("canvas")}
         <DisplayGravityPlace />
       </div>
 
