@@ -452,25 +452,26 @@ export function Canvas() {
 
     //マウスのクリック中の動作
     function MouseControl() {
-      if (clickMode === "add") { addBall(); }
-      //else if (clickMode === "gravity") { moveBallsGravity(p.mouseX, p.mouseY); }
-      if (clickMode === "newGravityBall") {
-        if (0 <= p.mouseX && p.mouseX <= p.width && 0 <= p.mouseY && p.mouseY <= p.height) {
+      if (0 <= p.mouseX && p.mouseX <= p.width && 0 <= p.mouseY && p.mouseY <= p.height) {
+        if (clickMode === "add") { addBall(); }
+        //else if (clickMode === "gravity") { moveBallsGravity(p.mouseX, p.mouseY); }
+        if (clickMode === "newGravityBall") {
           ballsGravity.push(new Ball(p.mouseX, p.mouseY, 10, p.color(255, 0, 0), 9));
           gravityX.push(p.mouseX);
           gravityY.push(p.mouseY);
+
+          /*
+          console.log("gravityX");
+          console.log(gravityX);
+          console.log("gravityY");
+          console.log(gravityY);
+          */
         }
-        /*
-        console.log("gravityX");
-        console.log(gravityX);
-        console.log("gravityY");
-        console.log(gravityY);
-        */
-      }
-      if (clickMode === "draw") {
-        p.fill(p.red(drawingColor), p.green(drawingColor), p.blue(drawingColor), alpha);
-        displayFigure(p.mouseX, p.mouseY, drawingWeight, figureMode);
-        console.log(alpha);
+        if (clickMode === "draw") {
+          p.fill(p.red(drawingColor), p.green(drawingColor), p.blue(drawingColor), alpha);
+          displayFigure(p.mouseX, p.mouseY, drawingWeight, figureMode);
+          console.log(alpha);
+        }
       }
     }
 
