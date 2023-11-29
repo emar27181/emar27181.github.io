@@ -49,6 +49,7 @@ export function DisplayUsedColorRatio() {
         //確認用出力
         for (let i = 0; i < colorsAmount.length; i++) { colorsAmount[i].display(); }
         displayColorsAmountRate();
+        displayRecommendedColorsAmountRate();
       }
     }
 
@@ -67,6 +68,27 @@ export function DisplayUsedColorRatio() {
           }
         }
       }
+    }
+
+    function displayRecommendedColorsAmountRate() {
+      p.colorMode(p.RGB);
+      let y = 0;
+
+      //初期実装として、色の割合をベースカラー70%, アソートカラー25%, アクセントカラー5%で表示
+      //ベースカラーの描画
+      p.fill(17, 122, 122);
+      p.rect(p.width / 2, y, p.width, 0.7 * p.height);
+      y += 0.7 * p.height;
+
+      //アソートカラーの描画
+      p.fill(181, 209, 209);
+      p.rect(p.width / 2, y, p.width, 0.25 * p.height);
+      y += 0.25 * p.height;
+
+      //アクセントカラーの描画
+      p.fill(237, 104, 31);
+      p.rect(p.width / 2, y, p.width, 0.05 * p.height);
+      y += 0.05 * p.height;
     }
 
     function displayChromaticColors() {
@@ -116,8 +138,9 @@ export function DisplayUsedColorRatio() {
     function updateColorsAmount(color: p5.Color) {
       //color: 探索対象の色
       p.colorMode(p.RGB);
-      //1の位を四捨五入した値に変更
       let placeNumber = 10; // place/10の位を四捨五入
+
+      //1の位を四捨五入した値に変更
       color = p.color(p.round(p.red(color) / placeNumber) * placeNumber, p.round(p.green(color) / placeNumber) * placeNumber, p.round(p.blue(color) / placeNumber) * placeNumber);
       for (let i = 0; i < colorsAmount.length; i++) {
         //すでに出てきた色であった場合
