@@ -73,7 +73,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
       p.noStroke();
       for (let i = 0; i < 360; i += hueRange) {
         //色相の最初の値を330に設定
-        let hueValue = (330 + i) % 360; 
+        let hueValue = (330 + i) % 360;
         for (let j = 0; j < colorsAmount.length; j++) {
           let hue = p.hue(colorsAmount[j].color);
           if (hueValue <= hue && hue < hueValue + hueRange) {
@@ -108,8 +108,11 @@ export function DisplayUsedColorRatio(displayMode: string) {
 
     //現在のキャンバスの色の割合のうち最も多い色を返す関数
     function calculateBaseColor(): p5.Color {
-      let maxIndex = 0;
-      for (let i = 0; i < colorsAmount.length; i++) {
+      //何も塗られていなかった場合
+      if (colorsAmount.length === 1) { return colorsAmount[0].color; }
+
+      let maxIndex = 1;
+      for (let i = 1; i < colorsAmount.length; i++) {
         if (colorsAmount[i].amount > colorsAmount[maxIndex].amount) {
           maxIndex = i;
         }
