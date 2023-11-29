@@ -26,6 +26,12 @@ export function OperateGuiControl() {
       if (p.mouseIsPressed) { mouseContorl() }
     };
 
+    p.mouseClicked = () => {
+      if (judgeClicked(10, 50, 30, 30)) {
+        console.log(" called ");
+      }
+    }
+
     function updateVariables() {
       isTouched = false;
       returnValue = barX;
@@ -40,8 +46,8 @@ export function OperateGuiControl() {
       }
     }
 
-    function judgeClicked(x1: number, y1: number, x2: number, y2: number) {
-      return (x1 < p.mouseX && p.mouseX < x2 && y1 < p.mouseY && p.mouseY < y2);
+    function judgeClicked(x: number, y: number, width: number, height: number) {
+      return (x < p.mouseX && p.mouseX < x + width && y < p.mouseY && p.mouseY < y + height);
     }
 
     function displayControlBar() {
