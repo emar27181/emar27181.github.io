@@ -11,8 +11,9 @@ export function DisplayMatchBoLog() {
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(0);
-      p.textAlign(p.CENTER, p.CENTER);
+      //p.textAlign(p.CENTER, p.CENTER);
       p.fill(255);
+      p.textSize(7);
       displayTree();
     };
 
@@ -21,33 +22,28 @@ export function DisplayMatchBoLog() {
 
     function displayTree() {
       let depthMax = 10;
+      let index = 0;
 
       for (let depth = 0; depth < depthMax; depth++) {
         //深さがdepthのログがいくつあるか計測
-        let countLog = 0;
-        for (let index = 0; index < log.length; index++) {
-          if (log[index].depth === depth) {
-            countLog++;
+        //depthLogMax: 深さdepthのログの個数
+        let depthLogMax = 0;
+        for (let i = 0; i < log.length; i++) {
+          if (log[i].depth === depth) {
+            depthLogMax++;
           }
         }
-        //console.log(countLog);
 
-        for (let index = 0; index < log.length; index++) {
+        for (let i = 0; i < depthLogMax; i++) {
           // 深さがdepthのログの描画
           if (log[index].depth === depth) {
             let text = "[" + log[index].matchValue[0] + "] : [" + log[index].matchValue[1] + "]";
-            p.text(text, p.width / 2, 10 + p.textSize() * depth);
+            //p.text(text, p.width / 2 + 80 * i, 10 + p.textSize() * depth);
+            p.text(text, 7 * p.textSize() * i, 10 + p.textSize() * depth);
           }
+          index++;
         }
       }
-
-      /*
-      for (let i = 0; i < log.length; i++) {
-        let text = "[" + log[i].matchValue[0] + "] : [" + log[i].matchValue[1] + "]";
-        p.text(text, p.width / 2, 10 + p.textSize() * log[i].depth);
-        //console.log(log[i].matchValue);
-      }
-      */
     }
   }
 
