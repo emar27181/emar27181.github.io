@@ -72,9 +72,11 @@ export function DisplayUsedColorRatio(displayMode: string) {
       let hueRange = 15;
       p.noStroke();
       for (let i = 0; i < 360; i += hueRange) {
+        //色相の最初の値を330に設定
+        let hueValue = (330 + i) % 360; 
         for (let j = 0; j < colorsAmount.length; j++) {
           let hue = p.hue(colorsAmount[j].color);
-          if (i <= hue && hue < i + hueRange) {
+          if (hueValue <= hue && hue < hueValue + hueRange) {
             p.fill(colorsAmount[j].color);
             p.rect(0, y, p.width / 2, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT)));
             y += p.height * (colorsAmount[j].amount / (SPLIT * SPLIT));
