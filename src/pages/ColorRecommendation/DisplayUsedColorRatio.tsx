@@ -65,10 +65,12 @@ export function DisplayUsedColorRatio(displayMode: string) {
     }
     function displayCanvas() {
       calculateColorsAmount();
-      displayColorsAmountRate();
+      //displayColorsAmountRate();
+      displayColorsAmountRateExcludeBackground();
       displayRecommendedColorsAmountRate();
     }
 
+    //背景色を含めて色の比率を表示させる関数
     function displayColorsAmountRate() {
       let y = 0;
       let hueRange = 15;
@@ -82,6 +84,28 @@ export function DisplayUsedColorRatio(displayMode: string) {
             p.fill(colorsAmount[j].color);
             p.rect(0, y, p.width / 2, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT)));
             y += p.height * (colorsAmount[j].amount / (SPLIT * SPLIT));
+          }
+        }
+      }
+    }
+
+    //背景色を除外して色の比率を表示させる関数
+    function displayColorsAmountRateExcludeBackground() {
+      let y = 0;
+      let hueRange = 15;
+      p.noStroke();
+      //何も描かれていなかった場合
+      if (colorsAmount.length === 0) { return; }
+
+      for (let i = 0; i < 360; i += hueRange) {
+        //色相の最初の値を330に設定
+        let hueValue = (330 + i) % 360;
+        for (let j = 1; j < colorsAmount.length; j++) {
+          let hue = p.hue(colorsAmount[j].color);
+          if (hueValue <= hue && hue < hueValue + hueRange) {
+            p.fill(colorsAmount[j].color);
+            p.rect(0, y, p.width / 2, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT - colorsAmount[0].amount)));
+            y += p.height * (colorsAmount[j].amount / (SPLIT * SPLIT - colorsAmount[0].amount));
           }
         }
       }
