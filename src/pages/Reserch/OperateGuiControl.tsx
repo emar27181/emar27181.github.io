@@ -22,6 +22,7 @@ export function OperateGuiControl() {
       p.background(0);
       updateVariables();
       displayControlBar();
+      displayButton();
       if (p.mouseIsPressed) { mouseContorl() }
     };
 
@@ -39,8 +40,18 @@ export function OperateGuiControl() {
       }
     }
 
+    function judgeClicked(x1: number, y1: number, x2: number, y2: number) {
+      return (x1 < p.mouseX && p.mouseX < x2 && y1 < p.mouseY && p.mouseY < y2);
+    }
+
     function displayControlBar() {
       p.rect(barX, 10, 10, 30);
+    }
+
+    function displayButton() {
+      p.rect(10, 50, 30, 30);
+      p.fill(0);
+      p.text("c", 10 + p.textSize(), 50 + p.textSize());
     }
 
   }
