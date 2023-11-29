@@ -7,7 +7,7 @@ import { ReturnIsDesktop } from '../../App';
 import { ReturnCameraColors } from '../Reserch/ReturnCameraInfo';
 import { ReturnImageColors } from '../Reserch/ReturnImageInfo';
 
-export function DisplayUsedColorRatio() {
+export function DisplayUsedColorRatio(displayMode: string) {
   const sketch = (p: P5CanvasInstance) => {
     const SPLIT = 100, CANVAS_WIDTH = 40;
     let canvasColors: p5.Color[][] = [];
@@ -31,13 +31,14 @@ export function DisplayUsedColorRatio() {
       p.background(backGroundColor);
       colorsAmount.push(new ColorAmount(p.color(0, 0, 0), SPLIT * SPLIT));
       p.frameRate(1);
+
     };
 
 
     p.draw = () => {
       p.colorMode(p.HSL);
       updateVariables();
-      //displayChromaticColors();
+      if (p.frameCount === 3) { displayCanvas(); }
     }
 
     p.keyTyped = () => {
@@ -53,6 +54,11 @@ export function DisplayUsedColorRatio() {
       }
     }
 
+    function displayCanvas() {
+      calculateColorsAmount();
+      displayColorsAmountRate();
+      displayRecommendedColorsAmountRate();
+    }
 
     function displayColorsAmountRate() {
       let y = 0;
@@ -186,9 +192,9 @@ export function DisplayUsedColorRatio() {
     }
 
     function updateVariables() {
-      //canvasColors = ReturnCanvasColors();
-      //canvasColors = ReturnCameraColors();
-      canvasColors = ReturnImageColors();
+      if (displayMode === "canvas") { canvasColors = ReturnCanvasColors(); }
+      else if (displayMode === "camera") { canvasColors = ReturnCameraColors(); }
+      else if (displayMode === "image") { canvasColors = ReturnImageColors(); }
       let canvasSize = ReturnCanvasSize();
       canvasWidth = canvasSize[0];
       canvasHeight = canvasSize[1];

@@ -19,11 +19,12 @@ export function ColorRecommendHome() {
 
       <div style={{ display: 'flex' }}>
         <ReturnCameraInfo />
-        <DisplayUsedColorRatio />
+        {DisplayUsedColorRatio("camera")}
       </div>
       <div style={{ display: 'flex' }}>
         <ReturnImageInfo />
-        <DisplayUsedColorRatio />
+
+        {DisplayUsedColorRatio("image")}
       </div>
       <div style={{ display: 'flex' }}>
         <ColorGanerate />
@@ -31,7 +32,7 @@ export function ColorRecommendHome() {
       </div>
       <div style={{ display: 'flex' }}>
         <Canvas />
-        <DisplayUsedColorRatio />
+        {DisplayUsedColorRatio("canvas")}
         <DisplayDrawingInfo />
       </div>
     </div>
