@@ -5,29 +5,28 @@ import { Graphics } from 'p5';
 
 export function TestMultipleLayer() {
   const sketch = (p: P5CanvasInstance) => {
-
-    const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
-    let mainCanvas: Graphics;
     let additionalLayer: Graphics;
 
     p.setup = () => {
       p.createCanvas(400, 400);
-
-      mainCanvas = p.createGraphics(p.width, p.height);
+      p.background(255, 255, 255);
       additionalLayer = p.createGraphics(p.width, p.height);
     }
 
     p.draw = () => {
-      // メインのキャンバスに描画
-      mainCanvas.background(220);
-      mainCanvas.ellipse(p.mouseX, p.mouseY, 50, 50);
+      p.fill(255, 0, 0);
+      if (p.mouseIsPressed) {
+        p.ellipse(p.mouseX, p.mouseY, 50, 50);
+      }
+      displayAdditionalLayer();
+    }
 
-      // 追加のレイヤーに描画
-      additionalLayer.background(255, 0, 0, 1);
-      additionalLayer.rect(50, 50, 100, 100);
+    function displayAdditionalLayer() {
+      additionalLayer.strokeWeight(20);
+      additionalLayer.noFill();
+      additionalLayer.stroke(0, 0, 0);
+      additionalLayer.rect(50, 50, 300, 300);
 
-      // メインのキャンバスに追加のレイヤーを合成
-      p.image(mainCanvas, 0, 0);
       p.image(additionalLayer, 0, 0);
     }
   }
