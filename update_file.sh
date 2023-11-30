@@ -2,9 +2,7 @@
 
 rm docs/index.html
 rm docs/404.html
-rm docs/assets/*.js
-rm docs/assets/*.css
+rm docs/assets/*
 cp dist/index.html docs/
 cp dist/index.html docs/404.html
-cp dist/assets/*.js docs/assets/
-cp dist/assets/*.css docs/assets/
+cp dist/assets/* docs/assets/
