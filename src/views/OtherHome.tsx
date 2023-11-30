@@ -24,6 +24,7 @@ import { TestDrawCanvas } from '../pages/TestDrawCanvas';
 import TestHandsfree from '../pages/TestHandsfree';
 import TestResponsiveHome from './TestResponsiveHome';
 import TestMultipleLayer from '../pages/TestMultipleLayer';
+import TestAddImageLayer from '../pages/TestAddImageLayer';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -139,6 +140,7 @@ export function OtherHome() {
 
         <Route path="/testMultipleLayer">
           <TestMultipleLayer />
+          <TestAddImageLayer />
         </Route>
 
 
