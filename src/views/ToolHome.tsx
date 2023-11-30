@@ -6,6 +6,7 @@ import { UniqueBrush } from '../pages/UniqueBrush';
 import BallsLoop from '../pages/BallsLoop';
 import BallsReflect from '../pages/BallsRefrect';
 import BallsReflectColors from '../pages/BallsRefrectColors';
+import TestMultipleLayer from '../pages/TestMultipleLayer';
 
 
 
@@ -31,6 +32,11 @@ export function ToolHome() {
           カラーボールの反射
         </NavLink>
 
+        <NavLink activeClassName="active" to="/contemporaryArtLike">
+          現代アートっぽいやつ？
+        </NavLink>
+
+
 
       </ul>
 
@@ -49,6 +55,17 @@ export function ToolHome() {
 
         <Route path="/ballsReflectColors">
           <BallsReflectColors />
+        </Route>
+
+        <Route path="/contemporaryArtLike">
+          <div style={{ display: "frex" }}>
+            <TestMultipleLayer />
+            <TestMultipleLayer />
+          </div>
+          <div style={{ display: "frex" }}>
+            <TestMultipleLayer />
+            <TestMultipleLayer />
+          </div>
         </Route>
 
       </switch>
