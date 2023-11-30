@@ -9,7 +9,7 @@ import { ReturnImageColors } from '../Reserch/ReturnImageInfo';
 
 let returnColor: number[] = [0, 0, 0, 255];
 let isTouched = false;
-const DEBUG = true;
+const DEBUG = false;
 
 export function DisplayUsedColorRatio(displayMode: string) {
   const sketch = (p: P5CanvasInstance) => {
@@ -96,8 +96,6 @@ export function DisplayUsedColorRatio(displayMode: string) {
       let y = 0;
       let saturationRange = 10;
       p.noStroke();
-      //何も描かれていなかった場合
-      if (colorsAmount.length === 0) { return; }
 
       //excludeColorAmount: 除外された色の量の合計
       let excludeColorAmount = 0;
@@ -106,7 +104,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
           excludeColorAmount += colorsAmount[i].amount;
         }
       }
-      //splitSum: 除外された色を考慮した分割数の合計
+      //splitSum: 除外された色を考慮した分割数の合計(colorsAmount[0]には背景色が入っている)
       let splitSum = SPLIT * SPLIT - colorsAmount[0].amount - excludeColorAmount;
 
       //彩度を基準に上から描画
@@ -238,10 +236,9 @@ export function DisplayUsedColorRatio(displayMode: string) {
     function updateColorsAmount(color: p5.Color) {
       //color: 探索対象の色
       p.colorMode(p.RGB);
-      let placeNumber = 10; // place/10の位を四捨五入
 
-      //探索対象外の色だった場合
-      //if (equalsColor(color, excludeColor)) { return; }
+      // placeNumber: 四捨五入する位の10倍の値
+      let placeNumber = 10;
 
       //1の位を四捨五入した値に変更
       color = p.color(p.round(p.red(color) / placeNumber) * placeNumber, p.round(p.green(color) / placeNumber) * placeNumber, p.round(p.blue(color) / placeNumber) * placeNumber);
