@@ -112,7 +112,7 @@ function App() {
             <Button variant="outline-primary">Search</Button>
           </Form>
         </Navbar.Collapse>
-      </Navbar>
+      </Navbar> <br />
 
       <Switch>
         <Route exact path="/">
