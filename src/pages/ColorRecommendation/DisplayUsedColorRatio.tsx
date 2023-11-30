@@ -9,7 +9,7 @@ import { ReturnImageColors } from '../Reserch/ReturnImageInfo';
 
 let returnColor: number[] = [0, 0, 0, 255];
 let isTouched = false;
-const DEBUG = false;
+const DEBUG = true;
 
 export function DisplayUsedColorRatio(displayMode: string) {
   const sketch = (p: P5CanvasInstance) => {
@@ -25,7 +25,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
     let canvasWidth = 0, canvasHeight = 0;
     //let colorsAmount: Array<ColorAmount> = new ColorAmount(p.color(0,0,0), 1);
     let colorsAmount: Array<ColorAmount> = [];
-    let excludeColor = p.color(255, 255, 0);
+    let excludeColor = p.color(0, 0, 0);
 
     p.setup = () => {
       p.colorMode(p.HSL);
@@ -99,14 +99,28 @@ export function DisplayUsedColorRatio(displayMode: string) {
       //何も描かれていなかった場合
       if (colorsAmount.length === 0) { return; }
 
+      //excludeColorAmount: 除外された色の量の合計
+      let excludeColorAmount = 0;
+      for (let i = 0; i < colorsAmount.length; i++) {
+        if (equalsColor(colorsAmount[i].color, excludeColor)) {
+          excludeColorAmount += colorsAmount[i].amount;
+        }
+      }
+      //splitSum: 除外された色を考慮した分割数の合計
+      let splitSum = SPLIT * SPLIT - colorsAmount[0].amount - excludeColorAmount;
+
       //彩度を基準に上から描画
       for (let i = 0; i <= 100; i += saturationRange) {
         for (let j = 1; j < colorsAmount.length; j++) {
+
+          //除外された色だった場合
+          if (equalsColor(colorsAmount[j].color, excludeColor)) { continue; }
+
           let saturation = p.saturation(colorsAmount[j].color);
           if (i <= saturation && saturation < (i + saturationRange)) {
             p.fill(colorsAmount[j].color);
-            p.rect(0, y, p.width / 2, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT - colorsAmount[0].amount)));
-            y += p.height * (colorsAmount[j].amount / (SPLIT * SPLIT - colorsAmount[0].amount));
+            p.rect(0, y, p.width / 2, p.height * (colorsAmount[j].amount / splitSum));
+            y += p.height * (colorsAmount[j].amount / splitSum);
           }
         }
       }
@@ -227,7 +241,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
       let placeNumber = 10; // place/10の位を四捨五入
 
       //探索対象外の色だった場合
-      if (equalsColor(color, excludeColor)) { return; }
+      //if (equalsColor(color, excludeColor)) { return; }
 
       //1の位を四捨五入した値に変更
       color = p.color(p.round(p.red(color) / placeNumber) * placeNumber, p.round(p.green(color) / placeNumber) * placeNumber, p.round(p.blue(color) / placeNumber) * placeNumber);
