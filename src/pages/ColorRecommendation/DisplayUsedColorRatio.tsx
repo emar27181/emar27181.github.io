@@ -100,12 +100,14 @@ export function DisplayUsedColorRatio(displayMode: string) {
       //excludeColorAmount: 除外された色の量の合計
       let excludeColorAmount = 0;
       for (let i = 0; i < colorsAmount.length; i++) {
+        if (equalsColor(backgroundColor, excludeColor)) { continue; }
         if (equalsColor(colorsAmount[i].color, excludeColor)) {
           excludeColorAmount += colorsAmount[i].amount;
         }
       }
       //splitSum: 除外された色を考慮した分割数の合計(colorsAmount[0]には背景色が入っている)
       let splitSum = SPLIT * SPLIT - colorsAmount[0].amount - excludeColorAmount;
+      //console.log("splitSum: " + splitSum);
 
       //彩度を基準に上から描画
       for (let i = 0; i <= 100; i += saturationRange) {
@@ -170,7 +172,12 @@ export function DisplayUsedColorRatio(displayMode: string) {
       if (colorsAmount.length === 1) { return colorsAmount[0].color; }
 
       let maxIndex = 1;
+
+      //console.log(colorsAmount[1].color, colorsAmount[1].amount);
       for (let i = 1; i < colorsAmount.length; i++) {
+        //除外された色だった場合
+        if (equalsColor(colorsAmount[i].color, excludeColor)) { continue; }
+
         if (colorsAmount[i].amount > colorsAmount[maxIndex].amount) {
           maxIndex = i;
         }
@@ -221,7 +228,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
       if (DEBUG) {
         console.log("--- " + p.frameCount + " ---");
         for (let i = 0; i < colorsAmount.length; i++) {
-          console.log("(" + p.red(colorsAmount[i].color) + "," + p.green(colorsAmount[i].color) + "," + p.blue(colorsAmount[i].color) + "): " + colorsAmount[i].amount);
+          console.log("[" + i + "]: (" + p.red(colorsAmount[i].color) + "," + p.green(colorsAmount[i].color) + "," + p.blue(colorsAmount[i].color) + ") =  " + colorsAmount[i].amount);
         }
       }
     }
