@@ -18,6 +18,10 @@ export function ExplainDrawing() {
           <td>0~8</td>
         </tr>
         <tr>
+          <td>消しゴムに変更</td>
+          <td>e</td>
+        </tr>
+        <tr>
           <td>ポーズモードの切り替え</td>
           <td>p</td>
         </tr>
@@ -95,7 +99,7 @@ export function ExplainDrawing() {
           <td>]</td>
         </tr><tr>
           <td>キャンバスのスクリーンショットの保存</td>
-          <td>e</td>
+          <td>enter</td>
         </tr>
 
       </table>
