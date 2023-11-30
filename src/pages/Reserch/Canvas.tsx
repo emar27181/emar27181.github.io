@@ -6,7 +6,7 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import axios from 'axios';
-import p5 from 'p5';
+import p5, { Graphics } from 'p5';
 import { ReturnColorsInfo, ColorInfo } from './ReturnCameraInfo';
 import { ReturnImageColorsInfo } from './ReturnImageInfo';
 import { ReturnTrackingData } from './ReturnTrackingInfo';
@@ -17,10 +17,11 @@ import { ReturnIsDesktop } from '../../App';
 import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecommendation/DisplayColorRatioOnlyFrontendontend';
 import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorRecommendation/DisplayUsedColorRatio';
 import { ReturnBarValue, ReturnIsButtonClicked, ReturnIsTouchedGui } from './OperateGuiControl';
+import coloringImageFilePath from '../../assets/coloring_sample_image.png';
+
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
-
 const IS_NO_STROKE = true, DEBUG = false;
 const DEBUG_FPS = 0.2, DEFAULT_FPS = 60;
 const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
@@ -130,14 +131,19 @@ export function Canvas() {
     let ColorsInfo: Array<ColorInfo>;
     let drawingColor = p.color(255, 0, 0);
     returnDrawingColor = p.color(255, 0, 0);
-    //backgroundColor = p.color(255, 255, 255);
-    backgroundColor = p.color(0, 0, 0);
+    backgroundColor = p.color(255, 255, 255);
+    //backgroundColor = p.color(0, 0, 0);
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
         canvasColors[i][j] = p.color(0, 0, 0);
       }
     }
-    //fetchData(); //データの取得
+    let additionalLayer: Graphics;
+    let coloringImage: p5.Image;
+
+    p.preload = () => {
+      coloringImage = p.loadImage(coloringImageFilePath);
+    }
 
     function addCameraBalls() {
       ColorsInfo = ReturnColorsInfo();
@@ -164,6 +170,7 @@ export function Canvas() {
       p.background(backgroundColor);
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
+      additionalLayer = p.createGraphics(p.width, p.height);
     };
 
     p.draw = () => {
@@ -193,6 +200,7 @@ export function Canvas() {
       if (isMoveBallGravity) { moveStraight(ballsGravity[0]); }
 
       displayBalls();
+      p.image(coloringImage, -50, 0);
 
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
       else { p.frameRate(fps); }
