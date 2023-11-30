@@ -24,6 +24,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
     let canvasWidth = 0, canvasHeight = 0;
     //let colorsAmount: Array<ColorAmount> = new ColorAmount(p.color(0,0,0), 1);
     let colorsAmount: Array<ColorAmount> = [];
+    let excludeColor = p.color(255, 255, 255);
 
     p.setup = () => {
       p.colorMode(p.HSL);
@@ -152,7 +153,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
 
     //現在のキャンバスの色の割合のうち最も多い色を返す関数
     function calculateBaseColor(): p5.Color {
-      //何も塗られていなかった場合
+      //何も塗られていなかった場合(配列の長さが1⇒背景色のみ)
       if (colorsAmount.length === 1) { return colorsAmount[0].color; }
 
       let maxIndex = 1;
@@ -211,6 +212,9 @@ export function DisplayUsedColorRatio(displayMode: string) {
       //color: 探索対象の色
       p.colorMode(p.RGB);
       let placeNumber = 10; // place/10の位を四捨五入
+
+      //探索対象外の色だった場合
+      if (equalsColor(color, excludeColor)) { return; }
 
       //1の位を四捨五入した値に変更
       color = p.color(p.round(p.red(color) / placeNumber) * placeNumber, p.round(p.green(color) / placeNumber) * placeNumber, p.round(p.blue(color) / placeNumber) * placeNumber);

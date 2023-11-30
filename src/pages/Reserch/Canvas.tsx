@@ -128,7 +128,7 @@ export function Canvas() {
     let isBallCollisionDetected = false;
     const BALL_SIZE = 2;
     let ColorsInfo: Array<ColorInfo>;
-    let drawingColor = p.color(255, 0, 0);
+    let drawingColor = p.color(255, 255, 255);
     returnDrawingColor = p.color(255, 0, 0);
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
