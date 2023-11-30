@@ -522,6 +522,8 @@ export function Canvas() {
 
     //キーボードによる操作(タイプして離れるまでに1度だけ呼び出し)
     p.keyTyped = () => {
+      //console.log("p.key: " + p.key);
+
       if (p.key === "s") {
         //スポイト機能
         let input = p.get(p.mouseX, p.mouseY);
@@ -541,7 +543,8 @@ export function Canvas() {
         displayBalls();
       }
 
-      if (p.key === "e") { p.saveCanvas('saveCanvas', 'png'); }
+      if (p.key === "e") { drawingColor = backgroundColor; }
+      if (p.key === 'Enter') { p.saveCanvas('saveCanvas', 'png'); }
       if (p.key === "w") { adjustMode = "w"; }
       if (p.key === "b") { adjustMode = "b"; }
       if (p.key === "a") { adjustMode = "a"; }
