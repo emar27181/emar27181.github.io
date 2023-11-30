@@ -136,19 +136,16 @@ export function DisplayUsedColorRatio(displayMode: string) {
       //初期実装として、色の割合をベースカラー70%, アソートカラー25%, アクセントカラー5%で表示
 
       //アソートカラーの描画
-      //HSL(-, 30, 80)
       p.fill(calculateAssortedColor());
       p.rect(p.width / 2, y, p.width, 0.25 * p.height);
       y += 0.25 * p.height;
 
       //ベースカラーの描画
-      //HSL(-, 60, 80)
       p.fill(calculateBaseColor());
       p.rect(p.width / 2, y, p.width, 0.7 * p.height);
       y += 0.7 * p.height;
 
       //アクセントカラーの描画
-      //HSL(-, 80, 20)
       p.fill(calculateAccentColor());
       p.rect(p.width / 2, y, p.width, 0.05 * p.height);
       y += 0.05 * p.height;
@@ -169,7 +166,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
 
       let hue = p.hue(colorsAmount[maxIndex].color);
       let saturation = 60;
-      let lightness = 80;
+      let lightness = 70;
       return p.color(hue, saturation, lightness);
     }
 
@@ -178,7 +175,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
       p.colorMode(p.HSL);
       let baseColor = calculateBaseColor();
       let hue = p.hue(baseColor);
-      let saturation = 20;
+      let saturation = 30;
       let lightness = 80;
       return p.color(hue, saturation, lightness);
     }
