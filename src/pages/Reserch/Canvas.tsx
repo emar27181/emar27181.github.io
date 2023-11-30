@@ -131,6 +131,7 @@ export function Canvas() {
     let drawingColor = p.color(255, 0, 0);
     returnDrawingColor = p.color(255, 0, 0);
     backgroundColor = p.color(255, 255, 255);
+    //backgroundColor = p.color(0, 0, 0);
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
         canvasColors[i][j] = p.color(0, 0, 0);
@@ -638,6 +639,7 @@ export function ReturnDrawingWeight() { return drawingWeight; }
 export function ReturnIsRandomMove() { return isRandomMove; }
 export function ReturnAlpha() { return alpha; }
 export function ReturnBackgroundAlpha() { return backgroundAlpha; }
+export function ReturnBackgroundColor() { return backgroundColor; }
 export function ReturnFigureMode() { return figureMode; }
 export function ReturnClickMode() { return clickMode; }
 export function ReturnIsFixedGravity() { return isFixedGravity; }

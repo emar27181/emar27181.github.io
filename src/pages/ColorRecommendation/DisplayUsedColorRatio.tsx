@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnCanvasColors, ReturnCanvasSize } from '../Reserch/Canvas';
+import { ReturnBackgroundColor, ReturnCanvasColors, ReturnCanvasSize } from '../Reserch/Canvas';
 import p5 from 'p5';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnCameraColors } from '../Reserch/ReturnCameraInfo';
@@ -9,6 +9,7 @@ import { ReturnImageColors } from '../Reserch/ReturnImageInfo';
 
 let returnColor: number[] = [0, 0, 0, 255];
 let isTouched = false;
+const DEBUG = false;
 
 export function DisplayUsedColorRatio(displayMode: string) {
   const sketch = (p: P5CanvasInstance) => {
@@ -20,17 +21,17 @@ export function DisplayUsedColorRatio(displayMode: string) {
         canvasColors[i][j] = p.color(0, 0, 0);
       }
     }
-    let backGroundColor = p.color(0, 0, 0, 255);
+    let backgroundColor = p.color(0, 0, 0, 255);
     let canvasWidth = 0, canvasHeight = 0;
     //let colorsAmount: Array<ColorAmount> = new ColorAmount(p.color(0,0,0), 1);
     let colorsAmount: Array<ColorAmount> = [];
-    let excludeColor = p.color(255, 255, 255);
+    let excludeColor = p.color(255, 255, 0);
 
     p.setup = () => {
       p.colorMode(p.HSL);
       createCanvas();
-      p.background(backGroundColor);
-      colorsAmount.push(new ColorAmount(p.color(0, 0, 0), SPLIT * SPLIT));
+      p.background(backgroundColor);
+      colorsAmount.push(new ColorAmount(backgroundColor, SPLIT * SPLIT));
       p.frameRate(1);
 
     };
@@ -46,6 +47,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
     }
 
     p.draw = () => {
+      //p.background(backgroundColor);
       p.colorMode(p.HSL);
       updateVariables();
       if (p.frameCount === 3) { displayCanvas(); }
@@ -66,7 +68,6 @@ export function DisplayUsedColorRatio(displayMode: string) {
     }
     function displayCanvas() {
       calculateColorsAmount();
-      //displayColorsAmountRate();
       displayColorsAmountRateExcludeBackground();
       displayRecommendedColorsAmountRate();
     }
@@ -187,7 +188,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
 
     function resetColorsAmount() {
       colorsAmount = [];
-      colorsAmount.push(new ColorAmount(p.color(0, 0, 0), 0));
+      colorsAmount.push(new ColorAmount(backgroundColor, 0));
     }
 
     function calculateColorsAmount() {
@@ -197,6 +198,14 @@ export function DisplayUsedColorRatio(displayMode: string) {
           let color = canvasColors[i][j];
           updateColorsAmount(color);
           //console.log("(" + i + "," + j + "): rgb(" + p.red(color) + ", " + p.green(color) + ", " + p.blue(color) + ")");
+        }
+      }
+
+      //確認用出力
+      if (DEBUG) {
+        console.log("--- " + p.frameCount + " ---");
+        for (let i = 0; i < colorsAmount.length; i++) {
+          console.log("(" + p.red(colorsAmount[i].color) + "," + p.green(colorsAmount[i].color) + "," + p.blue(colorsAmount[i].color) + "): " + colorsAmount[i].amount);
         }
       }
     }
@@ -237,6 +246,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
       canvasWidth = canvasSize[0];
       canvasHeight = canvasSize[1];
       isTouched = false;
+      backgroundColor = ReturnBackgroundColor();
     }
     class ColorAmount {
       color: p5.Color;
