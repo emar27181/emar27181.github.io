@@ -23,6 +23,8 @@ import TestDisplayImage from '../pages/TestDisplayImage';
 import { TestDrawCanvas } from '../pages/TestDrawCanvas';
 import TestHandsfree from '../pages/TestHandsfree';
 import TestResponsiveHome from './TestResponsiveHome';
+import TestMultipleLayer from '../pages/TestMultipleLayer';
+import TestAddImageLayer from '../pages/TestAddImageLayer';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -77,7 +79,11 @@ export function OtherHome() {
 
         <NavLink activeClassName='active' to="/testResponsiveHome">
           レスポンシブデザインのテストページ
-        </NavLink>
+        </NavLink><br />
+
+        <NavLink activeClassName='active' to="/testMultipleLayer">
+          複数レイヤーのテストページ
+        </NavLink><br />
 
       </ul>
 
@@ -130,6 +136,11 @@ export function OtherHome() {
 
         <Route path="/testResponsiveHome">
           <TestResponsiveHome />
+        </Route>
+
+        <Route path="/testMultipleLayer">
+          <TestMultipleLayer />
+          <TestAddImageLayer />
         </Route>
 
 

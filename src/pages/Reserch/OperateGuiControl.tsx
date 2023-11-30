@@ -10,7 +10,7 @@ let isTouched = false;
 export function OperateGuiControl() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_WIDTH = 200, CANVAS_HEIGHT = 300;
+    const CANVAS_WIDTH = 200, CANVAS_HEIGHT = 100;
     let barX = 0;
 
     p.setup = () => {

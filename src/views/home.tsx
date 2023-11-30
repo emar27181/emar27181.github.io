@@ -8,10 +8,10 @@ import ResearchHomeForDisplay from './ResearchHomeForDisplay';
 
 export function Home() {
 
-
   return (
     <div>
-      <br /><br /> <br />
+      <br />
+      <br />
       <h2>p5.js演習ブラウザへようこそ!!</h2>
       このブラウザではp5.jsを用いた個人作品を展示しています。 <br />
       学習を目的としたブラウザであるため不備があると思いますがご容赦ください。<br />
@@ -20,12 +20,8 @@ export function Home() {
       <ClockCountdown />
 
       <br />
-      <hr />
-
-      <ResearchHomeForDisplay />
 
       <br />
-      <hr />
 
 
       <h3>外部リンク</h3>
