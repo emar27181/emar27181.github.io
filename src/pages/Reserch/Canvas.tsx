@@ -28,7 +28,7 @@ const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
 const IS_TEST_MODE = true;
 let alpha = 255, backgroundAlpha = 15;
-let drawingWeight = 5, backgroundColor = "#000000", textSize = 10;
+let drawingWeight = 5, backgroundColor: p5.Color, textSize = 10;
 let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
 let hue: number[] = [];
 let intense: number[] = [];
@@ -128,8 +128,9 @@ export function Canvas() {
     let isBallCollisionDetected = false;
     const BALL_SIZE = 2;
     let ColorsInfo: Array<ColorInfo>;
-    let drawingColor = p.color(255, 255, 255);
+    let drawingColor = p.color(255, 0, 0);
     returnDrawingColor = p.color(255, 0, 0);
+    backgroundColor = p.color(255, 255, 255);
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
         canvasColors[i][j] = p.color(0, 0, 0);
@@ -178,7 +179,7 @@ export function Canvas() {
 
       if (isBackground) {
         p.blendMode(p.DARKEST);
-        p.background(0, 0, 0, backgroundAlpha);
+        p.background(backgroundColor);
         //p.blendMode(p.ADD);
         p.blendMode(p.BLEND);
       }
@@ -228,6 +229,7 @@ export function Canvas() {
         p.key = "c";
         p.keyTyped();
       }
+      backgroundColor = p.color(p.red(backgroundColor), p.green(backgroundColor), p.blue(backgroundColor), backgroundAlpha);
 
       /*
       p.fill(0);
