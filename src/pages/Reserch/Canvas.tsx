@@ -77,8 +77,8 @@ export function Canvas() {
     let ColorsInfo: Array<ColorInfo>;
     let drawingColor = p.color(255, 0, 0);
     returnDrawingColor = p.color(255, 0, 0);
-    //backgroundColor = p.color(255, 255, 255);
-    backgroundColor = p.color(0, 0, 0);
+    backgroundColor = p.color(255, 255, 255);
+    //backgroundColor = p.color(0, 0, 0);
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
         canvasColors[i][j] = p.color(0, 0, 0);

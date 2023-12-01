@@ -30,7 +30,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
     p.setup = () => {
       p.colorMode(p.HSL);
       createCanvas();
-      p.background(backgroundColor);
+      p.background(ReturnBackgroundColor());
       colorsAmount.push(new ColorAmount(backgroundColor, SPLIT * SPLIT));
       p.frameRate(1);
 
