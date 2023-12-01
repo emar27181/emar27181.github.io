@@ -13,7 +13,7 @@ const DEBUG = false;
 
 export function DisplayUsedColorRatio(displayMode: string) {
   const sketch = (p: P5CanvasInstance) => {
-    const SPLIT = 100, CANVAS_WIDTH = 40;
+    const SPLIT = 100, CANVAS_WIDTH = 60;
     let canvasColors: p5.Color[][] = [];
     for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
     for (let i = 0; i < SPLIT; i++) {
@@ -68,12 +68,13 @@ export function DisplayUsedColorRatio(displayMode: string) {
     }
     function displayCanvas() {
       calculateColorsAmount();
-      displayColorsAmountRateExcludeBackground(0, p.width / 2);
-      displayRecommendedColorsAmountRate(p.width / 2, p.width);
+      displayColorsAmountRate(0, p.width / 3)
+      displayColorsAmountRateExcludeBackground(p.width / 3, p.width * 2 / 3);
+      displayRecommendedColorsAmountRate(p.width * 2 / 3, p.width);
     }
 
     //背景色を含めて色の比率を表示させる関数
-    function displayColorsAmountRate() {
+    function displayColorsAmountRate(x1: number, x2: number) {
       let y = 0;
       let hueRange = 15;
       p.noStroke();
@@ -84,7 +85,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
           let hue = p.hue(colorsAmount[j].color);
           if (hueValue <= hue && hue < hueValue + hueRange) {
             p.fill(colorsAmount[j].color);
-            p.rect(0, y, p.width / 2, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT)));
+            p.rect(x1, y, x2, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT)));
             y += p.height * (colorsAmount[j].amount / (SPLIT * SPLIT));
           }
         }
