@@ -68,8 +68,8 @@ export function DisplayUsedColorRatio(displayMode: string) {
     }
     function displayCanvas() {
       calculateColorsAmount();
-      displayColorsAmountRateExcludeBackground();
-      displayRecommendedColorsAmountRate();
+      displayColorsAmountRateExcludeBackground(0, p.width / 2);
+      displayRecommendedColorsAmountRate(p.width / 2, p.width);
     }
 
     //背景色を含めて色の比率を表示させる関数
@@ -92,7 +92,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
     }
 
     //背景色を除外して色の比率を表示させる関数
-    function displayColorsAmountRateExcludeBackground() {
+    function displayColorsAmountRateExcludeBackground(x1: number, x2: number) {
       let y = 0;
       let saturationRange = 10;
       p.noStroke();
@@ -119,7 +119,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
           let saturation = p.saturation(colorsAmount[j].color);
           if (i <= saturation && saturation < (i + saturationRange)) {
             p.fill(colorsAmount[j].color);
-            p.rect(0, y, p.width / 2, p.height * (colorsAmount[j].amount / splitSum));
+            p.rect(x1, y, x2, p.height * (colorsAmount[j].amount / splitSum));
             y += p.height * (colorsAmount[j].amount / splitSum);
           }
         }
@@ -143,7 +143,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
     }
 
 
-    function displayRecommendedColorsAmountRate() {
+    function displayRecommendedColorsAmountRate(x1: number, x2: number) {
       p.colorMode(p.RGB);
       let y = 0;
 
@@ -151,17 +151,17 @@ export function DisplayUsedColorRatio(displayMode: string) {
 
       //アソートカラーの描画
       p.fill(calculateAssortedColor());
-      p.rect(p.width / 2, y, p.width, 0.25 * p.height);
+      p.rect(x1, y, x2, 0.25 * p.height);
       y += 0.25 * p.height;
 
       //ベースカラーの描画
       p.fill(calculateBaseColor());
-      p.rect(p.width / 2, y, p.width, 0.7 * p.height);
+      p.rect(x1, y, x2, 0.7 * p.height);
       y += 0.7 * p.height;
 
       //アクセントカラーの描画
       p.fill(calculateAccentColor());
-      p.rect(p.width / 2, y, p.width, 0.05 * p.height);
+      p.rect(x1, y, x2, 0.05 * p.height);
       y += 0.05 * p.height;
 
     }
