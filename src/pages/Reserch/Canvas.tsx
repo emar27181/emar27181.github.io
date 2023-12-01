@@ -66,6 +66,78 @@ let canvasWidth = 0, canvasHeight = 0, mouseX = 0, mouseY = 0;
 
 export function Canvas() {
   const sketch = (p: P5CanvasInstance) => {
+    //描画ボールに関する変数宣言
+    let balls: Array<Ball> = [];
+    let ballsGravity: Array<Ball> = [];
+    let ballsTrackigGravity: Array<Ball> = [];
+    let dx = 1, dy = 2;
+    let isColor = p.color(255, 0, 0);
+    let isBallCollisionDetected = false;
+    const BALL_SIZE = 2;
+    let ColorsInfo: Array<ColorInfo>;
+    let drawingColor = p.color(255, 0, 0);
+    returnDrawingColor = p.color(255, 0, 0);
+    //backgroundColor = p.color(255, 255, 255);
+    backgroundColor = p.color(0, 0, 0);
+    for (let i = 0; i < SPLIT; i++) {
+      for (let j = 0; j < SPLIT; j++) {
+        canvasColors[i][j] = p.color(0, 0, 0);
+      }
+    }
+    let additionalLayer: Graphics;
+    let coloringImage: p5.Image;
+
+    p.preload = () => {
+      coloringImage = p.loadImage(coloringImageFilePath);
+    }
+
+    p.setup = () => {
+      let rate = 0.65;
+      if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
+      else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
+      canvasWidth = p.width, canvasHeight = p.height;
+      p.background(backgroundColor);
+      ballsTrackigGravity.push(new Ball(0, 0, 100, p.color(0, 255, 0), 9)); //1番目に認識される手
+      ballsTrackigGravity.push(new Ball(0, 0, 100, p.color(0, 255, 0), 9)); //2番目に認識される手
+      //p.colorMode(p.RGB, 360, 100, 100, 100);
+      if (IS_NO_STROKE) { p.noStroke(); }
+      additionalLayer = p.createGraphics(p.width, p.height);
+    };
+
+    p.draw = () => {
+      UpdateVariables();
+
+      p.colorMode(p.RGB);
+      if (p.keyIsPressed) { p.keyPressed(); }
+      if (p.mouseIsPressed) { MouseControl(); }
+      getMouseColor();
+
+      if (isPaused) { return; }
+
+      if (isTracking) { addTrackingBall(); }
+
+      if (isBackground) {
+        p.blendMode(p.DARKEST);
+        p.background(backgroundColor);
+        //p.blendMode(p.ADD);
+        p.blendMode(p.BLEND);
+      }
+      else {
+        p.blendMode(p.BLEND);
+      }
+
+      if (isMovedStraight) { moveBalls(); }
+      if (isMovedGravity) { moveBallsGravity(); }
+      if (isMoveBallGravity) { moveStraight(ballsGravity[0]); }
+
+      displayBalls();
+      //p.image(coloringImage, -50, 0);
+
+      if (DEBUG) { p.frameRate(DEBUG_FPS); }
+      else { p.frameRate(fps); }
+      if (DEBUG) { console.log("colorTank: " + colorTank); }
+    };
+
 
     //移動体の自作クラス
     class Ball {
@@ -117,95 +189,6 @@ export function Canvas() {
       }
 
     }
-
-    //描画ボールに関する変数宣言
-    let balls: Array<Ball> = [];
-    let ballsGravity: Array<Ball> = [];
-    let ballsTrackigGravity: Array<Ball> = [];
-    ballsTrackigGravity.push(new Ball(0, 0, 100, p.color(0, 255, 0), 9)); //1番目に認識される手
-    ballsTrackigGravity.push(new Ball(0, 0, 100, p.color(0, 255, 0), 9)); //2番目に認識される手
-    let dx = 1, dy = 2;
-    let isColor = p.color(255, 0, 0);
-    let isBallCollisionDetected = false;
-    const BALL_SIZE = 2;
-    let ColorsInfo: Array<ColorInfo>;
-    let drawingColor = p.color(255, 0, 0);
-    returnDrawingColor = p.color(255, 0, 0);
-    //backgroundColor = p.color(255, 255, 255);
-    backgroundColor = p.color(0, 0, 0);
-    for (let i = 0; i < SPLIT; i++) {
-      for (let j = 0; j < SPLIT; j++) {
-        canvasColors[i][j] = p.color(0, 0, 0);
-      }
-    }
-    let additionalLayer: Graphics;
-    let coloringImage: p5.Image;
-
-    p.preload = () => {
-      coloringImage = p.loadImage(coloringImageFilePath);
-    }
-
-    function addCameraBalls() {
-      ColorsInfo = ReturnColorsInfo();
-      if (DEBUG) { console.log(ColorsInfo); }
-      for (let i = 0; i < ColorsInfo.length; i++) {
-        balls.push(new Ball(ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight,
-          p.color(ColorsInfo[i].color[0], ColorsInfo[i].color[1], ColorsInfo[i].color[2], alpha), -1));
-      }
-    }
-    function addImageBalls() {
-      ColorsInfo = ReturnImageColorsInfo();
-      if (DEBUG) { console.log(ColorsInfo); }
-      for (let i = 0; i < ColorsInfo.length; i++) {
-        balls.push(new Ball(ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight,
-          p.color(ColorsInfo[i].color[0], ColorsInfo[i].color[1], ColorsInfo[i].color[2], alpha), -1));
-      }
-    }
-
-    p.setup = () => {
-      let rate = 0.65;
-      if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
-      else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
-      canvasWidth = p.width, canvasHeight = p.height;
-      p.background(backgroundColor);
-      //p.colorMode(p.RGB, 360, 100, 100, 100);
-      if (IS_NO_STROKE) { p.noStroke(); }
-      additionalLayer = p.createGraphics(p.width, p.height);
-    };
-
-    p.draw = () => {
-      UpdateVariables();
-
-      p.colorMode(p.RGB);
-      if (p.keyIsPressed) { p.keyPressed(); }
-      if (p.mouseIsPressed) { MouseControl(); }
-      getMouseColor();
-
-      if (isPaused) { return; }
-
-      if (isTracking) { addTrackingBall(); }
-
-      if (isBackground) {
-        p.blendMode(p.DARKEST);
-        p.background(backgroundColor);
-        //p.blendMode(p.ADD);
-        p.blendMode(p.BLEND);
-      }
-      else {
-        p.blendMode(p.BLEND);
-      }
-
-      if (isMovedStraight) { moveBalls(); }
-      if (isMovedGravity) { moveBallsGravity(); }
-      if (isMoveBallGravity) { moveStraight(ballsGravity[0]); }
-
-      displayBalls();
-      p.image(coloringImage, -50, 0);
-
-      if (DEBUG) { p.frameRate(DEBUG_FPS); }
-      else { p.frameRate(fps); }
-      if (DEBUG) { console.log("colorTank: " + colorTank); }
-    };
 
     function UpdateVariables() {
       mouseX = p.mouseX, mouseY = p.mouseY;
@@ -379,6 +362,7 @@ export function Canvas() {
       ball.update();
     }
 
+
     //移動体を移動/反射させる関数(※生成された移動体全てを移動)
     function moveBalls() {
       for (let i = 0; i < balls.length; i++) {
@@ -427,6 +411,24 @@ export function Canvas() {
     function ConsumeColor(drawingEmotionNumber: number) {
       if (colorTank[drawingEmotionNumber] > 0) {
         colorTank[drawingEmotionNumber] -= consumeSpeed;
+      }
+    }
+
+    function addCameraBalls() {
+      ColorsInfo = ReturnColorsInfo();
+      if (DEBUG) { console.log(ColorsInfo); }
+      for (let i = 0; i < ColorsInfo.length; i++) {
+        balls.push(new Ball(ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight,
+          p.color(ColorsInfo[i].color[0], ColorsInfo[i].color[1], ColorsInfo[i].color[2], alpha), -1));
+      }
+    }
+
+    function addImageBalls() {
+      ColorsInfo = ReturnImageColorsInfo();
+      if (DEBUG) { console.log(ColorsInfo); }
+      for (let i = 0; i < ColorsInfo.length; i++) {
+        balls.push(new Ball(ColorsInfo[i].x, ColorsInfo[i].y, drawingWeight,
+          p.color(ColorsInfo[i].color[0], ColorsInfo[i].color[1], ColorsInfo[i].color[2], alpha), -1));
       }
     }
 
