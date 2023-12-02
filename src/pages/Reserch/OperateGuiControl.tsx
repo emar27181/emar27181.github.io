@@ -24,7 +24,7 @@ export function OperateGuiControl() {
       p.fill(255);
       p.background(0);
       displayControlBar();
-      displayButton();
+      displayButton(10, 50, 30, 30, 'c');
       updateVariables();
       if (p.mouseIsPressed) { mouseContorl() }
     };
@@ -59,10 +59,10 @@ export function OperateGuiControl() {
       p.rect(barX, 10, 10, 30);
     }
 
-    function displayButton() {
-      p.rect(10, 50, 30, 30);
+    function displayButton(x: number, y: number, width: number, height: number, key: string) {
+      p.rect(x, y, width, height);
       p.fill(0);
-      p.text("c", 10 + p.textSize(), 50 + p.textSize());
+      p.text(key, 10 + p.textSize(), 50 + p.textSize());
     }
 
   }
