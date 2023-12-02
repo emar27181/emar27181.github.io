@@ -560,12 +560,12 @@ export function Canvas() {
 
       if (p.key === "e") {
         if (isEraser) {
-          keepDrawingColor = drawingColor;
-          drawingColor = backgroundColor;
+          drawingColor = keepDrawingColor;
           isEraser = false;
         }
         else {
-          drawingColor = keepDrawingColor;
+          keepDrawingColor = drawingColor;
+          drawingColor = backgroundColor;
           isEraser = true;
         }
       }
