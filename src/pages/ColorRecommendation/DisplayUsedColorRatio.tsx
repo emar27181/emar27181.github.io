@@ -169,13 +169,12 @@ export function DisplayUsedColorRatio(displayMode: string) {
 
     //現在のキャンバスの色の割合のうち最も多い色を返す関数
     function calculateBaseColor(): p5.Color {
-      //何も塗られていなかった場合(配列の長さが1⇒背景色のみ)
-      if (colorsAmount.length === 1) { return colorsAmount[0].color; }
+      //何も塗られていなかった場合(配列の長さが2⇒rgb(0,0,0)とrgb(255,255,255)のみ)
+      if (colorsAmount.length <= 2) { return colorsAmount[0].color; }
 
-      let maxIndex = 1;
+      let maxIndex = 2;
 
-      //console.log(colorsAmount[1].color, colorsAmount[1].amount);
-      for (let i = 1; i < colorsAmount.length; i++) {
+      for (let i = 2; i < colorsAmount.length; i++) {
         //除外された色だった場合
         if (equalsColor(colorsAmount[i].color, excludeColor)) { continue; }
 
@@ -213,6 +212,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
     function resetColorsAmount() {
       colorsAmount = [];
       colorsAmount.push(new ColorAmount(backgroundColor, 0));
+      colorsAmount.push(new ColorAmount(excludeColor, 0));
     }
 
     function calculateColorsAmount() {
