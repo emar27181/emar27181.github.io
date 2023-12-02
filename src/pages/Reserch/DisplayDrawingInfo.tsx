@@ -37,7 +37,7 @@ export function DisplayDrawingInfo() {
       if (ReturnIsDesktop()) { p.createCanvas(rate / 3 * p.windowWidth / 2, rate * p.windowWidth / 2); }
       else { p.createCanvas(rate / 3 * p.windowWidth, rate * p.windowWidth); }
       //p.createCanvas(rate / 3 * p.windowWidth, rate * p.windowWidth);
-      p.noStroke();
+      //p.noStroke();
     };
 
     p.draw = () => {
@@ -61,7 +61,7 @@ export function DisplayDrawingInfo() {
       drawingColor = ReturnDrawingColor();
       isRepulsion = ReturnIsRepulsion();
 
-      p.textSize(0.032 * p.height);
+      p.textSize(0.025 * p.height);
       p.fill(0);
       p.text("RandomMove: \n" + isRandomMove + "\nalpha: " + p.round(alpha) +
         "\nbackgroundAlpha: \n" + p.round(backgroundAlpha) + "\nfigure: " + figureMode +

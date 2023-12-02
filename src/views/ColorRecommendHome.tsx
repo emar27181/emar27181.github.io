@@ -9,6 +9,7 @@ import DisplayColorRatioOnlyFrontendontend from '../pages/ColorRecommendation/Di
 import DisplayUsedColorRatio from '../pages/ColorRecommendation/DisplayUsedColorRatio';
 import ReturnCameraInfo from '../pages/Reserch/ReturnCameraInfo';
 import ReturnImageInfo from '../pages/Reserch/ReturnImageInfo';
+import TestDragAndPaste from '../pages/TestDragAndPaste';
 
 export function ColorRecommendHome() {
 
@@ -26,6 +27,7 @@ export function ColorRecommendHome() {
 
         {DisplayUsedColorRatio("image")}
       </div>
+      <TestDragAndPaste />
       <div style={{ display: 'flex' }}>
         <ColorGanerate />
         <DisplayColorRatioOnlyFrontendontend />

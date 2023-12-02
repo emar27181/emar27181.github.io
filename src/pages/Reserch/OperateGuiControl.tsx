@@ -3,6 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
 let barValue = 0, isButtonClicked = false;
+let clickedKey = 'a';
 let canvasWidth = 0, canvasHeight = 0;
 let isTouched = false;
 
@@ -23,7 +24,8 @@ export function OperateGuiControl() {
       p.fill(255);
       p.background(0);
       displayControlBar();
-      displayButton();
+      displayButton(10, 50, 30, 30, 'c');
+      displayButton(50, 50, 30, 30, 'e');
       updateVariables();
       if (p.mouseIsPressed) { mouseContorl() }
     };
@@ -44,7 +46,14 @@ export function OperateGuiControl() {
         barX = p.mouseX;
         isTouched = true;
       }
-      if (judgeClicked(10, 50, 30, 30)) { isButtonClicked = true; }
+      if (judgeClicked(10, 50, 30, 30)) {
+        isButtonClicked = true;
+        clickedKey = 'c';
+      }
+      if (judgeClicked(50, 50, 30, 30)) {
+        isButtonClicked = true;
+        clickedKey = 'e';
+      }
     }
 
     function judgeClicked(x: number, y: number, width: number, height: number) {
@@ -55,10 +64,11 @@ export function OperateGuiControl() {
       p.rect(barX, 10, 10, 30);
     }
 
-    function displayButton() {
-      p.rect(10, 50, 30, 30);
+    function displayButton(x: number, y: number, width: number, height: number, key: string) {
+      p.fill(255);
+      p.rect(x, y, width, height);
       p.fill(0);
-      p.text("c", 10 + p.textSize(), 50 + p.textSize());
+      p.text(key, x + p.textSize(), y + p.textSize());
     }
 
   }
@@ -71,5 +81,6 @@ export function OperateGuiControl() {
 export function ReturnBarValue() { return [barValue, canvasWidth]; }
 export function ReturnIsTouchedGui() { return isTouched; }
 export function ReturnIsButtonClicked() { return isButtonClicked; }
+export function ReturnClickedKey() { return clickedKey; }
 
 export default OperateGuiControl

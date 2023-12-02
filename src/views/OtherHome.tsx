@@ -25,6 +25,7 @@ import TestHandsfree from '../pages/TestHandsfree';
 import TestResponsiveHome from './TestResponsiveHome';
 import TestMultipleLayer from '../pages/TestMultipleLayer';
 import TestAddImageLayer from '../pages/TestAddImageLayer';
+import TestDragAndPaste from '../pages/TestDragAndPaste';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -85,6 +86,10 @@ export function OtherHome() {
           複数レイヤーのテストページ
         </NavLink><br />
 
+        <NavLink activeClassName='active' to="/testDragAndPaste">
+          ドラッグ&ペーストのテストページ
+        </NavLink><br />
+
       </ul>
 
       <Switch>
@@ -141,6 +146,10 @@ export function OtherHome() {
         <Route path="/testMultipleLayer">
           <TestMultipleLayer />
           <TestAddImageLayer />
+        </Route>
+
+        <Route path="/testDragAndPaste">
+          <TestDragAndPaste />
         </Route>
 
 
