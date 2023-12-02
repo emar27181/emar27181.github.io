@@ -236,18 +236,6 @@ export function Canvas() {
       }
       backgroundColor = p.color(p.red(backgroundColor), p.green(backgroundColor), p.blue(backgroundColor), backgroundAlpha);
       updateDrawingBrushLayer();
-      /*
-      p.fill(0);
-      p.ellipse(p.width / 2, p.height / 2, 100);
-      p.fill(color[0], color[1], color[2], color[3]);
-      p.ellipse(p.width / 2, p.height / 2, 100);
-      */
-
-      /*
-      let testArray = [[0, 1, 2, 3], [4, 5, 6, 7]];
-      console.log(testArray[0][2]);
-      */
-      //console.log("(x, y) = " + ballsTrackigGravity[0].position.x + ", " + ballsTrackigGravity[0].position.y);
     }
 
     function updateDrawingBrushLayer() {
