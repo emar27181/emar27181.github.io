@@ -85,6 +85,7 @@ export function Canvas() {
       }
     }
     let coloringImageLayer: Graphics;
+    let drawingBrushLayer: Graphics;
     let coloringImage: p5.Image;
 
     p.preload = () => {
@@ -102,10 +103,12 @@ export function Canvas() {
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
       coloringImageLayer = p.createGraphics(p.width, p.height);
+      drawingBrushLayer = p.createGraphics(p.width, p.height);
     };
 
     p.draw = () => {
       UpdateVariables();
+      p.image(drawingBrushLayer, 0, 0);
       p.image(coloringImage, -50, 0);
 
       p.colorMode(p.RGB);
@@ -222,7 +225,7 @@ export function Canvas() {
         p.keyTyped();
       }
       backgroundColor = p.color(p.red(backgroundColor), p.green(backgroundColor), p.blue(backgroundColor), backgroundAlpha);
-
+      updateDrawingBrushLayer();
       /*
       p.fill(0);
       p.ellipse(p.width / 2, p.height / 2, 100);
@@ -235,6 +238,14 @@ export function Canvas() {
       console.log(testArray[0][2]);
       */
       //console.log("(x, y) = " + ballsTrackigGravity[0].position.x + ", " + ballsTrackigGravity[0].position.y);
+    }
+
+    function updateDrawingBrushLayer() {
+      //drawingBrushLayer.createCanvas(p.width, p.height);
+      //drawingBrushLayer.clear(0, 0, 0, 255);
+      drawingBrushLayer.background(p.red(backgroundColor), p.green(backgroundColor), p.blue(backgroundColor), 255);
+      drawingBrushLayer.noFill();
+      drawingBrushLayer.ellipse(p.mouseX, p.mouseY, drawingWeight);
     }
 
     function getCanvasColors() {
