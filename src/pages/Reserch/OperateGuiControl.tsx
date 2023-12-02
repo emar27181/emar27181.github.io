@@ -3,6 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
 let barValue = 0, isButtonClicked = false;
+let clickedKey = 'a';
 let canvasWidth = 0, canvasHeight = 0;
 let isTouched = false;
 
@@ -44,7 +45,10 @@ export function OperateGuiControl() {
         barX = p.mouseX;
         isTouched = true;
       }
-      if (judgeClicked(10, 50, 30, 30)) { isButtonClicked = true; }
+      if (judgeClicked(10, 50, 30, 30)) {
+        isButtonClicked = true;
+        clickedKey = 'c';
+      }
     }
 
     function judgeClicked(x: number, y: number, width: number, height: number) {
@@ -71,5 +75,6 @@ export function OperateGuiControl() {
 export function ReturnBarValue() { return [barValue, canvasWidth]; }
 export function ReturnIsTouchedGui() { return isTouched; }
 export function ReturnIsButtonClicked() { return isButtonClicked; }
+export function ReturnClickedKey() { return clickedKey; }
 
 export default OperateGuiControl

@@ -16,7 +16,7 @@ import { ReturnIsTouched } from './DisplayGravityPlace';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecommendation/DisplayColorRatioOnlyFrontendontend';
 import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorRecommendation/DisplayUsedColorRatio';
-import { ReturnBarValue, ReturnIsButtonClicked, ReturnIsTouchedGui } from './OperateGuiControl';
+import { ReturnBarValue, ReturnClickedKey, ReturnIsButtonClicked, ReturnIsTouchedGui } from './OperateGuiControl';
 import coloringImageFilePath from '../../assets/coloring_sample_image.png';
 
 
@@ -221,7 +221,7 @@ export function Canvas() {
       getCanvasColors();
       let barValue = ReturnBarValue();
       if (ReturnIsTouchedGui()) { drawingWeight = barValue[0]; }
-      if (ReturnIsButtonClicked()) {
+      if (ReturnIsButtonClicked() && (ReturnClickedKey() === 'c')) {
         p.key = "c";
         p.keyTyped();
       }
