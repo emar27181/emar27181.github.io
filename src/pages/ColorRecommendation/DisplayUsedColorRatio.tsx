@@ -10,10 +10,11 @@ import { ReturnImageColors } from '../Reserch/ReturnImageInfo';
 let returnColor: number[] = [0, 0, 0, 255];
 let isTouched = false;
 const DEBUG = false;
+const SPLIT_CANVAS_WIDTH = 14;
+const SPLIT = 100, CANVAS_WIDTH = 20 * SPLIT_CANVAS_WIDTH;
 
 export function DisplayUsedColorRatio(displayMode: string) {
   const sketch = (p: P5CanvasInstance) => {
-    const SPLIT = 100, CANVAS_WIDTH = 60;
     let canvasColors: p5.Color[][] = [];
     for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
     for (let i = 0; i < SPLIT; i++) {
@@ -68,9 +69,10 @@ export function DisplayUsedColorRatio(displayMode: string) {
     }
     function displayCanvas() {
       calculateColorsAmount();
-      displayColorsAmountRate(0, p.width / 3)
-      displayColorsAmountRateExcludeBackground(p.width / 3, p.width * 2 / 3);
-      displayRecommendedColorsAmountRate(p.width * 2 / 3, p.width);
+      displayColorsAmountRate(0, p.width / SPLIT_CANVAS_WIDTH)
+      displayColorsAmountRateExcludeBackground(p.width / SPLIT_CANVAS_WIDTH, p.width * 2 / SPLIT_CANVAS_WIDTH);
+      //displayRecommendedColorsAmountRate(p.width * 2 / SPLIT_CANVAS_WIDTH, p.width, 0);
+      for (let i = 0; i < SPLIT_CANVAS_WIDTH - 2; i++) { displayRecommendedColorsAmountRate(p.width * (i + 2) / SPLIT_CANVAS_WIDTH, p.width * (i + 3) / SPLIT_CANVAS_WIDTH, i); }
     }
 
     //背景色を含めて色の比率を表示させる関数
@@ -161,14 +163,14 @@ export function DisplayUsedColorRatio(displayMode: string) {
     }
 
 
-    function displayRecommendedColorsAmountRate(x1: number, x2: number) {
+    function displayRecommendedColorsAmountRate(x1: number, x2: number, hueDifference: number) {
       p.colorMode(p.RGB);
       let y = 0;
 
       //初期実装として、色の割合をベースカラー70%, アソートカラー25%, アクセントカラー5%で表示
 
       //アソートカラーの描画
-      p.fill(calculateAssortedColor());
+      p.fill(calculateAssortedColor(hueDifference));
       p.rect(x1, y, x2, 0.25 * p.height);
       y += 0.25 * p.height;
 
@@ -178,7 +180,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
       y += 0.7 * p.height;
 
       //アクセントカラーの描画
-      p.fill(calculateAccentColor());
+      p.fill(calculateAccentColor(hueDifference));
       p.rect(x1, y, x2, 0.05 * p.height);
       y += 0.05 * p.height;
 
@@ -207,22 +209,23 @@ export function DisplayUsedColorRatio(displayMode: string) {
     }
 
 
-    function calculateAssortedColor(): p5.Color {
+    function calculateAssortedColor(hueDifference: number): p5.Color {
       p.colorMode(p.HSL);
       let baseColor = calculateBaseColor();
       let hue = p.hue(baseColor);
+      hue = (hue + hueDifference * 15) % 360;
       let saturation = 30;
       let lightness = 80;
       return p.color(hue, saturation, lightness);
     }
 
-    function calculateAccentColor(): p5.Color {
+    function calculateAccentColor(hueDifference: number): p5.Color {
       p.colorMode(p.HSL);
       let baseColor = calculateBaseColor();
       let hue = p.hue(baseColor);
-      hue = (hue + 180) % 360;
+      hue = (hue + hueDifference * 15) % 360;
       let saturation = 80;
-      let lightness = 20;
+      let lightness = 30;
       return p.color(hue, saturation, lightness);
     }
 
