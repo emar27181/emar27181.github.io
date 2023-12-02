@@ -84,7 +84,7 @@ export function Canvas() {
         canvasColors[i][j] = backgroundColor;
       }
     }
-    let additionalLayer: Graphics;
+    let coloringImageLayer: Graphics;
     let coloringImage: p5.Image;
 
     p.preload = () => {
@@ -101,7 +101,7 @@ export function Canvas() {
       ballsTrackigGravity.push(new Ball(0, 0, 100, p.color(0, 255, 0), 9)); //2番目に認識される手
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
-      additionalLayer = p.createGraphics(p.width, p.height);
+      coloringImageLayer = p.createGraphics(p.width, p.height);
     };
 
     p.draw = () => {
