@@ -34,7 +34,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
       p.background(ReturnBackgroundColor());
       colorsAmount.push(new ColorAmount(backgroundColor, SPLIT * SPLIT));
       p.frameRate(1);
-
+      displayCanvas();
     };
 
 
@@ -72,7 +72,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
 
     function displayCanvas() {
       calculateColorsAmount();
-      displayColorsAmountRate(0, p.width / SPLIT_CANVAS_WIDTH)
+      displayColorsAmountRate(0, p.width / SPLIT_CANVAS_WIDTH);
       displayColorsAmountRateExcludeBackground(p.width / SPLIT_CANVAS_WIDTH, p.width * 2 / SPLIT_CANVAS_WIDTH);
       //displayRecommendedColorsAmountRate(p.width * 2 / SPLIT_CANVAS_WIDTH, p.width, 0);
       for (let i = 0; i < SPLIT_CANVAS_WIDTH - 2; i++) { displayRecommendedColorsAmountRate(p.width * (i + 2) / SPLIT_CANVAS_WIDTH, p.width * (i + 3) / SPLIT_CANVAS_WIDTH, i); }
