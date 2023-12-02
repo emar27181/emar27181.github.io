@@ -101,6 +101,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
 
     //無彩色を除外して色の比率を表示させる関数
     function displayColorsAmountRateExcludeBackground(x1: number, x2: number) {
+      const SATURATION_LIMIT = 10;
       let y = 0;
       let saturationRange = 10;
       p.noStroke();
@@ -108,7 +109,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
       //excludeColorAmount: 除外された色の量の合計
       let excludeColorAmount = 0;
       for (let i = 0; i < colorsAmount.length; i++) {
-        if (p.saturation(colorsAmount[i].color) === 0) { excludeColorAmount += colorsAmount[i].amount; }
+        if (p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) { excludeColorAmount += colorsAmount[i].amount; }
       }
       //splitSum: 除外された色を考慮した分割数の合計(colorsAmount[0]には背景色が入っている)
       let splitSum = SPLIT * SPLIT - excludeColorAmount;
@@ -121,7 +122,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
         for (let j = 1; j < colorsAmount.length; j++) {
 
           //無彩色だった場合
-          if (p.saturation(colorsAmount[j].color) === 0) { continue; }
+          if (p.saturation(colorsAmount[j].color) <= SATURATION_LIMIT) { continue; }
 
           let saturation = p.saturation(colorsAmount[j].color);
           if (i <= saturation && saturation < (i + saturationRange)) {
