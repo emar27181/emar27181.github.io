@@ -96,7 +96,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
       }
     }
 
-    //背景色を除外して色の比率を表示させる関数
+    //無彩色を除外して色の比率を表示させる関数
     function displayColorsAmountRateExcludeBackground(x1: number, x2: number) {
       let y = 0;
       let saturationRange = 10;
@@ -105,21 +105,20 @@ export function DisplayUsedColorRatio(displayMode: string) {
       //excludeColorAmount: 除外された色の量の合計
       let excludeColorAmount = 0;
       for (let i = 0; i < colorsAmount.length; i++) {
-        if (equalsColor(backgroundColor, excludeColor)) { continue; }
-        if (equalsColor(colorsAmount[i].color, excludeColor)) {
-          excludeColorAmount += colorsAmount[i].amount;
-        }
+        if (p.saturation(colorsAmount[i].color) === 0) { excludeColorAmount += colorsAmount[i].amount; }
       }
       //splitSum: 除外された色を考慮した分割数の合計(colorsAmount[0]には背景色が入っている)
-      let splitSum = SPLIT * SPLIT - colorsAmount[0].amount - excludeColorAmount;
+      let splitSum = SPLIT * SPLIT - excludeColorAmount;
       //console.log("splitSum: " + splitSum);
+
+      if (colorsAmount.length <= 2) { return; }
 
       //彩度を基準に上から描画
       for (let i = 0; i <= 100; i += saturationRange) {
         for (let j = 1; j < colorsAmount.length; j++) {
 
-          //除外された色だった場合
-          if (equalsColor(colorsAmount[j].color, excludeColor)) { continue; }
+          //無彩色だった場合
+          if (p.saturation(colorsAmount[j].color) === 0) { continue; }
 
           let saturation = p.saturation(colorsAmount[j].color);
           if (i <= saturation && saturation < (i + saturationRange)) {
@@ -130,6 +129,7 @@ export function DisplayUsedColorRatio(displayMode: string) {
         }
       }
     }
+
 
     //色相を基準に上から描画する関数
     function displayColorsByHue(x1: number, x2: number, splitSum: number) {
