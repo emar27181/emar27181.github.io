@@ -24,7 +24,7 @@ let isRandomMove = true;
 const MOVE_SPEED = 10;
 const IS_NO_STROKE = true, DEBUG = false;
 const DEBUG_FPS = 0.2, DEFAULT_FPS = 60;
-const DRAWING_WEIGHT_CHANGE_SPEED = DEFAULT_FPS / 3;
+const DRAWING_WEIGHT_CHANGE_SPEED = 0.2 * DEFAULT_FPS;
 const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
 const IS_TEST_MODE = true;
@@ -44,7 +44,7 @@ let fps = DEFAULT_FPS;
 let standardDeviationLimit = 0, resistanceValue = 0.95;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = false;
 let isMoveBallGravity = false, isTracking = false, isRepulsion = false;
-let isMouseGravity = false;
+let isMouseGravity = false, isEraser = false;
 let angle = 0, radius = 0, speed = 1;
 let gravityX: number[] = [], gravityY: number[] = [];
 let trackingData: number[][] = [[0, 0, 0, 0], [0, 0, 0, 0]];
@@ -76,6 +76,7 @@ export function Canvas() {
     const BALL_SIZE = 2;
     let ColorsInfo: Array<ColorInfo>;
     let drawingColor = p.color(255, 0, 0);
+    let keepDrawingColor = drawingColor;
     returnDrawingColor = p.color(255, 0, 0);
     backgroundColor = p.color(255, 255, 255);
     //backgroundColor = p.color(0, 0, 0);
@@ -108,7 +109,7 @@ export function Canvas() {
 
     p.draw = () => {
       UpdateVariables();
-      p.image(drawingBrushLayer, 0, 0);
+      //p.image(drawingBrushLayer, 0, 0);
       p.image(coloringImage, -50, 0);
 
       p.colorMode(p.RGB);
@@ -557,7 +558,17 @@ export function Canvas() {
         displayBalls();
       }
 
-      if (p.key === "e") { drawingColor = backgroundColor; }
+      if (p.key === "e") {
+        if (isEraser) {
+          keepDrawingColor = drawingColor;
+          drawingColor = backgroundColor;
+          isEraser = false;
+        }
+        else {
+          drawingColor = keepDrawingColor;
+          isEraser = true;
+        }
+      }
       if (p.key === 'Enter') { p.saveCanvas('saveCanvas', 'png'); }
       if (p.key === "w") { adjustMode = "w"; }
       if (p.key === "b") { adjustMode = "b"; }
