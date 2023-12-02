@@ -1,26 +1,25 @@
-import '../App.css'
-import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
-import React from 'react';
+import '../App.css';
+import React, { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
 
 export function TestDragAndPaste() {
-  const sketch = (p: P5CanvasInstance) => {
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    console.log(acceptedFiles); // ドロップされたファイルの情報を出力
+  }, []);
 
-    const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
-    
-    p.setup = () => {
-      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      p.background(0); 
-    };
-
-    p.draw = () => {
-      p.fill(255); 
-      p.ellipse(p.width / 2, p.height / 2, 100, 100); 
-    };
-  }
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
-    <ReactP5Wrapper sketch={sketch} />
-  )
+    <div>
+      <div {...getRootProps()}>
+        <input {...getInputProps()} />
+        <p>
+          ファイルをここにドラッグアンドドロップするか、
+          クリックしてファイルを選択してください
+        </p>
+      </div>
+    </div>
+  );
 }
 
-export default TestDragAndPaste
+export default TestDragAndPaste;
