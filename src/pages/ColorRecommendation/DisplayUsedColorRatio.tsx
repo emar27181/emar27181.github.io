@@ -77,14 +77,11 @@ export function DisplayUsedColorRatio(displayMode: string) {
 
     //背景色を含めて色の比率を表示させる関数
     function displayColorsAmountRate(x1: number, x2: number) {
-
       //displayColorsBySaturation(x1, x2, SPLIT * SPLIT, true);
-
       let y = 0;
       let hueRange = 15;
       let saturationRange = 10;
       p.noStroke();
-
 
       //彩度を基準に上から描画
       for (let i = 0; i <= 100; i += saturationRange) {
@@ -97,22 +94,6 @@ export function DisplayUsedColorRatio(displayMode: string) {
           }
         }
       }
-
-
-      /*
-      for (let i = 0; i < 360; i += hueRange) {
-        //色相の最初の値を330に設定
-        let hueValue = (330 + i) % 360;
-        for (let j = 0; j < colorsAmount.length; j++) {
-          let hue = p.hue(colorsAmount[j].color);
-          if (hueValue <= hue && hue < hueValue + hueRange) {
-            p.fill(colorsAmount[j].color);
-            p.rect(x1, y, x2, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT)));
-            y += p.height * (colorsAmount[j].amount / (SPLIT * SPLIT));
-          }
-        }
-      }
-      */
     }
 
     //背景色を除外して色の比率を表示させる関数
@@ -148,22 +129,27 @@ export function DisplayUsedColorRatio(displayMode: string) {
           }
         }
       }
+    }
 
-      //色相を基準に上から描画
-      /*
+    //色相を基準に上から描画する関数
+    function displayColorsByHue(x1: number, x2: number, splitSum: number) {
+
+      let y = 0;
+      let hueRange = 15;
+      p.noStroke();
+
       for (let i = 0; i < 360; i += hueRange) {
         //色相の最初の値を330に設定
         let hueValue = (330 + i) % 360;
-        for (let j = 1; j < colorsAmount.length; j++) {
+        for (let j = 0; j < colorsAmount.length; j++) {
           let hue = p.hue(colorsAmount[j].color);
           if (hueValue <= hue && hue < hueValue + hueRange) {
             p.fill(colorsAmount[j].color);
-            p.rect(0, y, p.width / 2, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT - colorsAmount[0].amount)));
-            y += p.height * (colorsAmount[j].amount / (SPLIT * SPLIT - colorsAmount[0].amount));
+            p.rect(x1, y, x2, p.height * (colorsAmount[j].amount / (splitSum)));
+            y += p.height * (colorsAmount[j].amount / (splitSum));
           }
         }
       }
-      */
     }
 
     //彩度を基準に上から描画する関数
