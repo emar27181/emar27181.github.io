@@ -18,6 +18,7 @@ import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecomm
 import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorRecommendation/DisplayUsedColorRatio';
 import { ReturnBarValue, ReturnClickedKey, ReturnIsButtonClicked, ReturnIsTouchedGui } from './OperateGuiControl';
 import coloringImageFilePath from '../../assets/coloring_sample_image.png';
+import { ReturnIsLoadImage, ReturnLoadImageUrl } from '../TestDragAndPaste';
 
 
 let isRandomMove = true;
@@ -89,9 +90,14 @@ export function Canvas() {
     let drawingBrushLayer: Graphics;
     let drawingLayer: Graphics;
     let coloringImage: p5.Image;
+    let loadImage: p5.Image;
 
     p.preload = () => {
       coloringImage = p.loadImage(coloringImageFilePath);
+      if (ReturnIsLoadImage()) {
+        loadImage = p.loadImage(ReturnLoadImageUrl()); //バグ有り(2023/12/03)
+        console.log(ReturnLoadImageUrl());
+      }
     }
 
     p.setup = () => {
@@ -115,6 +121,7 @@ export function Canvas() {
       p.image(drawingBrushLayer, 0, 0);
       p.image(drawingLayer, 0, 0);
       p.image(coloringImage, -50, 0);
+      //p.image(loadImage, 0, 0); //バグ有り(2023/12/03)
       //p.image(drawingBrushLayer, 0, 0); 
 
       p.colorMode(p.RGB);

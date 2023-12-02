@@ -3,6 +3,9 @@ import React, { useCallback } from 'react';
 import p5 from 'p5'; // p5.jsのライブラリをインポート
 import { useDropzone } from 'react-dropzone';
 
+let loadImageUrl: string;
+let isLoadImage = false;
+
 export function TestDragAndPaste() {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     console.log(acceptedFiles);
@@ -14,6 +17,9 @@ export function TestDragAndPaste() {
       p.preload = () => {
         // 画像の読み込み
         img = p.loadImage(URL.createObjectURL(acceptedFiles[0]));
+        //LoadImageUrl = acceptedFiles[0];
+        loadImageUrl = URL.createObjectURL(acceptedFiles[0]);
+        isLoadImage = true;
       };
 
       p.setup = () => {
@@ -42,4 +48,6 @@ export function TestDragAndPaste() {
   );
 }
 
+export function ReturnLoadImageUrl() { return loadImageUrl; }
+export function ReturnIsLoadImage() { return isLoadImage; }
 export default TestDragAndPaste;
