@@ -81,7 +81,7 @@ export function Canvas() {
     //backgroundColor = p.color(0, 0, 0);
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
-        canvasColors[i][j] = p.color(0, 0, 0);
+        canvasColors[i][j] = backgroundColor;
       }
     }
     let additionalLayer: Graphics;
@@ -106,6 +106,7 @@ export function Canvas() {
 
     p.draw = () => {
       UpdateVariables();
+      p.image(coloringImage, -50, 0);
 
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { p.keyPressed(); }
@@ -131,7 +132,6 @@ export function Canvas() {
       if (isMoveBallGravity) { moveStraight(ballsGravity[0]); }
 
       displayBalls();
-      //p.image(coloringImage, -50, 0);
 
       if (DEBUG) { p.frameRate(DEBUG_FPS); }
       else { p.frameRate(fps); }
@@ -241,7 +241,8 @@ export function Canvas() {
       for (let i = 0; i < SPLIT; i++) {
         for (let j = 0; j < SPLIT; j++) {
           canvasColors[i][j] = p.color(p.get(p.width / SPLIT * i, p.height / SPLIT * j));
-          //console.log(canvasColors[i][j]);
+          //let color = canvasColors[i][j];
+          //console.log("(" + i + "," + j + "): rgb(" + p.red(color) + ", " + p.green(color) + ", " + p.blue(color) + ")");
         }
       }
 
