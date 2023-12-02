@@ -225,6 +225,10 @@ export function Canvas() {
         p.key = "c";
         p.keyTyped();
       }
+      if (ReturnIsButtonClicked() && (ReturnClickedKey() === 'e')) {
+        p.key = "e";
+        p.keyTyped();
+      }
       backgroundColor = p.color(p.red(backgroundColor), p.green(backgroundColor), p.blue(backgroundColor), backgroundAlpha);
       updateDrawingBrushLayer();
       /*

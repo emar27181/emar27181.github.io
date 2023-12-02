@@ -25,6 +25,7 @@ export function OperateGuiControl() {
       p.background(0);
       displayControlBar();
       displayButton(10, 50, 30, 30, 'c');
+      displayButton(50, 50, 30, 30, 'e');
       updateVariables();
       if (p.mouseIsPressed) { mouseContorl() }
     };
@@ -49,6 +50,10 @@ export function OperateGuiControl() {
         isButtonClicked = true;
         clickedKey = 'c';
       }
+      if (judgeClicked(50, 50, 30, 30)) {
+        isButtonClicked = true;
+        clickedKey = 'e';
+      }
     }
 
     function judgeClicked(x: number, y: number, width: number, height: number) {
@@ -60,9 +65,10 @@ export function OperateGuiControl() {
     }
 
     function displayButton(x: number, y: number, width: number, height: number, key: string) {
+      p.fill(255);
       p.rect(x, y, width, height);
       p.fill(0);
-      p.text(key, 10 + p.textSize(), 50 + p.textSize());
+      p.text(key, x + p.textSize(), y + p.textSize());
     }
 
   }
