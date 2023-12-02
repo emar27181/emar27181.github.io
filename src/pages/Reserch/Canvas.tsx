@@ -87,6 +87,7 @@ export function Canvas() {
     }
     let coloringImageLayer: Graphics;
     let drawingBrushLayer: Graphics;
+    let drawingLayer: Graphics;
     let coloringImage: p5.Image;
 
     p.preload = () => {
@@ -104,13 +105,17 @@ export function Canvas() {
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
       coloringImageLayer = p.createGraphics(p.width, p.height);
+      drawingLayer = p.createGraphics(p.width, p.height);
       drawingBrushLayer = p.createGraphics(p.width, p.height);
+      drawingLayer = p.createGraphics(p.width, p.height);
     };
 
     p.draw = () => {
       UpdateVariables();
-      //p.image(drawingBrushLayer, 0, 0);
+      p.image(drawingBrushLayer, 0, 0);
+      p.image(drawingLayer, 0, 0);
       p.image(coloringImage, -50, 0);
+      //p.image(drawingBrushLayer, 0, 0); 
 
       p.colorMode(p.RGB);
       if (p.keyIsPressed) { p.keyPressed(); }
@@ -246,8 +251,14 @@ export function Canvas() {
     }
 
     function updateDrawingBrushLayer() {
+      //キャンバス全体を透明にしたいがその方法が分からない
+      //ただ透明な色を全体に塗るだけでは前のフレームの色が残ってしまう
       //drawingBrushLayer.createCanvas(p.width, p.height);
+
+      //drawingBrushLayer.clear(0, 0, 0, 0);
       //drawingBrushLayer.clear(0, 0, 0, 255);
+
+      //drawingBrushLayer.background(0, 0, 0, 0);
       drawingBrushLayer.background(p.red(backgroundColor), p.green(backgroundColor), p.blue(backgroundColor), 255);
       drawingBrushLayer.noFill();
       drawingBrushLayer.ellipse(p.mouseX, p.mouseY, drawingWeight);
@@ -502,8 +513,9 @@ export function Canvas() {
           */
         }
         if (clickMode === "draw") {
-          p.fill(p.red(drawingColor), p.green(drawingColor), p.blue(drawingColor), alpha);
-          displayFigure(p.mouseX, p.mouseY, drawingWeight, figureMode);
+          drawingLayer.noStroke();
+          drawingLayer.fill(p.red(drawingColor), p.green(drawingColor), p.blue(drawingColor), alpha);
+          drawingLayer.ellipse(p.mouseX, p.mouseY, drawingWeight);
         }
       }
     }
