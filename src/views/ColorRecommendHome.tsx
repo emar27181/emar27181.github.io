@@ -25,8 +25,8 @@ export function ColorRecommendHome() {
       </div>
 
       <div style={{ display: 'flex' }}>
-        {ReturnImageInfo(2)}
-        {DisplayUsedColorRatio("image", 2)}
+        {ReturnImageInfo(3)}
+        {DisplayUsedColorRatio("image", 3)}
       </div>
 
       {/*

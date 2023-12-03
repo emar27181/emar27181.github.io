@@ -6,11 +6,13 @@ import p5 from 'p5'
 import photoImage0 from "../../assets/IMG_9563.png"
 import photoImage1 from "../../assets/IMG_9675.png"
 import photoImage2 from "../../assets/NCG255-510x510.jpg"
+import photoImage3 from "../../assets/TEST_IMAGE.png"
 
 let photoImage: string[] = [];
 photoImage.push(photoImage0);
 photoImage.push(photoImage1);
 photoImage.push(photoImage2);
+photoImage.push(photoImage3);
 
 const SPLIT = 100;
 let colorsInfo: Array<ColorInfo> = [];
