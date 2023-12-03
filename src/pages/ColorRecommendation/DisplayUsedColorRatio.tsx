@@ -82,8 +82,8 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
     //背景色を含めて色の比率を表示させる関数
     function displayColorsAmountRate(x1: number, x2: number) {
-      displayColorsByHue(x1, x2, SPLIT * SPLIT, false);
-      //displayColorsBySaturation(x1, x2, SPLIT * SPLIT, false);
+      //displayColorsByHue(x1, x2, SPLIT * SPLIT, false);
+      displayColorsBySaturation(x1, x2, SPLIT * SPLIT, false);
       //displayColorsBySaturationAndLightness(x1, x2, SPLIT * SPLIT, false);
     }
 
@@ -98,8 +98,8 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
         displayColorsBySaturationMonotone(x1, x2, splitSum, true);
       }
       else {
-        displayColorsByHue(x1, x2, splitSum, true);
-        //displayColorsBySaturation(x1, x2, splitSum, true);
+        //displayColorsByHue(x1, x2, splitSum, true);
+        displayColorsBySaturation(x1, x2, splitSum, true);
         //displayColorsBySaturationAndLightness(x1, x2, splitSum, true);
       }
     }
