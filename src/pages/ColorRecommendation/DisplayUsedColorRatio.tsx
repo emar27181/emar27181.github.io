@@ -81,22 +81,14 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
     //背景色を含めて色の比率を表示させる関数
     function displayColorsAmountRate(x1: number, x2: number) {
-      //displayColorsBySaturation(x1, x2, SPLIT * SPLIT, true);
-      let y = 0;
-      let hueRange = 15;
-      let saturationRange = 10;
-      p.noStroke();
-
       //displayColorsByHue(x1, x2, SPLIT * SPLIT, false);
       displayColorsBySaturation(x1, x2, SPLIT * SPLIT, false);
+      //displayColorsBySaturationAndLightness(x1, x2, SPLIT * SPLIT, false);
     }
 
     //無彩色を除外して色の比率を表示させる関数
     function displayColorsAmountRateExcludeBackground(x1: number, x2: number) {
-      let y = 0;
-      let saturationRange = 10;
-      p.noStroke();
-
+      //除外された色の数の計算
       //excludeColorAmount: 除外された色の量の合計
       let excludeColorAmount = 0;
       for (let i = 0; i < colorsAmount.length; i++) {
@@ -110,14 +102,14 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
       //displayColorsByHue(x1, x2, splitSum, true);
       displayColorsBySaturation(x1, x2, splitSum, true);
-
+      //displayColorsBySaturationAndLightness(x1, x2, splitSum, true);
     }
 
 
     //色相を基準に上から描画する関数
     function displayColorsByHue(x1: number, x2: number, splitSum: number, isDisplayOnlyChromaticColor: boolean) {
       let y = 0;
-      let hueRange = 15;
+      let hueRange = 20;
       p.noStroke();
 
       for (let i = 0; i < 360; i += hueRange) {
@@ -134,8 +126,34 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
           if (hueValue <= hue && hue < hueValue + hueRange) {
             p.fill(colorsAmount[j].color);
-            p.rect(x1, y, x2, p.height * (colorsAmount[j].amount / (splitSum)));
-            y += p.height * (colorsAmount[j].amount / (splitSum));
+            p.rect(x1, y, x2, p.height * (colorsAmount[j].amount / splitSum));
+            y += p.height * (colorsAmount[j].amount / splitSum);
+          }
+        }
+      }
+    }
+
+    //彩度と明度を基準に上から描画する関数
+    function displayColorsBySaturationAndLightness(x1: number, x2: number, splitSum: number, isDisplayOnlyChromaticColor: boolean) {
+      let y = 0;
+      let range = 1;
+      p.noStroke();
+
+      //彩度+明度を基準に上から描画
+      for (let i = 0; i <= 200; i += range) {
+        for (let j = 1; j < colorsAmount.length; j++) {
+
+          if (isDisplayOnlyChromaticColor) {
+            //無彩色だった場合
+            if (p.saturation(colorsAmount[j].color) <= SATURATION_LIMIT) { continue; }
+          }
+
+          let saturation = p.saturation(colorsAmount[j].color);
+          let lightness = p.lightness(colorsAmount[j].color);
+          if (i <= (saturation + lightness) && (saturation + lightness) < (i + range)) {
+            p.fill(colorsAmount[j].color);
+            p.rect(x1, y, x2, p.height * (colorsAmount[j].amount / splitSum));
+            y += p.height * (colorsAmount[j].amount / splitSum);
           }
         }
       }
