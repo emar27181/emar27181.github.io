@@ -25,13 +25,13 @@ export function ColorRecommendHome() {
       </div>
 
       <div style={{ display: 'flex' }}>
-        {ReturnImageInfo(0)}
-        {DisplayUsedColorRatio("image", 0)}
+        {ReturnImageInfo(1)}
+        {DisplayUsedColorRatio("image", 1)}
       </div>
 
       <div style={{ display: 'flex' }}>
-        {ReturnImageInfo(1)}
-        {DisplayUsedColorRatio("image", 1)}
+        {ReturnImageInfo(0)}
+        {DisplayUsedColorRatio("image", 0)}
       </div>
 
       <TestDragAndPaste />
