@@ -325,7 +325,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       p.colorMode(p.RGB);
 
       // placeNumber: 四捨五入する位の10倍の値
-      let placeNumber = 10;
+      let placeNumber = 1;
 
       //1の位を四捨五入した値に変更
       color = p.color(p.round(p.red(color) / placeNumber) * placeNumber, p.round(p.green(color) / placeNumber) * placeNumber, p.round(p.blue(color) / placeNumber) * placeNumber);
