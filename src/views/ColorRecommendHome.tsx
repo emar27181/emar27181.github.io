@@ -29,12 +29,14 @@ export function ColorRecommendHome() {
         {DisplayUsedColorRatio("image", 1)}
       </div>
 
+      {/*
       <div style={{ display: 'flex' }}>
         {ReturnImageInfo(0)}
         {DisplayUsedColorRatio("image", 0)}
       </div>
-
       <TestDragAndPaste />
+       */}
+
       <div style={{ display: 'flex' }}>
         <ColorGanerate />
         <ColorGenerateRe />
