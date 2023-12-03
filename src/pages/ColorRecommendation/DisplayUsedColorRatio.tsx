@@ -87,21 +87,8 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       let saturationRange = 10;
       p.noStroke();
 
-      displayColorsByHue(x1, x2, SPLIT * SPLIT, false);
-
-      //彩度を基準に上から描画
-      /*
-      for (let i = 0; i <= 100; i += saturationRange) {
-        for (let j = 1; j < colorsAmount.length; j++) {
-          let saturation = p.saturation(colorsAmount[j].color);
-          if (i <= saturation && saturation < (i + saturationRange)) {
-            p.fill(colorsAmount[j].color);
-            p.rect(x1, y, x2, p.height * (colorsAmount[j].amount / (SPLIT * SPLIT)));
-            y += p.height * (colorsAmount[j].amount / (SPLIT * SPLIT));
-          }
-        }
-      }
-      */
+      //displayColorsByHue(x1, x2, SPLIT * SPLIT, false);
+      displayColorsBySaturation(x1, x2, SPLIT * SPLIT, false);
     }
 
     //無彩色を除外して色の比率を表示させる関数
@@ -121,24 +108,9 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
       if (colorsAmount.length <= 2) { return; }
 
-      displayColorsByHue(x1, x2, splitSum, true);
+      //displayColorsByHue(x1, x2, splitSum, true);
+      displayColorsBySaturation(x1, x2, splitSum, true);
 
-      //彩度を基準に上から描画
-      /*
-        for (let i = 0; i <= 100; i += saturationRange) {
-          for (let j = 1; j < colorsAmount.length; j++) {
-  
-            //無彩色だった場合
-            if (p.saturation(colorsAmount[j].color) <= SATURATION_LIMIT) { continue; }
-  
-            let saturation = p.saturation(colorsAmount[j].color);
-            if (i <= saturation && saturation < (i + saturationRange)) {
-              p.fill(colorsAmount[j].color);
-              p.rect(x1, y, x2, p.height * (colorsAmount[j].amount / splitSum));
-              y += p.height * (colorsAmount[j].amount / splitSum);
-            }
-          }
-        }*/
     }
 
 
@@ -179,8 +151,10 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       for (let i = 0; i <= 100; i += saturationRange) {
         for (let j = 1; j < colorsAmount.length; j++) {
 
-          //除外された色だった場合
-          if (equalsColor(colorsAmount[j].color, excludeColor)) { continue; }
+          if (isDisplayOnlyChromaticColor) {
+            //無彩色だった場合
+            if (p.saturation(colorsAmount[j].color) <= SATURATION_LIMIT) { continue; }
+          }
 
           let saturation = p.saturation(colorsAmount[j].color);
           if (i <= saturation && saturation < (i + saturationRange)) {
