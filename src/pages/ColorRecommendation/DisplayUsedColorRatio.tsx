@@ -74,9 +74,10 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
     function displayCanvas() {
       calculateColorsAmount();
       displayColorsAmountRate(0, p.width / SPLIT_CANVAS_WIDTH);
-      displayColorsAmountRateExcludeBackground(p.width / SPLIT_CANVAS_WIDTH, p.width * 2 / SPLIT_CANVAS_WIDTH);
+      displayColorsAmountRateExcludeBackground(p.width / SPLIT_CANVAS_WIDTH, p.width * 2 / SPLIT_CANVAS_WIDTH, false);
+      displayColorsAmountRateExcludeBackground(p.width * 2 / SPLIT_CANVAS_WIDTH, p.width * 3 / SPLIT_CANVAS_WIDTH, true);
       //displayRecommendedColorsAmountRate(p.width * 2 / SPLIT_CANVAS_WIDTH, p.width, 0);
-      for (let i = 0; i < SPLIT_CANVAS_WIDTH - 2; i++) { displayRecommendedColorsAmountRate(p.width * (i + 2) / SPLIT_CANVAS_WIDTH, p.width * (i + 3) / SPLIT_CANVAS_WIDTH, i); }
+      for (let i = 0; i < SPLIT_CANVAS_WIDTH - 3; i++) { displayRecommendedColorsAmountRate(p.width * (i + 3) / SPLIT_CANVAS_WIDTH, p.width * (i + 4) / SPLIT_CANVAS_WIDTH, i); }
     }
 
     //背景色を含めて色の比率を表示させる関数
@@ -87,15 +88,20 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
     }
 
     //無彩色を除外して色の比率を表示させる関数
-    function displayColorsAmountRateExcludeBackground(x1: number, x2: number) {
+    function displayColorsAmountRateExcludeBackground(x1: number, x2: number, isMonotone: boolean) {
       //splitSum: 除外された色を考慮した分割数の合計(colorsAmount[0]には背景色が入っている)
       let splitSum = SPLIT * SPLIT - calculateExcludeColorAmount();
 
       if (colorsAmount.length <= 2) { return; }
 
-      //displayColorsByHue(x1, x2, splitSum, true);
-      displayColorsBySaturation(x1, x2, splitSum, true);
-      //displayColorsBySaturationAndLightness(x1, x2, splitSum, true);
+      if (isMonotone) {
+        displayColorsBySaturationMonotone(x1, x2, splitSum, true);
+      }
+      else {
+        //displayColorsByHue(x1, x2, splitSum, true);
+        displayColorsBySaturation(x1, x2, splitSum, true);
+        //displayColorsBySaturationAndLightness(x1, x2, splitSum, true);
+      }
     }
 
 
