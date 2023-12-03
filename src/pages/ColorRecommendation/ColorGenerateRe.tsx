@@ -12,14 +12,23 @@ export function ColorGanerateRe() {
   const sketch = (p: P5CanvasInstance) => {
 
     p.setup = () => {
-      p.createCanvas(300, 300);
+      p.createCanvas(200, 300);
       p.background(0);
     };
 
     p.draw = () => {
       p.fill(255);
-      p.ellipse(p.width / 2, p.height / 2, 100);
+      displayColors();
+      displayHueBar();
     };
+
+    function displayColors() {
+      p.rect(0, 0, p.width, p.width);
+    }
+
+    function displayHueBar() {
+      p.rect(0, p.width + 10, p.width, 20);
+    }
 
   }
 
