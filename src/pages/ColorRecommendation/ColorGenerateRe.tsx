@@ -21,15 +21,26 @@ export function ColorGanerateRe() {
 
     p.draw = () => {
       updateVariables();
-      p.fill(255);
+      if (p.mouseIsPressed) { mousePressed(); }
+
+      //p.fill(255);
       displayColors();
       displayHueBar();
       displayHueBarButton();
     };
 
+    function mousePressed() {
+      //色相バーのクリック
+      if (p.width + 10 <= p.mouseY && p.mouseY <= p.width + 30) {
+        hueBarX = p.mouseX
+      }
+    }
+
+
     function updateVariables() {
       hue = (hueBarX / p.width) * 360;
     }
+
 
     function displayColors() {
       const SPLIT = 100;
