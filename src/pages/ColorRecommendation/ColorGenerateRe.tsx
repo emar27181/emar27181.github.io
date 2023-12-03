@@ -12,6 +12,7 @@ export function ColorGanerateRe() {
   const sketch = (p: P5CanvasInstance) => {
 
     let hue = 0;
+    let hueBarX = 50;
 
     p.setup = () => {
       p.createCanvas(200, 300);
@@ -19,17 +20,22 @@ export function ColorGanerateRe() {
     };
 
     p.draw = () => {
+      updateVariables();
       p.fill(255);
       displayColors();
       displayHueBar();
+      displayHueBarButton();
     };
+
+    function updateVariables() {
+      hue = (hueBarX / p.width) * 360;
+    }
 
     function displayColors() {
       p.rect(0, 0, p.width, p.width);
     }
 
     function displayHueBar() {
-      let x = 0;
       for (let i = 0; i < 360; i++) {
         p.noStroke();
         p.colorMode(p.HSL, 360, 100, 100);
@@ -37,6 +43,15 @@ export function ColorGanerateRe() {
         p.rect(p.width / 360 * i, p.width + 10, p.width / 360, 20);
       }
     }
+
+    function displayHueBarButton() {
+      p.colorMode(p.RGB);
+      p.fill(255);
+      p.stroke(0);
+      p.strokeWeight(0.3);
+      p.rect(hueBarX, p.width + 10, 2, 20);
+    }
+
 
   }
 
