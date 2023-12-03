@@ -3,7 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ReturnCanvasSize } from './Canvas';
 import p5 from 'p5'
-import photoImage0 from "../../assets/IMG_9563.jpg"
+import photoImage0 from "../../assets/IMG_9563.png"
 import photoImage1 from "../../assets/IMG_9675.png"
 
 let photoImage: string[] = [];
