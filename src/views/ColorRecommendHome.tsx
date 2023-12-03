@@ -23,11 +23,17 @@ export function ColorRecommendHome() {
         <ReturnCameraInfo />
         {DisplayUsedColorRatio("camera", 0)}
       </div>
-      <div style={{ display: 'flex' }}>
-        <ReturnImageInfo />
 
+      <div style={{ display: 'flex' }}>
+        {ReturnImageInfo(0)}
         {DisplayUsedColorRatio("image", 0)}
       </div>
+
+      <div style={{ display: 'flex' }}>
+        {ReturnImageInfo(1)}
+        {DisplayUsedColorRatio("image", 1)}
+      </div>
+
       <TestDragAndPaste />
       <div style={{ display: 'flex' }}>
         <ColorGanerate />
