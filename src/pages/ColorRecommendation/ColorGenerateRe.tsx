@@ -32,7 +32,15 @@ export function ColorGanerateRe() {
     }
 
     function displayColors() {
-      p.rect(0, 0, p.width, p.width);
+      const SPLIT = 100;
+      p.colorMode(p.HSB);
+      p.noStroke();
+      for (let i = 0; i < SPLIT; i++) {
+        for (let j = 0; j < SPLIT; j++) {
+          p.fill(hue, j / SPLIT * 100, i / SPLIT * 100);
+          p.rect(p.width / SPLIT * i, p.width / SPLIT * j, p.width / SPLIT, p.width / SPLIT);
+        }
+      }
     }
 
     function displayHueBar() {
