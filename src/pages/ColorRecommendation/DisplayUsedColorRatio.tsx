@@ -184,6 +184,33 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       }
     }
 
+    //彩度を基準に上から無彩色で描画する関数
+    function displayColorsBySaturationMonotone(x1: number, x2: number, splitSum: number, isDisplayOnlyChromaticColor: boolean) {
+      let y = 0;
+      let saturationRange = 10;
+      p.noStroke();
+      p.colorMode(p.HSL);
+
+      //彩度を基準に上から描画
+      for (let i = 0; i <= 100; i += saturationRange) {
+        for (let j = 1; j < colorsAmount.length; j++) {
+
+          if (isDisplayOnlyChromaticColor) {
+            //無彩色だった場合
+            if (p.saturation(colorsAmount[j].color) <= SATURATION_LIMIT) { continue; }
+          }
+
+          let saturation = p.saturation(colorsAmount[j].color);
+          if (i <= saturation && saturation < (i + saturationRange)) {
+            //p.fill(colorsAmount[j].color);
+            p.fill(0, 0, i);
+            p.rect(x1, y, x2, p.height * (colorsAmount[j].amount / splitSum));
+            y += p.height * (colorsAmount[j].amount / splitSum);
+          }
+        }
+      }
+    }
+
 
     function displayRecommendedColorsAmountRate(x1: number, x2: number, hueDifference: number) {
       p.colorMode(p.RGB);
