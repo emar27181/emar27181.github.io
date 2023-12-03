@@ -13,7 +13,7 @@ const DEBUG = false;
 const SPLIT_CANVAS_WIDTH = 14;
 const SPLIT = 100, CANVAS_WIDTH = 20 * SPLIT_CANVAS_WIDTH;
 
-export function DisplayUsedColorRatio(displayMode: string) {
+export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
   const sketch = (p: P5CanvasInstance) => {
     let canvasColors: p5.Color[][] = [];
     for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
