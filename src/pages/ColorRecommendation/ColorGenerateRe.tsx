@@ -11,6 +11,8 @@ let isTouchedColorGenerate = false;
 export function ColorGanerateRe() {
   const sketch = (p: P5CanvasInstance) => {
 
+    let hue = 0;
+
     p.setup = () => {
       p.createCanvas(200, 300);
       p.background(0);
@@ -27,7 +29,13 @@ export function ColorGanerateRe() {
     }
 
     function displayHueBar() {
-      p.rect(0, p.width + 10, p.width, 20);
+      let x = 0;
+      for (let i = 0; i < 360; i++) {
+        p.noStroke();
+        p.colorMode(p.HSL, 360, 100, 100);
+        p.fill(i, 100, 50);
+        p.rect(p.width / 360 * i, p.width + 10, p.width / 360, 20);
+      }
     }
 
   }
