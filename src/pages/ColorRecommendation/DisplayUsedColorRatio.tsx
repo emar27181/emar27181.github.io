@@ -27,7 +27,8 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
     let canvasWidth = 0, canvasHeight = 0;
     //let colorsAmount: Array<ColorAmount> = new ColorAmount(p.color(0,0,0), 1);
     let colorsAmount: Array<ColorAmount> = [];
-    let excludeColor = p.color(0, 0, 0, 255);
+    let excludeColor = p.color(0, 0, 0, 0);
+    //let excludeColor = p.color(0, 0, 0, 255); //α値を255にすると背景が何故か黒くなってしまう
 
     p.setup = () => {
       p.colorMode(p.HSL);
@@ -183,7 +184,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       p.noStroke();
       //彩度を基準に上から描画
       for (let i = 0; i <= 100; i += saturationRange) {
-        for (let j = 1; j < colorsAmount.length; j++) {
+        for (let j = 0; j < colorsAmount.length; j++) {
 
           if (isDisplayOnlyChromaticColor) {
             //無彩色だった場合
@@ -250,7 +251,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
           let saturation = p.saturation(colorsAmount[j].color);
           if (i <= saturation && saturation < (i + saturationRange)) {
             //p.fill(colorsAmount[j].color);
-            p.fill(200, i, 50);
+            p.fill(0, i, 50);
             p.rect(x1, y, x2, p.height * (colorsAmount[j].amount / splitSum) + 1);
             y += p.height * (colorsAmount[j].amount / splitSum);
           }
