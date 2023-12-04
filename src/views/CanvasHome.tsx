@@ -23,7 +23,7 @@ export function U22programmingContestHome() {
           <OperateGuiControl />
         </div>
         <Canvas />
-        {DisplayUsedColorRatio("canvas")}
+        {DisplayUsedColorRatio("canvas", 0)}
         <DisplayDrawingInfo />
       </div>
 

@@ -18,7 +18,7 @@ export function CanvasHomeForMobile() {
 
       <div style={{ display: 'flex' }}>
         <Canvas />
-        {DisplayUsedColorRatio("canvas")}
+        {DisplayUsedColorRatio("canvas", 0)}
         <DisplayGravityPlace />
       </div>
 

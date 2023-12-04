@@ -3,7 +3,19 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ReturnCanvasSize } from './Canvas';
 import p5 from 'p5'
-import photoImage from "../../assets/IMG_9563.jpg"
+import photoImage0 from "../../assets/IMG_9563.png"
+import photoImage1 from "../../assets/IMG_9675.png"
+import photoImage2 from "../../assets/NCG255-510x510.jpg"
+import photoImage3 from "../../assets/TEST_IMAGE.png"
+import photoImage4 from "../../assets/img_1701616372.png"
+
+
+let photoImage: string[] = [];
+photoImage.push(photoImage0);
+photoImage.push(photoImage1);
+photoImage.push(photoImage2);
+photoImage.push(photoImage3);
+photoImage.push(photoImage4);
 
 const SPLIT = 100;
 let colorsInfo: Array<ColorInfo> = [];
@@ -11,7 +23,7 @@ let isGetColors = false;
 let canvasColors: p5.Color[][] = [];
 for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
 
-export function ReturnImageInfo() {
+export function ReturnImageInfo(loadNumber: number) {
   const sketch = (p: P5CanvasInstance) => {
 
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
@@ -27,10 +39,12 @@ export function ReturnImageInfo() {
     }
 
     p.preload = () => {
-      //img = p.loadImage("src/data/saveCanvas-2023-10-23T130343.793.png")
-      //img = p.loadImage("src/assets/IMG_9563.jpg")
-      //img = p.loadImage("./assets/IMG_9563.jpg")
-      img = p.loadImage(photoImage);
+      // loadNumberに応じて読み込む画像を切り替え
+      for (let i = 0; i < photoImage.length; i++) {
+        if (i === loadNumber) {
+          img = p.loadImage(photoImage[i]);
+        }
+      }
     }
 
     p.setup = () => {
@@ -61,6 +75,7 @@ export function ReturnImageInfo() {
           //console.log(canvasColors[i][j]);
         }
       }
+      console.log("画像の色データの取得が完了しました(loadNumber = " + loadNumber + ")");
     }
 
     function getColors() {
