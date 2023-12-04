@@ -203,13 +203,12 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
     function displayColorsBySaturationMonotone(x1: number, x2: number, splitSum: number, isDisplayOnlyChromaticColor: boolean) {
       let y = 0;
       let saturationRange = 10;
-      p.noStroke();
       p.colorMode(p.HSL);
 
       //彩度を基準に上から描画
       for (let i = 0; i < 100; i += saturationRange) {
         for (let j = 1; j < colorsAmount.length; j++) {
-
+          p.noStroke();
           if (isDisplayOnlyChromaticColor) {
             //無彩色だった場合
             if (p.saturation(colorsAmount[j].color) <= SATURATION_LIMIT) { continue; }
@@ -218,12 +217,16 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
           let saturation = p.saturation(colorsAmount[j].color);
           if (i <= saturation && saturation < (i + saturationRange)) {
             //p.fill(colorsAmount[j].color);
-            p.fill(200, 0, i);
+            p.fill(200, i, 50);
             p.rect(x1, y, x2, p.height * (colorsAmount[j].amount / splitSum) + 1);
             y += p.height * (colorsAmount[j].amount / splitSum);
           }
         }
+        p.stroke(0, 0, 0);
+        p.line(x1, y, x2, y);
       }
+      p.noStroke();
+
     }
 
 
