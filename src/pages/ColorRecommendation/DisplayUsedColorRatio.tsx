@@ -74,26 +74,29 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
     function displayCanvas() {
       calculateColorsAmount();
+
       for (let i = 0; i < SPLIT_CANVAS_WIDTH; i++) {
+        let x1 = p.width * i / SPLIT_CANVAS_WIDTH, x2 = p.width * (i + 1) / SPLIT_CANVAS_WIDTH;
+
         if (i === 0) {
-          displayColorsAmountRate(p.width * i / SPLIT_CANVAS_WIDTH, p.width * (i + 1) / SPLIT_CANVAS_WIDTH);
+          displayColorsAmountRate(x1, x2);
         }
         else if (i === 1) {
-          displayColorsAmountRateExcludeBackground(p.width * i / SPLIT_CANVAS_WIDTH, p.width * (i + 1) / SPLIT_CANVAS_WIDTH, false);
+          displayColorsAmountRateExcludeBackground(x1, x2, false);
         }
         else if (i === 2) {
-          displayColorsAmountRateExcludeBackground(p.width * i / SPLIT_CANVAS_WIDTH, p.width * (i + 1) / SPLIT_CANVAS_WIDTH, true);
+          displayColorsAmountRateExcludeBackground(x1, x2, true);
         }
         else if (i === 3) {
-          displayColorsAmountRateExcludeBackground(p.width * i / SPLIT_CANVAS_WIDTH, p.width * (i + 1) / SPLIT_CANVAS_WIDTH, true);
+          displayColorsAmountRateExcludeBackground(x1, x2, true);
         }
         else if (i === 4) {
-          //displayColorsByHueOnly(p.width * i / SPLIT_CANVAS_WIDTH, p.width * (i + 1) / SPLIT_CANVAS_WIDTH, )
+          //displayColorsByHueOnly(x1, x2, )
         }
 
         else {
           //displayRecommendedColorsAmountRate(p.width * 2 / SPLIT_CANVAS_WIDTH, p.width, 0);
-          displayRecommendedColorsAmountRate(p.width * i / SPLIT_CANVAS_WIDTH, p.width * (i + 1) / SPLIT_CANVAS_WIDTH, i);
+          displayRecommendedColorsAmountRate(x1, x2, i);
         }
       }
 
