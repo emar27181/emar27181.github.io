@@ -96,6 +96,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
       if (isMonotone) {
         displayColorsBySaturationMonotone(x1, x2, splitSum, true);
+        //displayColorsByHueOnly(x1, x2, splitSum, true);
       }
       else {
         //displayColorsByHue(x1, x2, splitSum, true);
@@ -192,6 +193,38 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
           let saturation = p.saturation(colorsAmount[j].color);
           if (i <= saturation && saturation < (i + saturationRange)) {
             p.fill(colorsAmount[j].color);
+            p.rect(x1, y, x2, p.height * (colorsAmount[j].amount / splitSum) + 1);
+            y += p.height * (colorsAmount[j].amount / splitSum);
+          }
+        }
+      }
+    }
+
+    //色相を基準に同明度同彩度で色の比率を表示させる関数
+    function displayColorsByHueOnly(x1: number, x2: number, splitSum: number, isDisplayOnlyChromaticColor: boolean) {
+      let y = 0;
+      let hueRange = 30;
+      p.noStroke();
+
+      p.colorMode(p.HSL);
+      //p.colorMode(p.RGB);
+
+
+      for (let i = 0; i < 360; i += hueRange) {
+        let hueValue = (330 + i) % 360;
+        for (let j = 0; j < colorsAmount.length; j++) {
+          let hue = p.hue(colorsAmount[j].color);
+
+
+          if (isDisplayOnlyChromaticColor) {
+            //無彩色だった場合
+            if (p.saturation(colorsAmount[j].color) <= SATURATION_LIMIT) { continue; }
+          }
+
+          //console.log(hueValue + " <= hue < " + (hueValue + hueRange) % 360);
+          if (hueValue <= hue && hue < (hueValue + hueRange) % 360) {
+            p.fill(hueValue, 70, 70);
+            //p.fill(hue, 70, 70);
             p.rect(x1, y, x2, p.height * (colorsAmount[j].amount / splitSum) + 1);
             y += p.height * (colorsAmount[j].amount / splitSum);
           }
