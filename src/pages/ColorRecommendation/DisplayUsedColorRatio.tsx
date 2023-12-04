@@ -74,11 +74,29 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
     function displayCanvas() {
       calculateColorsAmount();
-      displayColorsAmountRate(0, p.width / SPLIT_CANVAS_WIDTH);
-      displayColorsAmountRateExcludeBackground(p.width / SPLIT_CANVAS_WIDTH, p.width * 2 / SPLIT_CANVAS_WIDTH, false);
-      displayColorsAmountRateExcludeBackground(p.width * 2 / SPLIT_CANVAS_WIDTH, p.width * 3 / SPLIT_CANVAS_WIDTH, true);
-      //displayRecommendedColorsAmountRate(p.width * 2 / SPLIT_CANVAS_WIDTH, p.width, 0);
-      for (let i = 0; i < SPLIT_CANVAS_WIDTH - 3; i++) { displayRecommendedColorsAmountRate(p.width * (i + 3) / SPLIT_CANVAS_WIDTH, p.width * (i + 4) / SPLIT_CANVAS_WIDTH, i); }
+      for (let i = 0; i < SPLIT_CANVAS_WIDTH; i++) {
+        if (i === 0) {
+          displayColorsAmountRate(p.width * i / SPLIT_CANVAS_WIDTH, p.width * (i + 1) / SPLIT_CANVAS_WIDTH);
+        }
+        else if (i === 1) {
+          displayColorsAmountRateExcludeBackground(p.width * i / SPLIT_CANVAS_WIDTH, p.width * (i + 1) / SPLIT_CANVAS_WIDTH, false);
+        }
+        else if (i === 2) {
+          displayColorsAmountRateExcludeBackground(p.width * i / SPLIT_CANVAS_WIDTH, p.width * (i + 1) / SPLIT_CANVAS_WIDTH, true);
+        }
+        else if (i === 3) {
+          displayColorsAmountRateExcludeBackground(p.width * i / SPLIT_CANVAS_WIDTH, p.width * (i + 1) / SPLIT_CANVAS_WIDTH, true);
+        }
+        else if (i === 4) {
+          //displayColorsByHueOnly(p.width * i / SPLIT_CANVAS_WIDTH, p.width * (i + 1) / SPLIT_CANVAS_WIDTH, )
+        }
+
+        else {
+          //displayRecommendedColorsAmountRate(p.width * 2 / SPLIT_CANVAS_WIDTH, p.width, 0);
+          displayRecommendedColorsAmountRate(p.width * i / SPLIT_CANVAS_WIDTH, p.width * (i + 1) / SPLIT_CANVAS_WIDTH, i);
+        }
+      }
+
     }
 
     //背景色を含めて色の比率を表示させる関数
