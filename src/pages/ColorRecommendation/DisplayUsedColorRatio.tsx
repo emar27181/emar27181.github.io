@@ -109,6 +109,21 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       //displayColorsBySaturationAndLightness(x1, x2, SPLIT * SPLIT, false);
     }
 
+    //除外された色の数の計算を行う関数
+    function calculateExcludeColorAmount() {
+      //excludeColorAmount: 除外された色の量の合計
+      let excludeColorAmount = 0;
+      for (let i = 0; i < colorsAmount.length; i++) {
+        if (p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) { excludeColorAmount += colorsAmount[i].amount; }
+      }
+      return excludeColorAmount;
+    }
+
+    function calculateSplitSum(isDisplayOnlyChromaticColor: boolean) {
+      if (isDisplayOnlyChromaticColor) { return SPLIT * SPLIT - calculateExcludeColorAmount(); }
+      else { return SPLIT * SPLIT; }
+    }
+
     //無彩色を除外して色の比率を表示させる関数
     function displayColorsAmountRateExcludeBackground(x1: number, x2: number, isMonotone: boolean) {
       //splitSum: 除外された色を考慮した分割数の合計(colorsAmount[0]には背景色が入っている)
@@ -126,18 +141,6 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
         //displayColorsBySaturationAndLightness(x1, x2, splitSum, true);
       }
     }
-
-
-    //除外された色の数の計算を行う関数
-    function calculateExcludeColorAmount() {
-      //excludeColorAmount: 除外された色の量の合計
-      let excludeColorAmount = 0;
-      for (let i = 0; i < colorsAmount.length; i++) {
-        if (p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) { excludeColorAmount += colorsAmount[i].amount; }
-      }
-      return excludeColorAmount;
-    }
-
 
     //色相を基準に上から描画する関数
     function displayColorsByHue(x1: number, x2: number, splitSum: number, isDisplayOnlyChromaticColor: boolean) {
