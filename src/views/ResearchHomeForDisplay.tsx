@@ -31,7 +31,7 @@ export function ResearchHomeForDisplay() {
       <h3>卒業研究用ページ</h3> <br />
       <ExplainDrawing />
 
-      <ReturnImageInfo />
+      {ReturnImageInfo(0) }
       <div style={{ display: 'flex' }}>
         <ColorGanerate />
         <ReturnCameraInfo />
