@@ -25,24 +25,20 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
     }
     let backgroundColor = p.color(255, 255, 255, 255);
     let canvasWidth = 0, canvasHeight = 0;
-    //let colorsAmount: Array<ColorAmount> = new ColorAmount(p.color(0,0,0), 1);
     let colorsAmount: Array<ColorAmount> = [];
-    let excludeColor = p.color(0, 0, 0, 0);
-    //let excludeColor = p.color(0, 0, 0, 255); //α値を255にすると背景が何故か黒くなってしまう
 
     p.setup = () => {
       p.colorMode(p.HSL);
       createCanvas();
-      p.background(ReturnBackgroundColor());
-      colorsAmount.push(new ColorAmount(backgroundColor, SPLIT * SPLIT));
+      p.background(backgroundColor);
+      colorsAmount.push(new ColorAmount(backgroundColor, 0));
       p.frameRate(1);
-      displayCanvas();
+      //displayCanvas();
     };
 
 
 
     p.draw = () => {
-      //p.background(backgroundColor);
       p.colorMode(p.HSL);
       updateVariables();
       if (p.frameCount === 3) { displayCanvas(); }
@@ -70,7 +66,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       canvasWidth = canvasSize[0];
       canvasHeight = canvasSize[1];
       isTouched = false;
-      //backgroundColor = ReturnBackgroundColor();
+      backgroundColor = ReturnBackgroundColor();
     }
 
     function createCanvas() {
@@ -84,6 +80,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
     }
 
     function displayCanvas() {
+      p.background(backgroundColor);
       calculateColorsAmount();
 
       for (let i = 0; i < SPLIT_CANVAS_WIDTH; i++) {
@@ -304,7 +301,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
       for (let i = 2; i < colorsAmount.length; i++) {
         //除外された色だった場合
-        if (equalsColor(colorsAmount[i].color, excludeColor)) { continue; }
+        if (p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) { continue; }
 
         if (colorsAmount[i].amount > colorsAmount[maxIndex].amount) {
           maxIndex = i;
@@ -341,7 +338,6 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
     function resetColorsAmount() {
       colorsAmount = [];
       colorsAmount.push(new ColorAmount(backgroundColor, 0));
-      colorsAmount.push(new ColorAmount(excludeColor, 0));
     }
 
     function calculateColorsAmount() {
