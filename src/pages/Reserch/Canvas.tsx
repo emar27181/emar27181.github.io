@@ -111,9 +111,9 @@ export function Canvas() {
       //p.colorMode(p.RGB, 360, 100, 100, 100);
       if (IS_NO_STROKE) { p.noStroke(); }
       coloringImageLayer = p.createGraphics(p.width, p.height);
-      drawingLayer = p.createGraphics(p.width, p.height);
       drawingBrushLayer = p.createGraphics(p.width, p.height);
       drawingLayer = p.createGraphics(p.width, p.height);
+      drawingLayer.background(backgroundColor);
     };
 
     p.draw = () => {
