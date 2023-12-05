@@ -98,10 +98,13 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
         }
         else if (i === 3) {
           //displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
-          displayColorsByHue(x, width, calculateSplitSum(true), true);
+          //displayColorsByHue(x, width, calculateSplitSum(true), true);
+          //displayColorsByHue(x, width, calculateSplitSum(false), false);
+          displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
         }
         else if (i === 4) {
-          displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
+          //displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
+          //displayColorsByHueOnly(x, width, calculateSplitSum(false), false);
         }
         else if (i === 5) {
           //displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
@@ -136,10 +139,6 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       let hueRange = 30;
       p.noStroke();
 
-      //p.colorMode(p.HSL);
-      p.colorMode(p.RGB);
-
-
       for (let i = 0; i < 360; i += hueRange) {
         let hueValue = (330 + i) % 360;
         for (let j = 0; j < colorsAmount.length; j++) {
@@ -153,9 +152,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
           //console.log(hueValue + " <= hue < " + (hueValue + hueRange) % 360);
           if (hueValue <= hue && hue < (hueValue + hueRange) % 360) {
-            //p.fill(colorsAmount[j].color);
-            p.fill(p.red(colorsAmount[j].color), p.green(colorsAmount[j].color), p.blue(colorsAmount[j].color), 255);
-            // console.log(colorsAmount[j].color);
+            p.fill(colorsAmount[j].color);
             p.rect(x, y, width, p.height * (colorsAmount[j].amount / splitSum) + 1);
             y += p.height * (colorsAmount[j].amount / splitSum);
           }
