@@ -204,7 +204,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
           let saturation = p.saturation(colorsAmount[j].color);
           if (i <= saturation && saturation < (i + saturationRange)) {
-            if (isDisplayOnlySaturation) { p.fill(0, i, 50); }
+            if (isDisplayOnlySaturation) { p.fill(0, i, i); }
             else { p.fill(colorsAmount[j].color); }
             p.rect(x, y, width, p.height * (colorsAmount[j].amount / splitSum) + 1);
             y += p.height * (colorsAmount[j].amount / splitSum);
