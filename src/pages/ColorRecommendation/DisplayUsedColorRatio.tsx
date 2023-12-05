@@ -88,10 +88,14 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
           displayColorsBySaturationMonotone(x1, x2, calculateSplitSum(true), true);
         }
         else if (i === 3) {
+          //displayColorsByHueOnly(x1, x2, calculateSplitSum(true), true);
+          displayColorsByHue(x1, x2, calculateSplitSum(true), true);
+        }
+        else if (i === 4) {
           displayColorsByHueOnly(x1, x2, calculateSplitSum(true), true);
         }
         else {
-          displayRecommendedColorsAmountRate(x1, x2, i * 3);
+          displayRecommendedColorsAmountRate(x1, x2, i * 2);
         }
       }
     }
