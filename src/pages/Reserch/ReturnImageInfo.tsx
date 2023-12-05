@@ -113,6 +113,10 @@ export class ColorInfo {
 }
 
 export function ReturnImageColorsInfo() { return colorsInfo; }
-export function ReturnImageColors() { return canvasColors; }
+//export function ReturnImageColors() { return canvasColors; }
+export function ReturnImageColors(loadNumber: number) { 
+  ReturnImageInfo(loadNumber);
+  return canvasColors; 
+}
 
 export default ReturnImageInfo

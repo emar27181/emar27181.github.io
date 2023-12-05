@@ -62,7 +62,8 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
     function updateVariables() {
       if (displayMode === "canvas") { canvasColors = ReturnCanvasColors(); }
       else if (displayMode === "camera") { canvasColors = ReturnCameraColors(); }
-      else if (displayMode === "image") { canvasColors = ReturnImageColors(); }
+      else if (displayMode === "image") { canvasColors = ReturnImageColors(loadNumber); }
+      //else if (displayMode === "image") { canvasColors = ReturnImageColors(); }
       let canvasSize = ReturnCanvasSize();
       canvasWidth = canvasSize[0];
       canvasHeight = canvasSize[1];
