@@ -94,12 +94,13 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
           displayColorsBySaturation(x, width, calculateSplitSum(true), true);
         }
         else if (i === 2) {
-          displayColorsBySaturationMonotone(x, width, calculateSplitSum(true), true);
+          displayColorsBySaturationOnly(x, width, calculateSplitSum(true), true);
         }
         else if (i === 3) {
           //displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
           //displayColorsByHue(x, width, calculateSplitSum(true), true);
           //displayColorsByHue(x, width, calculateSplitSum(false), false);
+          
           displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
         }
         else if (i === 4) {
@@ -243,7 +244,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
     }
 
     //彩度を基準に単色で色の比率を表示させる関数
-    function displayColorsBySaturationMonotone(x: number, width: number, splitSum: number, isDisplayOnlyChromaticColor: boolean) {
+    function displayColorsBySaturationOnly(x: number, width: number, splitSum: number, isDisplayOnlyChromaticColor: boolean) {
       let y = 0;
       let saturationRange = 10;
       p.colorMode(p.HSL);
