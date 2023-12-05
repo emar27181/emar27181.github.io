@@ -79,24 +79,19 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
         let x1 = p.width * i / SPLIT_CANVAS_WIDTH, x2 = p.width * (i + 1) / SPLIT_CANVAS_WIDTH;
 
         if (i === 0) {
-          displayColorsAmountRate(x1, x2);
+          displayColorsBySaturation(x1, x2, calculateSplitSum(false), false);
         }
         else if (i === 1) {
-          displayColorsAmountRateExcludeBackground(x1, x2, false);
+          displayColorsBySaturation(x1, x2, calculateSplitSum(true), true);
         }
         else if (i === 2) {
-          displayColorsAmountRateExcludeBackground(x1, x2, true);
+          displayColorsBySaturationMonotone(x1, x2, calculateSplitSum(true), true);
         }
         else if (i === 3) {
-          displayColorsAmountRateExcludeBackground(x1, x2, true);
+          displayColorsByHueOnly(x1, x2, calculateSplitSum(true), true);
         }
-        else if (i === 4) {
-          //displayColorsByHueOnly(x1, x2, )
-        }
-
         else {
-          //displayRecommendedColorsAmountRate(p.width * 2 / SPLIT_CANVAS_WIDTH, p.width, 0);
-          displayRecommendedColorsAmountRate(x1, x2, i);
+          displayRecommendedColorsAmountRate(x1, x2, i * 3);
         }
       }
 
