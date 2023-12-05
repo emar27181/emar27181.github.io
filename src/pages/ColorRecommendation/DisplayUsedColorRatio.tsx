@@ -88,25 +88,28 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
         let x = p.width * i / SPLIT_CANVAS_WIDTH, width = p.width / SPLIT_CANVAS_WIDTH;
 
         if (i === 0) {
-          displayColorsBySaturation(x, width, calculateSplitSum(false), false);
+          displayColorsBySaturation(x, width, calculateSplitSum(false), false, false);
         }
         else if (i === 1) {
-          displayColorsBySaturation(x, width, calculateSplitSum(true), true);
+          displayColorsByHue(x, width, calculateSplitSum(true), true, false);
         }
         else if (i === 2) {
-          displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
+
+          displayColorsByHue(x, width, calculateSplitSum(true), true, true);
+          //displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
         }
         else if (i === 3) {
-          displayColorsBySaturationOnly(x, width, calculateSplitSum(true), true);
+          displayColorsBySaturation(x, width, calculateSplitSum(true), true, false);
         }
         else if (i === 4) {
-          displayColorsByLightnessOnly(x, width, calculateSplitSum(true), true);
+          displayColorsBySaturation(x, width, calculateSplitSum(true), true, true);
+          //displayColorsBySaturationOnly(x, width, calculateSplitSum(true), true);
         }
         else if (i === 5) {
-          //displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
+          displayColorsByLightness(x, width, calculateSplitSum(true), true, false);
         }
         else if (i === 6) {
-          //displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
+          displayColorsByLightness(x, width, calculateSplitSum(true), true, true);
         }
         else {
           displayRecommendedColorsAmountRate(x, width, i * 2);
@@ -130,9 +133,10 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
     }
 
     //色相を基準に上から描画する関数
-    function displayColorsByHue(x: number, width: number, splitSum: number, isDisplayOnlyChromaticColor: boolean) {
+    function displayColorsByHue(x: number, width: number, splitSum: number, isDisplayOnlyChromaticColor: boolean, isDIsplayOnlyHue: boolean) {
       let y = 0;
       let hueRange = 30;
+      p.colorMode(p.HSL);
       p.noStroke();
 
       for (let i = 0; i < 360; i += hueRange) {
@@ -148,7 +152,8 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
           //console.log(hueValue + " <= hue < " + (hueValue + hueRange) % 360);
           if (hueValue <= hue && hue < (hueValue + hueRange) % 360) {
-            p.fill(colorsAmount[j].color);
+            if (isDIsplayOnlyHue) { p.fill(hueValue, 70, 70); }
+            else { p.fill(colorsAmount[j].color); }
             p.rect(x, y, width, p.height * (colorsAmount[j].amount / splitSum) + 1);
             y += p.height * (colorsAmount[j].amount / splitSum);
           }
@@ -183,10 +188,11 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
     }
 
     //彩度を基準に上から描画する関数
-    function displayColorsBySaturation(x: number, width: number, splitSum: number, isDisplayOnlyChromaticColor: boolean) {
+    function displayColorsBySaturation(x: number, width: number, splitSum: number, isDisplayOnlyChromaticColor: boolean, isDisplayOnlySaturation: boolean) {
       let y = 0;
       let saturationRange = 10;
       p.noStroke();
+      p.colorMode(p.HSL);
       //彩度を基準に上から描画
       for (let i = 0; i <= 100; i += saturationRange) {
         for (let j = 0; j < colorsAmount.length; j++) {
@@ -198,7 +204,8 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
           let saturation = p.saturation(colorsAmount[j].color);
           if (i <= saturation && saturation < (i + saturationRange)) {
-            p.fill(colorsAmount[j].color);
+            if (isDisplayOnlySaturation) { p.fill(0, i, 50); }
+            else { p.fill(colorsAmount[j].color); }
             p.rect(x, y, width, p.height * (colorsAmount[j].amount / splitSum) + 1);
             y += p.height * (colorsAmount[j].amount / splitSum);
           }
@@ -268,7 +275,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
     }
 
     //明度を基準に無彩色で色の比率を表示させる関数
-    function displayColorsByLightnessOnly(x: number, width: number, splitSum: number, isDisplayOnlyChromaticColor: boolean) {
+    function displayColorsByLightness(x: number, width: number, splitSum: number, isDisplayOnlyChromaticColor: boolean, isDisplayOnlyLightness: boolean) {
       let y = 0;
       let lightnessRange = 10;
       p.colorMode(p.HSL);
@@ -284,8 +291,8 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
           let lightness = p.lightness(colorsAmount[j].color);
           if (i <= lightness && lightness < (i + lightnessRange)) {
-            //p.fill(colorsAmount[j].color);
-            p.fill(0, 0, i);
+            if (isDisplayOnlyLightness) { p.fill(0, 0, i); }
+            else { p.fill(colorsAmount[j].color); }
             p.rect(x, y, width, p.height * (colorsAmount[j].amount / splitSum) + 1);
             y += p.height * (colorsAmount[j].amount / splitSum);
           }
