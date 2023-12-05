@@ -62,6 +62,17 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       }
     }
 
+    function updateVariables() {
+      if (displayMode === "canvas") { canvasColors = ReturnCanvasColors(); }
+      else if (displayMode === "camera") { canvasColors = ReturnCameraColors(); }
+      else if (displayMode === "image") { canvasColors = ReturnImageColors(); }
+      let canvasSize = ReturnCanvasSize();
+      canvasWidth = canvasSize[0];
+      canvasHeight = canvasSize[1];
+      isTouched = false;
+      //backgroundColor = ReturnBackgroundColor();
+    }
+
     function createCanvas() {
       if (displayMode === "camera") { p.createCanvas(CANVAS_WIDTH, 480); }
       else if (displayMode === "image") { p.createCanvas(CANVAS_WIDTH, 512); }
@@ -377,17 +388,6 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       }
       //まだ出てきていない色であった場合
       colorsAmount[colorsAmount.length] = new ColorAmount(color, 1);
-    }
-
-    function updateVariables() {
-      if (displayMode === "canvas") { canvasColors = ReturnCanvasColors(); }
-      else if (displayMode === "camera") { canvasColors = ReturnCameraColors(); }
-      else if (displayMode === "image") { canvasColors = ReturnImageColors(); }
-      let canvasSize = ReturnCanvasSize();
-      canvasWidth = canvasSize[0];
-      canvasHeight = canvasSize[1];
-      isTouched = false;
-      backgroundColor = ReturnBackgroundColor();
     }
     class ColorAmount {
       color: p5.Color;
