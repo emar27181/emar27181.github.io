@@ -94,18 +94,13 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
           displayColorsBySaturation(x, width, calculateSplitSum(true), true);
         }
         else if (i === 2) {
-          displayColorsBySaturationOnly(x, width, calculateSplitSum(true), true);
-        }
-        else if (i === 3) {
-          //displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
-          //displayColorsByHue(x, width, calculateSplitSum(true), true);
-          //displayColorsByHue(x, width, calculateSplitSum(false), false);
-          
           displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
         }
+        else if (i === 3) {
+          displayColorsBySaturationOnly(x, width, calculateSplitSum(true), true);
+        }
         else if (i === 4) {
-          //displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
-          //displayColorsByHueOnly(x, width, calculateSplitSum(false), false);
+          displayColorsByLightnessOnly(x, width, calculateSplitSum(true), true);
         }
         else if (i === 5) {
           //displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
@@ -169,7 +164,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
       //彩度+明度を基準に上から描画
       for (let i = 0; i <= 200; i += range) {
-        for (let j = 1; j < colorsAmount.length; j++) {
+        for (let j = 0; j < colorsAmount.length; j++) {
 
           if (isDisplayOnlyChromaticColor) {
             //無彩色だった場合
@@ -251,7 +246,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
 
       //彩度を基準に上から描画
       for (let i = 0; i < 100; i += saturationRange) {
-        for (let j = 1; j < colorsAmount.length; j++) {
+        for (let j = 0; j < colorsAmount.length; j++) {
           p.noStroke();
           if (isDisplayOnlyChromaticColor) {
             //無彩色だった場合
@@ -267,10 +262,38 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
           }
         }
         p.stroke(0, 0, 0);
-        p.line(x, y, width, y);
+        //p.line(x, y, width, y);
       }
       p.noStroke();
+    }
 
+    //明度を基準に無彩色で色の比率を表示させる関数
+    function displayColorsByLightnessOnly(x: number, width: number, splitSum: number, isDisplayOnlyChromaticColor: boolean) {
+      let y = 0;
+      let lightnessRange = 10;
+      p.colorMode(p.HSL);
+
+      //彩度を基準に上から描画
+      for (let i = 0; i < 100; i += lightnessRange) {
+        for (let j = 0; j < colorsAmount.length; j++) {
+          p.noStroke();
+          if (isDisplayOnlyChromaticColor) {
+            //無彩色だった場合
+            if (p.saturation(colorsAmount[j].color) <= SATURATION_LIMIT) { continue; }
+          }
+
+          let lightness = p.lightness(colorsAmount[j].color);
+          if (i <= lightness && lightness < (i + lightnessRange)) {
+            //p.fill(colorsAmount[j].color);
+            p.fill(0, 0, i);
+            p.rect(x, y, width, p.height * (colorsAmount[j].amount / splitSum) + 1);
+            y += p.height * (colorsAmount[j].amount / splitSum);
+          }
+        }
+        p.stroke(0, 0, 0);
+        //p.line(x, y, width, y);
+      }
+      p.noStroke();
     }
 
 
