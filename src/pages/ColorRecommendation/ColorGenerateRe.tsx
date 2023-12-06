@@ -17,17 +17,19 @@ export function ColorGanerateRe() {
     p.setup = () => {
       p.createCanvas(200, 300);
       p.background(0);
+      p.textSize(10);
     };
 
     p.draw = () => {
       updateVariables();
       if (p.mouseIsPressed) { mousePressed(); }
-
+      p.background(0);
       //p.fill(255);
       displayColors();
       displayHueBar();
       displayHueBarButton();
       displayDrawingColor();
+      displayDrawingColorInfo();
     };
 
     function mousePressed() {
@@ -41,7 +43,21 @@ export function ColorGanerateRe() {
       hue = (hueBarX / p.width) * 360;
     }
 
+    function displayDrawingColorInfo() {
+      p.noStroke();
+      p.fill(255);
+      let color = ReturnDrawingColor();
+      let text = "rgba(" + p.red(color) + "," + p.green(color) + "," + p.blue(color) + "," + p.alpha(color) + ")";
+      p.text(text, 0, p.width + 45);
+      text = "hsl(" + p.round(p.hue(color)) + "," + p.round(p.saturation(color)) + "," + p.round(p.lightness(color)) + ")";
+      p.text(text, 0, p.width + 60);
+      let hex = p.hex([p.red(color), p.green(color), p.blue(color)], 2);
+      text = ("#" + hex[0] + hex[1] + hex[2]);
+      p.text(text, 0, p.width + 75);
+    }
+
     function displayDrawingColor() {
+      p.stroke(255);
       p.fill(ReturnDrawingColor());
       p.rect(p.width - 30, p.height - 30, 20, 20);
     }
