@@ -40,10 +40,14 @@ export function ColorGanerateRe() {
       if (0 <= p.mouseX && p.mouseX <= p.width && p.width + 10 <= p.mouseY && p.mouseY <= p.width + 30) {
         hueBarX = p.mouseX;
       }
+      if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
+        isTouchedColorGenerate = true;
+      }
     }
 
     function updateVariables() {
       //hue = (hueBarX / p.width) * 360;
+      isTouchedColorGenerate = false;
       hue = p.hue(ReturnDrawingColor());
     }
 
@@ -116,5 +120,10 @@ export function ColorGanerateRe() {
     <ReactP5Wrapper sketch={sketch} />
   )
 }
+
+export function ReturnIsTouchedColorGenerate() {
+  return isTouchedColorGenerate;
+}
+
 
 export default ColorGanerateRe
