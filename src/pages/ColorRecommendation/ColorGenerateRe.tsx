@@ -43,7 +43,8 @@ export function ColorGanerateRe() {
     }
 
     function updateVariables() {
-      hue = (hueBarX / p.width) * 360;
+      //hue = (hueBarX / p.width) * 360;
+      hue = p.hue(ReturnDrawingColor());
     }
 
     function displayDrawingColorInfo() {
