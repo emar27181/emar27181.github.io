@@ -136,7 +136,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
     //色相を基準に上から描画する関数
     function displayColorsByHue(x: number, width: number, splitSum: number, isDisplayOnlyChromaticColor: boolean, isDIsplayOnlyHue: boolean) {
       let y = 0;
-      let hueRange = 30;
+      let hueRange = 1; //この値を大きくすると何故か表示の縦幅が短くなる
       p.colorMode(p.HSL);
       p.noStroke();
 
