@@ -145,7 +145,6 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
         for (let j = 0; j < colorsAmount.length; j++) {
           let hue = p.hue(colorsAmount[j].color);
 
-
           if (isDisplayOnlyChromaticColor) {
             //無彩色だった場合
             if (p.saturation(colorsAmount[j].color) <= SATURATION_LIMIT) { continue; }
@@ -155,32 +154,6 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
           if (hueValue <= hue && hue < (hueValue + hueRange) % 360) {
             if (isDIsplayOnlyHue) { p.fill(hueValue, 70, 70); }
             else { p.fill(colorsAmount[j].color); }
-            p.rect(x, y, width, p.height * (colorsAmount[j].amount / splitSum) + 1);
-            y += p.height * (colorsAmount[j].amount / splitSum);
-          }
-        }
-      }
-    }
-
-    //彩度と明度を基準に上から描画する関数
-    function displayColorsBySaturationAndLightness(x: number, width: number, splitSum: number, isDisplayOnlyChromaticColor: boolean) {
-      let y = 0;
-      let range = 1;
-      p.noStroke();
-
-      //彩度+明度を基準に上から描画
-      for (let i = 0; i <= 200; i += range) {
-        for (let j = 0; j < colorsAmount.length; j++) {
-
-          if (isDisplayOnlyChromaticColor) {
-            //無彩色だった場合
-            if (p.saturation(colorsAmount[j].color) <= SATURATION_LIMIT) { continue; }
-          }
-
-          let saturation = p.saturation(colorsAmount[j].color);
-          let lightness = p.lightness(colorsAmount[j].color);
-          if (i <= (saturation + lightness) && (saturation + lightness) < (i + range)) {
-            p.fill(colorsAmount[j].color);
             p.rect(x, y, width, p.height * (colorsAmount[j].amount / splitSum) + 1);
             y += p.height * (colorsAmount[j].amount / splitSum);
           }
@@ -214,68 +187,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       }
     }
 
-    //色相を基準に同明度同彩度で色の比率を表示させる関数
-    function displayColorsByHueOnly(x: number, width: number, splitSum: number, isDisplayOnlyChromaticColor: boolean) {
-      let y = 0;
-      let hueRange = 30;
-      p.noStroke();
-
-      p.colorMode(p.HSL);
-      //p.colorMode(p.RGB);
-
-
-      for (let i = 0; i < 360; i += hueRange) {
-        let hueValue = (330 + i) % 360;
-        for (let j = 0; j < colorsAmount.length; j++) {
-          let hue = p.hue(colorsAmount[j].color);
-
-
-          if (isDisplayOnlyChromaticColor) {
-            //無彩色だった場合
-            if (p.saturation(colorsAmount[j].color) <= SATURATION_LIMIT) { continue; }
-          }
-
-          //console.log(hueValue + " <= hue < " + (hueValue + hueRange) % 360);
-          if (hueValue <= hue && hue < (hueValue + hueRange) % 360) {
-            p.fill(hueValue, 70, 70);
-            //p.fill(hue, 70, 70);
-            p.rect(x, y, width, p.height * (colorsAmount[j].amount / splitSum) + 1);
-            y += p.height * (colorsAmount[j].amount / splitSum);
-          }
-        }
-      }
-    }
-
-    //彩度を基準に単色で色の比率を表示させる関数
-    function displayColorsBySaturationOnly(x: number, width: number, splitSum: number, isDisplayOnlyChromaticColor: boolean) {
-      let y = 0;
-      let saturationRange = 10;
-      p.colorMode(p.HSL);
-
-      //彩度を基準に上から描画
-      for (let i = 0; i < 100; i += saturationRange) {
-        for (let j = 0; j < colorsAmount.length; j++) {
-          p.noStroke();
-          if (isDisplayOnlyChromaticColor) {
-            //無彩色だった場合
-            if (p.saturation(colorsAmount[j].color) <= SATURATION_LIMIT) { continue; }
-          }
-
-          let saturation = p.saturation(colorsAmount[j].color);
-          if (i <= saturation && saturation < (i + saturationRange)) {
-            //p.fill(colorsAmount[j].color);
-            p.fill(0, i, 50);
-            p.rect(x, y, width, p.height * (colorsAmount[j].amount / splitSum) + 1);
-            y += p.height * (colorsAmount[j].amount / splitSum);
-          }
-        }
-        p.stroke(0, 0, 0);
-        //p.line(x, y, width, y);
-      }
-      p.noStroke();
-    }
-
-    //明度を基準に無彩色で色の比率を表示させる関数
+    //明度を基準に色の比率を表示させる関数
     function displayColorsByLightness(x: number, width: number, splitSum: number, isDisplayOnlyChromaticColor: boolean, isDisplayOnlyLightness: boolean) {
       let y = 0;
       let lightnessRange = 10;
@@ -303,7 +215,6 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       }
       p.noStroke();
     }
-
 
     function displayRecommendedColorsAmountRate(x: number, width: number, hueDifference: number) {
       p.colorMode(p.RGB);
