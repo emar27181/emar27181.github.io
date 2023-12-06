@@ -37,8 +37,8 @@ export function ColorGanerateRe() {
 
     function mousePressed() {
       //色相バーのクリック
-      if (p.width + 10 <= p.mouseY && p.mouseY <= p.width + 30) {
-        hueBarX = p.mouseX
+      if (0 <= p.mouseX && p.mouseX <= p.width && p.width + 10 <= p.mouseY && p.mouseY <= p.width + 30) {
+        hueBarX = p.mouseX;
       }
     }
 
