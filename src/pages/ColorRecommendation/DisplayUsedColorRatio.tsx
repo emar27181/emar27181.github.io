@@ -10,7 +10,7 @@ import { ReturnImageColors } from '../Reserch/ReturnImageInfo';
 let returnColor: number[] = [0, 0, 0, 255];
 let isTouched = false;
 const DEBUG = false;
-const SPLIT_CANVAS_WIDTH = 14;
+const SPLIT_CANVAS_WIDTH = 8;
 const SPLIT = 100, CANVAS_WIDTH = 20 * SPLIT_CANVAS_WIDTH;
 const SATURATION_LIMIT = 10;
 
@@ -113,7 +113,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
           displayColorsByLightness(x, width, calculateSplitSum(true), true, true);
         }
         else {
-          displayRecommendedColorsAmountRate(x, width, i * 2);
+          displayRecommendedColorsAmountRate(x, width, 0);
         }
       }
     }

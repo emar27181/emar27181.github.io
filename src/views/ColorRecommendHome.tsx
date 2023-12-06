@@ -45,7 +45,6 @@ export function ColorRecommendHome() {
        */}
 
       <div style={{ display: 'flex' }}>
-        <ColorGanerate />
         <ColorGenerateRe />
         <DisplayColorRatioOnlyFrontendontend />
       </div>
