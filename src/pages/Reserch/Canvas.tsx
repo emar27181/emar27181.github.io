@@ -11,7 +11,8 @@ import { ReturnColorsInfo, ColorInfo } from './ReturnCameraInfo';
 import { ReturnImageColorsInfo } from './ReturnImageInfo';
 import { ReturnTrackingData } from './ReturnTrackingInfo';
 import { ReturnGravityCanvasSizeX, ReturnGravityCanvasSizeY, ReturnTouchedGravityX, ReturnTouchedGravityY, judgeDistance } from './DisplayGravityPlace';
-import { ReturnColorPaletteValue, ReturnIsTouchedColorGenerate } from '../ColorRecommendation/ColorGenerate';
+//import { ReturnColorPaletteValue, ReturnIsTouchedColorGenerate } from '../ColorRecommendation/ColorGenerate';
+import { ReturnColorPaletteValue, ReturnIsTouchedColorGenerate } from '../ColorRecommendation/ColorGenerateRe';
 import { ReturnIsTouched } from './DisplayGravityPlace';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecommendation/DisplayColorRatioOnlyFrontendontend';
@@ -223,8 +224,10 @@ export function Canvas() {
       ballsTrackigGravity[1].position.x = trackingX3;
       ballsTrackigGravity[1].position.y = trackingY3;
 
+      p.colorMode(p.HSL);
       let color = ReturnColorPaletteValue();
-      if (ReturnIsTouchedColorGenerate()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
+      if (ReturnIsTouchedColorGenerate()) { drawingColor = p.color(color[0], color[1], color[2]); }
+      p.colorMode(p.RGB);
       color = ReturnColorRatioValue();
       if (ReturnIsTouchedColorRatio()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
       color = ReturnRecommendedColor();

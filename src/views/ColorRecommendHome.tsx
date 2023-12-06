@@ -11,6 +11,7 @@ import ReturnCameraInfo from '../pages/Reserch/ReturnCameraInfo';
 import ReturnImageInfo from '../pages/Reserch/ReturnImageInfo';
 import TestDragAndPaste from '../pages/TestDragAndPaste';
 import ColorGenerateRe from '../pages/ColorRecommendation/ColorGenerateRe';
+import DisplayCanvasFilter from '../pages/ColorRecommendation/DisplayCanvasFilter';
 
 export function ColorRecommendHome() {
 
@@ -19,14 +20,20 @@ export function ColorRecommendHome() {
     <div>
       <br /><br /><br /><br />
 
+      {/*
       <div style={{ display: 'flex' }}>
         <ReturnCameraInfo />
         {DisplayUsedColorRatio("camera", 0)}
-      </div>
+      </div>*/}
 
       <div style={{ display: 'flex' }}>
         {ReturnImageInfo(4)}
         {DisplayUsedColorRatio("image", 4)}
+      </div>
+
+      <div style={{ display: 'flex' }}>
+        {ReturnImageInfo(2)}
+        {DisplayUsedColorRatio("image", 2)}
       </div>
 
       {/*
@@ -38,9 +45,13 @@ export function ColorRecommendHome() {
        */}
 
       <div style={{ display: 'flex' }}>
-        <ColorGanerate />
         <ColorGenerateRe />
         <DisplayColorRatioOnlyFrontendontend />
+      </div>
+      <div style={{ display: 'flex' }}>
+        {DisplayCanvasFilter("hue")}
+        {DisplayCanvasFilter("saturation")}
+        {DisplayCanvasFilter("lightness")}
       </div>
       <div style={{ display: 'flex' }}>
         <Canvas />
