@@ -3,6 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import { ReturnCanvasColors, ReturnCanvasSize } from '../Reserch/Canvas';
 import React from 'react';
 import p5 from 'p5';
+import { ReturnIsDesktop } from '../../App';
 
 export function DisplayCanvasFilter(displayMode: string) {
   const sketch = (p: P5CanvasInstance) => {
@@ -19,7 +20,10 @@ export function DisplayCanvasFilter(displayMode: string) {
     }
 
     p.setup = () => {
-      p.createCanvas(200, 200);
+      //p.createCanvas(200, 200);
+      let rate = 0.65;
+      if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2 / 3, rate * p.windowWidth / 2 / 3); }
+      else { p.createCanvas(rate * p.windowWidth / 3, rate * p.windowWidth / 3); }
       p.background(backgroundColor);
       p.noStroke();
     };
