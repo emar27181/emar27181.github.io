@@ -38,11 +38,15 @@ export function DisplayCanvasFilter() {
 
       for (let i = 0; i < SPLIT; i++) {
         for (let j = 0; j < SPLIT; j++) {
-          p.fill(canvasColors[i][j]);
+          setColor(canvasColors[i][j]);
           p.rect(p.width / SPLIT * i, p.height / SPLIT * j, p.width / SPLIT, p.height / SPLIT);
-          //p.rect((canvasWidth / SPLIT * i) * (p.width / canvasWidth), (canvasHeight / SPLIT * j) * (p.width / canvasHeight), p.width / SPLIT, p.height / SPLIT);
         }
       }
+    }
+
+    function setColor(color: p5.Color): void {
+      p.colorMode(p.HSB);
+      p.fill(0, p.saturation(color), p.saturation(color));
     }
   }
 
