@@ -4,8 +4,7 @@ import React from 'react';
 import p5 from 'p5';
 import { ReturnDrawingColor } from '../Reserch/Canvas';
 
-let red = 255, green = 0, blue = 0, alpha = 255, h = 0, s = 50, b = 50;
-let returnColor: p5.Color;
+let returnColor = [0, 0, 0];
 let isTouchedColorGenerate = false;
 
 
@@ -39,7 +38,14 @@ export function ColorGanerateRe() {
       //色相バーのクリック
       if (0 <= p.mouseX && p.mouseX <= p.width && p.width + 10 <= p.mouseY && p.mouseY <= p.width + 30) {
         hueBarX = p.mouseX;
+        //hue = hueBarX / p.width * 360;
+        returnColor[0] = hueBarX / p.width * 360;
       }
+      //明度と彩度による色の表示のクリック
+      if (0 <= p.mouseX && p.mouseX <= p.width && 0 <= p.mouseY && p.mouseY <= p.width) {
+        setDrawingColor();
+      }
+      //キャンバスのクリック
       if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
         isTouchedColorGenerate = true;
       }
@@ -48,14 +54,19 @@ export function ColorGanerateRe() {
     function updateVariables() {
       //hue = (hueBarX / p.width) * 360;
       isTouchedColorGenerate = false;
-      hue = p.hue(ReturnDrawingColor());
+      //hue = p.hue(ReturnDrawingColor());
+    }
+
+    function setDrawingColor() {
+      let color = p.get(p.mouseX, p.mouseY);
+      returnColor = [p.hue(color), p.saturation(color), p.lightness(color)];
     }
 
     function displayDrawingColorInfo() {
       p.noStroke();
       p.fill(255);
       let color = ReturnDrawingColor();
-      let text = "rgba(" + p.red(color) + "," + p.green(color) + "," + p.blue(color) + "," + p.alpha(color) + ")";
+      let text = "rgba(" + p.round(p.red(color)) + "," + p.round(p.green(color)) + "," + p.round(p.blue(color)) + "," + p.round(p.alpha(color)) + ")";
       p.text(text, 0, p.width + 45);
       text = "hsl(" + p.round(p.hue(color)) + "," + p.round(p.saturation(color)) + "," + p.round(p.lightness(color)) + ")";
       p.text(text, 0, p.width + 60);
@@ -119,6 +130,10 @@ export function ColorGanerateRe() {
   return (
     <ReactP5Wrapper sketch={sketch} />
   )
+}
+
+export function ReturnColorPaletteValue() {
+  return returnColor;
 }
 
 export function ReturnIsTouchedColorGenerate() {
