@@ -25,7 +25,7 @@ export function ColorRecommendHome() {
         <ReturnCameraInfo />
         {DisplayUsedColorRatio("camera", 0)}
       </div>*/}
-      <DisplayCanvasFilter />
+
       <div style={{ display: 'flex' }}>
         {ReturnImageInfo(4)}
         {DisplayUsedColorRatio("image", 4)}
@@ -48,6 +48,11 @@ export function ColorRecommendHome() {
         <ColorGanerate />
         <ColorGenerateRe />
         <DisplayColorRatioOnlyFrontendontend />
+      </div>
+      <div style={{ display: 'flex' }}>
+        {DisplayCanvasFilter("hue")}
+        {DisplayCanvasFilter("saturation")}
+        {DisplayCanvasFilter("lightness")}
       </div>
       <div style={{ display: 'flex' }}>
         <Canvas />

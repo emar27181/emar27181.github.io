@@ -22,7 +22,7 @@ export function U22programmingContestHome() {
         <div>
           <ColorGanerate />
           <OperateGuiControl />
-          <DisplayCanvasFilter />
+          {DisplayCanvasFilter("saturation")}
         </div>
         <Canvas />
         {DisplayUsedColorRatio("canvas", 0)}

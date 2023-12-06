@@ -4,7 +4,7 @@ import { ReturnCanvasColors, ReturnCanvasSize } from '../Reserch/Canvas';
 import React from 'react';
 import p5 from 'p5';
 
-export function DisplayCanvasFilter() {
+export function DisplayCanvasFilter(displayMode: string) {
   const sketch = (p: P5CanvasInstance) => {
     const SPLIT = 100;
     let canvasWidth = 0, canvasHeight = 0;
@@ -46,7 +46,15 @@ export function DisplayCanvasFilter() {
 
     function setColor(color: p5.Color): void {
       p.colorMode(p.HSB);
-      p.fill(0, p.saturation(color), p.saturation(color));
+      if (displayMode === "hue") {
+        p.fill(p.hue(color), 70, 70);
+      }
+      else if (displayMode === "saturation") {
+        p.fill(0, p.saturation(color), p.saturation(color));
+      }
+      else if (displayMode === "lightness") {
+        p.fill(0, 0, p.brightness(color));
+      }
     }
   }
 
