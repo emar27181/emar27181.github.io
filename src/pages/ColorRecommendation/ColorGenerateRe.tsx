@@ -8,11 +8,13 @@ let red = 255, green = 0, blue = 0, alpha = 255, h = 0, s = 50, b = 50;
 let returnColor: p5.Color;
 let isTouchedColorGenerate = false;
 
+
 export function ColorGanerateRe() {
   const sketch = (p: P5CanvasInstance) => {
 
     let hue = 0;
     let hueBarX = 50;
+    const SPLIT = 100;
 
     p.setup = () => {
       p.createCanvas(200, 300);
@@ -26,6 +28,7 @@ export function ColorGanerateRe() {
       p.background(0);
       //p.fill(255);
       displayColors();
+      displayColorsDot();
       displayHueBar();
       displayHueBarButton();
       displayDrawingColor();
@@ -63,13 +66,27 @@ export function ColorGanerateRe() {
     }
 
     function displayColors() {
-      const SPLIT = 100;
       p.colorMode(p.HSB);
       p.noStroke();
       for (let i = 0; i < SPLIT; i++) {
         for (let j = 0; j < SPLIT; j++) {
           p.fill(hue, j / SPLIT * 100, i / SPLIT * 100);
           p.rect(p.width / SPLIT * i, p.width / SPLIT * j, p.width / SPLIT, p.width / SPLIT);
+        }
+      }
+    }
+
+    function displayColorsDot() {
+      p.colorMode(p.HSB);
+      let saturation = p.round(p.saturation(ReturnDrawingColor()));
+      let blightness = p.round(p.brightness(ReturnDrawingColor()));
+
+      for (let i = 0; i < SPLIT; i++) {
+        for (let j = 0; j < SPLIT; j++) {
+          if (saturation === (j / SPLIT * 100) && blightness === (i / SPLIT * 100)) {
+            p.fill(0);
+            p.rect(p.width / SPLIT * i, p.width / SPLIT * j, p.width / SPLIT);
+          }
         }
       }
     }
