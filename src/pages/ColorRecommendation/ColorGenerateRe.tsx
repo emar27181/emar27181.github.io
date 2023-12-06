@@ -70,9 +70,11 @@ export function ColorGanerateRe() {
       p.text(text, 0, p.width + 45);
       text = "hsl(" + p.round(p.hue(color)) + "," + p.round(p.saturation(color)) + "," + p.round(p.lightness(color)) + ")";
       p.text(text, 0, p.width + 60);
+      text = "hsb(" + p.round(p.hue(color)) + "," + p.round(p.saturation(color)) + "," + p.round(p.brightness(color)) + ")";
+      p.text(text, 0, p.width + 75);
       let hex = p.hex([p.red(color), p.green(color), p.blue(color)], 2);
       text = ("#" + hex[0] + hex[1] + hex[2]);
-      p.text(text, 0, p.width + 75);
+      p.text(text, 0, p.width + 90);
     }
 
     function displayDrawingColor() {
