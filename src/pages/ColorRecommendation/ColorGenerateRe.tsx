@@ -27,6 +27,7 @@ export function ColorGanerateRe() {
       displayColors();
       displayHueBar();
       displayHueBarButton();
+      displayDrawingColor();
     };
 
     function mousePressed() {
@@ -36,11 +37,14 @@ export function ColorGanerateRe() {
       }
     }
 
-
     function updateVariables() {
       hue = (hueBarX / p.width) * 360;
     }
 
+    function displayDrawingColor() {
+      p.fill(ReturnDrawingColor());
+      p.rect(p.width - 30, p.height - 30, 20, 20);
+    }
 
     function displayColors() {
       const SPLIT = 100;
