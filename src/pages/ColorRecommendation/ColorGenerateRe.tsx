@@ -3,6 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import p5 from 'p5';
 import { ReturnDrawingColor } from '../Reserch/Canvas';
+import Color from 'color';
 
 let returnColor = [0, 0, 0];
 let isTouchedColorGenerate = false;
@@ -97,16 +98,32 @@ export function ColorGanerateRe() {
     function displayColorsDot() {
       p.colorMode(p.HSB);
       let saturation = p.round(p.saturation(ReturnDrawingColor()));
-      let blightness = p.round(p.brightness(ReturnDrawingColor()));
+      let brightness = p.round(p.brightness(ReturnDrawingColor()));
+      let x = 0, y = 0;
 
       for (let i = 0; i < SPLIT; i++) {
         for (let j = 0; j < SPLIT; j++) {
-          if (saturation === (j / SPLIT * 100) && blightness === (i / SPLIT * 100)) {
+          /*
+          let getColor = p.color(p.get(x, y));
+          let getSaturation = p.round(p.saturation(getColor));
+          let getBrightness = p.round(p.brightness(getColor));
+          if (saturation === getSaturation && brightness === getBrightness) {
+            p.fill(0);
+            p.rect(x, y, p.width / SPLIT);
+          }
+          */
+
+          if (saturation === (j / SPLIT * 100) && brightness === (i / SPLIT * 100)) {
             p.fill(0);
             p.rect(p.width / SPLIT * i, p.width / SPLIT * j, p.width / SPLIT);
           }
+
+          x += p.width / SPLIT;
         }
+        y += p.width / SPLIT;
+        x = 0;
       }
+
     }
 
     function displayHueBar() {
