@@ -55,7 +55,8 @@ export function ColorGanerateRe() {
     function updateVariables() {
       //hue = (hueBarX / p.width) * 360;
       isTouchedColorGenerate = false;
-      //hue = p.hue(ReturnDrawingColor());
+      hue = p.hue(ReturnDrawingColor());
+      hueBarX = p.hue(ReturnDrawingColor()) / 360 * p.width;
     }
 
     function setDrawingColor() {
