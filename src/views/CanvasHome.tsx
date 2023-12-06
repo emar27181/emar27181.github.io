@@ -7,6 +7,7 @@ import ColorGanerate from '../pages/ColorRecommendation/ColorGenerate';
 import DisplayGravityPlace from '../pages/Reserch/DisplayGravityPlace';
 import DisplayUsedColorRatio from '../pages/ColorRecommendation/DisplayUsedColorRatio';
 import OperateGuiControl from '../pages/Reserch/OperateGuiControl';
+import DisplayCanvasFilter from '../pages/ColorRecommendation/DisplayCanvasFilter';
 
 let isCanvasHome = false;
 
@@ -21,6 +22,7 @@ export function U22programmingContestHome() {
         <div>
           <ColorGanerate />
           <OperateGuiControl />
+          <DisplayCanvasFilter />
         </div>
         <Canvas />
         {DisplayUsedColorRatio("canvas", 0)}

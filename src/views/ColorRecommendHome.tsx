@@ -11,6 +11,7 @@ import ReturnCameraInfo from '../pages/Reserch/ReturnCameraInfo';
 import ReturnImageInfo from '../pages/Reserch/ReturnImageInfo';
 import TestDragAndPaste from '../pages/TestDragAndPaste';
 import ColorGenerateRe from '../pages/ColorRecommendation/ColorGenerateRe';
+import DisplayCanvasFilter from '../pages/ColorRecommendation/DisplayCanvasFilter';
 
 export function ColorRecommendHome() {
 
@@ -24,6 +25,7 @@ export function ColorRecommendHome() {
         <ReturnCameraInfo />
         {DisplayUsedColorRatio("camera", 0)}
       </div>*/}
+      <DisplayCanvasFilter />
       <div style={{ display: 'flex' }}>
         {ReturnImageInfo(4)}
         {DisplayUsedColorRatio("image", 4)}
