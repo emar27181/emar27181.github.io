@@ -41,7 +41,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
     p.draw = () => {
       p.colorMode(p.HSL);
       updateVariables();
-      if (p.frameCount % 10 === 1 && displayMode === "image") { displayCanvas(); }
+      if (p.frameCount <= 5 && displayMode === "image") { displayCanvas(); }
       if (p.frameCount % 10 === 1 && displayMode === "camera") { displayCanvas(); }
       if (p.frameCount % 3 === 1 && displayMode === "canvas") { displayCanvas(); }
     }

@@ -21,11 +21,24 @@ export function ColorRecommendHome() {
     <div>
       <br /><br /><br /><br />
 
-      {/*
+      
       <div style={{ display: 'flex' }}>
         <ReturnCameraInfo />
-        {DisplayUsedColorRatio("camera", 0)}
-      </div>*/}
+        <div>
+          <div style={{ display: 'flex', margin: 0 }}>
+            {DisplayCanvasFilter("camera", 0, "hue")}
+            {DisplayUsedColorRatio("camera", 0, "hue")}
+          </div>
+          <div style={{ display: 'flex', margin: 0 }}>
+            {DisplayCanvasFilter("camera", 0, "saturation")}
+            {DisplayUsedColorRatio("camera", 0, "saturation")}
+          </div>
+          <div style={{ display: 'flex', margin: 0 }}>
+            {DisplayCanvasFilter("camera", 0, "lightness")}
+            {DisplayUsedColorRatio("camera", 0, "lightness")}
+          </div>
+        </div>
+      </div>
 
       <div style={{ display: 'flex' }}>
         {ReturnImageInfo(4)}
