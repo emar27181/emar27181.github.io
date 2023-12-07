@@ -36,11 +36,12 @@ export function DisplayCanvasFilter(displayMode: string, loadNumber: number, dis
       }
       p.background(backgroundColor);
       p.noStroke();
+      p.frameRate(1);
     };
 
     p.draw = () => {
-      if (p.frameCount <= 5 && displayMode === "image") { displayCanvas(); }
-      if (p.frameCount % 10 === 1 && displayMode === "camera") { displayCanvas(); }
+      if (p.frameCount === 3 && displayMode === "image") { displayCanvas(); }
+      if (p.frameCount === 5 && displayMode === "camera") { displayCanvas(); }
       if (p.frameCount % 3 === 1 && displayMode === "canvas") { displayCanvas(); }
       updateVariables();
     };
