@@ -166,7 +166,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       let y = 0;
       let saturationRange = 10;
       p.noStroke();
-      p.colorMode(p.HSL);
+      p.colorMode(p.HSB);
       //彩度を基準に上から描画
       for (let i = 0; i <= 100; i += saturationRange) {
         for (let j = 0; j < colorsAmount.length; j++) {
