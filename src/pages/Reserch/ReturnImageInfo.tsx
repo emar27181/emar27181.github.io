@@ -49,7 +49,7 @@ export function ReturnImageInfo(loadNumber: number) {
 
     p.setup = () => {
       //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      p.createCanvas(713, 713);
+      p.createCanvas(512, 512);
       p.image(img, 0, 0);
     };
 
