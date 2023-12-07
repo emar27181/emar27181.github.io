@@ -75,8 +75,11 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       if (displayMode === "camera") { p.createCanvas(CANVAS_WIDTH, 480); }
       else if (displayMode === "image") { p.createCanvas(CANVAS_WIDTH, 512); }
       else if (displayMode === "canvas") {
-        let rate = 0.65;
-        p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth / 2 / 3);
+
+        let rate = 0.25;
+        p.createCanvas(CANVAS_WIDTH, rate * window.innerWidth / 3);
+        //let rate = 0.65;
+        //p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth / 2 / 3);
         //let canvasSize = ReturnCanvasSize();
         //p.createCanvas(canvasSize[0] / 3, canvasSize[0] / 3);
         //if (ReturnIsDesktop()) { p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth / 2); }
