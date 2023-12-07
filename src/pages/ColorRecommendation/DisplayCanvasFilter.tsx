@@ -22,8 +22,9 @@ export function DisplayCanvasFilter(displayMode: string) {
     p.setup = () => {
       //p.createCanvas(200, 200);
       let rate = 0.65;
-      if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2 / 3, rate * p.windowWidth / 2 / 3); }
-      else { p.createCanvas(rate * p.windowWidth / 3, rate * p.windowWidth / 3); }
+      p.createCanvas(rate * p.windowWidth / 2 / 3, rate * p.windowWidth / 2 / 3);
+      //if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2 / 3, rate * p.windowWidth / 2 / 3); }
+      //else { p.createCanvas(rate * p.windowWidth / 3, rate * p.windowWidth / 3); }
       p.background(backgroundColor);
       p.noStroke();
     };
