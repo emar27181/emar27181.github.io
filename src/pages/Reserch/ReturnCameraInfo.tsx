@@ -33,6 +33,7 @@ export function ReturnCameraInfo() {
       capture = p.createCapture(p.VIDEO);
       capture.hide();
       p.noStroke();
+      p.frameRate(1);
     };
 
     p.draw = () => {
@@ -43,8 +44,9 @@ export function ReturnCameraInfo() {
         canvasWidth = canvasSize[0];
         canvasHeight = canvasSize[1];
         p.image(capture, 0, 0);
-        if (p.keyIsPressed && p.key === 'n') {
-          p.saveCanvas('saveCameraImage', 'png');
+        if (p.frameCount === 5) {
+          //if (p.keyIsPressed && p.key === 'n' ) {
+          //p.saveCanvas('saveCameraImage', 'png');
           getColors();
           isLooped = false;
         }
