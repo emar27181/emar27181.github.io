@@ -18,21 +18,25 @@ export function U22programmingContestHome() {
   return (
     <div>
 
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', margin: 0 }}>
         <div>
           <ColorGanerateRe />
           <OperateGuiControl />
         </div>
-        <div style={{ display: 'flex' }}>
-          <Canvas />
-          {DisplayUsedColorRatio("canvas", 0, "hue")}
-          {DisplayUsedColorRatio("canvas", 0, "saturation")}
-          {DisplayUsedColorRatio("canvas", 0, "lightness")}
-        </div>
+        {Canvas()}
         <div>
-          {DisplayCanvasFilter("hue")}
-          {DisplayCanvasFilter("saturation")}
-          {DisplayCanvasFilter("lightness")}
+          <div style={{ display: 'flex', margin: 0 }}>
+            {DisplayCanvasFilter("hue")}
+            {DisplayUsedColorRatio("canvas", 0, "hue")}
+          </div>
+          <div style={{ display: 'flex', margin: 0 }}>
+            {DisplayCanvasFilter("saturation")}
+            {DisplayUsedColorRatio("canvas", 0, "saturation")}
+          </div>
+          <div style={{ display: 'flex', margin: 0 }}>
+            {DisplayCanvasFilter("lightness")}
+            {DisplayUsedColorRatio("canvas", 0, "lightness")}
+          </div>
         </div>
         <DisplayDrawingInfo />
       </div>
