@@ -6,7 +6,7 @@ const CANVAS_WIDTH = 512, CANVAS_HEIGHT = CANVAS_WIDTH / 4;
 const STARTLINE_MONTH = 10, STARTLINE_DAY = 2;
 const DEADLINE_MONTH = 12, DEADLINE_DAY = 22;
 
-const DEADLINE_MONTH_2 = 11, DEADLINE_DAY_2 = 22;
+const DEADLINE_MONTH_2 = 2, DEADLINE_DAY_2 = 3;
 const DEBUG = false;
 
 export function ClockCountdown() {
@@ -41,7 +41,7 @@ export function ClockCountdown() {
         let startlineDiffMonth = STARTLINE_MONTH - month;
         let startlineDiffDay = STARTLINE_DAY - date;
         let deadlineStillDays = deadlineDiffMonth * 31 + deadlineDiffDay;
-        let startlineStillDays = startlineDiffMonth * 31 + startlineDiffDay;
+        let startlineStillDays = (startlineDiffMonth * 31 + startlineDiffDay) % 365;
         let commentStartline = "(※応募開始まであと " + startlineStillDays + "日！)";
         let commentDeadline = "応募締切まであと " + deadlineStillDays + " 日！";
 
@@ -49,8 +49,8 @@ export function ClockCountdown() {
         //本来、関数を用いた方が良いですが簡単のため直書き()
         let deadlineDiffMonth2 = DEADLINE_MONTH_2 - month;
         let deadlineDiffDay2 = DEADLINE_DAY_2 - date;
-        let deadlineStillDays2 = deadlineDiffMonth2 * 31 + deadlineDiffDay2;
-        let commentDeadline2 = "実験終了まであと " + deadlineStillDays2 + " 日！";
+        let deadlineStillDays2 = deadlineDiffMonth2 * 31 + deadlineDiffDay2 + 365;
+        let commentDeadline2 = "卒論発表会まであと " + deadlineStillDays2 + " 日！";
 
         let r = (255 / 12) * hours;
         let g = (255 / 60) * minutes;

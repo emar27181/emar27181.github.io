@@ -14,7 +14,7 @@ const SPLIT_CANVAS_WIDTH = 8;
 const SPLIT = 100, CANVAS_WIDTH = 20 * SPLIT_CANVAS_WIDTH;
 const SATURATION_LIMIT = 10;
 
-export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
+export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, displayColorSpace: string) {
   const sketch = (p: P5CanvasInstance) => {
     let canvasColors: p5.Color[][] = [];
     for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
@@ -42,8 +42,8 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       p.colorMode(p.HSL);
       updateVariables();
       if (p.frameCount === 1 && displayMode === "image") { displayCanvas(); }
-      if (p.frameCount === 3 && displayMode === "camera") { displayCanvas(); }
-      if (p.frameCount % 3 === 0 && displayMode === "canvas") { displayCanvas(); }
+      if (p.frameCount === 5 && displayMode === "camera") { displayCanvas(); }
+      if (p.frameCount % 3 === 1 && displayMode === "canvas") { displayCanvas(); }
     }
 
     p.keyTyped = () => {
@@ -72,12 +72,18 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
     }
 
     function createCanvas() {
-      if (displayMode === "camera") { p.createCanvas(CANVAS_WIDTH, 480); }
-      else if (displayMode === "image") { p.createCanvas(CANVAS_WIDTH, 512); }
+      if (displayMode === "camera") { p.createCanvas(CANVAS_WIDTH, 480 / 3); }
+      else if (displayMode === "image") { p.createCanvas(CANVAS_WIDTH, 512 / 3); }
       else if (displayMode === "canvas") {
-        let rate = 0.65;
-        if (ReturnIsDesktop()) { p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth / 2); }
-        else { p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth); }
+
+        let rate = 0.25;
+        p.createCanvas(CANVAS_WIDTH, rate * window.innerWidth / 3);
+        //let rate = 0.65;
+        //p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth / 2 / 3);
+        //let canvasSize = ReturnCanvasSize();
+        //p.createCanvas(canvasSize[0] / 3, canvasSize[0] / 3);
+        //if (ReturnIsDesktop()) { p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth / 2); }
+        //else { p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth); }
       }
     }
 
@@ -85,6 +91,23 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       p.background(backgroundColor);
       calculateColorsAmount();
 
+
+      for (let i = 0; i < 2; i++) {
+        let x = p.width * i / SPLIT_CANVAS_WIDTH, width = p.width / SPLIT_CANVAS_WIDTH;
+        if (i === 0) {
+          if (displayColorSpace === "hue") { displayColorsByHue(x, width, calculateSplitSum(true), true, false); }
+          else if (displayColorSpace === "saturation") { displayColorsBySaturation(x, width, calculateSplitSum(true), true, false); }
+          else if (displayColorSpace === "lightness") { displayColorsByLightness(x, width, calculateSplitSum(true), true, false); }
+        }
+        else if (i === 1) {
+          if (displayColorSpace === "hue") { displayColorsByHue(x, width, calculateSplitSum(true), true, true); }
+          else if (displayColorSpace === "saturation") { displayColorsBySaturation(x, width, calculateSplitSum(true), true, true); }
+          else if (displayColorSpace === "lightness") { displayColorsByLightness(x, width, calculateSplitSum(true), true, true); }
+        }
+      }
+
+
+      /*
       for (let i = 0; i < SPLIT_CANVAS_WIDTH; i++) {
         let x = p.width * i / SPLIT_CANVAS_WIDTH, width = p.width / SPLIT_CANVAS_WIDTH;
 
@@ -116,6 +139,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
           displayRecommendedColorsAmountRate(x, width, 0);
         }
       }
+      */
     }
 
     //除外された色の数の計算を行う関数
@@ -166,7 +190,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       let y = 0;
       let saturationRange = 10;
       p.noStroke();
-      p.colorMode(p.HSL);
+      p.colorMode(p.HSB);
       //彩度を基準に上から描画
       for (let i = 0; i <= 100; i += saturationRange) {
         for (let j = 0; j < colorsAmount.length; j++) {

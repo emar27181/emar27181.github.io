@@ -4,8 +4,10 @@ import { ReturnCanvasColors, ReturnCanvasSize } from '../Reserch/Canvas';
 import React from 'react';
 import p5 from 'p5';
 import { ReturnIsDesktop } from '../../App';
+import { ReturnImageColors } from '../Reserch/ReturnImageInfo';
+import { ReturnCameraColors } from '../Reserch/ReturnCameraInfo';
 
-export function DisplayCanvasFilter(displayMode: string) {
+export function DisplayCanvasFilter(displayMode: string, loadNumber: number, displayColorSpace: string) {
   const sketch = (p: P5CanvasInstance) => {
     const SPLIT = 100;
     const SATURATION_LIMIT = 10;
@@ -21,20 +23,38 @@ export function DisplayCanvasFilter(displayMode: string) {
 
     p.setup = () => {
       //p.createCanvas(200, 200);
-      let rate = 0.65;
-      if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2 / 3, rate * p.windowWidth / 2 / 3); }
-      else { p.createCanvas(rate * p.windowWidth / 3, rate * p.windowWidth / 3); }
+
+      if (displayMode === "camera") { p.createCanvas(480 / 3, 480 / 3); }
+      else if (displayMode === "image") { p.createCanvas(512 / 3, 512 / 3); }
+      else {
+        let rate = 0.25;
+        p.createCanvas(rate * window.innerWidth / 3, rate * window.innerWidth / 3);
+        //let rate = 0.65;
+        //p.createCanvas(rate * p.windowWidth / 2 / 3, rate * p.windowWidth / 2 / 3);
+        //if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2 / 3, rate * p.windowWidth / 2 / 3); }
+        //else { p.createCanvas(rate * p.windowWidth / 3, rate * p.windowWidth / 3); }
+      }
       p.background(backgroundColor);
       p.noStroke();
+      p.frameRate(1);
     };
 
     p.draw = () => {
-      if (p.frameCount % 3 === 0) { displayCanvas(); }
+      if (p.frameCount === 3 && displayMode === "image") { displayCanvas(); }
+      if (p.frameCount === 5 && displayMode === "camera") { displayCanvas(); }
+      if (p.frameCount % 3 === 1 && displayMode === "canvas") { displayCanvas(); }
       updateVariables();
     };
 
     function updateVariables() {
-      canvasColors = ReturnCanvasColors();
+
+      if (displayMode === "canvas") { canvasColors = ReturnCanvasColors(); }
+      else if (displayMode === "camera") { canvasColors = ReturnCameraColors(); }
+      else if (displayMode === "image") {
+        canvasColors = ReturnImageColors(loadNumber);
+        //console.log("called")
+      }
+      //canvasColors = ReturnCanvasColors();
       let canvasSize = ReturnCanvasSize();
       canvasWidth = canvasSize[0];
       canvasHeight = canvasSize[1];
@@ -56,15 +76,15 @@ export function DisplayCanvasFilter(displayMode: string) {
       if (equalsColor(color, backgroundColor)) {
         p.fill(backgroundColor);
       }
-      else if (displayMode === "hue") {
+      else if (displayColorSpace === "hue") {
         p.colorMode(p.HSL);
         p.fill(p.hue(color), 70, 70);
       }
-      else if (displayMode === "saturation") {
+      else if (displayColorSpace === "saturation") {
         p.colorMode(p.HSB);
         p.fill(0, p.saturation(color), p.saturation(color));
       }
-      else if (displayMode === "lightness") {
+      else if (displayColorSpace === "lightness") {
         p.colorMode(p.HSL);
         p.fill(0, 0, p.lightness(color));
       }
