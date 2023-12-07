@@ -28,12 +28,17 @@ export function ColorRecommendHome() {
 
       <div style={{ display: 'flex' }}>
         {ReturnImageInfo(4)}
-        {DisplayUsedColorRatio("image", 4)}
+
+        {DisplayUsedColorRatio("image", 4, "hue")}
+        {DisplayUsedColorRatio("image", 4, "saturation")}
+        {DisplayUsedColorRatio("image", 4, "lightness")}
       </div>
 
       <div style={{ display: 'flex' }}>
         {ReturnImageInfo(2)}
-        {DisplayUsedColorRatio("image", 2)}
+        {DisplayUsedColorRatio("image", 2, "hue")}
+        {DisplayUsedColorRatio("image", 2, "saturation")}
+        {DisplayUsedColorRatio("canvas", 2, "lightness")}
       </div>
 
       {/*
@@ -55,7 +60,9 @@ export function ColorRecommendHome() {
       </div>
       <div style={{ display: 'flex' }}>
         <Canvas />
-        {DisplayUsedColorRatio("canvas", 0)}
+        {DisplayUsedColorRatio("canvas", 0, "hue")}
+        {DisplayUsedColorRatio("canvas", 0, "saturation")}
+        {DisplayUsedColorRatio("canvas", 0, "lightness")}
         <DisplayDrawingInfo />
       </div>
     </div>

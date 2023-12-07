@@ -14,7 +14,7 @@ const SPLIT_CANVAS_WIDTH = 8;
 const SPLIT = 100, CANVAS_WIDTH = 20 * SPLIT_CANVAS_WIDTH;
 const SATURATION_LIMIT = 10;
 
-export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
+export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, displayColorSpace: string) {
   const sketch = (p: P5CanvasInstance) => {
     let canvasColors: p5.Color[][] = [];
     for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
@@ -85,6 +85,23 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
       p.background(backgroundColor);
       calculateColorsAmount();
 
+
+      for (let i = 0; i < 2; i++) {
+        let x = p.width * i / SPLIT_CANVAS_WIDTH, width = p.width / SPLIT_CANVAS_WIDTH;
+        if (i === 0) {
+          if (displayColorSpace === "hue") { displayColorsByHue(x, width, calculateSplitSum(true), true, false); }
+          else if (displayColorSpace === "saturation") { displayColorsBySaturation(x, width, calculateSplitSum(true), true, false); }
+          else if (displayColorSpace === "lightness") { displayColorsByLightness(x, width, calculateSplitSum(true), true, false); }
+        }
+        else if (i === 1) {
+          if (displayColorSpace === "hue") { displayColorsByHue(x, width, calculateSplitSum(true), true, true); }
+          else if (displayColorSpace === "saturation") { displayColorsBySaturation(x, width, calculateSplitSum(true), true, true); }
+          else if (displayColorSpace === "lightness") { displayColorsByLightness(x, width, calculateSplitSum(true), true, true); }
+        }
+      }
+
+
+      /*
       for (let i = 0; i < SPLIT_CANVAS_WIDTH; i++) {
         let x = p.width * i / SPLIT_CANVAS_WIDTH, width = p.width / SPLIT_CANVAS_WIDTH;
 
@@ -116,6 +133,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number) {
           displayRecommendedColorsAmountRate(x, width, 0);
         }
       }
+      */
     }
 
     //除外された色の数の計算を行う関数

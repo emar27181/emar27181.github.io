@@ -23,8 +23,12 @@ export function U22programmingContestHome() {
           <ColorGanerateRe />
           <OperateGuiControl />
         </div>
-        <Canvas />
-        {DisplayUsedColorRatio("canvas", 0)}
+        <div style={{ display: 'flex' }}>
+          <Canvas />
+          {DisplayUsedColorRatio("canvas", 0, "hue")}
+          {DisplayUsedColorRatio("canvas", 0, "saturation")}
+          {DisplayUsedColorRatio("canvas", 0, "lightness")}
+        </div>
         <div>
           {DisplayCanvasFilter("hue")}
           {DisplayCanvasFilter("saturation")}
