@@ -5,7 +5,7 @@ import React from 'react';
 import p5 from 'p5';
 import { ReturnIsDesktop } from '../../App';
 
-export function DisplayCanvasFilter(displayMode: string) {
+export function DisplayCanvasFilter(displayMode: string, loadNumber: number, displayColorSpace: string) {
   const sketch = (p: P5CanvasInstance) => {
     const SPLIT = 100;
     const SATURATION_LIMIT = 10;
@@ -32,7 +32,9 @@ export function DisplayCanvasFilter(displayMode: string) {
     };
 
     p.draw = () => {
-      if (p.frameCount % 3 === 0) { displayCanvas(); }
+      if (p.frameCount === 1 && displayMode === "image") { displayCanvas(); }
+      if (p.frameCount === 3 && displayMode === "camera") { displayCanvas(); }
+      if (p.frameCount % 3 === 0 && displayMode === "canvas") { displayCanvas(); }
       updateVariables();
     };
 
@@ -59,15 +61,15 @@ export function DisplayCanvasFilter(displayMode: string) {
       if (equalsColor(color, backgroundColor)) {
         p.fill(backgroundColor);
       }
-      else if (displayMode === "hue") {
+      else if (displayColorSpace === "hue") {
         p.colorMode(p.HSL);
         p.fill(p.hue(color), 70, 70);
       }
-      else if (displayMode === "saturation") {
+      else if (displayColorSpace === "saturation") {
         p.colorMode(p.HSB);
         p.fill(0, p.saturation(color), p.saturation(color));
       }
-      else if (displayMode === "lightness") {
+      else if (displayColorSpace === "lightness") {
         p.colorMode(p.HSL);
         p.fill(0, 0, p.lightness(color));
       }
