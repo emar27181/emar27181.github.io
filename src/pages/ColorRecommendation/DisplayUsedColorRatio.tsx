@@ -102,41 +102,6 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
           displayTemplateColors(x, width, displayColorSpace);
         }
       }
-
-
-      /*
-      for (let i = 0; i < SPLIT_CANVAS_WIDTH; i++) {
-        let x = p.width * i / SPLIT_CANVAS_WIDTH, width = p.width / SPLIT_CANVAS_WIDTH;
-
-        if (i === 0) {
-          displayColorsBySaturation(x, width, calculateSplitSum(false), false, false);
-        }
-        else if (i === 1) {
-          displayColorsByHue(x, width, calculateSplitSum(true), true, false);
-        }
-        else if (i === 2) {
-
-          displayColorsByHue(x, width, calculateSplitSum(true), true, true);
-          //displayColorsByHueOnly(x, width, calculateSplitSum(true), true);
-        }
-        else if (i === 3) {
-          displayColorsBySaturation(x, width, calculateSplitSum(true), true, false);
-        }
-        else if (i === 4) {
-          displayColorsBySaturation(x, width, calculateSplitSum(true), true, true);
-          //displayColorsBySaturationOnly(x, width, calculateSplitSum(true), true);
-        }
-        else if (i === 5) {
-          displayColorsByLightness(x, width, calculateSplitSum(true), true, false);
-        }
-        else if (i === 6) {
-          displayColorsByLightness(x, width, calculateSplitSum(true), true, true);
-        }
-        else {
-          displayRecommendedColorsAmountRate(x, width, 0);
-        }
-      }
-      */
     }
 
     //除外された色の数の計算を行う関数
