@@ -40,7 +40,7 @@ export function DisplayCanvasFilter(displayMode: string, loadNumber: number, dis
     };
 
     p.draw = () => {
-      if (p.frameCount === 3 && displayMode === "image") { displayCanvas(); }
+      if (p.frameCount === 2 && displayMode === "image") { displayCanvas(); }
       if (p.frameCount === 5 && displayMode === "camera") { displayCanvas(); }
       if (p.frameCount % 3 === 1 && displayMode === "canvas") { displayCanvas(); }
       updateVariables();
