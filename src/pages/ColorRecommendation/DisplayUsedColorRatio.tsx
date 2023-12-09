@@ -54,8 +54,9 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
         isTouched = true;
         let getColor = p.get(p.mouseX, p.mouseY);
-        returnColor = [p.red(getColor), p.green(getColor), p.blue(getColor), p.alpha(getColor)];
+        let color = p.color(getColor);
 
+        returnColor = [p.hue(color), p.saturation(color), p.lightness(color)];
       }
     }
 

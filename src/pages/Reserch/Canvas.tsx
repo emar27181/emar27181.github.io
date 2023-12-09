@@ -226,13 +226,19 @@ export function Canvas() {
       ballsTrackigGravity[1].position.y = trackingY3;
 
       p.colorMode(p.HSL);
-      let color = ReturnColorPaletteValue();
-      if (ReturnIsTouchedColorGenerate()) { drawingColor = p.color(color[0], color[1], color[2]); }
+      if (ReturnIsTouchedColorGenerate()) {
+        let color = ReturnColorPaletteValue();
+        drawingColor = p.color(color[0], color[1], color[2]);
+      }
+      if (ReturnIsTouchedUsedColorRatio()) {
+        let color = ReturnRecommendedColor();
+        drawingColor = p.color(color[0], color[1], color[2]);
+      }
       p.colorMode(p.RGB);
-      color = ReturnColorRatioValue();
-      if (ReturnIsTouchedColorRatio()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
-      color = ReturnRecommendedColor();
-      if (ReturnIsTouchedUsedColorRatio()) { drawingColor = p.color(color[0], color[1], color[2], color[3]); }
+      if (ReturnIsTouchedColorRatio()) {
+        let color = ReturnColorRatioValue();
+        drawingColor = p.color(color[0], color[1], color[2], color[3]);
+      }
       returnDrawingColor = drawingColor;
       getCanvasColors();
       let barValue = ReturnBarValue();
