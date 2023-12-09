@@ -78,12 +78,6 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
 
         let rate = 0.35;
         p.createCanvas(CANVAS_WIDTH, rate * window.innerWidth / 3);
-        //let rate = 0.65;
-        //p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth / 2 / 3);
-        //let canvasSize = ReturnCanvasSize();
-        //p.createCanvas(canvasSize[0] / 3, canvasSize[0] / 3);
-        //if (ReturnIsDesktop()) { p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth / 2); }
-        //else { p.createCanvas(CANVAS_WIDTH, rate * p.windowWidth); }
       }
     }
 
@@ -92,7 +86,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       calculateColorsAmount();
 
 
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 3; i++) {
         let x = p.width * i / SPLIT_CANVAS_WIDTH, width = p.width / SPLIT_CANVAS_WIDTH;
         if (i === 0) {
           if (displayColorSpace === "hue") { displayColorsByHue(x, width, calculateSplitSum(true), true, false); }
@@ -103,6 +97,9 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
           if (displayColorSpace === "hue") { displayColorsByHue(x, width, calculateSplitSum(true), true, true); }
           else if (displayColorSpace === "saturation") { displayColorsBySaturation(x, width, calculateSplitSum(true), true, true); }
           else if (displayColorSpace === "lightness") { displayColorsByLightness(x, width, calculateSplitSum(true), true, true); }
+        }
+        else if (i === 2) {
+          displayTemplateColors(x, width, displayColorSpace);
         }
       }
 
@@ -238,6 +235,44 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
         //p.line(x, y, width, y);
       }
       p.noStroke();
+    }
+
+    function displayTemplateColors(x: number, width: number, displayColorSpace: string) {
+      let y = 0;
+      if (displayColorSpace === "hue") {
+        p.colorMode(p.HSL, 360, 100, 100);
+        p.fill(0, 70, 70);
+        p.rect(x, y, width, p.height * 0.95);
+        y += p.height * 0.95;
+        p.fill(180, 70, 70);
+        p.rect(x, y, width, p.height * 0.05);
+        y = + p.height * 0.05
+      }
+      else if (displayColorSpace === "saturation") {
+        p.colorMode(p.HSB);
+        p.fill(0, 30, 30);
+        p.rect(x, y, width, p.height * 0.7);
+        y += p.height * 0.7;
+        p.fill(0, 50, 50);
+        p.rect(x, y, width, p.height * 0.25);
+        y += p.height * 0.25
+        p.fill(0, 80, 80);
+        p.rect(x, y, width, p.height * 0.05);
+        y += p.height * 0.05;
+      }
+      else if (displayColorSpace === "lightness") {
+        p.colorMode(p.HSL);
+        p.fill(0, 0, 30);
+        p.rect(x, y, width, p.height * 0.7);
+        y += p.height * 0.7
+        p.fill(0, 0, 50);
+        p.rect(x, y, width, p.height * 0.25);
+        y += p.height * 0.25
+        p.fill(0, 0, 80);
+        p.rect(x, y, width, p.height * 0.05);
+        y += p.height * 0.05
+      }
+
     }
 
     function displayRecommendedColorsAmountRate(x: number, width: number, hueDifference: number) {
