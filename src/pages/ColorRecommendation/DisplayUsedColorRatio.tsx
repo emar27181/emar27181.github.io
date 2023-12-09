@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnBackgroundColor, ReturnCanvasColors, ReturnCanvasSize } from '../Reserch/Canvas';
+import { ReturnBackgroundColor, ReturnCanvasColors, ReturnCanvasSize, ReturnDrawingColor } from '../Reserch/Canvas';
 import p5 from 'p5';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnCameraColors } from '../Reserch/ReturnCameraInfo';
@@ -53,10 +53,16 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       p.colorMode(p.RGB);
       if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
         isTouched = true;
-        let getColor = p.get(p.mouseX, p.mouseY);
-        let color = p.color(getColor);
+        let getColor = p.color(p.get(p.mouseX, p.mouseY));
+        let drawingColor = ReturnDrawingColor();
+        let returnHue = p.hue(drawingColor);
+        let returnSatuation = p.saturation(drawingColor);
+        let returnLightness = p.lightness(drawingColor);
+        if (displayColorSpace === "hue") { returnHue = p.hue(getColor); }
+        else if (displayColorSpace === "saturation") { returnSatuation = p.saturation(getColor); }
+        else if (displayColorSpace === "lightness") { returnLightness = p.lightness(getColor); }
 
-        returnColor = [p.hue(color), p.saturation(color), p.lightness(color)];
+        returnColor = [returnHue, returnSatuation, returnLightness];
       }
     }
 
