@@ -205,13 +205,25 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
     function displayTemplateColors(x: number, width: number, displayColorSpace: string) {
       let y = 0;
       if (displayColorSpace === "hue") {
-        p.colorMode(p.HSL, 360, 100, 100);
-        p.fill(0, 70, 70);
-        p.rect(x, y, width, p.height * 0.95);
-        y += p.height * 0.95;
-        p.fill(180, 70, 70);
-        p.rect(x, y, width, p.height * 0.05);
-        y = + p.height * 0.05
+        p.colorMode(p.HSL);
+        let hue = p.hue(calculateBaseColor());
+
+        if (hue < (hue + 180) % 360) {
+          p.fill(hue, 70, 70);
+          p.rect(x, y, width, p.height * 0.95);
+          y += p.height * 0.95;
+          p.fill((hue + 180) % 360, 70, 70);
+          p.rect(x, y, width, p.height * 0.05);
+          y = + p.height * 0.05;
+        }
+        else {
+          p.fill((hue + 180) % 360, 70, 70);
+          p.rect(x, y, width, p.height * 0.05);
+          y = + p.height * 0.05;
+          p.fill(hue, 70, 70);
+          p.rect(x, y, width, p.height * 0.95);
+          y += p.height * 0.95;
+        }
       }
       else if (displayColorSpace === "saturation") {
         p.colorMode(p.HSB);
