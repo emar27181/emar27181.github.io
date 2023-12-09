@@ -134,7 +134,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       p.noStroke();
 
       for (let i = 0; i < 360; i += hueRange) {
-        let hueValue = (330 + i) % 360;
+        let hueValue = (300 + i) % 360;
         for (let j = 0; j < colorsAmount.length; j++) {
           let hue = p.hue(colorsAmount[j].color);
 
