@@ -27,7 +27,7 @@ export function DisplayCanvasFilter(displayMode: string, loadNumber: number, dis
       if (displayMode === "camera") { p.createCanvas(480 / 3, 480 / 3); }
       else if (displayMode === "image") { p.createCanvas(512 / 3, 512 / 3); }
       else {
-        let rate = 0.25;
+        let rate = 0.35;
         p.createCanvas(rate * window.innerWidth / 3, rate * window.innerWidth / 3);
         //let rate = 0.65;
         //p.createCanvas(rate * p.windowWidth / 2 / 3, rate * p.windowWidth / 2 / 3);

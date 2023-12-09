@@ -33,7 +33,7 @@ export function DisplayDrawingInfo() {
       p.colorMode(p.HSB, 360, 100, 100, 100);
       //p.createCanvas(CANVAS_WIDTH, p.windowHeight / 2);
 
-      let rate = 0.25;
+      let rate = 0.35;
       p.createCanvas(rate * window.innerWidth / 3, rate * window.innerWidth);
       //let rate = 0.65;
       //p.createCanvas(rate / 3 * p.windowWidth / 2, rate * p.windowWidth / 2);
