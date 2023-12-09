@@ -31,16 +31,8 @@ export function DisplayDrawingInfo() {
 
     p.setup = () => {
       p.colorMode(p.HSB, 360, 100, 100, 100);
-      //p.createCanvas(CANVAS_WIDTH, p.windowHeight / 2);
-
-      let rate = 0.25;
+      let rate = 0.35;
       p.createCanvas(rate * window.innerWidth / 3, rate * window.innerWidth);
-      //let rate = 0.65;
-      //p.createCanvas(rate / 3 * p.windowWidth / 2, rate * p.windowWidth / 2);
-      //if (ReturnIsDesktop()) { p.createCanvas(rate / 3 * p.windowWidth / 2, rate * p.windowWidth / 2); }
-      // else { p.createCanvas(rate / 3 * p.windowWidth, rate * p.windowWidth); }
-      //p.createCanvas(rate / 3 * p.windowWidth, rate * p.windowWidth);
-      //p.noStroke();
     };
 
     p.draw = () => {

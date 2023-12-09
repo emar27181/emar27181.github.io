@@ -86,7 +86,8 @@ export function ColorGanerateRe() {
     }
 
     function displayColors() {
-      p.colorMode(p.HSB);
+      p.colorMode(p.HSL);
+      //p.colorMode(p.HSB);
       p.noStroke();
       for (let i = 0; i < SPLIT; i++) {
         for (let j = 0; j < SPLIT; j++) {
@@ -97,38 +98,15 @@ export function ColorGanerateRe() {
     }
 
     function displayColorsDot() {
-      p.colorMode(p.HSB);
+      p.colorMode(p.HSL);
       let saturation = p.round(p.saturation(ReturnDrawingColor()));
       let brightness = p.round(p.brightness(ReturnDrawingColor()));
-      let x = 0, y = 0;
+      let lightness = p.round(p.lightness(ReturnDrawingColor()));
 
-      p.fill(0);
-      p.rect(brightness / 100 * p.width, saturation / 100 * p.height, p.width / SPLIT);
-
-      for (let i = 0; i < SPLIT; i++) {
-        x = 0;
-        for (let j = 0; j < SPLIT; j++) {
-          let getColor = p.color(p.get(x, y));
-          let getSaturation = p.round(p.saturation(getColor));
-          let getBrightness = p.round(p.brightness(getColor));
-          /*
-          if (saturation === getSaturation && brightness === getBrightness) {
-            p.fill(0);
-            p.rect(x, y, p.width / SPLIT);
-            console.log("(" + saturation + ", " + brightness + "), (" + getSaturation + "," + getBrightness + ")");
-          }
-          */
-          /*
-          if (saturation === (j / SPLIT * 100) && brightness === (i / SPLIT * 100)) {
-            p.fill(0);
-            p.rect(p.width / SPLIT * i, p.width / SPLIT * j, p.width / SPLIT);
-          }
-          */
-          x += p.width / SPLIT;
-        }
-        y += p.width / SPLIT;
-      }
-
+      p.noFill();
+      p.stroke(100);
+      p.ellipse(lightness / 100 * p.width, saturation / 100 * p.width, p.width / SPLIT + 3);
+      //p.rect(brightness / 100 * p.width, saturation / 100 * p.width, p.width / SPLIT);
     }
 
     function displayHueBar() {

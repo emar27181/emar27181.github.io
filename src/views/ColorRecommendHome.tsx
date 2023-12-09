@@ -21,7 +21,7 @@ export function ColorRecommendHome() {
     <div>
       <br /><br /><br /><br />
 
-      
+      {/*
       <div style={{ display: 'flex' }}>
         <ReturnCameraInfo />
         <div>
@@ -39,10 +39,10 @@ export function ColorRecommendHome() {
           </div>
         </div>
       </div>
+      */}
 
       <div style={{ display: 'flex' }}>
         {ReturnImageInfo(4)}
-
         <div>
           <div style={{ display: 'flex', margin: 0 }}>
             {DisplayCanvasFilter("image", 4, "hue")}
