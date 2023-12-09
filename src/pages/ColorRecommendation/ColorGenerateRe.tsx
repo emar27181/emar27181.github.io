@@ -103,9 +103,9 @@ export function ColorGanerateRe() {
       let brightness = p.round(p.brightness(ReturnDrawingColor()));
       let lightness = p.round(p.lightness(ReturnDrawingColor()));
 
-      p.fill(255);
-      p.stroke(0);
-      p.rect(lightness / 100 * p.width, saturation / 100 * p.width, p.width / SPLIT);
+      p.noFill();
+      p.stroke(100);
+      p.ellipse(lightness / 100 * p.width, saturation / 100 * p.width, p.width / SPLIT + 3);
       //p.rect(brightness / 100 * p.width, saturation / 100 * p.width, p.width / SPLIT);
     }
 
