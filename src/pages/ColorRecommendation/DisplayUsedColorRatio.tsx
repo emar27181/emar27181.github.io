@@ -93,7 +93,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       calculateColorsAmount();
 
 
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 4; i++) {
         let x = p.width * i / SPLIT_CANVAS_WIDTH, width = p.width / SPLIT_CANVAS_WIDTH;
         if (i === 0) {
           if (displayColorSpace === "hue") { displayColorsByHue(x, width, calculateSplitSum(true), true, false); }
@@ -107,6 +107,9 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
         }
         else if (i === 2) {
           displayTemplateColors(x, width, displayColorSpace);
+        }
+        else if (i === 3) {
+          displayDifferenceFromRecommendColors(x, width, displayColorSpace);
         }
       }
     }
@@ -209,8 +212,19 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       p.noStroke();
     }
 
+
+    function displayDifferenceFromRecommendColors(x: number, width: number, displayColorSpace: string) {
+      if (displayColorSpace === "lightness") {
+        p.fill(0);
+        p.rect(x, 0, width, p.height);
+      }
+    };
+
     function displayTemplateColors(x: number, width: number, displayColorSpace: string) {
       let y = 0;
+      const BASE_COLOR_RATE = 0.7;
+      const ASSORTED_COLOR_RATE = 0.25;
+      const ACCENT_COLOR_RATE = 0.05;
       if (displayColorSpace === "hue") {
         p.colorMode(p.HSL);
         let hue = p.hue(calculateBaseColor());
@@ -220,13 +234,13 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
           p.rect(x, y, width, p.height * 0.95);
           y += p.height * 0.95;
           p.fill((hue + 180) % 360, 70, 70);
-          p.rect(x, y, width, p.height * 0.05);
-          y = + p.height * 0.05;
+          p.rect(x, y, width, p.height * ACCENT_COLOR_RATE);
+          y = + p.height * ACCENT_COLOR_RATE;
         }
         else {
           p.fill((hue + 180) % 360, 70, 70);
-          p.rect(x, y, width, p.height * 0.05);
-          y = + p.height * 0.05;
+          p.rect(x, y, width, p.height * ACCENT_COLOR_RATE);
+          y = + p.height * ACCENT_COLOR_RATE;
           p.fill(hue, 70, 70);
           p.rect(x, y, width, p.height * 0.95);
           y += p.height * 0.95;
@@ -235,26 +249,26 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       else if (displayColorSpace === "saturation") {
         p.colorMode(p.HSB);
         p.fill(0, 30, 30);
-        p.rect(x, y, width, p.height * 0.7);
-        y += p.height * 0.7;
+        p.rect(x, y, width, p.height * BASE_COLOR_RATE);
+        y += p.height * BASE_COLOR_RATE;
         p.fill(0, 50, 50);
-        p.rect(x, y, width, p.height * 0.25);
-        y += p.height * 0.25
+        p.rect(x, y, width, p.height * ASSORTED_COLOR_RATE);
+        y += p.height * ASSORTED_COLOR_RATE
         p.fill(0, 80, 80);
-        p.rect(x, y, width, p.height * 0.05);
-        y += p.height * 0.05;
+        p.rect(x, y, width, p.height * ACCENT_COLOR_RATE);
+        y += p.height * ACCENT_COLOR_RATE;
       }
       else if (displayColorSpace === "lightness") {
         p.colorMode(p.HSL);
         p.fill(0, 0, 30);
-        p.rect(x, y, width, p.height * 0.7);
-        y += p.height * 0.7
+        p.rect(x, y, width, p.height * BASE_COLOR_RATE);
+        y += p.height * BASE_COLOR_RATE
         p.fill(0, 0, 50);
-        p.rect(x, y, width, p.height * 0.25);
-        y += p.height * 0.25
+        p.rect(x, y, width, p.height * ASSORTED_COLOR_RATE);
+        y += p.height * ASSORTED_COLOR_RATE
         p.fill(0, 0, 80);
-        p.rect(x, y, width, p.height * 0.05);
-        y += p.height * 0.05
+        p.rect(x, y, width, p.height * ACCENT_COLOR_RATE);
+        y += p.height * ACCENT_COLOR_RATE
       }
 
     }
@@ -262,23 +276,26 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
     function displayRecommendedColorsAmountRate(x: number, width: number, hueDifference: number) {
       p.colorMode(p.RGB);
       let y = 0;
+      const BASE_COLOR_RATE = 0.7;
+      const ASSORTED_COLOR_RATE = 0.25;
+      const ACCENT_COLOR_RATE = 0.05;
 
       //初期実装として、色の割合をベースカラー70%, アソートカラー25%, アクセントカラー5%で表示
 
       //アソートカラーの描画
       p.fill(calculateAssortedColor(hueDifference));
-      p.rect(x, y, width, 0.25 * p.height);
-      y += 0.25 * p.height;
+      p.rect(x, y, width, ASSORTED_COLOR_RATE * p.height);
+      y += ASSORTED_COLOR_RATE * p.height;
 
       //ベースカラーの描画
       p.fill(calculateBaseColor());
-      p.rect(x, y, width, 0.7 * p.height);
-      y += 0.7 * p.height;
+      p.rect(x, y, width, BASE_COLOR_RATE * p.height);
+      y += BASE_COLOR_RATE * p.height;
 
       //アクセントカラーの描画
       p.fill(calculateAccentColor(hueDifference));
-      p.rect(x, y, width, 0.05 * p.height);
-      y += 0.05 * p.height;
+      p.rect(x, y, width, ACCENT_COLOR_RATE * p.height);
+      y += ACCENT_COLOR_RATE * p.height;
 
     }
 
