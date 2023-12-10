@@ -25,6 +25,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
     }
     let backgroundColor = p.color(255, 255, 255, 255);
     let canvasWidth = 0, canvasHeight = 0;
+    let lightnessBorderHeight = [0, 0];
     let colorsAmount: Array<ColorAmount> = [];
 
     p.setup = () => {
@@ -189,7 +190,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       let lightnessRange = 10;
       p.colorMode(p.HSL);
 
-      //彩度を基準に上から描画
+      //明度を基準に上から描画
       for (let i = 0; i < 100; i += lightnessRange) {
         for (let j = 0; j < colorsAmount.length; j++) {
           p.noStroke();
@@ -204,19 +205,53 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
             else { p.fill(colorsAmount[j].color); }
             p.rect(x, y, width, p.height * (colorsAmount[j].amount / splitSum) + 1);
             y += p.height * (colorsAmount[j].amount / splitSum);
+
+            // 彩度の境の高さを測定
+            if (i <= 30) { lightnessBorderHeight[0] = y; }
+            else if (i <= 50) { lightnessBorderHeight[1] = y; }
           }
+
         }
         p.stroke(0, 0, 0);
         //p.line(x, y, width, y);
+
       }
       p.noStroke();
     }
 
 
     function displayDifferenceFromRecommendColors(x: number, width: number, displayColorSpace: string) {
+      const BASE_COLOR_RATE = 0.7;
+      const ASSORTED_COLOR_RATE = 0.25;
+      const ACCENT_COLOR_RATE = 0.05;
+
+      p.fill(255);
+      p.rect(x, 0, width, p.height);
+
+      p.colorMode(p.RGB);
       if (displayColorSpace === "lightness") {
+
         p.fill(0);
-        p.rect(x, 0, width, p.height);
+        p.rect(x, lightnessBorderHeight[0], width, 3);
+        p.rect(x, lightnessBorderHeight[1], width, 3);
+
+        /*
+        p.fill(0, 255, 0);
+        if (lightnessBorderHeight[0] < BASE_COLOR_RATE * p.height) {
+          p.rect(x, lightnessBorderHeight[0], width, BASE_COLOR_RATE * p.height - lightnessBorderHeight[0]);
+        }
+        else {
+          p.rect(x, BASE_COLOR_RATE * p.height, width, lightnessBorderHeight[0] - BASE_COLOR_RATE * p.height);
+        }
+
+        p.fill(0, 0, 255);
+        if (lightnessBorderHeight[1] < ASSORTED_COLOR_RATE * p.height) {
+          p.rect(x, lightnessBorderHeight[1], width, ASSORTED_COLOR_RATE * p.height - lightnessBorderHeight[1]);
+        }
+        else {
+          p.rect(x, ASSORTED_COLOR_RATE * p.height, width, lightnessBorderHeight[1] - ASSORTED_COLOR_RATE * p.height);
+        }
+        */
       }
     };
 
