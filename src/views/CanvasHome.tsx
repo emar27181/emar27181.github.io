@@ -23,7 +23,9 @@ export function U22programmingContestHome() {
           <ColorGanerateRe />
           <OperateGuiControl />
         </div>
-        {Canvas()}
+        <div style={{ overflow: 'hidden' }}>
+          {Canvas()}
+        </div>
         <div>
           <div style={{ display: 'flex', margin: 0 }}>
             {DisplayCanvasFilter("canvas", 0, "hue")}
