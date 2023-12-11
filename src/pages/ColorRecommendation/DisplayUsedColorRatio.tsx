@@ -45,12 +45,14 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       if (p.frameCount === 1 && displayMode === "image") { displayCanvas(); }
       if (p.frameCount === 5 && displayMode === "camera") { displayCanvas(); }
       if (p.frameCount % 3 === 1 && displayMode === "canvas") { displayCanvas(); }
+      if (p.mouseIsPressed) { mousePressed(); }
     }
 
     p.keyTyped = () => {
     }
 
-    p.mouseClicked = () => {
+    //p.mouseClicked = () => {
+    function mousePressed() {
       p.colorMode(p.RGB);
       if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
         isTouched = true;
