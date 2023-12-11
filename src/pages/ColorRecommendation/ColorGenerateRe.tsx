@@ -17,9 +17,12 @@ export function ColorGanerateRe() {
     const SPLIT = 100;
 
     p.setup = () => {
-      p.createCanvas(200, 300);
+      let rate = 0.35;
+      p.createCanvas(rate * window.innerWidth / 3, 1.5 * rate * window.innerWidth / 3);
+      //p.createCanvas(200, 300);
       p.background(0);
-      p.textSize(10);
+      p.textSize(0.05 * p.width);
+      //p.textSize(10);
     };
 
     p.draw = () => {
@@ -37,7 +40,8 @@ export function ColorGanerateRe() {
 
     function mousePressed() {
       //色相バーのクリック
-      if (0 <= p.mouseX && p.mouseX <= p.width && p.width + 10 <= p.mouseY && p.mouseY <= p.width + 30) {
+      if (0 <= p.mouseX && p.mouseX <= p.width && 1.05 * p.width <= p.mouseY && p.mouseY <= 1.15 * p.width) {
+        //if (0 <= p.mouseX && p.mouseX <= p.width && p.width + 10 <= p.mouseY && p.mouseY <= p.width + 30) {
         hueBarX = p.mouseX;
         //hue = hueBarX / p.width * 360;
         returnColor[0] = hueBarX / p.width * 360;
@@ -68,21 +72,20 @@ export function ColorGanerateRe() {
       p.noStroke();
       p.fill(255);
       let color = ReturnDrawingColor();
-      let text = "rgba(" + p.round(p.red(color)) + "," + p.round(p.green(color)) + "," + p.round(p.blue(color)) + "," + p.round(p.alpha(color)) + ")";
-      p.text(text, 0, p.width + 45);
-      text = "hsl(" + p.round(p.hue(color)) + "," + p.round(p.saturation(color)) + "," + p.round(p.lightness(color)) + ")";
-      p.text(text, 0, p.width + 60);
-      text = "hsb(" + p.round(p.hue(color)) + "," + p.round(p.saturation(color)) + "," + p.round(p.brightness(color)) + ")";
-      p.text(text, 0, p.width + 75);
+
+      let text1 = "rgba(" + p.round(p.red(color)) + "," + p.round(p.green(color)) + "," + p.round(p.blue(color)) + "," + p.round(p.alpha(color)) + ")";
+      let text2 = "hsl(" + p.round(p.hue(color)) + "," + p.round(p.saturation(color)) + "," + p.round(p.lightness(color)) + ")";
+      let text3 = "hsb(" + p.round(p.hue(color)) + "," + p.round(p.saturation(color)) + "," + p.round(p.brightness(color)) + ")";
       let hex = p.hex([p.red(color), p.green(color), p.blue(color)], 2);
-      text = ("#" + hex[0] + hex[1] + hex[2]);
-      p.text(text, 0, p.width + 90);
+      let text4 = ("#" + hex[0] + hex[1] + hex[2]);
+      let text = text1 + "\n" + text2 + "\n" + text3 + "\n" + text4;
+      p.text(text, 0, 1.2 * p.width);
     }
 
     function displayDrawingColor() {
       p.stroke(255);
       p.fill(ReturnDrawingColor());
-      p.rect(p.width - 30, p.height - 30, 20, 20);
+      p.rect(0.85 * p.width, 0.9 * p.height, 0.1 * p.width, 0.1 * p.width);
     }
 
     function displayColors() {
@@ -92,7 +95,7 @@ export function ColorGanerateRe() {
       for (let i = 0; i < SPLIT; i++) {
         for (let j = 0; j < SPLIT; j++) {
           p.fill(hue, j, i);
-          p.rect(p.width / SPLIT * i, p.width / SPLIT * j, p.width / SPLIT, p.width / SPLIT);
+          p.rect(p.width / SPLIT * i, p.width / SPLIT * j, p.width / SPLIT + 1, p.width / SPLIT + 1);
         }
       }
     }
@@ -114,7 +117,8 @@ export function ColorGanerateRe() {
         p.noStroke();
         p.colorMode(p.HSL, 360, 100, 100);
         p.fill(i, 100, 50);
-        p.rect(p.width / 360 * i, p.width + 10, p.width / 360, 20);
+        p.rect(p.width / 360 * i, 1.05 * p.width, p.width / 360, 0.1 * p.width);
+        //p.rect(p.width / 360 * i, p.width + 10, p.width / 360, 20);
       }
     }
 
@@ -123,7 +127,8 @@ export function ColorGanerateRe() {
       p.fill(255);
       p.stroke(0);
       p.strokeWeight(0.3);
-      p.rect(hueBarX, p.width + 10, 2, 20);
+      p.rect(hueBarX, 1.05 * p.width, 0.01 * p.width, 0.1 * p.width);
+      //p.rect(hueBarX, p.width + 10, 2, 20);
     }
 
 
