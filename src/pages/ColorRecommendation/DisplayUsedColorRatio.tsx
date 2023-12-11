@@ -96,22 +96,27 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       calculateColorsAmount();
 
 
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 5; i++) {
         let x = p.width * i / SPLIT_CANVAS_WIDTH, width = p.width / SPLIT_CANVAS_WIDTH;
         if (i === 0) {
+          if (displayColorSpace === "hue") { displayColorsByHue(x, width, calculateSplitSum(false), false, false); }
+          else if (displayColorSpace === "saturation") { displayColorsBySaturation(x, width, calculateSplitSum(false), false, false); }
+          else if (displayColorSpace === "lightness") { displayColorsByLightness(x, width, calculateSplitSum(false), false, false); }
+        }
+        if (i === 1) {
           if (displayColorSpace === "hue") { displayColorsByHue(x, width, calculateSplitSum(true), true, false); }
           else if (displayColorSpace === "saturation") { displayColorsBySaturation(x, width, calculateSplitSum(true), true, false); }
           else if (displayColorSpace === "lightness") { displayColorsByLightness(x, width, calculateSplitSum(true), true, false); }
         }
-        else if (i === 1) {
+        else if (i === 2) {
           if (displayColorSpace === "hue") { displayColorsByHue(x, width, calculateSplitSum(true), true, true); }
           else if (displayColorSpace === "saturation") { displayColorsBySaturation(x, width, calculateSplitSum(true), true, true); }
           else if (displayColorSpace === "lightness") { displayColorsByLightness(x, width, calculateSplitSum(true), true, true); }
         }
-        else if (i === 2) {
+        else if (i === 3) {
           displayTemplateColors(x, width, displayColorSpace);
         }
-        else if (i === 3) {
+        else if (i === 4) {
           displayDifferenceFromRecommendColors(x, width, displayColorSpace);
         }
       }
