@@ -16,16 +16,22 @@ export function OperateGuiControl() {
 
     p.setup = () => {
       p.frameRate(30);
-      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      let rate = 0.35;
+      p.createCanvas(rate * window.innerWidth / 3, rate * window.innerWidth / 3);
+      //p.createCanvas(200, 100);
       p.background(0);
+      p.textSize(0.1 * p.width);
     };
 
     p.draw = () => {
       p.fill(255);
       p.background(0);
       displayControlBar();
-      displayButton(10, 50, 30, 30, 'c');
-      displayButton(50, 50, 30, 30, 'e');
+
+      displayButton(p.width / 20, p.width / 4, p.width * 3 / 20, p.width * 3 / 20, 'c');
+      displayButton(p.width / 4, p.width / 4, p.width * 3 / 20, p.width * 3 / 20, 'e');
+      //displayButton(10, 50, 30, 30, 'c');
+      //displayButton(50, 50, 30, 30, 'e');
       updateVariables();
       if (p.mouseIsPressed) { mouseContorl() }
     };
@@ -42,15 +48,18 @@ export function OperateGuiControl() {
     }
 
     function mouseContorl() {
-      if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
+      if (judgeClicked(0, 0, p.width, p.width * 3 / 20)) {
+        //if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
         barX = p.mouseX;
         isTouched = true;
       }
-      if (judgeClicked(10, 50, 30, 30)) {
+      if (judgeClicked(p.width / 20, p.width / 4, p.width * 3 / 20, p.width * 3 / 20)) {
+        //if (judgeClicked(10, 50, 30, 30)) {
         isButtonClicked = true;
         clickedKey = 'c';
       }
-      if (judgeClicked(50, 50, 30, 30)) {
+      if (judgeClicked(p.width / 4, p.width / 4, p.width * 3 / 20, p.width * 3 / 20)) {
+        //if (judgeClicked(50, 50, 30, 30)) {
         isButtonClicked = true;
         clickedKey = 'e';
       }
@@ -61,14 +70,16 @@ export function OperateGuiControl() {
     }
 
     function displayControlBar() {
-      p.rect(barX, 10, 10, 30);
+      p.rect(barX, p.width / 20, p.width / 20, p.width * 3 / 20);
+      //p.rect(barX, 10, 10, 30);
     }
 
     function displayButton(x: number, y: number, width: number, height: number, key: string) {
       p.fill(255);
       p.rect(x, y, width, height);
       p.fill(0);
-      p.text(key, x + p.textSize(), y + p.textSize());
+      p.text(key, x + p.textSize() / 2, y + p.textSize());
+      //p.text(key, x + p.textSize(), y + p.textSize());
     }
 
   }
