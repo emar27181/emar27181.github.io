@@ -13,6 +13,7 @@ import TestDragAndPaste from '../pages/TestDragAndPaste';
 import ColorGenerateRe, { ColorGanerateRe } from '../pages/ColorRecommendation/ColorGenerateRe';
 import DisplayCanvasFilter from '../pages/ColorRecommendation/DisplayCanvasFilter';
 import OperateGuiControl from '../pages/Reserch/OperateGuiControl';
+import DisplayCanvasAndColorRatio from '../pages/ColorRecommendation/DisplayCanvasAndColorRatio';
 
 export function ColorRecommendHome() {
 
@@ -41,41 +42,7 @@ export function ColorRecommendHome() {
       </div>
       */}
 
-      <div style={{ display: 'flex' }}>
-        {ReturnImageInfo(4)}
-        <div>
-          <div style={{ display: 'flex', margin: 0 }}>
-            {DisplayCanvasFilter("image", 4, "hue")}
-            {DisplayUsedColorRatio("image", 4, "hue")}
-          </div>
-          <div style={{ display: 'flex', margin: 0 }}>
-            {DisplayCanvasFilter("image", 4, "saturation")}
-            {DisplayUsedColorRatio("image", 4, "saturation")}
-          </div>
-          <div style={{ display: 'flex', margin: 0 }}>
-            {DisplayCanvasFilter("image", 4, "lightness")}
-            {DisplayUsedColorRatio("image", 4, "lightness")}
-          </div>
-        </div>
-      </div>
-
-      <div style={{ display: 'flex' }}>
-        {ReturnImageInfo(2)}
-        <div>
-          <div style={{ display: 'flex', margin: 0 }}>
-            {DisplayCanvasFilter("image", 2, "hue")}
-            {DisplayUsedColorRatio("image", 2, "hue")}
-          </div>
-          <div style={{ display: 'flex', margin: 0 }}>
-            {DisplayCanvasFilter("image", 2, "saturation")}
-            {DisplayUsedColorRatio("image", 2, "saturation")}
-          </div>
-          <div style={{ display: 'flex', margin: 0 }}>
-            {DisplayCanvasFilter("image", 2, "lightness")}
-            {DisplayUsedColorRatio("image", 2, "lightness")}
-          </div>
-        </div>
-      </div>
+      {DisplayCanvasAndColorRatio(2)}
 
       {/*
       <div style={{ display: 'flex' }}>
