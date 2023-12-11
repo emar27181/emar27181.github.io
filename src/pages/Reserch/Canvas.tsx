@@ -77,7 +77,7 @@ export function Canvas() {
     let isBallCollisionDetected = false;
     const BALL_SIZE = 2;
     let ColorsInfo: Array<ColorInfo>;
-    let drawingColor = p.color(170, 86, 86);
+    let drawingColor = p.color(212, 44, 44);
     let keepDrawingColor = drawingColor;
     returnDrawingColor = p.color(255, 0, 0);
     backgroundColor = p.color(255, 255, 255);
