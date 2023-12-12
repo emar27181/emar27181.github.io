@@ -35,7 +35,7 @@ export function ColorGanerateRe() {
       //p.fill(255);
       displayColors();
       displayUsedColorsDot();
-      displayColorsDot(ReturnDrawingColor(), p.color(0, 0, 0));
+      displayColorsDot(ReturnDrawingColor(), 1, p.color(0, 0, 0));
       displayHueBar();
       displayHueBarButton();
 
@@ -50,7 +50,9 @@ export function ColorGanerateRe() {
           continue;
         }
         if (colorsAmount[i].amount >= 50) {
-          displayColorsDot(colorsAmount[i].color, p.color(255, 255, 255));
+          let displayRate = 0.005 * colorsAmount[i].amount;
+          displayColorsDot(colorsAmount[i].color, displayRate, p.color(255, 255, 255),);
+          //displayColorsDot(colorsAmount[i].color, 0.7, p.color(0, 0, 0, 0.3),);
         }
       }
     }
@@ -118,7 +120,7 @@ export function ColorGanerateRe() {
       }
     }
 
-    function displayColorsDot(color: p5.Color, strokeColor: p5.Color) {
+    function displayColorsDot(color: p5.Color, displayRate: number, strokeColor: p5.Color) {
       p.colorMode(p.HSL);
       let saturation = p.round(p.saturation(color));
       let brightness = p.round(p.brightness(color));
@@ -127,7 +129,7 @@ export function ColorGanerateRe() {
       p.noFill();
       p.stroke(strokeColor);
       p.strokeWeight(0.005 * p.width);
-      p.ellipse(saturation / 100 * p.width, p.width - lightness / 100 * p.width, p.width / SPLIT + 0.03 * p.width);
+      p.ellipse(saturation / 100 * p.width, p.width - lightness / 100 * p.width, p.width / SPLIT + displayRate * 0.03 * p.width);
       //p.rect(brightness / 100 * p.width, saturation / 100 * p.width, p.width / SPLIT);
     }
 
