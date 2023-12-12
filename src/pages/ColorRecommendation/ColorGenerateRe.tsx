@@ -4,7 +4,7 @@ import React from 'react';
 import p5 from 'p5';
 import { ReturnDrawingColor } from '../Reserch/Canvas';
 import Color from 'color';
-import { ReturnUsedColors } from './DisplayUsedColorRatio';
+import { ColorAmount, ReturnColorsAmount, ReturnUsedColors } from './DisplayUsedColorRatio';
 
 let returnColor = [0, 0, 0];
 let isTouchedColorGenerate = false;
@@ -17,6 +17,7 @@ export function ColorGanerateRe() {
     let hueBarX = 50;
     const SPLIT = 100;
     let usedColors: Array<p5.Color> = [];
+    let colorsAmount: Array<ColorAmount> = [];
 
     p.setup = () => {
       let rate = 0.35;
@@ -33,17 +34,26 @@ export function ColorGanerateRe() {
       p.background(0);
       //p.fill(255);
       displayColors();
-      for (let i = 0; i < usedColors.length; i++) {
-        displayColorsDot(usedColors[i], p.color(255, 255, 255));
-      }
+      displayUsedColorsDot();
       displayColorsDot(ReturnDrawingColor(), p.color(0, 0, 0));
-
       displayHueBar();
       displayHueBarButton();
 
       displayDrawingColor();
       displayDrawingColorInfo();
     };
+
+    function displayUsedColorsDot() {
+      const SATURATION_LIMIT = 15;
+      for (let i = 0; i < colorsAmount.length; i++) {
+        if (p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) {
+          continue;
+        }
+        if (colorsAmount[i].amount >= 50) {
+          displayColorsDot(colorsAmount[i].color, p.color(255, 255, 255));
+        }
+      }
+    }
 
     function mousePressed() {
       //色相バーのクリック
@@ -69,6 +79,7 @@ export function ColorGanerateRe() {
       hue = p.hue(ReturnDrawingColor());
       hueBarX = p.hue(ReturnDrawingColor()) / 360 * p.width;
       usedColors = ReturnUsedColors();
+      colorsAmount = ReturnColorsAmount();
     }
 
     function setDrawingColor() {

@@ -15,6 +15,8 @@ const SPLIT_CANVAS_WIDTH = 8;
 const SPLIT = 100, CANVAS_WIDTH = 20 * SPLIT_CANVAS_WIDTH;
 const SATURATION_LIMIT = 10;
 
+let colorsAmount: Array<ColorAmount> = [];
+
 export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, displayColorSpace: string) {
   const sketch = (p: P5CanvasInstance) => {
     let canvasColors: p5.Color[][] = [];
@@ -27,7 +29,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
     let backgroundColor = p.color(255, 255, 255, 255);
     let canvasWidth = 0, canvasHeight = 0;
     let lightnessBorderHeight = [0, 0];
-    let colorsAmount: Array<ColorAmount> = [];
+    //let colorsAmount: Array<ColorAmount> = [];
 
     p.setup = () => {
       p.colorMode(p.HSL);
@@ -456,19 +458,6 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       //まだ出てきていない色であった場合
       colorsAmount[colorsAmount.length] = new ColorAmount(color, 1);
     }
-    class ColorAmount {
-      color: p5.Color;
-      amount: number;
-
-      constructor(color: p5.Color, amount: number) {
-        this.color = color;
-        this.amount = amount;
-      }
-
-      display() {
-        console.log("(" + p.red(this.color) + "," + p.green(this.color) + "," + p.blue(this.color) + "): " + this.amount);
-      }
-    }
   }
 
 
@@ -477,8 +466,23 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
   )
 }
 
+export class ColorAmount {
+  color: p5.Color;
+  amount: number;
+
+  constructor(color: p5.Color, amount: number) {
+    this.color = color;
+    this.amount = amount;
+  }
+
+}
+
 export function ReturnIsTouchedUsedColorRatio() { return isTouched; }
 export function ReturnRecommendedColor() { return returnColor; }
 export function ReturnUsedColors() { return usedColors; }
+export function ReturnColorsAmount() {
+  console.log(colorsAmount);
+  return colorsAmount;
+}
 
 export default DisplayUsedColorRatio
