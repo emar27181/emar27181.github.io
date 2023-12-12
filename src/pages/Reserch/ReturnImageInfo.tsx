@@ -8,6 +8,9 @@ import photoImage1 from "../../assets/IMG_9675.png"
 import photoImage2 from "../../assets/NCG255-510x510.jpg"
 import photoImage3 from "../../assets/TEST_IMAGE.png"
 import photoImage4 from "../../assets/img_1701616372.png"
+import photoImage5 from "../../assets/160_10.jpg"
+import photoImage6 from "../../assets/160_11.jpg"
+import photoImage7 from "../../assets/img_1702279389.png"
 
 
 let photoImage: string[] = [];
@@ -16,12 +19,19 @@ photoImage.push(photoImage1);
 photoImage.push(photoImage2);
 photoImage.push(photoImage3);
 photoImage.push(photoImage4);
+photoImage.push(photoImage5);
+photoImage.push(photoImage6);
+photoImage.push(photoImage7);
 
 const SPLIT = 100;
 let colorsInfo: Array<ColorInfo> = [];
 let isGetColors = false;
 let canvasColors: p5.Color[][] = [];
+let imagesCanvasColors: any[] = [];
 for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
+
+let canvasWidth = 0;
+let canvasHeight = 0;
 
 export function ReturnImageInfo(loadNumber: number) {
   const sketch = (p: P5CanvasInstance) => {
@@ -29,9 +39,7 @@ export function ReturnImageInfo(loadNumber: number) {
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
     const DIV_VALUE = 100;
     let img: p5.Image;
-    let canvasSize = ReturnCanvasSize();
-    let canvasWidth = canvasSize[0];
-    let canvasHeight = canvasSize[1];
+
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
         canvasColors[i][j] = p.color(0, 0, 0);
@@ -39,33 +47,32 @@ export function ReturnImageInfo(loadNumber: number) {
     }
 
     p.preload = () => {
+
+      img = p.loadImage(photoImage[loadNumber]);
       // loadNumberに応じて読み込む画像を切り替え
+      /*
       for (let i = 0; i < photoImage.length; i++) {
         if (i === loadNumber) {
           img = p.loadImage(photoImage[i]);
+          console.log("画像を読み込みました(loadNumber = " + loadNumber + ")");
         }
-      }
+      }*/
     }
 
     p.setup = () => {
-      //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      p.createCanvas(512, 512);
+      p.createCanvas(img.width, img.height);
+      canvasWidth = p.width;
+      canvasHeight = p.height;
       p.image(img, 0, 0);
+
+      // キャンバスの色の取得
+      getCanvasColors();
+      imagesCanvasColors[loadNumber] = canvasColors;
+      getColors();
+      isGetColors = true;
     };
 
     p.draw = () => {
-
-      if (isGetColors) {
-
-      }
-      else {
-        getCanvasColors();
-        canvasSize = ReturnCanvasSize();
-        canvasWidth = canvasSize[0];
-        canvasHeight = canvasSize[1];
-        getColors();
-        isGetColors = true;
-      }
     };
 
     function getCanvasColors() {
@@ -80,11 +87,8 @@ export function ReturnImageInfo(loadNumber: number) {
 
     function getColors() {
       let indexNum = 0;
-      let intervalLength = p.width / DIV_VALUE;
-      //let ratioX = canvasWidth / p.width;
-      //let ratioY = canvasHeight / p.height;
-      let ratioX = 1 / canvasWidth;
-      let ratioY = 1 / canvasHeight;
+      let ratioX = 1 / p.width;
+      let ratioY = 1 / p.height;
       for (let i = 0; i < DIV_VALUE; i++) {
         for (let j = 0; j < DIV_VALUE; j++) {
           let x = p.width * (i / DIV_VALUE);
@@ -114,9 +118,12 @@ export class ColorInfo {
 
 export function ReturnImageColorsInfo() { return colorsInfo; }
 //export function ReturnImageColors() { return canvasColors; }
-export function ReturnImageColors(loadNumber: number) { 
+export function ReturnImageColors(loadNumber: number) {
   ReturnImageInfo(loadNumber);
-  return canvasColors; 
+  return imagesCanvasColors[loadNumber];
+  //return canvasColors;
 }
 
 export default ReturnImageInfo
+
+export function ReturnReturnImageInfoCanvasSize() { return [canvasWidth, canvasHeight]; }

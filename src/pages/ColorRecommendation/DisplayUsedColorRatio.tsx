@@ -5,7 +5,7 @@ import { ReturnBackgroundColor, ReturnCanvasColors, ReturnCanvasSize, ReturnDraw
 import p5 from 'p5';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnCameraColors } from '../Reserch/ReturnCameraInfo';
-import { ReturnImageColors } from '../Reserch/ReturnImageInfo';
+import { ReturnImageColors, ReturnReturnImageInfoCanvasSize } from '../Reserch/ReturnImageInfo';
 
 let returnColor: number[] = [0, 0, 0, 255];
 let isTouched = false;
@@ -13,6 +13,7 @@ const DEBUG = false;
 const SPLIT_CANVAS_WIDTH = 8;
 const SPLIT = 100, CANVAS_WIDTH = 20 * SPLIT_CANVAS_WIDTH;
 const SATURATION_LIMIT = 10;
+let colorsAmount: Array<ColorAmount> = [];
 
 export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, displayColorSpace: string) {
   const sketch = (p: P5CanvasInstance) => {
@@ -26,7 +27,6 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
     let backgroundColor = p.color(255, 255, 255, 255);
     let canvasWidth = 0, canvasHeight = 0;
     let lightnessBorderHeight = [0, 0];
-    let colorsAmount: Array<ColorAmount> = [];
 
     p.setup = () => {
       p.colorMode(p.HSL);
@@ -74,12 +74,16 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       else if (displayMode === "camera") { canvasColors = ReturnCameraColors(); }
       else if (displayMode === "image") { canvasColors = ReturnImageColors(loadNumber); }
       //else if (displayMode === "image") { canvasColors = ReturnImageColors(); }
+      let createCanvasSize = ReturnReturnImageInfoCanvasSize();
+      if (displayMode === "image" && createCanvasSize[0] != 0 && p.frameCount < 2) { p.createCanvas(createCanvasSize[0] / 3, createCanvasSize[1] / 3); }
       let canvasSize = ReturnCanvasSize();
       canvasWidth = canvasSize[0];
       canvasHeight = canvasSize[1];
       isTouched = false;
       backgroundColor = ReturnBackgroundColor();
     }
+
+
 
     function createCanvas() {
       if (displayMode === "camera") { p.createCanvas(CANVAS_WIDTH, 480 / 3); }
@@ -98,26 +102,27 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
 
       for (let i = 0; i < 5; i++) {
         let x = p.width * i / SPLIT_CANVAS_WIDTH, width = p.width / SPLIT_CANVAS_WIDTH;
+
         if (i === 0) {
-          if (displayColorSpace === "hue") { displayColorsByHue(x, width, calculateSplitSum(false), false, false); }
-          else if (displayColorSpace === "saturation") { displayColorsBySaturation(x, width, calculateSplitSum(false), false, false); }
-          else if (displayColorSpace === "lightness") { displayColorsByLightness(x, width, calculateSplitSum(false), false, false); }
-        }
-        if (i === 1) {
           if (displayColorSpace === "hue") { displayColorsByHue(x, width, calculateSplitSum(true), true, false); }
           else if (displayColorSpace === "saturation") { displayColorsBySaturation(x, width, calculateSplitSum(true), true, false); }
           else if (displayColorSpace === "lightness") { displayColorsByLightness(x, width, calculateSplitSum(true), true, false); }
         }
-        else if (i === 2) {
+        else if (i === 1) {
           if (displayColorSpace === "hue") { displayColorsByHue(x, width, calculateSplitSum(true), true, true); }
           else if (displayColorSpace === "saturation") { displayColorsBySaturation(x, width, calculateSplitSum(true), true, true); }
           else if (displayColorSpace === "lightness") { displayColorsByLightness(x, width, calculateSplitSum(true), true, true); }
         }
-        else if (i === 3) {
+        else if (i === 2) {
           displayTemplateColors(x, width, displayColorSpace);
         }
-        else if (i === 4) {
+        else if (i === 3) {
           displayDifferenceFromRecommendColors(x, width, displayColorSpace);
+        }
+        else if (i === 4) {
+          if (displayColorSpace === "hue") { displayColorsByHue(x, width, calculateSplitSum(false), false, false); }
+          else if (displayColorSpace === "saturation") { displayColorsBySaturation(x, width, calculateSplitSum(false), false, false); }
+          else if (displayColorSpace === "lightness") { displayColorsByLightness(x, width, calculateSplitSum(false), false, false); }
         }
       }
     }
@@ -434,19 +439,6 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       //まだ出てきていない色であった場合
       colorsAmount[colorsAmount.length] = new ColorAmount(color, 1);
     }
-    class ColorAmount {
-      color: p5.Color;
-      amount: number;
-
-      constructor(color: p5.Color, amount: number) {
-        this.color = color;
-        this.amount = amount;
-      }
-
-      display() {
-        console.log("(" + p.red(this.color) + "," + p.green(this.color) + "," + p.blue(this.color) + "): " + this.amount);
-      }
-    }
   }
 
 
@@ -455,7 +447,22 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
   )
 }
 
+export class ColorAmount {
+  color: p5.Color;
+  amount: number;
+
+  constructor(color: p5.Color, amount: number) {
+    this.color = color;
+    this.amount = amount;
+  }
+
+}
+
 export function ReturnIsTouchedUsedColorRatio() { return isTouched; }
 export function ReturnRecommendedColor() { return returnColor; }
+export function ReturnColorsAmount() {
+  console.log(colorsAmount);
+  return colorsAmount;
+}
 
 export default DisplayUsedColorRatio

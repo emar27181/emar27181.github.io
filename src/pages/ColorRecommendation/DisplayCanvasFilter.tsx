@@ -4,7 +4,7 @@ import { ReturnCanvasColors, ReturnCanvasSize } from '../Reserch/Canvas';
 import React from 'react';
 import p5 from 'p5';
 import { ReturnIsDesktop } from '../../App';
-import { ReturnImageColors } from '../Reserch/ReturnImageInfo';
+import { ReturnImageColors, ReturnReturnImageInfoCanvasSize } from '../Reserch/ReturnImageInfo';
 import { ReturnCameraColors } from '../Reserch/ReturnCameraInfo';
 
 export function DisplayCanvasFilter(displayMode: string, loadNumber: number, displayColorSpace: string) {
@@ -54,7 +54,10 @@ export function DisplayCanvasFilter(displayMode: string, loadNumber: number, dis
         canvasColors = ReturnImageColors(loadNumber);
         //console.log("called")
       }
-      //canvasColors = ReturnCanvasColors();
+
+      let createCanvasSize = ReturnReturnImageInfoCanvasSize();
+      if (displayMode === "image" && createCanvasSize[0] != 0 && p.frameCount < 2) { p.createCanvas(createCanvasSize[0] / 3, createCanvasSize[1] / 3); }
+
       let canvasSize = ReturnCanvasSize();
       canvasWidth = canvasSize[0];
       canvasHeight = canvasSize[1];

@@ -4,6 +4,7 @@ import React from 'react';
 import p5 from 'p5';
 import { ReturnDrawingColor } from '../Reserch/Canvas';
 import Color from 'color';
+import { ColorAmount, ReturnColorsAmount } from './DisplayUsedColorRatio';
 
 let returnColor = [0, 0, 0];
 let isTouchedColorGenerate = false;
@@ -15,6 +16,8 @@ export function ColorGanerateRe() {
     let hue = 0;
     let hueBarX = 50;
     const SPLIT = 100;
+    let usedColors: Array<p5.Color> = [];
+    let colorsAmount: Array<ColorAmount> = [];
 
     p.setup = () => {
       let rate = 0.35;
@@ -31,12 +34,28 @@ export function ColorGanerateRe() {
       p.background(0);
       //p.fill(255);
       displayColors();
-      displayColorsDot();
+      displayUsedColorsDot();
+      displayColorsDot(ReturnDrawingColor(), 1, p.color(0, 0, 0));
       displayHueBar();
       displayHueBarButton();
+
       displayDrawingColor();
       displayDrawingColorInfo();
     };
+
+    function displayUsedColorsDot() {
+      const SATURATION_LIMIT = 15;
+      for (let i = 0; i < colorsAmount.length; i++) {
+        if (p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) {
+          continue;
+        }
+        if (colorsAmount[i].amount >= 50) {
+          let displayRate = 0.005 * colorsAmount[i].amount;
+          displayColorsDot(colorsAmount[i].color, displayRate, p.color(255, 255, 255),);
+          //displayColorsDot(colorsAmount[i].color, 0.7, p.color(0, 0, 0, 0.3),);
+        }
+      }
+    }
 
     function mousePressed() {
       //色相バーのクリック
@@ -61,6 +80,7 @@ export function ColorGanerateRe() {
       isTouchedColorGenerate = false;
       hue = p.hue(ReturnDrawingColor());
       hueBarX = p.hue(ReturnDrawingColor()) / 360 * p.width;
+      colorsAmount = ReturnColorsAmount();
     }
 
     function setDrawingColor() {
@@ -94,21 +114,22 @@ export function ColorGanerateRe() {
       p.noStroke();
       for (let i = 0; i < SPLIT; i++) {
         for (let j = 0; j < SPLIT; j++) {
-          p.fill(hue, j, i);
+          p.fill(hue, i, 100 - j);
           p.rect(p.width / SPLIT * i, p.width / SPLIT * j, p.width / SPLIT + 1, p.width / SPLIT + 1);
         }
       }
     }
 
-    function displayColorsDot() {
+    function displayColorsDot(color: p5.Color, displayRate: number, strokeColor: p5.Color) {
       p.colorMode(p.HSL);
-      let saturation = p.round(p.saturation(ReturnDrawingColor()));
-      let brightness = p.round(p.brightness(ReturnDrawingColor()));
-      let lightness = p.round(p.lightness(ReturnDrawingColor()));
+      let saturation = p.round(p.saturation(color));
+      let brightness = p.round(p.brightness(color));
+      let lightness = p.round(p.lightness(color));
 
       p.noFill();
-      p.stroke(100);
-      p.ellipse(lightness / 100 * p.width, saturation / 100 * p.width, p.width / SPLIT + 3);
+      p.stroke(strokeColor);
+      p.strokeWeight(0.005 * p.width);
+      p.ellipse(saturation / 100 * p.width, p.width - lightness / 100 * p.width, p.width / SPLIT + displayRate * 0.03 * p.width);
       //p.rect(brightness / 100 * p.width, saturation / 100 * p.width, p.width / SPLIT);
     }
 
