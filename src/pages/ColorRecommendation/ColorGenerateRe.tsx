@@ -108,7 +108,7 @@ export function ColorGanerateRe() {
 
       p.noFill();
       p.stroke(100);
-      p.ellipse(saturation / 100 * p.width, p.width - lightness / 100 * p.width, p.width / SPLIT + 3);
+      p.ellipse(saturation / 100 * p.width, p.width - lightness / 100 * p.width, p.width / SPLIT + 0.03 * p.width);
       //p.rect(brightness / 100 * p.width, saturation / 100 * p.width, p.width / SPLIT);
     }
 
