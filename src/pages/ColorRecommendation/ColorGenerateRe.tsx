@@ -33,10 +33,10 @@ export function ColorGanerateRe() {
       p.background(0);
       //p.fill(255);
       displayColors();
-      displayColorsDot(ReturnDrawingColor());
       for (let i = 0; i < usedColors.length; i++) {
-        displayColorsDot(usedColors[i]);
+        displayColorsDot(usedColors[i], p.color(255, 255, 255));
       }
+      displayColorsDot(ReturnDrawingColor(), p.color(0, 0, 0));
 
       displayHueBar();
       displayHueBarButton();
@@ -108,14 +108,15 @@ export function ColorGanerateRe() {
       }
     }
 
-    function displayColorsDot(color: p5.Color) {
+    function displayColorsDot(color: p5.Color, strokeColor: p5.Color) {
       p.colorMode(p.HSL);
       let saturation = p.round(p.saturation(color));
       let brightness = p.round(p.brightness(color));
       let lightness = p.round(p.lightness(color));
 
       p.noFill();
-      p.stroke(100);
+      p.stroke(strokeColor);
+      p.strokeWeight(0.005 * p.width);
       p.ellipse(saturation / 100 * p.width, p.width - lightness / 100 * p.width, p.width / SPLIT + 0.03 * p.width);
       //p.rect(brightness / 100 * p.width, saturation / 100 * p.width, p.width / SPLIT);
     }
