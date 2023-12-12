@@ -5,7 +5,7 @@ import { ReturnBackgroundColor, ReturnCanvasColors, ReturnCanvasSize, ReturnDraw
 import p5 from 'p5';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnCameraColors } from '../Reserch/ReturnCameraInfo';
-import { ReturnImageColors } from '../Reserch/ReturnImageInfo';
+import { ReturnImageColors, ReturnReturnImageInfoCanvasSize } from '../Reserch/ReturnImageInfo';
 
 let returnColor: number[] = [0, 0, 0, 255];
 let isTouched = false;
@@ -74,6 +74,8 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       else if (displayMode === "camera") { canvasColors = ReturnCameraColors(); }
       else if (displayMode === "image") { canvasColors = ReturnImageColors(loadNumber); }
       //else if (displayMode === "image") { canvasColors = ReturnImageColors(); }
+      let createCanvasSize = ReturnReturnImageInfoCanvasSize();
+      if (displayMode === "image" && createCanvasSize[0] != 0 && p.frameCount < 2) { p.createCanvas(createCanvasSize[0] / 3, createCanvasSize[1] / 3); }
       let canvasSize = ReturnCanvasSize();
       canvasWidth = canvasSize[0];
       canvasHeight = canvasSize[1];

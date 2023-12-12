@@ -29,15 +29,16 @@ let isGetColors = false;
 let canvasColors: p5.Color[][] = [];
 for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
 
+let canvasWidth = 0;
+let canvasHeight = 0;
+
 export function ReturnImageInfo(loadNumber: number) {
   const sketch = (p: P5CanvasInstance) => {
 
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
     const DIV_VALUE = 100;
     let img: p5.Image;
-    let canvasSize = ReturnCanvasSize();
-    let canvasWidth = canvasSize[0];
-    let canvasHeight = canvasSize[1];
+
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
         canvasColors[i][j] = p.color(0, 0, 0);
@@ -55,7 +56,10 @@ export function ReturnImageInfo(loadNumber: number) {
 
     p.setup = () => {
       //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      p.createCanvas(512, 512);
+      //p.createCanvas(512, 512);
+      p.createCanvas(img.width, img.height);
+      canvasWidth = p.width;
+      canvasHeight = p.height;
       p.image(img, 0, 0);
     };
 
@@ -66,9 +70,6 @@ export function ReturnImageInfo(loadNumber: number) {
       }
       else {
         getCanvasColors();
-        canvasSize = ReturnCanvasSize();
-        canvasWidth = canvasSize[0];
-        canvasHeight = canvasSize[1];
         getColors();
         isGetColors = true;
       }
@@ -81,16 +82,17 @@ export function ReturnImageInfo(loadNumber: number) {
           //console.log(canvasColors[i][j]);
         }
       }
-      console.log("画像の色データの取得が完了しました(loadNumber = " + loadNumber + ")");
+      //console.log("画像の色データの取得が完了しました(loadNumber = " + loadNumber + ")");
     }
 
     function getColors() {
       let indexNum = 0;
-      let intervalLength = p.width / DIV_VALUE;
-      //let ratioX = canvasWidth / p.width;
-      //let ratioY = canvasHeight / p.height;
-      let ratioX = 1 / canvasWidth;
-      let ratioY = 1 / canvasHeight;
+      //let intervalLength = p.width / DIV_VALUE;
+      //let canvasSize = ReturnCanvasSize();
+      //let ratioX = 1 / canvasSize[0];
+      //let ratioY = 1 / canvasSize[1];
+      let ratioX = 1 / p.width;
+      let ratioY = 1 / p.height;
       for (let i = 0; i < DIV_VALUE; i++) {
         for (let j = 0; j < DIV_VALUE; j++) {
           let x = p.width * (i / DIV_VALUE);
@@ -126,3 +128,5 @@ export function ReturnImageColors(loadNumber: number) {
 }
 
 export default ReturnImageInfo
+
+export function ReturnReturnImageInfoCanvasSize() { return [canvasWidth, canvasHeight]; }
