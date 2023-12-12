@@ -8,6 +8,9 @@ import photoImage1 from "../../assets/IMG_9675.png"
 import photoImage2 from "../../assets/NCG255-510x510.jpg"
 import photoImage3 from "../../assets/TEST_IMAGE.png"
 import photoImage4 from "../../assets/img_1701616372.png"
+import photoImage5 from "../../assets/160_10.jpg"
+import photoImage6 from "../../assets/160_11.jpg"
+import photoImage7 from "../../assets/img_1702279389.png"
 
 
 let photoImage: string[] = [];
@@ -16,6 +19,9 @@ photoImage.push(photoImage1);
 photoImage.push(photoImage2);
 photoImage.push(photoImage3);
 photoImage.push(photoImage4);
+photoImage.push(photoImage5);
+photoImage.push(photoImage6);
+photoImage.push(photoImage7);
 
 const SPLIT = 100;
 let colorsInfo: Array<ColorInfo> = [];
@@ -114,9 +120,9 @@ export class ColorInfo {
 
 export function ReturnImageColorsInfo() { return colorsInfo; }
 //export function ReturnImageColors() { return canvasColors; }
-export function ReturnImageColors(loadNumber: number) { 
+export function ReturnImageColors(loadNumber: number) {
   ReturnImageInfo(loadNumber);
-  return canvasColors; 
+  return canvasColors;
 }
 
 export default ReturnImageInfo
