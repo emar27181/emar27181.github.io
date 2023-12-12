@@ -55,8 +55,6 @@ export function ReturnImageInfo(loadNumber: number) {
     }
 
     p.setup = () => {
-      //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      //p.createCanvas(512, 512);
       p.createCanvas(img.width, img.height);
       canvasWidth = p.width;
       canvasHeight = p.height;
@@ -87,10 +85,6 @@ export function ReturnImageInfo(loadNumber: number) {
 
     function getColors() {
       let indexNum = 0;
-      //let intervalLength = p.width / DIV_VALUE;
-      //let canvasSize = ReturnCanvasSize();
-      //let ratioX = 1 / canvasSize[0];
-      //let ratioY = 1 / canvasSize[1];
       let ratioX = 1 / p.width;
       let ratioY = 1 / p.height;
       for (let i = 0; i < DIV_VALUE; i++) {
