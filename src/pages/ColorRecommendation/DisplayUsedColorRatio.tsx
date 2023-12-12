@@ -8,13 +8,11 @@ import { ReturnCameraColors } from '../Reserch/ReturnCameraInfo';
 import { ReturnImageColors, ReturnReturnImageInfoCanvasSize } from '../Reserch/ReturnImageInfo';
 
 let returnColor: number[] = [0, 0, 0, 255];
-let usedColors: Array<p5.Color> = [];
 let isTouched = false;
 const DEBUG = false;
 const SPLIT_CANVAS_WIDTH = 8;
 const SPLIT = 100, CANVAS_WIDTH = 20 * SPLIT_CANVAS_WIDTH;
 const SATURATION_LIMIT = 10;
-
 let colorsAmount: Array<ColorAmount> = [];
 
 export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, displayColorSpace: string) {
@@ -29,7 +27,6 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
     let backgroundColor = p.color(255, 255, 255, 255);
     let canvasWidth = 0, canvasHeight = 0;
     let lightnessBorderHeight = [0, 0];
-    //let colorsAmount: Array<ColorAmount> = [];
 
     p.setup = () => {
       p.colorMode(p.HSL);
@@ -84,25 +81,9 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       canvasHeight = canvasSize[1];
       isTouched = false;
       backgroundColor = ReturnBackgroundColor();
-
-      for (let i = 0; i < colorsAmount.length; i++) {
-        updateUsedColors(colorsAmount[i].color, colorsAmount[i].amount);
-      }
     }
 
-    function updateUsedColors(color: p5.Color, amount: number) {
-      if (p.saturation(color) <= SATURATION_LIMIT) { return; }
-      for (let i = 0; i < usedColors.length; i++) {
-        if (equalsColor(usedColors[i], color)) {
-          return;
-        }
-      }
 
-      if (amount >= 100) {
-        usedColors.push(color);
-        //console.log(p.red(color), p.green(color), p.blue(color));
-      }
-    }
 
     function createCanvas() {
       if (displayMode === "camera") { p.createCanvas(CANVAS_WIDTH, 480 / 3); }
@@ -479,7 +460,6 @@ export class ColorAmount {
 
 export function ReturnIsTouchedUsedColorRatio() { return isTouched; }
 export function ReturnRecommendedColor() { return returnColor; }
-export function ReturnUsedColors() { return usedColors; }
 export function ReturnColorsAmount() {
   console.log(colorsAmount);
   return colorsAmount;

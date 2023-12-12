@@ -4,7 +4,7 @@ import React from 'react';
 import p5 from 'p5';
 import { ReturnDrawingColor } from '../Reserch/Canvas';
 import Color from 'color';
-import { ColorAmount, ReturnColorsAmount, ReturnUsedColors } from './DisplayUsedColorRatio';
+import { ColorAmount, ReturnColorsAmount } from './DisplayUsedColorRatio';
 
 let returnColor = [0, 0, 0];
 let isTouchedColorGenerate = false;
@@ -78,7 +78,6 @@ export function ColorGanerateRe() {
       isTouchedColorGenerate = false;
       hue = p.hue(ReturnDrawingColor());
       hueBarX = p.hue(ReturnDrawingColor()) / 360 * p.width;
-      usedColors = ReturnUsedColors();
       colorsAmount = ReturnColorsAmount();
     }
 
