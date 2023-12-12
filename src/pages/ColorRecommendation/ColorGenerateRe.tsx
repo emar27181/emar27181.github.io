@@ -4,6 +4,7 @@ import React from 'react';
 import p5 from 'p5';
 import { ReturnDrawingColor } from '../Reserch/Canvas';
 import Color from 'color';
+import { ReturnUsedColors } from './DisplayUsedColorRatio';
 
 let returnColor = [0, 0, 0];
 let isTouchedColorGenerate = false;
@@ -15,6 +16,7 @@ export function ColorGanerateRe() {
     let hue = 0;
     let hueBarX = 50;
     const SPLIT = 100;
+    let usedColors: Array<p5.Color> = [];
 
     p.setup = () => {
       let rate = 0.35;
@@ -31,9 +33,14 @@ export function ColorGanerateRe() {
       p.background(0);
       //p.fill(255);
       displayColors();
-      displayColorsDot();
+      displayColorsDot(ReturnDrawingColor());
+      for (let i = 0; i < usedColors.length; i++) {
+        displayColorsDot(usedColors[i]);
+      }
+
       displayHueBar();
       displayHueBarButton();
+
       displayDrawingColor();
       displayDrawingColorInfo();
     };
@@ -61,6 +68,7 @@ export function ColorGanerateRe() {
       isTouchedColorGenerate = false;
       hue = p.hue(ReturnDrawingColor());
       hueBarX = p.hue(ReturnDrawingColor()) / 360 * p.width;
+      usedColors = ReturnUsedColors();
     }
 
     function setDrawingColor() {
@@ -100,11 +108,11 @@ export function ColorGanerateRe() {
       }
     }
 
-    function displayColorsDot() {
+    function displayColorsDot(color: p5.Color) {
       p.colorMode(p.HSL);
-      let saturation = p.round(p.saturation(ReturnDrawingColor()));
-      let brightness = p.round(p.brightness(ReturnDrawingColor()));
-      let lightness = p.round(p.lightness(ReturnDrawingColor()));
+      let saturation = p.round(p.saturation(color));
+      let brightness = p.round(p.brightness(color));
+      let lightness = p.round(p.lightness(color));
 
       p.noFill();
       p.stroke(100);

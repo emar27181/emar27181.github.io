@@ -8,6 +8,7 @@ import { ReturnCameraColors } from '../Reserch/ReturnCameraInfo';
 import { ReturnImageColors, ReturnReturnImageInfoCanvasSize } from '../Reserch/ReturnImageInfo';
 
 let returnColor: number[] = [0, 0, 0, 255];
+let usedColors: Array<p5.Color> = [];
 let isTouched = false;
 const DEBUG = false;
 const SPLIT_CANVAS_WIDTH = 8;
@@ -81,6 +82,24 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       canvasHeight = canvasSize[1];
       isTouched = false;
       backgroundColor = ReturnBackgroundColor();
+
+      for (let i = 0; i < colorsAmount.length; i++) {
+        updateUsedColors(colorsAmount[i].color, colorsAmount[i].amount);
+      }
+    }
+
+    function updateUsedColors(color: p5.Color, amount: number) {
+      if (p.saturation(color) <= SATURATION_LIMIT) { return; }
+      for (let i = 0; i < usedColors.length; i++) {
+        if (equalsColor(usedColors[i], color)) {
+          return;
+        }
+      }
+
+      if (amount >= 100) {
+        usedColors.push(color);
+        //console.log(p.red(color), p.green(color), p.blue(color));
+      }
     }
 
     function createCanvas() {
@@ -460,5 +479,6 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
 
 export function ReturnIsTouchedUsedColorRatio() { return isTouched; }
 export function ReturnRecommendedColor() { return returnColor; }
+export function ReturnUsedColors() { return usedColors; }
 
 export default DisplayUsedColorRatio
