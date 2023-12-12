@@ -43,6 +43,8 @@ export function ColorRecommendHome() {
       */}
 
       {DisplayCanvasAndColorRatio(5)}
+      {DisplayCanvasAndColorRatio(6)}
+      {DisplayCanvasAndColorRatio(7)}
 
       {/*
       <div style={{ display: 'flex' }}>
