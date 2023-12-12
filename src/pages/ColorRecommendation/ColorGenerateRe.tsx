@@ -94,7 +94,7 @@ export function ColorGanerateRe() {
       p.noStroke();
       for (let i = 0; i < SPLIT; i++) {
         for (let j = 0; j < SPLIT; j++) {
-          p.fill(hue, j, i);
+          p.fill(hue, i, 100 - j);
           p.rect(p.width / SPLIT * i, p.width / SPLIT * j, p.width / SPLIT + 1, p.width / SPLIT + 1);
         }
       }
@@ -108,7 +108,7 @@ export function ColorGanerateRe() {
 
       p.noFill();
       p.stroke(100);
-      p.ellipse(lightness / 100 * p.width, saturation / 100 * p.width, p.width / SPLIT + 3);
+      p.ellipse(saturation / 100 * p.width, p.width - lightness / 100 * p.width, p.width / SPLIT + 3);
       //p.rect(brightness / 100 * p.width, saturation / 100 * p.width, p.width / SPLIT);
     }
 
