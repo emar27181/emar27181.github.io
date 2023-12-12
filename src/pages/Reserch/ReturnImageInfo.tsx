@@ -27,6 +27,7 @@ const SPLIT = 100;
 let colorsInfo: Array<ColorInfo> = [];
 let isGetColors = false;
 let canvasColors: p5.Color[][] = [];
+let imagesCanvasColors: any[] = [];
 for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
 
 let canvasWidth = 0;
@@ -68,6 +69,7 @@ export function ReturnImageInfo(loadNumber: number) {
       }
       else {
         getCanvasColors();
+        imagesCanvasColors[loadNumber] = canvasColors;
         getColors();
         isGetColors = true;
       }
@@ -80,7 +82,7 @@ export function ReturnImageInfo(loadNumber: number) {
           //console.log(canvasColors[i][j]);
         }
       }
-      //console.log("画像の色データの取得が完了しました(loadNumber = " + loadNumber + ")");
+      console.log("画像の色データの取得が完了しました(loadNumber = " + loadNumber + ")");
     }
 
     function getColors() {
@@ -118,6 +120,7 @@ export function ReturnImageColorsInfo() { return colorsInfo; }
 //export function ReturnImageColors() { return canvasColors; }
 export function ReturnImageColors(loadNumber: number) {
   ReturnImageInfo(loadNumber);
+  //return imagesCanvasColors[loadNumber];
   return canvasColors;
 }
 
