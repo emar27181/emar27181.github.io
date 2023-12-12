@@ -47,12 +47,16 @@ export function ReturnImageInfo(loadNumber: number) {
     }
 
     p.preload = () => {
+
+      img = p.loadImage(photoImage[loadNumber]);
       // loadNumberに応じて読み込む画像を切り替え
+      /*
       for (let i = 0; i < photoImage.length; i++) {
         if (i === loadNumber) {
           img = p.loadImage(photoImage[i]);
+          console.log("画像を読み込みました(loadNumber = " + loadNumber + ")");
         }
-      }
+      }*/
     }
 
     p.setup = () => {
@@ -60,19 +64,15 @@ export function ReturnImageInfo(loadNumber: number) {
       canvasWidth = p.width;
       canvasHeight = p.height;
       p.image(img, 0, 0);
+
+      // キャンバスの色の取得
+      getCanvasColors();
+      imagesCanvasColors[loadNumber] = canvasColors;
+      getColors();
+      isGetColors = true;
     };
 
     p.draw = () => {
-
-      if (isGetColors) {
-
-      }
-      else {
-        getCanvasColors();
-        imagesCanvasColors[loadNumber] = canvasColors;
-        getColors();
-        isGetColors = true;
-      }
     };
 
     function getCanvasColors() {
@@ -120,8 +120,8 @@ export function ReturnImageColorsInfo() { return colorsInfo; }
 //export function ReturnImageColors() { return canvasColors; }
 export function ReturnImageColors(loadNumber: number) {
   ReturnImageInfo(loadNumber);
-  //return imagesCanvasColors[loadNumber];
-  return canvasColors;
+  return imagesCanvasColors[loadNumber];
+  //return canvasColors;
 }
 
 export default ReturnImageInfo
