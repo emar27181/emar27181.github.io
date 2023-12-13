@@ -25,8 +25,8 @@ export function DisplayUsedColorWheel() {
       p.translate(p.width / 2, p.height / 2);
 
       drawColorWheel(radius, 1);
-      drawUsedColorHue();
-      drawDrawingColorHue();
+      drawUsedColorsHue();
+      drawColorHue(p.color(0), p.hue(drawingColor));
     }
 
     function updateVariables() {
@@ -34,28 +34,21 @@ export function DisplayUsedColorWheel() {
       drawingColor = ReturnDrawingColor();
     }
 
-    function drawUsedColorHue() {
+    function drawUsedColorsHue() {
       let SATURATION_LIMIT = 15;
       for (let i = 0; i < colorsAmount.length; i++) {
         if (colorsAmount[i].amount <= 20 || p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) { continue; }
         let angle = p.hue(colorsAmount[i].color);
-        let x = radius * p.cos(p.radians(angle));
-        let y = radius * p.sin(p.radians(angle));
-
-        p.stroke(255);
-        p.fill(255);
-        p.line(0, 0, x, y);
-        p.strokeWeight(0.005 * p.width);
-        p.ellipse(x, y, 0.03 * p.width);
+        drawColorHue(p.color(255), angle);
       }
     }
-    function drawDrawingColorHue() {
-      let angle = p.hue(drawingColor);
+
+    function drawColorHue(color: p5.Color, angle: number) {
       let x = radius * p.cos(p.radians(angle));
       let y = radius * p.sin(p.radians(angle));
 
-      p.stroke(0);
-      p.fill(0);
+      p.stroke(color);
+      p.fill(color);
       p.line(0, 0, x, y);
       p.strokeWeight(0.005 * p.width);
       p.ellipse(x, y, 0.03 * p.width);
