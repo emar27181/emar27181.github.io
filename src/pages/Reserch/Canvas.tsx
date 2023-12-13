@@ -505,24 +505,18 @@ export function Canvas() {
       if (0 <= p.mouseX && p.mouseX <= p.width && 0 <= p.mouseY && p.mouseY <= p.height) {
         if (clickMode === "add") { addBall(); }
         //else if (clickMode === "gravity") { moveBallsGravity(p.mouseX, p.mouseY); }
-        if (clickMode === "newGravityBall") {
+        else if (clickMode === "newGravityBall") {
           ballsGravity.push(new Ball(p.mouseX, p.mouseY, 10, p.color(255, 0, 0), 9));
           gravityX.push(p.mouseX);
           gravityY.push(p.mouseY);
-
-          /*
-          console.log("gravityX");
-          console.log(gravityX);
-          console.log("gravityY");
-          console.log(gravityY);
-          */
+        }
+        else if (clickMode === "draw") {
+          drawingLayer.noStroke();
+          drawingLayer.fill(p.red(drawingColor), p.green(drawingColor), p.blue(drawingColor), alpha);
+          drawingLayer.ellipse(p.mouseX, p.mouseY, drawingWeight);
         }
       }
-      if (clickMode === "draw") {
-        drawingLayer.noStroke();
-        drawingLayer.fill(p.red(drawingColor), p.green(drawingColor), p.blue(drawingColor), alpha);
-        drawingLayer.ellipse(p.mouseX, p.mouseY, drawingWeight);
-      }
+
     }
 
     //キーボードによる操作(タイプして離れるまで繰り返し呼び出し)
