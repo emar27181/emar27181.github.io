@@ -9,6 +9,7 @@ import OperateGuiControl from '../pages/Reserch/OperateGuiControl';
 import DisplayCanvasFilter from '../pages/ColorRecommendation/DisplayCanvasFilter';
 import ColorGanerateRe from '../pages/ColorRecommendation/ColorGenerateRe';
 import AllScrollLock from '../components/AllScrollLock';
+import DisplayUsedColorWheel from '../pages/ColorRecommendation/DisplayUsedColorWheel';
 
 let isCanvasHome = false;
 
@@ -22,6 +23,7 @@ export function U22programmingContestHome() {
       <div style={{ display: 'flex', margin: 0 }}>
         <div>
           <ColorGanerateRe />
+          <DisplayUsedColorWheel />
           <OperateGuiControl />
         </div>
         <div style={{ overflow: 'hidden' }}>
