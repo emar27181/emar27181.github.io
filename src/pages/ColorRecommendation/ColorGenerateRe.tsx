@@ -51,7 +51,8 @@ export function ColorGanerateRe() {
         }
         if (colorsAmount[i].amount >= 50) {
           let displayRate = 0.005 * colorsAmount[i].amount;
-          displayColorsDot(colorsAmount[i].color, displayRate, p.color(255, 255, 255),);
+          displayColorsDot(colorsAmount[i].color, 1, p.color(255, 255, 255),);
+          //displayColorsDot(colorsAmount[i].color, displayRate, p.color(255, 255, 255),);
           //displayColorsDot(colorsAmount[i].color, 0.7, p.color(0, 0, 0, 0.3),);
         }
       }
