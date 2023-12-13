@@ -42,8 +42,9 @@ export function DisplayUsedColorWheel() {
         let x = radius * p.cos(p.radians(angle));
         let y = radius * p.sin(p.radians(angle));
 
-        p.noFill();
         p.stroke(255);
+        p.fill(255);
+        p.line(0, 0, x, y);
         p.strokeWeight(0.005 * p.width);
         p.ellipse(x, y, 0.03 * p.width);
       }
@@ -53,8 +54,9 @@ export function DisplayUsedColorWheel() {
       let x = radius * p.cos(p.radians(angle));
       let y = radius * p.sin(p.radians(angle));
 
-      p.noFill();
       p.stroke(0);
+      p.fill(0);
+      p.line(0, 0, x, y);
       p.strokeWeight(0.005 * p.width);
       p.ellipse(x, y, 0.03 * p.width);
     }
