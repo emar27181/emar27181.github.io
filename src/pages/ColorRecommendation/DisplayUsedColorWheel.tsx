@@ -28,7 +28,17 @@ export function DisplayUsedColorWheel() {
       drawColorWheel(radius, 1);
       drawUsedColorsHue();
       drawColorHue(p.color(0), p.hue(drawingColor));
+      drawUsedColorsLine();
       //console.log(usedColors)
+    }
+
+    function drawUsedColorsLine() {
+      for (let i = 0; i < usedColors.length; i++) {
+        for (let j = i + 1; j < usedColors.length; j++) {
+          p.stroke(255);
+          p.line(usedColors[i].position.x, usedColors[i].position.y, usedColors[j].position.x, usedColors[j].position.y);
+        }
+      }
     }
 
     function updateVariables() {
@@ -73,7 +83,7 @@ export function DisplayUsedColorWheel() {
 
       p.stroke(color);
       p.fill(color);
-      p.line(0, 0, x, y);
+      //p.line(0, 0, x, y);
       p.strokeWeight(0.005 * p.width);
       p.ellipse(x, y, 0.03 * p.width);
     }
