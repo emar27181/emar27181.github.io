@@ -49,7 +49,7 @@ export function ColorGanerateRe() {
         if (p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) {
           continue;
         }
-        if (colorsAmount[i].amount >= 5) {
+        if (colorsAmount[i].amount >= 30) {
           let displayRate = 0.005 * colorsAmount[i].amount;
           displayColorsDot(colorsAmount[i].color, 1, p.color(255, 255, 255),);
           //displayColorsDot(colorsAmount[i].color, displayRate, p.color(255, 255, 255),);
