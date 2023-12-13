@@ -85,8 +85,11 @@ export function ColorGanerateRe() {
     }
 
     function setDrawingColor() {
-      let color = p.get(p.mouseX, p.mouseY);
-      returnColor = [p.hue(color), p.saturation(color), p.lightness(color)];
+      let x = (p.mouseX / p.width) * 100;
+      let y = (p.mouseY / p.width) * 100;
+      returnColor = [hue, x, 100 - y];
+      //let color = p.get(p.mouseX, p.mouseY);
+      //returnColor = [p.hue(color), p.saturation(color), p.lightness(color)];
     }
 
     function displayDrawingColorInfo() {
