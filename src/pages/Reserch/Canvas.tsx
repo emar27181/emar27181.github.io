@@ -18,9 +18,10 @@ import { ReturnIsDesktop } from '../../App';
 import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecommendation/DisplayColorRatioOnlyFrontendontend';
 import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorRecommendation/DisplayUsedColorRatio';
 import { ReturnBarValue, ReturnClickedKey, ReturnIsButtonClicked, ReturnIsTouchedGui } from './OperateGuiControl';
-import coloringImageFilePath from '../../assets/coloring_sample_image.png';
 import { ReturnIsLoadImage, ReturnLoadImageUrl } from '../TestDragAndPaste';
 
+import coloringImageFilePath from '../../assets/coloring_sample_image.png';
+//import coloringImageFilePath from '../../assets/196_20231213170929.png';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
