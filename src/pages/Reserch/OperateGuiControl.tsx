@@ -17,7 +17,7 @@ export function OperateGuiControl() {
     p.setup = () => {
       p.frameRate(30);
       let rate = 0.35;
-      p.createCanvas(rate * window.innerWidth / 3, rate * window.innerWidth / 3);
+      p.createCanvas(rate * window.innerWidth / 3, rate * window.innerWidth / 6);
       //p.createCanvas(200, 100);
       p.background(0);
       p.textSize(0.1 * p.width);
