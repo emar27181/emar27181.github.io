@@ -28,7 +28,7 @@ export function OperateGuiControl() {
       p.background(0);
       displayControlBar();
 
-      displayButton(p.width / 20, p.width / 4, p.width * 3 / 20, p.width * 3 / 20, 'c');
+      //displayButton(p.width / 20, p.width / 4, p.width * 3 / 20, p.width * 3 / 20, 'c');
       displayButton(p.width / 4, p.width / 4, p.width * 3 / 20, p.width * 3 / 20, 'e');
       displayButton(p.width * 9 / 20, p.width / 4, p.width * 3 / 20, p.width * 3 / 20, 's');
       //displayButton(10, 50, 30, 30, 'c');
@@ -54,11 +54,13 @@ export function OperateGuiControl() {
         barX = p.mouseX;
         isTouched = true;
       }
+      /*
       if (judgeClicked(p.width / 20, p.width / 4, p.width * 3 / 20, p.width * 3 / 20)) {
         //if (judgeClicked(10, 50, 30, 30)) {
         isButtonClicked = true;
         clickedKey = 'c';
       }
+      */
       if (judgeClicked(p.width / 4, p.width / 4, p.width * 3 / 20, p.width * 3 / 20)) {
         //if (judgeClicked(50, 50, 30, 30)) {
         isButtonClicked = true;
