@@ -461,7 +461,7 @@ export class ColorAmount {
 export function ReturnIsTouchedUsedColorRatio() { return isTouched; }
 export function ReturnRecommendedColor() { return returnColor; }
 export function ReturnColorsAmount() {
-  console.log(colorsAmount);
+  //console.log(colorsAmount);
   return colorsAmount;
 }
 
