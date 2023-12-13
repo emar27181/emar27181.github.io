@@ -2,11 +2,14 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ColorAmount, ReturnColorsAmount } from './DisplayUsedColorRatio';
+import p5 from 'p5';
+import { ReturnDrawingColor } from '../Reserch/Canvas';
 
 export function DisplayUsedColorWheel() {
   const sketch = (p: P5CanvasInstance) => {
 
     let colorsAmount: Array<ColorAmount> = [];
+    let drawingColor: p5.Color;
     let radius = 0;
 
     p.setup = () => {
@@ -21,12 +24,14 @@ export function DisplayUsedColorWheel() {
       p.background(0);
       p.translate(p.width / 2, p.height / 2);
 
-      drawColorWheel(radius, 15);
+      drawColorWheel(radius, 1);
       drawUsedColorHue();
+      drawDrawingColorHue();
     }
 
     function updateVariables() {
       colorsAmount = ReturnColorsAmount();
+      drawingColor = ReturnDrawingColor();
     }
 
     function drawUsedColorHue() {
@@ -41,8 +46,17 @@ export function DisplayUsedColorWheel() {
         p.stroke(255);
         p.strokeWeight(0.005 * p.width);
         p.ellipse(x, y, 0.03 * p.width);
-
       }
+    }
+    function drawDrawingColorHue() {
+      let angle = p.hue(drawingColor);
+      let x = radius * p.cos(p.radians(angle));
+      let y = radius * p.sin(p.radians(angle));
+
+      p.noFill();
+      p.stroke(0);
+      p.strokeWeight(0.005 * p.width);
+      p.ellipse(x, y, 0.03 * p.width);
     }
 
     function drawColorWheel(radius: number, resolution: number) {
