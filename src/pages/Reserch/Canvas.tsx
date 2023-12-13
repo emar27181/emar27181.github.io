@@ -107,6 +107,7 @@ export function Canvas() {
       p.createCanvas(rate * window.innerWidth, rate * window.innerWidth);
       //if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
       //else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
+      coloringImage.resize(p.width, p.height);
       canvasWidth = p.width, canvasHeight = p.height;
       p.background(backgroundColor);
       ballsTrackigGravity.push(new Ball(0, 0, 100, p.color(0, 255, 0), 9)); //1番目に認識される手
@@ -123,7 +124,7 @@ export function Canvas() {
       UpdateVariables();
       p.image(drawingBrushLayer, 0, 0);
       p.image(drawingLayer, 0, 0);
-      p.image(coloringImage, -50, 0);
+      p.image(coloringImage, 0, 0);
       //p.image(loadImage, 0, 0); //バグ有り(2023/12/03)
       //p.image(drawingBrushLayer, 0, 0); 
 
