@@ -9,6 +9,7 @@ export function DisplayUsedColorWheel() {
   const sketch = (p: P5CanvasInstance) => {
 
     let colorsAmount: Array<ColorAmount> = [];
+    let usedColors: Array<UsedColor> = [];
     let drawingColor: p5.Color;
     let radius = 0;
 
@@ -27,6 +28,7 @@ export function DisplayUsedColorWheel() {
       drawColorWheel(radius, 1);
       drawUsedColorsHue();
       drawColorHue(p.color(0), p.hue(drawingColor));
+      //console.log(usedColors)
     }
 
     function updateVariables() {
@@ -45,13 +47,24 @@ export function DisplayUsedColorWheel() {
       p.colorMode(p.RGB);
       let SATURATION_LIMIT = 15;
       for (let i = 0; i < colorsAmount.length; i++) {
-        if (colorsAmount[i].amount <= 20 || p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) { continue; }
+        if (colorsAmount[i].amount <= 10 || p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) { continue; }
         let hue = p.hue(colorsAmount[i].color);
-        if ((9 <= hue && hue <= 11) || (32 <= hue && hue <= 34)) { console.log("called"); continue; }
+        if ((9 <= hue && hue <= 11) || (32 <= hue && hue <= 34)) { continue; }
 
         let angle = p.hue(colorsAmount[i].color);
         drawColorHue(p.color(255), angle);
+
+        let x = radius * p.cos(p.radians(angle));
+        let y = radius * p.sin(p.radians(angle));
+        updateUsedColors(colorsAmount[i].color, x, y);
       }
+    }
+
+    function updateUsedColors(color: p5.Color, x: number, y: number) {
+      for (let i = 0; i < usedColors.length; i++) {
+        if (p.hue(usedColors[i].color) === p.hue(color)) { return; }
+      }
+      usedColors.push(new UsedColor(color, x, y));
     }
 
     function drawColorHue(color: p5.Color, angle: number) {
@@ -83,7 +96,18 @@ export function DisplayUsedColorWheel() {
         p.ellipse(x, y, p.width / 40, p.height / 40);
       }
     }
+    class UsedColor {
+      color: p5.Color;
+      position: p5.Vector;
+
+      constructor(color: p5.Color, x: number, y: number) {
+        this.color = color;
+        this.position = p.createVector(x, y);
+      }
+    }
   }
+
+
 
   return (
     <ReactP5Wrapper sketch={sketch} />
