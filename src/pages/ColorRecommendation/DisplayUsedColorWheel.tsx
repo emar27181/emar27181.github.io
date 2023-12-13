@@ -34,10 +34,21 @@ export function DisplayUsedColorWheel() {
       drawingColor = ReturnDrawingColor();
     }
 
+    function equalsColor(color1: p5.Color, color2: p5.Color) {
+      let red1 = p.red(color1), green1 = p.green(color1), blue1 = p.blue(color1);
+      let red2 = p.red(color2), green2 = p.green(color2), blue2 = p.blue(color2);
+      //console.log("equalsColor((" + red1 + ", " + green1 + ", " + blue1 + "), (" + red2 + ", " + green2 + ", " + blue2 + "))= " + ((red1 === red2) && (green1 === green2) && (blue1 === blue2)));
+      return (((red1 === red2) && (green1 === green2) && (blue1 === blue2)));
+    }
+
     function drawUsedColorsHue() {
+      p.colorMode(p.RGB);
       let SATURATION_LIMIT = 15;
       for (let i = 0; i < colorsAmount.length; i++) {
         if (colorsAmount[i].amount <= 20 || p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) { continue; }
+        let hue = p.hue(colorsAmount[i].color);
+        if ((9 <= hue && hue <= 11) || (32 <= hue && hue <= 34)) { console.log("called"); continue; }
+
         let angle = p.hue(colorsAmount[i].color);
         drawColorHue(p.color(255), angle);
       }
