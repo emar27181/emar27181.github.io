@@ -30,6 +30,7 @@ export function OperateGuiControl() {
 
       displayButton(p.width / 20, p.width / 4, p.width * 3 / 20, p.width * 3 / 20, 'c');
       displayButton(p.width / 4, p.width / 4, p.width * 3 / 20, p.width * 3 / 20, 'e');
+      displayButton(p.width * 9 / 20, p.width / 4, p.width * 3 / 20, p.width * 3 / 20, 's');
       //displayButton(10, 50, 30, 30, 'c');
       //displayButton(50, 50, 30, 30, 'e');
       updateVariables();
@@ -62,6 +63,11 @@ export function OperateGuiControl() {
         //if (judgeClicked(50, 50, 30, 30)) {
         isButtonClicked = true;
         clickedKey = 'e';
+      }
+      if (judgeClicked(p.width * 9 / 20, p.width / 4, p.width * 3 / 20, p.width * 3 / 20)) {
+        //if (judgeClicked(50, 50, 30, 30)) {
+        isButtonClicked = true;
+        clickedKey = 's';
       }
     }
 
