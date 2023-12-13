@@ -44,12 +44,12 @@ export function ColorGanerateRe() {
     };
 
     function displayUsedColorsDot() {
-      const SATURATION_LIMIT = 15;
+      const SATURATION_LIMIT = 0;
       for (let i = 0; i < colorsAmount.length; i++) {
         if (p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) {
           continue;
         }
-        if (colorsAmount[i].amount >= 50) {
+        if (colorsAmount[i].amount >= 30) {
           let displayRate = 0.005 * colorsAmount[i].amount;
           displayColorsDot(colorsAmount[i].color, 1, p.color(255, 255, 255),);
           //displayColorsDot(colorsAmount[i].color, displayRate, p.color(255, 255, 255),);
@@ -85,8 +85,11 @@ export function ColorGanerateRe() {
     }
 
     function setDrawingColor() {
-      let color = p.get(p.mouseX, p.mouseY);
-      returnColor = [p.hue(color), p.saturation(color), p.lightness(color)];
+      let x = (p.mouseX / p.width) * 100;
+      let y = (p.mouseY / p.width) * 100;
+      returnColor = [hue, x, 100 - y];
+      //let color = p.get(p.mouseX, p.mouseY);
+      //returnColor = [p.hue(color), p.saturation(color), p.lightness(color)];
     }
 
     function displayDrawingColorInfo() {
