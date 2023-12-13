@@ -517,11 +517,11 @@ export function Canvas() {
           console.log(gravityY);
           */
         }
-        if (clickMode === "draw") {
-          drawingLayer.noStroke();
-          drawingLayer.fill(p.red(drawingColor), p.green(drawingColor), p.blue(drawingColor), alpha);
-          drawingLayer.ellipse(p.mouseX, p.mouseY, drawingWeight);
-        }
+      }
+      if (clickMode === "draw") {
+        drawingLayer.noStroke();
+        drawingLayer.fill(p.red(drawingColor), p.green(drawingColor), p.blue(drawingColor), alpha);
+        drawingLayer.ellipse(p.mouseX, p.mouseY, drawingWeight);
       }
     }
 
