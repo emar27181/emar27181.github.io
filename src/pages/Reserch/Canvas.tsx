@@ -46,7 +46,7 @@ let fps = DEFAULT_FPS;
 let standardDeviationLimit = 0, resistanceValue = 0.95;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = false;
 let isMoveBallGravity = false, isTracking = false, isRepulsion = false;
-let isMouseGravity = false, isEraser = false;
+let isMouseGravity = false, isEraser = false, isSpuit = false;
 let angle = 0, radius = 0, speed = 1;
 let gravityX: number[] = [], gravityY: number[] = [];
 let trackingData: number[][] = [[0, 0, 0, 0], [0, 0, 0, 0]];
@@ -250,6 +250,9 @@ export function Canvas() {
       if (ReturnIsButtonClicked() && (ReturnClickedKey() === 'e')) {
         p.key = "e";
         p.keyTyped();
+      }
+      if (ReturnIsButtonClicked() && (ReturnClickedKey() === 's')) {
+        isSpuit = true;
       }
       backgroundColor = p.color(p.red(backgroundColor), p.green(backgroundColor), p.blue(backgroundColor), backgroundAlpha);
       updateDrawingBrushLayer();
@@ -519,6 +522,15 @@ export function Canvas() {
 
     }
 
+    p.mousePressed = () => {
+      if (isSpuit) {
+        let input = p.get(p.mouseX, p.mouseY);
+        drawingColor = p.color(input[0], input[1], input[2], input[3]);
+        drawingWeight = 10;
+        isSpuit = false;
+      }
+    }
+
     //キーボードによる操作(タイプして離れるまで繰り返し呼び出し)
     p.keyPressed = () => {
       //描画サイズの拡大縮小
@@ -562,6 +574,7 @@ export function Canvas() {
           //console.log("drawingColor: " + drawingColor);
           //console.log("typeof:" + typeof (drawingColor));
         }
+
       }
       if (p.key === "d") {
         addCameraBalls();
