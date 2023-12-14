@@ -75,47 +75,35 @@ export function DisplayUsedColorWheel() {
     }
 
     function drawUsedColors() {
+      if (usedColors.length === 0) { return }
 
-      /*
+      //点の描画
       for (let i = 0; i < usedColors.length; i++) {
-
-        let x1 = usedColors[i].position.x;
-        let y1 = usedColors[i].position.y;
-        let x2 = usedColors[i + 1].position.x;
-        let y2 = usedColors[i + 1].position.y;
-        let distance = returnDistance(x1, y1, x2, y2);
-
-        for (let j = i + 2; j < usedColors.length; j++) {
-          if (returnDistance(x1, y1, usedColors[j].position.x, usedColors[j].position.y) < distance) {
-            x2 = usedColors[j].position.x;
-            y2 = usedColors[j].position.y;
-            distance = returnDistance(x1, y1, usedColors[j].position.x, usedColors[j].position.y);
-          }
-        }
-
-        p.stroke(0);
-        p.line(x1, y1, x2, y2);
-
-        for (let j = i + 2; j < usedColors.length; j++) {
-          if (returnDistance(x1, y1, usedColors[j].position.x, usedColors[j].position.y) < distance) {
-            x2 = usedColors[j].position.x;
-            y2 = usedColors[j].position.y;
-            distance = returnDistance(x1, y1, usedColors[j].position.x, usedColors[j].position.y);
-          }
-        }
-      }
-      */
-
-      for (let i = 0; i < usedColors.length; i++) {
-        //点の描画
         drawColorHueDot(p.color(0), usedColors[i].position.x, usedColors[i].position.y);
+      }
 
-        //線の描画
-        for (let j = i + 1; j < usedColors.length; j++) {
-          p.stroke(0);
-          p.line(usedColors[i].position.x, usedColors[i].position.y, usedColors[j].position.x, usedColors[j].position.y);
+      //線の描画
+      let x1 = usedColors[0].position.x;
+      let y1 = usedColors[0].position.y;
+      let hue = p.round(p.hue(usedColors[0].color));
+
+      for (let i = hue; i <= 360; i++) {
+        for (let j = 0; j < usedColors.length; j++) {
+          if (p.round(p.hue(usedColors[j].color)) === (i % 360)) {
+            let x2 = usedColors[j].position.x;
+            let y2 = usedColors[j].position.y;
+
+            p.stroke(0);
+            p.line(x1, y1, x2, y2);
+
+            x1 = x2;
+            y1 = y2;
+          }
         }
       }
+      //最後の点と最初の点の間の線の描画
+      p.stroke(0);
+      p.line(x1, y1, usedColors[0].position.x, usedColors[0].position.y);
 
     }
 
@@ -123,10 +111,11 @@ export function DisplayUsedColorWheel() {
       resetUsedColors();
       p.colorMode(p.RGB);
       let SATURATION_LIMIT = 15;
+      let AMOUNT_LIMIT = 15
       for (let i = 0; i < colorsAmount.length; i++) {
-        if (colorsAmount[i].amount <= 10 || p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) { continue; }
+        if (colorsAmount[i].amount <= AMOUNT_LIMIT || p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) { continue; }
         let hue = p.hue(colorsAmount[i].color);
-        if ((8 <= hue && hue <= 11) || (32 <= hue && hue <= 34)) { continue; }
+        // if ((8 <= hue && hue <= 11) || (32 <= hue && hue <= 34)) { continue; } 
 
         let angle = p.hue(colorsAmount[i].color);
         //drawColorHueDot(p.color(0), angle);
