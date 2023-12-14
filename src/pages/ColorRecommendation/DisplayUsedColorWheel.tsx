@@ -71,10 +71,6 @@ export function DisplayUsedColorWheel() {
       }
     }
 
-    function returnDistance(x1: number, y1: number, x2: number, y2: number) {
-      return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
-    }
-
     function drawUsedColors() {
       if (usedColors.length === 0) { return }
 
@@ -149,19 +145,6 @@ export function DisplayUsedColorWheel() {
       p.colorMode(p.HSL);
       usedColors.push(new UsedColor(p.color(hue, 50, 50), amount, x, y));
       p.colorMode(p.RGB);
-
-      /*
-      for (let i = 0; i < usedColors.length; i++) {
-        //すでに保存されていた色相だった場合
-        if (p.round(p.hue(usedColors[i].color)) === p.round(p.hue(color))) {
-          usedColors[i].amount += amount;
-          return;
-        }
-      }
-
-      //まだ保存されていなかった色相だった場合
-      usedColors.push(new UsedColor(color, amount, x, y));
-      */
     }
 
     function drawColorHueDot(color: p5.Color, x: number, y: number) {
