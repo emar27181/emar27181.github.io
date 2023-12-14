@@ -20,11 +20,22 @@ import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorR
 import { ReturnBarValue, ReturnClickedKey, ReturnIsButtonClicked, ReturnIsTouchedGui } from './OperateGuiControl';
 import { ReturnIsLoadImage, ReturnLoadImageUrl } from '../TestDragAndPaste';
 
-//import coloringImageFilePath from '../../assets/coloring_sample_image.png';
+//importでファイルパスを読み込む場合
+//import coloringImageFilePath from '../../assets/xxx.png';
+//変数でファイルパスを読み込む場合
+// coloringImageFilePath = 'src/assets/xxx.png';
+
 //import coloringImageFilePath from '../../assets/196_20231213170937.png';
 //import coloringImageFilePath from '../../assets/img_1701616372.png';
-import coloringImageFilePath from '../../assets/IMG_9803.png';
-//import coloringImageFilePath from '../..//assets/NCG255-510x510.jpg';
+
+//let coloringImageFilePath = '../../assets/IMG_9803.png';
+let coloringImageFilePath: string[] = [];
+coloringImageFilePath.push('src/assets/IMG_9803.png');
+coloringImageFilePath.push('src/assets/IMG_9802.png');
+coloringImageFilePath.push('src/assets/IMG_9801.png');
+coloringImageFilePath.push('src/assets/NCG255-510x510.jpg');
+coloringImageFilePath.push('src/assets/img_1701616372.png');
+coloringImageFilePath.push('src/assets/196_20231213170937.png');
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
@@ -98,7 +109,7 @@ export function Canvas() {
     let loadImage: p5.Image;
 
     p.preload = () => {
-      coloringImage = p.loadImage(coloringImageFilePath);
+      coloringImage = p.loadImage(coloringImageFilePath[2]);
       if (ReturnIsLoadImage()) {
         loadImage = p.loadImage(ReturnLoadImageUrl()); //バグ有り(2023/12/03)
         console.log(ReturnLoadImageUrl());
