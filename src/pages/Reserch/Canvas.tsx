@@ -20,8 +20,8 @@ import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorR
 import { ReturnBarValue, ReturnClickedKey, ReturnIsButtonClicked, ReturnIsTouchedGui } from './OperateGuiControl';
 import { ReturnIsLoadImage, ReturnLoadImageUrl } from '../TestDragAndPaste';
 
-import coloringImageFilePath from '../../assets/coloring_sample_image.png';
-//import coloringImageFilePath from '../../assets/196_20231213170929.png';
+//import coloringImageFilePath from '../../assets/coloring_sample_image.png';
+import coloringImageFilePath from '../../assets/196_20231213170937.png';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
