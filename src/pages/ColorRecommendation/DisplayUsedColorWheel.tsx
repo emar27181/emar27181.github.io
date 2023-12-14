@@ -29,7 +29,7 @@ export function DisplayUsedColorWheel() {
       drawUsedColorsHue();
       drawUsedColorsLine();
       drawRecommendedColorsLine(); //
-      drawColorHue(p.color(0, 0, 0, 150), p.hue(drawingColor));
+      drawColorHue(p.color(255), p.hue(drawingColor));
       //console.log(usedColors)
     }
 
@@ -56,7 +56,7 @@ export function DisplayUsedColorWheel() {
     function drawUsedColorsLine() {
       for (let i = 0; i < usedColors.length; i++) {
         for (let j = i + 1; j < usedColors.length; j++) {
-          p.stroke(255);
+          p.stroke(0);
           p.line(usedColors[i].position.x, usedColors[i].position.y, usedColors[j].position.x, usedColors[j].position.y);
         }
       }
@@ -83,7 +83,7 @@ export function DisplayUsedColorWheel() {
         if ((8 <= hue && hue <= 11) || (32 <= hue && hue <= 34)) { continue; }
 
         let angle = p.hue(colorsAmount[i].color);
-        drawColorHue(p.color(255), angle);
+        drawColorHue(p.color(0), angle);
 
         let x = radius * p.cos(p.radians(angle));
         let y = radius * p.sin(p.radians(angle));
