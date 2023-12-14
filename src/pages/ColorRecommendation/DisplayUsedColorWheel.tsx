@@ -59,7 +59,7 @@ export function DisplayUsedColorWheel() {
       for (let i = 0; i < colorsAmount.length; i++) {
         if (colorsAmount[i].amount <= 10 || p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) { continue; }
         let hue = p.hue(colorsAmount[i].color);
-        if ((9 <= hue && hue <= 11) || (32 <= hue && hue <= 34)) { continue; }
+        if ((8 <= hue && hue <= 11) || (32 <= hue && hue <= 34)) { continue; }
 
         let angle = p.hue(colorsAmount[i].color);
         drawColorHue(p.color(255), angle);
