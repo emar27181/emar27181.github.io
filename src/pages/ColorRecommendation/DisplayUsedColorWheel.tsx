@@ -105,6 +105,16 @@ export function DisplayUsedColorWheel() {
         p.fill(color);
         p.ellipse(x, y, p.width / 40, p.height / 40);
       }
+
+      //色相差を表す点の追加
+      for (let angle = 0; angle < 360; angle += 15) {
+        let x = radius * p.cos(p.radians(angle));
+        let y = radius * p.sin(p.radians(angle));
+
+        p.noFill();
+        p.stroke(0, 0, 0, 100);
+        p.ellipse(x, y, p.width / 40, p.height / 40);
+      }
     }
     class UsedColor {
       color: p5.Color;
