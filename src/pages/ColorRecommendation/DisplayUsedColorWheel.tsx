@@ -107,11 +107,10 @@ export function DisplayUsedColorWheel() {
       let x1 = usedColors[0].position.x;
       let y1 = usedColors[0].position.y;
       let hue = p.round(p.hue(usedColors[0].color));
-      //console.log("hue: " + hue);
 
-      for (let i = hue; i <= 360; i++) {
+      for (let i = hue; i <= hue + 360; i++) {
         for (let j = 0; j < usedColors.length; j++) {
-          if (p.round(p.hue(usedColors[j].color)) === (i % 360)) {
+          if (p.round(p.hue(usedColors[j].color)) === ((i % 360))) {
             let x2 = usedColors[j].position.x;
             let y2 = usedColors[j].position.y;
 
