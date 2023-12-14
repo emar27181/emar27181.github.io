@@ -32,6 +32,7 @@ export function DisplayUsedColorWheel() {
       drawRecommendedColorsLine();
       drawColorHueDot(p.color(255), radius * p.cos(p.radians(p.hue(drawingColor))), radius * p.sin(p.radians(p.hue(drawingColor))));
       //console.log(usedColors)
+      //console.log("usedColors.length: " + usedColors.length);
     }
     function updateVariables() {
       colorsAmount = ReturnColorsAmount();
@@ -111,7 +112,7 @@ export function DisplayUsedColorWheel() {
       resetUsedColors();
       p.colorMode(p.RGB);
       let SATURATION_LIMIT = 15;
-      let AMOUNT_LIMIT = 15
+      let AMOUNT_LIMIT = 20;
       for (let i = 0; i < colorsAmount.length; i++) {
         if (colorsAmount[i].amount <= AMOUNT_LIMIT || p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) { continue; }
         let hue = p.hue(colorsAmount[i].color);
@@ -134,6 +135,7 @@ export function DisplayUsedColorWheel() {
       let hue = p.round(p.hue(color));
       const SPLIT = 30; //SPLIT: 分割する角度(この値で四捨五入(?)される)
       hue = p.round(hue / SPLIT) * SPLIT;
+      if (hue === 360) { hue = 0; }
 
       for (let i = 0; i < usedColors.length; i++) {
         //すでに保存されていた色相だった場合
