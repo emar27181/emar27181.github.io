@@ -30,6 +30,7 @@ import { ReturnIsLoadImage, ReturnLoadImageUrl } from '../TestDragAndPaste';
 
 //let coloringImageFilePath = '../../assets/IMG_9803.png';
 let coloringImageFilePath: string[] = [];
+coloringImageFilePath.push('src/assets/coloring_sample_image.png');
 coloringImageFilePath.push('src/assets/IMG_9803.png');
 coloringImageFilePath.push('src/assets/IMG_9802.png');
 coloringImageFilePath.push('src/assets/IMG_9801.png');
@@ -118,8 +119,12 @@ export function Canvas() {
 
     p.setup = () => {
       let rate = 0.35;
-      let aspectRatio = coloringImage.width / coloringImage.height;
-      p.createCanvas(aspectRatio * rate * window.innerWidth, rate * window.innerWidth);
+      //let aspectRatio = coloringImage.width / coloringImage.height; //縦幅基準
+      //p.createCanvas(aspectRatio * rate * window.innerWidth, rate * window.innerWidth);
+
+      let aspectRatio = coloringImage.height / coloringImage.width; //横幅基準
+      p.createCanvas(rate * window.innerWidth, aspectRatio * rate * window.innerWidth);
+
       //if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
       //else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
       coloringImage.resize(p.width, p.height);
