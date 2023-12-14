@@ -97,6 +97,7 @@ export function Canvas() {
     let keepDrawingColor = drawingColor;
     returnDrawingColor = p.color(255, 0, 0);
     backgroundColor = p.color(255, 255, 255);
+    let rate = 0.35;
     //backgroundColor = p.color(0, 0, 0);
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
@@ -106,11 +107,14 @@ export function Canvas() {
     let coloringImageLayer: Graphics;
     let drawingBrushLayer: Graphics;
     let drawingLayer: Graphics;
-    let coloringImage: p5.Image;
+    let coloringImages: Array<p5.Image> = [];
     let loadImage: p5.Image;
 
     p.preload = () => {
-      coloringImage = p.loadImage(coloringImageFilePath[2]);
+      for (let i = 0; i < coloringImageFilePath.length; i++) {
+        coloringImages.push(p.loadImage(coloringImageFilePath[i]));
+      }
+
       if (ReturnIsLoadImage()) {
         loadImage = p.loadImage(ReturnLoadImageUrl()); //バグ有り(2023/12/03)
         console.log(ReturnLoadImageUrl());
@@ -118,16 +122,13 @@ export function Canvas() {
     }
 
     p.setup = () => {
-      let rate = 0.35;
       //let aspectRatio = coloringImage.width / coloringImage.height; //縦幅基準
       //p.createCanvas(aspectRatio * rate * window.innerWidth, rate * window.innerWidth);
-
-      let aspectRatio = coloringImage.height / coloringImage.width; //横幅基準
+      let aspectRatio = coloringImages[0].height / coloringImages[0].width; //横幅基準
       p.createCanvas(rate * window.innerWidth, aspectRatio * rate * window.innerWidth);
-
-      //if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
-      //else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
-      coloringImage.resize(p.width, p.height);
+      for (let i = 0; i < coloringImages.length; i++) {
+        coloringImages[i].resize(p.width, p.height);
+      }
       canvasWidth = p.width, canvasHeight = p.height;
       p.background(backgroundColor);
       ballsTrackigGravity.push(new Ball(0, 0, 100, p.color(0, 255, 0), 9)); //1番目に認識される手
@@ -144,7 +145,8 @@ export function Canvas() {
       UpdateVariables();
       p.image(drawingBrushLayer, 0, 0);
       p.image(drawingLayer, 0, 0);
-      p.image(coloringImage, 0, 0);
+      p.image(coloringImages[2], 0, 0);
+
       //p.image(loadImage, 0, 0); //バグ有り(2023/12/03)
       //p.image(drawingBrushLayer, 0, 0); 
 
