@@ -98,6 +98,7 @@ export function Canvas() {
     returnDrawingColor = p.color(255, 0, 0);
     backgroundColor = p.color(255, 255, 255);
     let rate = 0.35;
+    let loadImageNumber = 0;
     //backgroundColor = p.color(0, 0, 0);
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
@@ -145,7 +146,7 @@ export function Canvas() {
       UpdateVariables();
       p.image(drawingBrushLayer, 0, 0);
       p.image(drawingLayer, 0, 0);
-      p.image(coloringImages[2], 0, 0);
+      p.image(coloringImages[loadImageNumber], 0, 0);
 
       //p.image(loadImage, 0, 0); //バグ有り(2023/12/03)
       //p.image(drawingBrushLayer, 0, 0); 
@@ -677,16 +678,16 @@ export function Canvas() {
       }
 
       //描画色の変更
-      if (p.key === "0") { drawingEmotionNumber = 0; }
-      if (p.key === "1") { drawingEmotionNumber = 1; }
-      if (p.key === "2") { drawingEmotionNumber = 2; }
-      if (p.key === "3") { drawingEmotionNumber = 3; }
-      if (p.key === "4") { drawingEmotionNumber = 4; }
-      if (p.key === "5") { drawingEmotionNumber = 5; }
-      if (p.key === "6") { drawingEmotionNumber = 6; }
-      if (p.key === "7") { drawingEmotionNumber = 7; }
-      if (p.key === "8") { drawingEmotionNumber = 8; }
-      if (p.key === "9") { drawingEmotionNumber = 9; }
+      if (p.key === "0") { loadImageNumber = 0; }
+      if (p.key === "1") { loadImageNumber = 1; }
+      if (p.key === "2") { loadImageNumber = 2; }
+      if (p.key === "3") { loadImageNumber = 3; }
+      if (p.key === "4") { loadImageNumber = 4; }
+      if (p.key === "5") { loadImageNumber = 5; }
+      if (p.key === "6") { loadImageNumber = 6; }
+      if (p.key === "7") { loadImageNumber = 7; }
+      if (p.key === "8") { loadImageNumber = 8; }
+      if (p.key === "9") { loadImageNumber = 9; }
     }
 
     // バックエンドからJSONデータの取得と色に関するデータの代入
