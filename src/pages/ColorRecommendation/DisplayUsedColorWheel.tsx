@@ -26,10 +26,10 @@ export function DisplayUsedColorWheel() {
       p.translate(p.width / 2, p.height / 2);
 
       drawColorWheel(radius, 1);
-      drawUsedColorsHue();
-      drawUsedColorsLine();
+      updateUsedColors();
+      drawUsedColors();
       drawRecommendedColorsLine();
-      drawColorHueDot(p.color(255), p.hue(drawingColor));
+      drawColorHueDot(p.color(255), radius * p.cos(p.radians(p.hue(drawingColor))), radius * p.sin(p.radians(p.hue(drawingColor))));
       //console.log(usedColors)
     }
     function updateVariables() {
@@ -73,7 +73,7 @@ export function DisplayUsedColorWheel() {
       return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
     }
 
-    function drawUsedColorsLine() {
+    function drawUsedColors() {
 
       /*
       for (let i = 0; i < usedColors.length; i++) {
@@ -106,6 +106,10 @@ export function DisplayUsedColorWheel() {
       */
 
       for (let i = 0; i < usedColors.length; i++) {
+        //点の描画
+        drawColorHueDot(p.color(0), usedColors[i].position.x, usedColors[i].position.y);
+
+        //線の描画
         for (let j = i + 1; j < usedColors.length; j++) {
           p.stroke(0);
           p.line(usedColors[i].position.x, usedColors[i].position.y, usedColors[j].position.x, usedColors[j].position.y);
@@ -114,7 +118,7 @@ export function DisplayUsedColorWheel() {
 
     }
 
-    function drawUsedColorsHue() {
+    function updateUsedColors() {
       resetUsedColors();
       p.colorMode(p.RGB);
       let SATURATION_LIMIT = 15;
@@ -124,11 +128,11 @@ export function DisplayUsedColorWheel() {
         if ((8 <= hue && hue <= 11) || (32 <= hue && hue <= 34)) { continue; }
 
         let angle = p.hue(colorsAmount[i].color);
-        drawColorHueDot(p.color(0), angle);
+        //drawColorHueDot(p.color(0), angle);
 
         let x = radius * p.cos(p.radians(angle));
         let y = radius * p.sin(p.radians(angle));
-        updateUsedColors(colorsAmount[i].color, colorsAmount[i].amount, x, y);
+        updateUsedColor(colorsAmount[i].color, colorsAmount[i].amount, x, y);
       }
     }
 
@@ -136,7 +140,25 @@ export function DisplayUsedColorWheel() {
       usedColors = [];
     }
 
-    function updateUsedColors(color: p5.Color, amount: number, x: number, y: number) {
+    function updateUsedColor(color: p5.Color, amount: number, x: number, y: number) {
+      let hue = p.round(p.hue(color));
+      let mul = 90;
+      hue = p.round(hue / mul) * mul;
+
+      for (let i = 0; i < usedColors.length; i++) {
+        //すでに保存されていた色相だった場合
+        if (p.round(p.hue(usedColors[i].color)) === hue) {
+          usedColors[i].amount += amount;
+          return;
+        }
+      }
+
+      //まだ保存されていなかった色相だった場合
+      p.colorMode(p.HSL);
+      usedColors.push(new UsedColor(p.color(hue, 50, 50), amount, x, y));
+      p.colorMode(p.RGB);
+
+      /*
       for (let i = 0; i < usedColors.length; i++) {
         //すでに保存されていた色相だった場合
         if (p.round(p.hue(usedColors[i].color)) === p.round(p.hue(color))) {
@@ -147,11 +169,10 @@ export function DisplayUsedColorWheel() {
 
       //まだ保存されていなかった色相だった場合
       usedColors.push(new UsedColor(color, amount, x, y));
+      */
     }
 
-    function drawColorHueDot(color: p5.Color, angle: number) {
-      let x = radius * p.cos(p.radians(angle));
-      let y = radius * p.sin(p.radians(angle));
+    function drawColorHueDot(color: p5.Color, x: number, y: number) {
 
       p.stroke(color);
       p.fill(color);
