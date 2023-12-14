@@ -30,7 +30,7 @@ export function DisplayUsedColorWheel() {
       drawColorWheel(radius, 1);
       updateUsedColors();
       drawUsedColors();
-      drawRecommendedColorsLine();
+      drawRecommendedColors();
       drawColorHueDot(p.color(255), radius * p.cos(p.radians(p.hue(drawingColor))), radius * p.sin(p.radians(p.hue(drawingColor))));
       //console.log(usedColors)
       if (DEBUG) { console.log("usedColors.length: " + usedColors.length); }
@@ -52,7 +52,7 @@ export function DisplayUsedColorWheel() {
       return color;
     }
 
-    function drawRecommendedColorsLine() {
+    function drawRecommendedColors() {
       if (usedColors.length === 0) { return; }
 
       let angle = p.hue(returnBaceColor());
