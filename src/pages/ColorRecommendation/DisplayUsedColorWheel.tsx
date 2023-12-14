@@ -132,8 +132,8 @@ export function DisplayUsedColorWheel() {
 
     function updateUsedColor(color: p5.Color, amount: number, x: number, y: number) {
       let hue = p.round(p.hue(color));
-      let mul = 30; //mul: 分割する角度
-      hue = p.round(hue / mul) * mul;
+      const SPLIT = 30; //SPLIT: 分割する角度(この値で四捨五入(?)される)
+      hue = p.round(hue / SPLIT) * SPLIT;
 
       for (let i = 0; i < usedColors.length; i++) {
         //すでに保存されていた色相だった場合
