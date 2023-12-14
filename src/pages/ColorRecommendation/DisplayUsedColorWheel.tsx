@@ -34,18 +34,21 @@ export function DisplayUsedColorWheel() {
     }
 
     function drawRecommendedColorsLine() {
+      if (usedColors.length === 0) { return; }
+
+      let angle = p.hue(usedColors[0].color);
       for (let i = 0; i < usedColors.length; i++) {
-        let angle1 = i * 360 / usedColors.length;
-        let x1 = radius * p.cos(p.radians(angle1));
-        let y1 = radius * p.sin(p.radians(angle1));
+        //座標の計算
+        let x1 = radius * p.cos(p.radians(angle));
+        let y1 = radius * p.sin(p.radians(angle));
+        let x2 = radius * p.cos(p.radians(angle + 360 / usedColors.length));
+        let y2 = radius * p.sin(p.radians(angle + 360 / usedColors.length));
+        angle += 360 / usedColors.length;
 
-        let angle2 = (i + 1) * 360 / usedColors.length;
-        let x2 = radius * p.cos(p.radians(angle2));
-        let y2 = radius * p.sin(p.radians(angle2));
-
-        p.stroke(255, 0, 0);
+        //線と点の描画
+        p.stroke(255, 0, 0, 150);
         p.line(x1, y1, x2, y2);
-        p.fill(255, 0, 0);
+        p.fill(255, 0, 0, 150);
         p.ellipse(x1, y1, p.width / 40, p.height / 40);
       }
     }
