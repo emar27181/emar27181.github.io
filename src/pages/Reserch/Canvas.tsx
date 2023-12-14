@@ -19,12 +19,24 @@ import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecomm
 import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorRecommendation/DisplayUsedColorRatio';
 import { ReturnBarValue, ReturnClickedKey, ReturnIsButtonClicked, ReturnIsTouchedGui } from './OperateGuiControl';
 import { ReturnIsLoadImage, ReturnLoadImageUrl } from '../TestDragAndPaste';
+import initPath from '../../assets/coloring_sample_image.png';
 
-//import coloringImageFilePath from '../../assets/coloring_sample_image.png';
-//import coloringImageFilePath from '../../assets/196_20231213170937.png';
-//import coloringImageFilePath from '../../assets/img_1701616372.png';
-import coloringImageFilePath from '../../assets/IMG_9803.png';
-//import coloringImageFilePath from '../..//assets/NCG255-510x510.jpg';
+//importでファイルパスを読み込む場合
+//import coloringImageFilePath from '../../assets/xxx.png'; //この方法でないとデプロイ先で読み込めない？
+//変数でファイルパスを読み込む場合
+// coloringImageFilePath = 'src/assets/xxx.png';
+
+let coloringImageFilePath: string[] = [];
+//coloringImageFilePath.push('../../assets/coloring_sample_image.png'); //この方法で読み込みたいが何故か出来ない
+coloringImageFilePath.push(initPath);
+coloringImageFilePath.push('src/assets/coloring_sample_image.png');
+coloringImageFilePath.push('src/assets/IMG_9803.png');
+coloringImageFilePath.push('src/assets/IMG_9802.png');
+coloringImageFilePath.push('src/assets/IMG_9801.png');
+coloringImageFilePath.push('src/assets/NCG255-510x510.jpg');
+coloringImageFilePath.push('src/assets/img_1701616372.png');
+coloringImageFilePath.push('src/assets/196_20231213170937.png');
+
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
@@ -85,6 +97,8 @@ export function Canvas() {
     let keepDrawingColor = drawingColor;
     returnDrawingColor = p.color(255, 0, 0);
     backgroundColor = p.color(255, 255, 255);
+    let rate = 0.35;
+    let loadImageNumber = 0;
     //backgroundColor = p.color(0, 0, 0);
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
@@ -94,11 +108,14 @@ export function Canvas() {
     let coloringImageLayer: Graphics;
     let drawingBrushLayer: Graphics;
     let drawingLayer: Graphics;
-    let coloringImage: p5.Image;
+    let coloringImages: Array<p5.Image> = [];
     let loadImage: p5.Image;
 
     p.preload = () => {
-      coloringImage = p.loadImage(coloringImageFilePath);
+      for (let i = 0; i < coloringImageFilePath.length; i++) {
+        coloringImages.push(p.loadImage(coloringImageFilePath[i]));
+      }
+
       if (ReturnIsLoadImage()) {
         loadImage = p.loadImage(ReturnLoadImageUrl()); //バグ有り(2023/12/03)
         console.log(ReturnLoadImageUrl());
@@ -106,12 +123,13 @@ export function Canvas() {
     }
 
     p.setup = () => {
-      let rate = 0.35;
-      let aspectRatio = coloringImage.width / coloringImage.height;
-      p.createCanvas(aspectRatio * rate * window.innerWidth, rate * window.innerWidth);
-      //if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
-      //else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
-      coloringImage.resize(p.width, p.height);
+      //let aspectRatio = coloringImage.width / coloringImage.height; //縦幅基準
+      //p.createCanvas(aspectRatio * rate * window.innerWidth, rate * window.innerWidth);
+      let aspectRatio = coloringImages[0].height / coloringImages[0].width; //横幅基準
+      p.createCanvas(rate * window.innerWidth, aspectRatio * rate * window.innerWidth);
+      for (let i = 0; i < coloringImages.length; i++) {
+        coloringImages[i].resize(p.width, p.height);
+      }
       canvasWidth = p.width, canvasHeight = p.height;
       p.background(backgroundColor);
       ballsTrackigGravity.push(new Ball(0, 0, 100, p.color(0, 255, 0), 9)); //1番目に認識される手
@@ -128,7 +146,8 @@ export function Canvas() {
       UpdateVariables();
       p.image(drawingBrushLayer, 0, 0);
       p.image(drawingLayer, 0, 0);
-      p.image(coloringImage, 0, 0);
+      p.image(coloringImages[loadImageNumber], 0, 0);
+
       //p.image(loadImage, 0, 0); //バグ有り(2023/12/03)
       //p.image(drawingBrushLayer, 0, 0); 
 
@@ -659,16 +678,16 @@ export function Canvas() {
       }
 
       //描画色の変更
-      if (p.key === "0") { drawingEmotionNumber = 0; }
-      if (p.key === "1") { drawingEmotionNumber = 1; }
-      if (p.key === "2") { drawingEmotionNumber = 2; }
-      if (p.key === "3") { drawingEmotionNumber = 3; }
-      if (p.key === "4") { drawingEmotionNumber = 4; }
-      if (p.key === "5") { drawingEmotionNumber = 5; }
-      if (p.key === "6") { drawingEmotionNumber = 6; }
-      if (p.key === "7") { drawingEmotionNumber = 7; }
-      if (p.key === "8") { drawingEmotionNumber = 8; }
-      if (p.key === "9") { drawingEmotionNumber = 9; }
+      if (p.key === "0") { loadImageNumber = 0; }
+      if (p.key === "1") { loadImageNumber = 1; }
+      if (p.key === "2") { loadImageNumber = 2; }
+      if (p.key === "3") { loadImageNumber = 3; }
+      if (p.key === "4") { loadImageNumber = 4; }
+      if (p.key === "5") { loadImageNumber = 5; }
+      if (p.key === "6") { loadImageNumber = 6; }
+      if (p.key === "7") { loadImageNumber = 7; }
+      if (p.key === "8") { loadImageNumber = 8; }
+      if (p.key === "9") { loadImageNumber = 9; }
     }
 
     // バックエンドからJSONデータの取得と色に関するデータの代入
