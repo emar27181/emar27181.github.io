@@ -19,17 +19,16 @@ import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecomm
 import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorRecommendation/DisplayUsedColorRatio';
 import { ReturnBarValue, ReturnClickedKey, ReturnIsButtonClicked, ReturnIsTouchedGui } from './OperateGuiControl';
 import { ReturnIsLoadImage, ReturnLoadImageUrl } from '../TestDragAndPaste';
+import initPath from '../../assets/coloring_sample_image.png';
 
 //importでファイルパスを読み込む場合
-//import coloringImageFilePath from '../../assets/xxx.png';
+//import coloringImageFilePath from '../../assets/xxx.png'; //この方法でないとデプロイ先で読み込めない？
 //変数でファイルパスを読み込む場合
 // coloringImageFilePath = 'src/assets/xxx.png';
 
-//import coloringImageFilePath from '../../assets/196_20231213170937.png';
-//import coloringImageFilePath from '../../assets/img_1701616372.png';
-
-//let coloringImageFilePath = '../../assets/IMG_9803.png';
 let coloringImageFilePath: string[] = [];
+//coloringImageFilePath.push('../../assets/coloring_sample_image.png'); //この方法で読み込みたいが何故か出来ない
+coloringImageFilePath.push(initPath);
 coloringImageFilePath.push('src/assets/coloring_sample_image.png');
 coloringImageFilePath.push('src/assets/IMG_9803.png');
 coloringImageFilePath.push('src/assets/IMG_9802.png');
@@ -37,6 +36,7 @@ coloringImageFilePath.push('src/assets/IMG_9801.png');
 coloringImageFilePath.push('src/assets/NCG255-510x510.jpg');
 coloringImageFilePath.push('src/assets/img_1701616372.png');
 coloringImageFilePath.push('src/assets/196_20231213170937.png');
+
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
