@@ -56,14 +56,31 @@ export function DisplayUsedColorWheel() {
       if (usedColors.length === 0) { return; }
 
       let angle = p.hue(returnBaceColor());
-      drawRegularPolygon(angle, 3);
+      drawTriangle(angle);
+      //drawRegularPolygon(angle, 3);
       //drawRegularPolygon(angle, usedColors.length);
     }
 
+    function drawTriangle(angle: number) {
+      //座標の計算
+      let x1 = radius * p.cos(p.radians(angle));
+      let y1 = radius * p.sin(p.radians(angle));
+      let x2 = radius * p.cos(p.radians(angle + 150));
+      let y2 = radius * p.sin(p.radians(angle + 150));
+      let x3 = radius * p.cos(p.radians(angle + 210));
+      let y3 = radius * p.sin(p.radians(angle + 210));
+
+      //線と点の描画
+      p.stroke(255, 0, 0, 150);
+      p.noFill();
+      p.triangle(x1, y1, x2, y2, x3, y3);
+      p.fill(255, 0, 0, 150);
+      p.ellipse(x1, y1, p.width / 40, p.height / 40);
+    }
 
     function drawRegularPolygon(angle: number, number: number) {
-
       for (let i = 0; i < number; i++) {
+        //座標の計算
         let x1 = radius * p.cos(p.radians(angle));
         let y1 = radius * p.sin(p.radians(angle));
         let x2 = radius * p.cos(p.radians(angle + 360 / number));
