@@ -12,6 +12,7 @@ export function DisplayUsedColorWheel() {
     let usedColors: Array<UsedColor> = [];
     let drawingColor: p5.Color;
     let radius = 0;
+    const DEBUG = false;
 
     p.setup = () => {
       let rate = 0.35;
@@ -32,7 +33,7 @@ export function DisplayUsedColorWheel() {
       drawRecommendedColorsLine();
       drawColorHueDot(p.color(255), radius * p.cos(p.radians(p.hue(drawingColor))), radius * p.sin(p.radians(p.hue(drawingColor))));
       //console.log(usedColors)
-      //console.log("usedColors.length: " + usedColors.length);
+      if (DEBUG) { console.log("usedColors.length: " + usedColors.length); }
     }
     function updateVariables() {
       colorsAmount = ReturnColorsAmount();
@@ -55,6 +56,7 @@ export function DisplayUsedColorWheel() {
       if (usedColors.length === 0) { return; }
 
       let angle = p.hue(returnBaceColor());
+      //console.log("angle: " + angle);
       for (let i = 0; i < usedColors.length; i++) {
         //座標の計算
         let x1 = radius * p.cos(p.radians(angle));
@@ -83,6 +85,7 @@ export function DisplayUsedColorWheel() {
       let x1 = usedColors[0].position.x;
       let y1 = usedColors[0].position.y;
       let hue = p.round(p.hue(usedColors[0].color));
+      //console.log("hue: " + hue);
 
       for (let i = hue; i <= 360; i++) {
         for (let j = 0; j < usedColors.length; j++) {
@@ -115,11 +118,10 @@ export function DisplayUsedColorWheel() {
         // if ((8 <= hue && hue <= 11) || (32 <= hue && hue <= 34)) { continue; } 
 
         let angle = p.hue(colorsAmount[i].color);
-        //drawColorHueDot(p.color(0), angle);
 
-        let x = radius * p.cos(p.radians(angle));
-        let y = radius * p.sin(p.radians(angle));
-        updateUsedColor(colorsAmount[i].color, colorsAmount[i].amount, x, y);
+        //let x = radius * p.cos(p.radians(angle));
+        //let y = radius * p.sin(p.radians(angle));
+        updateUsedColor(colorsAmount[i].color, colorsAmount[i].amount);
       }
     }
 
@@ -127,7 +129,7 @@ export function DisplayUsedColorWheel() {
       usedColors = [];
     }
 
-    function updateUsedColor(color: p5.Color, amount: number, x: number, y: number) {
+    function updateUsedColor(color: p5.Color, amount: number,) {
       let hue = p.round(p.hue(color));
       const SPLIT = 30; //SPLIT: 分割する角度(この値で四捨五入(?)される)
       hue = p.round(hue / SPLIT) * SPLIT;
@@ -143,8 +145,11 @@ export function DisplayUsedColorWheel() {
 
       //まだ保存されていなかった色相だった場合
       p.colorMode(p.HSL);
+      let x = radius * p.cos(p.radians(hue));
+      let y = radius * p.sin(p.radians(hue));
       usedColors.push(new UsedColor(p.color(hue, 50, 50), amount, x, y));
       p.colorMode(p.RGB);
+      if (DEBUG) { console.log(hue); }
     }
 
     function drawColorHueDot(color: p5.Color, x: number, y: number) {
