@@ -28,7 +28,7 @@ export function DisplayUsedColorWheel() {
       drawColorWheel(radius, 1);
       drawUsedColorsHue();
       drawUsedColorsLine();
-      drawRecommendedColorsLine(); //
+      drawRecommendedColorsLine();
       drawColorHue(p.color(255), p.hue(drawingColor));
       //console.log(usedColors)
     }
@@ -69,13 +69,49 @@ export function DisplayUsedColorWheel() {
       }
     }
 
+    function returnDistance(x1: number, y1: number, x2: number, y2: number) {
+      return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+    }
+
     function drawUsedColorsLine() {
+
+      /*
+      for (let i = 0; i < usedColors.length; i++) {
+
+        let x1 = usedColors[i].position.x;
+        let y1 = usedColors[i].position.y;
+        let x2 = usedColors[i + 1].position.x;
+        let y2 = usedColors[i + 1].position.y;
+        let distance = returnDistance(x1, y1, x2, y2);
+
+        for (let j = i + 2; j < usedColors.length; j++) {
+          if (returnDistance(x1, y1, usedColors[j].position.x, usedColors[j].position.y) < distance) {
+            x2 = usedColors[j].position.x;
+            y2 = usedColors[j].position.y;
+            distance = returnDistance(x1, y1, usedColors[j].position.x, usedColors[j].position.y);
+          }
+        }
+
+        p.stroke(0);
+        p.line(x1, y1, x2, y2);
+
+        for (let j = i + 2; j < usedColors.length; j++) {
+          if (returnDistance(x1, y1, usedColors[j].position.x, usedColors[j].position.y) < distance) {
+            x2 = usedColors[j].position.x;
+            y2 = usedColors[j].position.y;
+            distance = returnDistance(x1, y1, usedColors[j].position.x, usedColors[j].position.y);
+          }
+        }
+      }
+      */
+
       for (let i = 0; i < usedColors.length; i++) {
         for (let j = i + 1; j < usedColors.length; j++) {
           p.stroke(0);
           p.line(usedColors[i].position.x, usedColors[i].position.y, usedColors[j].position.x, usedColors[j].position.y);
         }
       }
+
     }
 
     function drawUsedColorsHue() {
