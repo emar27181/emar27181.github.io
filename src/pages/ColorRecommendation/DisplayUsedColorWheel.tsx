@@ -37,10 +37,22 @@ export function DisplayUsedColorWheel() {
       drawingColor = ReturnDrawingColor();
     }
 
+    function returnBaceColor() {
+      let amountMax = 0;
+      let color = p.color(0);
+      for (let i = 0; i < usedColors.length; i++) {
+        if (usedColors[i].amount > amountMax) {
+          amountMax = usedColors[i].amount;
+          color = usedColors[i].color;
+        }
+      }
+      return color;
+    }
+
     function drawRecommendedColorsLine() {
       if (usedColors.length === 0) { return; }
 
-      let angle = p.hue(usedColors[0].color);
+      let angle = p.hue(returnBaceColor());
       for (let i = 0; i < usedColors.length; i++) {
         //座標の計算
         let x1 = radius * p.cos(p.radians(angle));
@@ -67,6 +79,7 @@ export function DisplayUsedColorWheel() {
     }
 
     function drawUsedColorsHue() {
+      resetUsedColors();
       p.colorMode(p.RGB);
       let SATURATION_LIMIT = 15;
       for (let i = 0; i < colorsAmount.length; i++) {
@@ -79,15 +92,25 @@ export function DisplayUsedColorWheel() {
 
         let x = radius * p.cos(p.radians(angle));
         let y = radius * p.sin(p.radians(angle));
-        updateUsedColors(colorsAmount[i].color, x, y);
+        updateUsedColors(colorsAmount[i].color, colorsAmount[i].amount, x, y);
       }
     }
 
-    function updateUsedColors(color: p5.Color, x: number, y: number) {
+    function resetUsedColors() {
+      usedColors = [];
+    }
+
+    function updateUsedColors(color: p5.Color, amount: number, x: number, y: number) {
       for (let i = 0; i < usedColors.length; i++) {
-        if (p.round(p.hue(usedColors[i].color)) === p.round(p.hue(color))) { return; }
+        //すでに保存されていた色相だった場合
+        if (p.round(p.hue(usedColors[i].color)) === p.round(p.hue(color))) {
+          usedColors[i].amount += amount;
+          return;
+        }
       }
-      usedColors.push(new UsedColor(color, x, y));
+
+      //まだ保存されていなかった色相だった場合
+      usedColors.push(new UsedColor(color, amount, x, y));
     }
 
     function drawColorHue(color: p5.Color, angle: number) {
@@ -131,10 +154,12 @@ export function DisplayUsedColorWheel() {
     }
     class UsedColor {
       color: p5.Color;
+      amount: number;
       position: p5.Vector;
 
-      constructor(color: p5.Color, x: number, y: number) {
+      constructor(color: p5.Color, amount: number, x: number, y: number) {
         this.color = color;
+        this.amount = amount;
         this.position = p.createVector(x, y);
       }
     }
