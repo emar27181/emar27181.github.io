@@ -18,6 +18,7 @@ export function DisplayUsedColorWheel() {
       p.createCanvas(rate * window.innerWidth / 3, rate * window.innerWidth / 3);
       p.noStroke();
       radius = 3 / 8 * p.width;
+      p.frameRate(1);
     }
 
     p.draw = () => {
@@ -142,7 +143,7 @@ export function DisplayUsedColorWheel() {
 
     function updateUsedColor(color: p5.Color, amount: number, x: number, y: number) {
       let hue = p.round(p.hue(color));
-      let mul = 90;
+      let mul = 30; //mul: 分割する角度
       hue = p.round(hue / mul) * mul;
 
       for (let i = 0; i < usedColors.length; i++) {
