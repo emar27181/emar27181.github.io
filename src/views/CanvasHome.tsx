@@ -44,7 +44,6 @@ export function U22programmingContestHome() {
             {DisplayUsedColorRatio("canvas", 0, "lightness")}
           </div>
         </div>
-        <DisplayDrawingInfo />
       </div>
 
     </div>

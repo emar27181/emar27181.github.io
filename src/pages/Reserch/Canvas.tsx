@@ -20,8 +20,11 @@ import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorR
 import { ReturnBarValue, ReturnClickedKey, ReturnIsButtonClicked, ReturnIsTouchedGui } from './OperateGuiControl';
 import { ReturnIsLoadImage, ReturnLoadImageUrl } from '../TestDragAndPaste';
 
-import coloringImageFilePath from '../../assets/coloring_sample_image.png';
-//import coloringImageFilePath from '../../assets/196_20231213170929.png';
+//import coloringImageFilePath from '../../assets/coloring_sample_image.png';
+//import coloringImageFilePath from '../../assets/196_20231213170937.png';
+//import coloringImageFilePath from '../../assets/img_1701616372.png';
+import coloringImageFilePath from '../../assets/IMG_9803.png';
+//import coloringImageFilePath from '../..//assets/NCG255-510x510.jpg';
 
 let isRandomMove = true;
 const MOVE_SPEED = 10;
@@ -104,7 +107,8 @@ export function Canvas() {
 
     p.setup = () => {
       let rate = 0.35;
-      p.createCanvas(rate * window.innerWidth, rate * window.innerWidth);
+      let aspectRatio = coloringImage.width / coloringImage.height;
+      p.createCanvas(aspectRatio * rate * window.innerWidth, rate * window.innerWidth);
       //if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
       //else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
       coloringImage.resize(p.width, p.height);
