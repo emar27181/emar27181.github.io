@@ -27,8 +27,8 @@ export function DisplayUsedColorWheel() {
 
       drawColorWheel(radius, 1);
       drawUsedColorsHue();
-      drawColorHue(p.color(0), p.hue(drawingColor));
       drawUsedColorsLine();
+      drawColorHue(p.color(0, 0, 0, 150), p.hue(drawingColor));
       //console.log(usedColors)
     }
 
