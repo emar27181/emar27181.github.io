@@ -72,7 +72,7 @@ export function DisplayUsedColorWheel() {
 
     function updateUsedColors(color: p5.Color, x: number, y: number) {
       for (let i = 0; i < usedColors.length; i++) {
-        if (p.hue(usedColors[i].color) === p.hue(color)) { return; }
+        if (p.round(p.hue(usedColors[i].color)) === p.round(p.hue(color))) { return; }
       }
       usedColors.push(new UsedColor(color, x, y));
     }
