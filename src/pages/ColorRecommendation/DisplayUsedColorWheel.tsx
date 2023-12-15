@@ -4,7 +4,6 @@ import React from 'react';
 import { ColorAmount, ReturnColorsAmount } from './DisplayUsedColorRatio';
 import p5 from 'p5';
 import { ReturnDrawingColor } from '../Reserch/Canvas';
-import { drawRectangle } from '@mediapipe/drawing_utils';
 
 export function DisplayUsedColorWheel() {
   const sketch = (p: P5CanvasInstance) => {
@@ -42,7 +41,7 @@ export function DisplayUsedColorWheel() {
     }
 
     //最も使用率の高い色相の色を返す関数
-    function returnBaceColor() {
+    function returnBaseColor() {
       let amountMax = 0;
       let color = p.color(0);
       for (let i = 0; i < usedColors.length; i++) {
@@ -79,12 +78,12 @@ export function DisplayUsedColorWheel() {
         //drawTriangle(angle, 3);
       }
       else if (usedColors.length <= 5) {
-        let angle = p.hue(returnBaceColor());
+        let angle = p.hue(returnBaseColor());
         drawRectangle(angle, 4);
         //drawRectangle(angle, 2);
       }
       else if (usedColors.length >= 6) {
-        let angle = p.hue(returnBaceColor());
+        let angle = p.hue(returnBaseColor());
         //drawRegularPolygon(angle, 3);
         drawRegularPolygon(angle, usedColors.length);
       }
