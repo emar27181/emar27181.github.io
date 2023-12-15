@@ -41,8 +41,80 @@ export function DisplayUsedColorWheel() {
       drawingColor = ReturnDrawingColor();
     }
 
-    //最も使用率の高い色相の色を返す関数
+    //最も使用率の高い色相の平均を返す関数
     function returnBaseColor() {
+      let color = p.color(0);
+      let accentColor = returnAccentColor();
+      let hueSum = 0;
+
+      let hueMin = p.hue(usedColors[0].color);
+      /*
+      for (let i = 0; i < usedColors.length; i++) {
+        if (p.hue(usedColors[i].color) === p.hue(returnAccentColor())) { continue; }
+        if (p.hue(usedColors[i].color) < hueMin) {
+          hueMin = p.hue(usedColors[i].color);
+        }
+      }
+      p.colorMode(p.HSL);
+      color = p.color(hueMin + returnSplitHueDifference() * 15 / 2, 50, 50);
+      p.colorMode(p.RGB);
+
+      return color;
+      */
+
+
+      for (let i = 0; i < usedColors.length; i++) {
+        if (usedColors[i].color === accentColor) { continue; }
+        hueSum += p.hue(usedColors[i].color);
+      }
+      let hueAverage = hueSum / (usedColors.length - 1);
+      p.colorMode(p.HSL);
+      color = p.color(hueAverage, 50, 50);
+      p.colorMode(p.RGB);
+
+      return color;
+
+      /*
+      //0をまたぐかどうかの判定
+      let flag1 = false, flag2 = false; //両方trueなら0を跨いでいる
+      for (let i = 0; i < usedColors.length; i++) {
+        let hue = p.hue(usedColors[i].color);
+        if (270 <= hue && hue <= 360) { flag1 = true; }
+        if (0 <= hue && hue <= 90) { flag2 = true; }
+      }
+
+      //0を跨いでいる場合
+      if (flag1 && flag2) {
+        for (let i = 0; i < usedColors.length; i++) {
+          if (usedColors[i].color === accentColor) { continue; }
+          let hue = p.hue(usedColors[i].color);
+          if (0 <= hue && hue <= 90) { hue = hue + 360; }
+          hueSum += p.hue(usedColors[i].color);
+        }
+        let hueAverage = (hueSum / (usedColors.length - 1)) % 360 + 180;
+        p.colorMode(p.HSL);
+        color = p.color(hueAverage, 50, 50);
+        p.colorMode(p.RGB);
+
+        return color;
+      }
+
+      //0を跨いでいない場合
+      else {
+        for (let i = 0; i < usedColors.length; i++) {
+          if (usedColors[i].color === accentColor) { continue; }
+          hueSum += p.hue(usedColors[i].color);
+        }
+        let hueAverage = hueSum / (usedColors.length - 1);
+        p.colorMode(p.HSL);
+        color = p.color(hueAverage, 50, 50);
+        p.colorMode(p.RGB);
+
+        return color;
+      }
+      */
+
+      /*
       let amountMax = 0;
       let color = p.color(0);
       for (let i = 0; i < usedColors.length; i++) {
@@ -52,6 +124,7 @@ export function DisplayUsedColorWheel() {
         }
       }
       return color;
+      */
     }
 
     // キャンバス上でアクセントカラーと判別される色を返す関数
@@ -135,7 +208,8 @@ export function DisplayUsedColorWheel() {
         drawLine(angle);
       }
       else if (usedColors.length <= 5) {
-        let angle = p.hue(returnAccentColor());
+        //let angle = p.hue(returnAccentColor()); ////キャンバスのアクセントカラーを頂点として二等辺三角形を描画
+        let angle = (p.hue(returnBaseColor()) + 180) % 360; //ベースカラーの補色を頂点として二等辺三角形を描画
         drawTriangle(angle, returnSplitHueDifference());
         //drawTriangle(angle, 2);
         //drawTriangle(angle, 3);
