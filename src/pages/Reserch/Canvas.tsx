@@ -143,15 +143,21 @@ export function Canvas() {
     }
 
     p.setup = () => {
-      //let aspectRatio = coloringImage.width / coloringImage.height; //縦幅基準
-      //p.createCanvas(aspectRatio * rate * window.innerWidth, rate * window.innerWidth);
-      let aspectRatio = coloringImages[0].height / coloringImages[0].width; //横幅基準
-      p.createCanvas(rate * window.innerWidth, aspectRatio * rate * window.innerWidth);
-      for (let i = 0; i < coloringImages.length; i++) {
-        coloringImages[i].resize(p.width, p.height);
-      }
-      canvasWidth = p.width, canvasHeight = p.height;
+      //キャンバスの作成
+      p.createCanvas(rate * window.innerWidth, rate * window.innerWidth);
       p.background(backgroundColor);
+      canvasWidth = p.width, canvasHeight = p.height;
+
+      //画像のアスペクト比の計算とサイズの修正
+      let aspectRatio: number[] = [];
+      for (let i = 0; i < coloringImages.length; i++) {
+        aspectRatio[i] = coloringImages[i].height / coloringImages[i].width; //横幅基準
+      }
+      for (let i = 0; i < coloringImages.length; i++) {
+        //キャンバスからはみ出ないように修正
+        if (aspectRatio[i] < 1) { coloringImages[i].resize(p.width, aspectRatio[i] * p.height); }
+        else { coloringImages[i].resize(p.width / aspectRatio[i], p.height); }
+      }
       ballsTrackigGravity.push(new Ball(0, 0, 100, p.color(0, 255, 0), 9)); //1番目に認識される手
       ballsTrackigGravity.push(new Ball(0, 0, 100, p.color(0, 255, 0), 9)); //2番目に認識される手
       //p.colorMode(p.RGB, 360, 100, 100, 100);
