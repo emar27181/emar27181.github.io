@@ -106,6 +106,14 @@ export function DisplayUsedColorWheel() {
 
     }
 
+    //2色間の色相差を計算する関数
+    function calculateHueDifference(color1: p5.Color, color2: p5.Color) {
+      let hueDifference = (p.hue(color1) - p.hue(color2)) / 15; //色相差の計算
+      if (hueDifference < 0) { hueDifference = -hueDifference; } //色相差を絶対値に変換
+      if (hueDifference > 12) { hueDifference = 24 - hueDifference; } //色相差を0~12の値に変換
+      return hueDifference;
+    }
+
     //アクセントカラー以外の色の色相差を返す関数
     function returnSplitHueDifference() {
       let accentColor = returnAccentColor();
@@ -123,9 +131,7 @@ export function DisplayUsedColorWheel() {
         if (i === accentColorNumber) { continue; }
         for (let j = i + 1; j < usedColors.length; j++) {
           if (j === accentColorNumber) { continue; }
-          let hueDifference = (p.hue(usedColors[i].color) - p.hue(usedColors[j].color)) / 15; //色相差の計算
-          if (hueDifference < 0) { hueDifference = -hueDifference; } //色相差を絶対値に変換
-          if (hueDifference > 12) { hueDifference = 24 - hueDifference; } //色相差を0~12の値に変換
+          let hueDifference = calculateHueDifference(usedColors[i].color, usedColors[j].color) //色相差の計算
           if (hueDifference > hueDifferenceMax) { hueDifferenceMax = hueDifference; } //色相差の最大の更新
         }
 
@@ -182,9 +188,7 @@ export function DisplayUsedColorWheel() {
     }
 
     function drawLine(angle: number) {
-      let hueDifference = (p.hue(usedColors[0].color) - p.hue(usedColors[1].color)) / 15;//色相差の計算
-      if (hueDifference < 0) { hueDifference = -hueDifference; } //色相差を絶対値に変換
-      if (hueDifference > 12) { hueDifference = 24 - hueDifference; } //色相差を0~12の値に変換
+      let hueDifference = calculateHueDifference(usedColors[0].color, usedColors[1].color)
       if (hueDifference <= 6) { return; } //色相差が6以下だった場合, 何もせず終了
 
       //座標の計算
