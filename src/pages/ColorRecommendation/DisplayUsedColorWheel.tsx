@@ -41,6 +41,7 @@ export function DisplayUsedColorWheel() {
       drawingColor = ReturnDrawingColor();
     }
 
+    //最も使用率の高い色相の色を返す関数
     function returnBaceColor() {
       let amountMax = 0;
       let color = p.color(0);
@@ -53,25 +54,37 @@ export function DisplayUsedColorWheel() {
       return color;
     }
 
+    //最も使用率の低い色相の色を返す関数
+    function returnAccentColor() {
+      let amountMin = 10000;
+      let color = p.color(0);
+      for (let i = 0; i < usedColors.length; i++) {
+        if (usedColors[i].amount < amountMin) {
+          amountMin = usedColors[i].amount;
+          color = usedColors[i].color;
+        }
+      }
+      return color;
+    }
+
     function drawRecommendedColors() {
       if (usedColors.length === 0) { return; }
-      let angle = p.hue(returnBaceColor());
 
       if (usedColors.length <= 2) {
 
       }
       else if (usedColors.length === 3) {
+        let angle = p.hue(returnAccentColor());
         drawTriangle(angle, 2);
         //drawTriangle(angle, 3);
       }
       else if (usedColors.length <= 5) {
-        //drawRegularPolygon(angle, 4);
+        let angle = p.hue(returnBaceColor());
         drawRectangle(angle, 4);
         //drawRectangle(angle, 2);
-        //drawRegularPolygon(angle, 3);
-        //drawRegularPolygon(angle, usedColors.length);
       }
       else if (usedColors.length >= 6) {
+        let angle = p.hue(returnBaceColor());
         //drawRegularPolygon(angle, 3);
         drawRegularPolygon(angle, usedColors.length);
       }
