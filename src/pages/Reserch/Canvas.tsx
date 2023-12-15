@@ -19,7 +19,14 @@ import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecomm
 import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorRecommendation/DisplayUsedColorRatio';
 import { ReturnBarValue, ReturnClickedKey, ReturnIsButtonClicked, ReturnIsTouchedGui } from './OperateGuiControl';
 import { ReturnIsLoadImage, ReturnLoadImageUrl } from '../TestDragAndPaste';
-import initPath from '../../assets/coloring_sample_image.png';
+import imageFilePath0 from '../../assets/coloring_sample_image.png';
+import imageFilePath1 from '../../assets/img_1701616372.png';
+import imageFilePath2 from '../../assets/NCG255-510x510.jpg';
+import imageFilePath3 from '../../assets/160_10.jpg';
+import imageFilePath4 from '../../assets/160_11.jpg';
+import imageFilePath5 from '../../assets/img_1702279389.png';
+import imageFilePath6 from '../../assets/IMG_9803.png';
+import imageFilePath7 from '../../assets/IMG_9802.png';
 
 //importでファイルパスを読み込む場合
 //import coloringImageFilePath from '../../assets/xxx.png'; //この方法でないとデプロイ先で読み込めない？
@@ -28,7 +35,6 @@ import initPath from '../../assets/coloring_sample_image.png';
 
 let coloringImageFilePath: string[] = [];
 //coloringImageFilePath.push('../../assets/coloring_sample_image.png'); //この方法で読み込みたいが何故か出来ない
-coloringImageFilePath.push(initPath);
 coloringImageFilePath.push('src/assets/coloring_sample_image.png');
 coloringImageFilePath.push('src/assets/IMG_9803.png');
 coloringImageFilePath.push('src/assets/IMG_9802.png');
@@ -112,9 +118,23 @@ export function Canvas() {
     let loadImage: p5.Image;
 
     p.preload = () => {
+
+      coloringImages.push(p.loadImage(imageFilePath0));
+      coloringImages.push(p.loadImage(imageFilePath1));
+      coloringImages.push(p.loadImage(imageFilePath2));
+      coloringImages.push(p.loadImage(imageFilePath3));
+      coloringImages.push(p.loadImage(imageFilePath4));
+      coloringImages.push(p.loadImage(imageFilePath5));
+      coloringImages.push(p.loadImage(imageFilePath6));
+      coloringImages.push(p.loadImage(imageFilePath7));
+
+
+      /*
       for (let i = 0; i < coloringImageFilePath.length; i++) {
         coloringImages.push(p.loadImage(coloringImageFilePath[i]));
+        //coloringImages.push(p.loadImage('../../assets/coloring_sample_image.png')); //これも出来ない...
       }
+      */
 
       if (ReturnIsLoadImage()) {
         loadImage = p.loadImage(ReturnLoadImageUrl()); //バグ有り(2023/12/03)
