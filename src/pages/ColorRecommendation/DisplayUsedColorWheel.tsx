@@ -54,9 +54,17 @@ export function DisplayUsedColorWheel() {
 
     function drawRecommendedColors() {
       if (usedColors.length === 0) { return; }
-
       let angle = p.hue(returnBaceColor());
-      drawTriangle(angle, 2);
+
+      if (usedColors.length <= 2) {
+
+      }
+      else if (usedColors.length === 3) {
+        drawTriangle(angle, 2);
+      }
+      else if (usedColors.length >= 4) {
+        drawRegularPolygon(angle, 4);
+      }
       //drawTriangle(angle, 3);
       //drawRegularPolygon(angle, 3);
       //drawRegularPolygon(angle, usedColors.length);
