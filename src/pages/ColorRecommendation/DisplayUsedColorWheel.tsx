@@ -141,10 +141,11 @@ export function DisplayUsedColorWheel() {
       resetUsedColors();
       p.colorMode(p.RGB);
       let SATURATION_LIMIT = 15;
-      let LIGHTNESS_LIMIT = 85;
-      let AMOUNT_LIMIT = 20;
+      let LIGHTNESS_LIMIT = 88;
+      let AMOUNT_LIMIT = 4;
+
       for (let i = 0; i < colorsAmount.length; i++) {
-        if (colorsAmount[i].amount <= AMOUNT_LIMIT ||
+        if (colorsAmount[i].amount < AMOUNT_LIMIT ||
           p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT ||
           p.lightness(colorsAmount[i].color) >= LIGHTNESS_LIMIT) {
           continue;
@@ -154,10 +155,9 @@ export function DisplayUsedColorWheel() {
 
         let angle = p.hue(colorsAmount[i].color);
 
-        //let x = radius * p.cos(p.radians(angle));
-        //let y = radius * p.sin(p.radians(angle));
         updateUsedColor(colorsAmount[i].color, colorsAmount[i].amount);
       }
+
     }
 
     function resetUsedColors() {
