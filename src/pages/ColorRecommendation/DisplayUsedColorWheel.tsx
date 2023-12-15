@@ -104,8 +104,28 @@ export function DisplayUsedColorWheel() {
     function returnHueDifference() {
       let accentColor = returnAccentColor();
       let accentColorNumber = 0;
-      let hueDifference = 0;
+      let hueDifferenceMax = 0;
 
+      //アクセントカラーのインデックス番号の代入
+      for (let i = 0; i < usedColors.length; i++) {
+        if (usedColors[i].color === accentColor) {
+          accentColorNumber = i;
+        }
+      }
+
+      for (let i = 0; i < usedColors.length; i++) {
+        if (i === accentColorNumber) { continue; }
+        for (let j = i + 1; j < usedColors.length; j++) {
+          if (j === accentColorNumber) { continue; }
+          let hueDifference = (p.hue(usedColors[i].color) - p.hue(usedColors[j].color)) / 15; //色相差の計算
+          if (hueDifference < 0) { hueDifference = -hueDifference; } //色相差を絶対値に変換
+          if (hueDifference > 12) { hueDifference = 24 - hueDifference; } //色相差を0~12の値に変換
+          if (hueDifference > hueDifferenceMax) { hueDifferenceMax = hueDifference; } //色相差の最大の更新
+        }
+
+      }
+
+      /*
       for (let i = 0; i < usedColors.length; i++) {
         if (usedColors[i].color === accentColor) {
           accentColorNumber = i;
@@ -117,13 +137,16 @@ export function DisplayUsedColorWheel() {
       let hue1 = p.hue(usedColors[index1].color);
       let hue2 = p.hue(usedColors[index2].color);
       //console.log("[" + index1 + "]:" + hue1 + "[" + index1 + "]:" + hue2);
+      
 
       hueDifference = (hue2 - hue1) / 15; //色相差の計算
+      
       if (hueDifference < 0) { hueDifference = -hueDifference; } //色相差を絶対値に変換
       if (hueDifference > 12) { hueDifference = 24 - hueDifference; } //色相差を0~12の値に変換
       //console.log(hueDifference);
+      */
 
-      return hueDifference;
+      return hueDifferenceMax;
 
     }
 
@@ -183,6 +206,7 @@ export function DisplayUsedColorWheel() {
       //点の描画
       p.stroke(0, 0, 0);
       p.fill(255, 0, 0, 150);
+      p.strokeWeight(0.005 * p.width);
       p.ellipse(x1, y1, p.width / 40, p.height / 40);
       p.ellipse(x2, y2, p.width / 40, p.height / 40);
       p.ellipse(x3, y3, p.width / 40, p.height / 40);
@@ -205,6 +229,7 @@ export function DisplayUsedColorWheel() {
       p.quad(x1, y1, x2, y2, x3, y3, x4, y4);
       //点の描画
       p.stroke(0, 0, 0, 150);
+      p.strokeWeight(0.005 * p.width);
       p.fill(255, 0, 0);
       p.ellipse(x1, y1, p.width / 40, p.height / 40);
       p.ellipse(x2, y2, p.width / 40, p.height / 40);
@@ -318,7 +343,7 @@ export function DisplayUsedColorWheel() {
 
     function drawColorHueDot(color: p5.Color, x: number, y: number) {
 
-      p.stroke(color);
+      p.stroke(0);
       p.fill(color);
       //p.line(0, 0, x, y);
       p.strokeWeight(0.005 * p.width);
