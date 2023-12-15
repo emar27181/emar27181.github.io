@@ -4,6 +4,7 @@ import React from 'react';
 import { ColorAmount, ReturnColorsAmount } from './DisplayUsedColorRatio';
 import p5 from 'p5';
 import { ReturnDrawingColor } from '../Reserch/Canvas';
+import { drawRectangle } from '@mediapipe/drawing_utils';
 
 export function DisplayUsedColorWheel() {
   const sketch = (p: P5CanvasInstance) => {
@@ -61,13 +62,19 @@ export function DisplayUsedColorWheel() {
       }
       else if (usedColors.length === 3) {
         drawTriangle(angle, 2);
+        //drawTriangle(angle, 3);
       }
-      else if (usedColors.length >= 4) {
-        drawRegularPolygon(angle, 4);
+      else if (usedColors.length <= 5) {
+        //drawRegularPolygon(angle, 4);
+        drawRectangle(angle, 4);
+        //drawRectangle(angle, 2);
+        //drawRegularPolygon(angle, 3);
+        //drawRegularPolygon(angle, usedColors.length);
       }
-      //drawTriangle(angle, 3);
-      //drawRegularPolygon(angle, 3);
-      //drawRegularPolygon(angle, usedColors.length);
+      else if (usedColors.length >= 6) {
+        //drawRegularPolygon(angle, 3);
+        drawRegularPolygon(angle, usedColors.length);
+      }
     }
 
     function drawTriangle(angle: number, hueDifference: number) {
@@ -78,10 +85,6 @@ export function DisplayUsedColorWheel() {
       let y2 = radius * p.sin(p.radians(angle + 180 - 15 * hueDifference));
       let x3 = radius * p.cos(p.radians(angle + 180 + 15 * hueDifference));
       let y3 = radius * p.sin(p.radians(angle + 180 + 15 * hueDifference));
-      //let x2 = radius * p.cos(p.radians(angle + 150));
-      //let y2 = radius * p.sin(p.radians(angle + 150));
-      //let x3 = radius * p.cos(p.radians(angle + 210));
-      //let y3 = radius * p.sin(p.radians(angle + 210));
 
       //線の描画
       p.stroke(255, 0, 0, 150);
@@ -93,6 +96,30 @@ export function DisplayUsedColorWheel() {
       p.ellipse(x2, y2, p.width / 40, p.height / 40);
       p.ellipse(x3, y3, p.width / 40, p.height / 40);
     }
+
+    function drawRectangle(angle: number, hueDifference: number) {
+      //座標の計算
+      let x1 = radius * p.cos(p.radians(angle));
+      let y1 = radius * p.sin(p.radians(angle));
+      let x2 = radius * p.cos(p.radians(angle + 15 * hueDifference));
+      let y2 = radius * p.sin(p.radians(angle + 15 * hueDifference));
+      let x3 = radius * p.cos(p.radians(angle + 180));
+      let y3 = radius * p.sin(p.radians(angle + 180));
+      let x4 = radius * p.cos(p.radians(angle + 180 + 15 * hueDifference));
+      let y4 = radius * p.sin(p.radians(angle + 180 + 15 * hueDifference));
+
+      //線の描画
+      p.stroke(255, 0, 0, 150);
+      p.noFill();
+      p.quad(x1, y1, x2, y2, x3, y3, x4, y4);
+      //点の描画
+      p.fill(255, 0, 0, 150);
+      p.ellipse(x1, y1, p.width / 40, p.height / 40);
+      p.ellipse(x2, y2, p.width / 40, p.height / 40);
+      p.ellipse(x3, y3, p.width / 40, p.height / 40);
+      p.ellipse(x4, y4, p.width / 40, p.height / 40);
+    }
+
 
     function drawRegularPolygon(angle: number, number: number) {
       for (let i = 0; i < number; i++) {
