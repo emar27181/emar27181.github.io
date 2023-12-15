@@ -165,19 +165,23 @@ export function DisplayUsedColorWheel() {
     }
 
     function drawTriangle(angle: number, hueDifference: number) {
+      //hueDifference: 分裂された2つの色相"間"の色相差
+      //色相差が2(30度)であれば, 色相差を1(15度)で左右に分裂する
+
       //座標の計算
       let x1 = radius * p.cos(p.radians(angle));
       let y1 = radius * p.sin(p.radians(angle));
-      let x2 = radius * p.cos(p.radians(angle + 180 - 15 * hueDifference));
-      let y2 = radius * p.sin(p.radians(angle + 180 - 15 * hueDifference));
-      let x3 = radius * p.cos(p.radians(angle + 180 + 15 * hueDifference));
-      let y3 = radius * p.sin(p.radians(angle + 180 + 15 * hueDifference));
+      let x2 = radius * p.cos(p.radians(angle + 180 - 15 * hueDifference / 2));
+      let y2 = radius * p.sin(p.radians(angle + 180 - 15 * hueDifference / 2));
+      let x3 = radius * p.cos(p.radians(angle + 180 + 15 * hueDifference / 2));
+      let y3 = radius * p.sin(p.radians(angle + 180 + 15 * hueDifference / 2));
 
       //線の描画
-      p.stroke(255, 0, 0, 150);
+      p.stroke(255, 0, 0);
       p.noFill();
       p.triangle(x1, y1, x2, y2, x3, y3);
       //点の描画
+      p.stroke(0, 0, 0);
       p.fill(255, 0, 0, 150);
       p.ellipse(x1, y1, p.width / 40, p.height / 40);
       p.ellipse(x2, y2, p.width / 40, p.height / 40);
@@ -196,11 +200,12 @@ export function DisplayUsedColorWheel() {
       let y4 = radius * p.sin(p.radians(angle + 180 + 15 * hueDifference));
 
       //線の描画
-      p.stroke(255, 0, 0, 150);
+      p.stroke(255, 0, 0);
       p.noFill();
       p.quad(x1, y1, x2, y2, x3, y3, x4, y4);
       //点の描画
-      p.fill(255, 0, 0, 150);
+      p.stroke(0, 0, 0, 150);
+      p.fill(255, 0, 0);
       p.ellipse(x1, y1, p.width / 40, p.height / 40);
       p.ellipse(x2, y2, p.width / 40, p.height / 40);
       p.ellipse(x3, y3, p.width / 40, p.height / 40);
