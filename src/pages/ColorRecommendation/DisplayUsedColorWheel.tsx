@@ -53,10 +53,13 @@ export function DisplayUsedColorWheel() {
       return color;
     }
 
-    //最も使用率の低い色相の色を返す関数
+    // 最も使用率の低い色相の色を返す関数
     function returnAccentColor() {
-      //使用色の中でも最も距離が離れている色を使用率が低い色とする
+      // 使用色の中でも最も距離が離れている色を使用率が低い色とする
       // hue=[0, 15, 30, 195]があったとき, 195がアクセントカラー
+
+      // 現在は[i+1], [i+2]の色相を基準に色相差を算出しているため, 
+      // 四角形以上の場合正しく色相差を算出できないことがある.(2023/12/15時点)
 
       let distance: number[] = [];
       for (let i = 0; i < usedColors.length; i++) {
