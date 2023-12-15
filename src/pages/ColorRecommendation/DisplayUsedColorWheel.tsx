@@ -107,7 +107,7 @@ export function DisplayUsedColorWheel() {
     }
 
     //アクセントカラー以外の色の色相差を返す関数
-    function returnHueDifference() {
+    function returnSplitHueDifference() {
       let accentColor = returnAccentColor();
       let accentColorNumber = 0;
       let hueDifferenceMax = 0;
@@ -165,7 +165,7 @@ export function DisplayUsedColorWheel() {
       }
       else if (usedColors.length <= 5) {
         let angle = p.hue(returnAccentColor());
-        drawTriangle(angle, returnHueDifference());
+        drawTriangle(angle, returnSplitHueDifference());
         //drawTriangle(angle, 2);
         //drawTriangle(angle, 3);
       }
