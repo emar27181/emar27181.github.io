@@ -19,7 +19,18 @@ import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecomm
 import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorRecommendation/DisplayUsedColorRatio';
 import { ReturnBarValue, ReturnClickedKey, ReturnIsButtonClicked, ReturnIsTouchedGui } from './OperateGuiControl';
 import { ReturnIsLoadImage, ReturnLoadImageUrl } from '../TestDragAndPaste';
-import initPath from '../../assets/coloring_sample_image.png';
+import imageFilePath0 from '../../assets/coloring_sample_image.png';
+import imageFilePath1 from '../../assets/img_1701616372.png';
+import imageFilePath2 from '../../assets/NCG255-510x510.jpg';
+import imageFilePath3 from '../../assets/160_10.jpg';
+import imageFilePath4 from '../../assets/160_11.jpg';
+import imageFilePath5 from '../../assets/img_1702279389.png';
+import imageFilePath6 from '../../assets/IMG_9803.png';
+import imageFilePath7 from '../../assets/IMG_9802.png';
+import imageFilePath8 from '../../assets/IMG_9801.png';
+import imageFilePath9 from '../../assets/IMG_9807.png';
+import imageFilePath10 from '../../assets/IMG_9808.png';
+import imageFilePath11 from '../../assets/IMG_9809.png';
 
 //importでファイルパスを読み込む場合
 //import coloringImageFilePath from '../../assets/xxx.png'; //この方法でないとデプロイ先で読み込めない？
@@ -28,7 +39,6 @@ import initPath from '../../assets/coloring_sample_image.png';
 
 let coloringImageFilePath: string[] = [];
 //coloringImageFilePath.push('../../assets/coloring_sample_image.png'); //この方法で読み込みたいが何故か出来ない
-coloringImageFilePath.push(initPath);
 coloringImageFilePath.push('src/assets/coloring_sample_image.png');
 coloringImageFilePath.push('src/assets/IMG_9803.png');
 coloringImageFilePath.push('src/assets/IMG_9802.png');
@@ -98,7 +108,7 @@ export function Canvas() {
     returnDrawingColor = p.color(255, 0, 0);
     backgroundColor = p.color(255, 255, 255);
     let rate = 0.35;
-    let loadImageNumber = 0;
+    let loadImageNumber = 6;
     //backgroundColor = p.color(0, 0, 0);
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
@@ -112,9 +122,26 @@ export function Canvas() {
     let loadImage: p5.Image;
 
     p.preload = () => {
+
+      coloringImages.push(p.loadImage(imageFilePath0));
+      coloringImages.push(p.loadImage(imageFilePath1));
+      coloringImages.push(p.loadImage(imageFilePath2));
+      coloringImages.push(p.loadImage(imageFilePath3));
+      coloringImages.push(p.loadImage(imageFilePath4));
+      coloringImages.push(p.loadImage(imageFilePath5));
+      coloringImages.push(p.loadImage(imageFilePath6));
+      coloringImages.push(p.loadImage(imageFilePath7));
+      coloringImages.push(p.loadImage(imageFilePath8));
+      coloringImages.push(p.loadImage(imageFilePath9));
+      coloringImages.push(p.loadImage(imageFilePath10));
+      coloringImages.push(p.loadImage(imageFilePath11));
+
+      /*
       for (let i = 0; i < coloringImageFilePath.length; i++) {
         coloringImages.push(p.loadImage(coloringImageFilePath[i]));
+        //coloringImages.push(p.loadImage('../../assets/coloring_sample_image.png')); //これも出来ない...
       }
+      */
 
       if (ReturnIsLoadImage()) {
         loadImage = p.loadImage(ReturnLoadImageUrl()); //バグ有り(2023/12/03)
@@ -123,15 +150,21 @@ export function Canvas() {
     }
 
     p.setup = () => {
-      //let aspectRatio = coloringImage.width / coloringImage.height; //縦幅基準
-      //p.createCanvas(aspectRatio * rate * window.innerWidth, rate * window.innerWidth);
-      let aspectRatio = coloringImages[0].height / coloringImages[0].width; //横幅基準
-      p.createCanvas(rate * window.innerWidth, aspectRatio * rate * window.innerWidth);
-      for (let i = 0; i < coloringImages.length; i++) {
-        coloringImages[i].resize(p.width, p.height);
-      }
-      canvasWidth = p.width, canvasHeight = p.height;
+      //キャンバスの作成
+      p.createCanvas(rate * window.innerWidth, rate * window.innerWidth);
       p.background(backgroundColor);
+      canvasWidth = p.width, canvasHeight = p.height;
+
+      //画像のアスペクト比の計算とサイズの修正
+      let aspectRatio: number[] = [];
+      for (let i = 0; i < coloringImages.length; i++) {
+        aspectRatio[i] = coloringImages[i].height / coloringImages[i].width; //横幅基準
+      }
+      for (let i = 0; i < coloringImages.length; i++) {
+        //キャンバスからはみ出ないように修正
+        if (aspectRatio[i] < 1) { coloringImages[i].resize(p.width, aspectRatio[i] * p.height); }
+        else { coloringImages[i].resize(p.width / aspectRatio[i], p.height); }
+      }
       ballsTrackigGravity.push(new Ball(0, 0, 100, p.color(0, 255, 0), 9)); //1番目に認識される手
       ballsTrackigGravity.push(new Ball(0, 0, 100, p.color(0, 255, 0), 9)); //2番目に認識される手
       //p.colorMode(p.RGB, 360, 100, 100, 100);
@@ -281,6 +314,8 @@ export function Canvas() {
       }
       backgroundColor = p.color(p.red(backgroundColor), p.green(backgroundColor), p.blue(backgroundColor), backgroundAlpha);
       updateDrawingBrushLayer();
+
+      if (loadImageNumber >= coloringImages.length - 1) { loadImageNumber = coloringImages.length - 1; }
     }
 
     function updateDrawingBrushLayer() {
@@ -585,6 +620,15 @@ export function Canvas() {
           }
         }
       }
+
+      if (p.keyCode === p.RIGHT_ARROW) {
+        loadImageNumber++;
+        if (loadImageNumber >= coloringImages.length - 1) { loadImageNumber = coloringImages.length - 1; }
+      }
+      if (p.keyCode === p.LEFT_ARROW) {
+        loadImageNumber--;
+        if (loadImageNumber <= 0) { loadImageNumber = 0; }
+      }
     }
 
     //キーボードによる操作(タイプして離れるまでに1度だけ呼び出し)
@@ -677,7 +721,7 @@ export function Canvas() {
         }
       }
 
-      //描画色の変更
+      //表示画像の変更
       if (p.key === "0") { loadImageNumber = 0; }
       if (p.key === "1") { loadImageNumber = 1; }
       if (p.key === "2") { loadImageNumber = 2; }
@@ -688,6 +732,10 @@ export function Canvas() {
       if (p.key === "7") { loadImageNumber = 7; }
       if (p.key === "8") { loadImageNumber = 8; }
       if (p.key === "9") { loadImageNumber = 9; }
+      if (p.key === "!") { loadImageNumber = 10; }
+      if (p.key === '"') { loadImageNumber = 11; }
+      if (p.key === "#") { loadImageNumber = 12; }
+
     }
 
     // バックエンドからJSONデータの取得と色に関するデータの代入
