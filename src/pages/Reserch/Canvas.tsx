@@ -27,6 +27,10 @@ import imageFilePath4 from '../../assets/160_11.jpg';
 import imageFilePath5 from '../../assets/img_1702279389.png';
 import imageFilePath6 from '../../assets/IMG_9803.png';
 import imageFilePath7 from '../../assets/IMG_9802.png';
+import imageFilePath8 from '../../assets/IMG_9801.png';
+import imageFilePath9 from '../../assets/IMG_9807.png';
+import imageFilePath10 from '../../assets/IMG_9808.png';
+import imageFilePath11 from '../../assets/IMG_9809.png';
 
 //importでファイルパスを読み込む場合
 //import coloringImageFilePath from '../../assets/xxx.png'; //この方法でないとデプロイ先で読み込めない？
@@ -104,7 +108,7 @@ export function Canvas() {
     returnDrawingColor = p.color(255, 0, 0);
     backgroundColor = p.color(255, 255, 255);
     let rate = 0.35;
-    let loadImageNumber = 0;
+    let loadImageNumber = 6;
     //backgroundColor = p.color(0, 0, 0);
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
@@ -127,7 +131,10 @@ export function Canvas() {
       coloringImages.push(p.loadImage(imageFilePath5));
       coloringImages.push(p.loadImage(imageFilePath6));
       coloringImages.push(p.loadImage(imageFilePath7));
-
+      coloringImages.push(p.loadImage(imageFilePath8));
+      coloringImages.push(p.loadImage(imageFilePath9));
+      coloringImages.push(p.loadImage(imageFilePath10));
+      coloringImages.push(p.loadImage(imageFilePath11));
 
       /*
       for (let i = 0; i < coloringImageFilePath.length; i++) {
@@ -307,6 +314,8 @@ export function Canvas() {
       }
       backgroundColor = p.color(p.red(backgroundColor), p.green(backgroundColor), p.blue(backgroundColor), backgroundAlpha);
       updateDrawingBrushLayer();
+
+      if (loadImageNumber >= coloringImages.length - 1) { loadImageNumber = coloringImages.length - 1; }
     }
 
     function updateDrawingBrushLayer() {
@@ -723,6 +732,9 @@ export function Canvas() {
       if (p.key === "7") { loadImageNumber = 7; }
       if (p.key === "8") { loadImageNumber = 8; }
       if (p.key === "9") { loadImageNumber = 9; }
+      if (p.key === "!") { loadImageNumber = 10; }
+      if (p.key === '"') { loadImageNumber = 11; }
+      if (p.key === "#") { loadImageNumber = 12; }
 
     }
 
