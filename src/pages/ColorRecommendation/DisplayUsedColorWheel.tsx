@@ -175,14 +175,16 @@ export function DisplayUsedColorWheel() {
     function updateUsedColors() {
       resetUsedColors();
       p.colorMode(p.RGB);
-      let SATURATION_LIMIT = 15;
-      let LIGHTNESS_LIMIT = 88;
+      let SATURATION_LIMIT = 20;
+      let LIGHTNESS_UPPER_LIMIT = 85;
+      let LIGHTNESS_LOWER_LIMIT = 15;
       let AMOUNT_LIMIT = 4;
 
       for (let i = 0; i < colorsAmount.length; i++) {
         if (colorsAmount[i].amount < AMOUNT_LIMIT ||
           p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT ||
-          p.lightness(colorsAmount[i].color) >= LIGHTNESS_LIMIT) {
+          p.lightness(colorsAmount[i].color) >= LIGHTNESS_UPPER_LIMIT ||
+          p.lightness(colorsAmount[i].color) <= LIGHTNESS_LOWER_LIMIT) {
           continue;
         }
         let hue = p.hue(colorsAmount[i].color);
