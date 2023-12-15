@@ -611,6 +611,15 @@ export function Canvas() {
           }
         }
       }
+
+      if (p.keyCode === p.RIGHT_ARROW) {
+        loadImageNumber++;
+        if (loadImageNumber >= coloringImages.length - 1) { loadImageNumber = coloringImages.length - 1; }
+      }
+      if (p.keyCode === p.LEFT_ARROW) {
+        loadImageNumber--;
+        if (loadImageNumber <= 0) { loadImageNumber = 0; }
+      }
     }
 
     //キーボードによる操作(タイプして離れるまでに1度だけ呼び出し)
@@ -703,7 +712,7 @@ export function Canvas() {
         }
       }
 
-      //描画色の変更
+      //表示画像の変更
       if (p.key === "0") { loadImageNumber = 0; }
       if (p.key === "1") { loadImageNumber = 1; }
       if (p.key === "2") { loadImageNumber = 2; }
@@ -714,6 +723,7 @@ export function Canvas() {
       if (p.key === "7") { loadImageNumber = 7; }
       if (p.key === "8") { loadImageNumber = 8; }
       if (p.key === "9") { loadImageNumber = 9; }
+
     }
 
     // バックエンドからJSONデータの取得と色に関するデータの代入
