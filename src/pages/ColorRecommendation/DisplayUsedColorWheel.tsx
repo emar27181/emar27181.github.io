@@ -179,6 +179,11 @@ export function DisplayUsedColorWheel() {
     }
 
     function drawLine(angle: number) {
+      let hueDifference = (p.hue(usedColors[0].color) - p.hue(usedColors[1].color)) / 15;//色相差の計算
+      if (hueDifference < 0) { hueDifference = -hueDifference; } //色相差を絶対値に変換
+      if (hueDifference > 12) { hueDifference = 24 - hueDifference; } //色相差を0~12の値に変換
+      if (hueDifference <= 6) { return; } //色相差が6以下だった場合, 何もせず終了
+
       //座標の計算
       let x1 = radius * p.cos(p.radians(angle));
       let y1 = radius * p.sin(p.radians(angle));
@@ -188,6 +193,13 @@ export function DisplayUsedColorWheel() {
       //線の描画
       p.stroke(255, 0, 0, 150);
       p.line(x1, y1, x2, y2);
+
+      //点の描画
+      p.stroke(0, 0, 0);
+      p.fill(255, 0, 0, 150);
+      p.strokeWeight(0.005 * p.width);
+      p.ellipse(x1, y1, p.width / 40, p.height / 40);
+      p.ellipse(x2, y2, p.width / 40, p.height / 40);
     }
 
     function drawTriangle(angle: number, hueDifference: number) {
