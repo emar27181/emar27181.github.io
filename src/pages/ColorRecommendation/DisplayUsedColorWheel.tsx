@@ -70,11 +70,13 @@ export function DisplayUsedColorWheel() {
       if (usedColors.length === 0) { return; }
 
       if (usedColors.length <= 2) {
-
+        let angle = p.hue(returnBaseColor());
+        drawLine(angle);
       }
-      else if (usedColors.length === 3) {
+      else if (usedColors.length <= 4) {
         let angle = p.hue(returnAccentColor());
-        drawTriangle(angle, 2);
+        drawTriangle(angle, 1);
+        //drawTriangle(angle, 2);
         //drawTriangle(angle, 3);
       }
       else if (usedColors.length <= 5) {
@@ -87,6 +89,18 @@ export function DisplayUsedColorWheel() {
         //drawRegularPolygon(angle, 3);
         drawRegularPolygon(angle, usedColors.length);
       }
+    }
+
+    function drawLine(angle: number) {
+      //座標の計算
+      let x1 = radius * p.cos(p.radians(angle));
+      let y1 = radius * p.sin(p.radians(angle));
+      let x2 = radius * p.cos(p.radians(angle + 180));
+      let y2 = radius * p.sin(p.radians(angle + 180));
+
+      //線の描画
+      p.stroke(255, 0, 0, 150);
+      p.line(x1, y1, x2, y2);
     }
 
     function drawTriangle(angle: number, hueDifference: number) {
@@ -188,9 +202,9 @@ export function DisplayUsedColorWheel() {
       resetUsedColors();
       p.colorMode(p.RGB);
       let SATURATION_LIMIT = 20;
-      let LIGHTNESS_UPPER_LIMIT = 85;
-      let LIGHTNESS_LOWER_LIMIT = 15;
-      let AMOUNT_LIMIT = 4;
+      let LIGHTNESS_UPPER_LIMIT = 80;
+      let LIGHTNESS_LOWER_LIMIT = 25;
+      let AMOUNT_LIMIT = 3;
 
       for (let i = 0; i < colorsAmount.length; i++) {
         if (colorsAmount[i].amount < AMOUNT_LIMIT ||
