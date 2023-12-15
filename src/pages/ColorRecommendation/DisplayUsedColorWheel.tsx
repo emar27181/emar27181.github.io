@@ -66,6 +66,33 @@ export function DisplayUsedColorWheel() {
       return color;
     }
 
+    //アクセントカラー以外の色の色相差を返す関数
+    function returnHueDifference() {
+      let accentColor = returnAccentColor();
+      let accentColorNumber = 0;
+      let hueDifference = 0;
+
+      for (let i = 0; i < usedColors.length; i++) {
+        if (usedColors[i].color === accentColor) {
+          accentColorNumber = i;
+        }
+      }
+
+      let index1 = (accentColorNumber + 1) % usedColors.length;
+      let index2 = (accentColorNumber + 2) % usedColors.length;
+      let hue1 = p.hue(usedColors[index1].color);
+      let hue2 = p.hue(usedColors[index2].color);
+      //console.log("[" + index1 + "]:" + hue1 + "[" + index1 + "]:" + hue2);
+
+      hueDifference = (hue2 - hue1) / 15; //色相差の計算
+      if (hueDifference < 0) { hueDifference = -hueDifference; } //色相差を絶対値に変換
+      if (hueDifference > 12) { hueDifference = 24 - hueDifference; } //色相差を0~12の値に変換
+      //console.log(hueDifference);
+
+      return hueDifference;
+
+    }
+
     function drawRecommendedColors() {
       if (usedColors.length === 0) { return; }
 
@@ -75,7 +102,7 @@ export function DisplayUsedColorWheel() {
       }
       else if (usedColors.length <= 4) {
         let angle = p.hue(returnAccentColor());
-        drawTriangle(angle, 1);
+        drawTriangle(angle, returnHueDifference());
         //drawTriangle(angle, 2);
         //drawTriangle(angle, 3);
       }
