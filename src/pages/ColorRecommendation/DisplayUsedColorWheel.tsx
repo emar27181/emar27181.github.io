@@ -55,6 +55,38 @@ export function DisplayUsedColorWheel() {
 
     //最も使用率の低い色相の色を返す関数
     function returnAccentColor() {
+      //使用色の中でも最も距離が離れている色を使用率が低い色とする
+      // hue=[0, 15, 30, 195]があったとき, 195がアクセントカラー
+
+      let distance: number[] = [];
+      for (let i = 0; i < usedColors.length; i++) {
+        distance[i] = 0;
+        let x1 = usedColors[i].position.x;
+        let y1 = usedColors[i].position.y;
+
+        let index = (i + 1) % usedColors.length;
+        let x2 = usedColors[index].position.x;
+        let y2 = usedColors[index].position.y;
+        distance[i] += p.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+
+        index = (i + 2) % usedColors.length;
+        x2 = usedColors[index].position.x;
+        y2 = usedColors[index].position.y;
+        distance[i] += p.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+      }
+
+      let maxDistance = 0;
+      let maxDistanceIndexNumber = 0;
+      for (let i = 0; i < distance.length; i++) {
+        if (distance[i] > maxDistance) {
+          maxDistance = distance[i];
+          maxDistanceIndexNumber = i;
+        }
+      }
+
+      return usedColors[maxDistanceIndexNumber].color;
+
+      /*
       let amountMin = 10000;
       let color = p.color(0);
       for (let i = 0; i < usedColors.length; i++) {
@@ -64,6 +96,8 @@ export function DisplayUsedColorWheel() {
         }
       }
       return color;
+      */
+
     }
 
     //アクセントカラー以外の色の色相差を返す関数
@@ -100,7 +134,7 @@ export function DisplayUsedColorWheel() {
         let angle = p.hue(returnBaseColor());
         drawLine(angle);
       }
-      else if (usedColors.length <= 4) {
+      else if (usedColors.length <= 5) {
         let angle = p.hue(returnAccentColor());
         drawTriangle(angle, returnHueDifference());
         //drawTriangle(angle, 2);
