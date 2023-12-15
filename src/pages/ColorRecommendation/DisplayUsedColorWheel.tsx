@@ -201,7 +201,7 @@ export function DisplayUsedColorWheel() {
       }
 
       //色相差を表す点の追加
-      for (let angle = 0; angle < 360; angle += 15) {
+      for (let angle = 0; angle < 360; angle += 30) {
         let x = radius * p.cos(p.radians(angle));
         let y = radius * p.sin(p.radians(angle));
 
