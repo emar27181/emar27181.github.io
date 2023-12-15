@@ -141,9 +141,14 @@ export function DisplayUsedColorWheel() {
       resetUsedColors();
       p.colorMode(p.RGB);
       let SATURATION_LIMIT = 15;
+      let LIGHTNESS_LIMIT = 85;
       let AMOUNT_LIMIT = 20;
       for (let i = 0; i < colorsAmount.length; i++) {
-        if (colorsAmount[i].amount <= AMOUNT_LIMIT || p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) { continue; }
+        if (colorsAmount[i].amount <= AMOUNT_LIMIT ||
+          p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT ||
+          p.lightness(colorsAmount[i].color) >= LIGHTNESS_LIMIT) {
+          continue;
+        }
         let hue = p.hue(colorsAmount[i].color);
         // if ((8 <= hue && hue <= 11) || (32 <= hue && hue <= 34)) { continue; } 
 
