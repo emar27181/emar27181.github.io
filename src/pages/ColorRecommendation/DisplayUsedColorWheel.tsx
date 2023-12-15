@@ -70,12 +70,15 @@ export function DisplayUsedColorWheel() {
       let x3 = radius * p.cos(p.radians(angle + 210));
       let y3 = radius * p.sin(p.radians(angle + 210));
 
-      //線と点の描画
+      //線の描画
       p.stroke(255, 0, 0, 150);
       p.noFill();
       p.triangle(x1, y1, x2, y2, x3, y3);
+      //点の描画
       p.fill(255, 0, 0, 150);
       p.ellipse(x1, y1, p.width / 40, p.height / 40);
+      p.ellipse(x2, y2, p.width / 40, p.height / 40);
+      p.ellipse(x3, y3, p.width / 40, p.height / 40);
     }
 
     function drawRegularPolygon(angle: number, number: number) {
@@ -87,9 +90,10 @@ export function DisplayUsedColorWheel() {
         let y2 = radius * p.sin(p.radians(angle + 360 / number));
         angle += 360 / number;
 
-        //線と点の描画
+        //線の描画
         p.stroke(255, 0, 0, 150);
         p.line(x1, y1, x2, y2);
+        //点の描画
         p.fill(255, 0, 0, 150);
         p.ellipse(x1, y1, p.width / 40, p.height / 40);
       }
