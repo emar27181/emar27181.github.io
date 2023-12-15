@@ -35,6 +35,7 @@ export function DisplayUsedColorWheel() {
       //console.log(usedColors)
       if (DEBUG) { console.log("usedColors.length: " + usedColors.length); }
     }
+
     function updateVariables() {
       colorsAmount = ReturnColorsAmount();
       drawingColor = ReturnDrawingColor();
@@ -53,18 +54,18 @@ export function DisplayUsedColorWheel() {
       return color;
     }
 
-    // 最も使用率の低い色相の色を返す関数
+    // キャンバス上でアクセントカラーと判別される色を返す関数
     function returnAccentColor() {
       // 使用色の中でも最も距離が離れている色を使用率が低い色とする
       // hue=[0, 15, 30, 210]があったとき, 210がアクセントカラーとする.
-
-      // 現在は[i+1], [i+2]の色相を基準に色相差を算出しているため, 
-      // 四角形以上の場合正しく色相差を算出できないことがある.(2023/12/15時点)
 
       // 本来アクセントカラーはベースカラー, メインカラーの180度反対の色相にするべき?
       // hue=[0, 15, 30, 210]があったとき, [0, 15, 30]の平均の反対の195をアクセントカラーとする.
 
       let distance: number[] = [];
+      // 各色相における距離の計算
+      // 現在は[i+1], [i+2]の色相を基準に色相差を算出しているため, 
+      // 四角形以上の場合正しく色相差を算出できないことがある.(2023/12/15時点)
       for (let i = 0; i < usedColors.length; i++) {
         distance[i] = 0;
         let x1 = usedColors[i].position.x;
@@ -81,6 +82,7 @@ export function DisplayUsedColorWheel() {
         distance[i] += p.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
       }
 
+      //距離の最大値の更新
       let maxDistance = 0;
       let maxDistanceIndexNumber = 0;
       for (let i = 0; i < distance.length; i++) {
@@ -89,21 +91,7 @@ export function DisplayUsedColorWheel() {
           maxDistanceIndexNumber = i;
         }
       }
-
       return usedColors[maxDistanceIndexNumber].color;
-
-      /*
-      let amountMin = 10000;
-      let color = p.color(0);
-      for (let i = 0; i < usedColors.length; i++) {
-        if (usedColors[i].amount < amountMin) {
-          amountMin = usedColors[i].amount;
-          color = usedColors[i].color;
-        }
-      }
-      return color;
-      */
-
     }
 
     //2色間の色相差を計算する関数
@@ -134,32 +122,9 @@ export function DisplayUsedColorWheel() {
           let hueDifference = calculateHueDifference(usedColors[i].color, usedColors[j].color) //色相差の計算
           if (hueDifference > hueDifferenceMax) { hueDifferenceMax = hueDifference; } //色相差の最大の更新
         }
-
       }
-
-      /*
-      for (let i = 0; i < usedColors.length; i++) {
-        if (usedColors[i].color === accentColor) {
-          accentColorNumber = i;
-        }
-      }
-
-      let index1 = (accentColorNumber + 1) % usedColors.length;
-      let index2 = (accentColorNumber + 2) % usedColors.length;
-      let hue1 = p.hue(usedColors[index1].color);
-      let hue2 = p.hue(usedColors[index2].color);
-      //console.log("[" + index1 + "]:" + hue1 + "[" + index1 + "]:" + hue2);
-      
-
-      hueDifference = (hue2 - hue1) / 15; //色相差の計算
-      
-      if (hueDifference < 0) { hueDifference = -hueDifference; } //色相差を絶対値に変換
-      if (hueDifference > 12) { hueDifference = 24 - hueDifference; } //色相差を0~12の値に変換
-      //console.log(hueDifference);
-      */
 
       return hueDifferenceMax;
-
     }
 
     function drawRecommendedColors() {
