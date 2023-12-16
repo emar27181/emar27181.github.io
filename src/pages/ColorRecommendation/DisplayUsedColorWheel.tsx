@@ -42,12 +42,23 @@ export function DisplayUsedColorWheel() {
     }
 
     function drawRecommendedColors() {
+
+      //描画色が0色だった場合
       if (usedColors.length === 0) { return; }
 
-      if (usedColors.length <= 2) {
+      //描画色が1色だった場合
+      else if (usedColors.length === 1) {
+        let angle = p.hue(returnBaseColor());
+        drawLineIdea(angle);
+      }
+
+      //描画色が2色以下だった場合
+      else if (usedColors.length === 2) {
         let angle = p.hue(returnBaseColor());
         drawLine(angle);
       }
+
+      //描画色が5色以下だった場合
       else if (usedColors.length <= 5) {
 
         // 分割色相差が4(60°)以下だった場合
@@ -63,6 +74,7 @@ export function DisplayUsedColorWheel() {
         }
       }
 
+      //描画色が6色以上だった場合
       else if (usedColors.length >= 6) {
         let angle = p.hue(returnBaseColor());
         drawRegularPolygon(angle, usedColors.length);
@@ -169,6 +181,7 @@ export function DisplayUsedColorWheel() {
       return hueDifferenceMax;
     }
 
+
     function drawLine(angle: number) {
       if (usedColors.length === 1) { return; }
       let hueDifference = calculateHueDifference(usedColors[0].color, usedColors[1].color)
@@ -191,6 +204,65 @@ export function DisplayUsedColorWheel() {
       p.ellipse(x1, y1, p.width / 40, p.height / 40);
       p.ellipse(x2, y2, p.width / 40, p.height / 40);
     }
+
+    // 塗られていない色のアイデアを直線で表示する関数
+    function drawLineIdea(angle: number) {
+
+      //補色の描画
+      //座標の計算
+      let x1 = radius * p.cos(p.radians(angle));
+      let y1 = radius * p.sin(p.radians(angle));
+      let x2 = radius * p.cos(p.radians(angle + 180));
+      let y2 = radius * p.sin(p.radians(angle + 180));
+
+      //線の描画
+      p.stroke(0, 255, 0, 150);
+      p.line(x1, y1, x2, y2);
+
+      //点の描画
+      p.stroke(0, 0, 0);
+      p.fill(0, 255, 0, 150);
+      p.strokeWeight(0.005 * p.width);
+      p.ellipse(x1, y1, p.width / 40, p.height / 40);
+      p.ellipse(x2, y2, p.width / 40, p.height / 40);
+
+      //類似色の描画
+      //座標の計算
+      x1 = radius * p.cos(p.radians(angle));
+      y1 = radius * p.sin(p.radians(angle));
+      x2 = radius * p.cos(p.radians(angle + 30));
+      y2 = radius * p.sin(p.radians(angle + 30));
+
+      //線の描画
+      p.stroke(0, 255, 0, 150);
+      p.line(x1, y1, x2, y2);
+
+      //点の描画
+      p.stroke(0, 0, 0);
+      p.fill(0, 255, 0, 150);
+      p.strokeWeight(0.005 * p.width);
+      p.ellipse(x1, y1, p.width / 40, p.height / 40);
+      p.ellipse(x2, y2, p.width / 40, p.height / 40);
+
+      //類似色の描画
+      //座標の計算
+      x1 = radius * p.cos(p.radians(angle));
+      y1 = radius * p.sin(p.radians(angle));
+      x2 = radius * p.cos(p.radians(angle - 30));
+      y2 = radius * p.sin(p.radians(angle - 30));
+
+      //線の描画
+      p.stroke(0, 255, 0, 150);
+      p.line(x1, y1, x2, y2);
+
+      //点の描画
+      p.stroke(0, 0, 0);
+      p.fill(0, 255, 0, 150);
+      p.strokeWeight(0.005 * p.width);
+      p.ellipse(x1, y1, p.width / 40, p.height / 40);
+      p.ellipse(x2, y2, p.width / 40, p.height / 40);
+    }
+
 
     function drawTriangle(angle: number, hueDifference: number) {
       //hueDifference: 分裂された2つの色相"間"の色相差
