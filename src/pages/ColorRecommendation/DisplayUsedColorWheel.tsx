@@ -5,6 +5,9 @@ import { ColorAmount, ReturnColorsAmount } from './DisplayUsedColorRatio';
 import p5 from 'p5';
 import { ReturnDrawingColor } from '../Reserch/Canvas';
 
+let isTouched = false;
+let returnColor: number[] = [0, 0, 0, 255];
+
 export function DisplayUsedColorWheel() {
   const sketch = (p: P5CanvasInstance) => {
 
@@ -34,11 +37,78 @@ export function DisplayUsedColorWheel() {
       drawColorHueDot(p.color(255), radius * p.cos(p.radians(p.hue(drawingColor))), radius * p.sin(p.radians(p.hue(drawingColor))));
       //console.log(usedColors)
       if (DEBUG) { console.log("usedColors.length: " + usedColors.length); }
+
+      if (p.mouseIsPressed) { mousePressed(); }
+    }
+
+    function mousePressed() {
+      // 描画色の色相を変更
+      if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
+        isTouched = true;
+        let radians = p.atan2(p.mouseY - p.width / 2, p.mouseX - p.width / 2);
+        let degree = p.round((radians * 180) / p.PI);
+        const SPLIT = 15; //SPLIT: 分割する角度
+        degree = p.round(degree / SPLIT) * SPLIT;
+        degree = (degree + 360) % 360;
+        returnColor = [degree, p.saturation(ReturnDrawingColor()), p.lightness(ReturnDrawingColor())];
+      }
     }
 
     function updateVariables() {
       colorsAmount = ReturnColorsAmount();
       drawingColor = ReturnDrawingColor();
+      isTouched = false;
+    }
+
+    function drawRecommendedColors() {
+
+      //描画色が0色だった場合
+      if (usedColors.length === 0) { return; }
+
+      //描画色が1色だった場合
+      else if (usedColors.length === 1) {
+        let angle = p.hue(usedColors[0].color);
+        drawLineIdea(angle);
+      }
+
+      //描画色が2色以下だった場合
+      else if (usedColors.length === 2) {
+        let angle = p.hue(returnBaseColor());
+        drawLineModify(angle);
+      }
+
+      //描画色が5色以下だった場合
+      else if (usedColors.length <= 5) {
+        // 全体の色相差が4(60°)以下だった場合
+        // 隣接・類似色相配色の推薦
+        if (returnHueDifference(false) <= 4) {
+          //推薦しなくとも隣接・類似色相配色になっているはず？
+        }
+
+        // 全体の色相差が4(60°)より大きい場合
+        // 色相の分割による配色の推薦
+        else {
+          // アクセントカラーを除いた色相差が4(60°)以下だった場合
+          // スプリットコンプリメンタリー, トライアドの推薦
+          if (returnHueDifference(true) <= 4) {
+            //let angle = p.hue(returnAccentColor()); ////キャンバスのアクセントカラーを頂点として二等辺三角形を描画
+            let angle = (p.hue(returnBaseColor()) + 180) % 360; //ベースカラーの補色を頂点として二等辺三角形を描画
+            drawTriangle(angle, returnHueDifference(true));
+          }
+          // アクセントカラーを除いた色相差が4(60°)より大きい場合
+          // テトラードの推薦
+          else {
+            let angle = p.hue(returnBaseColor());
+            drawRegularPolygon(angle, usedColors.length);
+          }
+        }
+      }
+
+      //描画色が6色以上だった場合
+      else if (usedColors.length >= 6) {
+        let angle = p.hue(returnBaseColor());
+        drawRegularPolygon(angle, usedColors.length);
+      }
     }
 
     //最も使用率の高い色相の平均を返す関数
@@ -69,9 +139,6 @@ export function DisplayUsedColorWheel() {
     function returnAccentColor() {
       // 使用色の中でも最も距離が離れている色を使用率が低い色とする
       // hue=[0, 15, 30, 210]があったとき, 210がアクセントカラーとする.
-
-      // 本来アクセントカラーはベースカラー, メインカラーの180度反対の色相にするべき?
-      // hue=[0, 15, 30, 210]があったとき, [0, 15, 30]の平均の反対の195をアクセントカラーとする.
 
       let distance: number[] = [];
       // 各色相における距離の計算
@@ -113,8 +180,10 @@ export function DisplayUsedColorWheel() {
       return hueDifference;
     }
 
-    //アクセントカラー以外の色の色相差を返す関数
-    function returnSplitHueDifference() {
+    //使用色の最も大きい色相差を返す関数
+    function returnHueDifference(isExcludeAccentColor: boolean) {
+      //isExcludeAccentColor: アクセントカラーを除外して色相差を計算するかを保存する変数
+
       let accentColor = returnAccentColor();
       let accentColorNumber = 0;
       let hueDifferenceMax = 0;
@@ -127,9 +196,9 @@ export function DisplayUsedColorWheel() {
       }
 
       for (let i = 0; i < usedColors.length; i++) {
-        if (i === accentColorNumber) { continue; }
+        if (i === accentColorNumber && isExcludeAccentColor) { continue; }
         for (let j = i + 1; j < usedColors.length; j++) {
-          if (j === accentColorNumber) { continue; }
+          if (j === accentColorNumber && isExcludeAccentColor) { continue; }
           let hueDifference = calculateHueDifference(usedColors[i].color, usedColors[j].color) //色相差の計算
           if (hueDifference > hueDifferenceMax) { hueDifferenceMax = hueDifference; } //色相差の最大の更新
         }
@@ -138,53 +207,44 @@ export function DisplayUsedColorWheel() {
       return hueDifferenceMax;
     }
 
-    function drawRecommendedColors() {
-      if (usedColors.length === 0) { return; }
-
-      if (usedColors.length <= 2) {
-        let angle = p.hue(returnBaseColor());
-        drawLine(angle);
-      }
-      else if (usedColors.length <= 5) {
-        //let angle = p.hue(returnAccentColor()); ////キャンバスのアクセントカラーを頂点として二等辺三角形を描画
-        let angle = (p.hue(returnBaseColor()) + 180) % 360; //ベースカラーの補色を頂点として二等辺三角形を描画
-        drawTriangle(angle, returnSplitHueDifference());
-        //drawTriangle(angle, 2);
-        //drawTriangle(angle, 3);
-      }
-      else if (usedColors.length <= 5) {
-        let angle = p.hue(returnBaseColor());
-        drawRectangle(angle, 4);
-        //drawRectangle(angle, 2);
-      }
-      else if (usedColors.length >= 6) {
-        let angle = p.hue(returnBaseColor());
-        //drawRegularPolygon(angle, 3);
-        drawRegularPolygon(angle, usedColors.length);
-      }
-    }
-
-    function drawLine(angle: number) {
-      let hueDifference = calculateHueDifference(usedColors[0].color, usedColors[1].color)
-      if (hueDifference <= 6) { return; } //色相差が6以下だった場合, 何もせず終了
-
+    // 与えられた角度の座標と与えられた色相差の角度の座標に線を結ぶ関数
+    function drawLine(angle: number, hueDifference: number, color: p5.Color) {
       //座標の計算
       let x1 = radius * p.cos(p.radians(angle));
       let y1 = radius * p.sin(p.radians(angle));
-      let x2 = radius * p.cos(p.radians(angle + 180));
-      let y2 = radius * p.sin(p.radians(angle + 180));
+      let x2 = radius * p.cos(p.radians(angle + hueDifference * 15));
+      let y2 = radius * p.sin(p.radians(angle + hueDifference * 15));
 
       //線の描画
-      p.stroke(255, 0, 0, 150);
+      p.stroke(color);
       p.line(x1, y1, x2, y2);
 
       //点の描画
       p.stroke(0, 0, 0);
-      p.fill(255, 0, 0, 150);
+      p.fill(color);
       p.strokeWeight(0.005 * p.width);
       p.ellipse(x1, y1, p.width / 40, p.height / 40);
       p.ellipse(x2, y2, p.width / 40, p.height / 40);
     }
+
+
+    function drawLineModify(angle: number) {
+      if (usedColors.length === 1) { return; }
+      let hueDifference = calculateHueDifference(usedColors[0].color, usedColors[1].color)
+      if (hueDifference <= 6) { return; } //色相差が6以下だった場合, 何もせず終了
+
+      drawLine(angle, 12, p.color(255, 0, 0, 150));
+    }
+
+    // 塗られていない色のアイデアを直線で表示する関数
+    function drawLineIdea(angle: number) {
+      //補色の描画
+      drawLine(angle, 12, p.color(0, 255, 0, 150));
+      //類似色の描画
+      drawLine(angle, 2, p.color(0, 255, 0, 150));
+      drawLine(angle, -2, p.color(0, 255, 0, 150));
+    }
+
 
     function drawTriangle(angle: number, hueDifference: number) {
       //hueDifference: 分裂された2つの色相"間"の色相差
@@ -396,5 +456,8 @@ export function DisplayUsedColorWheel() {
     <ReactP5Wrapper sketch={sketch} />
   )
 }
+
+export function ReturnIsTouchedUsedColorWheel() { return isTouched; }
+export function ReturnColorWheelColor() { return returnColor; }
 
 export default DisplayUsedColorWheel

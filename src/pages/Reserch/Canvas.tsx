@@ -31,6 +31,7 @@ import imageFilePath8 from '../../assets/IMG_9801.png';
 import imageFilePath9 from '../../assets/IMG_9807.png';
 import imageFilePath10 from '../../assets/IMG_9808.png';
 import imageFilePath11 from '../../assets/IMG_9809.png';
+import { ReturnColorWheelColor, ReturnIsTouchedUsedColorWheel } from '../ColorRecommendation/DisplayUsedColorWheel';
 
 //importでファイルパスを読み込む場合
 //import coloringImageFilePath from '../../assets/xxx.png'; //この方法でないとデプロイ先で読み込めない？
@@ -108,7 +109,7 @@ export function Canvas() {
     returnDrawingColor = p.color(255, 0, 0);
     backgroundColor = p.color(255, 255, 255);
     let rate = 0.35;
-    let loadImageNumber = 6;
+    let loadImageNumber = 0;
     //backgroundColor = p.color(0, 0, 0);
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
@@ -283,6 +284,8 @@ export function Canvas() {
       ballsTrackigGravity[1].position.x = trackingX3;
       ballsTrackigGravity[1].position.y = trackingY3;
 
+      // 色の数値の取得
+      // HSL色空間での色の取得
       p.colorMode(p.HSL);
       if (ReturnIsTouchedColorGenerate()) {
         let color = ReturnColorPaletteValue();
@@ -292,6 +295,11 @@ export function Canvas() {
         let color = ReturnRecommendedColor();
         drawingColor = p.color(color[0], color[1], color[2]);
       }
+      if (ReturnIsTouchedUsedColorWheel()) {
+        let color = ReturnColorWheelColor();
+        drawingColor = p.color(color[0], color[1], color[2]);
+      }
+      // RGB色空間での取得
       p.colorMode(p.RGB);
       if (ReturnIsTouchedColorRatio()) {
         let color = ReturnColorRatioValue();
@@ -299,6 +307,8 @@ export function Canvas() {
       }
       returnDrawingColor = drawingColor;
       getCanvasColors();
+
+      // GUIから数値の取得
       let barValue = ReturnBarValue();
       if (ReturnIsTouchedGui()) { drawingWeight = barValue[0]; }
       if (ReturnIsButtonClicked() && (ReturnClickedKey() === 'c')) {
