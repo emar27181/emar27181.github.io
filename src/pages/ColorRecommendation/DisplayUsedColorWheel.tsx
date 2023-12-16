@@ -170,6 +170,7 @@ export function DisplayUsedColorWheel() {
     }
 
     function drawLine(angle: number) {
+      if (usedColors.length === 1) { return; }
       let hueDifference = calculateHueDifference(usedColors[0].color, usedColors[1].color)
       if (hueDifference <= 6) { return; } //色相差が6以下だった場合, 何もせず終了
 
