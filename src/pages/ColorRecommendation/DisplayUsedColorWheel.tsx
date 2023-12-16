@@ -34,6 +34,18 @@ export function DisplayUsedColorWheel() {
       drawColorHueDot(p.color(255), radius * p.cos(p.radians(p.hue(drawingColor))), radius * p.sin(p.radians(p.hue(drawingColor))));
       //console.log(usedColors)
       if (DEBUG) { console.log("usedColors.length: " + usedColors.length); }
+
+      if (p.mouseIsPressed) { mousePressed(); }
+    }
+
+    function mousePressed() {
+      if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
+        let radians = p.atan2(p.mouseY - p.width / 2, p.mouseX - p.width / 2);
+        let degree = p.round((radians * 180) / p.PI);
+        const SPLIT = 15; //SPLIT: 分割する角度
+        degree = p.round(degree / SPLIT) * SPLIT;
+        drawLine(degree, 0, p.color(0, 0, 255, 150));
+      }
     }
 
     function updateVariables() {
