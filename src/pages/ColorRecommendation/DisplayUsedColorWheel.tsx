@@ -42,6 +42,7 @@ export function DisplayUsedColorWheel() {
     }
 
     function mousePressed() {
+      // 描画色の色相を変更
       if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
         isTouched = true;
         let radians = p.atan2(p.mouseY - p.width / 2, p.mouseX - p.width / 2);
@@ -66,7 +67,7 @@ export function DisplayUsedColorWheel() {
 
       //描画色が1色だった場合
       else if (usedColors.length === 1) {
-        let angle = p.hue(returnBaseColor());
+        let angle = p.hue(usedColors[0].color);
         drawLineIdea(angle);
       }
 
@@ -80,10 +81,10 @@ export function DisplayUsedColorWheel() {
       else if (usedColors.length <= 5) {
 
         // 分割色相差が4(60°)以下だった場合
-        if (returnSplitHueDifference() <= 4) {
+        if (returnHueDifference(true) <= 4) {
           //let angle = p.hue(returnAccentColor()); ////キャンバスのアクセントカラーを頂点として二等辺三角形を描画
           let angle = (p.hue(returnBaseColor()) + 180) % 360; //ベースカラーの補色を頂点として二等辺三角形を描画
-          drawTriangle(angle, returnSplitHueDifference());
+          drawTriangle(angle, returnHueDifference(true));
         }
         // 分割色相差が4(60°)より大きい場合
         else {
@@ -171,10 +172,9 @@ export function DisplayUsedColorWheel() {
       return hueDifference;
     }
 
-    //アクセントカラー以外の色の色相差を返す関数
-    function returnSplitHueDifference() {
-      // アクセントカラーの反対側にある2色の組み合わせの中で
-      // 最も色相差がある値を返す.
+    //使用色の最も大きい色相差を返す関数
+    function returnHueDifference(isExcludeAccentColor: boolean) {
+      //isExcludeAccentColor: アクセントカラーを除外して色相差を計算するかを保存する変数
 
       let accentColor = returnAccentColor();
       let accentColorNumber = 0;
@@ -188,9 +188,9 @@ export function DisplayUsedColorWheel() {
       }
 
       for (let i = 0; i < usedColors.length; i++) {
-        if (i === accentColorNumber) { continue; }
+        if (i === accentColorNumber && isExcludeAccentColor) { continue; }
         for (let j = i + 1; j < usedColors.length; j++) {
-          if (j === accentColorNumber) { continue; }
+          if (j === accentColorNumber && isExcludeAccentColor) { continue; }
           let hueDifference = calculateHueDifference(usedColors[i].color, usedColors[j].color) //色相差の計算
           if (hueDifference > hueDifferenceMax) { hueDifferenceMax = hueDifference; } //色相差の最大の更新
         }
