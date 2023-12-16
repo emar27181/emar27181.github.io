@@ -5,6 +5,9 @@ import { ColorAmount, ReturnColorsAmount } from './DisplayUsedColorRatio';
 import p5 from 'p5';
 import { ReturnDrawingColor } from '../Reserch/Canvas';
 
+let isTouched = false;
+let returnColor: number[] = [0, 0, 0, 255];
+
 export function DisplayUsedColorWheel() {
   const sketch = (p: P5CanvasInstance) => {
 
@@ -40,17 +43,20 @@ export function DisplayUsedColorWheel() {
 
     function mousePressed() {
       if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
+        isTouched = true;
         let radians = p.atan2(p.mouseY - p.width / 2, p.mouseX - p.width / 2);
         let degree = p.round((radians * 180) / p.PI);
         const SPLIT = 15; //SPLIT: 分割する角度
         degree = p.round(degree / SPLIT) * SPLIT;
-        drawLine(degree, 0, p.color(0, 0, 255, 150));
+        degree = (degree + 360) % 360;
+        returnColor = [degree, p.saturation(ReturnDrawingColor()), p.lightness(ReturnDrawingColor())];
       }
     }
 
     function updateVariables() {
       colorsAmount = ReturnColorsAmount();
       drawingColor = ReturnDrawingColor();
+      isTouched = false;
     }
 
     function drawRecommendedColors() {
@@ -442,5 +448,8 @@ export function DisplayUsedColorWheel() {
     <ReactP5Wrapper sketch={sketch} />
   )
 }
+
+export function ReturnIsTouchedUsedColorWheel() { return isTouched; }
+export function ReturnColorWheelColor() { return returnColor; }
 
 export default DisplayUsedColorWheel
