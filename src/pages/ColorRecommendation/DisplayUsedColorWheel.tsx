@@ -41,6 +41,34 @@ export function DisplayUsedColorWheel() {
       drawingColor = ReturnDrawingColor();
     }
 
+    function drawRecommendedColors() {
+      if (usedColors.length === 0) { return; }
+
+      if (usedColors.length <= 2) {
+        let angle = p.hue(returnBaseColor());
+        drawLine(angle);
+      }
+      else if (usedColors.length <= 5) {
+
+        // 分割色相差が4(60°)以下だった場合
+        if (returnSplitHueDifference() <= 4) {
+          //let angle = p.hue(returnAccentColor()); ////キャンバスのアクセントカラーを頂点として二等辺三角形を描画
+          let angle = (p.hue(returnBaseColor()) + 180) % 360; //ベースカラーの補色を頂点として二等辺三角形を描画
+          drawTriangle(angle, returnSplitHueDifference());
+        }
+        // 分割色相差が4(60°)より大きい場合
+        else {
+          let angle = p.hue(returnBaseColor());
+          drawRegularPolygon(angle, usedColors.length);
+        }
+      }
+
+      else if (usedColors.length >= 6) {
+        let angle = p.hue(returnBaseColor());
+        drawRegularPolygon(angle, usedColors.length);
+      }
+    }
+
     //最も使用率の高い色相の平均を返す関数
     function returnBaseColor() {
       let color = p.color(0);
@@ -115,6 +143,9 @@ export function DisplayUsedColorWheel() {
 
     //アクセントカラー以外の色の色相差を返す関数
     function returnSplitHueDifference() {
+      // アクセントカラーの反対側にある2色の組み合わせの中で
+      // 最も色相差がある値を返す.
+
       let accentColor = returnAccentColor();
       let accentColorNumber = 0;
       let hueDifferenceMax = 0;
@@ -136,32 +167,6 @@ export function DisplayUsedColorWheel() {
       }
 
       return hueDifferenceMax;
-    }
-
-    function drawRecommendedColors() {
-      if (usedColors.length === 0) { return; }
-
-      if (usedColors.length <= 2) {
-        let angle = p.hue(returnBaseColor());
-        drawLine(angle);
-      }
-      else if (usedColors.length <= 5) {
-        //let angle = p.hue(returnAccentColor()); ////キャンバスのアクセントカラーを頂点として二等辺三角形を描画
-        let angle = (p.hue(returnBaseColor()) + 180) % 360; //ベースカラーの補色を頂点として二等辺三角形を描画
-        drawTriangle(angle, returnSplitHueDifference());
-        //drawTriangle(angle, 2);
-        //drawTriangle(angle, 3);
-      }
-      else if (usedColors.length <= 5) {
-        let angle = p.hue(returnBaseColor());
-        drawRectangle(angle, 4);
-        //drawRectangle(angle, 2);
-      }
-      else if (usedColors.length >= 6) {
-        let angle = p.hue(returnBaseColor());
-        //drawRegularPolygon(angle, 3);
-        drawRegularPolygon(angle, usedColors.length);
-      }
     }
 
     function drawLine(angle: number) {
