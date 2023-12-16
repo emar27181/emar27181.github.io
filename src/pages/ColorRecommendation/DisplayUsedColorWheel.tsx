@@ -71,7 +71,7 @@ export function DisplayUsedColorWheel() {
         drawLineIdea(angle);
       }
 
-      //描画色が2色以下だった場合
+      //描画色が2色だった場合
       else if (usedColors.length === 2) {
         let angle = p.hue(returnBaseColor());
         drawLineModify(angle);
