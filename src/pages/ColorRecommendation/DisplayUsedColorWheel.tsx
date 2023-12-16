@@ -79,17 +79,28 @@ export function DisplayUsedColorWheel() {
 
       //描画色が5色以下だった場合
       else if (usedColors.length <= 5) {
-
-        // 分割色相差が4(60°)以下だった場合
-        if (returnHueDifference(true) <= 4) {
-          //let angle = p.hue(returnAccentColor()); ////キャンバスのアクセントカラーを頂点として二等辺三角形を描画
-          let angle = (p.hue(returnBaseColor()) + 180) % 360; //ベースカラーの補色を頂点として二等辺三角形を描画
-          drawTriangle(angle, returnHueDifference(true));
+        // 全体の色相差が4(60°)以下だった場合
+        // 隣接・類似色相配色の推薦
+        if (returnHueDifference(false) <= 4) {
+          //推薦しなくとも隣接・類似色相配色になっているはず？
         }
-        // 分割色相差が4(60°)より大きい場合
+
+        // 全体の色相差が4(60°)より大きい場合
+        // 色相の分割による配色の推薦
         else {
-          let angle = p.hue(returnBaseColor());
-          drawRegularPolygon(angle, usedColors.length);
+          // アクセントカラーを除いた色相差が4(60°)以下だった場合
+          // スプリットコンプリメンタリー, トライアドの推薦
+          if (returnHueDifference(true) <= 4) {
+            //let angle = p.hue(returnAccentColor()); ////キャンバスのアクセントカラーを頂点として二等辺三角形を描画
+            let angle = (p.hue(returnBaseColor()) + 180) % 360; //ベースカラーの補色を頂点として二等辺三角形を描画
+            drawTriangle(angle, returnHueDifference(true));
+          }
+          // アクセントカラーを除いた色相差が4(60°)より大きい場合
+          // テトラードの推薦
+          else {
+            let angle = p.hue(returnBaseColor());
+            drawRegularPolygon(angle, usedColors.length);
+          }
         }
       }
 
@@ -128,9 +139,6 @@ export function DisplayUsedColorWheel() {
     function returnAccentColor() {
       // 使用色の中でも最も距離が離れている色を使用率が低い色とする
       // hue=[0, 15, 30, 210]があったとき, 210がアクセントカラーとする.
-
-      // 本来アクセントカラーはベースカラー, メインカラーの180度反対の色相にするべき?
-      // hue=[0, 15, 30, 210]があったとき, [0, 15, 30]の平均の反対の195をアクセントカラーとする.
 
       let distance: number[] = [];
       // 各色相における距離の計算
