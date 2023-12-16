@@ -181,86 +181,42 @@ export function DisplayUsedColorWheel() {
       return hueDifferenceMax;
     }
 
+    // 与えられた角度の座標と与えられた色相差の角度の座標に線を結ぶ関数
+    function drawLine(angle: number, hueDifference: number, color: p5.Color) {
+      //座標の計算
+      let x1 = radius * p.cos(p.radians(angle));
+      let y1 = radius * p.sin(p.radians(angle));
+      let x2 = radius * p.cos(p.radians(angle + hueDifference * 15));
+      let y2 = radius * p.sin(p.radians(angle + hueDifference * 15));
+
+      //線の描画
+      p.stroke(color);
+      p.line(x1, y1, x2, y2);
+
+      //点の描画
+      p.stroke(0, 0, 0);
+      p.fill(color);
+      p.strokeWeight(0.005 * p.width);
+      p.ellipse(x1, y1, p.width / 40, p.height / 40);
+      p.ellipse(x2, y2, p.width / 40, p.height / 40);
+    }
+
 
     function drawLineModify(angle: number) {
       if (usedColors.length === 1) { return; }
       let hueDifference = calculateHueDifference(usedColors[0].color, usedColors[1].color)
       if (hueDifference <= 6) { return; } //色相差が6以下だった場合, 何もせず終了
 
-      //座標の計算
-      let x1 = radius * p.cos(p.radians(angle));
-      let y1 = radius * p.sin(p.radians(angle));
-      let x2 = radius * p.cos(p.radians(angle + 180));
-      let y2 = radius * p.sin(p.radians(angle + 180));
-
-      //線の描画
-      p.stroke(255, 0, 0, 150);
-      p.line(x1, y1, x2, y2);
-
-      //点の描画
-      p.stroke(0, 0, 0);
-      p.fill(255, 0, 0, 150);
-      p.strokeWeight(0.005 * p.width);
-      p.ellipse(x1, y1, p.width / 40, p.height / 40);
-      p.ellipse(x2, y2, p.width / 40, p.height / 40);
+      drawLine(angle, 12, p.color(255, 0, 0, 150));
     }
 
     // 塗られていない色のアイデアを直線で表示する関数
     function drawLineIdea(angle: number) {
-
       //補色の描画
-      //座標の計算
-      let x1 = radius * p.cos(p.radians(angle));
-      let y1 = radius * p.sin(p.radians(angle));
-      let x2 = radius * p.cos(p.radians(angle + 180));
-      let y2 = radius * p.sin(p.radians(angle + 180));
-
-      //線の描画
-      p.stroke(0, 255, 0, 150);
-      p.line(x1, y1, x2, y2);
-
-      //点の描画
-      p.stroke(0, 0, 0);
-      p.fill(0, 255, 0, 150);
-      p.strokeWeight(0.005 * p.width);
-      p.ellipse(x1, y1, p.width / 40, p.height / 40);
-      p.ellipse(x2, y2, p.width / 40, p.height / 40);
-
+      drawLine(angle, 12, p.color(0, 255, 0, 150));
       //類似色の描画
-      //座標の計算
-      x1 = radius * p.cos(p.radians(angle));
-      y1 = radius * p.sin(p.radians(angle));
-      x2 = radius * p.cos(p.radians(angle + 30));
-      y2 = radius * p.sin(p.radians(angle + 30));
-
-      //線の描画
-      p.stroke(0, 255, 0, 150);
-      p.line(x1, y1, x2, y2);
-
-      //点の描画
-      p.stroke(0, 0, 0);
-      p.fill(0, 255, 0, 150);
-      p.strokeWeight(0.005 * p.width);
-      p.ellipse(x1, y1, p.width / 40, p.height / 40);
-      p.ellipse(x2, y2, p.width / 40, p.height / 40);
-
-      //類似色の描画
-      //座標の計算
-      x1 = radius * p.cos(p.radians(angle));
-      y1 = radius * p.sin(p.radians(angle));
-      x2 = radius * p.cos(p.radians(angle - 30));
-      y2 = radius * p.sin(p.radians(angle - 30));
-
-      //線の描画
-      p.stroke(0, 255, 0, 150);
-      p.line(x1, y1, x2, y2);
-
-      //点の描画
-      p.stroke(0, 0, 0);
-      p.fill(0, 255, 0, 150);
-      p.strokeWeight(0.005 * p.width);
-      p.ellipse(x1, y1, p.width / 40, p.height / 40);
-      p.ellipse(x2, y2, p.width / 40, p.height / 40);
+      drawLine(angle, 2, p.color(0, 255, 0, 150));
+      drawLine(angle, -2, p.color(0, 255, 0, 150));
     }
 
 
