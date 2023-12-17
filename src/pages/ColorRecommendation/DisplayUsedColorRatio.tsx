@@ -11,7 +11,7 @@ let returnColor: number[] = [0, 0, 0, 255];
 let isTouched = false;
 const DEBUG = false;
 const SPLIT_CANVAS_WIDTH = 8;
-const SPLIT = 100, CANVAS_WIDTH = 20 * SPLIT_CANVAS_WIDTH;
+const SPLIT = 100, CANVAS_WIDTH = 0.015 * SPLIT_CANVAS_WIDTH * window.innerWidth;
 const SATURATION_LIMIT = 10;
 let colorsAmount: Array<ColorAmount> = [];
 
