@@ -19,7 +19,7 @@ export function U22programmingContestHome() {
 
   return (
     <div>
-
+      <AllScrollLock />
       <div style={{ display: 'flex', margin: 0 }}>
         <div>
           <ColorGanerateRe />
@@ -28,7 +28,6 @@ export function U22programmingContestHome() {
         </div>
         <div style={{ overflow: 'hidden' }}>
           {Canvas()}
-          <AllScrollLock />
         </div>
         <div>
           <div style={{ display: 'flex', margin: 0 }}>
