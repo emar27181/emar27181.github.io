@@ -2,6 +2,7 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { DISPLAY_RATE } from '../../config/constants';
+import { ReturnDrawingWeight } from './Canvas';
 
 let barValue = 0, isButtonClicked = false;
 let clickedKey = 'a';
@@ -44,6 +45,7 @@ export function OperateGuiControl() {
       isTouched = false;
       isButtonClicked = false;
       barValue = barX;
+      barX = ReturnDrawingWeight();
       canvasWidth = p.width;
       canvasHeight = p.height;
     }
