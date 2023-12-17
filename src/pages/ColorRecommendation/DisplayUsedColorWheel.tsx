@@ -73,8 +73,49 @@ export function DisplayUsedColorWheel() {
 
       //描画色が2色だった場合
       else if (usedColors.length === 2) {
+        if (returnHueDifference(false) <= 4) {
+          let angle = p.hue(returnBaseColor());
+          drawLineIdea(angle);
+        }
+        else if (returnHueDifference(false) <= 8) {
+          let angle = p.hue(returnBaseColor());
+          drawTriangle(angle, 8);
+        }
+        else {
+          let angle = p.hue(returnBaseColor());
+          drawLineModify(angle);
+        }
+
+        /*
+        if (returnHueDifference(false) >= 6) {
         let angle = p.hue(returnBaseColor());
         drawLineModify(angle);
+        }
+        */
+      }
+
+      //描画色が3色だった場合
+      else if (usedColors.length === 3) {
+        // 全体の色相差が4(60°)以下だった場合
+        // ドミナントカラー配色の推薦
+        if (returnHueDifference(false) <= 4) {
+          //推薦しなくとも隣接・類似色相配色になっているはず？
+        }
+
+        // 全体の色相差が5(75°)より大きい場合
+        else {
+          // アクセントカラーを除いた色相差が4(60°)以下だった場合
+          // スプリットコンプリメンタリー配色の推薦
+          if (returnHueDifference(true) <= 4) {
+            let angle = (p.hue(returnBaseColor()) + 180) % 360; //ベースカラーの補色を頂点として二等辺三角形を描画
+            drawSplitComplementary(angle, returnHueDifference(true));
+          }
+          // トライアド配色の推薦
+          else {
+            let angle = (p.hue(returnBaseColor())); //ベースカラーを頂点として正三角形を描画
+            drawTriangle(angle, 8);
+          }
+        }
       }
 
       //描画色が5色以下だった場合
@@ -93,7 +134,7 @@ export function DisplayUsedColorWheel() {
           if (returnHueDifference(true) <= 4) {
             //let angle = p.hue(returnAccentColor()); ////キャンバスのアクセントカラーを頂点として二等辺三角形を描画
             let angle = (p.hue(returnBaseColor()) + 180) % 360; //ベースカラーの補色を頂点として二等辺三角形を描画
-            drawTriangle(angle, returnHueDifference(true));
+            drawSplitComplementary(angle, returnHueDifference(true));
           }
           // アクセントカラーを除いた色相差が4(60°)より大きい場合
           // テトラードの推薦
@@ -246,7 +287,7 @@ export function DisplayUsedColorWheel() {
     }
 
 
-    function drawTriangle(angle: number, hueDifference: number) {
+    function drawSplitComplementary(angle: number, hueDifference: number) {
       //hueDifference: 分裂された2つの色相"間"の色相差
       //色相差が2(30度)であれば, 色相差を1(15度)で左右に分裂する
 
@@ -257,6 +298,28 @@ export function DisplayUsedColorWheel() {
       let y2 = radius * p.sin(p.radians(angle + 180 - 15 * hueDifference / 2));
       let x3 = radius * p.cos(p.radians(angle + 180 + 15 * hueDifference / 2));
       let y3 = radius * p.sin(p.radians(angle + 180 + 15 * hueDifference / 2));
+
+      //線の描画
+      p.stroke(255, 0, 0);
+      p.noFill();
+      p.triangle(x1, y1, x2, y2, x3, y3);
+      //点の描画
+      p.stroke(0, 0, 0);
+      p.fill(255, 0, 0, 150);
+      p.strokeWeight(0.005 * p.width);
+      p.ellipse(x1, y1, p.width / 40, p.height / 40);
+      p.ellipse(x2, y2, p.width / 40, p.height / 40);
+      p.ellipse(x3, y3, p.width / 40, p.height / 40);
+    }
+
+    function drawTriangle(angle: number, hueDifference: number) {
+      //座標の計算
+      let x1 = radius * p.cos(p.radians(angle));
+      let y1 = radius * p.sin(p.radians(angle));
+      let x2 = radius * p.cos(p.radians(angle + 15 * hueDifference));
+      let y2 = radius * p.sin(p.radians(angle + 15 * hueDifference));
+      let x3 = radius * p.cos(p.radians(angle + 2 * 15 * hueDifference));
+      let y3 = radius * p.sin(p.radians(angle + 2 * 15 * hueDifference));
 
       //線の描画
       p.stroke(255, 0, 0);
