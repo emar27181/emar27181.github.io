@@ -143,7 +143,8 @@ export function DisplayUsedColorWheel() {
           // テトラードの推薦
           else {
             let angle = p.hue(returnBaseColor());
-            drawRegularPolygon(angle, usedColors.length, p.color(255, 0, 0));
+            drawRegularPolygon(angle, 4, p.color(255, 0, 0));
+            //drawRegularPolygon(angle, usedColors.length, p.color(255, 0, 0));
           }
         }
       }
