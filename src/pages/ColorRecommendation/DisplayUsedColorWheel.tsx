@@ -378,7 +378,7 @@ export function DisplayUsedColorWheel() {
     }
 
     function updateUsedColor(color: p5.Color, amount: number,) {
-      let hue = p.round(p.hue(color));
+      let hue = p.hue(color);
       const SPLIT = 15; //SPLIT: 分割する角度(この値で四捨五入(?)される)
       hue = p.round(hue / SPLIT) * SPLIT;
       if (hue === 360) { hue = 0; }
