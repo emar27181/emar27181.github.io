@@ -154,26 +154,87 @@ export function DisplayUsedColorWheel() {
 
     //最も使用率の高い色相の平均を返す関数
     function returnBaseColor() {
-      let color = p.color(0);
-      let cosSum = 0;
-      let sinSum = 0;
-      for (let i = 0; i < usedColors.length; i++) {
-        if (p.hue(usedColors[i].color) === p.hue(returnAccentColor())) { continue; }
-        let angle = p.hue(usedColors[i].color);
-        let radians = (angle * p.PI) / 180;
-        cosSum += p.cos(radians);
-        sinSum += p.sin(radians);
-      }
-      let cosAverage = cosSum / (usedColors.length - 1);
-      let sinAverage = sinSum / (usedColors.length - 1);
-      let radAverage = p.atan2(sinAverage, cosAverage);
-      let degreeAverage = p.round((radAverage * 180) / p.PI);
-      degreeAverage = (degreeAverage + 360) % 360;
+      //描画色が0だった場合
+      if (usedColors.length === 0) { return p.color(0); }
 
-      p.colorMode(p.HSL);
-      color = p.color(degreeAverage, 50, 50);
-      p.colorMode(p.RGB);
-      return color;
+      //描画色が1だった場合
+      else if (usedColors.length === 1) { return usedColors[0].color; }
+
+      //描画色が2だった場合
+      else if (usedColors.length === 2) {
+        if (usedColors[0].amount >= usedColors[1].amount) { return usedColors[0].color }
+        else { return usedColors[1].color }
+      }
+
+      //描画色が3色以上だった場合
+      else {
+        //全体の色相差が4以下だった場合
+        //全体の色相の平均を返す
+        if (returnHueDifference(false) <= 4) {
+          let color = p.color(0);
+          let cosSum = 0;
+          let sinSum = 0;
+          for (let i = 0; i < usedColors.length; i++) {
+            //if (p.hue(usedColors[i].color) === p.hue(returnAccentColor())) { continue; }
+            let angle = p.hue(usedColors[i].color);
+            let radians = (angle * p.PI) / 180;
+            cosSum += p.cos(radians);
+            sinSum += p.sin(radians);
+          }
+          let cosAverage = cosSum / (usedColors.length - 1);
+          let sinAverage = sinSum / (usedColors.length - 1);
+          let radAverage = p.atan2(sinAverage, cosAverage);
+          let degreeAverage = p.round((radAverage * 180) / p.PI);
+          degreeAverage = (degreeAverage + 360) % 360;
+
+          p.colorMode(p.HSL);
+          color = p.color(degreeAverage, 50, 50);
+          p.colorMode(p.RGB);
+          return color;
+        }
+
+        //全体の色相差が5以上だった場合
+        else {
+          //アクセントカラーを除外した色相差が4以下だった場合
+          //アクセントカラーを除外した色相の平均を返す
+          if (returnHueDifference(true) <= 4) {
+            let color = p.color(0);
+            let cosSum = 0;
+            let sinSum = 0;
+            for (let i = 0; i < usedColors.length; i++) {
+              if (p.hue(usedColors[i].color) === p.hue(returnAccentColor())) { continue; } //アクセントカラーの除外
+              let angle = p.hue(usedColors[i].color);
+              let radians = (angle * p.PI) / 180;
+              cosSum += p.cos(radians);
+              sinSum += p.sin(radians);
+            }
+            let cosAverage = cosSum / (usedColors.length - 1);
+            let sinAverage = sinSum / (usedColors.length - 1);
+            let radAverage = p.atan2(sinAverage, cosAverage);
+            let degreeAverage = p.round((radAverage * 180) / p.PI);
+            degreeAverage = (degreeAverage + 360) % 360;
+
+            p.colorMode(p.HSL);
+            color = p.color(degreeAverage, 50, 50);
+            p.colorMode(p.RGB);
+            return color;
+          }
+
+          //アクセントカラーを除外した色相差が5以上だった場合
+          // 色相が広範囲に分散している => 最も量が多い色相を返す
+          else {
+            let maxAmount = 0;
+            let maxIndexNumber = 0;
+            for (let i = 0; i < updateUsedColor.length; i++) {
+              if (usedColors[i].amount > maxAmount) {
+                maxAmount = usedColors[i].amount;
+                maxIndexNumber = i;
+              }
+            }
+            return usedColors[maxIndexNumber].color;
+          }
+        }
+      }
     }
 
     // キャンバス上でアクセントカラーと判別される色を返す関数
