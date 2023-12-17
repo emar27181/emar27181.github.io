@@ -1,0 +1,1 @@
+export const DISPLAY_RATE = 0.45;

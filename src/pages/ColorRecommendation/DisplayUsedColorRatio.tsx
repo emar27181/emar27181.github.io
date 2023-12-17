@@ -6,6 +6,7 @@ import p5 from 'p5';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnCameraColors } from '../Reserch/ReturnCameraInfo';
 import { ReturnImageColors, ReturnReturnImageInfoCanvasSize } from '../Reserch/ReturnImageInfo';
+import { DISPLAY_RATE } from '../../config/constants';
 
 let returnColor: number[] = [0, 0, 0, 255];
 let isTouched = false;
@@ -88,11 +89,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
     function createCanvas() {
       if (displayMode === "camera") { p.createCanvas(CANVAS_WIDTH, 480 / 3); }
       else if (displayMode === "image") { p.createCanvas(CANVAS_WIDTH, 512 / 3); }
-      else if (displayMode === "canvas") {
-
-        let rate = 0.35;
-        p.createCanvas(CANVAS_WIDTH, rate * window.innerWidth / 3);
-      }
+      else if (displayMode === "canvas") { p.createCanvas(CANVAS_WIDTH, DISPLAY_RATE * window.innerWidth / 3); }
     }
 
     function displayCanvas() {

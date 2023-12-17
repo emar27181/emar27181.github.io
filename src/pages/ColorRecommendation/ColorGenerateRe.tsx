@@ -5,6 +5,7 @@ import p5 from 'p5';
 import { ReturnDrawingColor } from '../Reserch/Canvas';
 import Color from 'color';
 import { ColorAmount, ReturnColorsAmount } from './DisplayUsedColorRatio';
+import { DISPLAY_RATE } from '../../config/constants';
 
 let returnColor = [0, 0, 0];
 let isTouchedColorGenerate = false;
@@ -20,8 +21,7 @@ export function ColorGanerateRe() {
     let colorsAmount: Array<ColorAmount> = [];
 
     p.setup = () => {
-      let rate = 0.35;
-      p.createCanvas(rate * window.innerWidth / 3, 1.5 * rate * window.innerWidth / 3);
+      p.createCanvas(DISPLAY_RATE * window.innerWidth / 3, 1.5 * DISPLAY_RATE * window.innerWidth / 3);
       //p.createCanvas(200, 300);
       p.background(0);
       p.textSize(0.05 * p.width);

@@ -39,6 +39,7 @@ import imageFilePath14 from '../../assets/IMG_9835.png';
 import imageFilePath15 from '../../assets/IMG_9836.png';
 import imageFilePath16 from '../../assets/IMG_9837.png';
 import imageFilePath17 from '../../assets/IMG_9675.png';
+import { DISPLAY_RATE } from '../../config/constants';
 
 
 //importでファイルパスを読み込む場合
@@ -116,7 +117,6 @@ export function Canvas() {
     let keepDrawingColor = drawingColor;
     returnDrawingColor = p.color(255, 0, 0);
     backgroundColor = p.color(255, 255, 255);
-    let rate = 0.35;
     let loadImageNumber = 0;
     //backgroundColor = p.color(0, 0, 0);
     for (let i = 0; i < SPLIT; i++) {
@@ -166,7 +166,7 @@ export function Canvas() {
 
     p.setup = () => {
       //キャンバスの作成
-      p.createCanvas(rate * window.innerWidth, rate * window.innerWidth);
+      p.createCanvas(DISPLAY_RATE * window.innerWidth, DISPLAY_RATE * window.innerWidth);
       p.background(backgroundColor);
       canvasWidth = p.width, canvasHeight = p.height;
 

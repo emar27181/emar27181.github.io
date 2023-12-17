@@ -4,6 +4,7 @@ import React from 'react';
 import { ColorAmount, ReturnColorsAmount } from './DisplayUsedColorRatio';
 import p5 from 'p5';
 import { ReturnDrawingColor } from '../Reserch/Canvas';
+import { DISPLAY_RATE } from '../../config/constants';
 
 let isTouched = false;
 let returnColor: number[] = [0, 0, 0, 255];
@@ -18,8 +19,7 @@ export function DisplayUsedColorWheel() {
     const DEBUG = false;
 
     p.setup = () => {
-      let rate = 0.35;
-      p.createCanvas(rate * window.innerWidth / 3, rate * window.innerWidth / 3);
+      p.createCanvas(DISPLAY_RATE * window.innerWidth / 3, DISPLAY_RATE * window.innerWidth / 3);
       p.noStroke();
       radius = 3 / 8 * p.width;
       p.frameRate(1);
