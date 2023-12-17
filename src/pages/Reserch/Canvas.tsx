@@ -19,6 +19,8 @@ import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecomm
 import { ReturnIsTouchedUsedColorRatio, ReturnRecommendedColor } from '../ColorRecommendation/DisplayUsedColorRatio';
 import { ReturnBarValue, ReturnClickedKey, ReturnIsButtonClicked, ReturnIsTouchedGui } from './OperateGuiControl';
 import { ReturnIsLoadImage, ReturnLoadImageUrl } from '../TestDragAndPaste';
+import { ReturnColorWheelColor, ReturnIsTouchedUsedColorWheel } from '../ColorRecommendation/DisplayUsedColorWheel';
+
 import imageFilePath0 from '../../assets/coloring_sample_image.png';
 import imageFilePath1 from '../../assets/img_1701616372.png';
 import imageFilePath2 from '../../assets/NCG255-510x510.jpg';
@@ -31,7 +33,14 @@ import imageFilePath8 from '../../assets/IMG_9801.png';
 import imageFilePath9 from '../../assets/IMG_9807.png';
 import imageFilePath10 from '../../assets/IMG_9808.png';
 import imageFilePath11 from '../../assets/IMG_9809.png';
-import { ReturnColorWheelColor, ReturnIsTouchedUsedColorWheel } from '../ColorRecommendation/DisplayUsedColorWheel';
+import imageFilePath12 from '../../assets/IMG_9833.png';
+import imageFilePath13 from '../../assets/IMG_9834.png';
+import imageFilePath14 from '../../assets/IMG_9835.png';
+import imageFilePath15 from '../../assets/IMG_9836.png';
+import imageFilePath16 from '../../assets/IMG_9837.png';
+import imageFilePath17 from '../../assets/IMG_9675.png';
+import { DISPLAY_RATE } from '../../config/constants';
+
 
 //importでファイルパスを読み込む場合
 //import coloringImageFilePath from '../../assets/xxx.png'; //この方法でないとデプロイ先で読み込めない？
@@ -58,7 +67,7 @@ const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
 const IS_TEST_MODE = true;
 let alpha = 255, backgroundAlpha = 15;
-let drawingWeight = 5, backgroundColor: p5.Color, textSize = 10;
+let drawingWeight = 100, backgroundColor: p5.Color, textSize = 10;
 let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
 let hue: number[] = [];
 let intense: number[] = [];
@@ -108,7 +117,6 @@ export function Canvas() {
     let keepDrawingColor = drawingColor;
     returnDrawingColor = p.color(255, 0, 0);
     backgroundColor = p.color(255, 255, 255);
-    let rate = 0.35;
     let loadImageNumber = 0;
     //backgroundColor = p.color(0, 0, 0);
     for (let i = 0; i < SPLIT; i++) {
@@ -136,6 +144,12 @@ export function Canvas() {
       coloringImages.push(p.loadImage(imageFilePath9));
       coloringImages.push(p.loadImage(imageFilePath10));
       coloringImages.push(p.loadImage(imageFilePath11));
+      coloringImages.push(p.loadImage(imageFilePath12));
+      coloringImages.push(p.loadImage(imageFilePath13));
+      coloringImages.push(p.loadImage(imageFilePath14));
+      coloringImages.push(p.loadImage(imageFilePath15));
+      coloringImages.push(p.loadImage(imageFilePath16));
+      coloringImages.push(p.loadImage(imageFilePath17));
 
       /*
       for (let i = 0; i < coloringImageFilePath.length; i++) {
@@ -152,7 +166,7 @@ export function Canvas() {
 
     p.setup = () => {
       //キャンバスの作成
-      p.createCanvas(rate * window.innerWidth, rate * window.innerWidth);
+      p.createCanvas(DISPLAY_RATE * window.innerWidth, DISPLAY_RATE * window.innerWidth);
       p.background(backgroundColor);
       canvasWidth = p.width, canvasHeight = p.height;
 
@@ -745,6 +759,11 @@ export function Canvas() {
       if (p.key === "!") { loadImageNumber = 10; }
       if (p.key === '"') { loadImageNumber = 11; }
       if (p.key === "#") { loadImageNumber = 12; }
+      if (p.key === "$") { loadImageNumber = 13; }
+      if (p.key === "%") { loadImageNumber = 14; }
+      if (p.key === "&") { loadImageNumber = 15; }
+      if (p.key === "'") { loadImageNumber = 16; }
+      if (p.key === "(") { loadImageNumber = 17; }
 
     }
 

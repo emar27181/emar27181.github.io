@@ -25,6 +25,7 @@ import CanvasHomeForMobile from './views/CanvasHomeForMobile';
 import ColorRecommendHome from './views/ColorRecommendHome';
 
 let isDesktop = false;
+let isMobileLandscape = false;
 
 function App() {
   const FONT_SIZE = 0.013 * window.innerWidth;
@@ -37,6 +38,8 @@ function App() {
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
       isDesktop = windowWidth > windowHeight;
+      isMobileLandscape = (window.innerHeight <= 415);
+      setNavbarVisibility(!isMobileLandscape); //スマホの横画面でない場合ナビゲーションバーを表示
 
       // ここで取得した windowWidth と windowHeight を使って必要な処理を行う
       /*
@@ -89,9 +92,10 @@ function App() {
       {/*<Navbar bg="dark" variant="dark" fixed="top" className="ml-auto" style={{ display: isNavbarVisible ? 'block' : 'none' }}>*/}
       {/*<Navbar bg="dark" variant="dark" className="ml-auto" style={{ position: 'relative', width: '100%' }}>*/}
       {/*<Navbar bg="dark" variant="dark" style={{ width: '100%' }}>*/}
+      {/*<Navbar.Brand className="d-flex" style={{ fontSize: FONT_SIZE }}>*/}
       {/*<Navbar bg="dark" variant="dark" className="ml-auto" style={{ position: 'absolute', top: 0, width: '100%' }}>*/}
-      <Navbar bg="dark" variant="dark" fixed="top" >
-        <Navbar.Brand className="d-flex" style={{ fontSize: FONT_SIZE }}>
+      <Navbar bg="dark" variant="dark" fixed="top" style={{ display: isNavbarVisible ? 'block' : 'none' }}>
+        <Navbar.Brand className="d-flex" >
           <img src={logo} height="30" className="d-inline-block align-top" alt="Logo" />
           <span style={{ marginLeft: "10px" }}>p5.js演習ブラウザ</span>
         </Navbar.Brand>
@@ -100,18 +104,18 @@ function App() {
 
         <Navbar.Collapse id="navbarNav">
           <Nav className="ml-auto d-flex">
-            <Nav.Link href="/" style={{ fontSize: FONT_SIZE }}>ホーム</Nav.Link>
-            <Nav.Link href="/workMenu" style={{ fontSize: FONT_SIZE }}>作品集</Nav.Link>
-            <Nav.Link href='/researchHome' style={{ fontSize: FONT_SIZE }}> 重力操作 </Nav.Link>
-            <Nav.Link href='/canvas' style={{ fontSize: FONT_SIZE }}> キャンバス </Nav.Link>
-            <Nav.Link href='/colorRecommendHome' style={{ fontSize: FONT_SIZE }}> 色の推薦</Nav.Link>
-            <Nav.Link href='/softwareKisoHome' style={{ fontSize: FONT_SIZE }}> マッチ棒</Nav.Link>
+            <Nav.Link href="/" >ホーム</Nav.Link>
+            <Nav.Link href="/workMenu" >作品集</Nav.Link>
+            <Nav.Link href='/researchHome' > 重力操作 </Nav.Link>
+            <Nav.Link href='/canvas' > キャンバス </Nav.Link>
+            <Nav.Link href='/colorRecommendHome' > 色の推薦</Nav.Link>
+            <Nav.Link href='/softwareKisoHome' > マッチ棒</Nav.Link>
           </Nav>
 
 
-          <Form className="ml-auto d-flex" style={{ fontSize: FONT_SIZE }}>
+          <Form className="ml-auto d-flex" >
             <FormControl type="text" placeholder="Search(Preparing)" className="mr-sm-2" />
-            <Button variant="outline-primary" style={{ fontSize: FONT_SIZE }}>Search</Button>
+            <Button variant="outline-primary" >Search</Button>
           </Form>
         </Navbar.Collapse>
       </Navbar> <br />
