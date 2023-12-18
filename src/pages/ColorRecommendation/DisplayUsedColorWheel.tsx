@@ -185,8 +185,8 @@ export function DisplayUsedColorWheel() {
             cosSum += p.cos(radians);
             sinSum += p.sin(radians);
           }
-          let cosAverage = cosSum / (usedColors.length - 1);
-          let sinAverage = sinSum / (usedColors.length - 1);
+          let cosAverage = cosSum / usedColors.length;
+          let sinAverage = sinSum / usedColors.length;
           let radAverage = p.atan2(sinAverage, cosAverage);
           let degreeAverage = p.round((radAverage * 180) / p.PI);
           degreeAverage = (degreeAverage + 360) % 360;
