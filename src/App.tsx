@@ -23,6 +23,8 @@ import CanvasHome from './views/CanvasHome';
 import SoftwareKisoHome from './views/SoftwareKisoHome';
 import CanvasHomeForMobile from './views/CanvasHomeForMobile';
 import ColorRecommendHome from './views/ColorRecommendHome';
+import CanvasHomeNormal from './views/CanvasHomeNormal';
+import CanvasHomeRecommend from './views/CanvasHomeRecommend';
 
 let isDesktop = false;
 let isMobileLandscape = false;
@@ -108,8 +110,8 @@ function App() {
             <Nav.Link href="/workMenu" >作品集</Nav.Link>
             <Nav.Link href='/researchHome' > 重力操作 </Nav.Link>
             <Nav.Link href='/canvas' > キャンバス </Nav.Link>
-            <Nav.Link href='/colorRecommendHome' > 色の推薦</Nav.Link>
-            <Nav.Link href='/softwareKisoHome' > マッチ棒</Nav.Link>
+            <Nav.Link href='/canvasHomeNormal' > 通常キャンバス</Nav.Link>
+            <Nav.Link href='/canvasHomeRecommend' > 推薦キャンバス</Nav.Link>
           </Nav>
 
 
@@ -171,6 +173,14 @@ function App() {
 
         <Route path="/canvas">
           <CanvasHome />
+        </Route>
+
+        <Route path="/canvasHomeNormal">
+          <CanvasHomeNormal />
+        </Route>
+
+        <Route path="/canvasHomeRecommend">
+          <CanvasHomeRecommend />
         </Route>
 
         <Route path="/canvasForMobile">
