@@ -44,7 +44,7 @@ export function ColorGanerateRe() {
       displayDrawingColor();
       displayDrawingColorInfo();
 
-      drawLimitLine();
+      //drawLimitLine();
     };
 
     function drawLimitLine() {
@@ -65,13 +65,11 @@ export function ColorGanerateRe() {
           continue;
         }
         */
-        //if (colorsAmount[i].amount >= 30) {
-        if (colorsAmount[i].amount >= AMOUNT_LIMIT) {
+        if (colorsAmount[i].amount >= 30) {
+          //if (colorsAmount[i].amount >= AMOUNT_LIMIT) {
           let displayRate = 0.005 * colorsAmount[i].amount;
-          //displayColorsDot(colorsAmount[i].color, 1, p.color(0),);
-          displayColorsDot(colorsAmount[i].color, 1, p.color(p.hue(colorsAmount[i].color), 50, 50));
-          //displayColorsDot(colorsAmount[i].color, displayRate, p.color(255, 255, 255),);
-          //displayColorsDot(colorsAmount[i].color, 0.7, p.color(0, 0, 0, 0.3),);
+          displayColorsDot(colorsAmount[i].color, 1, p.color(0),);
+          //displayColorsDot(colorsAmount[i].color, 1, p.color(p.hue(colorsAmount[i].color), 50, 50));
         }
       }
     }
@@ -151,7 +149,7 @@ export function ColorGanerateRe() {
       p.noFill();
       p.stroke(strokeColor);
       p.strokeWeight(0.005 * p.width);
-      p.ellipse(saturation / 100 * p.width, p.width - lightness / 100 * p.width, p.width / SPLIT + displayRate * 0.02 * p.width);
+      p.ellipse(saturation / 100 * p.width, p.width - lightness / 100 * p.width, p.width / SPLIT + displayRate * 0.03 * p.width);
       //p.rect(brightness / 100 * p.width, saturation / 100 * p.width, p.width / SPLIT);
     }
 
