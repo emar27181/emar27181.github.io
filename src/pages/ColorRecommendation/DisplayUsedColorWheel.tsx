@@ -8,6 +8,10 @@ import { DISPLAY_RATE } from '../../config/constants';
 
 let isTouched = false;
 let returnColor: number[] = [0, 0, 0, 255];
+export const SATURATION_LIMIT = 20;
+export const LIGHTNESS_UPPER_LIMIT = 80;
+export const LIGHTNESS_LOWER_LIMIT = 25;
+export const AMOUNT_LIMIT = 3;
 
 export function DisplayUsedColorWheel() {
   const sketch = (p: P5CanvasInstance) => {
@@ -20,6 +24,7 @@ export function DisplayUsedColorWheel() {
 
     p.setup = () => {
       p.createCanvas(DISPLAY_RATE * window.innerWidth / 3, DISPLAY_RATE * window.innerWidth / 3);
+      //p.createCanvas(512, 512)
       p.noStroke();
       radius = 3 / 8 * p.width;
       p.frameRate(1);
@@ -27,7 +32,7 @@ export function DisplayUsedColorWheel() {
 
     p.draw = () => {
       updateVariables();
-      p.background(0);
+      //p.background(0);
       p.translate(p.width / 2, p.height / 2);
 
       drawColorWheel(radius, 1);
@@ -479,10 +484,6 @@ export function DisplayUsedColorWheel() {
     function updateUsedColors() {
       resetUsedColors();
       p.colorMode(p.RGB);
-      let SATURATION_LIMIT = 20;
-      let LIGHTNESS_UPPER_LIMIT = 80;
-      let LIGHTNESS_LOWER_LIMIT = 25;
-      let AMOUNT_LIMIT = 3;
 
       for (let i = 0; i < colorsAmount.length; i++) {
         if (colorsAmount[i].amount < AMOUNT_LIMIT ||
