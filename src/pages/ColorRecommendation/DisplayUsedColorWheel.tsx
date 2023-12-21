@@ -8,6 +8,10 @@ import { DISPLAY_RATE } from '../../config/constants';
 
 let isTouched = false;
 let returnColor: number[] = [0, 0, 0, 255];
+export const SATURATION_LIMIT = 20;
+export const LIGHTNESS_UPPER_LIMIT = 80;
+export const LIGHTNESS_LOWER_LIMIT = 25;
+export const AMOUNT_LIMIT = 3;
 
 export function DisplayUsedColorWheel() {
   const sketch = (p: P5CanvasInstance) => {
@@ -20,6 +24,7 @@ export function DisplayUsedColorWheel() {
 
     p.setup = () => {
       p.createCanvas(DISPLAY_RATE * window.innerWidth / 3, DISPLAY_RATE * window.innerWidth / 3);
+      //p.createCanvas(512, 512)
       p.noStroke();
       radius = 3 / 8 * p.width;
       p.frameRate(1);
@@ -74,9 +79,13 @@ export function DisplayUsedColorWheel() {
       //描画色が2色だった場合
       else if (usedColors.length === 2) {
         //ドミナントカラー配色の推薦
+        console.log(returnHueDifference(false));
         if (returnHueDifference(false) <= 4) {
+          console.log("called");
           let angle = p.hue(returnBaseColor());
-          drawLineIdea(angle, p.color(0, 255, 0)); // 現状だとドミナントカラー配色とダイアード配色を推薦してしまっている
+          //drawLineIdea(angle, p.color(0, 255, 0)); // 現状だとドミナントカラー配色とダイアード配色を推薦してしまっている
+          drawSplitComplementary(angle, returnHueDifference(true), p.color(0, 255, 0));
+          drawDominant(angle, p.color(0, 255, 0));
         }
         //トライアド配色の推薦
         else if (returnHueDifference(false) <= 8) {
@@ -166,8 +175,35 @@ export function DisplayUsedColorWheel() {
 
       //描画色が2だった場合
       else if (usedColors.length === 2) {
-        if (usedColors[0].amount >= usedColors[1].amount) { return usedColors[0].color }
-        else { return usedColors[1].color }
+        //全体の色相差が4以下だった場合
+        if (returnHueDifference(false) <= 4) {
+          //全体の色相の平均を返す
+          let color = p.color(0);
+          let cosSum = 0;
+          let sinSum = 0;
+          for (let i = 0; i < usedColors.length; i++) {
+            //if (p.hue(usedColors[i].color) === p.hue(returnAccentColor())) { continue; }
+            let angle = p.hue(usedColors[i].color);
+            let radians = (angle * p.PI) / 180;
+            cosSum += p.cos(radians);
+            sinSum += p.sin(radians);
+          }
+          let cosAverage = cosSum / usedColors.length;
+          let sinAverage = sinSum / usedColors.length;
+          let radAverage = p.atan2(sinAverage, cosAverage);
+          let degreeAverage = p.round((radAverage * 180) / p.PI);
+          degreeAverage = (degreeAverage + 360) % 360;
+
+          p.colorMode(p.HSL);
+          color = p.color(degreeAverage, 50, 50);
+          p.colorMode(p.RGB);
+          return color;
+        }
+        //全体の色相差が5以上だった場合
+        else {
+          if (usedColors[0].amount >= usedColors[1].amount) { return usedColors[0].color }
+          else { return usedColors[1].color }
+        }
       }
 
       //描画色が3色以上だった場合
@@ -185,8 +221,8 @@ export function DisplayUsedColorWheel() {
             cosSum += p.cos(radians);
             sinSum += p.sin(radians);
           }
-          let cosAverage = cosSum / (usedColors.length - 1);
-          let sinAverage = sinSum / (usedColors.length - 1);
+          let cosAverage = cosSum / usedColors.length;
+          let sinAverage = sinSum / usedColors.length;
           let radAverage = p.atan2(sinAverage, cosAverage);
           let degreeAverage = p.round((radAverage * 180) / p.PI);
           degreeAverage = (degreeAverage + 360) % 360;
@@ -351,6 +387,13 @@ export function DisplayUsedColorWheel() {
       drawLine(angle, -2, color);
     }
 
+    // ドミナントカラー配色を表示する関数
+    function drawDominant(angle: number, color: p5.Color) {
+      //類似色の描画
+      drawLine(angle, 1, color);
+      drawLine(angle, -1, color);
+    }
+
 
     function drawSplitComplementary(angle: number, hueDifference: number, color: p5.Color) {
       //hueDifference: 分裂された2つの色相"間"の色相差
@@ -479,10 +522,6 @@ export function DisplayUsedColorWheel() {
     function updateUsedColors() {
       resetUsedColors();
       p.colorMode(p.RGB);
-      let SATURATION_LIMIT = 20;
-      let LIGHTNESS_UPPER_LIMIT = 80;
-      let LIGHTNESS_LOWER_LIMIT = 25;
-      let AMOUNT_LIMIT = 3;
 
       for (let i = 0; i < colorsAmount.length; i++) {
         if (colorsAmount[i].amount < AMOUNT_LIMIT ||

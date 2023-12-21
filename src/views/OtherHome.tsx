@@ -26,6 +26,7 @@ import TestResponsiveHome from './TestResponsiveHome';
 import TestMultipleLayer from '../pages/TestMultipleLayer';
 import TestAddImageLayer from '../pages/TestAddImageLayer';
 import TestDragAndPaste from '../pages/TestDragAndPaste';
+import CurlingPlotTest from '../pages/CurlingPlotTest';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -90,6 +91,10 @@ export function OtherHome() {
           ドラッグ&ペーストのテストページ
         </NavLink><br />
 
+        <NavLink activeClassName='active' to="/curlingPlotTest">
+          カーリングプロットのテストページ
+        </NavLink><br />
+
       </ul>
 
       <Switch>
@@ -152,6 +157,9 @@ export function OtherHome() {
           <TestDragAndPaste />
         </Route>
 
+        <Route path="/curlingPlotTest" >
+          <CurlingPlotTest />
+        </Route>
 
       </Switch>
 

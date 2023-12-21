@@ -6,6 +6,7 @@ import { ReturnDrawingColor } from '../Reserch/Canvas';
 import Color from 'color';
 import { ColorAmount, ReturnColorsAmount } from './DisplayUsedColorRatio';
 import { DISPLAY_RATE } from '../../config/constants';
+import { SATURATION_LIMIT, LIGHTNESS_UPPER_LIMIT, LIGHTNESS_LOWER_LIMIT, AMOUNT_LIMIT } from './DisplayUsedColorWheel';
 
 let returnColor = [0, 0, 0];
 let isTouchedColorGenerate = false;
@@ -33,6 +34,7 @@ export function ColorGanerateRe() {
       if (p.mouseIsPressed) { mousePressed(); }
       p.background(0);
       //p.fill(255);
+
       displayColors();
       displayUsedColorsDot();
       displayColorsDot(ReturnDrawingColor(), 1, p.color(255));
@@ -41,19 +43,33 @@ export function ColorGanerateRe() {
 
       displayDrawingColor();
       displayDrawingColorInfo();
+
+      //drawLimitLine();
     };
 
+    function drawLimitLine() {
+      const RATE_WIDTH = p.width / 100;
+      const RATE_HEIGHT = p.height / 100;
+      console.log(SATURATION_LIMIT, LIGHTNESS_UPPER_LIMIT, LIGHTNESS_LOWER_LIMIT);
+      p.stroke(0);
+      p.line(SATURATION_LIMIT * RATE_WIDTH, 0, SATURATION_LIMIT * RATE_WIDTH, p.width);
+      p.line(0, LIGHTNESS_UPPER_LIMIT * RATE_WIDTH, p.width, LIGHTNESS_UPPER_LIMIT * RATE_WIDTH);
+      p.line(0, LIGHTNESS_LOWER_LIMIT * RATE_WIDTH, p.width, LIGHTNESS_LOWER_LIMIT * RATE_WIDTH);
+    }
+
     function displayUsedColorsDot() {
-      const SATURATION_LIMIT = 0;
+      //const SATURATION_LIMIT = 0;
       for (let i = 0; i < colorsAmount.length; i++) {
+        /*
         if (p.saturation(colorsAmount[i].color) <= SATURATION_LIMIT) {
           continue;
         }
+        */
         if (colorsAmount[i].amount >= 30) {
+          //if (colorsAmount[i].amount >= AMOUNT_LIMIT) {
           let displayRate = 0.005 * colorsAmount[i].amount;
           displayColorsDot(colorsAmount[i].color, 1, p.color(0),);
-          //displayColorsDot(colorsAmount[i].color, displayRate, p.color(255, 255, 255),);
-          //displayColorsDot(colorsAmount[i].color, 0.7, p.color(0, 0, 0, 0.3),);
+          //displayColorsDot(colorsAmount[i].color, 1, p.color(p.hue(colorsAmount[i].color), 50, 50));
         }
       }
     }

@@ -22,7 +22,7 @@ import { ReturnIsLoadImage, ReturnLoadImageUrl } from '../TestDragAndPaste';
 import { ReturnColorWheelColor, ReturnIsTouchedUsedColorWheel } from '../ColorRecommendation/DisplayUsedColorWheel';
 
 import imageFilePath0 from '../../assets/coloring_sample_image.png';
-import imageFilePath1 from '../../assets/img_1701616372.png';
+import imageFilePath1 from '../../assets/img_1701616372.jpg';
 import imageFilePath2 from '../../assets/NCG255-510x510.jpg';
 import imageFilePath3 from '../../assets/160_10.jpg';
 import imageFilePath4 from '../../assets/160_11.jpg';
@@ -35,10 +35,11 @@ import imageFilePath10 from '../../assets/IMG_9808.png';
 import imageFilePath11 from '../../assets/IMG_9809.png';
 import imageFilePath12 from '../../assets/IMG_9833.png';
 import imageFilePath13 from '../../assets/IMG_9834.png';
-import imageFilePath14 from '../../assets/IMG_9835.png';
+import imageFilePath14 from '../../assets/NCG279.jpg';
 import imageFilePath15 from '../../assets/IMG_9836.png';
 import imageFilePath16 from '../../assets/IMG_9837.png';
 import imageFilePath17 from '../../assets/IMG_9675.png';
+import imageFilePath18 from '../../assets/NCG297-2.jpg';
 import { DISPLAY_RATE } from '../../config/constants';
 
 
@@ -117,7 +118,7 @@ export function Canvas() {
     let keepDrawingColor = drawingColor;
     returnDrawingColor = p.color(255, 0, 0);
     backgroundColor = p.color(255, 255, 255);
-    let loadImageNumber = 0;
+    let loadImageNumber = 14;
     //backgroundColor = p.color(0, 0, 0);
     for (let i = 0; i < SPLIT; i++) {
       for (let j = 0; j < SPLIT; j++) {
@@ -150,6 +151,7 @@ export function Canvas() {
       coloringImages.push(p.loadImage(imageFilePath15));
       coloringImages.push(p.loadImage(imageFilePath16));
       coloringImages.push(p.loadImage(imageFilePath17));
+      coloringImages.push(p.loadImage(imageFilePath18));
 
       /*
       for (let i = 0; i < coloringImageFilePath.length; i++) {
@@ -764,6 +766,7 @@ export function Canvas() {
       if (p.key === "&") { loadImageNumber = 15; }
       if (p.key === "'") { loadImageNumber = 16; }
       if (p.key === "(") { loadImageNumber = 17; }
+      if (p.key === ")") { loadImageNumber = 18; }
 
     }
 
