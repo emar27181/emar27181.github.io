@@ -7,12 +7,10 @@ export function DrawLinePrimeNumber() {
 
     let positions: Array<Position> = [];
     let count = 0;
-    const VELOCITY = 0.1, DRAWING_WEIGHT = 0.1;
+    const VELOCITY = 0.01, DRAWING_WEIGHT = 0.1;
 
     p.setup = () => {
       p.createCanvas(window.innerHeight, window.innerHeight);
-      //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      //p.createCanvas(10000, 10000);
       p.background(0);
 
       positions.push(new Position(0, 0, 0, -VELOCITY));
@@ -26,8 +24,16 @@ export function DrawLinePrimeNumber() {
       p.fill(255);
       p.noStroke();
 
-      for (let i = 0; i < 100; i++) { drawLine(); }
+      for (let i = 0; i < 10000; i++) { drawLine(); }
     };
+
+    p.keyTyped = () => {
+      if (p.key === "s") {
+        let text = "DrawLinePrimeNumber(count: " + p.str(count) + ")";
+        p.saveCanvas(text);
+      }
+    }
+
 
     function drawLine() {
       for (let i = 0; i < positions.length; i++) {
