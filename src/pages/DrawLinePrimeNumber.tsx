@@ -6,7 +6,7 @@ export function DrawLinePrimeNumber() {
   const sketch = (p: P5CanvasInstance) => {
 
     let positions: Array<Position> = [];
-    let count = 0;
+    let count = 0, referenceValue = 10000000;
     const VELOCITY = 0.01, DRAWING_WEIGHT = 0.1;
 
     p.setup = () => {
@@ -34,7 +34,6 @@ export function DrawLinePrimeNumber() {
       }
     }
 
-
     function drawLine() {
       for (let i = 0; i < positions.length; i++) {
         p.ellipse(positions[i].x += positions[i].dx, positions[i].y += positions[i].dy, DRAWING_WEIGHT);
@@ -42,6 +41,12 @@ export function DrawLinePrimeNumber() {
         if (isPrime(count)) {
           changeDirection(positions[i])
         }
+      }
+
+      if (count === referenceValue) {
+        let text = "DrawLinePrimeNumber(count: " + p.str(count) + ")";
+        p.saveCanvas(text);
+        referenceValue *= 10;
       }
       count++;
     }
