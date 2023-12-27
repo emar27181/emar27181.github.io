@@ -5,33 +5,39 @@ import React from 'react';
 export function DrawLinePrimeNumber() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
     let positions: Array<Position> = [];
+    let count = 0;
 
     p.setup = () => {
-      p.createCanvas(window.innerWidth / 3, window.innerWidth / 3);
+      p.createCanvas(window.innerHeight, window.innerHeight);
       //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      //p.createCanvas(10000, 10000);
       p.background(0);
+
+      positions.push(new Position(0, 0, 0, -1));
+      positions.push(new Position(0, 0, 0, 1));
+      positions.push(new Position(0, 0, -1, 0));
       positions.push(new Position(0, 0, 1, 0));
     };
 
     p.draw = () => {
       p.translate(p.width / 2, p.height / 2);
       p.fill(255);
+      p.noStroke();
 
-
-      drawLine();
+      for (let i = 0; i < 100; i++) { drawLine(); }
     };
 
     function drawLine() {
       for (let i = 0; i < positions.length; i++) {
-        p.ellipse(positions[i].x += positions[i].dx, positions[i].y += positions[i].dy, 3);
+        p.ellipse(positions[i].x += positions[i].dx, positions[i].y += positions[i].dy, 0.7);
         //console.log(positions[i].dx + "," + positions[i].dy);
 
-        if (isPrime(p.frameCount)) {
+        if (isPrime(count)) {
           changeDirection(positions[i])
         }
       }
+      count++;
     }
 
     function changeDirection(position: Position) {
