@@ -7,6 +7,7 @@ export function DrawLinePrimeNumber() {
 
     let positions: Array<Position> = [];
     let count = 0;
+    const VELOCITY = 0.1, DRAWING_WEIGHT = 0.1;
 
     p.setup = () => {
       p.createCanvas(window.innerHeight, window.innerHeight);
@@ -14,10 +15,10 @@ export function DrawLinePrimeNumber() {
       //p.createCanvas(10000, 10000);
       p.background(0);
 
-      positions.push(new Position(0, 0, 0, -1));
-      positions.push(new Position(0, 0, 0, 1));
-      positions.push(new Position(0, 0, -1, 0));
-      positions.push(new Position(0, 0, 1, 0));
+      positions.push(new Position(0, 0, 0, -VELOCITY));
+      positions.push(new Position(0, 0, 0, VELOCITY));
+      positions.push(new Position(0, 0, -VELOCITY, 0));
+      positions.push(new Position(0, 0, VELOCITY, 0));
     };
 
     p.draw = () => {
@@ -30,8 +31,7 @@ export function DrawLinePrimeNumber() {
 
     function drawLine() {
       for (let i = 0; i < positions.length; i++) {
-        p.ellipse(positions[i].x += positions[i].dx, positions[i].y += positions[i].dy, 0.7);
-        //console.log(positions[i].dx + "," + positions[i].dy);
+        p.ellipse(positions[i].x += positions[i].dx, positions[i].y += positions[i].dy, DRAWING_WEIGHT);
 
         if (isPrime(count)) {
           changeDirection(positions[i])
@@ -42,20 +42,20 @@ export function DrawLinePrimeNumber() {
 
     function changeDirection(position: Position) {
 
-      if (position.dx === 1 && position.dy === 0) {
+      if (position.dx === VELOCITY && position.dy === 0) {
         position.dx = 0;
-        position.dy = -1;
+        position.dy = -VELOCITY;
       }
-      else if (position.dx === 0 && position.dy === -1) {
-        position.dx = -1;
+      else if (position.dx === 0 && position.dy === -VELOCITY) {
+        position.dx = -VELOCITY;
         position.dy = 0;
       }
-      else if (position.dx === -1 && position.dy === 0) {
+      else if (position.dx === -VELOCITY && position.dy === 0) {
         position.dx = 0;
-        position.dy = 1;
+        position.dy = VELOCITY;
       }
-      else if (position.dx === 0 && position.dy === 1) {
-        position.dx = 1;
+      else if (position.dx === 0 && position.dy === VELOCITY) {
+        position.dx = VELOCITY;
         position.dy = 0;
       }
     }
