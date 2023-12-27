@@ -12,6 +12,7 @@ import ColorDisplay from '../pages/ColorRecommendation/ColorDisplay';
 import CompromiseTemplate from '../pages/CompromiseTemplate';
 import ColorTemplate from '../pages/ColorTemplate';
 import BounceColorful from '../pages/BounceColorful';
+import DrawLinePrimeNumber from '../pages/DrawLinePrimeNumber';
 
 
 export function GenerativeHome() {
@@ -46,7 +47,11 @@ export function GenerativeHome() {
 
         <NavLink activeClassName='active' to="/bounceColorful">
           弾むカラフル
-        </NavLink>
+        </NavLink><br />
+
+        <NavLink activeClassName='active' to="/drawLinePrimeNumber">
+          素数の描画
+        </NavLink><br />
 
       </ul>
 
@@ -81,6 +86,10 @@ export function GenerativeHome() {
 
         <Route path="/bounceColorful">
           <BounceColorful />
+        </Route>
+
+        <Route path="/drawLinePrimeNumber">
+          <DrawLinePrimeNumber />
         </Route>
 
       </Switch>
