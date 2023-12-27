@@ -19,6 +19,9 @@ export function DisplayUsedColorWheel() {
     let colorsAmount: Array<ColorAmount> = [];
     let usedColors: Array<UsedColor> = [];
     let drawingColor: p5.Color;
+    let usedColor = p.color(0, 0, 0, 150);
+    let modifyColor = p.color(0, 255, 0, 255);
+    let suggestColor = p.color(255, 0, 0, 255);
     let radius = 0;
     const DEBUG = false;
 
@@ -37,8 +40,8 @@ export function DisplayUsedColorWheel() {
 
       drawColorWheel(radius, 1);
       updateUsedColors();
-      drawUsedColors();
       drawRecommendedColors();
+      drawUsedColors();
       drawColorHueDot(p.color(255), radius * p.cos(p.radians(p.hue(drawingColor))), radius * p.sin(p.radians(p.hue(drawingColor))));
       //console.log(usedColors)
       if (DEBUG) { console.log("usedColors.length: " + usedColors.length); }
@@ -73,7 +76,7 @@ export function DisplayUsedColorWheel() {
       //描画色が1色だった場合
       else if (usedColors.length === 1) {
         let angle = p.hue(usedColors[0].color);
-        drawLineIdea(angle, p.color(0, 255, 0));
+        drawLineIdea(angle, modifyColor);
       }
 
       //描画色が2色だった場合
@@ -83,19 +86,19 @@ export function DisplayUsedColorWheel() {
         if (returnHueDifference(false) <= 4) {
           console.log("called");
           let angle = p.hue(returnBaseColor());
-          //drawLineIdea(angle, p.color(0, 255, 0)); // 現状だとドミナントカラー配色とダイアード配色を推薦してしまっている
-          drawSplitComplementary(angle, returnHueDifference(true), p.color(0, 255, 0));
-          drawDominant(angle, p.color(0, 255, 0));
+          //drawLineIdea(angle, modifyColor); // 現状だとドミナントカラー配色とダイアード配色を推薦してしまっている
+          drawSplitComplementary(angle, returnHueDifference(true), modifyColor);
+          drawDominant(angle, modifyColor);
         }
         //トライアド配色の推薦
         else if (returnHueDifference(false) <= 8) {
           let angle = p.hue(returnBaseColor());
-          drawTriangle(angle, 8, p.color(0, 255, 0));
+          drawTriangle(angle, 8, modifyColor);
         }
         //ダイアード配色の推薦
         else {
           let angle = p.hue(returnBaseColor());
-          drawLineModify(angle, p.color(255, 0, 0));
+          drawLineModify(angle, suggestColor);
         }
 
         /*
@@ -120,12 +123,12 @@ export function DisplayUsedColorWheel() {
           // スプリットコンプリメンタリー配色の推薦
           if (returnHueDifference(true) <= 4) {
             let angle = (p.hue(returnBaseColor()) + 180) % 360; //ベースカラーの補色を頂点として二等辺三角形を描画
-            drawSplitComplementary(angle, returnHueDifference(true), p.color(255, 0, 0));
+            drawSplitComplementary(angle, returnHueDifference(true), suggestColor);
           }
           // トライアド配色の推薦
           else {
             let angle = (p.hue(returnBaseColor())); //ベースカラーを頂点として正三角形を描画
-            drawTriangle(angle, 8, p.color(255, 0, 0));
+            drawTriangle(angle, 8, suggestColor);
           }
         }
       }
@@ -146,14 +149,14 @@ export function DisplayUsedColorWheel() {
           if (returnHueDifference(true) <= 4) {
             //let angle = p.hue(returnAccentColor()); ////キャンバスのアクセントカラーを頂点として二等辺三角形を描画
             let angle = (p.hue(returnBaseColor()) + 180) % 360; //ベースカラーの補色を頂点として二等辺三角形を描画
-            drawSplitComplementary(angle, returnHueDifference(true), p.color(255, 0, 0));
+            drawSplitComplementary(angle, returnHueDifference(true), suggestColor);
           }
           // アクセントカラーを除いた色相差が4(60°)より大きい場合
           // テトラードの推薦
           else {
             let angle = p.hue(returnBaseColor());
-            drawRegularPolygon(angle, 4, p.color(255, 0, 0));
-            //drawRegularPolygon(angle, usedColors.length, p.color(255, 0, 0));
+            drawRegularPolygon(angle, 4, suggestColor);
+            //drawRegularPolygon(angle, usedColors.length, suggestColor);
           }
         }
       }
@@ -161,7 +164,7 @@ export function DisplayUsedColorWheel() {
       //描画色が6色以上だった場合
       else if (usedColors.length >= 6) {
         let angle = p.hue(returnBaseColor());
-        drawRegularPolygon(angle, usedColors.length, p.color(255, 0, 0));
+        drawRegularPolygon(angle, usedColors.length, suggestColor);
       }
     }
 
@@ -491,7 +494,7 @@ export function DisplayUsedColorWheel() {
 
       //点の描画
       for (let i = 0; i < usedColors.length; i++) {
-        drawColorHueDot(p.color(0), usedColors[i].position.x, usedColors[i].position.y);
+        drawColorHueDot(usedColor, usedColors[i].position.x, usedColors[i].position.y);
       }
 
       //線の描画
