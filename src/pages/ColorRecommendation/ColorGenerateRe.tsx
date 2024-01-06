@@ -37,7 +37,7 @@ export function ColorGanerateRe() {
 
       displayColors();
       displayUsedColorsDot();
-      displayColorsDot(ReturnDrawingColor(), 1, p.color(255));
+      displayDrawingColorDot();
       displayHueBar();
       displayHueBarButton();
 
@@ -57,6 +57,11 @@ export function ColorGanerateRe() {
       p.line(0, LIGHTNESS_LOWER_LIMIT * RATE_WIDTH, p.width, LIGHTNESS_LOWER_LIMIT * RATE_WIDTH);
     }
 
+
+    function displayDrawingColorDot() {
+      displayColorsDot(ReturnDrawingColor(), 1, p.color(255), true);
+    }
+
     function displayUsedColorsDot() {
       //const SATURATION_LIMIT = 0;
       for (let i = 0; i < colorsAmount.length; i++) {
@@ -68,7 +73,7 @@ export function ColorGanerateRe() {
         if (colorsAmount[i].amount >= AMOUNT_LIMIT) {
           let displayRate = 0.005 * colorsAmount[i].amount;
           //displayColorsDot(colorsAmount[i].color, 1, p.color(0),);
-          displayColorsDot(colorsAmount[i].color, 1, p.color(p.hue(colorsAmount[i].color), 50, 50));
+          displayColorsDot(colorsAmount[i].color, 1, p.color(p.hue(colorsAmount[i].color), 50, 50), false);
           //displayColorsDot(colorsAmount[i].color, 1, p.color(colorsAmount[i].color));
         }
       }
@@ -140,15 +145,19 @@ export function ColorGanerateRe() {
       }
     }
 
-    function displayColorsDot(color: p5.Color, displayRate: number, fillColor: p5.Color) {
+    function displayColorsDot(color: p5.Color, displayRate: number, fillColor: p5.Color, isStroke: boolean) {
       p.colorMode(p.HSL);
       let saturation = p.round(p.saturation(color));
       let brightness = p.round(p.brightness(color));
       let lightness = p.round(p.lightness(color));
 
       p.fill(fillColor);
-      p.noStroke();
-      p.strokeWeight(0.005 * p.width);
+
+      if (isStroke) {
+        p.stroke(0);
+        p.strokeWeight(0.005 * p.width);
+      }
+      else { p.noStroke(); }
       p.ellipse(saturation / 100 * p.width, p.width - lightness / 100 * p.width, p.width / SPLIT + displayRate * 0.01 * p.width);
       //p.ellipse(saturation / 100 * p.width, p.width - lightness / 100 * p.width, p.width / SPLIT + displayRate * 0.03 * p.width);
       //p.rect(brightness / 100 * p.width, saturation / 100 * p.width, p.width / SPLIT);
