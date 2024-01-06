@@ -123,7 +123,8 @@ export function ColorGanerateRe() {
       let text3 = "hsb(" + p.round(p.hue(color)) + "," + p.round(p.saturation(color)) + "," + p.round(p.brightness(color)) + ")";
       let hex = p.hex([p.red(color), p.green(color), p.blue(color)], 2);
       let text4 = ("#" + hex[0] + hex[1] + hex[2]);
-      let text = text1 + "\n" + text2 + "\n" + text3 + "\n" + text4;
+      let text5 = ("(h,s,l)= (0~360," + SATURATION_LIMIT + "~100," + LIGHTNESS_LOWER_LIMIT + "~" + LIGHTNESS_UPPER_LIMIT + ")");
+      let text = text1 + "\n" + text2 + "\n" + text3 + "\n" + text4 + "\n" + text5;
       p.text(text, 0, 1.2 * p.width);
     }
 
