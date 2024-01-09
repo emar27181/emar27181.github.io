@@ -27,6 +27,8 @@ import TestMultipleLayer from '../pages/TestMultipleLayer';
 import TestAddImageLayer from '../pages/TestAddImageLayer';
 import TestDragAndPaste from '../pages/TestDragAndPaste';
 import CurlingPlotTest from '../pages/CurlingPlotTest';
+import Canvas from '../pages/Reserch/Canvas';
+import SimpleCanvas from '../pages/SimpleCanvas';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -95,6 +97,10 @@ export function OtherHome() {
           カーリングプロットのテストページ
         </NavLink><br />
 
+        <NavLink activeClassName='active' to="/canvasTest">
+          キャンバスの動作確認ページ
+        </NavLink><br />
+
       </ul>
 
       <Switch>
@@ -160,6 +166,11 @@ export function OtherHome() {
         <Route path="/curlingPlotTest" >
           <CurlingPlotTest />
         </Route>
+
+        <Route path="/canvasTest" >
+          <SimpleCanvas />
+        </Route>
+
 
       </Switch>
 
