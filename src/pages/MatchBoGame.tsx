@@ -7,15 +7,18 @@ export function MatchBoGame() {
 
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
     //const FPS = 60;
-    const FPS = 0.6;
+    const FPS = 1;
     const DEBUG = false;
-    let player1Win = 0, player0Win = 0, hueristicPlayerNumber = 0;
+    let player1Win = 0, player0Win = 0;
     let matchValue = [[1, 1], [1, 1]];
     let isGameEnded = -1;
     let turnCount = 1;
-    let isWaitedUserAttackHandInput = false;
-    let isWaitedUserReceiveHandInput = false;
-    let isUserTurn = true;
+
+    let hueristicPlayerNumber = 1; //0ならUSERが後攻, 1ならUSERが先攻
+    let isWaitedUserAttackHandInput = true;
+    let isWaitedUserReceiveHandInput = true;
+    let isUserTurn = (hueristicPlayerNumber === 1);
+
     let userAttackHandNumber = 0;
     let userReceiveHandNumber = 0;
 
@@ -35,9 +38,12 @@ export function MatchBoGame() {
         console.log("(" + matchValue[0][0] + ", " + matchValue[0][1] + ")\n(" + matchValue[1][0] + ", " + matchValue[1][1] + ")");
       }
 
+      judgeGameEnded();
+
+      // ユーザの入力の待機
+      //if ((isWaitedUserAttackHandInput || isWaitedUserReceiveHandInput) && isUserTurn) { return; }
       if ((isWaitedUserAttackHandInput || isWaitedUserReceiveHandInput) && isUserTurn) { return; }
 
-      judgeGameEnded();
       //試合が続いている場合
       if (isGameEnded === -1) {
 
@@ -45,30 +51,28 @@ export function MatchBoGame() {
         if (turnCount % 2 === 1) {
           if (hueristicPlayerNumber === 0) {
             attackHeuristic(0, 1);
-            isUserTurn = false;
+            isUserTurn = true;
           }
           else {
             attackUser(0, 1);
             //attackRandom(0, 1);
-            isUserTurn = true;
+            isUserTurn = false;
           }
         }
         //後攻プレイヤーの行動
         else {
           if (hueristicPlayerNumber === 1) {
             attackHeuristic(1, 0);
-            isUserTurn = false;
+            isUserTurn = true;
           }
           else {
             attackUser(1, 0);
             //attackRandom(1, 0);
-            isUserTurn = true;
+            isUserTurn = false;
           }
         }
         turnCount++;
       }
-      //試合が終わっている場合
-      else { resetGame(); }
     };
 
     p.keyTyped = () => {
@@ -102,6 +106,9 @@ export function MatchBoGame() {
       isGameEnded = -1;
       turnCount = 1;
       matchValue = [[1, 1], [1, 1]];
+      isWaitedUserAttackHandInput = true;
+      isWaitedUserReceiveHandInput = true;
+      isUserTurn = (hueristicPlayerNumber === 1);
       if (DEBUG) {
         console.log("player0 win : player1 win = " + player0Win + ":" + player1Win);
       }
@@ -111,12 +118,18 @@ export function MatchBoGame() {
       p.textSize(10);
       let player0WinRate = 100 * (player0Win / (player0Win + player1Win));
       let player1WinRate = 100 * (player1Win / (player0Win + player1Win));
+      let playerText = "";
+
+      if (hueristicPlayerNumber === 0) { playerText = "COM(先攻):YOU(後攻)"; }
+      else { playerText = "YOU(先攻):COM(後攻)"; }
       let scoreText = "player0 win(先攻) : player1 win(後攻) = " + player0Win + ":" + player1Win +
         "\nplayer0 win rate = " + player0WinRate + "\nplayer1 win rate = " + player1WinRate +
-        "\n※player" + hueristicPlayerNumber + "がヒューリスティックプレイヤー";
+        "\n";
       let userText = "(userAttackHandNumber,userReceiveHandNumber)=\n(" + userAttackHandNumber + ", " + userReceiveHandNumber + ")";
-      let displayText = scoreText + "\n" + userText;
-      p.text(displayText, 0, 3 / 4 * p.height);
+      let displayText = playerText + "\n" + scoreText + "\n";
+      //let displayText = playerText + "\n" + scoreText + "\n" + userText;
+
+      p.text(displayText, 0, 0.6 * p.height);
     }
 
     function displaymatchValue() {
@@ -132,8 +145,14 @@ export function MatchBoGame() {
     }
 
     function judgeGameEnded() {
-      if (matchValue[0][0] >= 5 && matchValue[0][1] >= 5) { isGameEnded = 1; }
-      else if (matchValue[1][0] >= 5 && matchValue[1][1] >= 5) { isGameEnded = 0; }
+      if (matchValue[0][0] >= 5 && matchValue[0][1] >= 5) {
+        isGameEnded = 1;
+        resetGame();
+      }
+      else if (matchValue[1][0] >= 5 && matchValue[1][1] >= 5) {
+        isGameEnded = 0;
+        resetGame();
+      }
     }
 
     function attackUser(attackSideNumber: number, receiveSideNumber: number) {
