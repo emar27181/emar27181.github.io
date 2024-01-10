@@ -7,7 +7,7 @@ export function MatchBoGame() {
 
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
     //const FPS = 60;
-    const FPS = 1;
+    const FPS = 2;
     const DEBUG = false;
     let player1Win = 0, player0Win = 0;
     let matchValue = [[1, 1], [1, 1]];
@@ -115,19 +115,21 @@ export function MatchBoGame() {
     }
 
     function displayScore() {
-      p.textSize(10);
+      p.textSize(0.045 * p.width);
       let player0WinRate = 100 * (player0Win / (player0Win + player1Win));
       let player1WinRate = 100 * (player1Win / (player0Win + player1Win));
       let playerText = "";
 
       if (hueristicPlayerNumber === 0) { playerText = "COM(先攻):YOU(後攻)"; }
-      else { playerText = "YOU(先攻):COM(後攻)"; }
+      else { playerText = "YOU: 先攻, COM: 後攻"; }
       let scoreText = "player0 win(先攻) : player1 win(後攻) = " + player0Win + ":" + player1Win +
         "\nplayer0 win rate = " + player0WinRate + "\nplayer1 win rate = " + player1WinRate +
         "\n";
-      let userText = "(userAttackHandNumber,userReceiveHandNumber)=\n(" + userAttackHandNumber + ", " + userReceiveHandNumber + ")";
-      let displayText = playerText + "\n" + scoreText + "\n";
-      //let displayText = playerText + "\n" + scoreText + "\n" + userText;
+      let ruleText = "ルール: 余りなし, 分割なし"
+      let explainText = "e: 相手の左側を攻撃, r: 相手の右側を攻撃\ns: 自分の左側で攻撃, d: 自分の右側で攻撃";
+      //let displayText = playerText + "\n" + scoreText + "\n" + explainText;
+      let displayText = playerText + "\n\n" + ruleText + "\n\n" + explainText;
+
 
       p.text(displayText, 0, 0.6 * p.height);
     }
