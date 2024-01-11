@@ -73,7 +73,7 @@ export function ColorGanerateRe() {
         if (colorsAmount[i].amount >= AMOUNT_LIMIT) {
           let displayRate = 0.005 * colorsAmount[i].amount;
           //displayColorsDot(colorsAmount[i].color, 1, p.color(0),);
-          displayColorsDot(colorsAmount[i].color, 1, p.color(p.hue(colorsAmount[i].color), 50, 50), false);
+          displayColorsDot(colorsAmount[i].color, 1, p.color(p.hue(colorsAmount[i].color), 50, 50), true);
           //displayColorsDot(colorsAmount[i].color, 1, p.color(colorsAmount[i].color));
         }
       }
@@ -123,8 +123,9 @@ export function ColorGanerateRe() {
       let text3 = "hsb(" + p.round(p.hue(color)) + "," + p.round(p.saturation(color)) + "," + p.round(p.brightness(color)) + ")";
       let hex = p.hex([p.red(color), p.green(color), p.blue(color)], 2);
       let text4 = ("#" + hex[0] + hex[1] + hex[2]);
-      let text5 = ("(h,s,l)= (0~360," + SATURATION_LIMIT + "~100," + LIGHTNESS_LOWER_LIMIT + "~" + LIGHTNESS_UPPER_LIMIT + ")");
-      let text = text1 + "\n" + text2 + "\n" + text3 + "\n" + text4 + "\n" + text5;
+      let text5 = ("(h,s,l) = (0~360," + SATURATION_LIMIT + "~100," + LIGHTNESS_LOWER_LIMIT + "~" + LIGHTNESS_UPPER_LIMIT + ")");
+      let text6 = "AMOUNT_LIMIT = " + AMOUNT_LIMIT;
+      let text = text1 + "\n" + text2 + ", " + text3 + "\n" + text4 + "\n" + text5 + "\n" + text6;
       p.text(text, 0, 1.2 * p.width);
     }
 
@@ -156,7 +157,7 @@ export function ColorGanerateRe() {
 
       if (isStroke) {
         p.stroke(0);
-        p.strokeWeight(0.005 * p.width);
+        p.strokeWeight(0.003 * p.width);
       }
       else { p.noStroke(); }
       p.ellipse(saturation / 100 * p.width, p.width - lightness / 100 * p.width, p.width / SPLIT + displayRate * 0.01 * p.width);
