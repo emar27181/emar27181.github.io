@@ -1,1 +1,1 @@
-export const DISPLAY_RATE = 0.4;
+export const DISPLAY_RATE = 0.47;
