@@ -5,7 +5,6 @@ import BounceColorful from '../pages/BounceColorful';
 import DisplayEmotionColorRatio from '../pages/Reserch/DisplayEmotionColorRatio';
 import ExplainPluticCircle from '../pages/Reserch/ExplainPluticCircle';
 import Canvas from '../pages/Reserch/Canvas';
-import ColorGanerate from '../pages/ColorRecommendation/ColorGenerate';
 import FormDisplay from '../pages/Reserch/FormDisplay';
 import SendData from '../pages/Reserch/SendData';
 import ReceiveData from '../pages/Reserch/ReceiveData';
@@ -31,9 +30,8 @@ export function ResearchHomeForDisplay() {
       <h3>卒業研究用ページ</h3> <br />
       <ExplainDrawing />
 
-      {ReturnImageInfo(0) }
+      {ReturnImageInfo(0)}
       <div style={{ display: 'flex' }}>
-        <ColorGanerate />
         <ReturnCameraInfo />
       </div>
 
