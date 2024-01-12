@@ -3,12 +3,13 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import p5 from 'p5';
 import { ReturnDrawingColor } from '../Reserch/Canvas';
+//import { drawingColor } from '../Reserch/CanvasOnlyDraw';
 import Color from 'color';
 import { ColorAmount, ReturnColorsAmount } from './DisplayUsedColorRatio';
 import { DISPLAY_RATE } from '../../config/constants';
 import { SATURATION_LIMIT, LIGHTNESS_UPPER_LIMIT, LIGHTNESS_LOWER_LIMIT, AMOUNT_LIMIT } from './DisplayUsedColorWheel';
 
-let returnColor = [0, 0, 0];
+let returnColor = [255, 0, 0];
 let isTouchedColorGenerate = false;
 
 
@@ -26,6 +27,7 @@ export function ColorGanerateRe() {
       //p.createCanvas(200, 300);
       p.background(0);
       p.textSize(0.05 * p.width);
+      p.frameRate(1);
       //p.textSize(10);
     };
 
@@ -37,7 +39,7 @@ export function ColorGanerateRe() {
 
       displayColors();
       displayUsedColorsDot();
-      displayColorsDot(ReturnDrawingColor(), 1, p.color(255));
+      displayDrawingColorDot();
       displayHueBar();
       displayHueBarButton();
 
@@ -50,11 +52,17 @@ export function ColorGanerateRe() {
     function drawLimitLine() {
       const RATE_WIDTH = p.width / 100;
       const RATE_HEIGHT = p.height / 100;
-      console.log(SATURATION_LIMIT, LIGHTNESS_UPPER_LIMIT, LIGHTNESS_LOWER_LIMIT);
+      //console.log(SATURATION_LIMIT, LIGHTNESS_UPPER_LIMIT, LIGHTNESS_LOWER_LIMIT);
       p.stroke(0);
       p.line(SATURATION_LIMIT * RATE_WIDTH, 0, SATURATION_LIMIT * RATE_WIDTH, p.width);
       p.line(0, LIGHTNESS_UPPER_LIMIT * RATE_WIDTH, p.width, LIGHTNESS_UPPER_LIMIT * RATE_WIDTH);
       p.line(0, LIGHTNESS_LOWER_LIMIT * RATE_WIDTH, p.width, LIGHTNESS_LOWER_LIMIT * RATE_WIDTH);
+    }
+
+
+    function displayDrawingColorDot() {
+      displayColorsDot(ReturnDrawingColor(), 1, p.color(255), true);
+      //displayColorsDot(drawingColor, 1, p.color(255), true);
     }
 
     function displayUsedColorsDot() {
@@ -68,7 +76,7 @@ export function ColorGanerateRe() {
         if (colorsAmount[i].amount >= AMOUNT_LIMIT) {
           let displayRate = 0.005 * colorsAmount[i].amount;
           //displayColorsDot(colorsAmount[i].color, 1, p.color(0),);
-          displayColorsDot(colorsAmount[i].color, 1, p.color(p.hue(colorsAmount[i].color), 50, 50));
+          displayColorsDot(colorsAmount[i].color, 1, p.color(p.hue(colorsAmount[i].color), 50, 50), true);
           //displayColorsDot(colorsAmount[i].color, 1, p.color(colorsAmount[i].color));
         }
       }
@@ -118,7 +126,9 @@ export function ColorGanerateRe() {
       let text3 = "hsb(" + p.round(p.hue(color)) + "," + p.round(p.saturation(color)) + "," + p.round(p.brightness(color)) + ")";
       let hex = p.hex([p.red(color), p.green(color), p.blue(color)], 2);
       let text4 = ("#" + hex[0] + hex[1] + hex[2]);
-      let text = text1 + "\n" + text2 + "\n" + text3 + "\n" + text4;
+      let text5 = ("(h,s,l) = (0~360," + SATURATION_LIMIT + "~100," + LIGHTNESS_LOWER_LIMIT + "~" + LIGHTNESS_UPPER_LIMIT + ")");
+      let text6 = "AMOUNT_LIMIT = " + AMOUNT_LIMIT;
+      let text = text1 + "\n" + text2 + ", " + text3 + "\n" + text4 + "\n" + text5 + "\n" + text6;
       p.text(text, 0, 1.2 * p.width);
     }
 
@@ -140,15 +150,19 @@ export function ColorGanerateRe() {
       }
     }
 
-    function displayColorsDot(color: p5.Color, displayRate: number, fillColor: p5.Color) {
+    function displayColorsDot(color: p5.Color, displayRate: number, fillColor: p5.Color, isStroke: boolean) {
       p.colorMode(p.HSL);
       let saturation = p.round(p.saturation(color));
       let brightness = p.round(p.brightness(color));
       let lightness = p.round(p.lightness(color));
 
       p.fill(fillColor);
-      p.noStroke();
-      p.strokeWeight(0.005 * p.width);
+
+      if (isStroke) {
+        p.stroke(0);
+        p.strokeWeight(0.003 * p.width);
+      }
+      else { p.noStroke(); }
       p.ellipse(saturation / 100 * p.width, p.width - lightness / 100 * p.width, p.width / SPLIT + displayRate * 0.01 * p.width);
       //p.ellipse(saturation / 100 * p.width, p.width - lightness / 100 * p.width, p.width / SPLIT + displayRate * 0.03 * p.width);
       //p.rect(brightness / 100 * p.width, saturation / 100 * p.width, p.width / SPLIT);

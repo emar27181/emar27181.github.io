@@ -11,7 +11,6 @@ export function SoftwareKisoHome() {
   return (
     <div>
       <MatchBoGame />
-      <DisplayMatchBoLog/>
     </div>
   )
 }

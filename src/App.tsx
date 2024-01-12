@@ -25,6 +25,7 @@ import CanvasHomeForMobile from './views/CanvasHomeForMobile';
 import ColorRecommendHome from './views/ColorRecommendHome';
 import CanvasHomeNormal from './views/CanvasHomeNormal';
 import CanvasHomeRecommend from './views/CanvasHomeRecommend';
+import CanvasHomeRe from './views/CanvasHomeRe';
 
 let isDesktop = false;
 let isMobileLandscape = false;
@@ -110,8 +111,7 @@ function App() {
             <Nav.Link href="/workMenu" >作品集</Nav.Link>
             <Nav.Link href='/researchHome' > 重力操作 </Nav.Link>
             <Nav.Link href='/canvas' > キャンバス </Nav.Link>
-            <Nav.Link href='/canvasHomeNormal' > 通常キャンバス</Nav.Link>
-            <Nav.Link href='/canvasHomeRecommend' > 推薦キャンバス</Nav.Link>
+            <Nav.Link href='/canvasHomeRe' > 再実装中キャンバス</Nav.Link>
           </Nav>
 
 
@@ -178,6 +178,11 @@ function App() {
         <Route path="/canvasHomeNormal">
           <CanvasHomeNormal />
         </Route>
+
+        <Route path="/canvasHomeRe">
+          <CanvasHomeRe />
+        </Route>
+
 
         <Route path="/canvasHomeRecommend">
           <CanvasHomeRecommend />

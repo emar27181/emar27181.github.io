@@ -4,7 +4,6 @@ import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 
 import GrowArt from '../pages/GrowArt';
 import Ripples from '../pages/Ripples';
-import ColorGanerate from '../pages/ColorRecommendation/ColorGenerate';
 import Compromise from '../pages/ColorRecommendation/Compromise';
 //import FormDisplay from '../pages/ColorRecommendation/FormDisplay';
 import FormDisplay from '../pages/Reserch/FormDisplay';
@@ -64,16 +63,12 @@ export function GenerativeHome() {
           <Ripples />
         </Route>
 
-        <Route path="/colorGanerate">
-          <ColorGanerate />
-        </Route>
 
         <Route path="/colorGenerateProttype">
           <FormDisplay />
           <Compromise />
           <ColorDisplay />
           <br />
-          <ColorGanerate />
         </Route>
 
         <Route path="/compromiseTemplate">
