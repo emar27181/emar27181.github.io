@@ -9,7 +9,6 @@ import * as fs from 'fs';
 import axios from 'axios';
 import { ReturnDrawingColor } from '../Reserch/Canvas';
 import p5 from 'p5';
-import { ReturnIsTouchedColorGenerate } from './ColorGenerate';
 
 
 //let jsonFilePath = '../../data/colorTestData.json';
@@ -48,9 +47,7 @@ export function DisplayColorRatioOnlyFrontendontend() {
     };
 
     function updateVariables() {
-      if (ReturnIsTouchedColorGenerate()) {
-        drawingColor = ReturnDrawingColor();
-      }
+      drawingColor = ReturnDrawingColor();
       caluculateColors();
       isTouchedColorRatio = false;
     }
