@@ -3,7 +3,6 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { DISPLAY_RATE } from '../../config/constants';
 import p5 from 'p5';
-//import { ReturnColorPaletteValue } from '../ColorRecommendation/ColorGenerate';
 import { ReturnColorPaletteValue } from '../ColorRecommendation/ColorGenerateRe';
 
 export let drawingWeight = 30;

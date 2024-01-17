@@ -1,7 +1,6 @@
 import '../App.css'
 import React from 'react';
 import CanvasOnlyDraw from '../pages/Reserch/CanvasOnlyDraw';
-//import ColorGanerateRe from '../pages/ColorRecommendation/ColorGenerate';
 import ColorGanerateRe from '../pages/ColorRecommendation/ColorGenerateRe';
 import DisplayUsedColorWheel from '../pages/ColorRecommendation/DisplayUsedColorWheel';
 import OperateGuiControl from '../pages/Reserch/OperateGuiControl';

@@ -4,7 +4,6 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import p5 from 'p5';
-//import { ReturnDrawingColor } from '../Reserch/Canvas';
 import { drawingColor } from '../Reserch/CanvasOnlyDraw';
 import Color from 'color';
 import { ColorAmount, ReturnColorsAmount } from './DisplayUsedColorRatio';
@@ -63,7 +62,6 @@ export function ColorGanerateRe() {
 
 
     function displayDrawingColorDot() {
-      //displayColorsDot(ReturnDrawingColor(), 1, p.color(255), true);
       displayColorsDot(drawingColor, 1, p.color(255), true);
     }
 
@@ -108,8 +106,6 @@ export function ColorGanerateRe() {
 
       hue = p.hue(drawingColor);
       hueBarX = p.hue(drawingColor) / 360 * p.width;
-      //hue = p.hue(ReturnDrawingColor());
-      //hueBarX = p.hue(ReturnDrawingColor()) / 360 * p.width;
       colorsAmount = ReturnColorsAmount();
     }
 
@@ -117,8 +113,6 @@ export function ColorGanerateRe() {
       let x = (p.mouseX / p.width) * 100;
       let y = (p.mouseY / p.width) * 100;
       returnColor = [hue, x, 100 - y];
-      //let color = p.get(p.mouseX, p.mouseY);
-      //returnColor = [p.hue(color), p.saturation(color), p.lightness(color)];
     }
 
     function displayDrawingColorInfo() {
@@ -140,7 +134,6 @@ export function ColorGanerateRe() {
 
     function displayDrawingColor() {
       p.stroke(255);
-      //p.fill(ReturnDrawingColor());
       p.fill(drawingColor);
       p.rect(0.85 * p.width, 0.9 * p.height, 0.1 * p.width, 0.1 * p.width);
     }
