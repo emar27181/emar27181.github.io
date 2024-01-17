@@ -9,7 +9,7 @@ import DisplayUsedColorRatio from '../pages/ColorRecommendation/DisplayUsedColor
 import ReturnCameraInfo from '../pages/Reserch/ReturnCameraInfo';
 import ReturnImageInfo from '../pages/Reserch/ReturnImageInfo';
 import TestDragAndPaste from '../pages/TestDragAndPaste';
-import ColorGenerateRe, { ColorGanerateRe } from '../pages/ColorRecommendation/ColorGenerateRe';
+import ColorGenerateRe, { ColorGanerate } from '../pages/ColorRecommendation/ColorGenerate';
 import DisplayCanvasFilter from '../pages/ColorRecommendation/DisplayCanvasFilter';
 import OperateGuiControl from '../pages/Reserch/OperateGuiControl';
 import DisplayCanvasAndColorRatio from '../pages/ColorRecommendation/DisplayCanvasAndColorRatio';
@@ -56,7 +56,7 @@ export function ColorRecommendHome() {
       <DisplayColorRatioOnlyFrontendontend />
       <div style={{ display: 'flex', margin: 0 }}>
         <div>
-          <ColorGanerateRe />
+          <ColorGanerate />
           <OperateGuiControl />
         </div>
         {Canvas()}

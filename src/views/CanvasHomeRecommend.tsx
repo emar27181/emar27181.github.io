@@ -7,7 +7,7 @@ import DisplayGravityPlace from '../pages/Reserch/DisplayGravityPlace';
 import DisplayUsedColorRatio from '../pages/ColorRecommendation/DisplayUsedColorRatio';
 import OperateGuiControl from '../pages/Reserch/OperateGuiControl';
 import DisplayCanvasFilter from '../pages/ColorRecommendation/DisplayCanvasFilter';
-import ColorGanerateRe from '../pages/ColorRecommendation/ColorGenerateRe';
+import ColorGanerateRe from '../pages/ColorRecommendation/ColorGenerate';
 import AllScrollLock from '../components/AllScrollLock';
 import DisplayUsedColorWheel from '../pages/ColorRecommendation/DisplayUsedColorWheel';
 

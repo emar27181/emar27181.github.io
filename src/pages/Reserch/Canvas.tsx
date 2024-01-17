@@ -12,7 +12,7 @@ import { ReturnImageColorsInfo } from './ReturnImageInfo';
 import { ReturnTrackingData } from './ReturnTrackingInfo';
 import { ReturnGravityCanvasSizeX, ReturnGravityCanvasSizeY, ReturnTouchedGravityX, ReturnTouchedGravityY, judgeDistance } from './DisplayGravityPlace';
 //import { ReturnColorPaletteValue, ReturnIsTouchedColorGenerate } from '../ColorRecommendation/ColorGenerate';
-import { ReturnColorPaletteValue, ReturnIsTouchedColorGenerate } from '../ColorRecommendation/ColorGenerateRe';
+import { ReturnColorPaletteValue, ReturnIsTouchedColorGenerate } from '../ColorRecommendation/ColorGenerate';
 import { ReturnIsTouched } from './DisplayGravityPlace';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnColorRatioValue, ReturnIsTouchedColorRatio } from '../ColorRecommendation/DisplayColorRatioOnlyFrontendontend';
@@ -324,7 +324,9 @@ export function Canvas() {
         drawingColor = p.color(color[0], color[1], color[2], color[3]);
       }
       returnDrawingColor = drawingColor;
-      getCanvasColors();
+
+      //キャンバスの色情報を取得(5秒に1度更新)
+      if (p.frameCount % (5 * DEFAULT_FPS) === 0) { getCanvasColors(); }
 
       // GUIから数値の取得
       let barValue = ReturnBarValue();

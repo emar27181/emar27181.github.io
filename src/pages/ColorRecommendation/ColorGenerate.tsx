@@ -1,10 +1,9 @@
-// これはColorGenerate.tsxをCanvasOnlyDraw.tsx用に改良したものである．
-
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import p5 from 'p5';
-import { drawingColor } from '../Reserch/CanvasOnlyDraw';
+import { ReturnDrawingColor } from '../Reserch/Canvas';
+//import { drawingColor } from '../Reserch/CanvasOnlyDraw';
 import Color from 'color';
 import { ColorAmount, ReturnColorsAmount } from './DisplayUsedColorRatio';
 import { DISPLAY_RATE } from '../../config/constants';
@@ -14,7 +13,7 @@ let returnColor = [255, 0, 0];
 let isTouchedColorGenerate = false;
 
 
-export function ColorGanerateRe() {
+export function ColorGanerate() {
   const sketch = (p: P5CanvasInstance) => {
 
     let hue = 0;
@@ -62,7 +61,8 @@ export function ColorGanerateRe() {
 
 
     function displayDrawingColorDot() {
-      displayColorsDot(drawingColor, 1, p.color(255), true);
+      displayColorsDot(ReturnDrawingColor(), 1, p.color(255), true);
+      //displayColorsDot(drawingColor, 1, p.color(255), true);
     }
 
     function displayUsedColorsDot() {
@@ -103,9 +103,8 @@ export function ColorGanerateRe() {
     function updateVariables() {
       //hue = (hueBarX / p.width) * 360;
       isTouchedColorGenerate = false;
-
-      hue = p.hue(drawingColor);
-      hueBarX = p.hue(drawingColor) / 360 * p.width;
+      hue = p.hue(ReturnDrawingColor());
+      hueBarX = p.hue(ReturnDrawingColor()) / 360 * p.width;
       colorsAmount = ReturnColorsAmount();
     }
 
@@ -113,13 +112,14 @@ export function ColorGanerateRe() {
       let x = (p.mouseX / p.width) * 100;
       let y = (p.mouseY / p.width) * 100;
       returnColor = [hue, x, 100 - y];
+      //let color = p.get(p.mouseX, p.mouseY);
+      //returnColor = [p.hue(color), p.saturation(color), p.lightness(color)];
     }
 
     function displayDrawingColorInfo() {
       p.noStroke();
       p.fill(255);
-      //let color = ReturnDrawingColor();
-      let color = drawingColor;
+      let color = ReturnDrawingColor();
 
       let text1 = "rgba(" + p.round(p.red(color)) + "," + p.round(p.green(color)) + "," + p.round(p.blue(color)) + "," + p.round(p.alpha(color)) + ")";
       let text2 = "hsl(" + p.round(p.hue(color)) + "," + p.round(p.saturation(color)) + "," + p.round(p.lightness(color)) + ")";
@@ -134,7 +134,7 @@ export function ColorGanerateRe() {
 
     function displayDrawingColor() {
       p.stroke(255);
-      p.fill(drawingColor);
+      p.fill(ReturnDrawingColor());
       p.rect(0.85 * p.width, 0.9 * p.height, 0.1 * p.width, 0.1 * p.width);
     }
 
@@ -204,4 +204,4 @@ export function ReturnIsTouchedColorGenerate() {
 }
 
 
-export default ColorGanerateRe
+export default ColorGanerate
