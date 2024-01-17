@@ -13,7 +13,7 @@ let returnColor = [255, 0, 0];
 let isTouchedColorGenerate = false;
 
 
-export function ColorGanerateRe() {
+export function ColorGanerate() {
   const sketch = (p: P5CanvasInstance) => {
 
     let hue = 0;
@@ -204,4 +204,4 @@ export function ReturnIsTouchedColorGenerate() {
 }
 
 
-export default ColorGanerateRe
+export default ColorGanerate
