@@ -70,6 +70,10 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       }
     }
 
+    p.mouseReleased = () => {
+      calculateColorsAmount();
+    }
+
     function updateVariables() {
       if (displayMode === "canvas") { canvasColors = ReturnCanvasColors(); }
       else if (displayMode === "camera") { canvasColors = ReturnCameraColors(); }
@@ -94,8 +98,6 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
 
     function displayCanvas() {
       p.background(backgroundColor);
-      calculateColorsAmount();
-
 
       for (let i = 0; i < 5; i++) {
         let x = p.width * i / SPLIT_CANVAS_WIDTH, width = p.width / SPLIT_CANVAS_WIDTH;

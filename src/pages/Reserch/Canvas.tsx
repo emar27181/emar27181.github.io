@@ -69,7 +69,7 @@ const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
 const IS_TEST_MODE = true;
 let alpha = 255, backgroundAlpha = 15;
-let drawingWeight = 100, backgroundColor: p5.Color, textSize = 10;
+let drawingWeight = 0.08 * window.innerWidth, backgroundColor: p5.Color, textSize = 10;
 let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
 let hue: number[] = [];
 let intense: number[] = [];
@@ -233,6 +233,15 @@ export function Canvas() {
       if (DEBUG) { console.log("colorTank: " + colorTank); }
     };
 
+    p.mouseReleased = () => {
+      //キャンバスの色情報を取得
+      getCanvasColors();
+    }
+
+    p.keyReleased = () => {
+      //キャンバスの色情報を取得
+      getCanvasColors();
+    }
 
     //移動体の自作クラス
     class Ball {
@@ -325,8 +334,7 @@ export function Canvas() {
       }
       returnDrawingColor = drawingColor;
 
-      //キャンバスの色情報を取得(5秒に1度更新)
-      if (p.frameCount % (5 * DEFAULT_FPS) === 0) { getCanvasColors(); }
+
 
       // GUIから数値の取得
       let barValue = ReturnBarValue();
