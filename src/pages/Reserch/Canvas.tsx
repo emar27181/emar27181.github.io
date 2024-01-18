@@ -233,6 +233,10 @@ export function Canvas() {
       if (DEBUG) { console.log("colorTank: " + colorTank); }
     };
 
+    p.mouseReleased = () => {
+      //キャンバスの色情報を取得
+      getCanvasColors();
+    }
 
     //移動体の自作クラス
     class Ball {
@@ -325,8 +329,7 @@ export function Canvas() {
       }
       returnDrawingColor = drawingColor;
 
-      //キャンバスの色情報を取得(5秒に1度更新)
-      if (p.frameCount % (5 * DEFAULT_FPS) === 0) { getCanvasColors(); }
+
 
       // GUIから数値の取得
       let barValue = ReturnBarValue();
