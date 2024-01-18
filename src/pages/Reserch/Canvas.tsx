@@ -69,7 +69,7 @@ const GRAVITY_MAX = 100;
 const MAX_TANK_VALUE = 100;
 const IS_TEST_MODE = true;
 let alpha = 255, backgroundAlpha = 15;
-let drawingWeight = 100, backgroundColor: p5.Color, textSize = 10;
+let drawingWeight = 0.08 * window.innerWidth, backgroundColor: p5.Color, textSize = 10;
 let adjustMode = "w", figureMode = "ellipse", clickMode = "draw";
 let hue: number[] = [];
 let intense: number[] = [];
