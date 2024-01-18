@@ -238,6 +238,11 @@ export function Canvas() {
       getCanvasColors();
     }
 
+    p.keyReleased = () => {
+      //キャンバスの色情報を取得
+      getCanvasColors();
+    }
+
     //移動体の自作クラス
     class Ball {
       position: p5.Vector;
