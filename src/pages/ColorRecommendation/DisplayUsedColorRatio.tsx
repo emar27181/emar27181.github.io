@@ -74,6 +74,10 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       calculateColorsAmount();
     }
 
+    p.keyReleased = () => {
+      calculateColorsAmount();
+    }
+
     function updateVariables() {
       if (displayMode === "canvas") { canvasColors = ReturnCanvasColors(); }
       else if (displayMode === "camera") { canvasColors = ReturnCameraColors(); }
