@@ -19,7 +19,6 @@ export function U22programmingContestHome() {
 
   return (
     <div>
-      <br /><br />
       <AllScrollLock />
       <div style={{ display: 'flex', margin: 0 }}>
         <div>
@@ -28,6 +27,7 @@ export function U22programmingContestHome() {
           <OperateGuiControl />
         </div>
         <div style={{ overflow: 'hidden' }}>
+          <AllScrollLock />
           {Canvas()}
         </div>
         <div>
