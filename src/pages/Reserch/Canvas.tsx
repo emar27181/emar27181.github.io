@@ -199,6 +199,7 @@ export function Canvas() {
       p.image(drawingBrushLayer, 0, 0);
       p.image(drawingLayer, 0, 0);
       p.image(coloringImages[loadImageNumber], 0, 0);
+      if (p.frameCount === 1) { getCanvasColors(); }
 
       //p.image(loadImage, 0, 0); //バグ有り(2023/12/03)
       //p.image(drawingBrushLayer, 0, 0); 

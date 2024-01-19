@@ -46,6 +46,7 @@ export function DisplayUsedColorRatio(displayMode: string, loadNumber: number, d
       if (p.frameCount === 1 && displayMode === "image") { displayCanvas(); }
       if (p.frameCount === 5 && displayMode === "camera") { displayCanvas(); }
       if (p.frameCount % 3 === 1 && displayMode === "canvas") { displayCanvas(); }
+      if (p.frameCount === 1) { calculateColorsAmount(); }
       if (p.mouseIsPressed) { mousePressed(); }
     }
 
