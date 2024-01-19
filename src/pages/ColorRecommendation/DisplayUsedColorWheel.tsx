@@ -11,7 +11,7 @@ let returnColor: number[] = [0, 0, 0, 255];
 export const SATURATION_LIMIT = 20;
 export const LIGHTNESS_UPPER_LIMIT = 80;
 export const LIGHTNESS_LOWER_LIMIT = 25;
-export const AMOUNT_LIMIT = 3;
+export const AMOUNT_LIMIT = 10;
 
 export function DisplayUsedColorWheel() {
   const sketch = (p: P5CanvasInstance) => {
