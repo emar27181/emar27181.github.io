@@ -47,16 +47,31 @@ export function ColorGanerate() {
       displayDrawingColorInfo();
 
       drawLimitLine();
+      drawHueToneLine();
     };
 
     function drawLimitLine() {
       const RATE_WIDTH = p.width / 100;
       const RATE_HEIGHT = p.height / 100;
       //console.log(SATURATION_LIMIT, LIGHTNESS_UPPER_LIMIT, LIGHTNESS_LOWER_LIMIT);
-      p.stroke(0);
+      p.stroke(255);
       p.line(SATURATION_LIMIT * RATE_WIDTH, 0, SATURATION_LIMIT * RATE_WIDTH, p.width);
       p.line(0, LIGHTNESS_UPPER_LIMIT * RATE_WIDTH, p.width, LIGHTNESS_UPPER_LIMIT * RATE_WIDTH);
       p.line(0, LIGHTNESS_LOWER_LIMIT * RATE_WIDTH, p.width, LIGHTNESS_LOWER_LIMIT * RATE_WIDTH);
+    }
+
+    function drawHueToneLine() {
+      p.stroke(0, 0, 0, 100);
+      //p.stroke(0)
+      //縦線の描画
+      p.line(p.width * 2.5 / 10, 0, p.width * 2.5 / 10, p.width);
+      p.line(p.width * 5.0 / 10, 0, p.width * 5.0 / 10, p.width);
+      p.line(p.width * 7.5 / 10, 0, p.width * 7.5 / 10, p.width);
+
+      //横線の描画
+      p.line(0, 2.5 / 10 * p.width, p.width, 2.5 / 10 * p.width);
+      p.line(0, 5.0 / 10 * p.width, p.width, 5.0 / 10 * p.width);
+      p.line(0, 7.5 / 10 * p.width, p.width, 7.5 / 10 * p.width);
     }
 
 
