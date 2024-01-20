@@ -22,9 +22,9 @@ export function U22programmingContestHome() {
     <div>
       <AllScrollLock />
       <div style={{ display: 'flex', margin: 0 }}>
+        <DisplayUsedColorTone />
         <div>
           <ColorGanerateRe />
-          <DisplayUsedColorTone />
           <DisplayUsedColorWheel />
           <OperateGuiControl />
         </div>

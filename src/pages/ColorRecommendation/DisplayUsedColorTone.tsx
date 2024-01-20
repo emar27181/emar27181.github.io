@@ -8,7 +8,8 @@ export function DisplayUsedColorTone() {
     const CANVAS_WIDTH = 512, CANVAS_HEIGHT = 512;
 
     p.setup = () => {
-      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      p.createCanvas(0.15 * window.innerWidth, 0.15 * window.innerWidth);
       p.background(255);
       p.textSize(0.06 * p.width)
       p.textAlign(p.CENTER, p.CENTER);
