@@ -5,11 +5,14 @@ import React from 'react';
 export function DisplayUsedColorTone() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_WIDTH = 64, CANVAS_HEIGHT = 64;
+    const CANVAS_WIDTH = 512, CANVAS_HEIGHT = 512;
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(255);
+      p.textSize(0.06 * p.width)
+      p.textAlign(p.CENTER, p.CENTER);
+      p.textStyle(p.BOLD);
     };
 
     p.draw = () => {
@@ -22,27 +25,32 @@ export function DisplayUsedColorTone() {
       p.noFill();
       p.stroke(0);
 
-      p.ellipse(1 * p.width / 10, 1 * p.width / 10, CIRCLE_SIZE);
-      p.ellipse(1 * p.width / 10, 3 * p.width / 10, CIRCLE_SIZE);
-      p.ellipse(1 * p.width / 10, 5 * p.width / 10, CIRCLE_SIZE);
-      p.ellipse(1 * p.width / 10, 7 * p.width / 10, CIRCLE_SIZE);
-      p.ellipse(1 * p.width / 10, 9 * p.width / 10, CIRCLE_SIZE);
+      drawToneCircle(1 * p.width / 10, 1 * p.width / 10, CIRCLE_SIZE, "W");
+      drawToneCircle(1 * p.width / 10, 3 * p.width / 10, CIRCLE_SIZE, "ItGy");
+      drawToneCircle(1 * p.width / 10, 5 * p.width / 10, CIRCLE_SIZE, "mGy");
+      drawToneCircle(1 * p.width / 10, 7 * p.width / 10, CIRCLE_SIZE, "dkGy");
+      drawToneCircle(1 * p.width / 10, 9 * p.width / 10, CIRCLE_SIZE, "Bk");
 
-      p.ellipse(3 * p.width / 10, 2 * p.width / 10, CIRCLE_SIZE);
-      p.ellipse(3 * p.width / 10, 4 * p.width / 10, CIRCLE_SIZE);
-      p.ellipse(3 * p.width / 10, 6 * p.width / 10, CIRCLE_SIZE);
-      p.ellipse(3 * p.width / 10, 8 * p.width / 10, CIRCLE_SIZE);
+      drawToneCircle(3 * p.width / 10, 2 * p.width / 10, CIRCLE_SIZE, "p+");
+      drawToneCircle(3 * p.width / 10, 4 * p.width / 10, CIRCLE_SIZE, "Itg");
+      drawToneCircle(3 * p.width / 10, 6 * p.width / 10, CIRCLE_SIZE, "g");
+      drawToneCircle(3 * p.width / 10, 8 * p.width / 10, CIRCLE_SIZE, "dkg");
 
-      p.ellipse(5 * p.width / 10, 2 * p.width / 10, CIRCLE_SIZE);
-      p.ellipse(5 * p.width / 10, 4 * p.width / 10, CIRCLE_SIZE);
-      p.ellipse(5 * p.width / 10, 6 * p.width / 10, CIRCLE_SIZE);
-      p.ellipse(5 * p.width / 10, 8 * p.width / 10, CIRCLE_SIZE);
+      drawToneCircle(5 * p.width / 10, 2 * p.width / 10, CIRCLE_SIZE, "It+");
+      drawToneCircle(5 * p.width / 10, 4 * p.width / 10, CIRCLE_SIZE, "sf");
+      drawToneCircle(5 * p.width / 10, 6 * p.width / 10, CIRCLE_SIZE, "d");
+      drawToneCircle(5 * p.width / 10, 8 * p.width / 10, CIRCLE_SIZE, "dk");
 
-      p.ellipse(7 * p.width / 10, 3 * p.width / 10, CIRCLE_SIZE);
-      p.ellipse(7 * p.width / 10, 5 * p.width / 10, CIRCLE_SIZE);
-      p.ellipse(7 * p.width / 10, 7 * p.width / 10, CIRCLE_SIZE);
+      drawToneCircle(7 * p.width / 10, 3 * p.width / 10, CIRCLE_SIZE, "b");
+      drawToneCircle(7 * p.width / 10, 5 * p.width / 10, CIRCLE_SIZE, "s");
+      drawToneCircle(7 * p.width / 10, 7 * p.width / 10, CIRCLE_SIZE, "dp");
 
-      p.ellipse(9 * p.width / 10, 5 * p.width / 10, CIRCLE_SIZE);
+      drawToneCircle(9 * p.width / 10, 5 * p.width / 10, CIRCLE_SIZE, "v");
+    }
+
+    function drawToneCircle(x: number, y: number, radius: number, text: string) {
+      p.ellipse(x, y, radius);
+      p.text(text, x, y);
     }
 
   }
