@@ -6,16 +6,29 @@ export function FlipGame() {
   const sketch = (p: P5CanvasInstance) => {
 
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
-    
+
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      p.background(0); 
+      p.background(200);
     };
 
     p.draw = () => {
-      p.fill(255); 
-      p.ellipse(p.width / 2, p.height / 2, 100, 100); 
+      drawLines();
     };
+
+    function drawLines() {
+      const SPLIT = 3
+      p.stroke(255);
+      //格子状の線
+      for (let i = 0; i < SPLIT; i++) {
+        p.line(i * p.width / SPLIT, 0, i * p.width / SPLIT, p.height);
+        p.line(0, i * p.height / SPLIT, p.width, i * p.height / SPLIT);
+      }
+      //外枠の線
+      p.noFill();
+      p.rect(0, 0, p.width, p.height);
+
+    }
   }
 
   return (
