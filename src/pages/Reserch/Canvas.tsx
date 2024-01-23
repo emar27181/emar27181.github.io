@@ -29,7 +29,7 @@ import imageFilePath4 from '../../assets/160_11.jpg';
 import imageFilePath5 from '../../assets/img_1702279389.png';
 import imageFilePath6 from '../../assets/IMG_9803.png';
 import imageFilePath7 from '../../assets/IMG_9802.png';
-//import imageFilePath8 from '../../assets/IMG_9801.png';
+//import imageFilePath8 from '../../assets/hue_tone_2.png';
 import imageFilePath9 from '../../assets/IMG_9807.png';
 import imageFilePath10 from '../../assets/IMG_9808.png';
 import imageFilePath11 from '../../assets/IMG_9809.png';
@@ -40,7 +40,10 @@ import imageFilePath15 from '../../assets/IMG_9836.png';
 import imageFilePath16 from '../../assets/IMG_9837.png';
 import imageFilePath17 from '../../assets/IMG_9675.png';
 import imageFilePath18 from '../../assets/NCG297-2.jpg';
-import imageFilePath19 from '../../assets/many_hue_illust.png';
+import imageFilePath19 from '../../assets/many_hue_illust.png'
+import imageFilePath20 from '../../assets/hue_tone.png';
+import imageFilePath21 from '../../assets/hue_tone_2.png';
+
 import { DISPLAY_RATE } from '../../config/constants';
 
 
@@ -154,6 +157,8 @@ export function Canvas() {
       coloringImages.push(p.loadImage(imageFilePath17));
       coloringImages.push(p.loadImage(imageFilePath18));
       coloringImages.push(p.loadImage(imageFilePath19));
+      coloringImages.push(p.loadImage(imageFilePath20));
+      coloringImages.push(p.loadImage(imageFilePath21));
 
       /*
       for (let i = 0; i < coloringImageFilePath.length; i++) {
@@ -781,6 +786,9 @@ export function Canvas() {
       if (p.key === "(") { loadImageNumber = 17; }
       if (p.key === ")") { loadImageNumber = 18; }
       if (p.key === "=") { loadImageNumber = 19; }
+      if (p.key === "~") { loadImageNumber = 20; }
+      if (p.key === "|") { loadImageNumber = 21; }
+
 
     }
 
