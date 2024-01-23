@@ -28,6 +28,7 @@ import CanvasHomeRecommend from './views/CanvasHomeRecommend';
 import CanvasHomeRe from './views/CanvasHomeRe';
 import FlipGame from './pages/FlipGame';
 import MatchBoGame from './pages/MatchBoGame';
+import FlipGameMenu from './pages/FlipGameMenu';
 
 let isDesktop = false;
 let isMobileLandscape = false;
@@ -204,7 +205,10 @@ function App() {
         </Route>
 
         <Route path="/flipGame">
-          <FlipGame />
+          <div style={{ display: 'flex' }}>
+            <FlipGame />
+            <FlipGameMenu />
+          </div>
         </Route>
 
         <Route path="/matchBoGame">
