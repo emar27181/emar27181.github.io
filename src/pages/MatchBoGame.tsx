@@ -96,6 +96,10 @@ export function MatchBoGame() {
     }
 
     function resetGame() {
+      p.textAlign(p.CENTER);
+      p.text("YOU LOSE", p.width / 2, p.height / 2);
+      p.textAlign(p.LEFT);
+
       if (isGameEnded === 0) {
         player0Win++;
       }
