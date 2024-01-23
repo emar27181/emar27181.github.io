@@ -5,10 +5,9 @@ import React from 'react';
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const SPLIT = 5
 let squareColors: number[][] = [];
+let squareNumber = 1;
 for (let i = 0; i < SPLIT; i++) {
   squareColors[i] = [];
-}
-for (let i = 0; i < SPLIT; i++) {
   for (let j = 0; j < SPLIT; j++) {
     squareColors[i][j] = 0;
   }
@@ -33,6 +32,12 @@ export function FlipGame() {
       }
     }
 
+    p.keyTyped = () => {
+      if (p.key === "1") { squareNumber = 1; }
+      else if (p.key === "2") { squareNumber = 2; }
+      else if (p.key === "3") { squareNumber = 3; }
+    }
+
     function drawSquareColors() {
       for (let i = 0; i < SPLIT; i++) {
         for (let j = 0; j < SPLIT; j++) {
@@ -55,14 +60,33 @@ export function FlipGame() {
           let y2 = (j + 1) * p.height / SPLIT;
 
           if (x1 < p.mouseX && p.mouseX < x2 && y1 < p.mouseY && p.mouseY < y2) {
-            squareColors[i][j] = (squareColors[i][j] + 1) % 2; //ステータス値の反転
+            flipFigure(i, j);
           }
         }
       }
     }
 
+    function flipFigure(i: number, j: number) {
+
+      //L字反転
+      if (squareNumber === 1) {
+        squareColors[i][j] = (squareColors[i][j] + 1) % 2;
+        squareColors[i - 1][j + 1] = (squareColors[i - 1][j + 1] + 1) % 2;
+        squareColors[i - 1][j] = (squareColors[i - 1][j] + 1) % 2;
+      }
+
+      //T字反転
+      else if (squareNumber === 2) {
+        squareColors[i][j] = (squareColors[i][j] + 1) % 2;
+        squareColors[i - 1][j] = (squareColors[i - 1][j] + 1) % 2;
+        squareColors[i + 1][j] = (squareColors[i + 1][j] + 1) % 2;
+        squareColors[i][j + 1] = (squareColors[i][j + 1] + 1) % 2;
+      }
+
+    }
+
     function drawLines() {
-      p.stroke(255);
+      p.stroke(150);
       //格子状の線
       for (let i = 0; i < SPLIT; i++) {
         p.line(i * p.width / SPLIT, 0, i * p.width / SPLIT, p.height);
