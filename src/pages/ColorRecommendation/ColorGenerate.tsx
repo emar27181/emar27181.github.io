@@ -24,11 +24,8 @@ export function ColorGanerate() {
 
     p.setup = () => {
       p.createCanvas(DISPLAY_RATE * window.innerWidth / 3, 1.5 * DISPLAY_RATE * window.innerWidth / 3);
-      //p.createCanvas(200, 300);
       p.background(0);
-      p.textSize(0.05 * p.width);
       p.frameRate(1);
-      //p.textSize(10);
     };
 
     p.draw = () => {
@@ -46,8 +43,10 @@ export function ColorGanerate() {
       displayDrawingColor();
       displayDrawingColorInfo();
 
+      drawCircles();
+
       drawLimitLine();
-      drawHueToneLine();
+      //drawHueToneLine();
     };
 
     function drawLimitLine() {
@@ -132,6 +131,7 @@ export function ColorGanerate() {
     }
 
     function displayDrawingColorInfo() {
+      p.textAlign(p.LEFT);
       p.noStroke();
       p.fill(255);
       let color = ReturnDrawingColor();
@@ -144,8 +144,46 @@ export function ColorGanerate() {
       let text5 = ("(h,s,l) = (0~360," + SATURATION_LIMIT + "~100," + LIGHTNESS_LOWER_LIMIT + "~" + LIGHTNESS_UPPER_LIMIT + ")");
       let text6 = "AMOUNT_LIMIT = " + AMOUNT_LIMIT;
       let text = text1 + "\n" + text2 + ", " + text3 + "\n" + text4 + "\n" + text5 + "\n" + text6;
+      p.textSize(0.05 * p.width);
       p.text(text, 0, 1.2 * p.width);
     }
+
+    function drawCircles() {
+      const CIRCLE_SIZE = 2 * p.width / 10;
+
+      p.noFill();
+      p.stroke(0);
+
+      drawToneCircle(1 * p.width / 10, 1 * p.width / 10, CIRCLE_SIZE, "W");
+      drawToneCircle(1 * p.width / 10, 3 * p.width / 10, CIRCLE_SIZE, "ItGy");
+      drawToneCircle(1 * p.width / 10, 5 * p.width / 10, CIRCLE_SIZE, "mGy");
+      drawToneCircle(1 * p.width / 10, 7 * p.width / 10, CIRCLE_SIZE, "dkGy");
+      drawToneCircle(1 * p.width / 10, 9 * p.width / 10, CIRCLE_SIZE, "Bk");
+
+      drawToneCircle(3 * p.width / 10, 2 * p.width / 10, CIRCLE_SIZE, "p+");
+      drawToneCircle(3 * p.width / 10, 4 * p.width / 10, CIRCLE_SIZE, "Itg");
+      drawToneCircle(3 * p.width / 10, 6 * p.width / 10, CIRCLE_SIZE, "g");
+      drawToneCircle(3 * p.width / 10, 8 * p.width / 10, CIRCLE_SIZE, "dkg");
+
+      drawToneCircle(5 * p.width / 10, 2 * p.width / 10, CIRCLE_SIZE, "It+");
+      drawToneCircle(5 * p.width / 10, 4 * p.width / 10, CIRCLE_SIZE, "sf");
+      drawToneCircle(5 * p.width / 10, 6 * p.width / 10, CIRCLE_SIZE, "d");
+      drawToneCircle(5 * p.width / 10, 8 * p.width / 10, CIRCLE_SIZE, "dk");
+
+      drawToneCircle(7 * p.width / 10, 3 * p.width / 10, CIRCLE_SIZE, "b");
+      drawToneCircle(7 * p.width / 10, 5 * p.width / 10, CIRCLE_SIZE, "s");
+      drawToneCircle(7 * p.width / 10, 7 * p.width / 10, CIRCLE_SIZE, "dp");
+
+      drawToneCircle(9 * p.width / 10, 5 * p.width / 10, CIRCLE_SIZE, "v");
+    }
+
+    function drawToneCircle(x: number, y: number, width: number, text: string) {
+      p.rect(x - width / 2, y - width / 2, width, width);
+      p.textSize(0.08 * p.width);
+      p.textAlign(p.CENTER);
+      p.text(text, x, y);
+    }
+
 
     function displayDrawingColor() {
       p.stroke(255);
