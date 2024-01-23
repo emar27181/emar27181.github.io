@@ -5,7 +5,7 @@ import React from 'react';
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const SPLIT = 5
 let squareColors: number[][] = [];
-let squareNumber = 1;
+export let figureNumber = 1;
 for (let i = 0; i < SPLIT; i++) {
   squareColors[i] = [];
   for (let j = 0; j < SPLIT; j++) {
@@ -33,9 +33,9 @@ export function FlipGame() {
     }
 
     p.keyTyped = () => {
-      if (p.key === "1") { squareNumber = 1; }
-      else if (p.key === "2") { squareNumber = 2; }
-      else if (p.key === "3") { squareNumber = 3; }
+      if (p.key === "1") { figureNumber = 1; }
+      else if (p.key === "2") { figureNumber = 2; }
+      else if (p.key === "3") { figureNumber = 3; }
     }
 
     function drawSquareColors() {
@@ -69,14 +69,14 @@ export function FlipGame() {
     function flipFigure(i: number, j: number) {
 
       //L字反転
-      if (squareNumber === 1) {
+      if (figureNumber === 1) {
         squareColors[i][j] = (squareColors[i][j] + 1) % 2;
         squareColors[i - 1][j + 1] = (squareColors[i - 1][j + 1] + 1) % 2;
         squareColors[i - 1][j] = (squareColors[i - 1][j] + 1) % 2;
       }
 
       //T字反転
-      else if (squareNumber === 2) {
+      else if (figureNumber === 2) {
         squareColors[i][j] = (squareColors[i][j] + 1) % 2;
         squareColors[i - 1][j] = (squareColors[i - 1][j] + 1) % 2;
         squareColors[i + 1][j] = (squareColors[i + 1][j] + 1) % 2;
