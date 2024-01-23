@@ -4,6 +4,15 @@ import React from 'react';
 
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const SPLIT = 5
+let squareColors: number[][] = [];
+for (let i = 0; i < SPLIT; i++) {
+  squareColors[i] = [];
+}
+for (let i = 0; i < SPLIT; i++) {
+  for (let j = 0; j < SPLIT; j++) {
+    squareColors[i][j] = 0;
+  }
+}
 
 export function FlipGame() {
   const sketch = (p: P5CanvasInstance) => {
@@ -15,11 +24,25 @@ export function FlipGame() {
 
     p.draw = () => {
       drawLines();
+      drawSquareColors();
     };
 
     p.mouseClicked = () => {
       if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
         flipColor();
+      }
+    }
+
+    function drawSquareColors() {
+      for (let i = 0; i < SPLIT; i++) {
+        for (let j = 0; j < SPLIT; j++) {
+          if (squareColors[i][j] === 0) { p.fill(0) }
+          else if (squareColors[i][j] === 1) { p.fill(255) }
+
+          let x = i * p.width / SPLIT;
+          let y = j * p.height / SPLIT;
+          p.rect(x, y, p.width / SPLIT, p.height / SPLIT);
+        }
       }
     }
 
@@ -32,9 +55,7 @@ export function FlipGame() {
           let y2 = (j + 1) * p.height / SPLIT;
 
           if (x1 < p.mouseX && p.mouseX < x2 && y1 < p.mouseY && p.mouseY < y2) {
-            p.fill(255);
-            p.rect(x1, y1, p.width / SPLIT, p.height / SPLIT);
-            //console.log("(" + i + "," + j + "): = (" + p.round(x1) + "," + p.round(y1) + "," + p.round(x2) + "," + p.round(y2) + ")");
+            squareColors[i][j] = (squareColors[i][j] + 1) % 2; //ステータス値の反転
           }
         }
       }
