@@ -5,6 +5,7 @@ import React from 'react';
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const SPLIT = 5
 let squareColors: number[][] = [];
+export let remainingFigureNumber: number[] = [0, 2, 3, 0, 0, 0];
 export let figureNumber = 1;
 for (let i = 0; i < SPLIT; i++) {
   squareColors[i] = [];
@@ -68,6 +69,8 @@ export function FlipGame() {
 
     function flipFigure(i: number, j: number) {
 
+      if (remainingFigureNumber[figureNumber] === 0) { return; }
+
       //L字反転
       if (figureNumber === 1) {
         squareColors[i][j] = (squareColors[i][j] + 1) % 2;
@@ -82,6 +85,8 @@ export function FlipGame() {
         squareColors[i + 1][j] = (squareColors[i + 1][j] + 1) % 2;
         squareColors[i][j + 1] = (squareColors[i][j + 1] + 1) % 2;
       }
+
+      remainingFigureNumber[figureNumber]--;
 
     }
 

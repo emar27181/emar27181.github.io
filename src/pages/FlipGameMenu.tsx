@@ -1,7 +1,7 @@
 import '../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { figureNumber } from './FlipGame';
+import { figureNumber, remainingFigureNumber } from './FlipGame';
 
 export function FlipGameMenu() {
   const sketch = (p: P5CanvasInstance) => {
@@ -11,7 +11,7 @@ export function FlipGameMenu() {
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(0);
-      p.textAlign(p.CENTER, p.CENTER);
+      //p.textAlign(p.CENTER, p.CENTER);
     };
 
     p.draw = () => {
@@ -22,14 +22,14 @@ export function FlipGameMenu() {
 
     function drawFigure() {
       p.stroke(255);
-      p.textSize(0.3 * p.width)
-      //L字
-      if (figureNumber === 1) {
-        p.text("L", p.width / 2, p.height / 2);
-      }
-      //T字
-      else if (figureNumber === 2) {
-        p.text("T", p.width / 2, p.height / 2);
+      p.textSize(0.3 * p.width);
+      let texts: string[] = [];
+
+      texts[1] = "1. L: " + remainingFigureNumber[1] + "\n";
+      texts[2] = "2. T: " + remainingFigureNumber[2] + "\n";
+
+      for (let i = 0; i < 7; i++) {
+        p.text(texts[i], 0, i * p.height / 7);
       }
 
     }
