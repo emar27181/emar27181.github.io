@@ -16,7 +16,6 @@ export function FlipGameMenu() {
 
     p.draw = () => {
       p.background(0);
-      p.fill(255);
       drawFigure();
     };
 
@@ -29,6 +28,9 @@ export function FlipGameMenu() {
       texts[2] = "2. T: " + remainingFigureNumber[2] + "\n";
 
       for (let i = 0; i < 7; i++) {
+        if (i === figureNumber) { p.fill(255, 0, 0); p.stroke(255, 0, 0); }
+        else { p.fill(255); p.stroke(255); }
+
         p.text(texts[i], 0, i * p.height / 7);
       }
 
