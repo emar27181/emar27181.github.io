@@ -20,6 +20,8 @@ export function FlipGame() {
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(0);
+      p.textAlign(p.CENTER, p.CENTER);
+      p.textSize(0.3 * p.width / SPLIT);
     };
 
     p.draw = () => {
@@ -48,6 +50,10 @@ export function FlipGame() {
           let x = i * p.width / SPLIT;
           let y = j * p.height / SPLIT;
           p.rect(x, y, p.width / SPLIT, p.height / SPLIT);
+
+          let text = "(" + i + "," + j + ")";
+
+          //p.text(text, x + p.width / (2 * SPLIT), y + p.height / (2 * SPLIT));
         }
       }
     }
@@ -70,23 +76,27 @@ export function FlipGame() {
     function flipFigure(i: number, j: number) {
 
       if (remainingFigureNumber[figureNumber] === 0) { return; }
+      remainingFigureNumber[figureNumber]--;
 
       //L字反転
       if (figureNumber === 1) {
-        squareColors[i][j] = (squareColors[i][j] + 1) % 2;
-        squareColors[i - 1][j + 1] = (squareColors[i - 1][j + 1] + 1) % 2;
-        squareColors[i - 1][j] = (squareColors[i - 1][j] + 1) % 2;
+        calculateFlip(i, j);
+        calculateFlip(i - 1, j + 1);
+        calculateFlip(i - 1, j);
       }
 
       //T字反転
       else if (figureNumber === 2) {
-        squareColors[i][j] = (squareColors[i][j] + 1) % 2;
-        squareColors[i - 1][j] = (squareColors[i - 1][j] + 1) % 2;
-        squareColors[i + 1][j] = (squareColors[i + 1][j] + 1) % 2;
-        squareColors[i][j + 1] = (squareColors[i][j + 1] + 1) % 2;
+        calculateFlip(i, j);
+        calculateFlip(i - 1, j);
+        calculateFlip(i, j + 1);
+        calculateFlip(i + 1, j);
       }
 
-      remainingFigureNumber[figureNumber]--;
+      function calculateFlip(i: number, j: number) {
+        if (i < 0 || j < 0 || SPLIT < i || SPLIT < j) { return }
+        squareColors[i][j] = (squareColors[i][j] + 1) % 2;
+      }
 
     }
 
