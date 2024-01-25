@@ -27,6 +27,7 @@ export function FlipGame() {
     p.draw = () => {
       drawLines();
       drawSquareColors();
+      flipPreview();
       judgeGameEnd();
     };
 
@@ -40,6 +41,44 @@ export function FlipGame() {
       if (p.key === "1") { figureNumber = 1; }
       else if (p.key === "2") { figureNumber = 2; }
       else if (p.key === "3") { figureNumber = 3; }
+    }
+
+    function flipPreview() {
+      for (let i = 0; i < SPLIT; i++) {
+        for (let j = 0; j < SPLIT; j++) {
+          let x1 = i * p.width / SPLIT;
+          let y1 = j * p.height / SPLIT;
+          let x2 = (i + 1) * p.width / SPLIT;
+          let y2 = (j + 1) * p.height / SPLIT;
+
+          if (x1 < p.mouseX && p.mouseX < x2 && y1 < p.mouseY && p.mouseY < y2) {
+            displayPreview(i, j);
+          }
+        }
+      }
+    }
+
+    function displayPreview(i: number, j: number) {
+      p.fill(150, 150, 150, 100);
+
+      if (figureNumber === 1) {
+        displayPreviewFigure(i, j);
+        displayPreviewFigure(i - 1, j + 1);
+        displayPreviewFigure(i - 1, j);
+      }
+
+      //T字反転
+      else if (figureNumber === 2) {
+        displayPreviewFigure(i, j);
+        displayPreviewFigure(i - 1, j);
+        displayPreviewFigure(i, j + 1);
+        displayPreviewFigure(i + 1, j);
+      }
+
+      function displayPreviewFigure(i: number, j: number) {
+        if (i < 0 || j < 0 || SPLIT < i || SPLIT < j) { return }
+        p.rect(i * p.width / SPLIT, j * p.height / SPLIT, p.width / SPLIT, p.height / SPLIT);
+      }
     }
 
     function judgeGameEnd() {
