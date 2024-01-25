@@ -5,6 +5,7 @@ import React from 'react';
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
 const SPLIT = 3
 let squareColors: number[][] = [];
+let turnCount = 0;
 export let remainingFigureNumber: number[] = [0, 2, 4, 0, 0, 0];
 export let figureNumber = 1;
 let isGameEnded: boolean = false;
@@ -30,10 +31,12 @@ export function FlipGame() {
       drawSquareColors();
       flipPreview();
       judgeGameEnd();
+      judgeGameStart();
     };
 
     p.mouseClicked = () => {
       if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
+        turnCount++;
         flipColor();
         resetGame();
       }
@@ -63,6 +66,7 @@ export function FlipGame() {
     function resetGame() {
       if (isGameEnded) {
         isGameEnded = false;
+        turnCount = 0;
 
         for (let i = 0; i < SPLIT; i++) {
           squareColors[i] = [];
@@ -94,6 +98,14 @@ export function FlipGame() {
       function displayPreviewFigure(i: number, j: number) {
         if (i < 0 || j < 0 || SPLIT < i || SPLIT < j) { return }
         p.rect(i * p.width / SPLIT, j * p.height / SPLIT, p.width / SPLIT, p.height / SPLIT);
+      }
+    }
+
+    function judgeGameStart() {
+      if (turnCount === 0) {
+        p.fill(150, 150, 150);
+        p.textSize(0.08 * p.width);
+        p.text("Make all squares white", p.width / 2, p.height / 2);
       }
     }
 
