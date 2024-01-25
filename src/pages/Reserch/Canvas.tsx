@@ -39,7 +39,7 @@ import imageFilePath14 from '../../assets/NCG279.jpg';
 import imageFilePath15 from '../../assets/IMG_9836.png';
 import imageFilePath16 from '../../assets/IMG_9837.png';
 import imageFilePath17 from '../../assets/IMG_9675.png';
-import imageFilePath18 from '../../assets/NCG297-2.jpg';
+import imageFilePath18 from '../../assets/196_20231213170937.png';
 import imageFilePath19 from '../../assets/many_hue_illust.png'
 import imageFilePath20 from '../../assets/hue_tone.png';
 import imageFilePath21 from '../../assets/hue_tone_2.png';
