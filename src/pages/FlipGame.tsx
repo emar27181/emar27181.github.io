@@ -185,7 +185,7 @@ export function FlipGame() {
     }
 
     function drawLines() {
-      p.stroke(150);
+      p.stroke(150, 150, 150, 100);
       //格子状の線
       for (let i = 0; i < SPLIT; i++) {
         p.line(i * p.width / SPLIT, 0, i * p.width / SPLIT, p.height);
