@@ -7,6 +7,7 @@ const SPLIT = 3
 let squareColors: number[][] = [];
 export let remainingFigureNumber: number[] = [0, 2, 4, 0, 0, 0];
 export let figureNumber = 1;
+let isGameEnded: boolean = false;
 for (let i = 0; i < SPLIT; i++) {
   squareColors[i] = [];
   for (let j = 0; j < SPLIT; j++) {
@@ -34,6 +35,7 @@ export function FlipGame() {
     p.mouseClicked = () => {
       if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
         flipColor();
+        resetGame();
       }
     }
 
@@ -55,6 +57,20 @@ export function FlipGame() {
             displayPreview(i, j);
           }
         }
+      }
+    }
+
+    function resetGame() {
+      if (isGameEnded) {
+        isGameEnded = false;
+
+        for (let i = 0; i < SPLIT; i++) {
+          squareColors[i] = [];
+          for (let j = 0; j < SPLIT; j++) {
+            squareColors[i][j] = 0;
+          }
+        }
+        remainingFigureNumber = [0, 2, 4, 0, 0, 0];
       }
     }
 
@@ -86,19 +102,27 @@ export function FlipGame() {
         if (remainingFigureNumber[i] != 0) { return; }
       }
 
+      isGameEnded = true;
+
       p.fill(150);
       // 黒の盤面が残っていた場合
       for (let i = 0; i < SPLIT; i++) {
         for (let j = 0; j < SPLIT; j++) {
           if (squareColors[i][j] === 0) {
+            p.textSize(0.3 * p.width / SPLIT);
             p.text("MISS", p.width / 2, p.height / 2);
+            p.textSize(0.2 * p.width / SPLIT);
+            p.text("click to replay", p.width / 2, p.height / 2 + 1.2 * p.textSize());
             return;
           }
         }
       }
 
       // 黒の盤面が残っていなかった場合
+      p.textSize(0.3 * p.width / SPLIT);
       p.text("CLEAR", p.width / 2, p.height / 2);
+      p.textSize(0.2 * p.width / SPLIT);
+      p.text("click to replay", p.width / 2, p.height / 2 + 1.2 * p.textSize());
     }
 
     function drawSquareColors() {
@@ -112,7 +136,7 @@ export function FlipGame() {
           p.rect(x, y, p.width / SPLIT, p.height / SPLIT);
 
           let text = "(" + i + "," + j + ")";
-
+          p.textSize(0.3 * p.width / SPLIT);
           //p.text(text, x + p.width / (2 * SPLIT), y + p.height / (2 * SPLIT));
         }
       }
