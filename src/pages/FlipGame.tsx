@@ -3,9 +3,9 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
 const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
-const SPLIT = 5
+const SPLIT = 3
 let squareColors: number[][] = [];
-export let remainingFigureNumber: number[] = [0, 2, 3, 0, 0, 0];
+export let remainingFigureNumber: number[] = [0, 2, 4, 0, 0, 0];
 export let figureNumber = 1;
 for (let i = 0; i < SPLIT; i++) {
   squareColors[i] = [];
@@ -27,6 +27,7 @@ export function FlipGame() {
     p.draw = () => {
       drawLines();
       drawSquareColors();
+      judgeGameEnd();
     };
 
     p.mouseClicked = () => {
@@ -39,6 +40,26 @@ export function FlipGame() {
       if (p.key === "1") { figureNumber = 1; }
       else if (p.key === "2") { figureNumber = 2; }
       else if (p.key === "3") { figureNumber = 3; }
+    }
+
+    function judgeGameEnd() {
+      for (let i = 0; i < remainingFigureNumber.length; i++) {
+        if (remainingFigureNumber[i] != 0) { return; }
+      }
+
+      p.fill(150);
+      // 黒の盤面が残っていた場合
+      for (let i = 0; i < SPLIT; i++) {
+        for (let j = 0; j < SPLIT; j++) {
+          if (squareColors[i][j] === 0) {
+            p.text("MISS", p.width / 2, p.height / 2);
+            return;
+          }
+        }
+      }
+
+      // 黒の盤面が残っていなかった場合
+      p.text("CLEAR", p.width / 2, p.height / 2);
     }
 
     function drawSquareColors() {
