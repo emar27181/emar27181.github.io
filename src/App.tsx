@@ -29,6 +29,7 @@ import CanvasHomeRe from './views/CanvasHomeRe';
 import FlipGame from './pages/FlipGame';
 import MatchBoGame from './pages/MatchBoGame';
 import FlipGameMenu from './pages/FlipGameMenu';
+import AllScrollLock from './components/AllScrollLock';
 
 let isDesktop = false;
 let isMobileLandscape = false;
@@ -206,6 +207,7 @@ function App() {
 
         <Route path="/flipGame">
           <div style={{ display: 'flex' }}>
+            <AllScrollLock />
             <FlipGame />
             <FlipGameMenu />
           </div>
