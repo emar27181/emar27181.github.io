@@ -10,6 +10,7 @@ import DisplayCanvasFilter from '../pages/ColorRecommendation/DisplayCanvasFilte
 import ColorGanerateRe from '../pages/ColorRecommendation/ColorGenerate';
 import AllScrollLock from '../components/AllScrollLock';
 import DisplayUsedColorWheel from '../pages/ColorRecommendation/DisplayUsedColorWheel';
+import DisplayUsedColorTone from '../pages/ColorRecommendation/DisplayUsedColorTone';
 
 let isCanvasHome = false;
 
@@ -19,7 +20,6 @@ export function U22programmingContestHome() {
 
   return (
     <div>
-      <br /><br />
       <AllScrollLock />
       <div style={{ display: 'flex', margin: 0 }}>
         <div>
@@ -28,6 +28,7 @@ export function U22programmingContestHome() {
           <OperateGuiControl />
         </div>
         <div style={{ overflow: 'hidden' }}>
+          <AllScrollLock />
           {Canvas()}
         </div>
         <div>

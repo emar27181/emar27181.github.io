@@ -6,7 +6,7 @@ import LineGame from '../pages/LineGame';
 import CameraMosaicBallRPG from '../pages/CameraMosaicBallRPG';
 import MatchBoGame from '../pages/MatchBoGame';
 import SoftwareKisoHome from './SoftwareKisoHome';
-
+import FlipGame from '../pages/FlipGame';
 
 
 export function GameHome() {
@@ -25,6 +25,10 @@ export function GameHome() {
 
         <NavLink activeClassName="active" to="/softWareKisoHome">
           マッチ棒
+        </NavLink><br />
+
+        <NavLink activeClassName="active" to="/flipGame">
+          自作ゲーム
         </NavLink>
       </ul>
 
@@ -39,6 +43,9 @@ export function GameHome() {
         </Route>
         <Route path="/softWareKisoHome" >
           <SoftwareKisoHome />
+        </Route>
+        <Route path="/flipGame" >
+          <FlipGame />
         </Route>
       </Switch>
 

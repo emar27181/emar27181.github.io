@@ -26,6 +26,9 @@ import ColorRecommendHome from './views/ColorRecommendHome';
 import CanvasHomeNormal from './views/CanvasHomeNormal';
 import CanvasHomeRecommend from './views/CanvasHomeRecommend';
 import CanvasHomeRe from './views/CanvasHomeRe';
+import FlipGame from './pages/FlipGame';
+import MatchBoGame from './pages/MatchBoGame';
+import FlipGameMenu from './pages/FlipGameMenu';
 
 let isDesktop = false;
 let isMobileLandscape = false;
@@ -111,7 +114,8 @@ function App() {
             <Nav.Link href="/workMenu" >作品集</Nav.Link>
             <Nav.Link href='/researchHome' > 重力操作 </Nav.Link>
             <Nav.Link href='/canvas' > キャンバス </Nav.Link>
-            <Nav.Link href='/canvasHomeRe' > 再実装中キャンバス</Nav.Link>
+            <Nav.Link href='/flipGame' > 制作中ゲーム</Nav.Link>
+            <Nav.Link href='/matchBoGame' > マッチ棒ゲーム</Nav.Link>
           </Nav>
 
 
@@ -198,6 +202,17 @@ function App() {
 
         <Route path="/softwareKisoHome">
           <SoftwareKisoHome />
+        </Route>
+
+        <Route path="/flipGame">
+          <div style={{ display: 'flex' }}>
+            <FlipGame />
+            <FlipGameMenu />
+          </div>
+        </Route>
+
+        <Route path="/matchBoGame">
+          <MatchBoGame />
         </Route>
 
         <Route>
