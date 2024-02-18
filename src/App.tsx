@@ -113,7 +113,7 @@ function App() {
           <Nav className="ml-auto d-flex">
             <Nav.Link href="/" >ホーム</Nav.Link>
             <Nav.Link href="/workMenu" >作品集</Nav.Link>
-            <Nav.Link href='/researchHome' > 重力操作 </Nav.Link>
+            <Nav.Link href='/researchHome' > 重力操作(アクセス不可) </Nav.Link>
             <Nav.Link href='/canvas' > キャンバス </Nav.Link>
             <Nav.Link href='/flipGame' > 制作中ゲーム</Nav.Link>
             <Nav.Link href='/matchBoGame' > マッチ棒ゲーム</Nav.Link>
