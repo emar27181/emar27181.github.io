@@ -22,6 +22,7 @@ import { ReturnIsLoadImage, ReturnLoadImageUrl } from '../TestDragAndPaste';
 import { ReturnColorWheelColor, ReturnIsTouchedUsedColorWheel } from '../ColorRecommendation/DisplayUsedColorWheel';
 
 import imageFilePath0 from '../../assets/coloring_sample_image.png';
+//import imageFilePath0 from '../../assets/NCG297-2.jpg';
 import imageFilePath1 from '../../assets/img_1701616372.jpg';
 import imageFilePath2 from '../../assets/NCG255-510x510.jpg';
 import imageFilePath3 from '../../assets/160_10.jpg';
@@ -30,6 +31,7 @@ import imageFilePath5 from '../../assets/img_1702279389.png';
 import imageFilePath6 from '../../assets/IMG_9803.png';
 import imageFilePath7 from '../../assets/IMG_9802.png';
 //import imageFilePath8 from '../../assets/hue_tone_2.png';
+import imageFilePath8 from '../../assets/196.jpg';
 import imageFilePath9 from '../../assets/IMG_9807.png';
 import imageFilePath10 from '../../assets/IMG_9808.png';
 import imageFilePath11 from '../../assets/IMG_9809.png';
@@ -145,7 +147,7 @@ export function Canvas() {
       coloringImages.push(p.loadImage(imageFilePath5));
       coloringImages.push(p.loadImage(imageFilePath6));
       coloringImages.push(p.loadImage(imageFilePath7));
-      //coloringImages.push(p.loadImage(imageFilePath8));
+      coloringImages.push(p.loadImage(imageFilePath8));
       coloringImages.push(p.loadImage(imageFilePath9));
       coloringImages.push(p.loadImage(imageFilePath10));
       coloringImages.push(p.loadImage(imageFilePath11));

@@ -13,11 +13,21 @@ export function ClockCountdown() {
   const sketch = (p: P5CanvasInstance) => {
 
     p.setup = () => {
-      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT); //キャンバスの作成
+      //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT); //キャンバスの作成
+      createCanvas();
       p.background("#000000");
       p.frameRate(1);
       p.textAlign(p.CENTER);
     };
+
+    function createCanvas() {
+      if (window.innerWidth > window.innerHeight) {
+        p.createCanvas(0.4 * window.innerWidth, 0.1 * window.innerWidth);
+      }
+      else {
+        p.createCanvas(0.8 * window.innerWidth, 0.2 * window.innerWidth);
+      }
+    }
 
     p.draw = () => {
 
@@ -55,17 +65,17 @@ export function ClockCountdown() {
         let r = (255 / 12) * hours;
         let g = (255 / 60) * minutes;
         let b = (255 / 60) * seconds;
-        //console.log("r: " + r + ", g: " + g + ", b: " + b);
 
         p.fill(r, g, b);
-        p.textSize(25);
-        p.text(commentDeadline2, p.width / 2, p.height - 10);
+        p.textSize(0.05 * p.width);
+        p.text(commentDeadline2, p.width / 2, 0.9 * p.height);
 
-        p.textSize(40);
+        p.textSize(0.07 * p.width);
         p.text(commentDeadline, p.width / 2, p.height / 2);
 
-        p.textSize(20);
-        p.text("インタラクション2024", p.width / 2, p.height - 105);
+        p.textSize(0.03 * p.width);
+        p.text("インタラクション2024", p.width / 2, 0.2 * p.height);
+        console.log(window.innerWidth);
       };
     };
   }

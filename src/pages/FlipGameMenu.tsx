@@ -6,7 +6,7 @@ import { figureNumber, remainingFigureNumber } from './FlipGame';
 export function FlipGameMenu() {
   const sketch = (p: P5CanvasInstance) => {
 
-    const CANVAS_WIDTH = 64, CANVAS_HEIGHT = 256;
+    const CANVAS_WIDTH = 128, CANVAS_HEIGHT = 256;
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -17,6 +17,7 @@ export function FlipGameMenu() {
     p.draw = () => {
       p.background(0);
       drawFigure();
+      drawExplainMessage();
     };
 
     function drawFigure() {
@@ -33,7 +34,13 @@ export function FlipGameMenu() {
 
         p.text(texts[i], 0, i * p.height / 7);
       }
+    }
 
+    function drawExplainMessage() {
+      p.textSize(0.07 * p.width);
+      p.fill(255);
+      p.noStroke();
+      p.text("数字キー: 図形の切り替え", 0, 0.8 * p.height);
     }
   }
 

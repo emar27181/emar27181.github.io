@@ -6,7 +6,7 @@ import p5 from 'p5';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnImageColors, ReturnReturnImageInfoCanvasSize } from '../Reserch/ReturnImageInfo';
 import { ReturnCameraColors } from '../Reserch/ReturnCameraInfo';
-import { DISPLAY_RATE } from '../../config/constants';
+import { DISPLAY_RATE, DISPLAY_CANVAS_FILTER_RATE } from '../../config/constants';
 
 export function DisplayCanvasFilter(displayMode: string, loadNumber: number, displayColorSpace: string) {
   const sketch = (p: P5CanvasInstance) => {
@@ -28,7 +28,7 @@ export function DisplayCanvasFilter(displayMode: string, loadNumber: number, dis
       if (displayMode === "camera") { p.createCanvas(480 / 3, 480 / 3); }
       else if (displayMode === "image") { p.createCanvas(512 / 3, 512 / 3); }
       else {
-        p.createCanvas(DISPLAY_RATE * window.innerWidth / 3, DISPLAY_RATE * window.innerWidth / 3);
+        p.createCanvas(DISPLAY_RATE * DISPLAY_CANVAS_FILTER_RATE * window.innerWidth / 3, DISPLAY_RATE * DISPLAY_CANVAS_FILTER_RATE * window.innerWidth / 3);
         //let rate = 0.65;
         //p.createCanvas(rate * p.windowWidth / 2 / 3, rate * p.windowWidth / 2 / 3);
         //if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2 / 3, rate * p.windowWidth / 2 / 3); }

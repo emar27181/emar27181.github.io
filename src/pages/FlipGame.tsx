@@ -104,8 +104,8 @@ export function FlipGame() {
     function judgeGameStart() {
       if (turnCount === 0) {
         p.fill(150, 150, 150);
-        p.textSize(0.08 * p.width);
-        p.text("Make all squares white", p.width / 2, p.height / 2);
+        p.textSize(0.04 * p.width);
+        p.text("全ての図形を使って画面全体を白にしてください", p.width / 2, p.height / 2);
       }
     }
 
