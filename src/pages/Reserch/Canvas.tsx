@@ -22,6 +22,7 @@ import { ReturnIsLoadImage, ReturnLoadImageUrl } from '../TestDragAndPaste';
 import { ReturnColorWheelColor, ReturnIsTouchedUsedColorWheel } from '../ColorRecommendation/DisplayUsedColorWheel';
 
 import imageFilePath0 from '../../assets/coloring_sample_image.png';
+//import imageFilePath0 from '../../assets/NCG297-2.jpg';
 import imageFilePath1 from '../../assets/img_1701616372.jpg';
 import imageFilePath2 from '../../assets/NCG255-510x510.jpg';
 import imageFilePath3 from '../../assets/160_10.jpg';

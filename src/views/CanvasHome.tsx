@@ -24,13 +24,13 @@ export function U22programmingContestHome() {
       <div style={{ display: 'flex', margin: 0 }}>
         <div>
           <ColorGanerateRe />
-          <DisplayUsedColorWheel />
           <OperateGuiControl />
         </div>
         <div style={{ overflow: 'hidden' }}>
           <AllScrollLock />
           {Canvas()}
         </div>
+        <DisplayUsedColorWheel />
         <div>
           <div style={{ display: 'flex', margin: 0 }}>
             {DisplayCanvasFilter("canvas", 0, "hue")}
