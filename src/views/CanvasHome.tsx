@@ -25,12 +25,34 @@ export function U22programmingContestHome() {
         <div>
           <ColorGanerateRe />
           <OperateGuiControl />
+          {/*}
+          <th>色相，色調(トーン)を変更したい場合は<br />長押ししてください．</th>
+          */}
         </div>
         <div style={{ overflow: 'hidden' }}>
           <AllScrollLock />
           {Canvas()}
         </div>
-        <DisplayUsedColorWheel />
+        <div>
+          <DisplayUsedColorWheel />
+
+          <table border={1}>
+            <tr>
+              <th>白</th>
+              <th>描画待機中の色相</th>
+            </tr>
+            <tr>
+              <th>黒</th>
+              <th>推定された配色</th>
+            </tr>
+            <tr>
+              <th>赤/緑</th>
+              <th>推薦された配色技法</th>
+            </tr>
+          </table>
+
+        </div>
+
         <div>
           <div style={{ display: 'flex', margin: 0 }}>
             {DisplayCanvasFilter("canvas", 0, "hue")}
