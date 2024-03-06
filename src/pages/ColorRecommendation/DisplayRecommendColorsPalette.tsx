@@ -16,8 +16,10 @@ export function DisplayRecommendColorsPalette() {
     };
 
     p.draw = () => {
-      console.log(usedColorsHue);
+      //console.log(usedColorsHue);
+      //console.log(RecommendedColorsHue);
       //displayColorsHue(usedColorsHue);
+      p.background(0);
       displayColorsHue(RecommendedColorsHue);
     };
 
@@ -27,15 +29,16 @@ export function DisplayRecommendColorsPalette() {
       p.colorMode(p.HSL);
       //p.noStroke();
       let x = 0;
-      for (let i = 0; i < 360; i += 15) {
+      for (let i = 0; i < 360; i++) {
         for (let j = 0; j < ColorsHue.length; j++) {
-          if (ColorsHue[j] === i) {
+          //if (p.round(ColorsHue[j] / 15) * 15 === i) {
+          if (p.round(ColorsHue[j]) === i) {
             p.fill(ColorsHue[j], 100, 50);
             //p.fill(0, 50, 50);
             p.rect(x, 0, x + (p.width / ColorsHue.length), p.height);
             //p.rect(i * (p.width / ColorsHue.length), 0, (i + 1) * (p.width / ColorsHue.length), p.height);
             x += p.width / ColorsHue.length;
-            console.log(i);
+            //console.log(i);
           }
         }
       }
