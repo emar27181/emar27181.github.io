@@ -2,6 +2,7 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE } from '../../config/constants';
+import { usedColorsHue } from './DisplayUsedColorWheel';
 
 export function DisplayRecommendColorsPalette() {
   const sketch = (p: P5CanvasInstance) => {
@@ -12,12 +13,22 @@ export function DisplayRecommendColorsPalette() {
       //p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.createCanvas(DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3, DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 50);
       p.background(0);
+      p.frameRate(1);
     };
 
     p.draw = () => {
-      p.fill(255);
-      p.ellipse(p.width / 2, p.height / 2, 100, 100);
+      //console.log(usedColorsHue);
+      displayColorsHue(usedColorsHue);
     };
+
+    function displayColorsHue(ColorsHue: number[]) {
+      p.colorMode(p.HSL);
+      //p.noStroke();
+      for (let i = 0; i < ColorsHue.length; i++) {
+        p.fill(ColorsHue[i], 50, 50);
+        p.rect(i * (p.width / ColorsHue.length), 0, (i + 1) * (p.width / ColorsHue.length), p.height);
+      }
+    }
   }
 
   return (

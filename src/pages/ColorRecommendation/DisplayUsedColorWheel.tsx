@@ -36,7 +36,6 @@ export function DisplayUsedColorWheel() {
     }
 
     p.draw = () => {
-      console.log(usedColorsHue);
       updateVariables();
       p.background(0);
       p.translate(p.width / 2, p.height / 2);
@@ -46,7 +45,6 @@ export function DisplayUsedColorWheel() {
       drawRecommendedColors();
       drawUsedColors();
       drawColorHueDot(p.color(255), radius * p.cos(p.radians(p.hue(drawingColor))), radius * p.sin(p.radians(p.hue(drawingColor))));
-      //console.log(usedColors)
       if (DEBUG) { console.log("usedColors.length: " + usedColors.length); }
 
       if (p.mouseIsPressed) { mousePressed(); }
@@ -87,7 +85,6 @@ export function DisplayUsedColorWheel() {
         //ドミナントカラー配色の推薦
         console.log(returnHueDifference(false));
         if (returnHueDifference(false) <= 4) {
-          console.log("called");
           let angle = p.hue(returnBaseColor());
           //drawLineIdea(angle, modifyColor); // 現状だとドミナントカラー配色とダイアード配色を推薦してしまっている
           drawSplitComplementary(angle, returnHueDifference(true), modifyColor);
