@@ -8,6 +8,8 @@ import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE } from '../../config/consta
 
 let isTouched = false;
 let returnColor: number[] = [0, 0, 0, 255];
+export let usedColorsHue: number[] = [];
+export let RecommendedColorsHue: number[] = [];
 export const SATURATION_LIMIT = 20;
 export const LIGHTNESS_UPPER_LIMIT = 80;
 export const LIGHTNESS_LOWER_LIMIT = 25;
@@ -34,6 +36,7 @@ export function DisplayUsedColorWheel() {
     }
 
     p.draw = () => {
+      console.log(usedColorsHue);
       updateVariables();
       p.background(0);
       p.translate(p.width / 2, p.height / 2);
@@ -545,6 +548,7 @@ export function DisplayUsedColorWheel() {
 
     function resetUsedColors() {
       usedColors = [];
+      usedColorsHue = [];
     }
 
     function updateUsedColor(color: p5.Color, amount: number,) {
@@ -566,6 +570,7 @@ export function DisplayUsedColorWheel() {
       let x = radius * p.cos(p.radians(hue));
       let y = radius * p.sin(p.radians(hue));
       usedColors.push(new UsedColor(p.color(hue, 50, 50), amount, x, y));
+      usedColorsHue.push(hue);
       p.colorMode(p.RGB);
       if (DEBUG) { console.log(hue); }
     }
