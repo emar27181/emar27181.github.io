@@ -17,17 +17,35 @@ export function DisplayRecommendColorsPalette() {
     };
 
     p.draw = () => {
-      //console.log(usedColorsHue);
+      console.log(usedColorsHue);
       displayColorsHue(usedColorsHue);
+      //displayColorsHue([0, 30, 100]);
     };
 
+
+    //色相順に使用色を表示させる関数
     function displayColorsHue(ColorsHue: number[]) {
       p.colorMode(p.HSL);
       //p.noStroke();
+      let x = 0;
+      for (let i = 0; i < 360; i += 15) {
+        for (let j = 0; j < ColorsHue.length; j++) {
+          if (ColorsHue[j] === i) {
+            p.fill(ColorsHue[j], 50, 50);
+            //p.fill(0, 50, 50);
+            p.rect(x, 0, x + (p.width / ColorsHue.length), p.height);
+            //p.rect(i * (p.width / ColorsHue.length), 0, (i + 1) * (p.width / ColorsHue.length), p.height);
+            x += p.width / ColorsHue.length;
+            console.log(i);
+          }
+        }
+      }
+      /*
       for (let i = 0; i < ColorsHue.length; i++) {
         p.fill(ColorsHue[i], 50, 50);
         p.rect(i * (p.width / ColorsHue.length), 0, (i + 1) * (p.width / ColorsHue.length), p.height);
       }
+      */
     }
   }
 
