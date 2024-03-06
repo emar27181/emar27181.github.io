@@ -11,7 +11,7 @@ import ColorGanerateRe from '../pages/ColorRecommendation/ColorGenerate';
 import AllScrollLock from '../components/AllScrollLock';
 import DisplayUsedColorWheel from '../pages/ColorRecommendation/DisplayUsedColorWheel';
 import DisplayUsedColorTone from '../pages/ColorRecommendation/DisplayUsedColorTone';
-
+import DisplayRecommendColorsPalette from '../pages/ColorRecommendation/DisplayRecommendColorsPalette';
 let isCanvasHome = false;
 
 export function U22programmingContestHome() {
@@ -35,7 +35,7 @@ export function U22programmingContestHome() {
         </div>
         <div>
           <DisplayUsedColorWheel />
-
+          <DisplayRecommendColorsPalette />
           <table border={1}>
             <tr>
               <th>白</th>
