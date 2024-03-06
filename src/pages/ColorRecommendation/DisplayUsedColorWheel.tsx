@@ -74,8 +74,11 @@ export function DisplayUsedColorWheel() {
       //描画色が0色だった場合
       if (usedColors.length === 0) { return; }
 
+      //推薦色の色相にベースカラーを追加
+      RecommendedColorsHue.push(p.hue(returnBaseColor()));
+
       //描画色が1色だった場合
-      else if (usedColors.length === 1) {
+      if (usedColors.length === 1) {
         let angle = p.hue(usedColors[0].color);
         drawLineIdea(angle, modifyColor);
       }
@@ -388,6 +391,8 @@ export function DisplayUsedColorWheel() {
       //類似色の描画
       drawLine(angle, 2, color);
       drawLine(angle, -2, color);
+
+      //推薦色の色相の追加
     }
 
     // ドミナントカラー配色を表示する関数
@@ -546,6 +551,7 @@ export function DisplayUsedColorWheel() {
     function resetUsedColors() {
       usedColors = [];
       usedColorsHue = [];
+      RecommendedColorsHue = [];
     }
 
     function updateUsedColor(color: p5.Color, amount: number,) {
