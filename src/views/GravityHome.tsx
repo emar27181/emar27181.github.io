@@ -24,8 +24,8 @@ export function GravityHome() {
   return (
     <div>
       <div style={{ display: 'flex' }}>
-        <Canvas />
         <DisplayDrawingInfo />
+        <Canvas />
         <DisplayGravityPlace />
       </div>
       {/*
