@@ -25,9 +25,12 @@ import imageFilePath0 from '../../assets/coloring_sample_image.png';
 //import imageFilePath0 from '../../assets/NCG297-2.jpg';
 import imageFilePath1 from '../../assets/img_1701616372.jpg';
 import imageFilePath2 from '../../assets/NCG255-510x510.jpg';
-import imageFilePath3 from '../../assets/160_10.jpg';
-import imageFilePath4 from '../../assets/160_11.jpg';
-import imageFilePath5 from '../../assets/img_1702279389.png';
+//import imageFilePath3 from '../../assets/160_10.jpg';
+//import imageFilePath4 from '../../assets/160_11.jpg';
+import imageFilePath3 from '../../assets/NCG279.jpg';
+import imageFilePath4 from '../../assets/NCG297-2.jpg';
+import imageFilePath5 from '../../assets/transparent.png';
+//import imageFilePath5 from '../../assets/img_1702279389.png';
 import imageFilePath6 from '../../assets/IMG_9803.png';
 import imageFilePath7 from '../../assets/IMG_9802.png';
 //import imageFilePath8 from '../../assets/hue_tone_2.png';
@@ -221,10 +224,15 @@ export function Canvas() {
       if (isTracking) { addTrackingBall(); }
 
       if (isBackground) {
+
+        /*
         p.blendMode(p.DARKEST);
         p.background(backgroundColor);
         //p.blendMode(p.ADD);
         p.blendMode(p.BLEND);
+        */
+
+        backgroundColor = p.color(0);
       }
       else {
         p.blendMode(p.BLEND);
