@@ -14,7 +14,7 @@ import DisplayUsedColorTone from '../pages/ColorRecommendation/DisplayUsedColorT
 import DisplayRecommendColorsPalette from '../pages/ColorRecommendation/DisplayRecommendColorsPalette';
 let isCanvasHome = false;
 
-export function U22programmingContestHome() {
+export function CanvasHomeForInteraction2024() {
 
   isCanvasHome = true;
 
@@ -35,7 +35,7 @@ export function U22programmingContestHome() {
         </div>
         <div>
           <DisplayUsedColorWheel />
-          <DisplayRecommendColorsPalette />
+          {/*<DisplayRecommendColorsPalette />*/}
           <table border={1}>
             <tr>
               <th>白</th>
@@ -73,5 +73,5 @@ export function U22programmingContestHome() {
   )
 }
 
-export default U22programmingContestHome
+export default CanvasHomeForInteraction2024
 export function ReturnIsCanvasHome() { return isCanvasHome; }

@@ -6,6 +6,7 @@ import { ReturnCanvasSize, ReturnGravityX, ReturnGravityY, ReturnIsFixedGravity,
 import { ReturnTrackingInfo, ReturnTrackingData, ReturnTrackingCanvasSize } from './ReturnTrackingInfo';
 import { ReturnIsDesktop } from '../../App';
 import { ReturnIsCanvasHome } from '../../views/CanvasHome';
+import { DISPLAY_RATE } from '../../config/constants';
 
 let trackingData: number[][] = [[0, 0, 0, 0], [0, 0, 0, 0]];
 let trackingX1 = trackingData[0][0]; //人差し指のx座標
@@ -42,9 +43,10 @@ export function DisplayGravityPlace() {
       //p.createCanvas(canvasWidth, canvasHeight);
       //p.createCanvas(p.windowHeight / 2, p.windowHeight / 2);
       let rate = 0.65;
-      if (ReturnIsCanvasHome()) { p.createCanvas(200, 200) }
-      else if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
-      else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
+      //if (ReturnIsCanvasHome()) { p.createCanvas(200, 200) }
+      //else if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2, rate * p.windowWidth / 2); }
+      //else { p.createCanvas(rate * p.windowWidth, rate * p.windowWidth); }
+      p.createCanvas(DISPLAY_RATE * window.innerWidth, DISPLAY_RATE * window.innerWidth);
       gravityCanvasX = p.width;
       gravityCanvasY = p.height;
       //let rate = 0.35;

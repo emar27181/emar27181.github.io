@@ -30,6 +30,8 @@ import FlipGame from './pages/FlipGame';
 import MatchBoGame from './pages/MatchBoGame';
 import FlipGameMenu from './pages/FlipGameMenu';
 import AllScrollLock from './components/AllScrollLock';
+import CanvasHomeForInteraction2024 from './views/CanvasHomeForInteraction2024';
+import GravityHome from './views/GravityHome';
 
 let isDesktop = false;
 let isMobileLandscape = false;
@@ -113,10 +115,11 @@ function App() {
           <Nav className="ml-auto d-flex">
             <Nav.Link href="/" >ホーム</Nav.Link>
             <Nav.Link href="/workMenu" >作品集</Nav.Link>
-            <Nav.Link href='/researchHome' > 重力操作(アクセス不可) </Nav.Link>
-            <Nav.Link href='/canvas' > キャンバス </Nav.Link>
-            <Nav.Link href='/flipGame' > 制作中ゲーム</Nav.Link>
-            <Nav.Link href='/matchBoGame' > マッチ棒ゲーム</Nav.Link>
+            <Nav.Link href='/gravityHome' > 重力操作 </Nav.Link>
+            {/*<Nav.Link href='/canvas' > キャンバス(フル) </Nav.Link>*/}
+            <Nav.Link href='/canvasHomeForInteraction2024' > キャンバス </Nav.Link>
+            {/*<Nav.Link href='/flipGame' > 制作中ゲーム</Nav.Link>*/}
+            {/*<Nav.Link href='/matchBoGame' > マッチ棒ゲーム</Nav.Link>*/}
           </Nav>
 
 
@@ -188,6 +191,9 @@ function App() {
           <CanvasHomeRe />
         </Route>
 
+        <Route path="/canvasHomeForInteraction2024">
+          <CanvasHomeForInteraction2024 />
+        </Route>
 
         <Route path="/canvasHomeRecommend">
           <CanvasHomeRecommend />
@@ -215,6 +221,10 @@ function App() {
 
         <Route path="/matchBoGame">
           <MatchBoGame />
+        </Route>
+
+        <Route path="/gravityHome">
+          <GravityHome />
         </Route>
 
         <Route>

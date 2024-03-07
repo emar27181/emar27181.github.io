@@ -8,6 +8,8 @@ import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE } from '../../config/consta
 
 let isTouched = false;
 let returnColor: number[] = [0, 0, 0, 255];
+export let usedColorsHue: number[] = [];
+export let RecommendedColorsHue: number[] = [];
 export const SATURATION_LIMIT = 20;
 export const LIGHTNESS_UPPER_LIMIT = 80;
 export const LIGHTNESS_LOWER_LIMIT = 25;
@@ -43,7 +45,6 @@ export function DisplayUsedColorWheel() {
       drawRecommendedColors();
       drawUsedColors();
       drawColorHueDot(p.color(255), radius * p.cos(p.radians(p.hue(drawingColor))), radius * p.sin(p.radians(p.hue(drawingColor))));
-      //console.log(usedColors)
       if (DEBUG) { console.log("usedColors.length: " + usedColors.length); }
 
       if (p.mouseIsPressed) { mousePressed(); }
@@ -74,7 +75,7 @@ export function DisplayUsedColorWheel() {
       if (usedColors.length === 0) { return; }
 
       //描画色が1色だった場合
-      else if (usedColors.length === 1) {
+      if (usedColors.length === 1) {
         let angle = p.hue(usedColors[0].color);
         drawLineIdea(angle, modifyColor);
       }
@@ -84,11 +85,10 @@ export function DisplayUsedColorWheel() {
         //ドミナントカラー配色の推薦
         console.log(returnHueDifference(false));
         if (returnHueDifference(false) <= 4) {
-          console.log("called");
           let angle = p.hue(returnBaseColor());
           //drawLineIdea(angle, modifyColor); // 現状だとドミナントカラー配色とダイアード配色を推薦してしまっている
           drawSplitComplementary(angle, returnHueDifference(true), modifyColor);
-          drawDominant(angle, modifyColor);
+          //drawDominant(angle, modifyColor);
         }
         //トライアド配色の推薦
         else if (returnHueDifference(false) <= 8) {
@@ -379,6 +379,10 @@ export function DisplayUsedColorWheel() {
       if (hueDifference <= 6) { return; } //色相差が6以下だった場合, 何もせず終了
 
       drawLine(angle, 12, color);
+
+      //推薦色の色相の追加
+      RecommendedColorsHue.push(angle);
+      RecommendedColorsHue.push((angle + 15 * 12 + 360) % 360);
     }
 
     // 塗られていない色のアイデアを直線で表示する関数
@@ -388,13 +392,22 @@ export function DisplayUsedColorWheel() {
       //類似色の描画
       drawLine(angle, 2, color);
       drawLine(angle, -2, color);
+
+      //推薦色の色相の追加(現時点ではダイアード配色を優先して追加)
+      RecommendedColorsHue.push(angle);
+      RecommendedColorsHue.push((angle + 15 * 12 + 360) % 360);
     }
 
     // ドミナントカラー配色を表示する関数
     function drawDominant(angle: number, color: p5.Color) {
       //類似色の描画
-      drawLine(angle, 1, color);
-      drawLine(angle, -1, color);
+      drawLine(angle, 2, color);
+      drawLine(angle, -2, color);
+
+      //推薦色の色相の追加(2色の際ドミナントカラーとスプリットコンプリメンタリーがどちらも推薦色として表示されること避けるために一時的にコメントアウト)
+      //RecommendedColorsHue.push(angle);
+      //RecommendedColorsHue.push((angle + 15 * 2 + 360) % 360);
+      //RecommendedColorsHue.push((angle - 15 * 2 + 360) % 360);
     }
 
 
@@ -421,6 +434,21 @@ export function DisplayUsedColorWheel() {
       p.ellipse(x1, y1, p.width / 40, p.height / 40);
       p.ellipse(x2, y2, p.width / 40, p.height / 40);
       p.ellipse(x3, y3, p.width / 40, p.height / 40);
+
+      //推薦色の色相の追加
+      if (usedColors.length === 2) {
+        let hue1 = p.hue(usedColors[0].color);
+        let hue2 = p.hue(usedColors[1].color);
+        let hue3 = ((hue1 + hue2) / 2 + 180) % 360;
+        RecommendedColorsHue.push(hue1);
+        RecommendedColorsHue.push(hue2);
+        RecommendedColorsHue.push(hue3);
+      }
+      else {
+        RecommendedColorsHue.push((angle + 360) % 360);
+        RecommendedColorsHue.push(((angle - 180 - 15 * hueDifference / 2) + 360) % 360);
+        RecommendedColorsHue.push(((angle - 180 + 15 * hueDifference / 2) + 360) % 360);
+      }
     }
 
     function drawTriangle(angle: number, hueDifference: number, color: p5.Color) {
@@ -443,6 +471,11 @@ export function DisplayUsedColorWheel() {
       p.ellipse(x1, y1, p.width / 40, p.height / 40);
       p.ellipse(x2, y2, p.width / 40, p.height / 40);
       p.ellipse(x3, y3, p.width / 40, p.height / 40);
+
+      //推薦色の色相の追加
+      RecommendedColorsHue.push(angle);
+      RecommendedColorsHue.push((angle + 15 * hueDifference + 360) % 360);
+      RecommendedColorsHue.push((angle + 15 * hueDifference * 2 + 360) % 360);
     }
 
     function drawRectangle(angle: number, hueDifference: number, color: p5.Color) {
@@ -468,6 +501,12 @@ export function DisplayUsedColorWheel() {
       p.ellipse(x2, y2, p.width / 40, p.height / 40);
       p.ellipse(x3, y3, p.width / 40, p.height / 40);
       p.ellipse(x4, y4, p.width / 40, p.height / 40);
+
+      //推薦色の色相の追加
+      RecommendedColorsHue.push(angle);
+      RecommendedColorsHue.push((angle + 15 * hueDifference + 360) % 360);
+      RecommendedColorsHue.push((angle + 180 + 360) % 360);
+      RecommendedColorsHue.push((angle + 180 * hueDifference + 360) % 360);
     }
 
 
@@ -486,6 +525,9 @@ export function DisplayUsedColorWheel() {
         //点の描画
         p.fill(color);
         p.ellipse(x1, y1, p.width / 40, p.height / 40);
+
+        //推薦色の色相の追加
+        RecommendedColorsHue.push((angle + 360) % 360);
       }
     }
 
@@ -545,6 +587,8 @@ export function DisplayUsedColorWheel() {
 
     function resetUsedColors() {
       usedColors = [];
+      usedColorsHue = [];
+      RecommendedColorsHue = [];
     }
 
     function updateUsedColor(color: p5.Color, amount: number,) {
@@ -566,6 +610,7 @@ export function DisplayUsedColorWheel() {
       let x = radius * p.cos(p.radians(hue));
       let y = radius * p.sin(p.radians(hue));
       usedColors.push(new UsedColor(p.color(hue, 50, 50), amount, x, y));
+      usedColorsHue.push(hue);
       p.colorMode(p.RGB);
       if (DEBUG) { console.log(hue); }
     }
