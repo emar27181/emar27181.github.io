@@ -32,6 +32,7 @@ import FlipGameMenu from './pages/FlipGameMenu';
 import AllScrollLock from './components/AllScrollLock';
 import CanvasHomeForInteraction2024 from './views/CanvasHomeForInteraction2024';
 import GravityHome from './views/GravityHome';
+import GyroCanvasHome from './views/GyroCanvasHome';
 
 let isDesktop = false;
 let isMobileLandscape = false;
@@ -120,6 +121,7 @@ function App() {
             <Nav.Link href='/canvasHomeForInteraction2024' > キャンバス </Nav.Link>
             {/*<Nav.Link href='/flipGame' > 制作中ゲーム</Nav.Link>*/}
             {/*<Nav.Link href='/matchBoGame' > マッチ棒ゲーム</Nav.Link>*/}
+            <Nav.Link href='/gyroCanvas' > ジャイロキャンバス </Nav.Link>
           </Nav>
 
 
@@ -225,6 +227,10 @@ function App() {
 
         <Route path="/gravityHome">
           <GravityHome />
+        </Route>
+
+        <Route path="/gyroCanvas">
+          <GyroCanvasHome />
         </Route>
 
         <Route>
