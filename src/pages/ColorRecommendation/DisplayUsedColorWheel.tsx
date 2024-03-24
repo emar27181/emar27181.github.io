@@ -45,7 +45,11 @@ export function DisplayUsedColorWheel() {
       drawRecommendedColors();
       drawUsedColors();
       drawColorHueDot(p.color(255), radius * p.cos(p.radians(p.hue(drawingColor))), radius * p.sin(p.radians(p.hue(drawingColor))));
-      if (DEBUG) { console.log("usedColors.length: " + usedColors.length); }
+      if (DEBUG) {
+        for (let i = 0; i < usedColors.length; i++) {
+          console.log(usedColors[i].color + ": " + usedColors[i].amount);
+        }
+      }
 
       if (p.mouseIsPressed) { mousePressed(); }
     }
@@ -83,7 +87,7 @@ export function DisplayUsedColorWheel() {
       //描画色が2色だった場合
       else if (usedColors.length === 2) {
         //ドミナントカラー配色の推薦
-        console.log(returnHueDifference(false));
+        //console.log(returnHueDifference(false));
         if (returnHueDifference(false) <= 4) {
           let angle = p.hue(returnBaseColor());
           //drawLineIdea(angle, modifyColor); // 現状だとドミナントカラー配色とダイアード配色を推薦してしまっている
