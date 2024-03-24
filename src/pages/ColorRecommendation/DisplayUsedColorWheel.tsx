@@ -20,6 +20,7 @@ export function DisplayUsedColorWheel() {
 
     let colorsAmount: Array<ColorAmount> = [];
     let usedColors: Array<UsedColor> = [];
+    let recommendColorSets: Array<RecommendColors> = [];
     let drawingColor: p5.Color;
     let usedColor = p.color(0, 0, 0, 150);
     let modifyColor = p.color(0, 255, 0, 255);
@@ -42,14 +43,22 @@ export function DisplayUsedColorWheel() {
 
       drawColorWheel(radius, 1);
       updateUsedColors();
+      updateRecommendColorSets();
       drawRecommendedColors();
       drawUsedColors();
       drawColorHueDot(p.color(255), radius * p.cos(p.radians(p.hue(drawingColor))), radius * p.sin(p.radians(p.hue(drawingColor))));
       if (DEBUG) {
-        for (let i = 0; i < usedColors.length; i++) {
-          console.log(usedColors[i].color + ": " + usedColors[i].amount);
+        for (let i = 0; i < usedColors.length; i++) { console.log(usedColors[i].color + ": " + usedColors[i].amount); }
+      }
+      for (let i = 0; i < recommendColorSets.length; i++) {
+        for (let j = 0; j < recommendColorSets[i].colors.length; j++) {
+          let h = p.hue(recommendColorSets[i].colors[j]);
+          let s = p.saturation(recommendColorSets[i].colors[j]);
+          let l = p.lightness(recommendColorSets[i].colors[j]);
+          console.log("recommnedColorSets[" + i + "].colors[" + j + "]: (" + h + ", " + s + "," + l + ")");
         }
       }
+
 
       if (p.mouseIsPressed) { mousePressed(); }
     }
@@ -71,6 +80,36 @@ export function DisplayUsedColorWheel() {
       colorsAmount = ReturnColorsAmount();
       drawingColor = ReturnDrawingColor();
       isTouched = false;
+    }
+
+    function updateRecommendColorSets() {
+      //推薦配色のリセット
+      recommendColorSets = [];
+
+      //描画色が0色だった場合
+      if (usedColors.length === 0) { return; }
+
+      p.colorMode(p.HSL)
+      //描画色が1色だった場合
+      if (usedColors.length === 1) {
+        let hue = p.hue(usedColors[0].color);
+        let addColors: p5.Color[] = [];
+
+        //ダイアード配色の追加
+        addColors.push(p.color((hue + 180) % 360, 50, 50));
+        // recommendColorSets[0].colors.push(addColors);
+        //recommendColorSets[0].colors.push(p.color((hue + 180) % 360, 50, 50));
+        //recommendColorSets[0] = new RecommendColors(p.color((hue + 180) % 360, 50, 50));
+        recommendColorSets[0] = new RecommendColors(addColors);
+
+        //ドミナントカラー配色の追加
+        addColors = [];
+        addColors.push(p.color((hue + 15) % 360, 50, 50));
+        addColors.push(p.color((hue + 345) % 360, 50, 50));
+        recommendColorSets[1] = new RecommendColors(addColors);
+        //recommendColorSets[1].colors.push(p.color((hue + 15) % 360, 50, 50));
+        //recommendColorSets[1].colors.push(p.color((hue - 15) % 360, 50, 50));
+      }
     }
 
     function drawRecommendedColors() {
@@ -665,6 +704,15 @@ export function DisplayUsedColorWheel() {
         this.color = color;
         this.amount = amount;
         this.position = p.createVector(x, y);
+      }
+    }
+
+    class RecommendColors {
+      colors: p5.Color[] = [];
+
+      constructor(colors: p5.Color[]) {
+        //this.colors.push(color);
+        this.colors = colors;
       }
     }
   }
