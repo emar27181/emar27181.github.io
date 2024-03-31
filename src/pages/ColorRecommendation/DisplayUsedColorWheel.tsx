@@ -48,8 +48,12 @@ export function DisplayUsedColorWheel() {
       drawUsedColors();
       drawColorHueDot(p.color(255), radius * p.cos(p.radians(p.hue(drawingColor))), radius * p.sin(p.radians(p.hue(drawingColor))));
       if (DEBUG) {
+        /*
         for (let i = 0; i < usedColors.length; i++) { console.log(usedColors[i].color + ": " + usedColors[i].amount); }
+        */
       }
+
+      //displayDebugInfo();
       for (let i = 0; i < recommendColorSets.length; i++) {
         for (let j = 0; j < recommendColorSets[i].colors.length; j++) {
           let h = p.hue(recommendColorSets[i].colors[j]);
@@ -61,6 +65,22 @@ export function DisplayUsedColorWheel() {
 
 
       if (p.mouseIsPressed) { mousePressed(); }
+    }
+
+    function displayDebugInfo() {
+      p.fill(255);
+      let text = "";
+      for (let i = 0; i < recommendColorSets.length; i++) {
+        for (let j = 0; j < recommendColorSets[i].colors.length; j++) {
+          let h = p.hue(recommendColorSets[i].colors[j]);
+          let s = p.saturation(recommendColorSets[i].colors[j]);
+          let l = p.lightness(recommendColorSets[i].colors[j]);
+          //console.log("recommnedColorSets[" + i + "].colors[" + j + "]: (" + h + ", " + s + "," + l + ")");
+          text += ("recommnedColorSets[" + i + "].colors[" + j + "]: (" + h + ", " + s + "," + l + ")\n");
+        }
+      }
+      //p.translate(0, 0);
+      p.text(text, -p.width / 2, -p.height / 2 + p.textSize());
     }
 
     function mousePressed() {
