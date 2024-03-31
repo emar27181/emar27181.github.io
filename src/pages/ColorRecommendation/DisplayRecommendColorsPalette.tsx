@@ -3,6 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE } from '../../config/constants';
 import { usedColorsHue, RecommendedColorsHue } from './DisplayUsedColorWheel';
+import p5 from 'p5';
 
 export function DisplayRecommendColorsPalette() {
   const sketch = (p: P5CanvasInstance) => {
@@ -17,10 +18,11 @@ export function DisplayRecommendColorsPalette() {
 
     p.draw = () => {
       p.background(0);
+
       displayColorsHue(usedColorsHue, 0, 0);
+      drawArrow(p.createVector(ONE_COLOR_PALETTE_SIZE / 2, 1.2 * ONE_COLOR_PALETTE_SIZE), 0.5 * ONE_COLOR_PALETTE_SIZE, p.PI / 2); // 例: 45度の角度で100ピクセルの矢印を描画
       displayColorsHue(RecommendedColorsHue, 0, 2 * ONE_COLOR_PALETTE_SIZE);
-      //displayColorsHue(usedColorsHue, 0, p.height / 2);
-      //displayColorsHue(RecommendedColorsHue, p.height / 2, p.height);
+
       p.strokeWeight(0.001 * window.innerWidth);
       p.stroke(0);
       p.line(0, p.height / 2, p.width, p.height / 2);
@@ -29,12 +31,32 @@ export function DisplayRecommendColorsPalette() {
 
     function displayColorsHue(colorsHue: number[], x: number, y: number) {
       p.colorMode(p.HSL);
-      p.strokeWeight(0.01 * p.width)
+      p.strokeWeight(0.01 * p.width);
+      p.stroke(0);
       for (let i = 0; i < colorsHue.length; i++) {
         p.fill(colorsHue[i], 50, 50);
         p.rect(x + i * ONE_COLOR_PALETTE_SIZE, y, ONE_COLOR_PALETTE_SIZE, ONE_COLOR_PALETTE_SIZE);
       }
+    }
 
+    // 矢印を描画する関数
+    function drawArrow(base: p5.Vector, len: number, angle: number) {
+      p.stroke(255);
+      p.fill(255);
+      p.push(); // 座標系を保存
+
+      // 矢印の軸の向きを決定
+      p.translate(base.x, base.y);
+      p.rotate(angle);
+
+      // 矢印の本体を描画
+      p.line(0, 0, len, 0);
+
+      // 矢印の先端を描画
+      p.translate(len, 0);
+      p.triangle(-len * 0.05, len * 0.03, 0, 0, -len * 0.05, -len * 0.03);
+
+      p.pop(); // 座標系を復元
     }
 
     //色相順に使用色を表示させる関数
