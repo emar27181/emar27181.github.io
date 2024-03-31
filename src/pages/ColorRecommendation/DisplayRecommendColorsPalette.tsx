@@ -32,10 +32,15 @@ export function DisplayRecommendColorsPalette() {
     function displayColorsHue(colorsHue: number[], x: number, y: number) {
       p.colorMode(p.HSL);
       p.strokeWeight(0.01 * p.width);
-      p.stroke(0);
       for (let i = 0; i < colorsHue.length; i++) {
+        p.stroke(0);
         p.fill(colorsHue[i], 50, 50);
         p.rect(x + i * ONE_COLOR_PALETTE_SIZE, y, ONE_COLOR_PALETTE_SIZE, ONE_COLOR_PALETTE_SIZE);
+        //確認用出力
+        p.fill(255);
+        p.textAlign(p.CENTER, p.CENTER);
+        p.noStroke();
+        p.text(colorsHue[i], x + i * ONE_COLOR_PALETTE_SIZE + ONE_COLOR_PALETTE_SIZE / 2, y + ONE_COLOR_PALETTE_SIZE / 2);
       }
     }
 
