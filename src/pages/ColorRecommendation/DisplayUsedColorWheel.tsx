@@ -97,6 +97,8 @@ export function DisplayUsedColorWheel() {
     }
 
     function updateVariables() {
+      usedColorsHue.sort((a, b) => a - b);
+      RecommendedColorsHue.sort((a, b) => a - b);
       colorsAmount = ReturnColorsAmount();
       drawingColor = ReturnDrawingColor();
       isTouched = false;
@@ -251,6 +253,8 @@ export function DisplayUsedColorWheel() {
         let angle = p.hue(returnBaseColor());
         drawRegularPolygon(angle, usedColors.length, suggestColor);
       }
+
+      RecommendedColorsHue.sort((a, b) => a - b);
     }
 
     //最も使用率の高い色相の平均を返す関数
@@ -696,6 +700,7 @@ export function DisplayUsedColorWheel() {
       let y = radius * p.sin(p.radians(hue));
       usedColors.push(new UsedColor(p.color(hue, 50, 50), amount, x, y));
       usedColorsHue.push(hue);
+      usedColorsHue.sort((a, b) => a - b);
       p.colorMode(p.RGB);
       if (DEBUG) { console.log(hue); }
     }
