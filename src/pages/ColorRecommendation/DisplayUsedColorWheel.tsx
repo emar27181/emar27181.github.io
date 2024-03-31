@@ -29,8 +29,8 @@ export function DisplayUsedColorWheel() {
     const DEBUG = false;
 
     p.setup = () => {
-      p.createCanvas(DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3, DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3);
-      //p.createCanvas(512, 512)
+      p.createCanvas(DISPLAY_RATE * window.innerWidth / 3, DISPLAY_RATE * window.innerWidth / 3);
+      //p.createCanvas(DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3, DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3);
       p.noStroke();
       radius = 3 / 8 * p.width;
       p.frameRate(1);
