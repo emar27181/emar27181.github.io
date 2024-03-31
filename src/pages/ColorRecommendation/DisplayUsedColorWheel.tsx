@@ -116,19 +116,41 @@ export function DisplayUsedColorWheel() {
         let addColors: p5.Color[] = [];
 
         //ダイアード配色の追加
+        addColors.push(usedColors[0].color);
         addColors.push(p.color((hue + 180) % 360, 50, 50));
-        // recommendColorSets[0].colors.push(addColors);
-        //recommendColorSets[0].colors.push(p.color((hue + 180) % 360, 50, 50));
-        //recommendColorSets[0] = new RecommendColors(p.color((hue + 180) % 360, 50, 50));
         recommendColorSets[0] = new RecommendColors(addColors);
 
         //ドミナントカラー配色の追加
         addColors = [];
+        addColors.push(usedColors[0].color);
         addColors.push(p.color((hue + 15) % 360, 50, 50));
         addColors.push(p.color((hue + 345) % 360, 50, 50));
         recommendColorSets[1] = new RecommendColors(addColors);
-        //recommendColorSets[1].colors.push(p.color((hue + 15) % 360, 50, 50));
-        //recommendColorSets[1].colors.push(p.color((hue - 15) % 360, 50, 50));
+      }
+
+      //描画色が2色だった場合
+      if (usedColors.length === 2) {
+        //作成途中(2024/03/31時点)
+        /*
+        let addColors: p5.Color[] = [];
+        let hue = p.hue(returnBaseColor());
+
+        //ドミナントカラー配色の推薦
+        if (returnHueDifference(false) <= 4) {
+          addColors.push(returnBaseColor());
+          addColors.push(p.color((hue + returnHueDifference(true) * 15) % 360, 50, 50));
+          addColors.push(p.color((hue + returnHueDifference(true) * 15 * 11) % 360, 50, 50));
+          recommendColorSets[0] = new RecommendColors(addColors);
+        }
+        //トライアド配色の推薦
+        else if (returnHueDifference(false) <= 8) {
+
+        }
+        //ダイアード配色の推薦
+        else {
+
+        }
+        */
       }
     }
 
