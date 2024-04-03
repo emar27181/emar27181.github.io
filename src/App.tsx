@@ -117,8 +117,8 @@ function App() {
             <Nav.Link href="/" >ホーム</Nav.Link>
             <Nav.Link href="/workMenu" >作品集</Nav.Link>
             <Nav.Link href='/gravityHome' > 重力操作 </Nav.Link>
-            {/*<Nav.Link href='/canvas' > キャンバス(フル) </Nav.Link>*/}
-            <Nav.Link href='/canvasHomeForInteraction2024' > キャンバス </Nav.Link>
+            <Nav.Link href='/canvasHome' > キャンバス </Nav.Link>
+            {/*<Nav.Link href='/canvasHomeForInteraction2024' > キャンバス </Nav.Link>*/}
             {/*<Nav.Link href='/flipGame' > 制作中ゲーム</Nav.Link>*/}
             {/*<Nav.Link href='/matchBoGame' > マッチ棒ゲーム</Nav.Link>*/}
             <Nav.Link href='/gyroCanvas' > ジャイロキャンバス </Nav.Link>
@@ -181,7 +181,7 @@ function App() {
           <ResearchHome />
         </Route>
 
-        <Route path="/canvas">
+        <Route path="/canvasHome">
           <CanvasHome />
         </Route>
 

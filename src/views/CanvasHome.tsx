@@ -33,22 +33,22 @@ export function U22programmingContestHome() {
         </div>
         <div>
           <DisplayRecommendColorsPalette />
+          <div style={{ display: 'flex', margin: 0 }}>
+            <div style={{ display: 'flex', margin: 0 }}>
+              {DisplayCanvasFilter("canvas", 0, "hue")}
+              {DisplayUsedColorRatio("canvas", 0, "hue")}
+            </div>
+            <div style={{ display: 'flex', margin: 0 }}>
+              {DisplayCanvasFilter("canvas", 0, "saturation")}
+              {DisplayUsedColorRatio("canvas", 0, "saturation")}
+            </div>
+            <div style={{ display: 'flex', margin: 0 }}>
+              {DisplayCanvasFilter("canvas", 0, "lightness")}
+              {DisplayUsedColorRatio("canvas", 0, "lightness")}
+            </div>
+          </div>
         </div>
 
-        <div>
-          <div style={{ display: 'flex', margin: 0 }}>
-            {DisplayCanvasFilter("canvas", 0, "hue")}
-            {DisplayUsedColorRatio("canvas", 0, "hue")}
-          </div>
-          <div style={{ display: 'flex', margin: 0 }}>
-            {DisplayCanvasFilter("canvas", 0, "saturation")}
-            {DisplayUsedColorRatio("canvas", 0, "saturation")}
-          </div>
-          <div style={{ display: 'flex', margin: 0 }}>
-            {DisplayCanvasFilter("canvas", 0, "lightness")}
-            {DisplayUsedColorRatio("canvas", 0, "lightness")}
-          </div>
-        </div>
       </div>
 
     </div>
