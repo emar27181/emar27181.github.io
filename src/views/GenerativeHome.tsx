@@ -12,6 +12,7 @@ import CompromiseTemplate from '../pages/CompromiseTemplate';
 import ColorTemplate from '../pages/ColorTemplate';
 import BounceColorful from '../pages/BounceColorful';
 import DrawLinePrimeNumber from '../pages/DrawLinePrimeNumber';
+import DrawBallsLine from '../pages/DrawBallsLine';
 
 
 export function GenerativeHome() {
@@ -52,6 +53,10 @@ export function GenerativeHome() {
           素数の描画
         </NavLink><br />
 
+        <NavLink activeClassName='active' to="/drawBallsLine">
+          ボールの軌跡の描画
+        </NavLink><br />
+
       </ul>
 
       <Switch>
@@ -85,6 +90,10 @@ export function GenerativeHome() {
 
         <Route path="/drawLinePrimeNumber">
           <DrawLinePrimeNumber />
+        </Route>
+
+        <Route path="/drawBallsLine">
+          <DrawBallsLine />
         </Route>
 
       </Switch>
