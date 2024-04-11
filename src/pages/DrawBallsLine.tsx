@@ -20,11 +20,18 @@ export function DrawBallsLine() {
     p.draw = () => {
       p.fill(255);
       drawBalls();
+      updateVariables();
     };
 
     function drawBalls() {
       for (let i = 0; i < balls.length; i++) {
         p.ellipse(balls[i].x, balls[i].y, 10);
+      }
+    }
+
+    function updateVariables() {
+      for (let i = 0; i < balls.length; i++) {
+        balls[i].move();
       }
     }
 
