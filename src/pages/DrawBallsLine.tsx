@@ -15,6 +15,7 @@ export function DrawBallsLine() {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(0);
       initializeVariables();
+      p.noStroke();
     };
 
     p.draw = () => {
@@ -24,8 +25,8 @@ export function DrawBallsLine() {
     };
 
     function drawBalls() {
-      p.fill(255);
       for (let i = 0; i < balls.length; i++) {
+        p.fill(balls[i].color);
         p.ellipse(balls[i].x, balls[i].y, 10);
       }
     }
@@ -42,7 +43,7 @@ export function DrawBallsLine() {
       canvasHeight = p.height;
 
       for (let i = 0; i < 10; i++) {
-        balls.push(new Ball(p.random(0, p.width), p.random(0, p.height), p.random(-5, 5), p.random(-5, 5)));
+        balls.push(new Ball(p.random(0, p.width), p.random(0, p.height), p.random(-5, 5), p.random(-5, 5), p.color(255, 0, 0)));
       }
     }
   }
