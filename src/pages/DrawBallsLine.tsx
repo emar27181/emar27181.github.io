@@ -9,6 +9,7 @@ export function DrawBallsLine() {
   const sketch = (p: P5CanvasInstance) => {
 
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
+    const MAX_SPEED = 1;
     let balls: Array<Ball> = [];
 
     p.setup = () => {
@@ -50,7 +51,7 @@ export function DrawBallsLine() {
         else if (rand < 2 / 3) { color = p.color(0, 255, 0); }
         else { color = p.color(0, 0, 255); }
 
-        balls.push(new Ball(p.random(0, p.width), p.random(0, p.height), p.random(-5, 5), p.random(-5, 5), color));
+        balls.push(new Ball(p.random(0, p.width), p.random(0, p.height), p.random(-MAX_SPEED, MAX_SPEED), p.random(-MAX_SPEED, MAX_SPEED), color));
       }
     }
   }
