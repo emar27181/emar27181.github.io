@@ -1,3 +1,5 @@
+
+import { canvasWidth, canvasHeight } from "../pages/DrawBallsLine";
 export class Ball {
   x: number;
   y: number;
@@ -13,6 +15,17 @@ export class Ball {
   move() {
     this.x += this.dx;
     this.y += this.dy;
+  }
+
+  refrect() {
+    if (this.x < 0 || canvasWidth < this.x) {
+      this.dx = -this.dx;
+    }
+
+    if (this.y < 0 || canvasHeight < this.y) {
+      this.dy = -this.dy;
+    }
+
   }
 }
 
