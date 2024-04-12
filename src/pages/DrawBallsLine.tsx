@@ -37,7 +37,7 @@ export function DrawBallsLine() {
 
     function initializeVariables() {
       for (let i = 0; i < 10; i++) {
-        balls.push(new Ball(i * 3, i * 3));
+        balls.push(new Ball(p.random(0, p.width), p.random(0, p.height), p.random(-5, 5), p.random(-5, 5)));
       }
     }
   }

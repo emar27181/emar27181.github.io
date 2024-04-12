@@ -3,11 +3,11 @@ export class Ball {
   y: number;
   dx: number;
   dy: number;
-  constructor(x: number, y: number) {
+  constructor(x: number, y: number, dx: number, dy: number) {
     this.x = x;
     this.y = y;
-    this.dx = 1;
-    this.dy = 1;
+    this.dx = dx;
+    this.dy = dy;
   }
 
   move() {
