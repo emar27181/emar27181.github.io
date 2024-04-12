@@ -3,10 +3,10 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 
 const CANVAS_WIDTH = 512, CANVAS_HEIGHT = CANVAS_WIDTH / 4;
-const STARTLINE_MONTH = 10, STARTLINE_DAY = 2;
-const DEADLINE_MONTH = 12, DEADLINE_DAY = 22;
+const STARTLINE_MONTH = 4, STARTLINE_DAY = 5;
+const DEADLINE_MONTH = 6, DEADLINE_DAY = 28;
 
-const DEADLINE_MONTH_2 = 2, DEADLINE_DAY_2 = 3;
+const DEADLINE_MONTH_2 = 5, DEADLINE_DAY_2 = 24;
 const DEBUG = false;
 
 export function ClockCountdown() {
@@ -59,22 +59,22 @@ export function ClockCountdown() {
         //本来、関数を用いた方が良いですが簡単のため直書き()
         let deadlineDiffMonth2 = DEADLINE_MONTH_2 - month;
         let deadlineDiffDay2 = DEADLINE_DAY_2 - date;
-        let deadlineStillDays2 = deadlineDiffMonth2 * 31 + deadlineDiffDay2 + 365;
-        let commentDeadline2 = "卒論発表会まであと " + deadlineStillDays2 + " 日！";
+        let deadlineStillDays2 = deadlineDiffMonth2 * 31 + deadlineDiffDay2;
+        let commentDeadline2 = "発表申込(査読付き)まであと" + deadlineStillDays2 + " 日！";
 
         let r = (255 / 12) * hours;
         let g = (255 / 60) * minutes;
         let b = (255 / 60) * seconds;
 
         p.fill(r, g, b);
-        p.textSize(0.05 * p.width);
+        p.textSize(0.04 * p.width);
         p.text(commentDeadline2, p.width / 2, 0.9 * p.height);
 
         p.textSize(0.07 * p.width);
-        p.text(commentDeadline, p.width / 2, p.height / 2);
+        p.text(commentDeadline, p.width / 2, 0.55 * p.height);
 
         p.textSize(0.03 * p.width);
-        p.text("インタラクション2024", p.width / 2, 0.2 * p.height);
+        p.text("エンターテインメントコンピューティング2024", p.width / 2, 0.2 * p.height);
         console.log(window.innerWidth);
       };
     };

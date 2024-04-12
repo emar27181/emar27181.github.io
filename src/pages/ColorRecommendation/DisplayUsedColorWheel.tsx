@@ -20,6 +20,7 @@ export function DisplayUsedColorWheel() {
 
     let colorsAmount: Array<ColorAmount> = [];
     let usedColors: Array<UsedColor> = [];
+    let recommendColorSets: Array<RecommendColors> = [];
     let drawingColor: p5.Color;
     let usedColor = p.color(0, 0, 0, 150);
     let modifyColor = p.color(0, 255, 0, 255);
@@ -28,8 +29,8 @@ export function DisplayUsedColorWheel() {
     const DEBUG = false;
 
     p.setup = () => {
-      p.createCanvas(DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3, DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3);
-      //p.createCanvas(512, 512)
+      p.createCanvas(DISPLAY_RATE * window.innerWidth / 3, DISPLAY_RATE * window.innerWidth / 3);
+      //p.createCanvas(DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3, DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3);
       p.noStroke();
       radius = 3 / 8 * p.width;
       p.frameRate(1);
@@ -42,12 +43,44 @@ export function DisplayUsedColorWheel() {
 
       drawColorWheel(radius, 1);
       updateUsedColors();
+      updateRecommendColorSets();
       drawRecommendedColors();
       drawUsedColors();
       drawColorHueDot(p.color(255), radius * p.cos(p.radians(p.hue(drawingColor))), radius * p.sin(p.radians(p.hue(drawingColor))));
-      if (DEBUG) { console.log("usedColors.length: " + usedColors.length); }
+      if (DEBUG) {
+        /*
+        for (let i = 0; i < usedColors.length; i++) { console.log(usedColors[i].color + ": " + usedColors[i].amount); }
+        */
+      }
+
+      //displayDebugInfo();
+      for (let i = 0; i < recommendColorSets.length; i++) {
+        for (let j = 0; j < recommendColorSets[i].colors.length; j++) {
+          let h = p.hue(recommendColorSets[i].colors[j]);
+          let s = p.saturation(recommendColorSets[i].colors[j]);
+          let l = p.lightness(recommendColorSets[i].colors[j]);
+          console.log("recommnedColorSets[" + i + "].colors[" + j + "]: (" + h + ", " + s + "," + l + ")");
+        }
+      }
+
 
       if (p.mouseIsPressed) { mousePressed(); }
+    }
+
+    function displayDebugInfo() {
+      p.fill(255);
+      let text = "";
+      for (let i = 0; i < recommendColorSets.length; i++) {
+        for (let j = 0; j < recommendColorSets[i].colors.length; j++) {
+          let h = p.hue(recommendColorSets[i].colors[j]);
+          let s = p.saturation(recommendColorSets[i].colors[j]);
+          let l = p.lightness(recommendColorSets[i].colors[j]);
+          //console.log("recommnedColorSets[" + i + "].colors[" + j + "]: (" + h + ", " + s + "," + l + ")");
+          text += ("recommnedColorSets[" + i + "].colors[" + j + "]: (" + h + ", " + s + "," + l + ")\n");
+        }
+      }
+      //p.translate(0, 0);
+      p.text(text, -p.width / 2, -p.height / 2 + p.textSize());
     }
 
     function mousePressed() {
@@ -64,9 +97,63 @@ export function DisplayUsedColorWheel() {
     }
 
     function updateVariables() {
+      usedColorsHue.sort((a, b) => a - b);
+      RecommendedColorsHue.sort((a, b) => a - b);
       colorsAmount = ReturnColorsAmount();
       drawingColor = ReturnDrawingColor();
       isTouched = false;
+    }
+
+    function updateRecommendColorSets() {
+      //推薦配色のリセット
+      recommendColorSets = [];
+
+      //描画色が0色だった場合
+      if (usedColors.length === 0) { return; }
+
+      p.colorMode(p.HSL)
+      //描画色が1色だった場合
+      if (usedColors.length === 1) {
+        let hue = p.hue(usedColors[0].color);
+        let addColors: p5.Color[] = [];
+
+        //ダイアード配色の追加
+        addColors.push(usedColors[0].color);
+        addColors.push(p.color((hue + 180) % 360, 50, 50));
+        recommendColorSets[0] = new RecommendColors(addColors);
+
+        //ドミナントカラー配色の追加
+        addColors = [];
+        addColors.push(usedColors[0].color);
+        addColors.push(p.color((hue + 15) % 360, 50, 50));
+        addColors.push(p.color((hue + 345) % 360, 50, 50));
+        recommendColorSets[1] = new RecommendColors(addColors);
+      }
+
+      //描画色が2色だった場合
+      if (usedColors.length === 2) {
+        //作成途中(2024/03/31時点)
+        /*
+        let addColors: p5.Color[] = [];
+        let hue = p.hue(returnBaseColor());
+
+        //ドミナントカラー配色の推薦
+        if (returnHueDifference(false) <= 4) {
+          addColors.push(returnBaseColor());
+          addColors.push(p.color((hue + returnHueDifference(true) * 15) % 360, 50, 50));
+          addColors.push(p.color((hue + returnHueDifference(true) * 15 * 11) % 360, 50, 50));
+          recommendColorSets[0] = new RecommendColors(addColors);
+        }
+        //トライアド配色の推薦
+        else if (returnHueDifference(false) <= 8) {
+
+        }
+        //ダイアード配色の推薦
+        else {
+
+        }
+        */
+      }
     }
 
     function drawRecommendedColors() {
@@ -83,7 +170,7 @@ export function DisplayUsedColorWheel() {
       //描画色が2色だった場合
       else if (usedColors.length === 2) {
         //ドミナントカラー配色の推薦
-        console.log(returnHueDifference(false));
+        //console.log(returnHueDifference(false));
         if (returnHueDifference(false) <= 4) {
           let angle = p.hue(returnBaseColor());
           //drawLineIdea(angle, modifyColor); // 現状だとドミナントカラー配色とダイアード配色を推薦してしまっている
@@ -166,6 +253,8 @@ export function DisplayUsedColorWheel() {
         let angle = p.hue(returnBaseColor());
         drawRegularPolygon(angle, usedColors.length, suggestColor);
       }
+
+      RecommendedColorsHue.sort((a, b) => a - b);
     }
 
     //最も使用率の高い色相の平均を返す関数
@@ -611,6 +700,7 @@ export function DisplayUsedColorWheel() {
       let y = radius * p.sin(p.radians(hue));
       usedColors.push(new UsedColor(p.color(hue, 50, 50), amount, x, y));
       usedColorsHue.push(hue);
+      usedColorsHue.sort((a, b) => a - b);
       p.colorMode(p.RGB);
       if (DEBUG) { console.log(hue); }
     }
@@ -661,6 +751,15 @@ export function DisplayUsedColorWheel() {
         this.color = color;
         this.amount = amount;
         this.position = p.createVector(x, y);
+      }
+    }
+
+    class RecommendColors {
+      colors: p5.Color[] = [];
+
+      constructor(colors: p5.Color[]) {
+        //this.colors.push(color);
+        this.colors = colors;
       }
     }
   }
