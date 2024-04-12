@@ -18,12 +18,13 @@ export function DrawBallsLine() {
     };
 
     p.draw = () => {
-      p.fill(255);
+      p.background(0, 0, 0, 10);
       drawBalls();
       updateVariables();
     };
 
     function drawBalls() {
+      p.fill(255);
       for (let i = 0; i < balls.length; i++) {
         p.ellipse(balls[i].x, balls[i].y, 10);
       }
