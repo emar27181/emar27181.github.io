@@ -59,7 +59,7 @@ export function DisplayUsedColorWheel() {
           let h = p.hue(recommendColorSets[i].colors[j]);
           let s = p.saturation(recommendColorSets[i].colors[j]);
           let l = p.lightness(recommendColorSets[i].colors[j]);
-          console.log("recommnedColorSets[" + i + "].colors[" + j + "]: (" + h + ", " + s + "," + l + ")");
+          //console.log("recommnedColorSets[" + i + "].colors[" + j + "]: (" + h + ", " + s + "," + l + ")");
         }
       }
 
