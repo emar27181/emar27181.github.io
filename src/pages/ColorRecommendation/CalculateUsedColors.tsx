@@ -5,17 +5,25 @@ import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 
 export function CalculateUsedColors() {
   let canvasColors: p5.Color[][] = [];
-  for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
 
   const sketch = (p: P5CanvasInstance) => {
     p.setup = () => {
       p.frameRate(1);
+      initializeVariables();
     };
 
+    function initializeVariables() {
+      for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
+    }
+
     p.draw = () => {
-      canvasColors = ReturnCanvasColors();
+      updateVariables();
       console.log(canvasColors);
     };
+
+    function updateVariables() {
+      canvasColors = ReturnCanvasColors();
+    }
   }
 
   return (
