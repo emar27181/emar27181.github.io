@@ -4,10 +4,11 @@ import { SPLIT } from "../../config/constants";
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 import { ColorAmount } from "../../utils/ColorAmount";
 
+let usedColorsAmount: Array<ColorAmount> = [];
+
 export function CalculateUsedColors() {
   const DEBUG = false;
   let canvasColors: p5.Color[][] = [];
-  let usedColorsAmount: Array<ColorAmount> = [];
 
   const sketch = (p: P5CanvasInstance) => {
     p.setup = () => {
@@ -90,3 +91,4 @@ export function CalculateUsedColors() {
 }
 
 export default CalculateUsedColors
+export function ReturnUsedColorsAmount() { return usedColorsAmount; }
