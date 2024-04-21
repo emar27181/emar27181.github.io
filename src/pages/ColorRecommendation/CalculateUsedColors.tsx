@@ -5,6 +5,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 import { ColorAmount } from "../../utils/ColorAmount";
 
 export function CalculateUsedColors() {
+  const DEBUG = false;
   let canvasColors: p5.Color[][] = [];
   let usedColorsAmount: Array<ColorAmount> = [];
 
@@ -45,7 +46,7 @@ export function CalculateUsedColors() {
       }
 
       //確認用出力
-      if (true) {
+      if (DEBUG) {
         console.log("--- " + p.frameCount + " ---");
         for (let i = 0; i < usedColorsAmount.length; i++) {
           if (usedColorsAmount[i].amount >= 10) {
