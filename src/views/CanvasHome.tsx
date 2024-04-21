@@ -12,6 +12,7 @@ import AllScrollLock from '../components/AllScrollLock';
 import DisplayUsedColorWheel from '../pages/ColorRecommendation/DisplayUsedColorWheel';
 import DisplayUsedColorTone from '../pages/ColorRecommendation/DisplayUsedColorTone';
 import DisplayRecommendColorsPalette from '../pages/ColorRecommendation/DisplayRecommendColorsPalette';
+import CalculateUsedColors from '../pages/ColorRecommendation/CalculateUsedColors';
 let isCanvasHome = false;
 
 export function U22programmingContestHome() {
@@ -20,6 +21,8 @@ export function U22programmingContestHome() {
 
   return (
     <div>
+      <CalculateUsedColors />
+
       <AllScrollLock />
       <div style={{ display: 'flex', margin: 0 }}>
         <div>
