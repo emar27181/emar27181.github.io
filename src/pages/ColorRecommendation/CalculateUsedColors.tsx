@@ -109,3 +109,4 @@ export function CalculateUsedColors() {
 
 export default CalculateUsedColors
 export function ReturnUsedColorsAmount() { return usedColorsAmount; }
+export function ReturnUsedColorSchemeAmount() { return usedColorSchemeAmount; }

@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnUsedColorsAmount } from './CalculateUsedColors';
+import { ReturnUsedColorsAmount, ReturnUsedColorSchemeAmount } from './CalculateUsedColors';
 import { ColorAmount } from '../../utils/ColorAmount';
 
 export function DisplayUsedColorPalette() {
@@ -9,6 +9,7 @@ export function DisplayUsedColorPalette() {
 
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
     let usedColorsAmount: Array<ColorAmount> = [];
+    let usedColorSchemeAmount: Array<ColorAmount> = [];
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -19,9 +20,17 @@ export function DisplayUsedColorPalette() {
 
     p.draw = () => {
       updateVariables();
-      displayColorPalette();
+      displayColorPalette(usedColorSchemeAmount);
     };
 
+    function displayColorPalette(colorsAmount: ColorAmount[]) {
+      for (let i = 0; i < colorsAmount.length; i++) {
+        const SPLIT = colorsAmount.length;
+        p.fill(colorsAmount[i].color);
+        p.rect(p.width / SPLIT * i, 0, p.width / SPLIT, p.height);
+      }
+    }
+    /*
     function displayColorPalette() {
       for (let i = 0; i < usedColorsAmount.length; i++) {
         const SPLIT = usedColorsAmount.length;
@@ -29,9 +38,11 @@ export function DisplayUsedColorPalette() {
         p.rect(p.width / SPLIT * i, 0, p.width / SPLIT, p.height);
       }
     }
+    */
 
     function updateVariables() {
       usedColorsAmount = ReturnUsedColorsAmount();
+      usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
     }
   }
 
