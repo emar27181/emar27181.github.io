@@ -1,10 +1,11 @@
 import p5 from "p5";
 import { ReturnCanvasColors } from "../Reserch/Canvas";
-import { SPLIT } from "../../config/constants";
+import { AMOUNT_LIMIT, SPLIT } from "../../config/constants";
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 import { ColorAmount } from "../../utils/ColorAmount";
 
 let usedColorsAmount: Array<ColorAmount> = [];
+let usedColorSchemeAmount: Array<ColorAmount> = [];
 
 export function CalculateUsedColors() {
   const DEBUG = false;
@@ -19,16 +20,32 @@ export function CalculateUsedColors() {
     function initializeVariables() {
       for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
       usedColorsAmount.push(new ColorAmount(p.color(255), 0));
+      usedColorSchemeAmount.push(new ColorAmount(p.color(255), 0));
     }
 
     p.draw = () => {
       updateVariables();
-      //console.log(canvasColors);
     };
 
     function updateVariables() {
       canvasColors = ReturnCanvasColors();
       calculateColorsAmount();
+      calculateColorsSchemeAmount();
+    }
+
+    function calculateColorsSchemeAmount() {
+      usedColorSchemeAmount = []; // 使われた配色の量のリセット
+
+      // 一定回数以上出現している色を配色の色として追加
+      for (let i = 0; i < usedColorsAmount.length; i++) {
+        if (usedColorsAmount[i].amount >= AMOUNT_LIMIT) {
+          usedColorSchemeAmount.push(new ColorAmount(usedColorsAmount[i].color, usedColorsAmount[i].amount));
+        }
+      }
+
+      for (let i = 0; i < usedColorSchemeAmount.length; i++) {
+        console.log("[" + i + "] = " + usedColorSchemeAmount[i].color + ": " + usedColorSchemeAmount[i].amount);
+      }
     }
 
     function resetUsedColorsAmount() {
