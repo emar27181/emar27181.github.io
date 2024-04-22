@@ -15,7 +15,6 @@ export function DisplayUsedColorPalette() {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.background(255);
       p.frameRate(1);
-      p.noStroke();
     };
 
     p.draw = () => {
@@ -24,11 +23,18 @@ export function DisplayUsedColorPalette() {
     };
 
     function displayColorPalette(colorsAmount: ColorAmount[]) {
+      p.noStroke();
       for (let i = 0; i < colorsAmount.length; i++) {
         const SPLIT = colorsAmount.length;
         p.fill(colorsAmount[i].color);
         p.rect(p.width / SPLIT * i, 0, p.width / SPLIT, p.height);
       }
+
+      //外枠の描画
+      p.stroke(0);
+      p.strokeWeight(p.width * 0.01);
+      p.noFill();
+      p.rect(0, 0, p.width, p.height);
     }
     /*
     function displayColorPalette() {
