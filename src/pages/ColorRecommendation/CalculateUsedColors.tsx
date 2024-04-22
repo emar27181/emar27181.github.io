@@ -43,8 +43,10 @@ export function CalculateUsedColors() {
         }
       }
 
-      for (let i = 0; i < usedColorSchemeAmount.length; i++) {
-        console.log("[" + i + "] = " + usedColorSchemeAmount[i].color + ": " + usedColorSchemeAmount[i].amount);
+      if (DEBUG) {
+        for (let i = 0; i < usedColorSchemeAmount.length; i++) {
+          console.log("[" + i + "] = " + usedColorSchemeAmount[i].color + ": " + usedColorSchemeAmount[i].amount);
+        }
       }
     }
 
