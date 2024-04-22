@@ -23,11 +23,25 @@ export function DisplayUsedColorPalette() {
     };
 
     function displayColorPalette(colorsAmount: ColorAmount[]) {
-      p.noStroke();
+
+      // 量の総和の計算
+      let sumAmount = 0;
       for (let i = 0; i < colorsAmount.length; i++) {
+        sumAmount += colorsAmount[i].amount;
+      }
+
+      // 使用色の描画
+      p.noStroke();
+      let x = 0;
+      for (let i = 0; i < colorsAmount.length; i++) {
+        p.fill(colorsAmount[i].color);
+        p.rect(x, 0, p.width / sumAmount * colorsAmount[i].amount, p.height);
+        x += p.width / sumAmount * colorsAmount[i].amount;
+        /*
         const SPLIT = colorsAmount.length;
         p.fill(colorsAmount[i].color);
         p.rect(p.width / SPLIT * i, 0, p.width / SPLIT, p.height);
+        */
       }
 
       //外枠の描画
