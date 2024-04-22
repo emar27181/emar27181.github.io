@@ -18,14 +18,21 @@ export function DisplayUsedColorPalette() {
     };
 
     p.draw = () => {
-      usedColorsAmount = ReturnUsedColorsAmount();
+      updateVariables();
+      displayColorPalette();
+    };
 
+    function displayColorPalette() {
       for (let i = 0; i < usedColorsAmount.length; i++) {
         const SPLIT = usedColorsAmount.length;
         p.fill(usedColorsAmount[i].color);
         p.rect(p.width / SPLIT * i, 0, p.width / SPLIT, p.height);
       }
-    };
+    }
+
+    function updateVariables() {
+      usedColorsAmount = ReturnUsedColorsAmount();
+    }
   }
 
   return (
