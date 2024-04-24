@@ -15,13 +15,15 @@ export function DisplayUsedColorPalette() {
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-      p.background(255);
+      p.background(0);
       p.frameRate(1);
     };
 
     p.draw = () => {
       updateVariables();
       displayColorPalette(usedColorSchemeAmount, 0, 0, p.width, 0.1 * p.height);
+      p.fill(255);
+      p.triangle(0.45 * p.width, 0.125 * p.height, 0.55 * p.width, 0.125 * p.height, 0.5 * p.width, 0.175 * p.height);
       displayColorPalette(recommendedColorSchemeAmount, 0, 0.2 * p.height, p.width, 0.3 * p.height);
     };
 
