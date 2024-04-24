@@ -6,7 +6,7 @@ import { ReturnRecommendedColorSchemeAmount } from './CalculateRecommendColors';
 import { ColorAmount } from '../../utils/ColorAmount';
 import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE } from '../../config/constants';
 
-export function DisplayUsedColorPalette() {
+export function DisplayColorPalette() {
   const sketch = (p: P5CanvasInstance) => {
     let usedColorsAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmount: Array<ColorAmount> = [];
@@ -63,4 +63,4 @@ export function DisplayUsedColorPalette() {
   )
 }
 
-export default DisplayUsedColorPalette
+export default DisplayColorPalette

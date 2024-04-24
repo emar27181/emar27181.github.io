@@ -13,7 +13,7 @@ import DisplayUsedColorWheel from '../pages/ColorRecommendation/DisplayUsedColor
 import DisplayUsedColorTone from '../pages/ColorRecommendation/DisplayUsedColorTone';
 import DisplayRecommendColorsPalette from '../pages/ColorRecommendation/DisplayRecommendColorsPalette';
 import CalculateUsedColors from '../pages/ColorRecommendation/CalculateUsedColors';
-import DisplayUsedColorPalette from '../pages/ColorRecommendation/DisplayUsedColorPalette';
+import DisplayColorPalette from '../pages/ColorRecommendation/DisplayColorPalette';
 import CalculateRecommendColors from '../pages/ColorRecommendation/CalculateRecommendColors';
 let isCanvasHome = false;
 
@@ -39,7 +39,7 @@ export function U22programmingContestHome() {
         </div>
         <div>
           {/*<DisplayRecommendColorsPalette />*/}
-          <DisplayUsedColorPalette />
+          <DisplayColorPalette />
           <div style={{ display: 'flex', margin: 0 }}>
             <div style={{ display: 'flex', margin: 0 }}>
               {DisplayCanvasFilter("canvas", 0, "hue")}
