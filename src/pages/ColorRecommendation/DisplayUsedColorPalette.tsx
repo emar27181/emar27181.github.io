@@ -21,8 +21,8 @@ export function DisplayUsedColorPalette() {
 
     p.draw = () => {
       updateVariables();
-      displayColorPalette(usedColorSchemeAmount, 0, 0, p.width, p.height / 2);
-      displayColorPalette(recommendedColorSchemeAmount, 0, p.height / 2, p.width, p.height);
+      displayColorPalette(usedColorSchemeAmount, 0, 0, p.width, 0.1 * p.height);
+      displayColorPalette(recommendedColorSchemeAmount, 0, 0.2 * p.height, p.width, 0.3 * p.height);
     };
 
     function displayColorPalette(colorsAmount: ColorAmount[], x1: number, y1: number, x2: number, y2: number) {
@@ -45,7 +45,7 @@ export function DisplayUsedColorPalette() {
 
       //外枠の描画
       p.stroke(0);
-      p.strokeWeight(p.width * 0.01);
+      p.strokeWeight(p.width * 0.003);
       p.noFill();
       p.rect(x1, y1, x2 - x1, y2 - y1);
     }
