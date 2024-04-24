@@ -2,6 +2,7 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ReturnUsedColorsAmount, ReturnUsedColorSchemeAmount } from './CalculateUsedColors';
+import { ReturnRecommendedColorSchemeAmount } from './CalculateRecommendColors';
 import { ColorAmount } from '../../utils/ColorAmount';
 
 export function DisplayUsedColorPalette() {
@@ -10,6 +11,7 @@ export function DisplayUsedColorPalette() {
     const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
     let usedColorsAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmount: Array<ColorAmount> = [];
+    let recommendedColorSchemeAmount: Array<ColorAmount> = [];
 
     p.setup = () => {
       p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -20,6 +22,7 @@ export function DisplayUsedColorPalette() {
     p.draw = () => {
       updateVariables();
       displayColorPalette(usedColorSchemeAmount, 0, 0, p.width, p.height / 2);
+      displayColorPalette(recommendedColorSchemeAmount, 0, p.height / 2, p.width, p.height);
     };
 
     function displayColorPalette(colorsAmount: ColorAmount[], x1: number, y1: number, x2: number, y2: number) {
@@ -50,6 +53,7 @@ export function DisplayUsedColorPalette() {
     function updateVariables() {
       usedColorsAmount = ReturnUsedColorsAmount();
       usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
+      recommendedColorSchemeAmount = ReturnRecommendedColorSchemeAmount();
     }
   }
 
