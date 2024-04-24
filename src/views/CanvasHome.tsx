@@ -25,7 +25,6 @@ export function U22programmingContestHome() {
     <div>
       <CalculateUsedColors />
       <CalculateRecommendColors />
-      <DisplayUsedColorPalette />
 
       <AllScrollLock />
       <div style={{ display: 'flex', margin: 0 }}>
@@ -39,7 +38,8 @@ export function U22programmingContestHome() {
           {Canvas()}
         </div>
         <div>
-          <DisplayRecommendColorsPalette />
+          {/*<DisplayRecommendColorsPalette />*/}
+          <DisplayUsedColorPalette />
           <div style={{ display: 'flex', margin: 0 }}>
             <div style={{ display: 'flex', margin: 0 }}>
               {DisplayCanvasFilter("canvas", 0, "hue")}
