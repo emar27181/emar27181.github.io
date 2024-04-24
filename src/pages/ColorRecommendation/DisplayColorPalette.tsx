@@ -20,13 +20,13 @@ export function DisplayColorPalette() {
 
     p.draw = () => {
       updateVariables();
-      displayColorPalette(usedColorSchemeAmount, 0, 0, p.width, 0.1 * p.height);
+      displayColorPaletteByRatio(usedColorSchemeAmount, 0, 0, p.width, 0.1 * p.height);
       p.fill(255);
       p.triangle(0.45 * p.width, 0.125 * p.height, 0.55 * p.width, 0.125 * p.height, 0.5 * p.width, 0.175 * p.height);
-      displayColorPalette(recommendedColorSchemeAmount, 0, 0.2 * p.height, p.width, 0.3 * p.height);
+      displayColorPaletteByRatio(recommendedColorSchemeAmount, 0, 0.2 * p.height, p.width, 0.3 * p.height);
     };
 
-    function displayColorPalette(colorsAmount: ColorAmount[], x1: number, y1: number, x2: number, y2: number) {
+    function displayColorPaletteByRatio(colorsAmount: ColorAmount[], x1: number, y1: number, x2: number, y2: number) {
 
       // 量の総和の計算
       let sumAmount = 0;
