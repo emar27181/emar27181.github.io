@@ -14,6 +14,7 @@ import DisplayUsedColorTone from '../pages/ColorRecommendation/DisplayUsedColorT
 import DisplayRecommendColorsPalette from '../pages/ColorRecommendation/DisplayRecommendColorsPalette';
 import CalculateUsedColors from '../pages/ColorRecommendation/CalculateUsedColors';
 import DisplayUsedColorPalette from '../pages/ColorRecommendation/DisplayUsedColorPalette';
+import CalculateRecommendColors from '../pages/ColorRecommendation/CalculateRecommendColors';
 let isCanvasHome = false;
 
 export function U22programmingContestHome() {
@@ -23,6 +24,7 @@ export function U22programmingContestHome() {
   return (
     <div>
       <CalculateUsedColors />
+      <CalculateRecommendColors />
       <DisplayUsedColorPalette />
 
       <AllScrollLock />
