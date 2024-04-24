@@ -4,17 +4,16 @@ import React from 'react';
 import { ReturnUsedColorsAmount, ReturnUsedColorSchemeAmount } from './CalculateUsedColors';
 import { ReturnRecommendedColorSchemeAmount } from './CalculateRecommendColors';
 import { ColorAmount } from '../../utils/ColorAmount';
+import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE } from '../../config/constants';
 
 export function DisplayUsedColorPalette() {
   const sketch = (p: P5CanvasInstance) => {
-
-    const CANVAS_WIDTH = 256, CANVAS_HEIGHT = 256;
     let usedColorsAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmount: Array<ColorAmount> = [];
     let recommendedColorSchemeAmount: Array<ColorAmount> = [];
 
     p.setup = () => {
-      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      p.createCanvas(DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3, DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3);
       p.background(0);
       p.frameRate(1);
     };
