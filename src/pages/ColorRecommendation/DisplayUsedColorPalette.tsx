@@ -19,10 +19,10 @@ export function DisplayUsedColorPalette() {
 
     p.draw = () => {
       updateVariables();
-      displayColorPalette(usedColorSchemeAmount);
+      displayColorPalette(usedColorSchemeAmount, 0, 0, p.width, p.height / 2);
     };
 
-    function displayColorPalette(colorsAmount: ColorAmount[]) {
+    function displayColorPalette(colorsAmount: ColorAmount[], x1: number, y1: number, x2: number, y2: number) {
 
       // 量の総和の計算
       let sumAmount = 0;
@@ -33,32 +33,19 @@ export function DisplayUsedColorPalette() {
       // 使用色の描画
       p.noStroke();
       let x = 0;
+      let w = x2 - x1, h = y2 - y1;
       for (let i = 0; i < colorsAmount.length; i++) {
         p.fill(colorsAmount[i].color);
-        p.rect(x, 0, p.width / sumAmount * colorsAmount[i].amount, p.height);
-        x += p.width / sumAmount * colorsAmount[i].amount;
-        /*
-        const SPLIT = colorsAmount.length;
-        p.fill(colorsAmount[i].color);
-        p.rect(p.width / SPLIT * i, 0, p.width / SPLIT, p.height);
-        */
+        p.rect(x, y1, w / sumAmount * colorsAmount[i].amount, h);
+        x += w / sumAmount * colorsAmount[i].amount;
       }
 
       //外枠の描画
       p.stroke(0);
       p.strokeWeight(p.width * 0.01);
       p.noFill();
-      p.rect(0, 0, p.width, p.height);
+      p.rect(x1, y1, x2 - x1, y2 - y1);
     }
-    /*
-    function displayColorPalette() {
-      for (let i = 0; i < usedColorsAmount.length; i++) {
-        const SPLIT = usedColorsAmount.length;
-        p.fill(usedColorsAmount[i].color);
-        p.rect(p.width / SPLIT * i, 0, p.width / SPLIT, p.height);
-      }
-    }
-    */
 
     function updateVariables() {
       usedColorsAmount = ReturnUsedColorsAmount();
