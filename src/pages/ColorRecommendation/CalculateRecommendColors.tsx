@@ -4,7 +4,9 @@ import React from 'react';
 import { ColorAmount } from '../../utils/ColorAmount';
 import { ReturnUsedColorSchemeAmount } from './CalculateUsedColors';
 
-let recommendedColorSchemeAmount: Array<ColorAmount> = [];
+//let recommendedColorSchemeAmount: Array<ColorAmount> = [];
+let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
+//let recommendedColorSchemeAmount: ColorAmount[][] = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
 
 export function CalculateRecommendColors() {
@@ -16,7 +18,13 @@ export function CalculateRecommendColors() {
     };
 
     function initializeVariables() {
-      recommendedColorSchemeAmount.push(new ColorAmount(p.color(255), 0));
+      for (let i = 0; i < 10; i++) { recommendedColorSchemeAmount[i] = []; }
+      recommendedColorSchemeAmount[0][0] = new ColorAmount(p.color(255, 0, 0), 100);
+      recommendedColorSchemeAmount[0][1] = new ColorAmount(p.color(255, 128, 0), 100);
+      recommendedColorSchemeAmount[0][2] = new ColorAmount(p.color(255, 255, 0), 100);
+      recommendedColorSchemeAmount[1][0] = new ColorAmount(p.color(255, 0, 0), 100);
+      recommendedColorSchemeAmount[1][1] = new ColorAmount(p.color(192, 0, 0), 100);
+      recommendedColorSchemeAmount[1][2] = new ColorAmount(p.color(128, 0, 0), 100);
     }
 
     p.draw = () => {
@@ -25,7 +33,7 @@ export function CalculateRecommendColors() {
 
     function updateVariables() {
       usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
-      calculateRecommendColorSchemeAmount();
+      //calculateRecommendColorSchemeAmount();
     }
 
     function calculateRecommendColorSchemeAmount() {
@@ -40,7 +48,8 @@ export function CalculateRecommendColors() {
         }
       }
 
-      recommendedColorSchemeAmount.push(new ColorAmount(usedColorSchemeAmount[maxColorAmountIndex].color, usedColorSchemeAmount[maxColorAmountIndex].amount));
+      //recommendedColorSchemeAmount[0].push(new ColorAmount(usedColorSchemeAmount[maxColorAmountIndex].color, usedColorSchemeAmount[maxColorAmountIndex].amount));
+      recommendedColorSchemeAmount[0][0] = new ColorAmount(usedColorSchemeAmount[maxColorAmountIndex].color, usedColorSchemeAmount[maxColorAmountIndex].amount);
 
     }
 

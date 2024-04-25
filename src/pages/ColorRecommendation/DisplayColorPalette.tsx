@@ -11,13 +11,21 @@ export function DisplayColorPalette() {
     const ONE_COLOR_PALETTE_SIZE = 0.03 * window.innerWidth;
     let usedColorsAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmount: Array<ColorAmount> = [];
-    let recommendedColorSchemeAmount: Array<ColorAmount> = [];
+    //let recommendedColorSchemeAmount: Array<ColorAmount> = [];
+    //let recommendedColorSchemeAmount: ColorAmount[][] ;
+    let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
 
     p.setup = () => {
       p.createCanvas(DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3, DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3);
       p.background(0);
       p.frameRate(1);
+      initializeVariables();
     };
+
+    function initializeVariables() {
+      for (let i = 0; i < 10; i++) { recommendedColorSchemeAmount[i] = []; }
+      recommendedColorSchemeAmount[0][0] = new ColorAmount(p.color(255), 0);
+    }
 
     p.draw = () => {
       updateVariables();
@@ -25,15 +33,23 @@ export function DisplayColorPalette() {
       displayColorPaletteByRatio(usedColorSchemeAmount, 0, 0, p.width, 0.1 * p.height);
       p.fill(255);
       p.triangle(0.45 * p.width, 0.125 * p.height, 0.55 * p.width, 0.125 * p.height, 0.5 * p.width, 0.175 * p.height);
-      displayColorPaletteByRatio(recommendedColorSchemeAmount, 0, 0.2 * p.height, p.width, 0.3 * p.height);
+      displayColorPaletteByRatio(recommendedColorSchemeAmount[0], 0, 0.2 * p.height, p.width, 0.3 * p.height);
+      displayColorPaletteByRatio(recommendedColorSchemeAmount[1], 0, 0.3 * p.height, p.width, 0.4 * p.height);
 
       displayColorPaletteBySquare(usedColorSchemeAmount, 0, 0.5 * p.height);
       p.fill(255);
       p.noStroke();
       p.triangle(0.45 * p.width, 0.625 * p.height, 0.55 * p.width, 0.625 * p.height, 0.5 * p.width, 0.675 * p.height);
-      displayColorPaletteBySquare(recommendedColorSchemeAmount, 0, 0.7 * p.height);
+      displayColorPaletteBySquare(recommendedColorSchemeAmount[0], 0, 0.7 * p.height);
+      displayColorPaletteBySquare(recommendedColorSchemeAmount[1], 0, 0.8 * p.height);
 
     };
+
+    function updateVariables() {
+      usedColorsAmount = ReturnUsedColorsAmount();
+      usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
+      recommendedColorSchemeAmount = ReturnRecommendedColorSchemeAmount();
+    }
 
     function displayColorPaletteByRatio(colorsAmount: ColorAmount[], x1: number, y1: number, x2: number, y2: number) {
       // 量の総和の計算
@@ -74,11 +90,7 @@ export function DisplayColorPalette() {
       }
     }
 
-    function updateVariables() {
-      usedColorsAmount = ReturnUsedColorsAmount();
-      usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
-      recommendedColorSchemeAmount = ReturnRecommendedColorSchemeAmount();
-    }
+
   }
 
   return (
