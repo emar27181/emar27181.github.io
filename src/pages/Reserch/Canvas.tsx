@@ -93,6 +93,7 @@ let standardDeviationLimit = 0, resistanceValue = 0.95;
 let isPaused = false, isMovedStraight = false, isFixedGravity = true, isMovedGravity = true, isBackground = false;
 let isMoveBallGravity = false, isTracking = false, isRepulsion = false;
 let isMouseGravity = false, isEraser = false, isSpuit = false;
+let isMouseReleased = false;
 let angle = 0, radius = 0, speed = 1;
 let gravityX: number[] = [], gravityY: number[] = [];
 let trackingData: number[][] = [[0, 0, 0, 0], [0, 0, 0, 0]];
@@ -252,6 +253,9 @@ export function Canvas() {
     p.mouseReleased = () => {
       //キャンバスの色情報を取得
       getCanvasColors();
+      if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
+        isMouseReleased = true;
+      }
     }
 
     p.keyReleased = () => {
@@ -368,6 +372,8 @@ export function Canvas() {
       }
       backgroundColor = p.color(p.red(backgroundColor), p.green(backgroundColor), p.blue(backgroundColor), backgroundAlpha);
       updateDrawingBrushLayer();
+
+      isMouseReleased = false;
 
       if (loadImageNumber >= coloringImages.length - 1) { loadImageNumber = coloringImages.length - 1; }
     }
@@ -859,5 +865,6 @@ export function ReturnIsTracking() { return isTracking; }
 export function ReturnDrawingColor() { return returnDrawingColor; }
 export function ReturnIsRepulsion() { return isRepulsion; }
 export function ReturnCanvasColors() { return canvasColors; }
+export function ReturnIsMouseReleased() { return isMouseReleased }
 
 export default Canvas

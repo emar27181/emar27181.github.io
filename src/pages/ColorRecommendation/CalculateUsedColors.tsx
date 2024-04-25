@@ -1,13 +1,14 @@
 import p5 from "p5";
 import { ReturnCanvasColors } from "../Reserch/Canvas";
 import { AMOUNT_LIMIT, SPLIT } from "../../config/constants";
-import { ReturnDrawingColor } from "../Reserch/Canvas";
+import { ReturnDrawingColor, ReturnIsMouseReleased } from "../Reserch/Canvas";
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 import { ColorAmount } from "../../utils/ColorAmount";
 
 let usedColorsAmount: Array<ColorAmount> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
 let orderUsedColors: Array<p5.Color> = [];
+let isCanvasMouseReleased: boolean = false;
 
 export function CalculateUsedColors() {
   const DEBUG = false;
@@ -29,14 +30,14 @@ export function CalculateUsedColors() {
       updateVariables();
     };
 
-    p.mouseReleased = () => {
-      orderUsedColors.push(ReturnDrawingColor());
-    }
-
     function updateVariables() {
       canvasColors = ReturnCanvasColors();
       calculateColorsAmount();
       calculateColorsSchemeAmount();
+      isCanvasMouseReleased = ReturnIsMouseReleased();
+      if (isCanvasMouseReleased) {
+        orderUsedColors.push(ReturnDrawingColor());
+      }
     }
 
     function calculateColorsSchemeAmount() {
@@ -118,4 +119,4 @@ export function CalculateUsedColors() {
 export default CalculateUsedColors
 export function ReturnUsedColorsAmount() { return usedColorsAmount; }
 export function ReturnUsedColorSchemeAmount() { return usedColorSchemeAmount; }
-export function ReturnOrderUsedColors(){return orderUsedColors;}
+export function ReturnOrderUsedColors() { return orderUsedColors; }
