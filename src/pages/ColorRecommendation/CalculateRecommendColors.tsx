@@ -3,11 +3,12 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ColorAmount } from '../../utils/ColorAmount';
 import { ReturnUsedColorSchemeAmount } from './CalculateUsedColors';
+import { ReturnOrderUsedColors } from './CalculateUsedColors';
+import p5 from 'p5';
 
-//let recommendedColorSchemeAmount: Array<ColorAmount> = [];
 let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
-//let recommendedColorSchemeAmount: ColorAmount[][] = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
+let orderUsedColors: Array<p5.Color> = [];
 
 export function CalculateRecommendColors() {
   const sketch = (p: P5CanvasInstance) => {
@@ -29,28 +30,26 @@ export function CalculateRecommendColors() {
 
     p.draw = () => {
       updateVariables();
+      calculateRecommendColorSchemeAmount();
     };
 
     function updateVariables() {
       usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
-      //calculateRecommendColorSchemeAmount();
+      orderUsedColors = ReturnOrderUsedColors();
     }
 
     function calculateRecommendColorSchemeAmount() {
+      if (orderUsedColors.length === 0) { return; }
+
+      resetRecommendedColorSchemeAmount();
+
+      recommendedColorSchemeAmount[0].push(new ColorAmount(orderUsedColors[0], 100));
+      recommendedColorSchemeAmount[1].push(new ColorAmount(orderUsedColors[0], 100));
+    }
+
+    function resetRecommendedColorSchemeAmount() {
       recommendedColorSchemeAmount = [];
-
-      // 初期実装としてusedColorSchemeで最も多い色を推薦
-      let sumAmount = calculateColorsAmount(usedColorSchemeAmount);
-      let maxColorAmountIndex = 0;
-      for (let i = 0; i < usedColorSchemeAmount.length; i++) {
-        if (usedColorSchemeAmount[i].amount > usedColorSchemeAmount[maxColorAmountIndex].amount) {
-          maxColorAmountIndex = i;
-        }
-      }
-
-      //recommendedColorSchemeAmount[0].push(new ColorAmount(usedColorSchemeAmount[maxColorAmountIndex].color, usedColorSchemeAmount[maxColorAmountIndex].amount));
-      recommendedColorSchemeAmount[0][0] = new ColorAmount(usedColorSchemeAmount[maxColorAmountIndex].color, usedColorSchemeAmount[maxColorAmountIndex].amount);
-
+      for (let i = 0; i < 10; i++) { recommendedColorSchemeAmount[i] = []; }
     }
 
     function calculateColorsAmount(colorAmount: ColorAmount[]) {
