@@ -12,6 +12,9 @@ import AllScrollLock from '../components/AllScrollLock';
 import DisplayUsedColorWheel from '../pages/ColorRecommendation/DisplayUsedColorWheel';
 import DisplayUsedColorTone from '../pages/ColorRecommendation/DisplayUsedColorTone';
 import DisplayRecommendColorsPalette from '../pages/ColorRecommendation/DisplayRecommendColorsPalette';
+import CalculateUsedColors from '../pages/ColorRecommendation/CalculateUsedColors';
+import DisplayColorPalette from '../pages/ColorRecommendation/DisplayColorPalette';
+import CalculateRecommendColors from '../pages/ColorRecommendation/CalculateRecommendColors';
 let isCanvasHome = false;
 
 export function U22programmingContestHome() {
@@ -20,6 +23,9 @@ export function U22programmingContestHome() {
 
   return (
     <div>
+      <CalculateUsedColors />
+      <CalculateRecommendColors />
+
       <AllScrollLock />
       <div style={{ display: 'flex', margin: 0 }}>
         <div>
@@ -32,7 +38,8 @@ export function U22programmingContestHome() {
           {Canvas()}
         </div>
         <div>
-          <DisplayRecommendColorsPalette />
+          {/*<DisplayRecommendColorsPalette />*/}
+          <DisplayColorPalette />
           <div style={{ display: 'flex', margin: 0 }}>
             <div style={{ display: 'flex', margin: 0 }}>
               {DisplayCanvasFilter("canvas", 0, "hue")}
