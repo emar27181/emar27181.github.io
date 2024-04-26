@@ -100,7 +100,7 @@ export function DisplayColorPalette() {
         p.fill(255);
         p.stroke(0, 0, 0, 30);
         p.textAlign(p.CENTER, p.CENTER);
-        p.text(p.round(p.hue(colorsAmount[i].color)), x + i * ONE_COLOR_PALETTE_SIZE + ONE_COLOR_PALETTE_SIZE / 2, y + ONE_COLOR_PALETTE_SIZE / 2);
+        //p.text(p.round(p.hue(colorsAmount[i].color)), x + i * ONE_COLOR_PALETTE_SIZE + ONE_COLOR_PALETTE_SIZE / 2, y + ONE_COLOR_PALETTE_SIZE / 2);
       }
     }
 
