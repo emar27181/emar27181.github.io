@@ -20,12 +20,7 @@ export function CalculateRecommendColors() {
 
     function initializeVariables() {
       for (let i = 0; i < 10; i++) { recommendedColorSchemeAmount[i] = []; }
-      recommendedColorSchemeAmount[0].push(new ColorAmount(p.color(255, 0, 0), 100));
-      recommendedColorSchemeAmount[0].push(new ColorAmount(p.color(255, 128, 0), 100));
-      recommendedColorSchemeAmount[0].push(new ColorAmount(p.color(255, 255, 0), 100));
-      recommendedColorSchemeAmount[1].push(new ColorAmount(p.color(255, 0, 0), 100));
-      recommendedColorSchemeAmount[1].push(new ColorAmount(p.color(192, 0, 0), 100));
-      recommendedColorSchemeAmount[1].push(new ColorAmount(p.color(128, 0, 0), 100));
+      recommendedColorSchemeAmount[0].push(new ColorAmount(p.color(255, 255, 255, 0), 0));
     }
 
     p.draw = () => {
