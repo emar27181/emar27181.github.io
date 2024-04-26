@@ -23,9 +23,6 @@ export function U22programmingContestHome() {
 
   return (
     <div>
-      <CalculateUsedColors />
-      <CalculateRecommendColors />
-
       <AllScrollLock />
       <div style={{ display: 'flex', margin: 0 }}>
         <div>
@@ -56,8 +53,9 @@ export function U22programmingContestHome() {
           </div>
         </div>
 
+        <CalculateUsedColors />
+        <CalculateRecommendColors />
       </div>
-
     </div>
   )
 }
