@@ -5,6 +5,10 @@ import { ReturnUsedColorsAmount, ReturnUsedColorSchemeAmount } from './Calculate
 import { ReturnRecommendedColorSchemeAmount } from './CalculateRecommendColors';
 import { ColorAmount } from '../../utils/ColorAmount';
 import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE } from '../../config/constants';
+import p5 from 'p5';
+
+let isTouhched: boolean;
+let drawingColor: number[];
 
 export function DisplayColorPalette() {
   const sketch = (p: P5CanvasInstance) => {
@@ -25,6 +29,8 @@ export function DisplayColorPalette() {
     function initializeVariables() {
       for (let i = 0; i < 10; i++) { recommendedColorSchemeAmount[i] = []; }
       recommendedColorSchemeAmount[0][0] = new ColorAmount(p.color(255), 0);
+      drawingColor = [255, 255, 255, 255];
+      isTouhched = false;
     }
 
     p.draw = () => {
@@ -45,10 +51,18 @@ export function DisplayColorPalette() {
 
     };
 
+    p.mousePressed = () => {
+      if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
+        isTouhched = true;
+        drawingColor = p.get(p.mouseX, p.mouseY);
+      }
+    }
+
     function updateVariables() {
       usedColorsAmount = ReturnUsedColorsAmount();
       usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
       recommendedColorSchemeAmount = ReturnRecommendedColorSchemeAmount();
+      isTouhched = false;
     }
 
     function displayColorPaletteByRatio(colorsAmount: ColorAmount[], x1: number, y1: number, x2: number, y2: number) {
@@ -99,3 +113,5 @@ export function DisplayColorPalette() {
 }
 
 export default DisplayColorPalette
+export function ReturnIsTouchedOfDisplayColorPalette() { return isTouhched; }
+export function ReturnDrawingColorOfDisplayColorPalette() { return drawingColor; }

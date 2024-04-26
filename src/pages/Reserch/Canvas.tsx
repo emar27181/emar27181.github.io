@@ -50,6 +50,7 @@ import imageFilePath20 from '../../assets/hue_tone.png';
 import imageFilePath21 from '../../assets/hue_tone_2.png';
 
 import { DISPLAY_RATE } from '../../config/constants';
+import { ReturnDrawingColorOfDisplayColorPalette, ReturnIsTouchedOfDisplayColorPalette } from '../ColorRecommendation/DisplayColorPalette';
 
 
 //importでファイルパスを読み込む場合
@@ -352,6 +353,11 @@ export function Canvas() {
         let color = ReturnColorRatioValue();
         drawingColor = p.color(color[0], color[1], color[2], color[3]);
       }
+      if (ReturnIsTouchedOfDisplayColorPalette()) {
+        let color = ReturnDrawingColorOfDisplayColorPalette();
+        drawingColor = p.color(color[0], color[1], color[2], color[3]);
+      }
+
       returnDrawingColor = drawingColor;
 
 
