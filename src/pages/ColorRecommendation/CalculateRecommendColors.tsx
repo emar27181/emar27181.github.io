@@ -5,6 +5,7 @@ import { ColorAmount } from '../../utils/ColorAmount';
 import { ReturnUsedColorSchemeAmount } from './CalculateUsedColors';
 import { ReturnOrderUsedColors } from './CalculateUsedColors';
 import p5 from 'p5';
+import Color from 'color';
 
 let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
@@ -38,9 +39,34 @@ export function CalculateRecommendColors() {
 
       resetRecommendedColorSchemeAmount();
 
-      recommendedColorSchemeAmount[0].push(new ColorAmount(orderUsedColors[0], 100));
-      recommendedColorSchemeAmount[1].push(new ColorAmount(orderUsedColors[0], 100));
+      let baseColor = orderUsedColors[0]; // 最初に使われた色をベースカラーであると仮定する
+
+      calculateDominantColor(recommendedColorSchemeAmount[0], baseColor);
+      calculateDominantTone(recommendedColorSchemeAmount[1], baseColor);
     }
+
+    function calculateDominantColor(colorAmount: ColorAmount[], baseColor: p5.Color) {
+      p.colorMode(p.HSL);
+      let hue = p.hue(baseColor);
+      let saturation = p.saturation(baseColor);
+      let lightness = p.lightness(baseColor);
+
+      colorAmount.push(new ColorAmount(baseColor, 100));
+      colorAmount.push(new ColorAmount(p.color((hue + 30) % 360, saturation, lightness), 100));
+      colorAmount.push(new ColorAmount(p.color((hue + 330) % 360, saturation, lightness), 100));
+    }
+
+    function calculateDominantTone(colorAmount: ColorAmount[], baseColor: p5.Color) {
+      p.colorMode(p.RGB);
+      let red = p.red(baseColor);
+      let green = p.green(baseColor);
+      let blue = p.blue(baseColor);
+
+      colorAmount.push(new ColorAmount(baseColor, 100));
+      colorAmount.push(new ColorAmount(p.color(0.7 * red, 0.7 * green, 0.7 * blue), 100));
+      colorAmount.push(new ColorAmount(p.color(0.4 * red, 0.4 * green, 0.4 * blue), 100));
+    }
+
 
     function resetRecommendedColorSchemeAmount() {
       recommendedColorSchemeAmount = [];
