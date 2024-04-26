@@ -93,7 +93,7 @@ export function DisplayColorPalette() {
       p.colorMode(p.HSL);
       p.strokeWeight(0.01 * p.width);
       for (let i = 0; i < colorsAmount.length; i++) {
-        p.stroke(0);
+        p.stroke(20);
         p.fill(colorsAmount[i].color);
         p.rect(x + i * ONE_COLOR_PALETTE_SIZE, y, ONE_COLOR_PALETTE_SIZE, ONE_COLOR_PALETTE_SIZE);
         //確認用出力
