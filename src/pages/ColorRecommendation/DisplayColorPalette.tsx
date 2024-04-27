@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnUsedColorsAmount, ReturnUsedColorSchemeAmount } from './CalculateUsedColors';
+import { ReturnUsedColorsAmount, ReturnUsedColorSchemeAmount, ReturnUsedColorSchemeAmountOnlyMainColor } from './CalculateUsedColors';
 import { ReturnRecommendedColorSchemeAmount } from './CalculateRecommendColors';
 import { ColorAmount } from '../../utils/ColorAmount';
 import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE } from '../../config/constants';
@@ -15,6 +15,7 @@ export function DisplayColorPalette() {
     const ONE_COLOR_PALETTE_SIZE = 0.03 * window.innerWidth;
     let usedColorsAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmount: Array<ColorAmount> = [];
+    let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
     //let recommendedColorSchemeAmount: Array<ColorAmount> = [];
     //let recommendedColorSchemeAmount: ColorAmount[][] ;
     let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
@@ -36,7 +37,9 @@ export function DisplayColorPalette() {
     p.draw = () => {
       updateVariables();
 
-      displayColorPaletteByRatio(usedColorSchemeAmount, 0, 0, p.width, 0.1 * p.height);
+      displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, 0, p.width, 0.1 * p.height);
+      //displayColorPaletteByRatio(usedColorsAmount, 0, 0, p.width, 0.1 * p.height);
+      //isplayColorPaletteByRatio(usedColorSchemeAmount, 0, 0, p.width, 0.1 * p.height);
       p.fill(255);
       p.triangle(0.45 * p.width, 0.125 * p.height, 0.55 * p.width, 0.125 * p.height, 0.5 * p.width, 0.175 * p.height);
       displayColorPaletteByRatio(recommendedColorSchemeAmount[0], 0, 0.2 * p.height, p.width, 0.3 * p.height);
@@ -61,6 +64,7 @@ export function DisplayColorPalette() {
     function updateVariables() {
       usedColorsAmount = ReturnUsedColorsAmount();
       usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
+      usedColorSchemeAmountOnlyMainColor = ReturnUsedColorSchemeAmountOnlyMainColor();
       recommendedColorSchemeAmount = ReturnRecommendedColorSchemeAmount();
       isTouhched = false;
     }
