@@ -37,23 +37,26 @@ export function DisplayColorPalette() {
     p.draw = () => {
       updateVariables();
 
-      displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, 0);
-      //displayColorPaletteByRatio(usedColorsAmount, 0, 0, p.width, 0.1 * p.height);
-      //isplayColorPaletteByRatio(usedColorSchemeAmount, 0, 0, p.width, 0.1 * p.height);
+      let countDisplayColorPalette = 0;
+      const HEIGHT_COLOR_PALETTE = 0.1 * p.height;
 
-      drawTriangle(0.125 * p.height); // ↓
+      displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      displayColorPaletteByRatio(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      displayColorPaletteByRatio(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
-      displayColorPaletteByRatio(recommendedColorSchemeAmount[0], 0, 0.2 * p.height);
-      displayColorPaletteByRatio(recommendedColorSchemeAmount[1], 0, 0.3 * p.height);
+      drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE); // ↓
+
+      displayColorPaletteByRatio(recommendedColorSchemeAmount[0], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      displayColorPaletteByRatio(recommendedColorSchemeAmount[1], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
       //---------------------------------------------------------
 
-      displayColorPaletteBySquare(usedColorSchemeAmount, 0, 0.5 * p.height);
+      displayColorPaletteBySquare(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
-      drawTriangle(0.625 * p.height) // ↓
+      drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE) // ↓
 
-      displayColorPaletteBySquare(recommendedColorSchemeAmount[0], 0, 0.7 * p.height);
-      displayColorPaletteBySquare(recommendedColorSchemeAmount[1], 0, 0.8 * p.height);
+      displayColorPaletteBySquare(recommendedColorSchemeAmount[0], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      displayColorPaletteBySquare(recommendedColorSchemeAmount[1], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
     };
 
