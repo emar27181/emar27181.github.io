@@ -37,15 +37,21 @@ export function DisplayColorPalette() {
     p.draw = () => {
       updateVariables();
 
-      displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, 0, p.width, 0.1 * p.height);
+      displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, 0);
       //displayColorPaletteByRatio(usedColorsAmount, 0, 0, p.width, 0.1 * p.height);
       //isplayColorPaletteByRatio(usedColorSchemeAmount, 0, 0, p.width, 0.1 * p.height);
-      drawTriangle(0.125 * p.height);
-      displayColorPaletteByRatio(recommendedColorSchemeAmount[0], 0, 0.2 * p.height, p.width, 0.3 * p.height);
-      displayColorPaletteByRatio(recommendedColorSchemeAmount[1], 0, 0.3 * p.height, p.width, 0.4 * p.height);
+
+      drawTriangle(0.125 * p.height); // ↓
+
+      displayColorPaletteByRatio(recommendedColorSchemeAmount[0], 0, 0.2 * p.height);
+      displayColorPaletteByRatio(recommendedColorSchemeAmount[1], 0, 0.3 * p.height);
+
+      //---------------------------------------------------------
 
       displayColorPaletteBySquare(usedColorSchemeAmount, 0, 0.5 * p.height);
-      drawTriangle(0.625 * p.height)
+
+      drawTriangle(0.625 * p.height) // ↓
+
       displayColorPaletteBySquare(recommendedColorSchemeAmount[0], 0, 0.7 * p.height);
       displayColorPaletteBySquare(recommendedColorSchemeAmount[1], 0, 0.8 * p.height);
 
@@ -72,7 +78,7 @@ export function DisplayColorPalette() {
       isTouhched = false;
     }
 
-    function displayColorPaletteByRatio(colorsAmount: ColorAmount[], x1: number, y1: number, x2: number, y2: number) {
+    function displayColorPaletteByRatio(colorsAmount: ColorAmount[], x: number, y: number) {
       // 量の総和の計算
       let sumAmount = 0;
       for (let i = 0; i < colorsAmount.length; i++) {
@@ -81,19 +87,21 @@ export function DisplayColorPalette() {
 
       // 使用色の描画
       p.noStroke();
-      let x = 0;
-      let w = x2 - x1, h = y2 - y1;
       for (let i = 0; i < colorsAmount.length; i++) {
+        p.stroke(20);
+        p.strokeWeight(p.width * 0.003);
         p.fill(colorsAmount[i].color);
-        p.rect(x, y1, w / sumAmount * colorsAmount[i].amount, h);
-        x += w / sumAmount * colorsAmount[i].amount;
+        p.rect(x, y, p.width / sumAmount * colorsAmount[i].amount, ONE_COLOR_PALETTE_SIZE);
+        x += p.width / sumAmount * colorsAmount[i].amount;
       }
 
       //外枠の描画
-      p.stroke(0);
-      p.strokeWeight(p.width * 0.003);
-      p.noFill();
-      p.rect(x1, y1, x2 - x1, y2 - y1);
+      /*
+      p.stroke(20);
+      p.strokeWeight(0.003 * p.width);
+      p.fill(255, 0, 0);
+      p.rect(x, y, p.width, ONE_COLOR_PALETTE_SIZE);
+      */
     }
 
     function displayColorPaletteBySquare(colorsAmount: ColorAmount[], x: number, y: number) {
