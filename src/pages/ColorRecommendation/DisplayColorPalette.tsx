@@ -12,7 +12,7 @@ let drawingColor: number[];
 
 export function DisplayColorPalette() {
   const sketch = (p: P5CanvasInstance) => {
-    const ONE_COLOR_PALETTE_SIZE = 0.03 * window.innerWidth;
+    const HEIGHT_COLOR_PALETTE = 0.02 * window.innerWidth;
     let usedColorsAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
@@ -38,7 +38,6 @@ export function DisplayColorPalette() {
       updateVariables();
 
       let countDisplayColorPalette = 0;
-      const HEIGHT_COLOR_PALETTE = 0.1 * p.height;
 
       displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
       displayColorPaletteByRatio(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
@@ -50,6 +49,7 @@ export function DisplayColorPalette() {
       displayColorPaletteByRatio(recommendedColorSchemeAmount[1], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
       //---------------------------------------------------------
+      countDisplayColorPalette++;
 
       displayColorPaletteBySquare(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
@@ -94,7 +94,7 @@ export function DisplayColorPalette() {
         p.stroke(20);
         p.strokeWeight(p.width * 0.003);
         p.fill(colorsAmount[i].color);
-        p.rect(x, y, p.width / sumAmount * colorsAmount[i].amount, ONE_COLOR_PALETTE_SIZE);
+        p.rect(x, y, p.width / sumAmount * colorsAmount[i].amount, HEIGHT_COLOR_PALETTE);
         x += p.width / sumAmount * colorsAmount[i].amount;
       }
 
@@ -113,7 +113,7 @@ export function DisplayColorPalette() {
       for (let i = 0; i < colorsAmount.length; i++) {
         p.stroke(20);
         p.fill(colorsAmount[i].color);
-        p.rect(x + i * ONE_COLOR_PALETTE_SIZE, y, ONE_COLOR_PALETTE_SIZE, ONE_COLOR_PALETTE_SIZE);
+        p.rect(x + i * HEIGHT_COLOR_PALETTE, y, HEIGHT_COLOR_PALETTE, HEIGHT_COLOR_PALETTE);
         //確認用出力
         p.fill(255);
         p.stroke(0, 0, 0, 30);
