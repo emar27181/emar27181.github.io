@@ -40,15 +40,12 @@ export function DisplayColorPalette() {
       displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, 0, p.width, 0.1 * p.height);
       //displayColorPaletteByRatio(usedColorsAmount, 0, 0, p.width, 0.1 * p.height);
       //isplayColorPaletteByRatio(usedColorSchemeAmount, 0, 0, p.width, 0.1 * p.height);
-      p.fill(255);
-      p.triangle(0.45 * p.width, 0.125 * p.height, 0.55 * p.width, 0.125 * p.height, 0.5 * p.width, 0.175 * p.height);
+      drawTriangle(0.125 * p.height);
       displayColorPaletteByRatio(recommendedColorSchemeAmount[0], 0, 0.2 * p.height, p.width, 0.3 * p.height);
       displayColorPaletteByRatio(recommendedColorSchemeAmount[1], 0, 0.3 * p.height, p.width, 0.4 * p.height);
 
       displayColorPaletteBySquare(usedColorSchemeAmount, 0, 0.5 * p.height);
-      p.fill(255);
-      p.noStroke();
-      p.triangle(0.45 * p.width, 0.625 * p.height, 0.55 * p.width, 0.625 * p.height, 0.5 * p.width, 0.675 * p.height);
+      drawTriangle(0.625 * p.height)
       displayColorPaletteBySquare(recommendedColorSchemeAmount[0], 0, 0.7 * p.height);
       displayColorPaletteBySquare(recommendedColorSchemeAmount[1], 0, 0.8 * p.height);
 
@@ -59,6 +56,12 @@ export function DisplayColorPalette() {
         isTouhched = true;
         drawingColor = p.get(p.mouseX, p.mouseY);
       }
+    }
+
+    function drawTriangle(y: number) {
+      p.fill(255);
+      p.noStroke();
+      p.triangle(0.45 * p.width, y, 0.55 * p.width, y, 0.5 * p.width, y + 0.05 * p.height);
     }
 
     function updateVariables() {
