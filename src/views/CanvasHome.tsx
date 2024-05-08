@@ -7,7 +7,7 @@ import DisplayGravityPlace from '../pages/Reserch/DisplayGravityPlace';
 import DisplayUsedColorRatio from '../pages/ColorRecommendation/DisplayUsedColorRatio';
 import OperateGuiControl from '../pages/Reserch/OperateGuiControl';
 import DisplayCanvasFilter from '../pages/ColorRecommendation/DisplayCanvasFilter';
-import ColorGanerateRe from '../pages/ColorRecommendation/ColorGenerate';
+import ColorGanerate from '../pages/ColorRecommendation/ColorGenerate';
 import AllScrollLock from '../components/AllScrollLock';
 import DisplayUsedColorWheel from '../pages/ColorRecommendation/DisplayUsedColorWheel';
 import DisplayUsedColorTone from '../pages/ColorRecommendation/DisplayUsedColorTone';
@@ -26,7 +26,7 @@ export function U22programmingContestHome() {
       <AllScrollLock />
       <div style={{ display: 'flex', margin: 0 }}>
         <div>
-          <ColorGanerateRe />
+          <ColorGanerate />
           <DisplayUsedColorWheel />
           <OperateGuiControl />
         </div>
