@@ -49,7 +49,7 @@ export function DisplayColorPalette() {
       displayColorPaletteByRatio(recommendedColorSchemeAmount[1], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
       //---------------------------------------------------------
-      countDisplayColorPalette++;
+      countDisplayColorPalette++; //空行の表示分のインクリメント
 
       displayColorPaletteBySquare(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
@@ -70,7 +70,7 @@ export function DisplayColorPalette() {
     function drawTriangle(y: number) {
       p.fill(255);
       p.noStroke();
-      p.triangle(0.45 * p.width, y, 0.55 * p.width, y, 0.5 * p.width, y + 0.05 * p.height);
+      p.triangle(0.47 * p.width, y + 0.3 * HEIGHT_COLOR_PALETTE, 0.53 * p.width, y + 0.3 * HEIGHT_COLOR_PALETTE, 0.5 * p.width, y + 0.7 * HEIGHT_COLOR_PALETTE);
     }
 
     function updateVariables() {
