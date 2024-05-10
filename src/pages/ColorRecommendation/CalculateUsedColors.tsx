@@ -1,12 +1,13 @@
 import p5 from "p5";
 import { ReturnCanvasColors } from "../Reserch/Canvas";
-import { AMOUNT_LIMIT, SPLIT } from "../../config/constants";
+import { AMOUNT_LIMIT, SATURATION_LIMIT, LIGHTNESS_LOWER_LIMIT, LIGHTNESS_UPPER_LIMIT, SPLIT } from "../../config/constants";
 import { ReturnDrawingColor, ReturnIsMouseReleased } from "../Reserch/Canvas";
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 import { ColorAmount } from "../../utils/ColorAmount";
 
 let usedColorsAmount: Array<ColorAmount> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
+let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 let orderUsedColors: Array<p5.Color> = [];
 let isCanvasMouseReleased: boolean = false;
 
@@ -24,6 +25,7 @@ export function CalculateUsedColors() {
       for (let i = 0; i < SPLIT; i++) { canvasColors[i] = []; }
       usedColorsAmount.push(new ColorAmount(p.color(255), 0));
       usedColorSchemeAmount.push(new ColorAmount(p.color(255), 0));
+      usedColorSchemeAmountOnlyMainColor.push(new ColorAmount(p.color(255), 0));
     }
 
     p.draw = () => {
@@ -42,11 +44,20 @@ export function CalculateUsedColors() {
 
     function calculateColorsSchemeAmount() {
       usedColorSchemeAmount = []; // 使われた配色の量のリセット
+      usedColorSchemeAmountOnlyMainColor = []; // 使われた配色の量のリセット
 
       // 一定回数以上出現している色を配色の色として追加
       for (let i = 0; i < usedColorsAmount.length; i++) {
         if (usedColorsAmount[i].amount >= AMOUNT_LIMIT) {
+          // 使用された色を全て追加
           usedColorSchemeAmount.push(new ColorAmount(usedColorsAmount[i].color, usedColorsAmount[i].amount));
+
+          // 使用された色のうち明度と彩度が一定の色を追加
+          let s = p.saturation(usedColorsAmount[i].color);
+          let l = p.lightness(usedColorsAmount[i].color);
+          if (LIGHTNESS_LOWER_LIMIT <= l && l <= LIGHTNESS_UPPER_LIMIT && SATURATION_LIMIT <= s) {
+            usedColorSchemeAmountOnlyMainColor.push(new ColorAmount(usedColorsAmount[i].color, usedColorsAmount[i].amount));
+          }
         }
       }
 
@@ -119,4 +130,5 @@ export function CalculateUsedColors() {
 export default CalculateUsedColors
 export function ReturnUsedColorsAmount() { return usedColorsAmount; }
 export function ReturnUsedColorSchemeAmount() { return usedColorSchemeAmount; }
+export function ReturnUsedColorSchemeAmountOnlyMainColor() { return usedColorSchemeAmountOnlyMainColor; }
 export function ReturnOrderUsedColors() { return orderUsedColors; }

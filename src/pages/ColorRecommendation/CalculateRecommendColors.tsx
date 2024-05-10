@@ -51,9 +51,9 @@ export function CalculateRecommendColors() {
       let saturation = p.saturation(baseColor);
       let lightness = p.lightness(baseColor);
 
-      colorAmount.push(new ColorAmount(baseColor, 100));
-      colorAmount.push(new ColorAmount(p.color((hue + 30) % 360, saturation, lightness), 100));
-      colorAmount.push(new ColorAmount(p.color((hue + 330) % 360, saturation, lightness), 100));
+      colorAmount.push(new ColorAmount(baseColor, 70));
+      colorAmount.push(new ColorAmount(p.color((hue + 30) % 360, saturation, lightness), 25));
+      colorAmount.push(new ColorAmount(p.color((hue + 330) % 360, saturation, lightness), 5));
     }
 
     function calculateDominantTone(colorAmount: ColorAmount[], baseColor: p5.Color) {
@@ -62,9 +62,9 @@ export function CalculateRecommendColors() {
       let green = p.green(baseColor);
       let blue = p.blue(baseColor);
 
-      colorAmount.push(new ColorAmount(baseColor, 100));
-      colorAmount.push(new ColorAmount(p.color(0.7 * red, 0.7 * green, 0.7 * blue), 100));
-      colorAmount.push(new ColorAmount(p.color(0.4 * red, 0.4 * green, 0.4 * blue), 100));
+      colorAmount.push(new ColorAmount(baseColor, 70));
+      colorAmount.push(new ColorAmount(p.color(0.7 * red, 0.7 * green, 0.7 * blue), 25));
+      colorAmount.push(new ColorAmount(p.color(0.4 * red, 0.4 * green, 0.4 * blue), 5));
     }
 
 

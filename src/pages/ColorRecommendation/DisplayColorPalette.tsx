@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnUsedColorsAmount, ReturnUsedColorSchemeAmount } from './CalculateUsedColors';
+import { ReturnUsedColorsAmount, ReturnUsedColorSchemeAmount, ReturnUsedColorSchemeAmountOnlyMainColor } from './CalculateUsedColors';
 import { ReturnRecommendedColorSchemeAmount } from './CalculateRecommendColors';
 import { ColorAmount } from '../../utils/ColorAmount';
 import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE } from '../../config/constants';
@@ -12,9 +12,10 @@ let drawingColor: number[];
 
 export function DisplayColorPalette() {
   const sketch = (p: P5CanvasInstance) => {
-    const ONE_COLOR_PALETTE_SIZE = 0.03 * window.innerWidth;
+    const HEIGHT_COLOR_PALETTE = 0.02 * window.innerWidth;
     let usedColorsAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmount: Array<ColorAmount> = [];
+    let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
     //let recommendedColorSchemeAmount: Array<ColorAmount> = [];
     //let recommendedColorSchemeAmount: ColorAmount[][] ;
     let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
@@ -36,18 +37,28 @@ export function DisplayColorPalette() {
     p.draw = () => {
       updateVariables();
 
-      displayColorPaletteByRatio(usedColorSchemeAmount, 0, 0, p.width, 0.1 * p.height);
-      p.fill(255);
-      p.triangle(0.45 * p.width, 0.125 * p.height, 0.55 * p.width, 0.125 * p.height, 0.5 * p.width, 0.175 * p.height);
-      displayColorPaletteByRatio(recommendedColorSchemeAmount[0], 0, 0.2 * p.height, p.width, 0.3 * p.height);
-      displayColorPaletteByRatio(recommendedColorSchemeAmount[1], 0, 0.3 * p.height, p.width, 0.4 * p.height);
+      let countDisplayColorPalette = 0;
 
-      displayColorPaletteBySquare(usedColorSchemeAmount, 0, 0.5 * p.height);
-      p.fill(255);
-      p.noStroke();
-      p.triangle(0.45 * p.width, 0.625 * p.height, 0.55 * p.width, 0.625 * p.height, 0.5 * p.width, 0.675 * p.height);
-      displayColorPaletteBySquare(recommendedColorSchemeAmount[0], 0, 0.7 * p.height);
-      displayColorPaletteBySquare(recommendedColorSchemeAmount[1], 0, 0.8 * p.height);
+      displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      displayColorPaletteByRatio(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      displayColorPaletteByRatio(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+
+      drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE); // ↓
+
+      displayColorPaletteByRatio(recommendedColorSchemeAmount[0], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      displayColorPaletteByRatio(recommendedColorSchemeAmount[1], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+
+      //---------------------------------------------------------
+      countDisplayColorPalette++; //空行の表示分のインクリメント
+
+      displayColorPaletteBySquare(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      //displayColorPaletteBySquare(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      displayColorPaletteBySquare(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+
+      drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE) // ↓
+
+      displayColorPaletteBySquare(recommendedColorSchemeAmount[0], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      displayColorPaletteBySquare(recommendedColorSchemeAmount[1], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
     };
 
@@ -58,14 +69,21 @@ export function DisplayColorPalette() {
       }
     }
 
+    function drawTriangle(y: number) {
+      p.fill(255);
+      p.noStroke();
+      p.triangle(0.47 * p.width, y + 0.3 * HEIGHT_COLOR_PALETTE, 0.53 * p.width, y + 0.3 * HEIGHT_COLOR_PALETTE, 0.5 * p.width, y + 0.7 * HEIGHT_COLOR_PALETTE);
+    }
+
     function updateVariables() {
       usedColorsAmount = ReturnUsedColorsAmount();
       usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
+      usedColorSchemeAmountOnlyMainColor = ReturnUsedColorSchemeAmountOnlyMainColor();
       recommendedColorSchemeAmount = ReturnRecommendedColorSchemeAmount();
       isTouhched = false;
     }
 
-    function displayColorPaletteByRatio(colorsAmount: ColorAmount[], x1: number, y1: number, x2: number, y2: number) {
+    function displayColorPaletteByRatio(colorsAmount: ColorAmount[], x: number, y: number) {
       // 量の総和の計算
       let sumAmount = 0;
       for (let i = 0; i < colorsAmount.length; i++) {
@@ -74,19 +92,21 @@ export function DisplayColorPalette() {
 
       // 使用色の描画
       p.noStroke();
-      let x = 0;
-      let w = x2 - x1, h = y2 - y1;
       for (let i = 0; i < colorsAmount.length; i++) {
+        p.stroke(20);
+        p.strokeWeight(p.width * 0.003);
         p.fill(colorsAmount[i].color);
-        p.rect(x, y1, w / sumAmount * colorsAmount[i].amount, h);
-        x += w / sumAmount * colorsAmount[i].amount;
+        p.rect(x, y, p.width / sumAmount * colorsAmount[i].amount, HEIGHT_COLOR_PALETTE);
+        x += p.width / sumAmount * colorsAmount[i].amount;
       }
 
       //外枠の描画
-      p.stroke(0);
-      p.strokeWeight(p.width * 0.003);
-      p.noFill();
-      p.rect(x1, y1, x2 - x1, y2 - y1);
+      /*
+      p.stroke(20);
+      p.strokeWeight(0.003 * p.width);
+      p.fill(255, 0, 0);
+      p.rect(x, y, p.width, ONE_COLOR_PALETTE_SIZE);
+      */
     }
 
     function displayColorPaletteBySquare(colorsAmount: ColorAmount[], x: number, y: number) {
@@ -95,7 +115,7 @@ export function DisplayColorPalette() {
       for (let i = 0; i < colorsAmount.length; i++) {
         p.stroke(20);
         p.fill(colorsAmount[i].color);
-        p.rect(x + i * ONE_COLOR_PALETTE_SIZE, y, ONE_COLOR_PALETTE_SIZE, ONE_COLOR_PALETTE_SIZE);
+        p.rect(x + i * HEIGHT_COLOR_PALETTE, y, HEIGHT_COLOR_PALETTE, HEIGHT_COLOR_PALETTE);
         //確認用出力
         p.fill(255);
         p.stroke(0, 0, 0, 30);

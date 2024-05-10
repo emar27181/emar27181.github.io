@@ -7,7 +7,7 @@ import { ReturnDrawingColor } from '../Reserch/Canvas';
 import Color from 'color';
 import { ColorAmount, ReturnColorsAmount } from './DisplayUsedColorRatio';
 import { DISPLAY_RATE } from '../../config/constants';
-import { SATURATION_LIMIT, LIGHTNESS_UPPER_LIMIT, LIGHTNESS_LOWER_LIMIT, AMOUNT_LIMIT } from './DisplayUsedColorWheel';
+import { SATURATION_LIMIT, LIGHTNESS_UPPER_LIMIT, LIGHTNESS_LOWER_LIMIT, AMOUNT_LIMIT } from '../../config/constants';
 
 let returnColor = [255, 0, 0];
 let isTouchedColorGenerate = false;
