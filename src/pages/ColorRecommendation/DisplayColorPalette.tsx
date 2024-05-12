@@ -12,7 +12,7 @@ let drawingColor: number[];
 
 export function DisplayColorPalette() {
   const sketch = (p: P5CanvasInstance) => {
-    const HEIGHT_COLOR_PALETTE = 0.02 * window.innerWidth;
+    const HEIGHT_COLOR_PALETTE = 0.015 * window.innerWidth;
     let usedColorsAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
@@ -49,6 +49,7 @@ export function DisplayColorPalette() {
 
       displayColorPaletteByRatio(recommendedColorSchemeAmount[0], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
       displayColorPaletteByRatio(recommendedColorSchemeAmount[1], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      displayColorPaletteByRatio(recommendedColorSchemeAmount[2], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
       //---------------------------------------------------------
       countDisplayColorPalette++; //空行の表示分のインクリメント
@@ -61,6 +62,7 @@ export function DisplayColorPalette() {
 
       displayColorPaletteBySquare(recommendedColorSchemeAmount[0], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
       displayColorPaletteBySquare(recommendedColorSchemeAmount[1], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      displayColorPaletteBySquare(recommendedColorSchemeAmount[2], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
     };
 

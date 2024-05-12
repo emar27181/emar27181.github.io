@@ -46,6 +46,19 @@ export function CalculateRecommendColors() {
 
       calculateDominantColor(recommendedColorSchemeAmount[0], baseColor);
       calculateDominantTone(recommendedColorSchemeAmount[1], baseColor);
+      calculateDyadColor(recommendedColorSchemeAmount[2], baseColor);
+    }
+
+    function calculateDyadColor(colorAmount: ColorAmount[], baseColor: p5.Color) {
+      p.colorMode(p.HSL);
+      let hue = p.hue(baseColor);
+      let saturation = p.saturation(baseColor);
+      let lightness = p.lightness(baseColor);
+
+      colorAmount.push(new ColorAmount(baseColor, 25));
+      colorAmount.push(new ColorAmount(p.color((hue + 90) % 360, saturation, lightness), 25));
+      colorAmount.push(new ColorAmount(p.color((hue + 180) % 360, saturation, lightness), 25));
+      colorAmount.push(new ColorAmount(p.color((hue + 270) % 360, saturation, lightness), 25));
     }
 
     function calculateDominantColor(colorAmount: ColorAmount[], baseColor: p5.Color) {
