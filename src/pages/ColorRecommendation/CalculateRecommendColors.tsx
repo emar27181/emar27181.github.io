@@ -3,13 +3,14 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ColorAmount } from '../../utils/ColorAmount';
 import { ReturnUsedColorSchemeAmount } from './CalculateUsedColors';
-import { ReturnOrderUsedColors } from './CalculateUsedColors';
+import { ReturnOrderUsedColors, ReturnOrderUsedColorsAmount } from './CalculateUsedColors';
 import p5 from 'p5';
 import Color from 'color';
 
 let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
-let orderUsedColors: Array<p5.Color> = [];
+let orderUsedColorsAmount: Array<ColorAmount> = [];
+//let orderUsedColors: Array<p5.Color> = [];
 
 export function CalculateRecommendColors() {
   const sketch = (p: P5CanvasInstance) => {
@@ -31,15 +32,17 @@ export function CalculateRecommendColors() {
 
     function updateVariables() {
       usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
-      orderUsedColors = ReturnOrderUsedColors();
+      //orderUsedColors = ReturnOrderUsedColors();
+      orderUsedColorsAmount = ReturnOrderUsedColorsAmount();
     }
 
     function calculateRecommendColorSchemeAmount() {
-      if (orderUsedColors.length === 0) { return; }
+      //if (orderUsedColors.length === 0) { return; }
+      if (orderUsedColorsAmount.length === 0) { return; }
 
       resetRecommendedColorSchemeAmount();
 
-      let baseColor = orderUsedColors[0]; // 最初に使われた色をベースカラーであると仮定する
+      let baseColor = orderUsedColorsAmount[0].color; // 最初に使われた色をベースカラーであると仮定する
 
       calculateDominantColor(recommendedColorSchemeAmount[0], baseColor);
       calculateDominantTone(recommendedColorSchemeAmount[1], baseColor);

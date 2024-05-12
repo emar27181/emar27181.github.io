@@ -9,6 +9,7 @@ let usedColorsAmount: Array<ColorAmount> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
 let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 let orderUsedColors: Array<p5.Color> = [];
+let orderUsedColorsAmount: Array<ColorAmount> = [];
 let isCanvasMouseReleased: boolean = false;
 
 export function CalculateUsedColors() {
@@ -39,6 +40,7 @@ export function CalculateUsedColors() {
       isCanvasMouseReleased = ReturnIsMouseReleased();
       if (isCanvasMouseReleased) {
         orderUsedColors.push(ReturnDrawingColor());
+        orderUsedColorsAmount.push(new ColorAmount(ReturnDrawingColor(), 10));
       }
     }
 
@@ -132,3 +134,4 @@ export function ReturnUsedColorsAmount() { return usedColorsAmount; }
 export function ReturnUsedColorSchemeAmount() { return usedColorSchemeAmount; }
 export function ReturnUsedColorSchemeAmountOnlyMainColor() { return usedColorSchemeAmountOnlyMainColor; }
 export function ReturnOrderUsedColors() { return orderUsedColors; }
+export function ReturnOrderUsedColorsAmount() { return orderUsedColorsAmount; }
