@@ -49,6 +49,18 @@ export function CalculateRecommendColors() {
       calculateTetradeColor(recommendedColorSchemeAmount[2], baseColor);
       calculateSplitComplementaryColor(recommendedColorSchemeAmount[3], baseColor);
       calculateDyadColor(recommendedColorSchemeAmount[4], baseColor);
+      calculateTriadColor(recommendedColorSchemeAmount[5], baseColor);
+    }
+
+    function calculateTriadColor(colorAmount: ColorAmount[], baseColor: p5.Color) {
+      p.colorMode(p.HSL);
+      let hue = p.hue(baseColor);
+      let saturation = p.saturation(baseColor);
+      let lightness = p.lightness(baseColor);
+
+      colorAmount.push(new ColorAmount(baseColor, 33));
+      colorAmount.push(new ColorAmount(p.color((hue + 120) % 360, saturation, lightness), 33));
+      colorAmount.push(new ColorAmount(p.color((hue + 240) % 360, saturation, lightness), 33));
     }
 
     function calculateSplitComplementaryColor(colorAmount: ColorAmount[], baseColor: p5.Color) {
