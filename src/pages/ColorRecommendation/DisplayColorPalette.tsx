@@ -51,6 +51,7 @@ export function DisplayColorPalette() {
       displayColorPaletteByRatio(recommendedColorSchemeAmount[1], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
       displayColorPaletteByRatio(recommendedColorSchemeAmount[2], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
       displayColorPaletteByRatio(recommendedColorSchemeAmount[3], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      displayColorPaletteByRatio(recommendedColorSchemeAmount[4], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
       //---------------------------------------------------------
       countDisplayColorPalette++; //空行の表示分のインクリメント
@@ -65,6 +66,7 @@ export function DisplayColorPalette() {
       displayColorPaletteBySquare(recommendedColorSchemeAmount[1], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
       displayColorPaletteBySquare(recommendedColorSchemeAmount[2], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
       displayColorPaletteBySquare(recommendedColorSchemeAmount[3], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      displayColorPaletteBySquare(recommendedColorSchemeAmount[4], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
     };
 

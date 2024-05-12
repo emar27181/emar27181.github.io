@@ -48,6 +48,7 @@ export function CalculateRecommendColors() {
       calculateDominantTone(recommendedColorSchemeAmount[1], baseColor);
       calculateTetradeColor(recommendedColorSchemeAmount[2], baseColor);
       calculateSplitComplementaryColor(recommendedColorSchemeAmount[3], baseColor);
+      calculateDyadColor(recommendedColorSchemeAmount[4], baseColor);
     }
 
     function calculateSplitComplementaryColor(colorAmount: ColorAmount[], baseColor: p5.Color) {
@@ -59,6 +60,16 @@ export function CalculateRecommendColors() {
       colorAmount.push(new ColorAmount(baseColor, 70));
       colorAmount.push(new ColorAmount(p.color((hue + 165) % 360, saturation, lightness), 15));
       colorAmount.push(new ColorAmount(p.color((hue + 195) % 360, saturation, lightness), 15));
+    }
+
+    function calculateDyadColor(colorAmount: ColorAmount[], baseColor: p5.Color) {
+      p.colorMode(p.HSL);
+      let hue = p.hue(baseColor);
+      let saturation = p.saturation(baseColor);
+      let lightness = p.lightness(baseColor);
+
+      colorAmount.push(new ColorAmount(baseColor, 50));
+      colorAmount.push(new ColorAmount(p.color((hue + 180) % 360, saturation, lightness), 50));
     }
 
     function calculateTetradeColor(colorAmount: ColorAmount[], baseColor: p5.Color) {
