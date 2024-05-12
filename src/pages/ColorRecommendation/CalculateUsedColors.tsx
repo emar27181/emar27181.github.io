@@ -40,7 +40,8 @@ export function CalculateUsedColors() {
       isCanvasMouseReleased = ReturnIsMouseReleased();
       if (isCanvasMouseReleased) {
         orderUsedColors.push(ReturnDrawingColor());
-        orderUsedColorsAmount.push(new ColorAmount(ReturnDrawingColor(), 10));
+        //orderUsedColorsAmount.push(new ColorAmount(ReturnDrawingColor(), 10));
+        updateColorsAmount(orderUsedColorsAmount, ReturnDrawingColor());
       }
     }
 
