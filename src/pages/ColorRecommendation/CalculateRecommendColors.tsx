@@ -38,18 +38,31 @@ export function CalculateRecommendColors() {
 
     function calculateRecommendColorSchemeAmount() {
       //if (orderUsedColors.length === 0) { return; }
+      let i = 0;
       if (orderUsedColorsAmount.length === 0) { return; }
 
       resetRecommendedColorSchemeAmount();
 
       let baseColor = orderUsedColorsAmount[0].color; // 最初に使われた色をベースカラーであると仮定する
 
-      calculateDominantColor(recommendedColorSchemeAmount[0], baseColor);
-      calculateDominantTone(recommendedColorSchemeAmount[1], baseColor);
-      calculateTetradeColor(recommendedColorSchemeAmount[2], baseColor);
-      calculateSplitComplementaryColor(recommendedColorSchemeAmount[3], baseColor);
-      calculateDyadColor(recommendedColorSchemeAmount[4], baseColor);
-      calculateTriadColor(recommendedColorSchemeAmount[5], baseColor);
+      // 使われた色の数が1色だった場合
+      if (orderUsedColorsAmount.length === 1) {
+        calculateDominantColor(recommendedColorSchemeAmount[i++], baseColor);
+        calculateDyadColor(recommendedColorSchemeAmount[i++], baseColor);
+      }
+
+      else if (orderUsedColorsAmount.length === 2) {
+        calculateDominantColor(recommendedColorSchemeAmount[i++], baseColor);
+        calculateDyadColor(recommendedColorSchemeAmount[i++], baseColor);
+        calculateTriadColor(recommendedColorSchemeAmount[i++], baseColor);
+        calculateSplitComplementaryColor(recommendedColorSchemeAmount[i++], baseColor);
+      }
+
+      else if (orderUsedColorsAmount.length >= 3) {
+        calculateTetradeColor(recommendedColorSchemeAmount[i++], baseColor);
+        calculateDominantColor(recommendedColorSchemeAmount[i++], baseColor);
+        calculateTriadColor(recommendedColorSchemeAmount[i++], baseColor);
+      }
     }
 
     function calculateTriadColor(colorAmount: ColorAmount[], baseColor: p5.Color) {
