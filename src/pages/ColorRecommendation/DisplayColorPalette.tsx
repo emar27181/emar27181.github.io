@@ -37,6 +37,7 @@ export function DisplayColorPalette() {
 
     p.draw = () => {
       updateVariables();
+      p.background(0);
 
       let countDisplayColorPalette = 0;
 
