@@ -21,7 +21,8 @@ export function CalculateRecommendColors() {
     };
 
     function initializeVariables() {
-      for (let i = 0; i < 10; i++) { recommendedColorSchemeAmount[i] = []; }
+      //for (let i = 0; i < 10; i++) { recommendedColorSchemeAmount[i] = []; }
+      recommendedColorSchemeAmount[0] = [];
       recommendedColorSchemeAmount[0].push(new ColorAmount(p.color(255, 255, 255, 0), 0));
     }
 
@@ -47,94 +48,106 @@ export function CalculateRecommendColors() {
 
       // 使われた色の数が1色だった場合
       if (orderUsedColorsAmount.length === 1) {
-        calculateDominantColor(recommendedColorSchemeAmount[i++], baseColor);
-        calculateDyadColor(recommendedColorSchemeAmount[i++], baseColor);
+        calculateDominantColor(recommendedColorSchemeAmount, baseColor);
+        calculateDyadColor(recommendedColorSchemeAmount, baseColor);
       }
 
       else if (orderUsedColorsAmount.length === 2) {
-        calculateDominantColor(recommendedColorSchemeAmount[i++], baseColor);
-        calculateDyadColor(recommendedColorSchemeAmount[i++], baseColor);
-        calculateTriadColor(recommendedColorSchemeAmount[i++], baseColor);
-        calculateSplitComplementaryColor(recommendedColorSchemeAmount[i++], baseColor);
+        calculateDominantColor(recommendedColorSchemeAmount, baseColor);
+        calculateDyadColor(recommendedColorSchemeAmount, baseColor);
+        calculateTriadColor(recommendedColorSchemeAmount, baseColor);
+        calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
       }
 
       else if (orderUsedColorsAmount.length >= 3) {
-        calculateTetradeColor(recommendedColorSchemeAmount[i++], baseColor);
-        calculateDominantColor(recommendedColorSchemeAmount[i++], baseColor);
-        calculateTriadColor(recommendedColorSchemeAmount[i++], baseColor);
+        calculateTetradeColor(recommendedColorSchemeAmount, baseColor);
+        calculateDominantColor(recommendedColorSchemeAmount, baseColor);
+        calculateTriadColor(recommendedColorSchemeAmount, baseColor);
       }
     }
 
-    function calculateTriadColor(colorAmount: ColorAmount[], baseColor: p5.Color) {
+    function calculateTriadColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
+      let i = colorAmount.length;
+      colorAmount[i] = [];
       p.colorMode(p.HSL);
       let hue = p.hue(baseColor);
       let saturation = p.saturation(baseColor);
       let lightness = p.lightness(baseColor);
 
-      colorAmount.push(new ColorAmount(baseColor, 33));
-      colorAmount.push(new ColorAmount(p.color((hue + 120) % 360, saturation, lightness), 33));
-      colorAmount.push(new ColorAmount(p.color((hue + 240) % 360, saturation, lightness), 33));
+      colorAmount[i].push(new ColorAmount(baseColor, 33));
+      colorAmount[i].push(new ColorAmount(p.color((hue + 120) % 360, saturation, lightness), 33));
+      colorAmount[i].push(new ColorAmount(p.color((hue + 240) % 360, saturation, lightness), 33));
     }
 
-    function calculateSplitComplementaryColor(colorAmount: ColorAmount[], baseColor: p5.Color) {
+    function calculateSplitComplementaryColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
+      let i = colorAmount.length;
+      colorAmount[i] = [];
       p.colorMode(p.HSL);
       let hue = p.hue(baseColor);
       let saturation = p.saturation(baseColor);
       let lightness = p.lightness(baseColor);
 
-      colorAmount.push(new ColorAmount(baseColor, 70));
-      colorAmount.push(new ColorAmount(p.color((hue + 165) % 360, saturation, lightness), 15));
-      colorAmount.push(new ColorAmount(p.color((hue + 195) % 360, saturation, lightness), 15));
+      colorAmount[i].push(new ColorAmount(baseColor, 70));
+      colorAmount[i].push(new ColorAmount(p.color((hue + 165) % 360, saturation, lightness), 15));
+      colorAmount[i].push(new ColorAmount(p.color((hue + 195) % 360, saturation, lightness), 15));
     }
 
-    function calculateDyadColor(colorAmount: ColorAmount[], baseColor: p5.Color) {
+    function calculateDyadColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
+      let i = colorAmount.length;
+      colorAmount[i] = [];
       p.colorMode(p.HSL);
       let hue = p.hue(baseColor);
       let saturation = p.saturation(baseColor);
       let lightness = p.lightness(baseColor);
 
-      colorAmount.push(new ColorAmount(baseColor, 50));
-      colorAmount.push(new ColorAmount(p.color((hue + 180) % 360, saturation, lightness), 50));
+      colorAmount[i].push(new ColorAmount(baseColor, 50));
+      colorAmount[i].push(new ColorAmount(p.color((hue + 180) % 360, saturation, lightness), 50));
     }
 
-    function calculateTetradeColor(colorAmount: ColorAmount[], baseColor: p5.Color) {
+    function calculateTetradeColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
+      let i = colorAmount.length;
+      colorAmount[i] = [];
       p.colorMode(p.HSL);
       let hue = p.hue(baseColor);
       let saturation = p.saturation(baseColor);
       let lightness = p.lightness(baseColor);
 
-      colorAmount.push(new ColorAmount(baseColor, 25));
-      colorAmount.push(new ColorAmount(p.color((hue + 90) % 360, saturation, lightness), 25));
-      colorAmount.push(new ColorAmount(p.color((hue + 180) % 360, saturation, lightness), 25));
-      colorAmount.push(new ColorAmount(p.color((hue + 270) % 360, saturation, lightness), 25));
+      colorAmount[i].push(new ColorAmount(baseColor, 25));
+      colorAmount[i].push(new ColorAmount(p.color((hue + 90) % 360, saturation, lightness), 25));
+      colorAmount[i].push(new ColorAmount(p.color((hue + 180) % 360, saturation, lightness), 25));
+      colorAmount[i].push(new ColorAmount(p.color((hue + 270) % 360, saturation, lightness), 25));
     }
 
-    function calculateDominantColor(colorAmount: ColorAmount[], baseColor: p5.Color) {
+    function calculateDominantColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
+      let i = colorAmount.length;
+      colorAmount[i] = [];
       p.colorMode(p.HSL);
       let hue = p.hue(baseColor);
       let saturation = p.saturation(baseColor);
       let lightness = p.lightness(baseColor);
 
-      colorAmount.push(new ColorAmount(baseColor, 70));
-      colorAmount.push(new ColorAmount(p.color((hue + 30) % 360, saturation, lightness), 25));
-      colorAmount.push(new ColorAmount(p.color((hue + 330) % 360, saturation, lightness), 5));
+      colorAmount[i].push(new ColorAmount(baseColor, 70));
+      colorAmount[i].push(new ColorAmount(p.color((hue + 30) % 360, saturation, lightness), 25));
+      colorAmount[i].push(new ColorAmount(p.color((hue + 330) % 360, saturation, lightness), 5));
     }
 
-    function calculateDominantTone(colorAmount: ColorAmount[], baseColor: p5.Color) {
+    function calculateDominantTone(colorAmount: ColorAmount[][], baseColor: p5.Color) {
+      let i = colorAmount.length;
+      colorAmount[i] = [];
       p.colorMode(p.RGB);
       let red = p.red(baseColor);
       let green = p.green(baseColor);
       let blue = p.blue(baseColor);
 
-      colorAmount.push(new ColorAmount(baseColor, 70));
-      colorAmount.push(new ColorAmount(p.color(0.7 * red, 0.7 * green, 0.7 * blue), 25));
-      colorAmount.push(new ColorAmount(p.color(0.4 * red, 0.4 * green, 0.4 * blue), 5));
+      colorAmount[i].push(new ColorAmount(baseColor, 70));
+      colorAmount[i].push(new ColorAmount(p.color(0.7 * red, 0.7 * green, 0.7 * blue), 25));
+      colorAmount[i].push(new ColorAmount(p.color(0.4 * red, 0.4 * green, 0.4 * blue), 5));
     }
 
 
     function resetRecommendedColorSchemeAmount() {
       recommendedColorSchemeAmount = [];
-      for (let i = 0; i < 10; i++) { recommendedColorSchemeAmount[i] = []; }
+      //for (let i = 0; i < 10; i++) { recommendedColorSchemeAmount[i] = []; }
     }
 
     function calculateColorsAmount(colorAmount: ColorAmount[]) {
