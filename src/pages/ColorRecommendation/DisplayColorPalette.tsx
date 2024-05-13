@@ -45,14 +45,12 @@ export function DisplayColorPalette() {
       displayColorPaletteByRatio(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
       displayColorPaletteByRatio(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
-      drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE); // ↓
+      // ↓
+      drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
-      displayColorPaletteByRatio(recommendedColorSchemeAmount[0], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteByRatio(recommendedColorSchemeAmount[1], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteByRatio(recommendedColorSchemeAmount[2], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteByRatio(recommendedColorSchemeAmount[3], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteByRatio(recommendedColorSchemeAmount[4], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteByRatio(recommendedColorSchemeAmount[5], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
+        displayColorPaletteByRatio(recommendedColorSchemeAmount[i], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      }
 
       //---------------------------------------------------------
       countDisplayColorPalette++; //空行の表示分のインクリメント
@@ -61,15 +59,12 @@ export function DisplayColorPalette() {
       //displayColorPaletteBySquare(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
       displayColorPaletteBySquare(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
-      drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE) // ↓
+      // ↓
+      drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
-      displayColorPaletteBySquare(recommendedColorSchemeAmount[0], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteBySquare(recommendedColorSchemeAmount[1], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteBySquare(recommendedColorSchemeAmount[2], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteBySquare(recommendedColorSchemeAmount[3], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteBySquare(recommendedColorSchemeAmount[4], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteBySquare(recommendedColorSchemeAmount[5], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-
+      for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
+        displayColorPaletteBySquare(recommendedColorSchemeAmount[i], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      }
     };
 
     p.mousePressed = () => {
