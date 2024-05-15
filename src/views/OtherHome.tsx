@@ -29,6 +29,7 @@ import TestDragAndPaste from '../pages/TestDragAndPaste';
 import CurlingPlotTest from '../pages/CurlingPlotTest';
 import Canvas from '../pages/Reserch/Canvas';
 import SimpleCanvas from '../pages/SimpleCanvas';
+import TestResponsivePage from './TestResponsivePage';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -101,6 +102,10 @@ export function OtherHome() {
           キャンバスの動作確認ページ
         </NavLink><br />
 
+        <NavLink activeClassName='active' to="/testResponsivePage">
+          レスポンシブページのテンプレート
+        </NavLink><br />
+
       </ul>
 
       <Switch>
@@ -169,6 +174,10 @@ export function OtherHome() {
 
         <Route path="/canvasTest" >
           <SimpleCanvas />
+        </Route>
+
+        <Route path="/testResponsivePage" >
+          <TestResponsivePage />
         </Route>
 
 
