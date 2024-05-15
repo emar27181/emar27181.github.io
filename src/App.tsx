@@ -106,7 +106,7 @@ function App() {
       {/*<Navbar bg="dark" variant="dark" className="ml-auto" style={{ position: 'absolute', top: 0, width: '100%' }}>*/}
       <Navbar bg="dark" variant="dark" fixed="top" style={{ display: isNavbarVisible ? 'block' : 'none' }}>
         <Navbar.Brand className="d-flex" >
-          <img src={logo} height="30" className="d-inline-block align-top" alt="Logo" />
+          {/*<img src={logo} height="30" className="d-inline-block align-top" alt="Logo" />*/}
           <span style={{ marginLeft: "10px" }}>p5.js演習ブラウザ</span>
         </Navbar.Brand>
 
