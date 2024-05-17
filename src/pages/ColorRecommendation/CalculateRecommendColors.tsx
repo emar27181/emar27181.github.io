@@ -18,6 +18,7 @@ export function CalculateRecommendColors() {
 
     p.setup = () => {
       initializeVariables();
+      p.frameRate(1);
     };
 
     function initializeVariables() {
@@ -29,6 +30,10 @@ export function CalculateRecommendColors() {
     p.draw = () => {
       updateVariables();
       calculateRecommendColorSchemeAmount();
+      let hueDifference: number[] = [];
+      hueDifference = calculateHueDifference(orderUsedColorsAmount, 0);
+
+      console.log(hueDifference);
     };
 
     function updateVariables() {
@@ -66,6 +71,29 @@ export function CalculateRecommendColors() {
         calculateDominantColor(recommendedColorSchemeAmount, baseColor);
         calculateTriadColor(recommendedColorSchemeAmount, baseColor);
       }
+    }
+
+    function calculateHueDifference(colorsAmount: ColorAmount[], baseColorIndex: number) {
+      if (colorsAmount.length === 0) { return []; }
+
+      let baseColor = colorsAmount[baseColorIndex].color;
+      let baseHue = p.hue(baseColor);
+      let hueDifferences: number[] = [];
+
+      for (let i = 0; i < colorsAmount.length; i++) {
+        //if (i === baseColorIndex) { continue; }
+
+        let hue = p.hue(colorsAmount[i].color);
+        let hueDifference = baseHue - hue;
+        hueDifference = p.round(hueDifference);
+        if (hueDifference < 0) { hueDifference = -hueDifference; }
+
+        hueDifferences.push(hueDifference);
+      }
+
+      //console.log(hueDifferences);
+      return hueDifferences;
+
     }
 
     function calculateTriadColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
