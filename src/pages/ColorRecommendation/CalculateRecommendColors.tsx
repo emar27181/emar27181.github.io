@@ -10,6 +10,8 @@ import Color from 'color';
 let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
 let orderUsedColorsAmount: Array<ColorAmount> = [];
+
+let orderUsedColorsDifference: number[] = [];
 //let orderUsedColors: Array<p5.Color> = [];
 
 export function CalculateRecommendColors() {
@@ -30,20 +32,21 @@ export function CalculateRecommendColors() {
     p.draw = () => {
       updateVariables();
       calculateRecommendColorSchemeAmount();
-      let hueDifference: number[] = [];
-      hueDifference = calculateHueDifference(orderUsedColorsAmount, 0);
 
-      console.log(hueDifference);
+      //console.log(orderUsedColorsDifference);
     };
 
     function updateVariables() {
       usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
       //orderUsedColors = ReturnOrderUsedColors();
       orderUsedColorsAmount = ReturnOrderUsedColorsAmount();
+
+      orderUsedColorsDifference = calculateHueDifference(orderUsedColorsAmount, 0);
     }
 
     function calculateRecommendColorSchemeAmount() {
-      //if (orderUsedColors.length === 0) { return; }
+
+      let maxHueDifference = calculateMaxHueDifference(orderUsedColorsDifference);
       let i = 0;
       if (orderUsedColorsAmount.length === 0) { return; }
 
@@ -59,18 +62,40 @@ export function CalculateRecommendColors() {
 
       // 使われた色の数が2色だった場合
       else if (orderUsedColorsAmount.length === 2) {
-        calculateDominantColor(recommendedColorSchemeAmount, baseColor);
-        calculateDyadColor(recommendedColorSchemeAmount, baseColor);
-        calculateTriadColor(recommendedColorSchemeAmount, baseColor);
-        calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
+        if (maxHueDifference >= 90) {
+          calculateDyadColor(recommendedColorSchemeAmount, baseColor);
+          calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
+        }
+        else if (maxHueDifference >= 60) {
+          calculateTriadColor(recommendedColorSchemeAmount, baseColor);
+        }
+        else {
+          calculateDominantColor(recommendedColorSchemeAmount, baseColor);
+        }
       }
 
       // 使われた色の数が3色以上だった場合
       else if (orderUsedColorsAmount.length >= 3) {
-        calculateTetradeColor(recommendedColorSchemeAmount, baseColor);
-        calculateDominantColor(recommendedColorSchemeAmount, baseColor);
-        calculateTriadColor(recommendedColorSchemeAmount, baseColor);
+        if (maxHueDifference <= 90) {
+          calculateDominantColor(recommendedColorSchemeAmount, baseColor);
+        }
+        else if (maxHueDifference >= 60) {
+          calculateTetradeColor(recommendedColorSchemeAmount, baseColor);
+        }
+        else {
+          //calculateTriadColor(recommendedColorSchemeAmount, baseColor);
+          calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
+        }
       }
+    }
+
+    function calculateMaxHueDifference(hueDifferences: number[]) {
+      let max = 0;
+      for (let i = 0; i < hueDifferences.length; i++) {
+        if (hueDifferences[i] > max) { max = hueDifferences[i]; }
+      }
+
+      return max;
     }
 
     function calculateHueDifference(colorsAmount: ColorAmount[], baseColorIndex: number) {
@@ -197,3 +222,4 @@ export function CalculateRecommendColors() {
 
 export default CalculateRecommendColors
 export function ReturnRecommendedColorSchemeAmount() { return recommendedColorSchemeAmount; }
+export function ReturnOrderUsedColorsDifference() { return orderUsedColorsDifference; }
