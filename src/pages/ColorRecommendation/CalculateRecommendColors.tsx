@@ -52,6 +52,7 @@ export function CalculateRecommendColors() {
         calculateDyadColor(recommendedColorSchemeAmount, baseColor);
       }
 
+      // 使われた色の数が2色だった場合
       else if (orderUsedColorsAmount.length === 2) {
         calculateDominantColor(recommendedColorSchemeAmount, baseColor);
         calculateDyadColor(recommendedColorSchemeAmount, baseColor);
@@ -59,6 +60,7 @@ export function CalculateRecommendColors() {
         calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
       }
 
+      // 使われた色の数が3色以上だった場合
       else if (orderUsedColorsAmount.length >= 3) {
         calculateTetradeColor(recommendedColorSchemeAmount, baseColor);
         calculateDominantColor(recommendedColorSchemeAmount, baseColor);
