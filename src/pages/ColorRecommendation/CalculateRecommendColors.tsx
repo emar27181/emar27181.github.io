@@ -47,6 +47,7 @@ export function CalculateRecommendColors() {
     function calculateRecommendColorSchemeAmount() {
 
       let maxHueDifference = calculateMaxHueDifference(orderUsedColorsDifference);
+      //console.log(maxHueDifference);
       let i = 0;
       if (orderUsedColorsAmount.length === 0) { return; }
 
@@ -111,7 +112,8 @@ export function CalculateRecommendColors() {
         let hue = p.hue(colorsAmount[i].color);
         let hueDifference = baseHue - hue;
         hueDifference = p.round(hueDifference);
-        if (hueDifference < 0) { hueDifference = -hueDifference; }
+        if (hueDifference < 0) { hueDifference = -hueDifference; } //角度の差が負の値だった場合の修正
+        if (hueDifference > 180) { hueDifference = 360 - hueDifference; } //角度の差が180度よりも大きい場合の修正
 
         hueDifferences.push(hueDifference);
       }
