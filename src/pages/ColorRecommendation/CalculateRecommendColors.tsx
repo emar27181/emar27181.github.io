@@ -58,42 +58,44 @@ export function CalculateRecommendColors() {
       resetRecommendedColorSchemeAmount();
       let baseColor = orderUsedColorsAmount[0].color; // 最初に使われた色をベースカラーであると仮定する
 
+      calculateColorScheme("dominantColor", baseColor);
+      calculateColorScheme("dyad", baseColor);
+      calculateColorScheme("splitComplementary", baseColor);
+      calculateColorScheme("tetrade", baseColor);
+      calculateColorScheme("triad", baseColor);
+      calculateColorScheme("dominantTone", baseColor);
+    }
+
+    // 推薦しようとしている配色の類似度を調べ，閾値以上だった場合追加を取り消す関数
+    function calculateColorScheme(colorScheme: string, baseColor: p5.Color) {
       const VALUE = 40;
 
-      calculateDominantColor(recommendedColorSchemeAmount, baseColor);
-      if (calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[recommendedColorSchemeAmount.length - 1]) > VALUE) {
-        //recommendedColorSchemeAmount[recommendedColorSchemeAmount.length - 1] = [];
-        recommendedColorSchemeAmount.pop();
-      };
-      calculateDyadColor(recommendedColorSchemeAmount, baseColor);
-      if (calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[recommendedColorSchemeAmount.length - 1]) > VALUE) {
-        recommendedColorSchemeAmount.pop();
-      };
-      calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
-      if (calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[recommendedColorSchemeAmount.length - 1]) > VALUE) {
-        recommendedColorSchemeAmount.pop();
-      };
-      calculateTetradeColor(recommendedColorSchemeAmount, baseColor);
-      if (calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[recommendedColorSchemeAmount.length - 1]) > VALUE) {
-        recommendedColorSchemeAmount.pop();
-      };
-      calculateTriadColor(recommendedColorSchemeAmount, baseColor);
-      if (calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[recommendedColorSchemeAmount.length - 1]) > VALUE) {
-        recommendedColorSchemeAmount.pop();
-      };
-      calculateDominantTone(recommendedColorSchemeAmount, baseColor);
-      if (calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[recommendedColorSchemeAmount.length - 1]) > VALUE) {
-        recommendedColorSchemeAmount.pop();
-      };
+      if (colorScheme === "dominantColor") {
+        calculateDominantColor(recommendedColorSchemeAmount, baseColor);
+      }
+      else if (colorScheme === "dyad") {
+        calculateDyadColor(recommendedColorSchemeAmount, baseColor);
+      }
+      else if (colorScheme === "splitComplementary") {
+        calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
+      }
+      else if (colorScheme === "tetrade") {
+        calculateTetradeColor(recommendedColorSchemeAmount, baseColor);
+      }
+      else if (colorScheme === "triad") {
+        calculateTriadColor(recommendedColorSchemeAmount, baseColor);
+      }
+      else if (colorScheme === "dominantTone") {
+        calculateDominantTone(recommendedColorSchemeAmount, baseColor);
+      }
+      else {
+        console.error("用意されたものではない配色を推薦しようとしています.(" + colorScheme + ")");
+      }
 
-
-      /*
-      calculateDyadColor(recommendedColorSchemeAmount, baseColor);
-      calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
-      calculateTetradeColor(recommendedColorSchemeAmount, baseColor);
-      calculateTriadColor(recommendedColorSchemeAmount, baseColor);
-      calculateDominantTone(recommendedColorSchemeAmount, baseColor);
-      */
+      // 閾値よりも相違度(?)が高かった場合その配色を削除
+      if (calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[recommendedColorSchemeAmount.length - 1]) > VALUE) {
+        recommendedColorSchemeAmount.pop();
+      };
 
     }
 
