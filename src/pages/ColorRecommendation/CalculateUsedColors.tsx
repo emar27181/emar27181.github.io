@@ -9,6 +9,7 @@ let usedColorsAmount: Array<ColorAmount> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
 let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 let orderUsedColors: Array<p5.Color> = [];
+let orderUsedColorsAmount: Array<ColorAmount> = [];
 let isCanvasMouseReleased: boolean = false;
 
 export function CalculateUsedColors() {
@@ -17,7 +18,7 @@ export function CalculateUsedColors() {
 
   const sketch = (p: P5CanvasInstance) => {
     p.setup = () => {
-      p.frameRate(1);
+      p.frameRate(2);
       initializeVariables();
     };
 
@@ -34,11 +35,12 @@ export function CalculateUsedColors() {
 
     function updateVariables() {
       canvasColors = ReturnCanvasColors();
-      calculateColorsAmount();
+      calculateUsedColorsAmount();
       calculateColorsSchemeAmount();
       isCanvasMouseReleased = ReturnIsMouseReleased();
       if (isCanvasMouseReleased) {
         orderUsedColors.push(ReturnDrawingColor());
+        updateColorsAmount(orderUsedColorsAmount, ReturnDrawingColor());
       }
     }
 
@@ -73,12 +75,12 @@ export function CalculateUsedColors() {
       usedColorsAmount.push(new ColorAmount(p.color(255), 0));
     }
 
-    function calculateColorsAmount() {
+    function calculateUsedColorsAmount() {
       resetUsedColorsAmount();
       for (let i = 0; i < SPLIT; i++) {
         for (let j = 0; j < SPLIT; j++) {
           let color = canvasColors[i][j];
-          updateUsedColorsAmount(color);
+          updateColorsAmount(usedColorsAmount, color);
           //console.log("(" + i + "," + j + "): rgb(" + p.red(color) + ", " + p.green(color) + ", " + p.blue(color) + ")");
         }
       }
@@ -94,7 +96,7 @@ export function CalculateUsedColors() {
       }
     }
 
-    function updateUsedColorsAmount(color: p5.Color) {
+    function updateColorsAmount(colorsAmount: ColorAmount[], color: p5.Color) {
       //color: 探索対象の色
       p.colorMode(p.RGB);
 
@@ -103,15 +105,15 @@ export function CalculateUsedColors() {
 
       //1の位を四捨五入した値に変更
       color = p.color(p.round(p.red(color) / placeNumber) * placeNumber, p.round(p.green(color) / placeNumber) * placeNumber, p.round(p.blue(color) / placeNumber) * placeNumber);
-      for (let i = 0; i < usedColorsAmount.length; i++) {
+      for (let i = 0; i < colorsAmount.length; i++) {
         //すでに出てきた色であった場合
-        if (equalsColor(usedColorsAmount[i].color, color)) {
-          usedColorsAmount[i].amount++;
+        if (equalsColor(colorsAmount[i].color, color)) {
+          colorsAmount[i].amount++;
           return;
         }
       }
       //まだ出てきていない色であった場合
-      usedColorsAmount[usedColorsAmount.length] = new ColorAmount(color, 1);
+      colorsAmount[colorsAmount.length] = new ColorAmount(color, 1);
     }
 
     function equalsColor(color1: p5.Color, color2: p5.Color) {
@@ -132,3 +134,4 @@ export function ReturnUsedColorsAmount() { return usedColorsAmount; }
 export function ReturnUsedColorSchemeAmount() { return usedColorSchemeAmount; }
 export function ReturnUsedColorSchemeAmountOnlyMainColor() { return usedColorSchemeAmountOnlyMainColor; }
 export function ReturnOrderUsedColors() { return orderUsedColors; }
+export function ReturnOrderUsedColorsAmount() { return orderUsedColorsAmount; }

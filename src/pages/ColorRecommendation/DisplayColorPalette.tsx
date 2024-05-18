@@ -1,7 +1,7 @@
 import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
-import { ReturnUsedColorsAmount, ReturnUsedColorSchemeAmount, ReturnUsedColorSchemeAmountOnlyMainColor } from './CalculateUsedColors';
+import { ReturnUsedColorsAmount, ReturnUsedColorSchemeAmount, ReturnUsedColorSchemeAmountOnlyMainColor, ReturnOrderUsedColorsAmount } from './CalculateUsedColors';
 import { ReturnRecommendedColorSchemeAmount } from './CalculateRecommendColors';
 import { ColorAmount } from '../../utils/ColorAmount';
 import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE } from '../../config/constants';
@@ -12,10 +12,11 @@ let drawingColor: number[];
 
 export function DisplayColorPalette() {
   const sketch = (p: P5CanvasInstance) => {
-    const HEIGHT_COLOR_PALETTE = 0.02 * window.innerWidth;
+    const HEIGHT_COLOR_PALETTE = 0.015 * window.innerWidth;
     let usedColorsAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
+    let orderUsedColorsAmount: Array<ColorAmount> = [];
     //let recommendedColorSchemeAmount: Array<ColorAmount> = [];
     //let recommendedColorSchemeAmount: ColorAmount[][] ;
     let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
@@ -36,30 +37,36 @@ export function DisplayColorPalette() {
 
     p.draw = () => {
       updateVariables();
+      p.background(0);
 
       let countDisplayColorPalette = 0;
 
+      displayColorPaletteByRatio(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
       displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
       displayColorPaletteByRatio(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
       displayColorPaletteByRatio(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
-      drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE); // ↓
+      // ↓
+      drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
-      displayColorPaletteByRatio(recommendedColorSchemeAmount[0], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteByRatio(recommendedColorSchemeAmount[1], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
+        displayColorPaletteByRatio(recommendedColorSchemeAmount[i], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      }
 
       //---------------------------------------------------------
       countDisplayColorPalette++; //空行の表示分のインクリメント
 
+      displayColorPaletteBySquare(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
       displayColorPaletteBySquare(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
       //displayColorPaletteBySquare(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
       displayColorPaletteBySquare(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
-      drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE) // ↓
+      // ↓
+      drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
-      displayColorPaletteBySquare(recommendedColorSchemeAmount[0], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteBySquare(recommendedColorSchemeAmount[1], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-
+      for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
+        displayColorPaletteBySquare(recommendedColorSchemeAmount[i], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      }
     };
 
     p.mousePressed = () => {
@@ -79,6 +86,7 @@ export function DisplayColorPalette() {
       usedColorsAmount = ReturnUsedColorsAmount();
       usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
       usedColorSchemeAmountOnlyMainColor = ReturnUsedColorSchemeAmountOnlyMainColor();
+      orderUsedColorsAmount = ReturnOrderUsedColorsAmount();
       recommendedColorSchemeAmount = ReturnRecommendedColorSchemeAmount();
       isTouhched = false;
     }
