@@ -17,26 +17,41 @@ export function calculateLabColorSimilarity(color1: number[], color2: number[]):
 export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
 
   const p = new p5(() => { });
-  let sum = 0;
+  let sum: number[] = [];
 
   if ((typeof (colorsAmount1) === 'undefined') || (typeof (colorsAmount2) === 'undefined')) { return -2; }
   if (colorsAmount1.length === 0 || colorsAmount2.length === 0) { return -1; }
 
-  for (let i = 0; i < colorsAmount1.length; i++) {
-    if (colorsAmount2.length - 1 < i) { continue; }
-    let p5Color1: Color = colorsAmount1[i].color;
-    let p5Color2: Color = colorsAmount2[i].color;
+  // 配列内の各色ごとに類似度を計算しその合計を求める
+  for (let j = 0; j < colorsAmount2.length; j++) {
+    //j: colorAmount2の比較を開始するインデックス
+    sum[j] = 0;
+    for (let i = 0; i < colorsAmount1.length; i++) {
+      if (colorsAmount2.length - 1 < i) { continue; }
+      let p5Color1: Color = colorsAmount1[i].color;
+      let p5Color2: Color = colorsAmount2[j % colorsAmount2.length].color; //colorAmount2の比較を開始するインデックスをずらしていく
 
-    let color1: number[] = [p.red(p5Color1), p.green(p5Color1), p.blue(p5Color1)];
-    let color2: number[] = [p.red(p5Color2), p.green(p5Color2), p.blue(p5Color2)];
+      let color1: number[] = [p.red(p5Color1), p.green(p5Color1), p.blue(p5Color1)];
+      let color2: number[] = [p.red(p5Color2), p.green(p5Color2), p.blue(p5Color2)];
 
-    if (DEBUG) {
-      console.log("(" + color1 + ") (" + color2 + ")");
-      console.log("calculateLabColorSimilarity(color1, color2) = " + calculateLabColorSimilarity(color1, color2))
+      if (DEBUG) {
+        console.log("(" + color1 + ") (" + color2 + ")");
+        console.log("calculateLabColorSimilarity(color1, color2) = " + calculateLabColorSimilarity(color1, color2))
+        console.log("(" + j + ", " + i + ")");
+      }
+
+
+      sum[j] += calculateLabColorSimilarity(color1, color2);
     }
 
-    sum += calculateLabColorSimilarity(color1, color2);
   }
 
-  return sum;
+  let minSum = sum[0];
+
+  for (let i = 0; i < sum.length; i++) {
+    //console.log("sum[" + i + "] = " + sum[i]);
+    if (sum[i] < minSum) { minSum = sum[i]; }
+  }
+
+  return minSum;
 }
