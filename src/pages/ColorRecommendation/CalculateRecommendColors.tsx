@@ -39,8 +39,10 @@ export function CalculateRecommendColors() {
       //calculateRecommendColorSchemeAmount();
       calculateRecommendColorSchemeAmountBySimilarity();
 
-      //console.log("colorSimilarityLab(~): " + calculateLabColorSimilarity([255, 255, 255], [0, 0, 0]));
-      console.log("calculateColorsAmountSimilarity(~,~) = " + calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[0]));
+      if (DEBUG) {
+        //console.log("colorSimilarityLab(~): " + calculateLabColorSimilarity([255, 255, 255], [0, 0, 0]));
+        console.log("calculateColorsAmountSimilarity(~,~) = " + calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[0]));
+      }
     };
 
     function updateVariables() {

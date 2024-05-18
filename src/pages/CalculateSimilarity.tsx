@@ -60,7 +60,7 @@ export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], co
   aveSum = aveSum / sum.length;
 
   //console.log("minSum: " + minSum);
-  console.log("aveSum: " + aveSum);
+  //console.log("aveSum: " + aveSum);
 
   // 合計の最小値を採用すると全て同じ数値になってしまう
   //return minSum;

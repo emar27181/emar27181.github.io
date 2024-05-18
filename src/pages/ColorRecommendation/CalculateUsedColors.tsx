@@ -18,7 +18,7 @@ export function CalculateUsedColors() {
 
   const sketch = (p: P5CanvasInstance) => {
     p.setup = () => {
-      p.frameRate(1);
+      p.frameRate(2);
       initializeVariables();
     };
 
@@ -40,7 +40,6 @@ export function CalculateUsedColors() {
       isCanvasMouseReleased = ReturnIsMouseReleased();
       if (isCanvasMouseReleased) {
         orderUsedColors.push(ReturnDrawingColor());
-        //orderUsedColorsAmount.push(new ColorAmount(ReturnDrawingColor(), 10));
         updateColorsAmount(orderUsedColorsAmount, ReturnDrawingColor());
       }
     }
