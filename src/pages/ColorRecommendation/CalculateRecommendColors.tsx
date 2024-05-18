@@ -7,11 +7,14 @@ import { ReturnOrderUsedColors, ReturnOrderUsedColorsAmount } from './CalculateU
 import p5 from 'p5';
 import Color from 'color';
 
+const DEBUG = false;
+
 let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
 let orderUsedColorsAmount: Array<ColorAmount> = [];
 
 let orderUsedColorsDifference: number[] = [];
+let orderUsedColorsDifferenceExcludeBaseColor: number[] = [];
 //let orderUsedColors: Array<p5.Color> = [];
 
 export function CalculateRecommendColors() {
@@ -32,8 +35,6 @@ export function CalculateRecommendColors() {
     p.draw = () => {
       updateVariables();
       calculateRecommendColorSchemeAmount();
-
-      //console.log(orderUsedColorsDifference);
     };
 
     function updateVariables() {
@@ -41,13 +42,20 @@ export function CalculateRecommendColors() {
       //orderUsedColors = ReturnOrderUsedColors();
       orderUsedColorsAmount = ReturnOrderUsedColorsAmount();
 
-      orderUsedColorsDifference = calculateHueDifference(orderUsedColorsAmount, 0);
+      orderUsedColorsDifference = calculateHueDifference(orderUsedColorsAmount, 0, false, -1);
+      orderUsedColorsDifferenceExcludeBaseColor = calculateHueDifference(orderUsedColorsAmount, 1, true, 0);
     }
 
     function calculateRecommendColorSchemeAmount() {
 
       let maxHueDifference = calculateMaxHueDifference(orderUsedColorsDifference);
-      //console.log(maxHueDifference);
+      let maxHueDifferenceExcludeBaseColor = calculateMaxHueDifference(orderUsedColorsDifferenceExcludeBaseColor);
+
+      if (DEBUG) {
+        console.log("maxHueDifference = " + maxHueDifference);
+        console.log("maxHueDifferenceExcludeBaseColor = " + maxHueDifferenceExcludeBaseColor);
+      }
+
       let i = 0;
       if (orderUsedColorsAmount.length === 0) { return; }
 
@@ -59,6 +67,7 @@ export function CalculateRecommendColors() {
       if (orderUsedColorsAmount.length === 1) {
         calculateDominantColor(recommendedColorSchemeAmount, baseColor);
         calculateDyadColor(recommendedColorSchemeAmount, baseColor);
+        calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
       }
 
       // 使われた色の数が2色だった場合
@@ -67,7 +76,7 @@ export function CalculateRecommendColors() {
           calculateDyadColor(recommendedColorSchemeAmount, baseColor);
           calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
         }
-        else if (maxHueDifference >= 60) {
+        else if (maxHueDifferenceExcludeBaseColor >= 60) {
           calculateTriadColor(recommendedColorSchemeAmount, baseColor);
         }
         else {
@@ -80,7 +89,7 @@ export function CalculateRecommendColors() {
         if (maxHueDifference <= 90) {
           calculateDominantColor(recommendedColorSchemeAmount, baseColor);
         }
-        else if (maxHueDifference >= 60) {
+        else if (maxHueDifferenceExcludeBaseColor >= 60) {
           calculateTetradeColor(recommendedColorSchemeAmount, baseColor);
         }
         else {
@@ -99,18 +108,19 @@ export function CalculateRecommendColors() {
       return max;
     }
 
-    function calculateHueDifference(colorsAmount: ColorAmount[], baseColorIndex: number) {
-      if (colorsAmount.length === 0) { return []; }
+    function calculateHueDifference(colorsAmount: ColorAmount[], comparedColorIndex: number, isExcludeBaseColor: boolean, excludeColorIndex: number) {
+      if (colorsAmount.length <= 1) { return []; }
 
-      let baseColor = colorsAmount[baseColorIndex].color;
-      let baseHue = p.hue(baseColor);
+      let comparedColor = colorsAmount[comparedColorIndex].color;
+      let comparedHue = p.hue(comparedColor);
       let hueDifferences: number[] = [];
 
       for (let i = 0; i < colorsAmount.length; i++) {
         //if (i === baseColorIndex) { continue; }
+        if (isExcludeBaseColor && (i === excludeColorIndex)) { continue; }
 
         let hue = p.hue(colorsAmount[i].color);
-        let hueDifference = baseHue - hue;
+        let hueDifference = comparedHue - hue;
         hueDifference = p.round(hueDifference);
         if (hueDifference < 0) { hueDifference = -hueDifference; } //角度の差が負の値だった場合の修正
         if (hueDifference > 180) { hueDifference = 360 - hueDifference; } //角度の差が180度よりも大きい場合の修正
