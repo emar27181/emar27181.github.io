@@ -44,6 +44,8 @@ export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], co
       sum[j] += calculateLabColorSimilarity(color1, color2);
     }
 
+    // 比較する配列の長さに応じてsumの最大値は変動するため最大値が100になるように修正
+    sum[j] = sum[j] / colorsAmount1.length;
   }
 
   let minSum = sum[0];
