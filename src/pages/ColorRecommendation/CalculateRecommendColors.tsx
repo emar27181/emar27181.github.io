@@ -6,7 +6,7 @@ import { ReturnUsedColorSchemeAmount } from './CalculateUsedColors';
 import { ReturnOrderUsedColors, ReturnOrderUsedColorsAmount } from './CalculateUsedColors';
 import p5 from 'p5';
 import Color from 'color';
-import { calculateLabColorSimilarity } from '../CalculateSimilarity';
+import { calculateLabColorSimilarity, calculateColorsAmountSimilarity } from '../CalculateSimilarity';
 
 const DEBUG = false;
 
@@ -37,7 +37,8 @@ export function CalculateRecommendColors() {
       updateVariables();
       calculateRecommendColorSchemeAmount();
 
-      console.log("colorSimilarityLab(~): " + calculateLabColorSimilarity([255, 255, 255], [0, 0, 0]));
+      //console.log("colorSimilarityLab(~): " + calculateLabColorSimilarity([255, 255, 255], [0, 0, 0]));
+      console.log("calculateColorsAmountSimilarity(~,~) = " + calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[0]));
     };
 
     function updateVariables() {
