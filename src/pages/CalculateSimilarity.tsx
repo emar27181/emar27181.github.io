@@ -108,8 +108,10 @@ export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], co
   }
   //}
 
-  //console.log("colorsAmount1.length = " + colorsAmount1.length + ", sumSimilarity = " + Math.round(sumSimilarity));
-  console.log("sumSimilarity / colorsAmount1.length = " + sumSimilarity / colorsAmount1.length);
+  if (DEBUG) {
+    //console.log("colorsAmount1.length = " + colorsAmount1.length + ", sumSimilarity = " + Math.round(sumSimilarity));
+    console.log("sumSimilarity / colorsAmount1.length = " + sumSimilarity / colorsAmount1.length);
+  }
 
   return (sumSimilarity / colorsAmount1.length);
 }
