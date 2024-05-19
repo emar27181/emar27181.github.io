@@ -4,7 +4,14 @@ import p5, { Color } from 'p5';
 
 const DEBUG = false;
 
-export function calculateLabColorSimilarity(color1: number[], color2: number[]): number {
+// RGB値をLabColor値(人間から見た類似度を計算するのに使う表示系？)に変換し相違度を比較する関数
+export function calculateLabColorSimilarity(p5Color1: Color, p5Color2: Color): number {
+
+  const p = new p5(() => { });
+
+  let color1: number[] = [p.red(p5Color1), p.green(p5Color1), p.blue(p5Color1)];
+  let color2: number[] = [p.red(p5Color2), p.green(p5Color2), p.blue(p5Color2)];
+
   const rgbColor1: RGBColor = { R: color1[0], G: color1[1], B: color1[2] };
   const rgbColor2: RGBColor = { R: color2[0], G: color2[1], B: color2[2] };
 
