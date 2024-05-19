@@ -7,7 +7,7 @@ import { ReturnOrderUsedColors, ReturnOrderUsedColorsAmount } from './CalculateU
 import p5 from 'p5';
 import Color from 'color';
 import { calculateLabColorSimilarity, calculateColorsAmountSimilarity } from '../CalculateSimilarity';
-import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone } from './CalculateColorScheme';
+import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor } from './CalculateColorScheme';
 
 const DEBUG = false;
 
@@ -66,6 +66,10 @@ export function CalculateRecommendColors() {
       calculateColorScheme("tetrade", baseColor);
       calculateColorScheme("triad", baseColor);
       calculateColorScheme("dominantTone", baseColor);
+      calculateColorScheme("pentad", baseColor);
+      calculateColorScheme("hexad", baseColor);
+      calculateColorScheme("analogy", baseColor);
+      calculateColorScheme("intermediate", baseColor);
     }
 
     // 推薦しようとしている配色の類似度を調べ，閾値以上だった場合追加を取り消す関数
@@ -89,6 +93,18 @@ export function CalculateRecommendColors() {
       }
       else if (colorScheme === "dominantTone") {
         calculateDominantTone(recommendedColorSchemeAmount, baseColor);
+      }
+      else if (colorScheme === "pentad") {
+        calculatePentadColor(recommendedColorSchemeAmount, baseColor);
+      }
+      else if (colorScheme === "hexad") {
+        calculateHexadColor(recommendedColorSchemeAmount, baseColor);
+      }
+      else if (colorScheme === "analogy") {
+        calculateAnalogyColor(recommendedColorSchemeAmount, baseColor);
+      }
+      else if (colorScheme === "intermediate") {
+        calculateIntermediateColor(recommendedColorSchemeAmount, baseColor);
       }
       else {
         console.error("用意されたものではない配色を推薦しようとしています.(" + colorScheme + ")");
