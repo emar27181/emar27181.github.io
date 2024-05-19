@@ -176,7 +176,7 @@ export function DisplayColorPalette() {
 
       if (DEBUG) {
         for (let i = 0; i < similarityValue.length; i++) {
-          console.log("similarityValue = " + Math.round(similarityValue[i]));
+          console.log("similarityValue[" + i + "] = " + Math.round(similarityValue[i]));
         }
       }
 
