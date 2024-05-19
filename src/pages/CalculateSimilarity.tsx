@@ -21,7 +21,7 @@ export function calculateLabColorSimilarity(p5Color1: Color, p5Color2: Color): n
   return diff(labColor1, labColor2);
 }
 
-export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
+export function calculateColorsAmountSimilarity0(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
 
   const p = new p5(() => { });
   let sum: number[] = [];
@@ -38,17 +38,14 @@ export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], co
       let p5Color1: Color = colorsAmount1[i].color;
       let p5Color2: Color = colorsAmount2[j % colorsAmount2.length].color; //colorAmount2の比較を開始するインデックスをずらしていく
 
-      let color1: number[] = [p.red(p5Color1), p.green(p5Color1), p.blue(p5Color1)];
-      let color2: number[] = [p.red(p5Color2), p.green(p5Color2), p.blue(p5Color2)];
-
       if (DEBUG) {
-        console.log("(" + color1 + ") (" + color2 + ")");
-        console.log("calculateLabColorSimilarity(color1, color2) = " + calculateLabColorSimilarity(color1, color2))
+        //console.log("(" + color1 + ") (" + color2 + ")");
+        //console.log("calculateLabColorSimilarity(color1, color2) = " + calculateLabColorSimilarity(color1, color2))
         console.log("(" + j + ", " + i + ")");
       }
 
 
-      sum[j] += calculateLabColorSimilarity(color1, color2);
+      sum[j] += calculateLabColorSimilarity(p5Color1, p5Color2);
     }
 
     // 比較する配列の長さに応じてsumの最大値は変動するため最大値が100になるように修正
@@ -70,6 +67,49 @@ export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], co
   //console.log("aveSum: " + aveSum);
 
   // 合計の最小値を採用すると全て同じ数値になってしまう
-  //return minSum;
-  return aveSum;
+  return minSum;
+  //return aveSum;
+}
+
+export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
+
+  const p = new p5(() => { });
+  let sumSimilarity: number = 0;
+
+  if ((typeof (colorsAmount1) === 'undefined') || (typeof (colorsAmount2) === 'undefined')) { return -2; }
+  if (colorsAmount1.length === 0 || colorsAmount2.length === 0) { return -1; }
+
+  //if (colorsAmount1.length < colorsAmount2.length) {
+  // usedIndex: 最小値を保存するインデックスとして使用された場合trueを保存する関数
+  let usedIndex: boolean[] = [];
+  for (let i = 0; i < colorsAmount1.length; i++) {
+    usedIndex.push(false);
+  }
+
+  for (let i = 0; i < colorsAmount1.length; i++) {
+    // min: colorsAmount1[i].colorと比較して最も相違度が低かった値
+    let min = calculateLabColorSimilarity(colorsAmount1[i].color, colorsAmount2[0].color);
+    let minIndex = 0;
+    for (let j = 0; j < colorsAmount2.length; j++) {
+      // jがすでに比較されたインデックスだった場合
+      if (usedIndex[j]) { continue; }
+
+      // 最小値の更新
+      let simValue = calculateLabColorSimilarity(colorsAmount1[i].color, colorsAmount2[j].color);
+      if (simValue < min) {
+        min = simValue;
+        minIndex = j;
+      }
+    }
+
+    // 類似度の合計と使用したインデックスを更新
+    sumSimilarity += min;
+    usedIndex[minIndex] = true;
+  }
+  //}
+
+  //console.log("colorsAmount1.length = " + colorsAmount1.length + ", sumSimilarity = " + Math.round(sumSimilarity));
+  console.log("sumSimilarity / colorsAmount1.length = " + sumSimilarity / colorsAmount1.length);
+
+  return (sumSimilarity / colorsAmount1.length);
 }
