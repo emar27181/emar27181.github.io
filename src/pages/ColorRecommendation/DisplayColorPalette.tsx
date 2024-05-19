@@ -82,6 +82,13 @@ export function DisplayColorPalette() {
 
         for (let i = 0; i < displayOrderIndex.length; i++) {
           displayColorPaletteBySquare(recommendedColorSchemeAmount[displayOrderIndex[i]], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+
+          //インデックス番号の描画
+          p.textSize(0.5 * HEIGHT_COLOR_PALETTE);
+          p.textAlign(p.CENTER, p.CENTER);
+          p.noStroke();
+          p.text(displayOrderIndex[i], p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
+
         }
 
         /*
