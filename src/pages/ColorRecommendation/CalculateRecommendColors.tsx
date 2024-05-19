@@ -8,6 +8,7 @@ import p5 from 'p5';
 import Color from 'color';
 import { calculateLabColorSimilarity, calculateColorsAmountSimilarity } from '../CalculateSimilarity';
 import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor } from './CalculateColorScheme';
+import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 
 const DEBUG = false;
 
@@ -17,6 +18,7 @@ let orderUsedColorsAmount: Array<ColorAmount> = [];
 
 let orderUsedColorsDifference: number[] = [];
 let orderUsedColorsDifferenceExcludeBaseColor: number[] = [];
+let isCanvasMouseReleased = false;
 //let orderUsedColors: Array<p5.Color> = [];
 
 export function CalculateRecommendColors() {
@@ -37,7 +39,9 @@ export function CalculateRecommendColors() {
     p.draw = () => {
       updateVariables();
       //calculateRecommendColorSchemeAmount();
-      calculateRecommendColorSchemeAmountBySimilarity();
+      if (isCanvasMouseReleased) {
+        calculateRecommendColorSchemeAmountBySimilarity();
+      }
 
       if (DEBUG) {
         //console.log("colorSimilarityLab(~): " + calculateLabColorSimilarity([255, 255, 255], [0, 0, 0]));
@@ -49,6 +53,7 @@ export function CalculateRecommendColors() {
       usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
       //orderUsedColors = ReturnOrderUsedColors();
       orderUsedColorsAmount = ReturnOrderUsedColorsAmount();
+      isCanvasMouseReleased = ReturnIsMouseReleased();
 
       orderUsedColorsDifference = calculateHueDifference(orderUsedColorsAmount, 0, false, -1);
       orderUsedColorsDifferenceExcludeBaseColor = calculateHueDifference(orderUsedColorsAmount, 1, true, 0);
