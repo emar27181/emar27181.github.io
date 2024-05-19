@@ -6,9 +6,14 @@ import { ReturnRecommendedColorSchemeAmount } from './CalculateRecommendColors';
 import { ColorAmount } from '../../utils/ColorAmount';
 import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE } from '../../config/constants';
 import p5 from 'p5';
+import { calculateColorsAmountSimilarity, calculateLabColorSimilarity } from '../CalculateSimilarity';
+import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 
 let isTouhched: boolean;
+let isCanvasMouseReleased: boolean = false;
 let drawingColor: number[];
+const DEBUG: boolean = true;
+
 
 export function DisplayColorPalette() {
   const sketch = (p: P5CanvasInstance) => {
@@ -20,6 +25,8 @@ export function DisplayColorPalette() {
     //let recommendedColorSchemeAmount: Array<ColorAmount> = [];
     //let recommendedColorSchemeAmount: ColorAmount[][] ;
     let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
+
+    let displayOrderIndex: number[] = [];
 
     p.setup = () => {
       p.createCanvas(DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3, DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3);
@@ -39,33 +46,56 @@ export function DisplayColorPalette() {
       updateVariables();
       p.background(0);
 
+
+      const IS_DISPLAY_COLOR_PALETTE_BY_RATIO = false;
+      const IS_DISPLAY_COLOR_PALETTE_BY_SQUARE = true;
       let countDisplayColorPalette = 0;
 
-      displayColorPaletteByRatio(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteByRatio(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteByRatio(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+      if (DEBUG) {
+        //console.log("calculateDisplayOrder(recommendedColorSchemeAmount) = " + calculateDisplayOrder(recommendedColorSchemeAmount));
+      }
+      if (IS_DISPLAY_COLOR_PALETTE_BY_RATIO) {
+        displayColorPaletteByRatio(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        displayColorPaletteByRatio(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        displayColorPaletteByRatio(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
-      // ↓
-      drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        // ↓
+        drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
-      for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
-        displayColorPaletteByRatio(recommendedColorSchemeAmount[i], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
+          displayColorPaletteByRatio(recommendedColorSchemeAmount[i], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        }
       }
 
-      //---------------------------------------------------------
-      countDisplayColorPalette++; //空行の表示分のインクリメント
+      if (IS_DISPLAY_COLOR_PALETTE_BY_SQUARE) {
+        //---------------------------------------------------------
+        countDisplayColorPalette++; //空行の表示分のインクリメント
 
-      displayColorPaletteBySquare(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteBySquare(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      //displayColorPaletteBySquare(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-      displayColorPaletteBySquare(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        displayColorPaletteBySquare(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        displayColorPaletteBySquare(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        //displayColorPaletteBySquare(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        displayColorPaletteBySquare(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
-      // ↓
-      drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        // ↓
+        drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
-      for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
-        displayColorPaletteBySquare(recommendedColorSchemeAmount[i], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        for (let i = 0; i < displayOrderIndex.length; i++) {
+          displayColorPaletteBySquare(recommendedColorSchemeAmount[displayOrderIndex[i]], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+
+          //インデックス番号の描画
+          p.textSize(0.5 * HEIGHT_COLOR_PALETTE);
+          p.textAlign(p.CENTER, p.CENTER);
+          p.noStroke();
+          p.text(displayOrderIndex[i], p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
+
+        }
+
+        /*
+        for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
+          displayColorPaletteBySquare(recommendedColorSchemeAmount[i], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        }
+        */
       }
     };
 
@@ -83,12 +113,16 @@ export function DisplayColorPalette() {
     }
 
     function updateVariables() {
+      isCanvasMouseReleased = ReturnIsMouseReleased();
       usedColorsAmount = ReturnUsedColorsAmount();
       usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
       usedColorSchemeAmountOnlyMainColor = ReturnUsedColorSchemeAmountOnlyMainColor();
       orderUsedColorsAmount = ReturnOrderUsedColorsAmount();
       recommendedColorSchemeAmount = ReturnRecommendedColorSchemeAmount();
       isTouhched = false;
+      if (isCanvasMouseReleased) {
+        displayOrderIndex = calculateDisplayOrder(recommendedColorSchemeAmount);
+      }
     }
 
     function displayColorPaletteByRatio(colorsAmount: ColorAmount[], x: number, y: number) {
@@ -131,6 +165,33 @@ export function DisplayColorPalette() {
         //p.text(p.round(p.hue(colorsAmount[i].color)), x + i * ONE_COLOR_PALETTE_SIZE + ONE_COLOR_PALETTE_SIZE / 2, y + ONE_COLOR_PALETTE_SIZE / 2);
       }
     }
+
+    function calculateDisplayOrder(colorsAmount: ColorAmount[][]) {
+      if (colorsAmount.length === 0) { return []; }
+
+      let similarityValue: number[] = [];
+      for (let i = 0; i < colorsAmount.length; i++) {
+        similarityValue[i] = calculateColorsAmountSimilarity(colorsAmount[i], orderUsedColorsAmount);
+      }
+
+      if (DEBUG) {
+        for (let i = 0; i < similarityValue.length; i++) {
+          console.log("similarityValue[" + i + "] = " + Math.round(similarityValue[i]));
+        }
+      }
+
+      // インデックスと対応するsimilarityValueの値をペアにする
+      let indexedSimilarity: { index: number, value: number }[] = similarityValue.map((value, index) => ({ index, value }));
+
+      // similarityValueの値でソートする
+      indexedSimilarity.sort((a, b) => a.value - b.value);
+
+      // ソートされたペアからインデックス番号を取り出す
+      let sortedIndex: number[] = indexedSimilarity.map(item => item.index);
+
+      return sortedIndex;
+    }
+
 
 
   }
