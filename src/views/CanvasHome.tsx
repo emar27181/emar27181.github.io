@@ -15,7 +15,7 @@ import DisplayRecommendColorsPalette from '../pages/ColorRecommendation/DisplayR
 import CalculateUsedColors from '../pages/ColorRecommendation/CalculateUsedColors';
 import DisplayColorPalette from '../pages/ColorRecommendation/DisplayColorPalette';
 import CalculateRecommendColors from '../pages/ColorRecommendation/CalculateRecommendColors';
-import ButtonCalculateRecommendColors from '../components/ButtonCalculateRecommendColors';
+import ButtonCalculateRecommendColors from '../components/ButtonUpdateRecommendColors';
 let isCanvasHome = false;
 
 export function U22programmingContestHome() {

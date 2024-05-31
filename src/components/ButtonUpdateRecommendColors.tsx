@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../App.css';
 import { SetIsUpdateRecommendColorsScheme } from '../pages/ColorRecommendation/CalculateRecommendColors';
 
-const ButtonCalculateRecommendColors: React.FC = () => {
+const ButtonUpdateRecommendColors: React.FC = () => {
   // isCalculateRecommendColorsという状態変数を定義
   const [isCalculateRecommendColors, setIsCalculateRecommendColors] = useState<boolean>(false);
 
@@ -20,4 +20,4 @@ const ButtonCalculateRecommendColors: React.FC = () => {
   );
 }
 
-export default ButtonCalculateRecommendColors;
+export default ButtonUpdateRecommendColors;
