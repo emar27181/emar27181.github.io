@@ -51,9 +51,9 @@ export function CalculateRecommendColors() {
       if (DEBUG) {
         //console.log("colorSimilarityLab(~): " + calculateLabColorSimilarity([255, 255, 255], [0, 0, 0]));
         console.log("calculateColorsAmountSimilarity(~,~) = " + calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[0]));
+        //console.log("isUpdateRecommendColorsScheme = " + isUpdateRecommendColorsScheme);
       }
 
-      console.log("isUpdateRecommendColorsScheme = " + isUpdateRecommendColorsScheme);
     };
 
     function updateVariables() {
