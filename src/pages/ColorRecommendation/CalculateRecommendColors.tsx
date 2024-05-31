@@ -40,7 +40,7 @@ export function CalculateRecommendColors() {
       updateVariables();
       //calculateRecommendColorSchemeAmount();
       if (isCanvasMouseReleased) {
-        calculateRecommendColorSchemeAmountBySimilarity();
+        calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
       }
 
       if (DEBUG) {
@@ -60,10 +60,10 @@ export function CalculateRecommendColors() {
     }
 
     // 塗った配色と推薦する配色の類似度で配色を推薦する関数
-    function calculateRecommendColorSchemeAmountBySimilarity() {
-      if (orderUsedColorsAmount.length === 0) { return; }
+    function calculateRecommendColorSchemeAmountBySimilarity(colorsAmount: ColorAmount[]) {
+      if (colorsAmount.length === 0) { return; }
       resetRecommendedColorSchemeAmount();
-      let baseColor = orderUsedColorsAmount[0].color; // 最初に使われた色をベースカラーであると仮定する
+      let baseColor = colorsAmount[0].color; // 最初に使われた色をベースカラーであると仮定する
 
       calculateColorScheme("dominantColor", baseColor);
       calculateColorScheme("dyad", baseColor);
