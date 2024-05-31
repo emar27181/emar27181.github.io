@@ -3,7 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ColorAmount } from '../../utils/ColorAmount';
 import { ReturnUsedColorSchemeAmount } from './CalculateUsedColors';
-import { ReturnOrderUsedColors, ReturnOrderUsedColorsAmount } from './CalculateUsedColors';
+import { ReturnOrderUsedColors, ReturnOrderUsedColorsAmount, ReturnUsedColorSchemeAmountOnlyMainColor } from './CalculateUsedColors';
 import p5 from 'p5';
 import Color from 'color';
 import { calculateLabColorSimilarity, calculateColorsAmountSimilarity } from '../ColorRecommendation/CalculateSimilarity';
@@ -15,6 +15,7 @@ const DEBUG = false;
 let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
 let orderUsedColorsAmount: Array<ColorAmount> = [];
+let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 
 let orderUsedColorsDifference: number[] = [];
 let orderUsedColorsDifferenceExcludeBaseColor: number[] = [];
@@ -40,7 +41,8 @@ export function CalculateRecommendColors() {
       updateVariables();
       //calculateRecommendColorSchemeAmount();
       if (isCanvasMouseReleased) {
-        calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
+        //calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
+        calculateRecommendColorSchemeAmountBySimilarity(usedColorSchemeAmountOnlyMainColor);
       }
 
       if (DEBUG) {
@@ -51,6 +53,7 @@ export function CalculateRecommendColors() {
 
     function updateVariables() {
       usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
+      usedColorSchemeAmountOnlyMainColor = ReturnUsedColorSchemeAmountOnlyMainColor();
       //orderUsedColors = ReturnOrderUsedColors();
       orderUsedColorsAmount = ReturnOrderUsedColorsAmount();
       isCanvasMouseReleased = ReturnIsMouseReleased();
