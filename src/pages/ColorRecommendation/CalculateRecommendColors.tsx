@@ -20,6 +20,7 @@ let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 let orderUsedColorsDifference: number[] = [];
 let orderUsedColorsDifferenceExcludeBaseColor: number[] = [];
 let isCanvasMouseReleased = false;
+let isUpdateRecommendColorsScheme: boolean = false;
 //let orderUsedColors: Array<p5.Color> = [];
 
 export function CalculateRecommendColors() {
@@ -40,15 +41,19 @@ export function CalculateRecommendColors() {
     p.draw = () => {
       updateVariables();
       //calculateRecommendColorSchemeAmount();
-      if (isCanvasMouseReleased) {
+      if (isCanvasMouseReleased || isUpdateRecommendColorsScheme) {
         //calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
         calculateRecommendColorSchemeAmountBySimilarity(usedColorSchemeAmountOnlyMainColor);
+        console.log("recommendColorScheme was updated");
+        isUpdateRecommendColorsScheme = false;
       }
 
       if (DEBUG) {
         //console.log("colorSimilarityLab(~): " + calculateLabColorSimilarity([255, 255, 255], [0, 0, 0]));
         console.log("calculateColorsAmountSimilarity(~,~) = " + calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[0]));
       }
+
+      console.log("isUpdateRecommendColorsScheme = " + isUpdateRecommendColorsScheme);
     };
 
     function updateVariables() {
@@ -237,3 +242,4 @@ export function CalculateRecommendColors() {
 export default CalculateRecommendColors
 export function ReturnRecommendedColorSchemeAmount() { return recommendedColorSchemeAmount; }
 export function ReturnOrderUsedColorsDifference() { return orderUsedColorsDifference; }
+export function SetIsUpdateRecommendColorsScheme() { isUpdateRecommendColorsScheme = true; }
