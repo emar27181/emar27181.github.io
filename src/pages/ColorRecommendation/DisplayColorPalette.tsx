@@ -6,7 +6,7 @@ import { ReturnRecommendedColorSchemeAmount } from './CalculateRecommendColors';
 import { ColorAmount } from '../../utils/ColorAmount';
 import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE } from '../../config/constants';
 import p5 from 'p5';
-import { calculateColorsAmountSimilarity, calculateLabColorSimilarity } from '../CalculateSimilarity';
+import { calculateColorsAmountSimilarity, calculateLabColorSimilarity } from '../ColorRecommendation/CalculateSimilarity';
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 
 let isTouhched: boolean;

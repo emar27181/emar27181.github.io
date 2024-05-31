@@ -6,7 +6,7 @@ import { ReturnUsedColorSchemeAmount } from './CalculateUsedColors';
 import { ReturnOrderUsedColors, ReturnOrderUsedColorsAmount } from './CalculateUsedColors';
 import p5 from 'p5';
 import Color from 'color';
-import { calculateLabColorSimilarity, calculateColorsAmountSimilarity } from '../CalculateSimilarity';
+import { calculateLabColorSimilarity, calculateColorsAmountSimilarity } from '../ColorRecommendation/CalculateSimilarity';
 import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor } from './CalculateColorScheme';
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 

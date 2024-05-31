@@ -1,5 +1,5 @@
 import { RGBColor, LabColor, diff, rgb_to_lab } from 'color-diff';
-import { ColorAmount } from '../utils/ColorAmount';
+import { ColorAmount } from '../../utils/ColorAmount';
 import p5, { Color } from 'p5';
 
 const DEBUG = false;
