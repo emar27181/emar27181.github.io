@@ -10,6 +10,10 @@ import DisplayCanvasFilter from '../pages/ColorRecommendation/DisplayCanvasFilte
 import ColorGanerateRe from '../pages/ColorRecommendation/ColorGenerate';
 import AllScrollLock from '../components/AllScrollLock';
 import DisplayUsedColorWheel from '../pages/ColorRecommendation/DisplayUsedColorWheel';
+import CalculateRecommendColors from '../pages/ColorRecommendation/CalculateRecommendColors';
+import CalculateUsedColors from '../pages/ColorRecommendation/CalculateUsedColors';
+import { DisplayColorPalette } from '../pages/ColorRecommendation/DisplayColorPalette';
+import ButtonUpdateRecommendColors from '../components/ButtonUpdateRecommendColors';
 
 let isCanvasHome = false;
 
@@ -29,8 +33,16 @@ export function CanvasHomeNormal() {
         <div style={{ overflow: 'hidden' }}>
           {Canvas()}
         </div>
+        <div>
+          <DisplayColorPalette />
+          <ButtonUpdateRecommendColors />
+        </div>
       </div>
 
+      <div>
+        <CalculateUsedColors />
+        <CalculateRecommendColors />
+      </div>
     </div>
   )
 }
