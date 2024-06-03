@@ -48,7 +48,8 @@ export function DisplayColorPalette() {
     p.draw = () => {
       updateVariables();
       p.background(0);
-      displayColorPalettes(usedColorSchemeAmountOnlyMainColor);
+      displayColorPalettes(usedColorSchemeAmountOnlyMainColor, 0);
+      //displayColorPalettes(orderUsedColorsAmount, 0);
 
       if (DEBUG) {
         //console.log("calculateDisplayOrder(recommendedColorSchemeAmount) = " + calculateDisplayOrder(recommendedColorSchemeAmount));
@@ -63,11 +64,11 @@ export function DisplayColorPalette() {
     }
 
 
-    function displayColorPalettes(colorSchemeAmount: ColorAmount[]) {
+    function displayColorPalettes(colorSchemeAmount: ColorAmount[], x: number) {
       let countDisplayColorPalette = 0;
 
       if (IS_DISPLAY_COLOR_PALETTE_BY_RATIO) {
-        displayColorPaletteByRatio(colorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        displayColorPaletteByRatio(colorSchemeAmount, x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         //displayColorPaletteByRatio(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         //displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         // displayColorPaletteByRatio(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
@@ -77,7 +78,7 @@ export function DisplayColorPalette() {
         drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
         for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
-          displayColorPaletteByRatio(recommendedColorSchemeAmount[i], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+          displayColorPaletteByRatio(recommendedColorSchemeAmount[i], x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         }
       }
 
@@ -85,7 +86,7 @@ export function DisplayColorPalette() {
         //---------------------------------------------------------
         countDisplayColorPalette++; //空行の表示分のインクリメント
 
-        displayColorPaletteBySquare(colorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        displayColorPaletteBySquare(colorSchemeAmount, x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         //displayColorPaletteBySquare(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         //displayColorPaletteBySquare(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         //displayColorPaletteBySquare(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
@@ -95,7 +96,7 @@ export function DisplayColorPalette() {
         drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
         for (let i = 0; i < displayOrderIndex.length; i++) {
-          displayColorPaletteBySquare(recommendedColorSchemeAmount[displayOrderIndex[i]], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+          displayColorPaletteBySquare(recommendedColorSchemeAmount[displayOrderIndex[i]], x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
           //インデックス番号の描画
           p.textSize(0.5 * HEIGHT_COLOR_PALETTE);
@@ -159,6 +160,8 @@ export function DisplayColorPalette() {
     }
 
     function displayColorPaletteBySquare(colorsAmount: ColorAmount[], x: number, y: number) {
+      if (typeof (colorsAmount) === "undefined") { return; }
+
       p.colorMode(p.HSL);
       p.strokeWeight(0.01 * p.width);
       for (let i = 0; i < colorsAmount.length; i++) {
