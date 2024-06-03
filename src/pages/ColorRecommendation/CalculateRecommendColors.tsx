@@ -41,9 +41,9 @@ export function CalculateRecommendColors() {
     p.draw = () => {
       updateVariables();
       //calculateRecommendColorSchemeAmount();
-      if (isCanvasMouseReleased || isUpdateRecommendColorsScheme) {
-        //calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
-        calculateRecommendColorSchemeAmountBySimilarity(usedColorSchemeAmountOnlyMainColor);
+      if (isUpdateRecommendColorsScheme) {
+        calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
+        //calculateRecommendColorSchemeAmountBySimilarity(usedColorSchemeAmountOnlyMainColor);
         console.log("recommendColorScheme was updated");
         isUpdateRecommendColorsScheme = false;
       }
