@@ -48,12 +48,24 @@ export function DisplayColorPalette() {
     p.draw = () => {
       updateVariables();
       p.background(0);
-
-      let countDisplayColorPalette = 0;
+      displayColorPalettes();
 
       if (DEBUG) {
         //console.log("calculateDisplayOrder(recommendedColorSchemeAmount) = " + calculateDisplayOrder(recommendedColorSchemeAmount));
       }
+    };
+
+    p.mousePressed = () => {
+      if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
+        isTouhched = true;
+        drawingColor = p.get(p.mouseX, p.mouseY);
+      }
+    }
+
+
+    function displayColorPalettes() {
+      let countDisplayColorPalette = 0;
+
       if (IS_DISPLAY_COLOR_PALETTE_BY_RATIO) {
         displayColorPaletteByRatio(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
@@ -97,16 +109,7 @@ export function DisplayColorPalette() {
         }
         */
       }
-    };
-
-    p.mousePressed = () => {
-      if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
-        isTouhched = true;
-        drawingColor = p.get(p.mouseX, p.mouseY);
-      }
     }
-
-
 
     function drawTriangle(y: number) {
       p.fill(255);
