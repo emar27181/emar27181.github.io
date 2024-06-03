@@ -56,6 +56,13 @@ export function CalculateRecommendColors() {
 
     };
 
+    p.keyPressed = () => {
+      if (p.key === "k") {
+        deleteOrderUsedColorSchemeAmount();
+        console.log("called");
+      }
+    }
+
     function updateVariables() {
       usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
       usedColorSchemeAmountOnlyMainColor = ReturnUsedColorSchemeAmountOnlyMainColor();
@@ -218,6 +225,10 @@ export function CalculateRecommendColors() {
 
     }
 
+    function deleteOrderUsedColorSchemeAmount() {
+      orderUsedColorsAmount.shift();
+      SetIsUpdateRecommendColorsScheme();
+    }
 
     function resetRecommendedColorSchemeAmount() {
       recommendedColorSchemeAmount = [];
