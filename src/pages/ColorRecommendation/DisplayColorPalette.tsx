@@ -48,7 +48,7 @@ export function DisplayColorPalette() {
     p.draw = () => {
       updateVariables();
       p.background(0);
-      displayColorPalettes();
+      displayColorPalettes(usedColorSchemeAmountOnlyMainColor);
 
       if (DEBUG) {
         //console.log("calculateDisplayOrder(recommendedColorSchemeAmount) = " + calculateDisplayOrder(recommendedColorSchemeAmount));
@@ -63,14 +63,15 @@ export function DisplayColorPalette() {
     }
 
 
-    function displayColorPalettes() {
+    function displayColorPalettes(colorSchemeAmount: ColorAmount[]) {
       let countDisplayColorPalette = 0;
 
       if (IS_DISPLAY_COLOR_PALETTE_BY_RATIO) {
-        displayColorPaletteByRatio(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-        displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-        displayColorPaletteByRatio(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-        displayColorPaletteByRatio(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        displayColorPaletteByRatio(colorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        //displayColorPaletteByRatio(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        //displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        // displayColorPaletteByRatio(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        //displayColorPaletteByRatio(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
         // ↓
         drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
@@ -84,8 +85,9 @@ export function DisplayColorPalette() {
         //---------------------------------------------------------
         countDisplayColorPalette++; //空行の表示分のインクリメント
 
+        displayColorPaletteBySquare(colorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         //displayColorPaletteBySquare(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-        displayColorPaletteBySquare(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        //displayColorPaletteBySquare(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         //displayColorPaletteBySquare(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         //displayColorPaletteBySquare(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
