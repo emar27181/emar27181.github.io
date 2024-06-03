@@ -8,6 +8,7 @@ import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE } from '../../config/consta
 import p5 from 'p5';
 import { calculateColorsAmountSimilarity, calculateLabColorSimilarity } from '../ColorRecommendation/CalculateSimilarity';
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
+import { isUpdateRecommendColorsScheme } from './CalculateRecommendColors';
 
 let isTouhched: boolean;
 let isCanvasMouseReleased: boolean = false;
@@ -120,7 +121,7 @@ export function DisplayColorPalette() {
       orderUsedColorsAmount = ReturnOrderUsedColorsAmount();
       recommendedColorSchemeAmount = ReturnRecommendedColorSchemeAmount();
       isTouhched = false;
-      if (isCanvasMouseReleased) {
+      if (isCanvasMouseReleased || isUpdateRecommendColorsScheme) {
         displayOrderIndex = calculateDisplayOrder(recommendedColorSchemeAmount);
       }
     }

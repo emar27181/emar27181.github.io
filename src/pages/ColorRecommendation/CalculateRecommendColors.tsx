@@ -20,7 +20,7 @@ let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 let orderUsedColorsDifference: number[] = [];
 let orderUsedColorsDifferenceExcludeBaseColor: number[] = [];
 let isCanvasMouseReleased = false;
-let isUpdateRecommendColorsScheme: boolean = false;
+export let isUpdateRecommendColorsScheme: boolean = false;
 //let orderUsedColors: Array<p5.Color> = [];
 
 export function CalculateRecommendColors() {
