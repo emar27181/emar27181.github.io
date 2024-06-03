@@ -48,8 +48,8 @@ export function DisplayColorPalette() {
     p.draw = () => {
       updateVariables();
       p.background(0);
-      displayColorPalettes(usedColorSchemeAmountOnlyMainColor, 0);
-      //displayColorPalettes(orderUsedColorsAmount, 0);
+      //displayColorPalettes(usedColorSchemeAmountOnlyMainColor, 0);
+      displayColorPalettes(orderUsedColorsAmount, 0);
 
       if (DEBUG) {
         //console.log("calculateDisplayOrder(recommendedColorSchemeAmount) = " + calculateDisplayOrder(recommendedColorSchemeAmount));
