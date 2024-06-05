@@ -18,6 +18,7 @@ let orderUsedColorsAmount: Array<ColorAmount> = [];
 let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 
 let similarityValues: number[] = [];
+export let displayOrderIndex: number[] = [];
 
 let orderUsedColorsDifference: number[] = [];
 let orderUsedColorsDifferenceExcludeBaseColor: number[] = [];
@@ -55,10 +56,32 @@ export function CalculateRecommendColors() {
         console.log("calculateColorsAmountSimilarity(~,~) = " + calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[0]));
         //console.log("isUpdateRecommendColorsScheme = " + isUpdateRecommendColorsScheme);
       }
-      console.log("similarityValues = " + similarityValues);
-      console.log("recommendedColorSchemeAmount.length = " + recommendedColorSchemeAmount.length);
+      //console.log("similarityValues = " + similarityValues);
+      //console.log("recommendedColorSchemeAmount.length = " + recommendedColorSchemeAmount.length);
+      //console.log("displayOrderIndex = " + displayOrderIndex);
 
     };
+
+    //推薦する配色のうち類似度が小さい順に表示させるためのインデックス番号を保存する配列を計算する関数
+    function calculateDisplayOrder() {
+
+      if (DEBUG) {
+        for (let i = 0; i < similarityValues.length; i++) {
+          console.log("similarityValue[" + i + "] = " + Math.round(similarityValues[i]));
+        }
+      }
+
+      // インデックスと対応するsimilarityValueの値をペアにする
+      let indexedSimilarity: { index: number, value: number }[] = similarityValues.map((value, index) => ({ index, value }));
+
+      // similarityValuesの値でソートする
+      indexedSimilarity.sort((a, b) => a.value - b.value);
+
+      // ソートされたペアからインデックス番号を取り出す
+      let sortedIndex: number[] = indexedSimilarity.map(item => item.index);
+
+      return sortedIndex;
+    }
 
     p.keyPressed = () => {
       if (p.key === "k") {
@@ -76,6 +99,7 @@ export function CalculateRecommendColors() {
 
       orderUsedColorsDifference = calculateHueDifference(orderUsedColorsAmount, 0, false, -1);
       orderUsedColorsDifferenceExcludeBaseColor = calculateHueDifference(orderUsedColorsAmount, 1, true, 0);
+      displayOrderIndex = calculateDisplayOrder();
     }
 
     // 塗った配色と推薦する配色の類似度で配色を推薦する関数
