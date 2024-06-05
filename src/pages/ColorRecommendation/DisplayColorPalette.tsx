@@ -9,7 +9,7 @@ import p5 from 'p5';
 import { calculateColorsAmountSimilarity, calculateLabColorSimilarity } from '../ColorRecommendation/CalculateSimilarity';
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 import { isUpdateRecommendColorsScheme } from './CalculateRecommendColors';
-import { displayOrderIndex } from './CalculateRecommendColors';
+import { displayOrderIndex, similarityValues } from './CalculateRecommendColors';
 
 let isTouhched: boolean;
 let isCanvasMouseReleased: boolean = false;
@@ -105,7 +105,7 @@ export function DisplayColorPalette() {
           p.noStroke();
           p.fill(0);
           p.text("[" + displayOrderIndex[i] + "]", p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
-          p.text(p.round(calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[displayOrderIndex[i]])), p.textSize() + HEIGHT_COLOR_PALETTE, (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
+          p.text(similarityValues[displayOrderIndex[i]], p.textSize() + HEIGHT_COLOR_PALETTE, (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
 
         }
 

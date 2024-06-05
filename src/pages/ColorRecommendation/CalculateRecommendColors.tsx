@@ -17,7 +17,7 @@ let usedColorSchemeAmount: Array<ColorAmount> = [];
 let orderUsedColorsAmount: Array<ColorAmount> = [];
 let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 
-let similarityValues: number[] = [];
+export let similarityValues: number[] = [];
 export let displayOrderIndex: number[] = [];
 
 let orderUsedColorsDifference: number[] = [];
