@@ -21,7 +21,7 @@ export function calculateLabColorSimilarity(p5Color1: Color, p5Color2: Color): n
   return diff(labColor1, labColor2);
 }
 
-export function calculateColorsAmountSimilarity0(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
+export function calculateColorsAmountSimilarityP0(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
 
   const p = new p5(() => { });
   let sum: number[] = [];
@@ -71,7 +71,7 @@ export function calculateColorsAmountSimilarity0(colorsAmount1: ColorAmount[], c
   //return aveSum;
 }
 
-export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
+export function calculateColorsAmountSimilarityP1(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
 
   const p = new p5(() => { });
   let sumSimilarity: number = 0;
@@ -117,12 +117,53 @@ export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], co
 }
 
 // 
-export function calculateColorsAmountSimilarity2(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
+export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
   const p = new p5(() => { });
   let sumSimilarity: number = 0;
+  let usedIndex1: number[] = [];
+  let usedIndex2: number[] = [];
 
   if ((typeof (colorsAmount1) === 'undefined') || (typeof (colorsAmount2) === 'undefined')) { return -2; }
   if (colorsAmount1.length === 0 || colorsAmount2.length === 0) { return -1; }
 
+  for (let i = 0; i < colorsAmount1.length; i++) {
+    // 使用済みのインデックスだった場合処理飛ばし
+    let isContinued1 = false;
+    for (let k = 0; k < usedIndex1.length; k++) {
+      // iが使用済みのインデックスだった場合
+      if (i === usedIndex1[k]) { isContinued1 = true; }
+    }
 
+    let minSimValue = calculateLabColorSimilarity(colorsAmount1[i].color, colorsAmount2[0].color);
+    for (let j = 0; j < colorsAmount2.length; j++) {
+      let isContinued2 = false;
+
+      // 使用済みのインデックスだった場合処理飛ばし
+      for (let k = 0; k < usedIndex2.length; k++) {
+        // jが使用済みのインデックスだった場合
+        if (j === usedIndex2[k]) { isContinued2 = true; }
+      }
+      if (isContinued2) { continue; }
+
+      //console.log("(i, j) = (" + i + "," + j + ")");
+
+
+      // colorsAmount1[i]に対してcolorsAmount2[j]と最も相違度が小さいものを計測
+      let simValue = calculateLabColorSimilarity(colorsAmount1[i].color, colorsAmount2[j].color);
+      if (simValue < minSimValue) {
+        minSimValue = simValue;
+
+        //最も相違度が小さいとされたインデックスを使用済みとして記録
+        usedIndex1.push(i);
+        usedIndex2.push(j);
+      }
+    }
+    sumSimilarity += minSimValue;
+  }
+
+  //console.log("sumSimilarity: " + sumSimilarity);
+  //console.log("usedIndex1 = " + usedIndex1);
+  //console.log("usedIndex2 = " + usedIndex2);
+
+  return (sumSimilarity / colorsAmount1.length);
 }
