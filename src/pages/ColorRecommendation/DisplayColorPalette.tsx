@@ -104,7 +104,7 @@ export function DisplayColorPalette() {
           p.noStroke();
           p.fill(0);
           p.text("[" + displayOrderIndex[i] + "]", p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
-          p.text(p.round(calculateColorsAmountSimilarity(recommendedColorSchemeAmount[displayOrderIndex[i]], orderUsedColorsAmount)), p.textSize() + HEIGHT_COLOR_PALETTE, (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
+          p.text(p.round(calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[displayOrderIndex[i]])), p.textSize() + HEIGHT_COLOR_PALETTE, (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
 
         }
 
@@ -183,7 +183,7 @@ export function DisplayColorPalette() {
 
       let similarityValue: number[] = [];
       for (let i = 0; i < colorsAmount.length; i++) {
-        similarityValue[i] = calculateColorsAmountSimilarity(colorsAmount[i], orderUsedColorsAmount);
+        similarityValue[i] = calculateColorsAmountSimilarity(orderUsedColorsAmount, colorsAmount[i]);
       }
 
       if (DEBUG) {
