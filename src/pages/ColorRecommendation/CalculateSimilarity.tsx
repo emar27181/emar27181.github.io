@@ -115,3 +115,14 @@ export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], co
 
   return (sumSimilarity / colorsAmount1.length);
 }
+
+// 
+export function calculateColorsAmountSimilarity2(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
+  const p = new p5(() => { });
+  let sumSimilarity: number = 0;
+
+  if ((typeof (colorsAmount1) === 'undefined') || (typeof (colorsAmount2) === 'undefined')) { return -2; }
+  if (colorsAmount1.length === 0 || colorsAmount2.length === 0) { return -1; }
+
+
+}
