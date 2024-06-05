@@ -9,6 +9,7 @@ import p5 from 'p5';
 import { calculateColorsAmountSimilarity, calculateLabColorSimilarity } from '../ColorRecommendation/CalculateSimilarity';
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 import { isUpdateRecommendColorsScheme } from './CalculateRecommendColors';
+import { displayOrderIndex } from './CalculateRecommendColors';
 
 let isTouhched: boolean;
 let isCanvasMouseReleased: boolean = false;
@@ -29,7 +30,7 @@ export function DisplayColorPalette() {
     //let recommendedColorSchemeAmount: ColorAmount[][] ;
     let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
 
-    let displayOrderIndex: number[] = [];
+    //let displayOrderIndex: number[] = [];
 
     p.setup = () => {
       p.createCanvas(DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3, DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3);
@@ -131,7 +132,7 @@ export function DisplayColorPalette() {
       recommendedColorSchemeAmount = ReturnRecommendedColorSchemeAmount();
       isTouhched = false;
       if (isCanvasMouseReleased || isUpdateRecommendColorsScheme) {
-        displayOrderIndex = calculateDisplayOrder(recommendedColorSchemeAmount);
+        //displayOrderIndex = calculateDisplayOrder(recommendedColorSchemeAmount);
       }
     }
 
@@ -178,6 +179,7 @@ export function DisplayColorPalette() {
       }
     }
 
+    /*
     function calculateDisplayOrder(colorsAmount: ColorAmount[][]) {
       if (colorsAmount.length === 0) { return []; }
 
@@ -203,6 +205,7 @@ export function DisplayColorPalette() {
 
       return sortedIndex;
     }
+    */
 
 
 
