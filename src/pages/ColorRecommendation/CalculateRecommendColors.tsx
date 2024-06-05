@@ -17,6 +17,8 @@ let usedColorSchemeAmount: Array<ColorAmount> = [];
 let orderUsedColorsAmount: Array<ColorAmount> = [];
 let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 
+let similarityValues: number[] = [];
+
 let orderUsedColorsDifference: number[] = [];
 let orderUsedColorsDifferenceExcludeBaseColor: number[] = [];
 let isCanvasMouseReleased = false;
@@ -53,6 +55,8 @@ export function CalculateRecommendColors() {
         console.log("calculateColorsAmountSimilarity(~,~) = " + calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[0]));
         //console.log("isUpdateRecommendColorsScheme = " + isUpdateRecommendColorsScheme);
       }
+      console.log("similarityValues = " + similarityValues);
+      console.log("recommendedColorSchemeAmount.length = " + recommendedColorSchemeAmount.length);
 
     };
 
@@ -94,7 +98,7 @@ export function CalculateRecommendColors() {
 
     // 推薦しようとしている配色の類似度を調べ，閾値以上だった場合追加を取り消す関数
     function calculateColorScheme(colorScheme: string, baseColor: p5.Color) {
-      const VALUE = 40;
+      const VALUE = 100;
 
       if (colorScheme === "dominantColor") { calculateDominantColor(recommendedColorSchemeAmount, baseColor); }
       else if (colorScheme === "dyad") { calculateDyadColor(recommendedColorSchemeAmount, baseColor); }
@@ -113,8 +117,13 @@ export function CalculateRecommendColors() {
       // 閾値よりも相違度が高かった場合その配色を削除
       if (simValue > VALUE) {
         recommendedColorSchemeAmount.pop();
-      };
+      }
+      // 閾値よりも相違度が高かった場合その配色の相違度を配列に保存
+      else {
+        similarityValues[recommendedColorSchemeAmount.length - 1] = p.round(simValue);
+      }
 
+      //console.log("recommendedColorSchemeAmount.length = " + recommendedColorSchemeAmount.length);
     }
 
     //塗った色の数によって配色を推薦する関数
