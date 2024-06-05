@@ -108,8 +108,10 @@ export function CalculateRecommendColors() {
       else if (colorScheme === "intermediate") { calculateIntermediateColor(recommendedColorSchemeAmount, baseColor); }
       else { console.error("用意されたものではない配色を推薦しようとしています.(" + colorScheme + ")"); }
 
-      // 閾値よりも相違度(?)が高かった場合その配色を削除
-      if (calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[recommendedColorSchemeAmount.length - 1]) > VALUE) {
+      let simValue = calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[recommendedColorSchemeAmount.length - 1]);
+
+      // 閾値よりも相違度が高かった場合その配色を削除
+      if (simValue > VALUE) {
         recommendedColorSchemeAmount.pop();
       };
 
