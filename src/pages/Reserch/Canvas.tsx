@@ -51,6 +51,7 @@ import imageFilePath21 from '../../assets/hue_tone_2.png';
 
 import { DISPLAY_RATE } from '../../config/constants';
 import { ReturnDrawingColorOfDisplayColorPalette, ReturnIsTouchedOfDisplayColorPalette } from '../ColorRecommendation/DisplayColorPalette';
+import { isUpdateRecommendColorsScheme, SetIsUpdateRecommendColorsScheme } from '../ColorRecommendation/CalculateRecommendColors';
 
 
 //importでファイルパスを読み込む場合
@@ -256,6 +257,7 @@ export function Canvas() {
       getCanvasColors();
       if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
         isMouseReleased = true;
+        SetIsUpdateRecommendColorsScheme();
       }
     }
 

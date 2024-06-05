@@ -182,7 +182,8 @@ function App() {
         </Route>
 
         <Route path="/canvasHome">
-          <CanvasHome />
+          {/*<CanvasHome />*/}
+          <CanvasHomeNormal />
         </Route>
 
         <Route path="/canvasHomeNormal">

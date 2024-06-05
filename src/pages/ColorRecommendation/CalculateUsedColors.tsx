@@ -4,6 +4,7 @@ import { AMOUNT_LIMIT, SATURATION_LIMIT, LIGHTNESS_LOWER_LIMIT, LIGHTNESS_UPPER_
 import { ReturnDrawingColor, ReturnIsMouseReleased } from "../Reserch/Canvas";
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 import { ColorAmount } from "../../utils/ColorAmount";
+import { isUpdateRecommendColorsScheme } from "./CalculateRecommendColors";
 
 let usedColorsAmount: Array<ColorAmount> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
@@ -18,7 +19,7 @@ export function CalculateUsedColors() {
 
   const sketch = (p: P5CanvasInstance) => {
     p.setup = () => {
-      p.frameRate(2);
+      p.frameRate(1);
       initializeVariables();
     };
 
@@ -38,7 +39,7 @@ export function CalculateUsedColors() {
       calculateUsedColorsAmount();
       calculateColorsSchemeAmount();
       isCanvasMouseReleased = ReturnIsMouseReleased();
-      if (isCanvasMouseReleased) {
+      if (isUpdateRecommendColorsScheme) {
         orderUsedColors.push(ReturnDrawingColor());
         updateColorsAmount(orderUsedColorsAmount, ReturnDrawingColor());
       }

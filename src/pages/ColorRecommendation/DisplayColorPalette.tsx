@@ -6,8 +6,10 @@ import { ReturnRecommendedColorSchemeAmount } from './CalculateRecommendColors';
 import { ColorAmount } from '../../utils/ColorAmount';
 import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE } from '../../config/constants';
 import p5 from 'p5';
-import { calculateColorsAmountSimilarity, calculateLabColorSimilarity } from '../CalculateSimilarity';
+import { calculateColorsAmountSimilarity, calculateLabColorSimilarity } from '../ColorRecommendation/CalculateSimilarity';
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
+import { isUpdateRecommendColorsScheme } from './CalculateRecommendColors';
+import { displayOrderIndex, similarityValues } from './CalculateRecommendColors';
 
 let isTouhched: boolean;
 let isCanvasMouseReleased: boolean = false;
@@ -18,6 +20,8 @@ const DEBUG: boolean = true;
 export function DisplayColorPalette() {
   const sketch = (p: P5CanvasInstance) => {
     const HEIGHT_COLOR_PALETTE = 0.015 * window.innerWidth;
+    const IS_DISPLAY_COLOR_PALETTE_BY_RATIO = false;
+    const IS_DISPLAY_COLOR_PALETTE_BY_SQUARE = true;
     let usedColorsAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
@@ -26,7 +30,7 @@ export function DisplayColorPalette() {
     //let recommendedColorSchemeAmount: ColorAmount[][] ;
     let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
 
-    let displayOrderIndex: number[] = [];
+    //let displayOrderIndex: number[] = [];
 
     p.setup = () => {
       p.createCanvas(DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3, DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3);
@@ -45,26 +49,37 @@ export function DisplayColorPalette() {
     p.draw = () => {
       updateVariables();
       p.background(0);
-
-
-      const IS_DISPLAY_COLOR_PALETTE_BY_RATIO = false;
-      const IS_DISPLAY_COLOR_PALETTE_BY_SQUARE = true;
-      let countDisplayColorPalette = 0;
+      //displayColorPalettes(usedColorSchemeAmountOnlyMainColor, 0);
+      displayColorPalettes(orderUsedColorsAmount, 0);
 
       if (DEBUG) {
         //console.log("calculateDisplayOrder(recommendedColorSchemeAmount) = " + calculateDisplayOrder(recommendedColorSchemeAmount));
       }
+    };
+
+    p.mousePressed = () => {
+      if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
+        isTouhched = true;
+        drawingColor = p.get(p.mouseX, p.mouseY);
+      }
+    }
+
+
+    function displayColorPalettes(colorSchemeAmount: ColorAmount[], x: number) {
+      let countDisplayColorPalette = 0;
+
       if (IS_DISPLAY_COLOR_PALETTE_BY_RATIO) {
-        displayColorPaletteByRatio(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-        displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-        displayColorPaletteByRatio(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-        displayColorPaletteByRatio(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        displayColorPaletteByRatio(colorSchemeAmount, x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        //displayColorPaletteByRatio(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        //displayColorPaletteByRatio(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        // displayColorPaletteByRatio(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        //displayColorPaletteByRatio(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
         // ↓
         drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
         for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
-          displayColorPaletteByRatio(recommendedColorSchemeAmount[i], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+          displayColorPaletteByRatio(recommendedColorSchemeAmount[i], x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         }
       }
 
@@ -72,22 +87,25 @@ export function DisplayColorPalette() {
         //---------------------------------------------------------
         countDisplayColorPalette++; //空行の表示分のインクリメント
 
-        displayColorPaletteBySquare(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-        displayColorPaletteBySquare(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        displayColorPaletteBySquare(colorSchemeAmount, x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        //displayColorPaletteBySquare(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        //displayColorPaletteBySquare(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         //displayColorPaletteBySquare(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-        displayColorPaletteBySquare(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        //displayColorPaletteBySquare(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
         // ↓
         drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
         for (let i = 0; i < displayOrderIndex.length; i++) {
-          displayColorPaletteBySquare(recommendedColorSchemeAmount[displayOrderIndex[i]], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+          displayColorPaletteBySquare(recommendedColorSchemeAmount[displayOrderIndex[i]], x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
           //インデックス番号の描画
           p.textSize(0.5 * HEIGHT_COLOR_PALETTE);
           p.textAlign(p.CENTER, p.CENTER);
           p.noStroke();
-          p.text(displayOrderIndex[i], p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
+          p.fill(0);
+          p.text("[" + displayOrderIndex[i] + "]", p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
+          p.text(similarityValues[displayOrderIndex[i]], p.textSize() + HEIGHT_COLOR_PALETTE, (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
 
         }
 
@@ -96,13 +114,6 @@ export function DisplayColorPalette() {
           displayColorPaletteBySquare(recommendedColorSchemeAmount[i], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         }
         */
-      }
-    };
-
-    p.mousePressed = () => {
-      if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
-        isTouhched = true;
-        drawingColor = p.get(p.mouseX, p.mouseY);
       }
     }
 
@@ -120,8 +131,8 @@ export function DisplayColorPalette() {
       orderUsedColorsAmount = ReturnOrderUsedColorsAmount();
       recommendedColorSchemeAmount = ReturnRecommendedColorSchemeAmount();
       isTouhched = false;
-      if (isCanvasMouseReleased) {
-        displayOrderIndex = calculateDisplayOrder(recommendedColorSchemeAmount);
+      if (isCanvasMouseReleased || isUpdateRecommendColorsScheme) {
+        //displayOrderIndex = calculateDisplayOrder(recommendedColorSchemeAmount);
       }
     }
 
@@ -152,6 +163,8 @@ export function DisplayColorPalette() {
     }
 
     function displayColorPaletteBySquare(colorsAmount: ColorAmount[], x: number, y: number) {
+      if (typeof (colorsAmount) === "undefined") { return; }
+
       p.colorMode(p.HSL);
       p.strokeWeight(0.01 * p.width);
       for (let i = 0; i < colorsAmount.length; i++) {
@@ -166,12 +179,13 @@ export function DisplayColorPalette() {
       }
     }
 
+    /*
     function calculateDisplayOrder(colorsAmount: ColorAmount[][]) {
       if (colorsAmount.length === 0) { return []; }
 
       let similarityValue: number[] = [];
       for (let i = 0; i < colorsAmount.length; i++) {
-        similarityValue[i] = calculateColorsAmountSimilarity(colorsAmount[i], orderUsedColorsAmount);
+        similarityValue[i] = calculateColorsAmountSimilarity(orderUsedColorsAmount, colorsAmount[i]);
       }
 
       if (DEBUG) {
@@ -191,6 +205,7 @@ export function DisplayColorPalette() {
 
       return sortedIndex;
     }
+    */
 
 
 

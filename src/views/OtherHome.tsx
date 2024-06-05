@@ -30,6 +30,7 @@ import CurlingPlotTest from '../pages/CurlingPlotTest';
 import Canvas from '../pages/Reserch/Canvas';
 import SimpleCanvas from '../pages/SimpleCanvas';
 import TestResponsivePage from './TestResponsivePage';
+import TestAPI from '../pages/TestAPI';
 //import { Form } from 'react-bootstrap';
 
 export function OtherHome() {
@@ -38,6 +39,11 @@ export function OtherHome() {
   return (
     <BrowserRouter>
       <ul>
+
+        <NavLink activeClassName="active" to="/TestApi">
+          APIのテスト
+        </NavLink> <br />
+
         <NavLink activeClassName="active" to="/picture">
           サンプル画像
         </NavLink> <br />
@@ -109,6 +115,11 @@ export function OtherHome() {
       </ul>
 
       <Switch>
+
+        <Route path="/testApi" >
+          <TestAPI />
+        </Route>
+
         <Route path="/picture" >
           <Picture />
         </Route>

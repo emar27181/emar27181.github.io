@@ -3,10 +3,10 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ColorAmount } from '../../utils/ColorAmount';
 import { ReturnUsedColorSchemeAmount } from './CalculateUsedColors';
-import { ReturnOrderUsedColors, ReturnOrderUsedColorsAmount } from './CalculateUsedColors';
+import { ReturnOrderUsedColors, ReturnOrderUsedColorsAmount, ReturnUsedColorSchemeAmountOnlyMainColor } from './CalculateUsedColors';
 import p5 from 'p5';
 import Color from 'color';
-import { calculateLabColorSimilarity, calculateColorsAmountSimilarity } from '../CalculateSimilarity';
+import { calculateLabColorSimilarity, calculateColorsAmountSimilarity } from '../ColorRecommendation/CalculateSimilarity';
 import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor } from './CalculateColorScheme';
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 
@@ -15,10 +15,15 @@ const DEBUG = false;
 let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
 let orderUsedColorsAmount: Array<ColorAmount> = [];
+let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
+
+export let similarityValues: number[] = [];
+export let displayOrderIndex: number[] = [];
 
 let orderUsedColorsDifference: number[] = [];
 let orderUsedColorsDifferenceExcludeBaseColor: number[] = [];
 let isCanvasMouseReleased = false;
+export let isUpdateRecommendColorsScheme: boolean = false;
 //let orderUsedColors: Array<p5.Color> = [];
 
 export function CalculateRecommendColors() {
@@ -39,31 +44,69 @@ export function CalculateRecommendColors() {
     p.draw = () => {
       updateVariables();
       //calculateRecommendColorSchemeAmount();
-      if (isCanvasMouseReleased) {
-        calculateRecommendColorSchemeAmountBySimilarity();
+      if (isUpdateRecommendColorsScheme) {
+        calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
+        //calculateRecommendColorSchemeAmountBySimilarity(usedColorSchemeAmountOnlyMainColor);
+        console.log("recommendColorScheme was updated");
+        isUpdateRecommendColorsScheme = false;
       }
 
       if (DEBUG) {
         //console.log("colorSimilarityLab(~): " + calculateLabColorSimilarity([255, 255, 255], [0, 0, 0]));
         console.log("calculateColorsAmountSimilarity(~,~) = " + calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[0]));
+        //console.log("isUpdateRecommendColorsScheme = " + isUpdateRecommendColorsScheme);
       }
+      //console.log("similarityValues = " + similarityValues);
+      //console.log("recommendedColorSchemeAmount.length = " + recommendedColorSchemeAmount.length);
+      //console.log("displayOrderIndex = " + displayOrderIndex);
+
     };
+
+    //推薦する配色のうち類似度が小さい順に表示させるためのインデックス番号を保存する配列を計算する関数
+    function calculateDisplayOrder() {
+
+      if (DEBUG) {
+        for (let i = 0; i < similarityValues.length; i++) {
+          console.log("similarityValue[" + i + "] = " + Math.round(similarityValues[i]));
+        }
+      }
+
+      // インデックスと対応するsimilarityValueの値をペアにする
+      let indexedSimilarity: { index: number, value: number }[] = similarityValues.map((value, index) => ({ index, value }));
+
+      // similarityValuesの値でソートする
+      indexedSimilarity.sort((a, b) => a.value - b.value);
+
+      // ソートされたペアからインデックス番号を取り出す
+      let sortedIndex: number[] = indexedSimilarity.map(item => item.index);
+
+      return sortedIndex;
+    }
+
+    p.keyPressed = () => {
+      if (p.key === "k") {
+        deleteOrderUsedColorSchemeAmount();
+        console.log("called");
+      }
+    }
 
     function updateVariables() {
       usedColorSchemeAmount = ReturnUsedColorSchemeAmount();
+      usedColorSchemeAmountOnlyMainColor = ReturnUsedColorSchemeAmountOnlyMainColor();
       //orderUsedColors = ReturnOrderUsedColors();
       orderUsedColorsAmount = ReturnOrderUsedColorsAmount();
       isCanvasMouseReleased = ReturnIsMouseReleased();
 
       orderUsedColorsDifference = calculateHueDifference(orderUsedColorsAmount, 0, false, -1);
       orderUsedColorsDifferenceExcludeBaseColor = calculateHueDifference(orderUsedColorsAmount, 1, true, 0);
+      displayOrderIndex = calculateDisplayOrder();
     }
 
     // 塗った配色と推薦する配色の類似度で配色を推薦する関数
-    function calculateRecommendColorSchemeAmountBySimilarity() {
-      if (orderUsedColorsAmount.length === 0) { return; }
+    function calculateRecommendColorSchemeAmountBySimilarity(colorsAmount: ColorAmount[]) {
+      if (colorsAmount.length === 0) { return; }
       resetRecommendedColorSchemeAmount();
-      let baseColor = orderUsedColorsAmount[0].color; // 最初に使われた色をベースカラーであると仮定する
+      let baseColor = colorsAmount[0].color; // 最初に使われた色をベースカラーであると仮定する
 
       calculateColorScheme("dominantColor", baseColor);
       calculateColorScheme("dyad", baseColor);
@@ -79,47 +122,32 @@ export function CalculateRecommendColors() {
 
     // 推薦しようとしている配色の類似度を調べ，閾値以上だった場合追加を取り消す関数
     function calculateColorScheme(colorScheme: string, baseColor: p5.Color) {
-      const VALUE = 40;
+      const VALUE = 100;
 
-      if (colorScheme === "dominantColor") {
-        calculateDominantColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "dyad") {
-        calculateDyadColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "splitComplementary") {
-        calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "tetrade") {
-        calculateTetradeColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "triad") {
-        calculateTriadColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "dominantTone") {
-        calculateDominantTone(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "pentad") {
-        calculatePentadColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "hexad") {
-        calculateHexadColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "analogy") {
-        calculateAnalogyColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "intermediate") {
-        calculateIntermediateColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else {
-        console.error("用意されたものではない配色を推薦しようとしています.(" + colorScheme + ")");
-      }
+      if (colorScheme === "dominantColor") { calculateDominantColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "dyad") { calculateDyadColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "splitComplementary") { calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "tetrade") { calculateTetradeColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "triad") { calculateTriadColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "dominantTone") { calculateDominantTone(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "pentad") { calculatePentadColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "hexad") { calculateHexadColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "analogy") { calculateAnalogyColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "intermediate") { calculateIntermediateColor(recommendedColorSchemeAmount, baseColor); }
+      else { console.error("用意されたものではない配色を推薦しようとしています.(" + colorScheme + ")"); }
 
-      // 閾値よりも相違度(?)が高かった場合その配色を削除
-      if (calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[recommendedColorSchemeAmount.length - 1]) > VALUE) {
+      let simValue = calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[recommendedColorSchemeAmount.length - 1]);
+
+      // 閾値よりも相違度が高かった場合その配色を削除
+      if (simValue > VALUE) {
         recommendedColorSchemeAmount.pop();
-      };
+      }
+      // 閾値よりも相違度が高かった場合その配色の相違度を配列に保存
+      else {
+        similarityValues[recommendedColorSchemeAmount.length - 1] = p.round(simValue);
+      }
 
+      //console.log("recommendedColorSchemeAmount.length = " + recommendedColorSchemeAmount.length);
     }
 
     //塗った色の数によって配色を推薦する関数
@@ -210,6 +238,10 @@ export function CalculateRecommendColors() {
 
     }
 
+    function deleteOrderUsedColorSchemeAmount() {
+      orderUsedColorsAmount.shift();
+      SetIsUpdateRecommendColorsScheme();
+    }
 
     function resetRecommendedColorSchemeAmount() {
       recommendedColorSchemeAmount = [];
@@ -234,3 +266,4 @@ export function CalculateRecommendColors() {
 export default CalculateRecommendColors
 export function ReturnRecommendedColorSchemeAmount() { return recommendedColorSchemeAmount; }
 export function ReturnOrderUsedColorsDifference() { return orderUsedColorsDifference; }
+export function SetIsUpdateRecommendColorsScheme() { isUpdateRecommendColorsScheme = true; }
