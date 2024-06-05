@@ -96,39 +96,17 @@ export function CalculateRecommendColors() {
     function calculateColorScheme(colorScheme: string, baseColor: p5.Color) {
       const VALUE = 40;
 
-      if (colorScheme === "dominantColor") {
-        calculateDominantColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "dyad") {
-        calculateDyadColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "splitComplementary") {
-        calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "tetrade") {
-        calculateTetradeColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "triad") {
-        calculateTriadColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "dominantTone") {
-        calculateDominantTone(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "pentad") {
-        calculatePentadColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "hexad") {
-        calculateHexadColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "analogy") {
-        calculateAnalogyColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else if (colorScheme === "intermediate") {
-        calculateIntermediateColor(recommendedColorSchemeAmount, baseColor);
-      }
-      else {
-        console.error("用意されたものではない配色を推薦しようとしています.(" + colorScheme + ")");
-      }
+      if (colorScheme === "dominantColor") { calculateDominantColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "dyad") { calculateDyadColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "splitComplementary") { calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "tetrade") { calculateTetradeColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "triad") { calculateTriadColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "dominantTone") { calculateDominantTone(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "pentad") { calculatePentadColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "hexad") { calculateHexadColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "analogy") { calculateAnalogyColor(recommendedColorSchemeAmount, baseColor); }
+      else if (colorScheme === "intermediate") { calculateIntermediateColor(recommendedColorSchemeAmount, baseColor); }
+      else { console.error("用意されたものではない配色を推薦しようとしています.(" + colorScheme + ")"); }
 
       // 閾値よりも相違度(?)が高かった場合その配色を削除
       if (calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[recommendedColorSchemeAmount.length - 1]) > VALUE) {
