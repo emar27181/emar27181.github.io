@@ -34,7 +34,7 @@ const ButtonSaveColorScheme: React.FC = () => {
 
   return (
     <div>
-      <button onClick={handleExport}>Export</button>
+      <button className="update-button" onClick={handleExport}>Export</button>
       {jsonURL && (
         <a href={jsonURL} download={`${fileName}.json`} style={{ display: 'none' }} />
       )}
