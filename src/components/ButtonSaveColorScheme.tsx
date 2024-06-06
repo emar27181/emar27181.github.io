@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { orderUsedColorsAmount, recommendedColorSchemeAmount } from '../pages/ColorRecommendation/CalculateRecommendColors';
+//import { orderUsedColorsAmount, recommendedColorSchemeAmount } from '../pages/ColorRecommendation/CalculateRecommendColors';
+import { filteredOrderUsedColorsAmount, filteredRecommendedColorSchemeAmount } from '../pages/ColorRecommendation/CalculateRecommendColors';
 
 const fileName = 'colorScheme';
 
@@ -9,8 +10,8 @@ const ButtonSaveColorScheme: React.FC = () => {
   const handleExport = () => {
     // 最新のデータを取得
     const jsonData = {
-      orderUsedColorsAmount,
-      recommendedColorSchemeAmount,
+      filteredOrderUsedColorsAmount,
+      filteredRecommendedColorSchemeAmount,
     };
 
     // 新しいBlobを作成
