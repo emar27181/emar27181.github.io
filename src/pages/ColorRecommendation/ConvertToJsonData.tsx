@@ -13,16 +13,16 @@ export function convertToJsonData(colorsAmount: ColorAmount[]) {
   for (let i = 0; i < colorsAmount.length; i++) {
 
     let color = colorsAmount[i].color;
-    let colorData = [
-      p.round(p.hue(color)),
-      p.round(p.saturation(color)),
-      p.round(p.lightness(color)),
-    ];
+    let colorData = rgbToHex(p.red(color), p.green(color), p.blue(color));
 
     jsonData.push({
       color: colorData,
       amount: colorsAmount[i].amount,
     });
+  }
+
+  function rgbToHex(r: number, g: number, b: number) {
+    return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
   }
 
   return jsonData;
