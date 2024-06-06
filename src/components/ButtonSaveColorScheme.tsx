@@ -1,21 +1,43 @@
-// 参考: https://zenn.dev/ako/articles/be93960af741cb
-
-import React from 'react';
+import React, { useState } from 'react';
+import { orderUsedColorsAmount, recommendedColorSchemeAmount } from '../pages/ColorRecommendation/CalculateRecommendColors';
 
 const fileName = 'colorScheme';
-const jsonData = { a: 1, b: 2 };
-
-const fileNameWithJson = `${fileName}.json`;
-const blobData = new Blob([JSON.stringify(jsonData)], {
-  type: 'text/json',
-});
-const jsonURL = URL.createObjectURL(blobData);
 
 const ButtonSaveColorScheme: React.FC = () => {
+  const [jsonURL, setJsonURL] = useState<string | null>(null);
+
+  const handleExport = () => {
+    // 最新のデータを取得
+    const jsonData = {
+      orderUsedColorsAmount,
+      recommendedColorSchemeAmount,
+    };
+
+    // 新しいBlobを作成
+    const blobData = new Blob([JSON.stringify(jsonData)], {
+      type: 'application/json',
+    });
+    const newJsonURL = URL.createObjectURL(blobData);
+
+    // Stateを更新してURLを更新
+    setJsonURL(newJsonURL);
+
+    // 自動でダウンロードリンクをクリックしてJSONファイルをダウンロード
+    const link = document.createElement('a');
+    link.href = newJsonURL;
+    link.download = `${fileName}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
-    <a href={jsonURL} download={fileNameWithJson}>
-      export
-    </a>
+    <div>
+      <button onClick={handleExport}>Export</button>
+      {jsonURL && (
+        <a href={jsonURL} download={`${fileName}.json`} style={{ display: 'none' }} />
+      )}
+    </div>
   );
 };
 

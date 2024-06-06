@@ -12,9 +12,9 @@ import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 
 const DEBUG = false;
 
-let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
+export let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
-let orderUsedColorsAmount: Array<ColorAmount> = [];
+export let orderUsedColorsAmount: Array<ColorAmount> = [];
 let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 
 export let similarityValues: number[] = [];
