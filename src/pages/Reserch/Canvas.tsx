@@ -712,7 +712,7 @@ export function Canvas() {
 
     //キーボードによる操作(タイプして離れるまでに1度だけ呼び出し)
     p.keyTyped = () => {
-      //console.log("p.key: " + p.key);
+      console.log(p.key + " is typed");
 
       if (p.key === "s") {
         //スポイト機能
