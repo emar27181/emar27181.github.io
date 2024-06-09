@@ -17,7 +17,7 @@ export function OperateGuiControl() {
     let barX = 0;
 
     p.setup = () => {
-      p.frameRate(30);
+      p.frameRate(1);
       p.createCanvas(DISPLAY_RATE * window.innerWidth / 3, DISPLAY_RATE * window.innerWidth / 6);
       //p.createCanvas(200, 100);
       p.background(0);

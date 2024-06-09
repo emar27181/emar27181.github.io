@@ -9,12 +9,15 @@ import Color from 'color';
 import { calculateLabColorSimilarity, calculateColorsAmountSimilarity } from '../ColorRecommendation/CalculateSimilarity';
 import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor } from './CalculateColorScheme';
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
+import { convertToJsonData } from './ConvertToJsonData';
 
 const DEBUG = false;
 
-let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
+export let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
-let orderUsedColorsAmount: Array<ColorAmount> = [];
+export let orderUsedColorsAmount: Array<ColorAmount> = [];
+export let filteredOrderUsedColorsAmount: number[] | { color: string; amount: number; }[] = [];
+export let filteredRecommendedColorSchemeAmount: number[][] | { color: string; amount: number; }[][] = [];
 let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 
 export let similarityValues: number[] = [];
@@ -55,10 +58,15 @@ export function CalculateRecommendColors() {
         //console.log("colorSimilarityLab(~): " + calculateLabColorSimilarity([255, 255, 255], [0, 0, 0]));
         console.log("calculateColorsAmountSimilarity(~,~) = " + calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[0]));
         //console.log("isUpdateRecommendColorsScheme = " + isUpdateRecommendColorsScheme);
+        //console.log("similarityValues = " + similarityValues);
+        //console.log("recommendedColorSchemeAmount.length = " + recommendedColorSchemeAmount.length);
+        //console.log("displayOrderIndex = " + displayOrderIndex);
       }
-      //console.log("similarityValues = " + similarityValues);
-      //console.log("recommendedColorSchemeAmount.length = " + recommendedColorSchemeAmount.length);
-      //console.log("displayOrderIndex = " + displayOrderIndex);
+
+      //console.log(filteredOrderUsedColorsAmount);
+      //console.log("filteredOrderUsedColorsAmount = " + filteredOrderUsedColorsAmount);
+      //console.log(filteredRecommendedColorSchemeAmount);
+      //console.log("filteredRecommendedColorSchemeAmount = " + filteredRecommendedColorSchemeAmount);
 
     };
 
@@ -96,6 +104,12 @@ export function CalculateRecommendColors() {
       //orderUsedColors = ReturnOrderUsedColors();
       orderUsedColorsAmount = ReturnOrderUsedColorsAmount();
       isCanvasMouseReleased = ReturnIsMouseReleased();
+
+      //json型に変換されたデータの代入
+      filteredOrderUsedColorsAmount = convertToJsonData(orderUsedColorsAmount);
+      for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
+        filteredRecommendedColorSchemeAmount[i] = convertToJsonData(recommendedColorSchemeAmount[i]);
+      }
 
       orderUsedColorsDifference = calculateHueDifference(orderUsedColorsAmount, 0, false, -1);
       orderUsedColorsDifferenceExcludeBaseColor = calculateHueDifference(orderUsedColorsAmount, 1, true, 0);

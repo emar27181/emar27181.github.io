@@ -128,6 +128,7 @@ export function Canvas() {
     let ColorsInfo: Array<ColorInfo>;
     let drawingColor = p.color(212, 44, 44);
     let keepDrawingColor = drawingColor;
+    let countFrameKeyPressed = 0;
     returnDrawingColor = p.color(255, 0, 0);
     backgroundColor = p.color(255, 255, 255);
     let loadImageNumber = 0;
@@ -661,6 +662,8 @@ export function Canvas() {
 
     //キーボードによる操作(タイプして離れるまで繰り返し呼び出し)
     p.keyPressed = () => {
+      countFrameKeyPressed++;
+
       //描画サイズの拡大縮小
       if (p.key === "+") {
         if (adjustMode === "w") { drawingWeight += DRAWING_WEIGHT_CHANGE_SPEED; }
@@ -689,19 +692,27 @@ export function Canvas() {
         }
       }
 
+      let frameValue = 10;
+
       if (p.keyCode === p.RIGHT_ARROW) {
-        loadImageNumber++;
-        if (loadImageNumber >= coloringImages.length - 1) { loadImageNumber = coloringImages.length - 1; }
+        if (countFrameKeyPressed >= frameValue) {
+          loadImageNumber++;
+          if (loadImageNumber >= coloringImages.length - 1) { loadImageNumber = coloringImages.length - 1; }
+          countFrameKeyPressed = 0;
+        }
       }
       if (p.keyCode === p.LEFT_ARROW) {
-        loadImageNumber--;
-        if (loadImageNumber <= 0) { loadImageNumber = 0; }
+        if (countFrameKeyPressed >= frameValue) {
+          loadImageNumber--;
+          if (loadImageNumber <= 0) { loadImageNumber = 0; }
+          countFrameKeyPressed = 0;
+        }
       }
     }
 
     //キーボードによる操作(タイプして離れるまでに1度だけ呼び出し)
     p.keyTyped = () => {
-      //console.log("p.key: " + p.key);
+      console.log(p.key + " is typed");
 
       if (p.key === "s") {
         //スポイト機能
