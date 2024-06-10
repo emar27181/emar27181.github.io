@@ -60,6 +60,9 @@ export function CalculateRecommendColors() {
         //推薦する配色の相違度を更新
         updateSimilarityValues();
 
+        //相違度を基に表示する順序を保存する配列の更新
+        displayOrderIndex = calculateDisplayOrder();
+
         //calculateRecommendColorSchemeAmountBySimilarity(usedColorSchemeAmountOnlyMainColor);
         console.log("recommendColorScheme was updated");
         isUpdateRecommendColorsScheme = false;
@@ -124,7 +127,6 @@ export function CalculateRecommendColors() {
 
       orderUsedColorsDifference = calculateHueDifference(orderUsedColorsAmount, 0, false, -1);
       orderUsedColorsDifferenceExcludeBaseColor = calculateHueDifference(orderUsedColorsAmount, 1, true, 0);
-      displayOrderIndex = calculateDisplayOrder();
     }
 
     // 塗った配色と推薦する配色の類似度で配色を推薦する関数
