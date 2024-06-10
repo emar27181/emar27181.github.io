@@ -7,7 +7,7 @@ import { ReturnOrderUsedColors, ReturnOrderUsedColorsAmount, ReturnUsedColorSche
 import p5 from 'p5';
 import Color from 'color';
 import { calculateLabColorSimilarity, calculateColorsAmountSimilarity } from '../ColorRecommendation/CalculateSimilarity';
-import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor } from './CalculateColorScheme';
+import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor, addColorSchemeLightnessVariations } from './CalculateColorScheme';
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 import { convertToJsonData } from './ConvertToJsonData';
 
@@ -49,6 +49,13 @@ export function CalculateRecommendColors() {
       //calculateRecommendColorSchemeAmount();
       if (isUpdateRecommendColorsScheme) {
         calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
+
+        //推薦された配色の明度が異なるバリエーションを追加
+        const RECOMMEND_LENGTH = recommendedColorSchemeAmount.length;
+        for (let i = 0; i < RECOMMEND_LENGTH; i++) {
+          addColorSchemeLightnessVariations(recommendedColorSchemeAmount, i);
+        }
+
         //calculateRecommendColorSchemeAmountBySimilarity(usedColorSchemeAmountOnlyMainColor);
         console.log("recommendColorScheme was updated");
         isUpdateRecommendColorsScheme = false;
