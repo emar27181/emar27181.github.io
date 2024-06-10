@@ -48,6 +48,7 @@ export function CalculateRecommendColors() {
       updateVariables();
       //calculateRecommendColorSchemeAmount();
       if (isUpdateRecommendColorsScheme) {
+        //推薦する配色の追加
         calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
 
         //推薦された配色の明度が異なるバリエーションを追加
@@ -55,6 +56,9 @@ export function CalculateRecommendColors() {
         for (let i = 0; i < RECOMMEND_LENGTH; i++) {
           addColorSchemeLightnessVariations(recommendedColorSchemeAmount, i);
         }
+
+        //推薦する配色の相違度を更新
+        updateSimilarityValues();
 
         //calculateRecommendColorSchemeAmountBySimilarity(usedColorSchemeAmountOnlyMainColor);
         console.log("recommendColorScheme was updated");
@@ -157,6 +161,7 @@ export function CalculateRecommendColors() {
       else if (colorScheme === "intermediate") { calculateIntermediateColor(recommendedColorSchemeAmount, baseColor); }
       else { console.error("用意されたものではない配色を推薦しようとしています.(" + colorScheme + ")"); }
 
+      /*
       let simValue = calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[recommendedColorSchemeAmount.length - 1]);
 
       // 閾値よりも相違度が高かった場合その配色を削除
@@ -168,7 +173,16 @@ export function CalculateRecommendColors() {
         similarityValues[recommendedColorSchemeAmount.length - 1] = p.round(simValue);
       }
 
+      */
       //console.log("recommendedColorSchemeAmount.length = " + recommendedColorSchemeAmount.length);
+    }
+
+    function updateSimilarityValues() {
+      similarityValues = [];
+      for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
+        let simValue = calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[i]);
+        similarityValues[i] = simValue;
+      }
     }
 
     //塗った色の数によって配色を推薦する関数
