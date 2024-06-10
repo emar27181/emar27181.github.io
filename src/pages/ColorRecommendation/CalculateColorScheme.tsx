@@ -161,7 +161,7 @@ export function addColorSchemeLightnessVariations(colorsAmount: ColorAmount[][],
     let saturation = p.saturation(color);
     let lightness = p.lightness(color) + LIGHTNESS_DIFF;
 
-    console.log("[" + j + "] = (" + p.round(hue) + ", " + p.round(saturation) + "," + p.round(lightness) + ")");
+    //console.log("[" + j + "] = (" + p.round(hue) + ", " + p.round(saturation) + "," + p.round(lightness) + ")");
     colorsAmount[addIndexNumber].push(new ColorAmount(p.color(hue, saturation, lightness), baseColorScheme[j].amount));
   }
 }
