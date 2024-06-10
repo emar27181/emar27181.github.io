@@ -105,7 +105,7 @@ export function DisplayColorPalette() {
           p.noStroke();
           p.fill(0);
           p.text("[" + displayOrderIndex[i] + "]", p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
-          p.text(similarityValues[displayOrderIndex[i]], p.textSize() + HEIGHT_COLOR_PALETTE, (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
+          p.text(p.round(similarityValues[displayOrderIndex[i]]), p.textSize() + HEIGHT_COLOR_PALETTE, (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
 
         }
 
