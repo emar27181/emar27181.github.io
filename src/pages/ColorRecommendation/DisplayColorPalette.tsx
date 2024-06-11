@@ -67,6 +67,8 @@ export function DisplayColorPalette() {
 
     function displayColorPalettes(colorSchemeAmount: ColorAmount[], x: number) {
       let countDisplayColorPalette = 0;
+      const WIDTH_USED_COLOR_PALETTE = HEIGHT_COLOR_PALETTE * colorSchemeAmount.length;
+      const X_RECOMMEND_COLOR_PALLETE = x + WIDTH_USED_COLOR_PALETTE + HEIGHT_COLOR_PALETTE;
 
       if (IS_DISPLAY_COLOR_PALETTE_BY_RATIO) {
         displayColorPaletteByRatio(colorSchemeAmount, x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
@@ -79,7 +81,7 @@ export function DisplayColorPalette() {
         drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
         for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
-          displayColorPaletteByRatio(recommendedColorSchemeAmount[i], x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+          displayColorPaletteByRatio(recommendedColorSchemeAmount[i], X_RECOMMEND_COLOR_PALLETE, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         }
       }
 
@@ -99,24 +101,22 @@ export function DisplayColorPalette() {
         for (let i = 0; i < displayOrderIndex.length; i++) {
           if (recommendedColorSchemeAmount[displayOrderIndex[i]].length === 0) { continue; }
 
-          displayColorPaletteBySquare(recommendedColorSchemeAmount[displayOrderIndex[i]], x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+          displayColorPaletteBySquare(recommendedColorSchemeAmount[displayOrderIndex[i]], X_RECOMMEND_COLOR_PALLETE, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
           //インデックス番号の描画
           p.textSize(0.5 * HEIGHT_COLOR_PALETTE);
           p.textAlign(p.CENTER, p.CENTER);
           p.noStroke();
           p.fill(50);
-          p.text("[" + displayOrderIndex[i] + "]", p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
-          p.text(p.round(similarityValues[displayOrderIndex[i]]), p.textSize() + HEIGHT_COLOR_PALETTE, (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
+          p.text("[" + displayOrderIndex[i] + "]", X_RECOMMEND_COLOR_PALLETE + p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
+          p.text(p.round(similarityValues[displayOrderIndex[i]]), X_RECOMMEND_COLOR_PALLETE + p.textSize() + HEIGHT_COLOR_PALETTE, (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
 
         }
-
-        /*
-        for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
-          displayColorPaletteBySquare(recommendedColorSchemeAmount[i], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-        }
-        */
       }
+    }
+
+    function displayRecommendColorPalette(colorsAmount: ColorAmount[]) {
+
     }
 
     function drawTriangle(y: number) {
