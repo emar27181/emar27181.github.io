@@ -7,7 +7,7 @@ import { ReturnOrderUsedColors, ReturnOrderUsedColorsAmount, ReturnUsedColorSche
 import p5 from 'p5';
 import Color from 'color';
 import { calculateLabColorSimilarity, calculateColorsAmountSimilarity } from '../ColorRecommendation/CalculateSimilarity';
-import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor, addColorSchemeLightnessVariations } from './CalculateColorScheme';
+import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor, addColorSchemesLightnessVariations } from './CalculateColorScheme';
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 import { convertToJsonData } from './ConvertToJsonData';
 
@@ -51,11 +51,11 @@ export function CalculateRecommendColors() {
         //推薦する配色の追加
         calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
 
-        //推薦された配色の明度が異なるバリエーションを追加
+        //推薦された配色群の明度が異なるバリエーションを追加
         const RECOMMEND_LENGTH = recommendedColorSchemeAmount.length;
         for (let i = 0; i < RECOMMEND_LENGTH; i++) {
-          addColorSchemeLightnessVariations(recommendedColorSchemeAmount, i, +20);
-          addColorSchemeLightnessVariations(recommendedColorSchemeAmount, i, -20);
+          addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, +20);
+          addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, -20);
         }
 
         //推薦する配色の相違度を更新
