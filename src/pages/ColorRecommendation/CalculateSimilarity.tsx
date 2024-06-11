@@ -118,10 +118,13 @@ export function calculateColorsAmountSimilarityP1(colorsAmount1: ColorAmount[], 
 
 // 
 export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
+  // colorsAmount1: 使用された配色
+  // colorsAmount2: 比較される配色
   const p = new p5(() => { });
   let sumSimilarity: number = 0;
   let usedIndex1: number[] = [];
   let usedIndex2: number[] = [];
+  let minIndexNumberArray: number[] = [];
 
   if ((typeof (colorsAmount1) === 'undefined') || (typeof (colorsAmount2) === 'undefined')) { return -2; }
   if (colorsAmount1.length === 0 || colorsAmount2.length === 0) { return -1; }
@@ -134,6 +137,8 @@ export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], co
       if (i === usedIndex1[k]) { isContinued1 = true; }
     }
 
+
+    let minIndex = 0;
     let minSimValue = calculateLabColorSimilarity(colorsAmount1[i].color, colorsAmount2[0].color);
     for (let j = 0; j < colorsAmount2.length; j++) {
       let isContinued2 = false;
@@ -156,14 +161,25 @@ export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], co
         //最も相違度が小さいとされたインデックスを使用済みとして記録
         usedIndex1.push(i);
         usedIndex2.push(j);
+        minIndex = j;
       }
+      //console.log("minIndex = " + minIndex);
     }
+
+    minIndexNumberArray.push(minIndex);
+    //console.log(minIndexNumberArray);
+
     sumSimilarity += minSimValue;
   }
 
-  //console.log("sumSimilarity: " + sumSimilarity);
-  //console.log("usedIndex1 = " + usedIndex1);
-  //console.log("usedIndex2 = " + usedIndex2);
+  for (let i = 0; i < minIndexNumberArray.length; i++) {
+    colorsAmount2.splice(minIndexNumberArray[i], 1);
+    for(let j = 0; j < minIndexNumberArray.length; j++) {
+      minIndexNumberArray[j] -= 1;
+    }
+  }
+
+  //console.log(minIndexNumberArray);
 
   return (sumSimilarity / colorsAmount1.length);
 }
