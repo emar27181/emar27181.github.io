@@ -97,6 +97,8 @@ export function DisplayColorPalette() {
         drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
         for (let i = 0; i < displayOrderIndex.length; i++) {
+          if (recommendedColorSchemeAmount[displayOrderIndex[i]].length === 0) { continue; }
+
           displayColorPaletteBySquare(recommendedColorSchemeAmount[displayOrderIndex[i]], x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
           //インデックス番号の描画
