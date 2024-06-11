@@ -105,7 +105,7 @@ export function DisplayColorPalette() {
           p.textSize(0.5 * HEIGHT_COLOR_PALETTE);
           p.textAlign(p.CENTER, p.CENTER);
           p.noStroke();
-          p.fill(0);
+          p.fill(50);
           p.text("[" + displayOrderIndex[i] + "]", p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
           p.text(p.round(similarityValues[displayOrderIndex[i]]), p.textSize() + HEIGHT_COLOR_PALETTE, (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
 
