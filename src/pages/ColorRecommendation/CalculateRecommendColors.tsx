@@ -10,6 +10,7 @@ import { calculateLabColorSimilarity, calculateColorsAmountSimilarity } from '..
 import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor, addColorSchemesLightnessVariations } from './CalculateColorScheme';
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 import { convertToJsonData } from './ConvertToJsonData';
+import { LIGHTNESS_DIFF } from '../../config/constants';
 
 const DEBUG = false;
 
@@ -54,8 +55,8 @@ export function CalculateRecommendColors() {
         //推薦された配色群の明度が異なるバリエーションを追加
         const RECOMMEND_LENGTH = recommendedColorSchemeAmount.length;
         for (let i = 0; i < RECOMMEND_LENGTH; i++) {
-          addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, +20);
-          addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, -20);
+          addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, + LIGHTNESS_DIFF);
+          addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, - LIGHTNESS_DIFF);
         }
 
         //推薦する配色の相違度を更新
