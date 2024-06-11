@@ -91,6 +91,8 @@ export function DisplayColorPalette() {
 
         // 使用色のカラーパレットの描画
         displayColorPaletteBySquare(colorSchemeAmount, x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE, +LIGHTNESS_DIFF);
+        p.textSize(0.5 * HEIGHT_COLOR_PALETTE);
+        p.text("+", x + HEIGHT_COLOR_PALETTE * colorSchemeAmount.length + p.textSize(), countDisplayColorPalette * HEIGHT_COLOR_PALETTE + p.textSize());
         displayColorPaletteBySquare(colorSchemeAmount, x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE, +0);
         displayColorPaletteBySquare(colorSchemeAmount, x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE, -LIGHTNESS_DIFF);
 
