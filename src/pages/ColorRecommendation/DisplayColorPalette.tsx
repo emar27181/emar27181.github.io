@@ -33,7 +33,7 @@ export function DisplayColorPalette() {
     //let displayOrderIndex: number[] = [];
 
     p.setup = () => {
-      p.createCanvas(DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3, DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3);
+      p.createCanvas(DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3, 1.5 * DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3);
       p.background(0);
       p.frameRate(1);
       initializeVariables();
