@@ -45,9 +45,9 @@ export function CalculateRecommendColors() {
     }
 
     p.draw = () => {
-      updateVariables();
-      //calculateRecommendColorSchemeAmount();
       if (isUpdateRecommendColorsScheme) {
+        updateVariables();
+
         //推薦する配色の追加
         calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
 
