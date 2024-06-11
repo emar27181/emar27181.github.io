@@ -147,7 +147,7 @@ export function calculateDominantTone(colorAmount: ColorAmount[][], baseColor: p
 }
 
 // 推薦する配色とは明度が異なる配色を配列に追加する関数
-export function addColorSchemeLightnessVariations(colorsAmount: ColorAmount[][], baseIndexNumber: number) {
+export function addColorSchemeLightnessVariations(colorsAmount: ColorAmount[][], baseIndexNumber: number, lightnessDiff: number) {
   //indexNumber: 新たに推薦する配色の基となる配色の番号を保存するインデックス番号
 
   let baseColorScheme = colorsAmount[baseIndexNumber];
@@ -159,7 +159,7 @@ export function addColorSchemeLightnessVariations(colorsAmount: ColorAmount[][],
     let color = baseColorScheme[j].color;
     let hue = p.hue(color);
     let saturation = p.saturation(color);
-    let lightness = p.lightness(color) + LIGHTNESS_DIFF;
+    let lightness = p.lightness(color) + lightnessDiff;
 
     //console.log("[" + j + "] = (" + p.round(hue) + ", " + p.round(saturation) + "," + p.round(lightness) + ")");
     colorsAmount[addIndexNumber].push(new ColorAmount(p.color(hue, saturation, lightness), baseColorScheme[j].amount));

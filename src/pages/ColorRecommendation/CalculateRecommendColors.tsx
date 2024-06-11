@@ -54,7 +54,8 @@ export function CalculateRecommendColors() {
         //推薦された配色の明度が異なるバリエーションを追加
         const RECOMMEND_LENGTH = recommendedColorSchemeAmount.length;
         for (let i = 0; i < RECOMMEND_LENGTH; i++) {
-          addColorSchemeLightnessVariations(recommendedColorSchemeAmount, i);
+          addColorSchemeLightnessVariations(recommendedColorSchemeAmount, i, +20);
+          addColorSchemeLightnessVariations(recommendedColorSchemeAmount, i, -20);
         }
 
         //推薦する配色の相違度を更新
@@ -75,13 +76,12 @@ export function CalculateRecommendColors() {
         //console.log("similarityValues = " + similarityValues);
         //console.log("recommendedColorSchemeAmount.length = " + recommendedColorSchemeAmount.length);
         //console.log("displayOrderIndex = " + displayOrderIndex);
+        //console.log(filteredOrderUsedColorsAmount);
+        //console.log("filteredOrderUsedColorsAmount = " + filteredOrderUsedColorsAmount);
+        //console.log(filteredRecommendedColorSchemeAmount);
+        //console.log("filteredRecommendedColorSchemeAmount = " + filteredRecommendedColorSchemeAmount);
+
       }
-
-      //console.log(filteredOrderUsedColorsAmount);
-      //console.log("filteredOrderUsedColorsAmount = " + filteredOrderUsedColorsAmount);
-      //console.log(filteredRecommendedColorSchemeAmount);
-      //console.log("filteredRecommendedColorSchemeAmount = " + filteredRecommendedColorSchemeAmount);
-
     };
 
     //推薦する配色のうち類似度が小さい順に表示させるためのインデックス番号を保存する配列を計算する関数
