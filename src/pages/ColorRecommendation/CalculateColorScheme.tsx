@@ -1,5 +1,6 @@
 import p5 from "p5";
 import { ColorAmount } from "./DisplayUsedColorRatio";
+import { LIGHTNESS_DIFF } from "../../config/constants";
 
 const p = new p5(() => { });
 
@@ -143,4 +144,24 @@ export function calculateDominantTone(colorAmount: ColorAmount[][], baseColor: p
   colorAmount[i].push(new ColorAmount(baseColor, 70));
   colorAmount[i].push(new ColorAmount(p.color(0.7 * red, 0.7 * green, 0.7 * blue), 25));
   colorAmount[i].push(new ColorAmount(p.color(0.4 * red, 0.4 * green, 0.4 * blue), 5));
+}
+
+// 推薦する配色とは明度が異なる配色群を配列に追加する関数
+export function addColorSchemesLightnessVariations(colorsAmount: ColorAmount[][], baseIndexNumber: number, lightnessDiff: number) {
+  //indexNumber: 新たに推薦する配色の基となる配色の番号を保存するインデックス番号
+
+  let baseColorScheme = colorsAmount[baseIndexNumber];
+  let addIndexNumber = colorsAmount.length;
+  colorsAmount[addIndexNumber] = [];
+  p.colorMode(p.HSL);
+
+  for (let j = 0; j < baseColorScheme.length; j++) {
+    let color = baseColorScheme[j].color;
+    let hue = p.hue(color);
+    let saturation = p.saturation(color);
+    let lightness = p.lightness(color) + lightnessDiff;
+
+    //console.log("[" + j + "] = (" + p.round(hue) + ", " + p.round(saturation) + "," + p.round(lightness) + ")");
+    colorsAmount[addIndexNumber].push(new ColorAmount(p.color(hue, saturation, lightness), baseColorScheme[j].amount));
+  }
 }

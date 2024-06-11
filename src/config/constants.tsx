@@ -8,3 +8,5 @@ export const AMOUNT_LIMIT = 100; // 配色として有効色と判定される�
 export const SATURATION_LIMIT = 10;
 export const LIGHTNESS_UPPER_LIMIT = 90;
 export const LIGHTNESS_LOWER_LIMIT = 10;
+
+export const LIGHTNESS_DIFF = 20; // 推薦するメインの配色と異なる明度の配色を推薦するときの差

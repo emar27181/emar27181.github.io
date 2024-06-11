@@ -4,7 +4,7 @@ import React from 'react';
 import { ReturnUsedColorsAmount, ReturnUsedColorSchemeAmount, ReturnUsedColorSchemeAmountOnlyMainColor, ReturnOrderUsedColorsAmount } from './CalculateUsedColors';
 import { ReturnRecommendedColorSchemeAmount } from './CalculateRecommendColors';
 import { ColorAmount } from '../../utils/ColorAmount';
-import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE } from '../../config/constants';
+import { DISPLAY_RATE, DISPLAY_USED_COLOR_WHEEL_RATE, LIGHTNESS_DIFF } from '../../config/constants';
 import p5 from 'p5';
 import { calculateColorsAmountSimilarity, calculateLabColorSimilarity } from '../ColorRecommendation/CalculateSimilarity';
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
@@ -33,7 +33,7 @@ export function DisplayColorPalette() {
     //let displayOrderIndex: number[] = [];
 
     p.setup = () => {
-      p.createCanvas(DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3, DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3);
+      p.createCanvas(DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3, 1.5 * DISPLAY_RATE * DISPLAY_USED_COLOR_WHEEL_RATE * window.innerWidth / 3);
       p.background(0);
       p.frameRate(1);
       initializeVariables();
@@ -67,6 +67,8 @@ export function DisplayColorPalette() {
 
     function displayColorPalettes(colorSchemeAmount: ColorAmount[], x: number) {
       let countDisplayColorPalette = 0;
+      const WIDTH_USED_COLOR_PALETTE = HEIGHT_COLOR_PALETTE * colorSchemeAmount.length;
+      const X_RECOMMEND_COLOR_PALLETE = x + WIDTH_USED_COLOR_PALETTE + HEIGHT_COLOR_PALETTE;
 
       if (IS_DISPLAY_COLOR_PALETTE_BY_RATIO) {
         displayColorPaletteByRatio(colorSchemeAmount, x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
@@ -79,7 +81,7 @@ export function DisplayColorPalette() {
         drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
 
         for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
-          displayColorPaletteByRatio(recommendedColorSchemeAmount[i], x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+          displayColorPaletteByRatio(recommendedColorSchemeAmount[i], X_RECOMMEND_COLOR_PALLETE, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
         }
       }
 
@@ -87,34 +89,40 @@ export function DisplayColorPalette() {
         //---------------------------------------------------------
         countDisplayColorPalette++; //空行の表示分のインクリメント
 
-        displayColorPaletteBySquare(colorSchemeAmount, x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-        //displayColorPaletteBySquare(orderUsedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-        //displayColorPaletteBySquare(usedColorSchemeAmountOnlyMainColor, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-        //displayColorPaletteBySquare(usedColorsAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-        //displayColorPaletteBySquare(usedColorSchemeAmount, 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        // 使用色のカラーパレットの描画
+        displayColorPaletteBySquare(colorSchemeAmount, x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE, +LIGHTNESS_DIFF);
+        p.textSize(0.5 * HEIGHT_COLOR_PALETTE);
+        p.text("+", x + HEIGHT_COLOR_PALETTE * colorSchemeAmount.length + p.textSize(), countDisplayColorPalette * HEIGHT_COLOR_PALETTE + p.textSize());
+        displayColorPaletteBySquare(colorSchemeAmount, x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE, +0);
+        displayColorPaletteBySquare(colorSchemeAmount, x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE, -LIGHTNESS_DIFF);
+
+        // カラーパレットを描画するy座標の調整
+        countDisplayColorPalette--;
+        countDisplayColorPalette--;
 
         // ↓
-        drawTriangle(countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+        //drawTriangle(countDisplayColorPalette * HEIGHT_COLOR_PALETTE);
 
+        // 推薦色のカラーパレットの描画
         for (let i = 0; i < displayOrderIndex.length; i++) {
-          displayColorPaletteBySquare(recommendedColorSchemeAmount[displayOrderIndex[i]], x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
+          if (recommendedColorSchemeAmount[displayOrderIndex[i]].length === 0) { continue; }
+
+          displayColorPaletteBySquare(recommendedColorSchemeAmount[displayOrderIndex[i]], X_RECOMMEND_COLOR_PALLETE, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE, 0);
 
           //インデックス番号の描画
           p.textSize(0.5 * HEIGHT_COLOR_PALETTE);
           p.textAlign(p.CENTER, p.CENTER);
           p.noStroke();
           p.fill(0);
-          p.text("[" + displayOrderIndex[i] + "]", p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
-          p.text(similarityValues[displayOrderIndex[i]], p.textSize() + HEIGHT_COLOR_PALETTE, (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
+          //p.text("[" + displayOrderIndex[i] + "]", X_RECOMMEND_COLOR_PALLETE - HEIGHT_COLOR_PALETTE + p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
+          p.text(p.round(similarityValues[displayOrderIndex[i]]), X_RECOMMEND_COLOR_PALLETE + p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
 
         }
-
-        /*
-        for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
-          displayColorPaletteBySquare(recommendedColorSchemeAmount[i], 0, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
-        }
-        */
       }
+    }
+
+    function displayRecommendColorPalette(colorsAmount: ColorAmount[]) {
+
     }
 
     function drawTriangle(y: number) {
@@ -162,14 +170,19 @@ export function DisplayColorPalette() {
       */
     }
 
-    function displayColorPaletteBySquare(colorsAmount: ColorAmount[], x: number, y: number) {
+    function displayColorPaletteBySquare(colorsAmount: ColorAmount[], x: number, y: number, lightnessDiff: number) {
       if (typeof (colorsAmount) === "undefined") { return; }
 
       p.colorMode(p.HSL);
       p.strokeWeight(0.01 * p.width);
       for (let i = 0; i < colorsAmount.length; i++) {
         p.stroke(20);
-        p.fill(colorsAmount[i].color);
+        let color = colorsAmount[i].color;
+        let hue = p.hue(color);
+        let saturation = p.saturation(color);
+        let lightness = p.lightness(color) + lightnessDiff;
+        p.fill(p.color(hue, saturation, lightness));
+        //p.fill(colorsAmount[i].color);
         p.rect(x + i * HEIGHT_COLOR_PALETTE, y, HEIGHT_COLOR_PALETTE, HEIGHT_COLOR_PALETTE);
         //確認用出力
         p.fill(255);

@@ -7,9 +7,10 @@ import { ReturnOrderUsedColors, ReturnOrderUsedColorsAmount, ReturnUsedColorSche
 import p5 from 'p5';
 import Color from 'color';
 import { calculateLabColorSimilarity, calculateColorsAmountSimilarity } from '../ColorRecommendation/CalculateSimilarity';
-import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor } from './CalculateColorScheme';
+import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor, addColorSchemesLightnessVariations } from './CalculateColorScheme';
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 import { convertToJsonData } from './ConvertToJsonData';
+import { LIGHTNESS_DIFF } from '../../config/constants';
 
 const DEBUG = false;
 
@@ -45,10 +46,25 @@ export function CalculateRecommendColors() {
     }
 
     p.draw = () => {
-      updateVariables();
-      //calculateRecommendColorSchemeAmount();
       if (isUpdateRecommendColorsScheme) {
+        updateVariables();
+
+        //推薦する配色の追加
         calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
+
+        //推薦された配色群の明度が異なるバリエーションを追加
+        const RECOMMEND_LENGTH = recommendedColorSchemeAmount.length;
+        for (let i = 0; i < RECOMMEND_LENGTH; i++) {
+          addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, + LIGHTNESS_DIFF);
+          addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, - LIGHTNESS_DIFF);
+        }
+
+        //推薦する配色の相違度を更新
+        updateSimilarityValues();
+
+        //相違度を基に表示する順序を保存する配列の更新
+        displayOrderIndex = calculateDisplayOrder();
+
         //calculateRecommendColorSchemeAmountBySimilarity(usedColorSchemeAmountOnlyMainColor);
         console.log("recommendColorScheme was updated");
         isUpdateRecommendColorsScheme = false;
@@ -61,13 +77,12 @@ export function CalculateRecommendColors() {
         //console.log("similarityValues = " + similarityValues);
         //console.log("recommendedColorSchemeAmount.length = " + recommendedColorSchemeAmount.length);
         //console.log("displayOrderIndex = " + displayOrderIndex);
+        //console.log(filteredOrderUsedColorsAmount);
+        //console.log("filteredOrderUsedColorsAmount = " + filteredOrderUsedColorsAmount);
+        //console.log(filteredRecommendedColorSchemeAmount);
+        //console.log("filteredRecommendedColorSchemeAmount = " + filteredRecommendedColorSchemeAmount);
+
       }
-
-      //console.log(filteredOrderUsedColorsAmount);
-      //console.log("filteredOrderUsedColorsAmount = " + filteredOrderUsedColorsAmount);
-      //console.log(filteredRecommendedColorSchemeAmount);
-      //console.log("filteredRecommendedColorSchemeAmount = " + filteredRecommendedColorSchemeAmount);
-
     };
 
     //推薦する配色のうち類似度が小さい順に表示させるためのインデックス番号を保存する配列を計算する関数
@@ -113,7 +128,6 @@ export function CalculateRecommendColors() {
 
       orderUsedColorsDifference = calculateHueDifference(orderUsedColorsAmount, 0, false, -1);
       orderUsedColorsDifferenceExcludeBaseColor = calculateHueDifference(orderUsedColorsAmount, 1, true, 0);
-      displayOrderIndex = calculateDisplayOrder();
     }
 
     // 塗った配色と推薦する配色の類似度で配色を推薦する関数
@@ -150,6 +164,7 @@ export function CalculateRecommendColors() {
       else if (colorScheme === "intermediate") { calculateIntermediateColor(recommendedColorSchemeAmount, baseColor); }
       else { console.error("用意されたものではない配色を推薦しようとしています.(" + colorScheme + ")"); }
 
+      /*
       let simValue = calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[recommendedColorSchemeAmount.length - 1]);
 
       // 閾値よりも相違度が高かった場合その配色を削除
@@ -161,7 +176,16 @@ export function CalculateRecommendColors() {
         similarityValues[recommendedColorSchemeAmount.length - 1] = p.round(simValue);
       }
 
+      */
       //console.log("recommendedColorSchemeAmount.length = " + recommendedColorSchemeAmount.length);
+    }
+
+    function updateSimilarityValues() {
+      similarityValues = [];
+      for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
+        let simValue = calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[i]);
+        similarityValues[i] = simValue;
+      }
     }
 
     //塗った色の数によって配色を推薦する関数
