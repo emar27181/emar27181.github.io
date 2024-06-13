@@ -13,6 +13,7 @@ let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 let orderUsedColors: Array<p5.Color> = [];
 let orderUsedColorsAmount: Array<ColorAmount> = [];
 let isCanvasMouseReleased: boolean = false;
+const IS_INPUT_BY_JSON = true;
 
 export function CalculateUsedColors() {
   const DEBUG = false;
@@ -22,10 +23,6 @@ export function CalculateUsedColors() {
     p.setup = () => {
       p.frameRate(1);
       initializeVariables();
-
-      for (let i = 0; i < inputOrderUsedColorAmount.length; i++) {
-        console.log("[" + i + "]: color = " + inputOrderUsedColorAmount[i].color + ", amount = " + inputOrderUsedColorAmount[i].amount);
-      }
     };
 
     function initializeVariables() {
@@ -46,7 +43,12 @@ export function CalculateUsedColors() {
       isCanvasMouseReleased = ReturnIsMouseReleased();
       if (isUpdateRecommendColorsScheme) {
         orderUsedColors.push(ReturnDrawingColor());
-        updateColorsAmount(orderUsedColorsAmount, ReturnDrawingColor());
+        if (IS_INPUT_BY_JSON) {
+          updateOrderUsedColorsAmountByJson();
+        }
+        else {
+          updateColorsAmount(orderUsedColorsAmount, ReturnDrawingColor());
+        }
       }
     }
 
@@ -100,6 +102,17 @@ export function CalculateUsedColors() {
           }
         }
       }
+    }
+
+    function updateOrderUsedColorsAmountByJson() {
+      for (let i = 0; i < inputOrderUsedColorAmount.length; i++) {
+        let color = p.color(inputOrderUsedColorAmount[i].color);
+        let amount = inputOrderUsedColorAmount[i].amount;
+
+        orderUsedColorsAmount.push(new ColorAmount(color, amount));
+      }
+
+      console.log("orderUsedColorsAmount is loaded");
     }
 
     function updateColorsAmount(colorsAmount: ColorAmount[], color: p5.Color) {
