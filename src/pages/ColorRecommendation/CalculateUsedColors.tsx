@@ -5,6 +5,7 @@ import { ReturnDrawingColor, ReturnIsMouseReleased } from "../Reserch/Canvas";
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 import { ColorAmount } from "../../utils/ColorAmount";
 import { isUpdateRecommendColorsScheme } from "./CalculateRecommendColors";
+import inputOrderUsedColorAmount from "./data/inputOrderUsedColorsAmount.json";
 
 let usedColorsAmount: Array<ColorAmount> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
@@ -21,6 +22,10 @@ export function CalculateUsedColors() {
     p.setup = () => {
       p.frameRate(1);
       initializeVariables();
+
+      for (let i = 0; i < inputOrderUsedColorAmount.length; i++) {
+        console.log("[" + i + "]: color = " + inputOrderUsedColorAmount[i].color + ", amount = " + inputOrderUsedColorAmount[i].amount);
+      }
     };
 
     function initializeVariables() {
