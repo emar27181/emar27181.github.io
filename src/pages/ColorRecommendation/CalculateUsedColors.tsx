@@ -120,7 +120,7 @@ export function CalculateUsedColors() {
         return;
       }
 
-      for (let i = 0; i < LOAD_USED_COLOR_NUMBER; i++) {
+      for (let i = 0; i <= LOAD_USED_COLOR_NUMBER; i++) {
         let color = p.color(inputOrderUsedColorAmount[LOAD_USED_COLOR_SCHEME_NUMBER][i].color);
         let amount = inputOrderUsedColorAmount[LOAD_USED_COLOR_SCHEME_NUMBER][i].amount;
 
