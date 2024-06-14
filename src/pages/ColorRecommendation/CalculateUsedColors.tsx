@@ -23,6 +23,15 @@ export function CalculateUsedColors() {
     p.setup = () => {
       p.frameRate(1);
       initializeVariables();
+
+
+      if (DEBUG) {
+        for (let i = 0; i < inputOrderUsedColorAmount.length; i++) {
+          for (let j = 0; j < inputOrderUsedColorAmount[i].length; j++) {
+            console.log("[" + i + "][" + j + "]: " + inputOrderUsedColorAmount[i][j].color);
+          }
+        }
+      }
     };
 
     function initializeVariables() {
@@ -105,9 +114,10 @@ export function CalculateUsedColors() {
     }
 
     function updateOrderUsedColorsAmountByJson() {
-      for (let i = 0; i < inputOrderUsedColorAmount.length; i++) {
-        let color = p.color(inputOrderUsedColorAmount[i].color);
-        let amount = inputOrderUsedColorAmount[i].amount;
+      let j = 1;
+      for (let i = 0; i < inputOrderUsedColorAmount[j].length; i++) {
+        let color = p.color(inputOrderUsedColorAmount[j][i].color);
+        let amount = inputOrderUsedColorAmount[j][i].amount;
 
         orderUsedColorsAmount.push(new ColorAmount(color, amount));
       }
