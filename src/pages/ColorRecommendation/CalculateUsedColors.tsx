@@ -6,6 +6,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 import { ColorAmount } from "../../utils/ColorAmount";
 import { isUpdateRecommendColorsScheme } from "./CalculateRecommendColors";
 import inputOrderUsedColorAmount from "./data/inputOrderUsedColorsAmount.json";
+import { LOAD_USED_COLOR_SCHEME_NUMBER } from "../../config/constants.dev";
 
 let usedColorsAmount: Array<ColorAmount> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
@@ -114,10 +115,9 @@ export function CalculateUsedColors() {
     }
 
     function updateOrderUsedColorsAmountByJson() {
-      let j = 1;
-      for (let i = 0; i < inputOrderUsedColorAmount[j].length; i++) {
-        let color = p.color(inputOrderUsedColorAmount[j][i].color);
-        let amount = inputOrderUsedColorAmount[j][i].amount;
+      for (let i = 0; i < inputOrderUsedColorAmount[LOAD_USED_COLOR_SCHEME_NUMBER].length; i++) {
+        let color = p.color(inputOrderUsedColorAmount[LOAD_USED_COLOR_SCHEME_NUMBER][i].color);
+        let amount = inputOrderUsedColorAmount[LOAD_USED_COLOR_SCHEME_NUMBER][i].amount;
 
         orderUsedColorsAmount.push(new ColorAmount(color, amount));
       }
