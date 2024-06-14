@@ -115,6 +115,11 @@ export function CalculateUsedColors() {
     }
 
     function updateOrderUsedColorsAmountByJson() {
+      if (typeof (inputOrderUsedColorAmount[LOAD_USED_COLOR_SCHEME_NUMBER]) === "undefined") {
+        console.error("読込まれた配列に配色が保存されていません。LOAD_USED_COLOR_SCHEME_NUMBERを正しい値にしてください。");
+        return;
+      }
+
       for (let i = 0; i < inputOrderUsedColorAmount[LOAD_USED_COLOR_SCHEME_NUMBER].length; i++) {
         let color = p.color(inputOrderUsedColorAmount[LOAD_USED_COLOR_SCHEME_NUMBER][i].color);
         let amount = inputOrderUsedColorAmount[LOAD_USED_COLOR_SCHEME_NUMBER][i].amount;
