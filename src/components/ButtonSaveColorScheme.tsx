@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 //import { orderUsedColorsAmount, recommendedColorSchemeAmount } from '../pages/ColorRecommendation/CalculateRecommendColors';
 import { filteredOrderUsedColorsAmount, filteredRecommendedColorSchemeAmount } from '../pages/ColorRecommendation/CalculateRecommendColors';
+import { LOAD_USED_COLOR_NUMBER, LOAD_USED_COLOR_SCHEME_NUMBER } from '../config/constants.dev';
 
 const fileName = 'colorScheme';
 
 const ButtonSaveColorScheme: React.FC = () => {
   const [jsonURL, setJsonURL] = useState<string | null>(null);
+  const LOAD_NUMBER = [LOAD_USED_COLOR_SCHEME_NUMBER, LOAD_USED_COLOR_NUMBER];
 
   const handleExport = () => {
     // 最新のデータを取得
     const jsonData = {
+      LOAD_NUMBER,
       filteredOrderUsedColorsAmount,
       filteredRecommendedColorSchemeAmount,
     };
