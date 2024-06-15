@@ -11,6 +11,7 @@ import { calculateDominantColor, calculateDyadColor, calculateSplitComplementary
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 import { convertToJsonData } from './ConvertToJsonData';
 import { LIGHTNESS_DIFF } from '../../config/constants';
+import { isColorPaintNext } from './EvaluateIsColorPaintNext';
 
 const DEBUG = false;
 
@@ -67,6 +68,10 @@ export function CalculateRecommendColors() {
 
         //calculateRecommendColorSchemeAmountBySimilarity(usedColorSchemeAmountOnlyMainColor);
         console.log("recommendColorScheme was updated");
+
+        // 推薦された配色に次の色が含まれているかの確認
+        isColorPaintNext(1, 1);
+
         isUpdateRecommendColorsScheme = false;
       }
 

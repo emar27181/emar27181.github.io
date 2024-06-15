@@ -1,6 +1,9 @@
 
+import inputOrderUsedColorScheme from "./data/inputOrderUsedColorsAmount.json";
+
 // used[i][j]に対する推薦recommend[][]にused[i][j+1](次の色)が含まれているかどうか確認する関数
-export function isColorPaintNext(): boolean {
+export function isColorPaintNext(i: number, j: number): boolean {
+  console.log("inputOrderUsedColorScheme[" + i + "][" + j + "].color = " + inputOrderUsedColorScheme[i][j].color);
   return false;
 }
 
