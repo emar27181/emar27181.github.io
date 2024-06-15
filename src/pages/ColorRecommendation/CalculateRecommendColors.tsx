@@ -60,6 +60,14 @@ export function CalculateRecommendColors() {
           addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, - LIGHTNESS_DIFF);
         }
 
+        //推薦する配色群をjson型に変換されたデータに変換して代入
+        filteredOrderUsedColorsAmount = convertToJsonData(orderUsedColorsAmount);
+        for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
+          filteredRecommendedColorSchemeAmount[i] = convertToJsonData(recommendedColorSchemeAmount[i]);
+          //console.log("filteredRecommendedColorSchemeAmount[" + i + "] = " + filteredRecommendedColorSchemeAmount[i]);
+        }
+        console.log("filteredRecommendedColorSchemeAmount is updated");
+
         //推薦する配色の相違度を更新
         updateSimilarityValues();
 
@@ -124,12 +132,6 @@ export function CalculateRecommendColors() {
       //orderUsedColors = ReturnOrderUsedColors();
       orderUsedColorsAmount = ReturnOrderUsedColorsAmount();
       isCanvasMouseReleased = ReturnIsMouseReleased();
-
-      //json型に変換されたデータの代入
-      filteredOrderUsedColorsAmount = convertToJsonData(orderUsedColorsAmount);
-      for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
-        filteredRecommendedColorSchemeAmount[i] = convertToJsonData(recommendedColorSchemeAmount[i]);
-      }
 
       orderUsedColorsDifference = calculateHueDifference(orderUsedColorsAmount, 0, false, -1);
       orderUsedColorsDifferenceExcludeBaseColor = calculateHueDifference(orderUsedColorsAmount, 1, true, 0);
