@@ -127,7 +127,7 @@ export function CalculateUsedColors() {
         orderUsedColorsAmount.push(new ColorAmount(color, amount));
       }
 
-      console.log("orderUsedColorsAmount is loaded");
+      console.log("orderUsedColorsAmount is loaded ((i, j) = (" + LOAD_USED_COLOR_SCHEME_NUMBER + ", " + LOAD_USED_COLOR_NUMBER + "))");
     }
 
     function updateColorsAmount(colorsAmount: ColorAmount[], color: p5.Color) {
