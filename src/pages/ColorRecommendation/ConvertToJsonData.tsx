@@ -22,7 +22,8 @@ export function convertToJsonData(colorsAmount: ColorAmount[]) {
   }
 
   function rgbToHex(r: number, g: number, b: number) {
-    return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+    const HEX = '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+    return HEX.slice(0, 7);
   }
 
   return jsonData;
