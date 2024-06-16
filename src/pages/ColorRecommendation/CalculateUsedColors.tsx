@@ -54,7 +54,7 @@ export function CalculateUsedColors() {
       if (isUpdateRecommendColorsScheme) {
         orderUsedColors.push(ReturnDrawingColor());
         if (IS_INPUT_BY_JSON) {
-          updateOrderUsedColorsAmountByJson();
+          initializeOrderUsedColorsAmountByJson(LOAD_USED_COLOR_SCHEME_NUMBER, LOAD_USED_COLOR_NUMBER);
         }
         else {
           updateColorsAmount(orderUsedColorsAmount, ReturnDrawingColor());
@@ -114,20 +114,21 @@ export function CalculateUsedColors() {
       }
     }
 
-    function updateOrderUsedColorsAmountByJson() {
-      if (typeof (inputOrderUsedColorAmount[LOAD_USED_COLOR_SCHEME_NUMBER]) === "undefined") {
-        console.error("読込まれた配列に配色が保存されていません。LOAD_USED_COLOR_SCHEME_NUMBERを正しい値にしてください。");
+    // Jsonファイルを基に使用色を保存する配列を初期化する関数
+    function initializeOrderUsedColorsAmountByJson(colorSchemeNumber: number, colorNumber: number) {
+      if (typeof (inputOrderUsedColorAmount[colorSchemeNumber]) === "undefined") {
+        console.error("読込まれた配列に配色が保存されていません。colorSchemeNumberを正しい値にしてください。");
         return;
       }
 
-      for (let i = 0; i <= LOAD_USED_COLOR_NUMBER; i++) {
-        let color = p.color(inputOrderUsedColorAmount[LOAD_USED_COLOR_SCHEME_NUMBER][i].color);
-        let amount = inputOrderUsedColorAmount[LOAD_USED_COLOR_SCHEME_NUMBER][i].amount;
+      for (let i = 0; i <= colorNumber; i++) {
+        let color = p.color(inputOrderUsedColorAmount[colorSchemeNumber][i].color);
+        let amount = inputOrderUsedColorAmount[colorSchemeNumber][i].amount;
 
         orderUsedColorsAmount.push(new ColorAmount(color, amount));
       }
 
-      console.log("orderUsedColorsAmount is loaded ((i, j) = (" + LOAD_USED_COLOR_SCHEME_NUMBER + ", " + LOAD_USED_COLOR_NUMBER + "))");
+      console.log("orderUsedColorsAmount is loaded ((i, j) = (" + colorSchemeNumber + ", " + colorNumber + "))");
     }
 
     function updateColorsAmount(colorsAmount: ColorAmount[], color: p5.Color) {
