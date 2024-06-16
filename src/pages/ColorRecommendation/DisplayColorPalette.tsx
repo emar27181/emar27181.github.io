@@ -22,6 +22,7 @@ export function DisplayColorPalette() {
     const HEIGHT_COLOR_PALETTE = 0.015 * window.innerWidth;
     const IS_DISPLAY_COLOR_PALETTE_BY_RATIO = false;
     const IS_DISPLAY_COLOR_PALETTE_BY_SQUARE = true;
+    const IS_DISPLAY_INDEX_NUMBER = true;
     let usedColorsAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
@@ -68,7 +69,10 @@ export function DisplayColorPalette() {
     function displayColorPalettes(colorSchemeAmount: ColorAmount[], x: number) {
       let countDisplayColorPalette = 0;
       const WIDTH_USED_COLOR_PALETTE = HEIGHT_COLOR_PALETTE * colorSchemeAmount.length;
-      const X_RECOMMEND_COLOR_PALLETE = x + WIDTH_USED_COLOR_PALETTE + HEIGHT_COLOR_PALETTE;
+
+      let add_width = 0;
+      if (IS_DISPLAY_INDEX_NUMBER) { add_width += HEIGHT_COLOR_PALETTE; }
+      const X_RECOMMEND_COLOR_PALLETE = x + WIDTH_USED_COLOR_PALETTE + HEIGHT_COLOR_PALETTE + add_width;
 
       if (IS_DISPLAY_COLOR_PALETTE_BY_RATIO) {
         displayColorPaletteByRatio(colorSchemeAmount, x, countDisplayColorPalette++ * HEIGHT_COLOR_PALETTE);
@@ -113,8 +117,13 @@ export function DisplayColorPalette() {
           p.textSize(0.5 * HEIGHT_COLOR_PALETTE);
           p.textAlign(p.CENTER, p.CENTER);
           p.noStroke();
+
+
+          if (IS_DISPLAY_INDEX_NUMBER) {
+            p.fill(255);
+            p.text("[" + displayOrderIndex[i] + "]", X_RECOMMEND_COLOR_PALLETE - HEIGHT_COLOR_PALETTE + p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
+          }
           p.fill(0);
-          //p.text("[" + displayOrderIndex[i] + "]", X_RECOMMEND_COLOR_PALLETE - HEIGHT_COLOR_PALETTE + p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
           p.text(p.round(similarityValues[displayOrderIndex[i]]), X_RECOMMEND_COLOR_PALLETE + p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
 
         }
