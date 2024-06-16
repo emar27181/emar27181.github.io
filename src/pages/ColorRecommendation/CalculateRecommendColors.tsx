@@ -13,6 +13,9 @@ import { convertToJsonData } from './ConvertToJsonData';
 import { LIGHTNESS_DIFF } from '../../config/constants';
 import { isColorPaintNext } from './EvaluateIsColorPaintNext';
 import { LOAD_USED_COLOR_NUMBER, LOAD_USED_COLOR_SCHEME_NUMBER } from '../../config/constants.dev';
+import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmount.json";
+import { DataRecommendColorAmount, addSimilarityValuesTorecommendColorsAmount } from '../../components/ButtonSaveColorScheme';
+import { JsonDataRecommendColorScheme } from '../../utils/JsonDataRecommendColorScheme';
 
 const DEBUG = false;
 
@@ -25,6 +28,7 @@ let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 
 export let similarityValues: number[] = [];
 export let displayOrderIndex: number[] = [];
+export let jsonDataRecommendColorScheme: JsonDataRecommendColorScheme[] = []
 
 let orderUsedColorsDifference: number[] = [];
 let orderUsedColorsDifferenceExcludeBaseColor: number[] = [];
@@ -81,6 +85,11 @@ export function CalculateRecommendColors() {
         // 推薦された配色に次の色が含まれているかの確認
         isColorPaintNext(LOAD_USED_COLOR_SCHEME_NUMBER, LOAD_USED_COLOR_NUMBER);
 
+        jsonDataRecommendColorScheme = [];
+        jsonDataRecommendColorScheme.push(updateJsonDataRecommendColorScheme(0, 0));
+        jsonDataRecommendColorScheme.push(updateJsonDataRecommendColorScheme(0, 1));
+
+
         isUpdateRecommendColorsScheme = false;
       }
 
@@ -97,7 +106,25 @@ export function CalculateRecommendColors() {
         //console.log("filteredRecommendedColorSchemeAmount = " + filteredRecommendedColorSchemeAmount);
 
       }
+
     };
+
+    function updateJsonDataRecommendColorScheme(colorSchemeNumber: number, colorNumber: number) {
+      const LOAD_NUMBER = [colorSchemeNumber, colorNumber];
+      let dataRecommendColorsAmount: DataRecommendColorAmount[] = [];
+      dataRecommendColorsAmount = addSimilarityValuesTorecommendColorsAmount(filteredRecommendedColorSchemeAmount)
+
+      // 最新のデータを取得
+      const addJsonData: JsonDataRecommendColorScheme = {
+        LOAD_NUMBER,
+        filteredOrderUsedColorsAmount,
+        dataRecommendColorsAmount,
+        //filteredRecommendedColorSchemeAmount,
+      };
+
+      return addJsonData;
+
+    }
 
     //推薦する配色のうち類似度が小さい順に表示させるためのインデックス番号を保存する配列を計算する関数
     function calculateDisplayOrder() {
