@@ -12,6 +12,7 @@ import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 import { convertToJsonData } from './ConvertToJsonData';
 import { LIGHTNESS_DIFF } from '../../config/constants';
 import { isColorPaintNext } from './EvaluateIsColorPaintNext';
+import { LOAD_USED_COLOR_NUMBER, LOAD_USED_COLOR_SCHEME_NUMBER } from '../../config/constants.dev';
 
 const DEBUG = false;
 
@@ -78,7 +79,7 @@ export function CalculateRecommendColors() {
         console.log("recommendColorScheme was updated");
 
         // 推薦された配色に次の色が含まれているかの確認
-        isColorPaintNext(1, 1);
+        isColorPaintNext(LOAD_USED_COLOR_SCHEME_NUMBER, LOAD_USED_COLOR_NUMBER);
 
         isUpdateRecommendColorsScheme = false;
       }
