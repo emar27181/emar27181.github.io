@@ -9,7 +9,8 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number)
 
   // used[i][j]のに対する推薦配色のセット(未実装)
 
-  let recomenndColorsAmount = outputRecommendColorsAmount.filteredRecommendedColorSchemeAmount;
+  let dataRecomenndColorsAmount = outputRecommendColorsAmount.dataRecommendColorsAmount;
+  let recomenndColorsAmount = dataRecomenndColorsAmount.map(item => item.colorsAmount); // 配色を抽出し代入
   for (let i = 0; i < recomenndColorsAmount.length; i++) {
     for (let j = 0; j < recomenndColorsAmount[i].length; j++) {
       //console.log("recomenndColorsAmount[" + i + "][" + j + "].color  = " + recomenndColorsAmount[i][j].color);
