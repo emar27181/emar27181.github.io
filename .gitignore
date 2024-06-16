@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 src/pages/ColorRecommendation/data
+src/config/constants.dev.tsx
 
 # Editor directories and files
 .vscode/*

@@ -112,6 +112,10 @@ export function OtherHome() {
           レスポンシブページのテンプレート
         </NavLink><br />
 
+        <NavLink activeClassName='active' to="/testImportTest.html">
+          htmlファイルをそのまま表示させるテストページ
+        </NavLink><br />
+
       </ul>
 
       <Switch>
@@ -191,6 +195,13 @@ export function OtherHome() {
           <TestResponsivePage />
         </Route>
 
+        <Route path="/testImportTest.html" >
+          <iframe
+            src="../../tmp/index.html"
+            style={{ width: '100%', height: '100vh', border: 'none' }}
+            title="External HTML Content"
+          />
+        </Route>
 
       </Switch>
 

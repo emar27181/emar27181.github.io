@@ -11,6 +11,8 @@ import { calculateDominantColor, calculateDyadColor, calculateSplitComplementary
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 import { convertToJsonData } from './ConvertToJsonData';
 import { LIGHTNESS_DIFF } from '../../config/constants';
+import { isColorPaintNext } from './EvaluateIsColorPaintNext';
+import { LOAD_USED_COLOR_NUMBER, LOAD_USED_COLOR_SCHEME_NUMBER } from '../../config/constants.dev';
 
 const DEBUG = false;
 
@@ -59,6 +61,14 @@ export function CalculateRecommendColors() {
           addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, - LIGHTNESS_DIFF);
         }
 
+        //推薦する配色群をjson型に変換されたデータに変換して代入
+        filteredOrderUsedColorsAmount = convertToJsonData(orderUsedColorsAmount);
+        for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
+          filteredRecommendedColorSchemeAmount[i] = convertToJsonData(recommendedColorSchemeAmount[i]);
+          //console.log("filteredRecommendedColorSchemeAmount[" + i + "] = " + filteredRecommendedColorSchemeAmount[i]);
+        }
+        console.log("filteredRecommendedColorSchemeAmount is updated");
+
         //推薦する配色の相違度を更新
         updateSimilarityValues();
 
@@ -67,6 +77,10 @@ export function CalculateRecommendColors() {
 
         //calculateRecommendColorSchemeAmountBySimilarity(usedColorSchemeAmountOnlyMainColor);
         console.log("recommendColorScheme was updated");
+
+        // 推薦された配色に次の色が含まれているかの確認
+        isColorPaintNext(LOAD_USED_COLOR_SCHEME_NUMBER, LOAD_USED_COLOR_NUMBER);
+
         isUpdateRecommendColorsScheme = false;
       }
 
@@ -119,12 +133,6 @@ export function CalculateRecommendColors() {
       //orderUsedColors = ReturnOrderUsedColors();
       orderUsedColorsAmount = ReturnOrderUsedColorsAmount();
       isCanvasMouseReleased = ReturnIsMouseReleased();
-
-      //json型に変換されたデータの代入
-      filteredOrderUsedColorsAmount = convertToJsonData(orderUsedColorsAmount);
-      for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
-        filteredRecommendedColorSchemeAmount[i] = convertToJsonData(recommendedColorSchemeAmount[i]);
-      }
 
       orderUsedColorsDifference = calculateHueDifference(orderUsedColorsAmount, 0, false, -1);
       orderUsedColorsDifferenceExcludeBaseColor = calculateHueDifference(orderUsedColorsAmount, 1, true, 0);
