@@ -149,12 +149,12 @@ export function CalculateUsedColors() {
 }
 
 // Jsonファイルを基に使用色を保存する配列を初期化する関数
-export function initializeOrderUsedColorsAmountByJson(colorSchemeNumber: number, colorNumber: number) {
+export function initializeOrderUsedColorsAmountByJson(colorSchemeNumber: number, colorNumber: number): ColorAmount[] {
   orderUsedColorsAmount = [];
   const p = new p5(() => { });
   if (typeof (inputOrderUsedColorAmount[colorSchemeNumber]) === "undefined") {
     console.error("読込まれた配列に配色が保存されていません。colorSchemeNumberを正しい値にしてください。");
-    return;
+    return [];
   }
 
   for (let i = 0; i <= colorNumber; i++) {
