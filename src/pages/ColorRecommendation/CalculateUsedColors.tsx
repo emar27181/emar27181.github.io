@@ -114,22 +114,6 @@ export function CalculateUsedColors() {
       }
     }
 
-    // Jsonファイルを基に使用色を保存する配列を初期化する関数
-    function initializeOrderUsedColorsAmountByJson(colorSchemeNumber: number, colorNumber: number) {
-      if (typeof (inputOrderUsedColorAmount[colorSchemeNumber]) === "undefined") {
-        console.error("読込まれた配列に配色が保存されていません。colorSchemeNumberを正しい値にしてください。");
-        return;
-      }
-
-      for (let i = 0; i <= colorNumber; i++) {
-        let color = p.color(inputOrderUsedColorAmount[colorSchemeNumber][i].color);
-        let amount = inputOrderUsedColorAmount[colorSchemeNumber][i].amount;
-
-        orderUsedColorsAmount.push(new ColorAmount(color, amount));
-      }
-
-      console.log("orderUsedColorsAmount is loaded ((i, j) = (" + colorSchemeNumber + ", " + colorNumber + "))");
-    }
 
     function updateColorsAmount(colorsAmount: ColorAmount[], color: p5.Color) {
       //color: 探索対象の色
@@ -163,6 +147,28 @@ export function CalculateUsedColors() {
     <ReactP5Wrapper sketch={sketch} />
   )
 }
+
+// Jsonファイルを基に使用色を保存する配列を初期化する関数
+export function initializeOrderUsedColorsAmountByJson(colorSchemeNumber: number, colorNumber: number) {
+  orderUsedColorsAmount = [];
+  const p = new p5(() => { });
+  if (typeof (inputOrderUsedColorAmount[colorSchemeNumber]) === "undefined") {
+    console.error("読込まれた配列に配色が保存されていません。colorSchemeNumberを正しい値にしてください。");
+    return;
+  }
+
+  for (let i = 0; i <= colorNumber; i++) {
+    let color = p.color(inputOrderUsedColorAmount[colorSchemeNumber][i].color);
+    let amount = inputOrderUsedColorAmount[colorSchemeNumber][i].amount;
+
+    orderUsedColorsAmount.push(new ColorAmount(color, amount));
+  }
+
+  console.log("orderUsedColorsAmount is loaded ((i, j) = (" + colorSchemeNumber + ", " + colorNumber + "))");
+
+  return orderUsedColorsAmount;
+}
+
 
 export default CalculateUsedColors
 export function ReturnUsedColorsAmount() { return usedColorsAmount; }
