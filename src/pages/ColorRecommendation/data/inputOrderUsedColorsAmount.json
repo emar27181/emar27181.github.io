@@ -1,0 +1,30 @@
+[
+  [
+    {
+      "color": "#D42C2C",
+      "amount": 2
+    },
+    {
+      "color": "#D4802C",
+      "amount": 2
+    },
+    {
+      "color": "#D42C80",
+      "amount": 1
+    }
+  ],
+  [
+    {
+      "color": "#D42C2C",
+      "amount": 70
+    },
+    {
+      "color": "#941E1E",
+      "amount": 25
+    },
+    {
+      "color": "#541111",
+      "amount": 5
+    }
+  ]
+]
