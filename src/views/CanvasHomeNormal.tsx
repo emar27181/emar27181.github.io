@@ -15,6 +15,7 @@ import CalculateUsedColors from '../pages/ColorRecommendation/CalculateUsedColor
 import { DisplayColorPalette } from '../pages/ColorRecommendation/DisplayColorPalette';
 import ButtonUpdateRecommendColors from '../components/ButtonUpdateRecommendColors';
 import ButtonSaveColorScheme from '../components/ButtonSaveColorScheme';
+import ButtonSaveColorSchemeAll from '../components/ButtonSavaColorSchemeAll';
 
 let isCanvasHome = false;
 
@@ -38,6 +39,7 @@ export function CanvasHomeNormal() {
           <DisplayColorPalette />
           <ButtonUpdateRecommendColors />
           <ButtonSaveColorScheme />
+          <ButtonSaveColorSchemeAll />
         </div>
       </div>
 
