@@ -3,16 +3,17 @@ import React, { useState } from 'react';
 import { filteredOrderUsedColorsAmount, filteredRecommendedColorSchemeAmount, similarityValues } from '../pages/ColorRecommendation/CalculateRecommendColors';
 import { LOAD_USED_COLOR_NUMBER, LOAD_USED_COLOR_SCHEME_NUMBER } from '../config/constants.dev';
 import { ColorAmount } from '../utils/ColorAmount';
+import { jsonDataRecommendColorScheme } from '../pages/ColorRecommendation/CalculateRecommendColors';
 
 const fileName = 'colorScheme';
 
-interface DataRecommendColorAmount {
+export interface DataRecommendColorAmount {
   "similarityValue": number;
   "colorsAmount": number[] | { color: string; amount: number; }[];
 }
 
 
-function addSimilarityValuesTorecommendColorsAmount(colorsAmount: number[][] | { color: string; amount: number; }[][]) {
+export function addSimilarityValuesTorecommendColorsAmount(colorsAmount: number[][] | { color: string; amount: number; }[][]) {
   let dataColorsAmount: DataRecommendColorAmount[] = [];
   for (let i = 0; i < colorsAmount.length; i++) {
     let addData: DataRecommendColorAmount = {
@@ -35,12 +36,16 @@ const ButtonSaveColorScheme: React.FC = () => {
     dataRecommendColorsAmount = addSimilarityValuesTorecommendColorsAmount(filteredRecommendedColorSchemeAmount)
 
     // 最新のデータを取得
+    /*
     const jsonData = {
       LOAD_NUMBER,
       filteredOrderUsedColorsAmount,
       dataRecommendColorsAmount,
       //filteredRecommendedColorSchemeAmount,
     };
+    */
+
+    const jsonData = jsonDataRecommendColorScheme;
 
     // 新しいBlobを作成
     const blobData = new Blob([JSON.stringify(jsonData)], {
