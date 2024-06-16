@@ -15,7 +15,7 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number)
       //console.log("recomenndColorsAmount[" + i + "][" + j + "].color  = " + recomenndColorsAmount[i][j].color);
       // 推薦配色の中に次の色が含まれていた場合
       if (recomenndColorsAmount[i][j].color === inputOrderUsedColorScheme[colorSchemeNumber][colorNumber + 1].color) {
-        console.log("推薦配色の中に次の色が含まれていました．");
+        console.log("推薦配色の中に次の色が含まれていました．(recomenndColorsAmount[" + i + "][" + j + "])");
         return true;
       }
     }
