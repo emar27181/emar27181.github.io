@@ -5,10 +5,16 @@ import { ColorAmount } from '../../utils/ColorAmount';
 import p5 from 'p5';
 import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTetradeColor, calculateTriadColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor, addColorSchemesLightnessVariations } from './CalculateColorScheme';
 import { LIGHTNESS_DIFF } from '../../config/constants';
+import { DataRecommendColorAmount } from '../../utils/DataRecommendColorAmount';
+import { convertToJsonData } from './ConvertToJsonData';
+import { JsonDataRecommendColorScheme } from '../../utils/JsonDataRecommendColorScheme';
+import { calculateColorsAmountSimilarity } from './CalculateSimilarity';
+import { similarityValues } from './CalculateRecommendColors';
+import { FilterdColorAmount } from '../../utils/FilteredColorAmount';
 //import { recommendedColorSchemeAmount } from './CalculateRecommendColors';
 
 // 引数で受け取る配色に対して推薦する配色群を生成し返す関数
-export function CalculateRecommendColorsRe(colorsAmount: ColorAmount[]): ColorAmount[][] {
+export function CalculateRecommendColorsRe(colorSchemeNumber: number, colorNumber: number, colorsAmount: ColorAmount[]): JsonDataRecommendColorScheme {
   const p = new p5(() => { });
 
   // 推薦する配色群を保存する二重配列を初期化
@@ -24,11 +30,33 @@ export function CalculateRecommendColorsRe(colorsAmount: ColorAmount[]): ColorAm
     addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, - LIGHTNESS_DIFF);
   }
 
-  return recommendedColorSchemeAmount;
+  // 推薦した配色群と使用した色の類似度の計算と配列への代入
+  let similarityValues = updateSimilarityValues(colorsAmount, recommendedColorSchemeAmount);
+
+  //使用した配色と推薦する配色群をカラーコードとその色の量のデータに変換して代入
+  let filteredOrderUsedColorsAmount: FilterdColorAmount[] = convertToJsonData(colorsAmount);
+  let filteredRecommendedColorSchemeAmount: FilterdColorAmount[][] = [];
+  for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
+    filteredRecommendedColorSchemeAmount[i] = convertToJsonData(recommendedColorSchemeAmount[i]);
+    //console.log("filteredRecommendedColorSchemeAmount[" + i + "] = " + filteredRecommendedColorSchemeAmount[i]);
+  }
+
+  // 推薦する配色群のデータに類似度の数値を挿入
+  let dataRecommendColorsAmount: DataRecommendColorAmount[] = [];
+  dataRecommendColorsAmount = addSimilarityValuesTorecommendColorsAmount(filteredRecommendedColorSchemeAmount, similarityValues);
+
+  // 
+  let addJsonData = updateJsonDataRecommendColorScheme(colorSchemeNumber, colorNumber, filteredOrderUsedColorsAmount, dataRecommendColorsAmount);
+
+  //console.log("addJsonData = " + addJsonData);
+
+  //return recommendedColorSchemeAmount;
+  return addJsonData;
 }
 
 // 塗った配色を基にいくつかの配色を推薦する配色群を保存する二重配列を更新する関数
 function updateRecommendColorSchemeAmount(baseColorsAmount: ColorAmount[], recommendColorSchemeAmount: ColorAmount[][]) {
+  if (typeof (baseColorsAmount) === "undefined") { return; }
   // ベースとなる配色がなかった場合何もせず終了
   if (baseColorsAmount.length === 0) { return; }
 
@@ -78,4 +106,40 @@ function addColorScheme(colorScheme: string, baseColor: p5.Color, recommendedCol
   else if (colorScheme === "intermediate") { calculateIntermediateColor(recommendedColorSchemeAmount, baseColor); }
   else { console.error("用意されたものではない配色を推薦しようとしています.(" + colorScheme + ")"); }
 
+}
+
+function updateJsonDataRecommendColorScheme(colorSchemeNumber: number, colorNumber: number, filteredOrderUsedColorsAmount: FilterdColorAmount[], dataRecommendColorsAmount: DataRecommendColorAmount[]) {
+  const LOAD_NUMBER = [colorSchemeNumber, colorNumber];
+
+  // 最新のデータを取得
+  const addJsonData: JsonDataRecommendColorScheme = {
+    LOAD_NUMBER,
+    filteredOrderUsedColorsAmount,
+    dataRecommendColorsAmount,
+  };
+
+  return addJsonData;
+
+}
+
+export function addSimilarityValuesTorecommendColorsAmount(colorsAmount: number[][] | { color: string; amount: number; }[][], similarityValues: number[]) {
+  let dataColorsAmount: DataRecommendColorAmount[] = [];
+  for (let i = 0; i < colorsAmount.length; i++) {
+    let addData: DataRecommendColorAmount = {
+      "similarityValue": Math.round(similarityValues[i]),
+      "colorsAmount": colorsAmount[i]
+    }
+    dataColorsAmount.push(addData);
+    //console.log("dataRecommendColorsAmount[" + i + "] = " + dataColorsAmount[i]);
+  }
+  return dataColorsAmount;
+}
+
+function updateSimilarityValues(orderUsedColorsAmount: ColorAmount[], recommendedColorSchemeAmount: ColorAmount[][]) {
+  let similarityValues: number[] = [];
+  for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
+    let simValue = calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[i]);
+    similarityValues[i] = simValue;
+  }
+  return similarityValues;
 }
