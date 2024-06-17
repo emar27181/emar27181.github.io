@@ -13,8 +13,8 @@ import { similarityValues } from './CalculateRecommendColors';
 import { FilterdColorAmount } from '../../utils/FilteredColorAmount';
 //import { recommendedColorSchemeAmount } from './CalculateRecommendColors';
 
-// 引数で受け取る配色に対して推薦する配色群を生成し返す関数
-export function CalculateRecommendColorsRe(colorSchemeNumber: number, colorNumber: number, colorsAmount: ColorAmount[]): JsonDataRecommendColorScheme {
+// 引数で受け取る配色に対して推薦する配色群を生成しそのデータをJson形式返す関数
+export function CalculateRecommendColorSchemeJsonData(colorSchemeNumber: number, colorNumber: number, colorsAmount: ColorAmount[]): JsonDataRecommendColorScheme {
   const p = new p5(() => { });
 
   // 推薦する配色群を保存する二重配列を初期化
