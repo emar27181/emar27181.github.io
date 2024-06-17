@@ -2,25 +2,29 @@
 import { initializeOrderUsedColorsAmountByJson } from "./CalculateUsedColors";
 import inputOrderUsedColorAmount from "./data/inputOrderUsedColorsAmount.json";
 import { CalculateRecommendColorsRe } from "./CalculateRecommendColorsRe";
+import { JsonDataRecommendColorScheme } from "../../utils/JsonDataRecommendColorScheme";
 
 // 使用色を保存するjsonファイルにある配色全てに対して，推薦する配色群を作成する関数
-export function CreateRecommendColorsAll() {
+export function CreateRecommendColorsAll(): JsonDataRecommendColorScheme[] {
+
+  let jsonData: JsonDataRecommendColorScheme[] = [];
 
   for (let i = 0; i < inputOrderUsedColorAmount.length; i++) {
     for (let j = 0; j < inputOrderUsedColorAmount[i].length; j++) {
 
       let usedColorsAmount = initializeOrderUsedColorsAmountByJson(i, j);
-      let recommendColorScheme = CalculateRecommendColorsRe(usedColorsAmount);
+      //let recommendColorScheme = CalculateRecommendColorsRe(i, j, usedColorsAmount);
 
-      // 推薦する配色群を保存する二重配列に使用色(i, j)に対する推薦を更新
-      recommendColorScheme =  CalculateRecommendColorsRe(usedColorsAmount);
-      console.log(recommendColorScheme);
+      // used[i][j]に対する推薦をjson形式で保存
+      let addJsonData = CalculateRecommendColorsRe(i, j, usedColorsAmount);
 
-      // used[i][j]に対する推薦をjson形式で保存(未実装)
-
-      console.log("(" + i + "," + j + ")");
+      //console.log("(" + i + "," + j + ")");
+      //console.log(addJsonData);
+      jsonData.push(addJsonData);
     }
   }
 
-
+  console.log("jsonData: ");
+  console.log(jsonData);
+  return jsonData;
 }
