@@ -122,7 +122,7 @@ function updateJsonDataRecommendColorScheme(colorSchemeNumber: number, colorNumb
 
 }
 
-export function addSimilarityValuesTorecommendColorsAmount(colorsAmount: number[][] | { color: string; amount: number; }[][], similarityValues: number[]) {
+export function addSimilarityValuesTorecommendColorsAmount(colorsAmount: FilterdColorAmount[][], similarityValues: number[]) {
   let dataColorsAmount: DataRecommendColorAmount[] = [];
   for (let i = 0; i < colorsAmount.length; i++) {
     let addData: DataRecommendColorAmount = {
