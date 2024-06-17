@@ -1,11 +1,23 @@
 import p5 from "p5";
 import { ColorAmount } from "../../utils/ColorAmount";
-import { colorsAmount } from "../Reserch/CanvasOnlyDraw";
-//import { orderUsedColorsAmount, recommendedColorSchemeAmount } from "./CalculateRecommendColors";
+import { FilterdColorAmount } from "../../utils/FilteredColorAmount";
 
-export function convertToJsonData(colorsAmount: ColorAmount[]) {
-  if (typeof (colorsAmount) === "undefined") { return [-2]; }
-  if (colorsAmount.length === 0) { return [-1]; }
+// ColorAmount[]型のデータをJsonファイル用のFilterdColorAmount[]のデータに変換する関数
+export function convertToJsonData(colorsAmount: ColorAmount[]): FilterdColorAmount[] {
+
+  if (typeof (colorsAmount) === "undefined") {
+    return [{
+      color: "undefinedError",
+      amount: -1,
+    }];
+  }
+
+  if (colorsAmount.length === 0) {
+    return [{
+      color: "lengthError",
+      amount: -2,
+    }];
+  }
 
   const p = new p5(() => { });
   let jsonData = [];
