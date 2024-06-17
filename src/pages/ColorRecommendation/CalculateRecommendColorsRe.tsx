@@ -6,7 +6,8 @@ import p5 from 'p5';
 
 export let recommendedColorSchemeAmount: ColorAmount[][] = [];
 
-export function CalculateRecommendColorsRe(colorsAmount: ColorAmount[]) {
+// 引数で受け取る配色に対して推薦する配色群を生成し返す関数
+export function CalculateRecommendColorsRe(colorsAmount: ColorAmount[]): ColorAmount[][] {
   const p = new p5(() => { });
 
   function initializeVariables() {
