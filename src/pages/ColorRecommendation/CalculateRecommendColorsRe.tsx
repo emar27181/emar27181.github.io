@@ -3,7 +3,8 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper'
 import '../../App.css'
 import { ColorAmount } from '../../utils/ColorAmount';
 import p5 from 'p5';
-import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTetradeColor, calculateTriadColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor } from './CalculateColorScheme';
+import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTetradeColor, calculateTriadColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor, addColorSchemesLightnessVariations } from './CalculateColorScheme';
+import { LIGHTNESS_DIFF } from '../../config/constants';
 //import { recommendedColorSchemeAmount } from './CalculateRecommendColors';
 
 // 引数で受け取る配色に対して推薦する配色群を生成し返す関数
@@ -15,6 +16,13 @@ export function CalculateRecommendColorsRe(colorsAmount: ColorAmount[]): ColorAm
 
   // 引数で受け取った配色を基に推薦する配色群を計算
   updateRecommendColorSchemeAmount(colorsAmount, recommendedColorSchemeAmount);
+
+  //推薦された配色群の明度が異なるバリエーションを追加
+  const RECOMMEND_LENGTH = recommendedColorSchemeAmount.length;
+  for (let i = 0; i < RECOMMEND_LENGTH; i++) {
+    addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, + LIGHTNESS_DIFF);
+    addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, - LIGHTNESS_DIFF);
+  }
 
   return recommendedColorSchemeAmount;
 }
