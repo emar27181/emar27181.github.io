@@ -6,7 +6,10 @@ import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsA
 import { calculateLabColorSimilarity } from "./CalculateSimilarity";
 import { consoleLogColors } from "../../utils/consoleLogColors";
 
-// used[i][j]に対する推薦recommend[][]にused[i][j+1](次の色)が含まれているかどうか確認する関数
+// jsonファイルを基にused[colorSchemeNumber][colorNumber]に対する推薦recommend[][]にused[i][j+1](次の色)が含まれているかどうか確認する関数
+// colorSchemeNumber: 読込む使用配色のインデックス番号を保存する変数
+// colorNumber: 使用配色のどの色までインデックス番号まで読み込むかを保存する変数
+// recommendIndex: 推薦した配色群を保存する配列の読込むインデックス番号を保存する変数
 export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number, recommendIndex: number): boolean {
   // SIM_VALUE_LIMIT: 相違度の限界値(これより相違度が大きい配色は評価されない)
   // conpareCount: used[colorSchemeNmuber][colorNumber]とrecommend[][]が比較した回数を保存する変数
