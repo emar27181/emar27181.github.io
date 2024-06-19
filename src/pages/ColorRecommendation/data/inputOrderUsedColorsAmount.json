@@ -28,5 +28,125 @@
       "color": "#541111",
       "amount": 5
     }
+  ],
+  [
+    {
+      "illustName": "1: ノーコピーライトガール",
+      "color": "#DFA3A3",
+      "amount": 1
+    },
+    {
+      "color": "#8EA9B4",
+      "amount": 1
+    },
+    {
+      "color": "#81A8AF",
+      "amount": 1
+    }
+  ],
+  [
+    {
+      "illustName": "2: ノーコピーライトガール",
+      "color": "#93BCD0",
+      "amount": 1
+    },
+    {
+      "color": "#8599A4",
+      "amount": 1
+    },
+    {
+      "color": "#EDEAE3",
+      "amount": 1
+    }
+  ],
+  [
+    {
+      "illustName": "3: ノーコピーライトガール",
+      "color": "#CF9F9F",
+      "amount": 2
+    },
+    {
+      "color": "#99BAC3",
+      "amount": 1
+    },
+    {
+      "color": "#E6C3C9",
+      "amount": 2
+    }
+  ],
+  [
+    {
+      "illustName": "3: ノーコピーライトガール(パターン2)",
+      "color": "#CF9F9F",
+      "amount": 2
+    },
+    {
+      "color": "#E6C3C9",
+      "amount": 2
+    },
+    {
+      "color": "#99BAC3",
+      "amount": 1
+    }
+  ],
+  [
+    {
+      "illustName": "4: ノーコピーライトガール(パターン1)",
+      "color": "#458FB4",
+      "amount": 1
+    },
+    {
+      "color": "#FBAEB5",
+      "amount": 1
+    },
+    {
+      "color": "#35BBDE",
+      "amount": 1
+    }
+  ],
+  [
+    {
+      "illustName": "4: ノーコピーライトガール(パターン2)",
+      "color": "#458FB4",
+      "amount": 1
+    },
+    {
+      "color": "#35BBDE",
+      "amount": 1
+    },
+    {
+      "color": "#FBAEB5",
+      "amount": 1
+    }
+  ],
+  [
+    {
+      "illustName": "7: 「ムカつく。」(パターン1)",
+      "color": "#F58987",
+      "amount": 1
+    },
+    {
+      "color": "#826F93",
+      "amount": 1
+    },
+    {
+      "color": "#305278",
+      "amount": 1
+    }
+  ],
+  [
+    {
+      "illustName": "7: 「ムカつく。」(パターン1)",
+      "color": "#305278",
+      "amount": 1
+    },
+    {
+      "color": "#826F93",
+      "amount": 1
+    },
+    {
+      "color": "#F58987",
+      "amount": 1
+    }
   ]
 ]
