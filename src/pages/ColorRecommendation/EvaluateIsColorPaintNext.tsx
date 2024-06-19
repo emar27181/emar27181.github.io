@@ -6,7 +6,9 @@ import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsA
 // used[i][j]に対する推薦recommend[][]にused[i][j+1](次の色)が含まれているかどうか確認する関数
 export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number, recommendIndex: number): boolean {
   // SIM_VALUE_LIMIT: 相違度の限界値(これより相違度が大きい配色は評価されない)
+  // conpareCount: used[colorSchemeNmuber][colorNumber]とrecommend[][]が比較した回数を保存する変数
   const SIM_VALUE_LIMIT = 10;
+  let compareCount = 0;
 
   // 次の色が存在しない場合終了
   if (inputOrderUsedColorScheme[colorSchemeNumber].length <= (colorNumber + 1)) {
@@ -15,7 +17,6 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
 
   console.log("---used[" + colorSchemeNumber + "][" + colorNumber + "] --------------")
   console.log("次の色used[" + colorSchemeNumber + "][" + (colorNumber + 1) + "]は" + inputOrderUsedColorScheme[colorSchemeNumber][colorNumber + 1].color + "です．");
-  //console.log("Color paint next is " + inputOrderUsedColorScheme[colorSchemeNumber][colorNumber + 1].color);
 
   // used[colorSchemeNumber][colorNumber]のに対する推薦配色のセット
   let dataRecomenndColorsAmount = outputRecommendColorsAmountAll[recommendIndex].dataRecommendColorsAmount;
@@ -32,17 +33,18 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
     }
 
     for (let j = 0; j < recomenndColorsAmount[i].length; j++) {
+      compareCount++;
 
       // 推薦配色の中に次の色が含まれていた場合
       if (recomenndColorsAmount[i][j].color === inputOrderUsedColorScheme[colorSchemeNumber][colorNumber + 1].color) {
-        console.log("推薦配色の中に次の色が含まれていました．(recomenndColorsAmount[" + i + "][" + j + "])");
+        console.log("推薦配色の中に次の色が含まれていました．(recomenndColorsAmount[" + i + "][" + j + "], compareCount = " + compareCount + ")");
         return true;
       }
     }
   }
 
   // 推薦配色の中に次の色が含まれていなかった場合
-  console.log("推薦配色の中に次の色が含まれていませんでした．");
+  console.log("推薦配色の中に次の色が含まれていませんでした．(compareCount = " + compareCount + ")");
   return false;
 }
 
