@@ -83,7 +83,8 @@ export function CalculateRecommendColors() {
         console.log("recommendColorScheme was updated");
 
         // 推薦された配色に次の色が含まれているかの確認
-        isColorPaintNext(LOAD_USED_COLOR_SCHEME_NUMBER, LOAD_USED_COLOR_NUMBER);
+        // 現在isColorPaintNext()では推薦した配色群"全体"と使用した配色で比較しているため推薦した配色"単体"に対して使用不可
+        //isColorPaintNext(LOAD_USED_COLOR_SCHEME_NUMBER, LOAD_USED_COLOR_NUMBER, -1);
 
         jsonDataRecommendColorScheme = [];
         jsonDataRecommendColorScheme.push(updateJsonDataRecommendColorScheme(0, 0));
