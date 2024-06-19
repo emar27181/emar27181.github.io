@@ -1,6 +1,6 @@
 import p5 from "p5";
 import { ReturnCanvasColors } from "../Reserch/Canvas";
-import { AMOUNT_LIMIT, SATURATION_LIMIT, LIGHTNESS_LOWER_LIMIT, LIGHTNESS_UPPER_LIMIT, SPLIT } from "../../config/constants";
+import { AMOUNT_LIMIT, SATURATION_LIMIT, LIGHTNESS_LOWER_LIMIT, LIGHTNESS_UPPER_LIMIT, SPLIT, IS_INPUT_BY_JSON } from "../../config/constants";
 import { ReturnDrawingColor, ReturnIsMouseReleased } from "../Reserch/Canvas";
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 import { ColorAmount } from "../../utils/ColorAmount";
@@ -14,7 +14,6 @@ let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 let orderUsedColors: Array<p5.Color> = [];
 let orderUsedColorsAmount: Array<ColorAmount> = [];
 let isCanvasMouseReleased: boolean = false;
-const IS_INPUT_BY_JSON = true;
 
 export function CalculateUsedColors() {
   const DEBUG = false;
