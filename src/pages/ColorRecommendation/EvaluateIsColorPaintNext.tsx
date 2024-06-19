@@ -1,6 +1,7 @@
 
 import inputOrderUsedColorScheme from "./data/inputOrderUsedColorsAmount.json";
 import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmount.json"
+import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsAmountAll.json"
 
 // used[i][j]に対する推薦recommend[][]にused[i][j+1](次の色)が含まれているかどうか確認する関数
 export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number): boolean {
@@ -33,5 +34,8 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number)
 
 // 生成された推薦する配色の評価をまとめて行う関数
 export function evaluateRecommendColorSchemes(): number {
+  let recommendColorsAmountAll = outputRecommendColorsAmountAll;
+
+  console.log("recommendColorsAmountAll.length = " + recommendColorsAmountAll.length);
   return 0;
 }
