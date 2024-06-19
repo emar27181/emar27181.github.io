@@ -1,6 +1,7 @@
 [
   [
     {
+      "illustName": "test input1",
       "color": "#D42C2C",
       "amount": 2
     },
@@ -15,6 +16,7 @@
   ],
   [
     {
+      "illustName": "test input2",
       "color": "#D42C2C",
       "amount": 70
     },
