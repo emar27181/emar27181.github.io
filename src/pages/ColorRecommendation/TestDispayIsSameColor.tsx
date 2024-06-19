@@ -14,11 +14,15 @@ export function TestDispayIsSameColor() {
       p.createCanvas(DISPLAY_RATE * window.innerWidth / 3, DISPLAY_RATE * window.innerWidth / 3);
       p.background(0);
       p.frameRate(1);
-      p.noStroke();
+      //p.noStroke();
     };
 
     p.draw = () => {
-      compareColor(SQUARE_WIDTH, SQUARE_WIDTH, p.color("#FF0000"), p.color("#FF7700"));
+      let count = 0;
+      compareColor(0.5 * SQUARE_WIDTH, SQUARE_WIDTH*(count++), p.color("#FF0000"), p.color("#FF7700"));
+      compareColor(0.5 * SQUARE_WIDTH, SQUARE_WIDTH*(count++), p.color("#FF0000"), p.color("#FF5500"));
+      compareColor(0.5 * SQUARE_WIDTH, SQUARE_WIDTH*(count++), p.color("#FF0000"), p.color("#FF4400"));
+      compareColor(0.5 * SQUARE_WIDTH, SQUARE_WIDTH*(count++), p.color("#FF0000"), p.color("#FF2200"));
     };
 
     function compareColor(x: number, y: number, p5Color1: p5.Color, p5Color2: p5.Color) {
@@ -32,7 +36,7 @@ export function TestDispayIsSameColor() {
 
       p.fill(255);
       p.text(":", x + 1.3 * SQUARE_WIDTH  , y + p.textSize());
-      p.text(p.round(simValue), x + SQUARE_WIDTH * 4, y + p.textSize());
+      p.text("→ " + p.round(simValue), x + SQUARE_WIDTH * 3.5, y + p.textSize());
     }
   }
 
