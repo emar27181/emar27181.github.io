@@ -4,6 +4,7 @@ import inputOrderUsedColorScheme from "./data/inputOrderUsedColorsAmount.json";
 import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmount.json"
 import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsAmountAll.json"
 import { calculateLabColorSimilarity } from "./CalculateSimilarity";
+import { consoleLogColors } from "../../utils/consoleLogColors";
 
 // used[i][j]に対する推薦recommend[][]にused[i][j+1](次の色)が含まれているかどうか確認する関数
 export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number, recommendIndex: number): boolean {
@@ -17,8 +18,9 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
     return false;
   }
 
-  console.log("---used[" + colorSchemeNumber + "][" + colorNumber + "] --------------")
+  console.log("------used[" + colorSchemeNumber + "][" + colorNumber + "] --------------------")
   console.log("次の色used[" + colorSchemeNumber + "][" + (colorNumber + 1) + "]は" + inputOrderUsedColorScheme[colorSchemeNumber][colorNumber + 1].color + "です．");
+  consoleLogColors(inputOrderUsedColorScheme[colorSchemeNumber][colorNumber + 1].color, inputOrderUsedColorScheme[colorSchemeNumber][colorNumber + 1].color)
 
   // used[colorSchemeNumber][colorNumber]のに対する推薦配色のセット
   let dataRecomenndColorsAmount = outputRecommendColorsAmountAll[recommendIndex].dataRecommendColorsAmount;
@@ -46,6 +48,7 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
       if (isSameColor(p5Color1, p5Color2)) {
         //if (recomenndColorsAmount[i][j].color === inputOrderUsedColorScheme[colorSchemeNumber][colorNumber + 1].color) {
         console.log("推薦配色の中に次の色が含まれていました．(recomenndColorsAmount[" + i + "][" + j + "].color = " + recomenndColorsAmount[i][j].color + ", compareCount = " + compareCount + ")");
+        consoleLogColors(recomenndColorsAmount[i][j].color, recomenndColorsAmount[i][j].color);
         return true;
       }
     }
@@ -68,7 +71,7 @@ export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color): boolean {
 export function evaluateRecommendColorSchemes(): number {
   let recommendColorsAmountAll = outputRecommendColorsAmountAll;
 
-  console.log("recommendColorsAmountAll.length = " + recommendColorsAmountAll.length);
+  //console.log("recommendColorsAmountAll.length = " + recommendColorsAmountAll.length);
 
   for (let i = 0; i < recommendColorsAmountAll.length; i++) {
     let colorSchemeNumber = recommendColorsAmountAll[i].LOAD_NUMBER[0];
