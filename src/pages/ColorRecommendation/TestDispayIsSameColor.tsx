@@ -3,6 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { DISPLAY_RATE } from '../../config/constants';
 import p5 from 'p5';
+import { calculateLabColorSimilarity } from './CalculateSimilarity';
 
 export function TestDispayIsSameColor() {
   const sketch = (p: P5CanvasInstance) => {
@@ -13,6 +14,7 @@ export function TestDispayIsSameColor() {
       p.createCanvas(DISPLAY_RATE * window.innerWidth / 3, DISPLAY_RATE * window.innerWidth / 3);
       p.background(0);
       p.frameRate(1);
+      p.noStroke();
     };
 
     p.draw = () => {
@@ -20,16 +22,17 @@ export function TestDispayIsSameColor() {
     };
 
     function compareColor(x: number, y: number, p5Color1: p5.Color, p5Color2: p5.Color) {
+      let simValue = calculateLabColorSimilarity(p5Color1, p5Color2);
+
       p.fill(p5Color1);
       p.rect(x, y, SQUARE_WIDTH, SQUARE_WIDTH);
-
 
       p.fill(p5Color2);
       p.rect(x + SQUARE_WIDTH * 2, y, SQUARE_WIDTH, SQUARE_WIDTH);
 
       p.fill(255);
-      p.noStroke();
-      p.text("text", x + SQUARE_WIDTH * 4, y + p.textSize());
+      p.text(":", x + 1.3 * SQUARE_WIDTH  , y + p.textSize());
+      p.text(p.round(simValue), x + SQUARE_WIDTH * 4, y + p.textSize());
     }
   }
 
