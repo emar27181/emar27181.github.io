@@ -5,6 +5,7 @@ import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmou
 import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsAmountAll.json"
 import { calculateLabColorSimilarity } from "./CalculateSimilarity";
 import { consoleLogColors } from "../../utils/consoleLogColors";
+import { SIM_VALUE_SAME_COLOR } from "../../config/constants";
 
 // jsonファイルを基にused[colorSchemeNumber][colorNumber]に対する推薦recommend[][]にused[i][j+1](次の色)が含まれているかどうか確認する関数
 // colorSchemeNumber: 読込む使用配色のインデックス番号を保存する変数
@@ -63,7 +64,6 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
 }
 
 export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color): boolean {
-  const SIM_VALUE_SAME_COLOR = 10;
 
   let simValue = calculateLabColorSimilarity(p5Color1, p5Color2);
 

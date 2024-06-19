@@ -12,3 +12,4 @@ export const LIGHTNESS_LOWER_LIMIT = 10;
 export const LIGHTNESS_DIFF = 20; // 推薦するメインの配色と異なる明度の配色を推薦するときの差
 
 export const IS_INPUT_BY_JSON = false; // 使用した配色の代入をJsonファイルを基にするかどうかを保存する固定値
+export const SIM_VALUE_SAME_COLOR = 10; // 同じ色かどうかを判定する相違度の閾値
