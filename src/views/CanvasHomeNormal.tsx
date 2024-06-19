@@ -17,6 +17,7 @@ import ButtonUpdateRecommendColors from '../components/ButtonUpdateRecommendColo
 import ButtonSaveColorScheme from '../components/ButtonSaveColorScheme';
 import ButtonSaveColorSchemeAll from '../components/ButtonSaveColorSchemeAll';
 import ButtonEvaluateRecommendColors from '../components/ButtonEvaluateRecommendColors';
+import TestDispayIsSameColor from '../pages/ColorRecommendation/TestDispayIsSameColor';
 
 let isCanvasHome = false;
 
@@ -32,6 +33,7 @@ export function CanvasHomeNormal() {
         <div>
           <ColorGanerateRe />
           <OperateGuiControl />
+          <TestDispayIsSameColor />
         </div>
         <div style={{ overflow: 'hidden' }}>
           {Canvas()}
