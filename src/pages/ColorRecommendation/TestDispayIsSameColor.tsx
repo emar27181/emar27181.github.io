@@ -18,11 +18,18 @@ export function TestDispayIsSameColor() {
     };
 
     p.draw = () => {
-      let count = 0;
-      compareColor(0.5 * SQUARE_WIDTH, SQUARE_WIDTH*(count++), p.color("#FF0000"), p.color("#FF7700"));
-      compareColor(0.5 * SQUARE_WIDTH, SQUARE_WIDTH*(count++), p.color("#FF0000"), p.color("#FF5500"));
-      compareColor(0.5 * SQUARE_WIDTH, SQUARE_WIDTH*(count++), p.color("#FF0000"), p.color("#FF4400"));
-      compareColor(0.5 * SQUARE_WIDTH, SQUARE_WIDTH*(count++), p.color("#FF0000"), p.color("#FF2200"));
+      p.background(0);
+
+      let count = 1;
+
+      p.fill(255);
+      p.textSize(0.05 * p.width);
+      p.text("SIM_VALUE_SAME_COLOR", 0.4 * p.width, 0.7 * SQUARE_WIDTH);
+
+      compareColor(0.5 * SQUARE_WIDTH, SQUARE_WIDTH * (count++), p.color("#FF0000"), p.color("#FF7700"));
+      compareColor(0.5 * SQUARE_WIDTH, SQUARE_WIDTH * (count++), p.color("#FF0000"), p.color("#FF5500"));
+      compareColor(0.5 * SQUARE_WIDTH, SQUARE_WIDTH * (count++), p.color("#FF0000"), p.color("#FF4400"));
+      compareColor(0.5 * SQUARE_WIDTH, SQUARE_WIDTH * (count++), p.color("#FF0000"), p.color("#FF2200"));
     };
 
     function compareColor(x: number, y: number, p5Color1: p5.Color, p5Color2: p5.Color) {
@@ -35,7 +42,8 @@ export function TestDispayIsSameColor() {
       p.rect(x + SQUARE_WIDTH * 2, y, SQUARE_WIDTH, SQUARE_WIDTH);
 
       p.fill(255);
-      p.text(":", x + 1.3 * SQUARE_WIDTH  , y + p.textSize());
+      p.textSize(0.07 * p.width);
+      p.text(":", x + 1.3 * SQUARE_WIDTH, y + p.textSize());
       p.text("→ " + p.round(simValue), x + SQUARE_WIDTH * 3.5, y + p.textSize());
     }
   }
