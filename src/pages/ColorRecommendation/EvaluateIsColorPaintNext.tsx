@@ -75,13 +75,22 @@ export function evaluateRecommendColorSchemes(): number {
   let recommendColorsAmountAll = outputRecommendColorsAmountAll;
 
   //console.log("recommendColorsAmountAll.length = " + recommendColorsAmountAll.length);
+  // correctCount: 推薦した配色群の中で次に塗る色を予測できていていた個数
+  let correctCount = 0;
 
   for (let i = 0; i < recommendColorsAmountAll.length; i++) {
     let colorSchemeNumber = recommendColorsAmountAll[i].LOAD_NUMBER[0];
     let colorNumber = recommendColorsAmountAll[i].LOAD_NUMBER[1];
     let dataRecomenndColorsAmount = recommendColorsAmountAll[i].dataRecommendColorsAmount;
 
-    isColorPaintNext(colorSchemeNumber, colorNumber, i);
+    if (isColorPaintNext(colorSchemeNumber, colorNumber, i)) {
+      correctCount++;
+    }
   }
+
+  console.log("-------------------------------------")
+  console.log("推薦した配色群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / recommendColorsAmountAll.length * 100) + "%(" + correctCount + "/" + recommendColorsAmountAll.length + ")です．");
+  console.log("(同じ色かどうかを判定する相違度の閾値) = " + SIM_VALUE_SAME_COLOR);
+
   return 0;
 }
