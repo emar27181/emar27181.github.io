@@ -5,7 +5,7 @@ import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmou
 import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsAmountAll.json"
 import { calculateLabColorSimilarity } from "./CalculateSimilarity";
 import { consoleLogColors } from "../../utils/consoleLogColors";
-import { SIM_VALUE_SAME_COLOR } from "../../config/constants";
+import { SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR } from "../../config/constants";
 
 // jsonファイルを基にused[colorSchemeNumber][colorNumber]に対する推薦recommend[][]にused[i][j+1](次の色)が含まれているかどうか確認する関数
 // colorSchemeNumber: 読込む使用配色のインデックス番号を保存する変数
@@ -14,7 +14,7 @@ import { SIM_VALUE_SAME_COLOR } from "../../config/constants";
 export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number, recommendIndex: number): boolean {
   // SIM_VALUE_LIMIT: 相違度の限界値(これより相違度が大きい配色は評価されない)
   // conpareCount: used[colorSchemeNmuber][colorNumber]とrecommend[][]が比較した回数を保存する変数
-  const SIM_VALUE_LIMIT = 10;
+  
   let compareCount = 0;
 
   // 次の色が存在しない場合終了
@@ -38,7 +38,7 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
     let simValue = dataRecomenndColorsAmount[i].similarityValue;
 
     // 相違度の限界値よりも大きい場合
-    if (simValue >= SIM_VALUE_LIMIT) {
+    if (simValue >= SIM_VALUE_DISPLAY_LIMIT) {
       continue;
     }
 
@@ -90,7 +90,8 @@ export function evaluateRecommendColorSchemes(): number {
 
   console.log("-------------------------------------")
   console.log("推薦した配色群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / recommendColorsAmountAll.length * 100) + "%(" + correctCount + "/" + recommendColorsAmountAll.length + ")です．");
-  console.log("(同じ色かどうかを判定する相違度の閾値) = " + SIM_VALUE_SAME_COLOR);
+  console.log("SIM_VALUE_DISPLAY_LIMIT(表示(評価)するかどうかを判定する相違度の閾値) = " + SIM_VALUE_DISPLAY_LIMIT);
+  console.log("SIM_VALUE_SAME_COLOR(同じ色かどうかを判定する相違度の閾値) = " + SIM_VALUE_SAME_COLOR);
 
   return 0;
 }
