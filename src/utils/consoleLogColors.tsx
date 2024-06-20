@@ -40,7 +40,6 @@ export function consoleLogColors(text: string, colorCode: string): void {
   const { r, g, b } = hexToRgb(colorCode);
   const ansiCode = rgbToAnsi(r, g, b);
   const resetCode = "\x1b[0m";
-  text = "■■■" + text +  "■■■■■■■■■";
   console.log(`${ansiCode}${text}${resetCode}`);
 }
 
