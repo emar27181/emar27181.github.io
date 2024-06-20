@@ -46,7 +46,7 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
     let simValue = dataRecomenndColorsAmount[i].similarityValue;
 
     // 相違度の限界値よりも大きい場合
-    if (simValue >= SIM_VALUE_DISPLAY_LIMIT) {
+    if (simValue > SIM_VALUE_DISPLAY_LIMIT) {
       continue;
     }
 
