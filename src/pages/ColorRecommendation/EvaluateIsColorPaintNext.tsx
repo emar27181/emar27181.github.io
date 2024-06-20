@@ -95,7 +95,7 @@ export function evaluateRecommendColorSchemes(): number {
   }
 
   console.log("-------------------------------------")
-  //console.log("推薦した配色群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / recommendColorsAmountAll.length * 100) + "%(" + correctCount + "/" + recommendColorsAmountAll.length + ")です．");
+  console.log("入力した"+ recommendColorsAmountAll.length  + "枚のイラスト群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / recommendColorsAmountAll.length * 100) + "%(" + correctCount + "/" + recommendColorsAmountAll.length + ")です．");
   console.log("推薦した配色群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / compareCountSum * 100) + "%(" + correctCount + "/" + compareCountSum + ")です．");
   console.log("SIM_VALUE_DISPLAY_LIMIT(表示(評価)するかどうかを判定する相違度の閾値) = " + SIM_VALUE_DISPLAY_LIMIT);
   console.log("SIM_VALUE_SAME_COLOR(同じ色かどうかを判定する相違度の閾値) = " + SIM_VALUE_SAME_COLOR);
