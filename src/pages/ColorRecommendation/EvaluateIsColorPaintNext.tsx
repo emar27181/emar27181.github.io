@@ -7,14 +7,17 @@ import { calculateLabColorSimilarity } from "./CalculateSimilarity";
 import { consoleLogColors } from "../../utils/consoleLogColors";
 import { SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR } from "../../config/constants";
 
+// 使用配色と推薦配色の比較を行った回数を保存する変数
+let compareCountSum = 0;
+
 // jsonファイルを基にused[colorSchemeNumber][colorNumber]に対する推薦recommend[][]にused[i][j+1](次の色)が含まれているかどうか確認する関数
 // colorSchemeNumber: 読込む使用配色のインデックス番号を保存する変数
 // colorNumber: 使用配色のどの色までインデックス番号まで読み込むかを保存する変数
 // recommendIndex: 推薦した配色群を保存する配列の読込むインデックス番号を保存する変数
 export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number, recommendIndex: number): boolean {
   // SIM_VALUE_LIMIT: 相違度の限界値(これより相違度が大きい配色は評価されない)
-  // conpareCount: used[colorSchemeNmuber][colorNumber]とrecommend[][]が比較した回数を保存する変数
-  
+  // conpareCount: used[colorSchemeNmuber][colorNumber+1]とrecommend[][]が比較した回数を保存する変数
+
   let compareCount = 0;
 
   // 次の色が存在しない場合終了
@@ -53,6 +56,7 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
         //if (recomenndColorsAmount[i][j].color === inputOrderUsedColorScheme[colorSchemeNumber][colorNumber + 1].color) {
         console.log("推薦配色の中に次の色が含まれていました．(recomenndColorsAmount[" + i + "][" + j + "].color = " + recomenndColorsAmount[i][j].color + ", compareCount = " + compareCount + ")");
         consoleLogColors(recomenndColorsAmount[i][j].color, recomenndColorsAmount[i][j].color);
+        compareCountSum += compareCount;
         return true;
       }
     }
@@ -60,6 +64,7 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
 
   // 推薦配色の中に次の色が含まれていなかった場合
   console.log("推薦配色の中に次の色が含まれていませんでした．(compareCount = " + compareCount + ")");
+  compareCountSum += compareCount;
   return false;
 }
 
@@ -73,6 +78,7 @@ export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color): boolean {
 // 生成された推薦する配色の評価をまとめて行う関数
 export function evaluateRecommendColorSchemes(): number {
   let recommendColorsAmountAll = outputRecommendColorsAmountAll;
+  compareCountSum = 0;
 
   //console.log("recommendColorsAmountAll.length = " + recommendColorsAmountAll.length);
   // correctCount: 推薦した配色群の中で次に塗る色を予測できていていた個数
@@ -89,7 +95,8 @@ export function evaluateRecommendColorSchemes(): number {
   }
 
   console.log("-------------------------------------")
-  console.log("推薦した配色群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / recommendColorsAmountAll.length * 100) + "%(" + correctCount + "/" + recommendColorsAmountAll.length + ")です．");
+  //console.log("推薦した配色群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / recommendColorsAmountAll.length * 100) + "%(" + correctCount + "/" + recommendColorsAmountAll.length + ")です．");
+  console.log("推薦した配色群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / compareCountSum * 100) + "%(" + correctCount + "/" + compareCountSum + ")です．");
   console.log("SIM_VALUE_DISPLAY_LIMIT(表示(評価)するかどうかを判定する相違度の閾値) = " + SIM_VALUE_DISPLAY_LIMIT);
   console.log("SIM_VALUE_SAME_COLOR(同じ色かどうかを判定する相違度の閾値) = " + SIM_VALUE_SAME_COLOR);
 
