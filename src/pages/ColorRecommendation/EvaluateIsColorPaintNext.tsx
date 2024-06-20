@@ -10,7 +10,7 @@ import { SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR } from "../../config/cons
 // compareCountSum: 使用配色と推薦配色の比較を行った回数を保存する変数
 // sumRecommendColorScheme: 推薦する配色群の合計
 let compareCountSum = 0;
-let sumRecommendColorScheme = 0;
+let sumRecommendColorSchemeExcludeFirstColorReco = 0;
 
 // jsonファイルを基にused[colorSchemeNumber][colorNumber]に対する推薦recommend[][]にused[i][j+1](次の色)が含まれているかどうか確認する関数
 // colorSchemeNumber: 読込む使用配色のインデックス番号を保存する変数
@@ -34,7 +34,7 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
   // used[colorSchemeNumber][colorNumber]のに対する推薦配色のセット
   let dataRecomenndColorsAmount = outputRecommendColorsAmountAll[recommendIndex].dataRecommendColorsAmount;
   let recomenndColorsAmount = dataRecomenndColorsAmount.map(item => item.colorsAmount); // 配色を抽出し代入
-  sumRecommendColorScheme += recomenndColorsAmount.length;
+  sumRecommendColorSchemeExcludeFirstColorReco += recomenndColorsAmount.length;
 
   const p = new p5(() => { });
   // recommend[][]にused[colorSchemeNumber][colorNumber+1](次の色)が含まれているかどうかの確認
@@ -85,7 +85,7 @@ export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color): boolean {
 export function evaluateRecommendColorSchemes(): number {
   let recommendColorsAmountAll = outputRecommendColorsAmountAll;
   compareCountSum = 0;
-  sumRecommendColorScheme = 0;
+  sumRecommendColorSchemeExcludeFirstColorReco = 0;
 
   //console.log("recommendColorsAmountAll.length = " + recommendColorsAmountAll.length);
   // correctCount: 推薦した配色群の中で次に塗る色を予測できていていた個数
@@ -95,6 +95,9 @@ export function evaluateRecommendColorSchemes(): number {
     let colorSchemeNumber = recommendColorsAmountAll[i].LOAD_NUMBER[0];
     let colorNumber = recommendColorsAmountAll[i].LOAD_NUMBER[1];
     let dataRecomenndColorsAmount = recommendColorsAmountAll[i].dataRecommendColorsAmount;
+
+    // 1色目(used[colorSchemeNumber][0])を塗った後の2色目(used[colorSchemeNumber][1])を当てるのはほぼ不可能なためスキップ
+    if(colorNumber === 0){ continue;}
 
     if (isColorPaintNext(colorSchemeNumber, colorNumber, i)) {
       correctCount++;
@@ -106,7 +109,7 @@ export function evaluateRecommendColorSchemes(): number {
   console.log("推薦した配色群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / compareCountSum * 100) + "%(" + correctCount + "/" + compareCountSum + ")です．");
   console.log("SIM_VALUE_DISPLAY_LIMIT(表示(評価)するかどうかを判定する相違度の閾値) = " + SIM_VALUE_DISPLAY_LIMIT);
   console.log("SIM_VALUE_SAME_COLOR(同じ色かどうかを判定する相違度の閾値) = " + SIM_VALUE_SAME_COLOR);
-  console.log("sumRecommendColorScheme(生成した推薦する配色の数) = " + sumRecommendColorScheme);
+  console.log("‟(1色目に対する推薦を除く”生成した推薦する配色の数) = " + sumRecommendColorSchemeExcludeFirstColorReco);
 
   return 0;
 }
