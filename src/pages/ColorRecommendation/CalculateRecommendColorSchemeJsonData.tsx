@@ -45,6 +45,9 @@ export function CalculateRecommendColorSchemeJsonData(colorSchemeNumber: number,
   let dataRecommendColorsAmount: DataRecommendColorAmount[] = [];
   dataRecommendColorsAmount = addSimilarityValuesTorecommendColorsAmount(filteredRecommendedColorSchemeAmount, similarityValues);
 
+  // dataRecommendColorsAmountを相違度が低い順にソート
+  dataRecommendColorsAmount.sort((a, b) => a.similarityValue - b.similarityValue);
+
   // 
   let addJsonData = updateJsonDataRecommendColorScheme(colorSchemeNumber, colorNumber, filteredOrderUsedColorsAmount, dataRecommendColorsAmount);
 
