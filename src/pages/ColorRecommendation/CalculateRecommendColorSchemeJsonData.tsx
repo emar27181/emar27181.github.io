@@ -37,7 +37,8 @@ export function CalculateRecommendColorSchemeJsonData(colorSchemeNumber: number,
   let filteredOrderUsedColorsAmount: FilterdColorAmount[] = convertToJsonData(colorsAmount);
   let filteredRecommendedColorSchemeAmount: FilterdColorAmount[][] = [];
   for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
-    filteredRecommendedColorSchemeAmount[i] = convertToJsonData(recommendedColorSchemeAmount[i]);
+    if (recommendedColorSchemeAmount[i].length === 0) { continue; }
+    filteredRecommendedColorSchemeAmount.push(convertToJsonData(recommendedColorSchemeAmount[i]));
     //console.log("filteredRecommendedColorSchemeAmount[" + i + "] = " + filteredRecommendedColorSchemeAmount[i]);
   }
 
