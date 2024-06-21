@@ -25,12 +25,13 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
   // conpareCount: used[colorSchemeNmuber][colorNumber+1]とrecommend[][]が比較した回数を保存する変数
 
   let compareCount = 0;
-  evaluateedUsedColorSchemeCount++;
 
   // 次の色が存在しない場合終了
   if (inputOrderUsedColorScheme[colorSchemeNumber].length <= (colorNumber + 1)) {
     return false;
   }
+
+
 
   if (IS_PRINT_IS_EXIST_SAME_COLOR) {
     console.log("------used[" + colorSchemeNumber + "][" + colorNumber + "] --------------------")
@@ -53,6 +54,8 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
     if (simValue > simValueThresholdIsDisplay) {
       continue;
     }
+
+    evaluateedUsedColorSchemeCount++; 
 
     for (let j = 0; j < recomenndColorsAmount[i].length; j++) {
       compareCount++;
