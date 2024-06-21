@@ -18,7 +18,7 @@ let evaluateedUsedColorSchemeCount = 0;
 // colorSchemeNumber: 読込む使用配色のインデックス番号を保存する変数
 // colorNumber: 使用配色のどの色までインデックス番号まで読み込むかを保存する変数
 // recommendIndex: 推薦した配色群を保存する配列の読込むインデックス番号を保存する変数
-export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number, recommendIndex: number): boolean {
+export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number, recommendIndex: number, simValueThresholdIsDisplay: number, simValueThresholdIsSameColor: number): boolean {
   // SIM_VALUE_LIMIT: 相違度の限界値(これより相違度が大きい配色は評価されない)
   // conpareCount: used[colorSchemeNmuber][colorNumber+1]とrecommend[][]が比較した回数を保存する変数
 
@@ -46,7 +46,7 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
     let simValue = dataRecomenndColorsAmount[i].similarityValue;
 
     // 相違度の限界値よりも大きい場合
-    if (simValue > SIM_VALUE_DISPLAY_LIMIT) {
+    if (simValue > simValueThresholdIsDisplay) {
       continue;
     }
 
@@ -57,7 +57,7 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
       let p5Color2 = p.color(inputOrderUsedColorScheme[colorSchemeNumber][colorNumber + 1].color);
 
       // 推薦配色の中に次の色が含まれていた場合
-      if (isSameColor(p5Color1, p5Color2)) {
+      if (isSameColor(p5Color1, p5Color2, simValueThresholdIsSameColor)) {
         //if (recomenndColorsAmount[i][j].color === inputOrderUsedColorScheme[colorSchemeNumber][colorNumber + 1].color) {
         //console.log("推薦配色の中に次の色が含まれていました．(recomenndColorsAmount[" + i + "][" + j + "].color = " + recomenndColorsAmount[i][j].color + ", compareCount = " + compareCount + ")");
         consoleLogColors(("■■■reco=“" + recomenndColorsAmount[i][j].color + "”■■■■■■■■■"), recomenndColorsAmount[i][j].color);
@@ -77,11 +77,11 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
   return false;
 }
 
-export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color): boolean {
+export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color, simValueThresholdIsSameColor: number): boolean {
 
   let simValue = calculateLabColorSimilarity(p5Color1, p5Color2);
 
-  return (simValue <= SIM_VALUE_SAME_COLOR);
+  return (simValue <= simValueThresholdIsSameColor);
 }
 
 // 生成された推薦する配色の評価をまとめて行う関数
@@ -106,7 +106,7 @@ export function evaluateRecommendColorSchemes(): number {
     // 1色目(used[colorSchemeNumber][0])を塗った後の2色目(used[colorSchemeNumber][1])を当てるのはほぼ不可能なためスキップ
     if (colorNumber === 0) { continue; }
 
-    if (isColorPaintNext(colorSchemeNumber, colorNumber, i)) {
+    if (isColorPaintNext(colorSchemeNumber, colorNumber, i, SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR)) {
       correctCount++;
     }
   }
