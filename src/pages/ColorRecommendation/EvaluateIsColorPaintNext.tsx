@@ -8,7 +8,7 @@ import { consoleLogColors } from "../../utils/consoleLogColors";
 import { SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR } from "../../config/constants";
 
 // compareCountSum: 使用配色と推薦配色の比較を行った回数を保存する変数
-// sumRecommendColorScheme: 推薦する配色群の合計
+// sumRecommendColorSchemeExcludeFirstColorReco: 1色目を基に推薦するのを除外した推薦配色群の合計
 // evaluateedUsedColorSchemeCount: 評価された使用配色の数
 let compareCountSum = 0;
 let sumRecommendColorSchemeExcludeFirstColorReco = 0;
@@ -93,12 +93,15 @@ export function evaluateRecommendColorSchemes(): number {
 
   //console.log("recommendColorsAmountAll.length = " + recommendColorsAmountAll.length);
   // correctCount: 推薦した配色群の中で次に塗る色を予測できていていた個数
+  // sumRecommendColorScheme: 推薦配色群の合計
   let correctCount = 0;
+  let sumRecommendColorScheme = 0;
 
   for (let i = 0; i < recommendColorsAmountAll.length; i++) {
     let colorSchemeNumber = recommendColorsAmountAll[i].LOAD_NUMBER[0];
     let colorNumber = recommendColorsAmountAll[i].LOAD_NUMBER[1];
     let dataRecomenndColorsAmount = recommendColorsAmountAll[i].dataRecommendColorsAmount;
+    sumRecommendColorScheme += dataRecomenndColorsAmount.length;
 
     // 1色目(used[colorSchemeNumber][0])を塗った後の2色目(used[colorSchemeNumber][1])を当てるのはほぼ不可能なためスキップ
     if (colorNumber === 0) { continue; }
@@ -108,12 +111,15 @@ export function evaluateRecommendColorSchemes(): number {
     }
   }
 
+  
+
   console.log("-------------------------------------")
   console.log("次に塗る色を予測できていていた確率((次の色があった数)/(評価した使用配色の数))は" + Math.round(correctCount / evaluateedUsedColorSchemeCount * 100) + "%(" + correctCount + "/" + evaluateedUsedColorSchemeCount + ")です．");
   console.log("推薦した配色群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / compareCountSum * 100) + "%(" + correctCount + "/" + compareCountSum + ")です．");
   console.log("SIM_VALUE_DISPLAY_LIMIT(表示(評価)するかどうかを判定する相違度の閾値) = " + SIM_VALUE_DISPLAY_LIMIT);
   console.log("SIM_VALUE_SAME_COLOR(同じ色かどうかを判定する相違度の閾値) = " + SIM_VALUE_SAME_COLOR);
-  console.log("‟(1色目に対する推薦を除く”生成した推薦する配色の数) = " + sumRecommendColorSchemeExcludeFirstColorReco);
+  console.log("(‟1色目に対する推薦を除く”生成した推薦する配色の数) = " + sumRecommendColorSchemeExcludeFirstColorReco);
+  console.log("(生成した推薦する配色の数) = " + sumRecommendColorScheme +"(※誤差あるかも)");
 
   return 0;
 }
