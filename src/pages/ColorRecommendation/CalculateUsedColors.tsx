@@ -1,6 +1,6 @@
 import p5 from "p5";
 import { ReturnCanvasColors } from "../Reserch/Canvas";
-import { AMOUNT_LIMIT, SATURATION_LIMIT, LIGHTNESS_LOWER_LIMIT, LIGHTNESS_UPPER_LIMIT, SPLIT } from "../../config/constants";
+import { AMOUNT_LIMIT, SATURATION_LIMIT, LIGHTNESS_LOWER_LIMIT, LIGHTNESS_UPPER_LIMIT, SPLIT, IS_INPUT_BY_JSON } from "../../config/constants";
 import { ReturnDrawingColor, ReturnIsMouseReleased } from "../Reserch/Canvas";
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 import { ColorAmount } from "../../utils/ColorAmount";
@@ -14,7 +14,6 @@ let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 let orderUsedColors: Array<p5.Color> = [];
 let orderUsedColorsAmount: Array<ColorAmount> = [];
 let isCanvasMouseReleased: boolean = false;
-const IS_INPUT_BY_JSON = true;
 
 export function CalculateUsedColors() {
   const DEBUG = false;
@@ -54,7 +53,7 @@ export function CalculateUsedColors() {
       if (isUpdateRecommendColorsScheme) {
         orderUsedColors.push(ReturnDrawingColor());
         if (IS_INPUT_BY_JSON) {
-          updateOrderUsedColorsAmountByJson();
+          initializeOrderUsedColorsAmountByJson(LOAD_USED_COLOR_SCHEME_NUMBER, LOAD_USED_COLOR_NUMBER);
         }
         else {
           updateColorsAmount(orderUsedColorsAmount, ReturnDrawingColor());
@@ -114,21 +113,6 @@ export function CalculateUsedColors() {
       }
     }
 
-    function updateOrderUsedColorsAmountByJson() {
-      if (typeof (inputOrderUsedColorAmount[LOAD_USED_COLOR_SCHEME_NUMBER]) === "undefined") {
-        console.error("読込まれた配列に配色が保存されていません。LOAD_USED_COLOR_SCHEME_NUMBERを正しい値にしてください。");
-        return;
-      }
-
-      for (let i = 0; i <= LOAD_USED_COLOR_NUMBER; i++) {
-        let color = p.color(inputOrderUsedColorAmount[LOAD_USED_COLOR_SCHEME_NUMBER][i].color);
-        let amount = inputOrderUsedColorAmount[LOAD_USED_COLOR_SCHEME_NUMBER][i].amount;
-
-        orderUsedColorsAmount.push(new ColorAmount(color, amount));
-      }
-
-      console.log("orderUsedColorsAmount is loaded ((i, j) = (" + LOAD_USED_COLOR_SCHEME_NUMBER + ", " + LOAD_USED_COLOR_NUMBER + "))");
-    }
 
     function updateColorsAmount(colorsAmount: ColorAmount[], color: p5.Color) {
       //color: 探索対象の色
@@ -162,6 +146,28 @@ export function CalculateUsedColors() {
     <ReactP5Wrapper sketch={sketch} />
   )
 }
+
+// Jsonファイルを基に使用色を保存する配列を初期化する関数
+export function initializeOrderUsedColorsAmountByJson(colorSchemeNumber: number, colorNumber: number): ColorAmount[] {
+  orderUsedColorsAmount = [];
+  const p = new p5(() => { });
+  if (typeof (inputOrderUsedColorAmount[colorSchemeNumber]) === "undefined") {
+    console.error("読込まれた配列に配色が保存されていません。colorSchemeNumberを正しい値にしてください。");
+    return [];
+  }
+
+  for (let i = 0; i <= colorNumber; i++) {
+    let color = p.color(inputOrderUsedColorAmount[colorSchemeNumber][i].color);
+    let amount = inputOrderUsedColorAmount[colorSchemeNumber][i].amount;
+
+    orderUsedColorsAmount.push(new ColorAmount(color, amount));
+  }
+
+  console.log("orderUsedColorsAmount is loaded ((i, j) = (" + colorSchemeNumber + ", " + colorNumber + "))");
+
+  return orderUsedColorsAmount;
+}
+
 
 export default CalculateUsedColors
 export function ReturnUsedColorsAmount() { return usedColorsAmount; }

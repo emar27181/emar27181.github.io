@@ -15,6 +15,9 @@ import CalculateUsedColors from '../pages/ColorRecommendation/CalculateUsedColor
 import { DisplayColorPalette } from '../pages/ColorRecommendation/DisplayColorPalette';
 import ButtonUpdateRecommendColors from '../components/ButtonUpdateRecommendColors';
 import ButtonSaveColorScheme from '../components/ButtonSaveColorScheme';
+import ButtonSaveColorSchemeAll from '../components/ButtonSaveColorSchemeAll';
+import ButtonEvaluateRecommendColors from '../components/ButtonEvaluateRecommendColors';
+import TestDispayIsSameColor from '../pages/ColorRecommendation/TestDispayIsSameColor';
 
 let isCanvasHome = false;
 
@@ -30,6 +33,7 @@ export function CanvasHomeNormal() {
         <div>
           <ColorGanerateRe />
           <OperateGuiControl />
+          <TestDispayIsSameColor />
         </div>
         <div style={{ overflow: 'hidden' }}>
           {Canvas()}
@@ -38,6 +42,8 @@ export function CanvasHomeNormal() {
           <DisplayColorPalette />
           <ButtonUpdateRecommendColors />
           <ButtonSaveColorScheme />
+          <ButtonSaveColorSchemeAll />
+          <ButtonEvaluateRecommendColors />
         </div>
       </div>
 

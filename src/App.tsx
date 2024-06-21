@@ -115,15 +115,14 @@ function App() {
         <Navbar.Collapse id="navbarNav">
           <Nav className="ml-auto d-flex">
             <Nav.Link href="/" >ホーム</Nav.Link>
+            {/*<Nav.Link href='/gravityHome' > 重力操作 </Nav.Link>*/}
+            <Nav.Link href='/canvasHome' > 研究 </Nav.Link>
             <Nav.Link href="/workMenu" >作品集</Nav.Link>
-            <Nav.Link href='/gravityHome' > 重力操作 </Nav.Link>
-            <Nav.Link href='/canvasHome' > キャンバス </Nav.Link>
             {/*<Nav.Link href='/canvasHomeForInteraction2024' > キャンバス </Nav.Link>*/}
             {/*<Nav.Link href='/flipGame' > 制作中ゲーム</Nav.Link>*/}
             {/*<Nav.Link href='/matchBoGame' > マッチ棒ゲーム</Nav.Link>*/}
-            <Nav.Link href='/gyroCanvas' > ジャイロキャンバス </Nav.Link>
+            {/*<Nav.Link href='/gyroCanvas' > ジャイロキャンバス </Nav.Link>*/}
           </Nav>
-
 
           <Form className="ml-auto d-flex" >
             <FormControl type="text" placeholder="Search(Preparing)" className="mr-sm-2" />

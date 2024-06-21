@@ -7,12 +7,16 @@ import { ReturnOrderUsedColors, ReturnOrderUsedColorsAmount, ReturnUsedColorSche
 import p5 from 'p5';
 import Color from 'color';
 import { calculateLabColorSimilarity, calculateColorsAmountSimilarity } from '../ColorRecommendation/CalculateSimilarity';
-import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor, addColorSchemesLightnessVariations } from './CalculateColorScheme';
+import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor, addColorSchemesLightnessVariations, calculatePentadColorBkW } from './CalculateColorScheme';
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 import { convertToJsonData } from './ConvertToJsonData';
 import { LIGHTNESS_DIFF } from '../../config/constants';
 import { isColorPaintNext } from './EvaluateIsColorPaintNext';
 import { LOAD_USED_COLOR_NUMBER, LOAD_USED_COLOR_SCHEME_NUMBER } from '../../config/constants.dev';
+import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmount.json";
+import { DataRecommendColorAmount, addSimilarityValuesTorecommendColorsAmount } from '../../components/ButtonSaveColorScheme';
+import { JsonDataRecommendColorScheme } from '../../utils/JsonDataRecommendColorScheme';
+import { updateRecommendColorSchemeAmount } from './CalculateRecommendColorSchemeJsonData';
 
 const DEBUG = false;
 
@@ -25,6 +29,7 @@ let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
 
 export let similarityValues: number[] = [];
 export let displayOrderIndex: number[] = [];
+export let jsonDataRecommendColorScheme: JsonDataRecommendColorScheme[] = []
 
 let orderUsedColorsDifference: number[] = [];
 let orderUsedColorsDifferenceExcludeBaseColor: number[] = [];
@@ -51,8 +56,12 @@ export function CalculateRecommendColors() {
       if (isUpdateRecommendColorsScheme) {
         updateVariables();
 
+        // 推薦配色群のスロットのリセット
+        recommendedColorSchemeAmount = [];
+
         //推薦する配色の追加
-        calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
+        updateRecommendColorSchemeAmount(orderUsedColorsAmount, recommendedColorSchemeAmount);
+        //calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
 
         //推薦された配色群の明度が異なるバリエーションを追加
         const RECOMMEND_LENGTH = recommendedColorSchemeAmount.length;
@@ -79,7 +88,13 @@ export function CalculateRecommendColors() {
         console.log("recommendColorScheme was updated");
 
         // 推薦された配色に次の色が含まれているかの確認
-        isColorPaintNext(LOAD_USED_COLOR_SCHEME_NUMBER, LOAD_USED_COLOR_NUMBER);
+        // 現在isColorPaintNext()では推薦した配色群"全体"と使用した配色で比較しているため推薦した配色"単体"に対して使用不可
+        //isColorPaintNext(LOAD_USED_COLOR_SCHEME_NUMBER, LOAD_USED_COLOR_NUMBER, -1);
+
+        jsonDataRecommendColorScheme = [];
+        jsonDataRecommendColorScheme.push(updateJsonDataRecommendColorScheme(0, 0));
+        jsonDataRecommendColorScheme.push(updateJsonDataRecommendColorScheme(0, 1));
+
 
         isUpdateRecommendColorsScheme = false;
       }
@@ -97,7 +112,25 @@ export function CalculateRecommendColors() {
         //console.log("filteredRecommendedColorSchemeAmount = " + filteredRecommendedColorSchemeAmount);
 
       }
+
     };
+
+    function updateJsonDataRecommendColorScheme(colorSchemeNumber: number, colorNumber: number) {
+      const LOAD_NUMBER = [colorSchemeNumber, colorNumber];
+      let dataRecommendColorsAmount: DataRecommendColorAmount[] = [];
+      dataRecommendColorsAmount = addSimilarityValuesTorecommendColorsAmount(filteredRecommendedColorSchemeAmount)
+
+      // 最新のデータを取得
+      const addJsonData: JsonDataRecommendColorScheme = {
+        LOAD_NUMBER,
+        filteredOrderUsedColorsAmount,
+        dataRecommendColorsAmount,
+        //filteredRecommendedColorSchemeAmount,
+      };
+
+      return addJsonData;
+
+    }
 
     //推薦する配色のうち類似度が小さい順に表示させるためのインデックス番号を保存する配列を計算する関数
     function calculateDisplayOrder() {
@@ -144,6 +177,20 @@ export function CalculateRecommendColors() {
       resetRecommendedColorSchemeAmount();
       let baseColor = colorsAmount[0].color; // 最初に使われた色をベースカラーであると仮定する
 
+
+      // ベースカラーを基に配列に配色を追加
+      calculateDominantColor(recommendedColorSchemeAmount, baseColor);
+      calculateDyadColor(recommendedColorSchemeAmount, baseColor);
+      //calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
+      calculateTetradeColor(recommendedColorSchemeAmount, baseColor);
+      calculateTriadColor(recommendedColorSchemeAmount, baseColor);
+      calculateDominantTone(recommendedColorSchemeAmount, baseColor);
+      calculatePentadColor(recommendedColorSchemeAmount, baseColor);
+      calculateHexadColor(recommendedColorSchemeAmount, baseColor);
+      calculateAnalogyColor(recommendedColorSchemeAmount, baseColor);
+      calculateIntermediateColor(recommendedColorSchemeAmount, baseColor);
+      calculatePentadColorBkW(recommendedColorSchemeAmount, baseColor);
+      /*
       calculateColorScheme("dominantColor", baseColor);
       calculateColorScheme("dyad", baseColor);
       calculateColorScheme("splitComplementary", baseColor);
@@ -154,6 +201,7 @@ export function CalculateRecommendColors() {
       calculateColorScheme("hexad", baseColor);
       calculateColorScheme("analogy", baseColor);
       calculateColorScheme("intermediate", baseColor);
+      */
     }
 
     // 推薦しようとしている配色の類似度を調べ，閾値以上だった場合追加を取り消す関数
@@ -162,7 +210,7 @@ export function CalculateRecommendColors() {
 
       if (colorScheme === "dominantColor") { calculateDominantColor(recommendedColorSchemeAmount, baseColor); }
       else if (colorScheme === "dyad") { calculateDyadColor(recommendedColorSchemeAmount, baseColor); }
-      else if (colorScheme === "splitComplementary") { calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor); }
+      //else if (colorScheme === "splitComplementary") { calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor); }
       else if (colorScheme === "tetrade") { calculateTetradeColor(recommendedColorSchemeAmount, baseColor); }
       else if (colorScheme === "triad") { calculateTriadColor(recommendedColorSchemeAmount, baseColor); }
       else if (colorScheme === "dominantTone") { calculateDominantTone(recommendedColorSchemeAmount, baseColor); }
@@ -218,14 +266,14 @@ export function CalculateRecommendColors() {
       if (orderUsedColorsAmount.length === 1) {
         calculateDominantColor(recommendedColorSchemeAmount, baseColor);
         calculateDyadColor(recommendedColorSchemeAmount, baseColor);
-        calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
+        //calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
       }
 
       // 使われた色の数が2色だった場合
       else if (orderUsedColorsAmount.length === 2) {
         if (maxHueDifference >= 90) {
           calculateDyadColor(recommendedColorSchemeAmount, baseColor);
-          calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
+          //calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
         }
         else if (maxHueDifferenceExcludeBaseColor >= 60) {
           calculateTriadColor(recommendedColorSchemeAmount, baseColor);
@@ -245,7 +293,7 @@ export function CalculateRecommendColors() {
         }
         else {
           //calculateTriadColor(recommendedColorSchemeAmount, baseColor);
-          calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
+          //calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
         }
       }
     }
