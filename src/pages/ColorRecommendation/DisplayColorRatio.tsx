@@ -2,7 +2,7 @@ import '../../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import { ReturnCanvasSize } from '../Reserch/Canvas';
-import ColorTestData from '../../data/colorTestData.json';
+//import ColorTestData from '../../data/colorTestData.json';
 import * as fs from 'fs';
 import axios from 'axios';
 

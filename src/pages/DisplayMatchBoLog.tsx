@@ -1,4 +1,8 @@
-import '../App.css'
+
+
+
+export function DisplayMatchBoLog() {}
+/*import '../App.css'
 import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper';
 import React from 'react';
 import log from '../data/matchBoTestLog.json'
@@ -53,3 +57,4 @@ export function DisplayMatchBoLog() {
 }
 
 export default DisplayMatchBoLog
+*/

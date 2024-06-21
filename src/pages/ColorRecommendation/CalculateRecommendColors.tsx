@@ -181,7 +181,7 @@ export function CalculateRecommendColors() {
       // ベースカラーを基に配列に配色を追加
       calculateDominantColor(recommendedColorSchemeAmount, baseColor);
       calculateDyadColor(recommendedColorSchemeAmount, baseColor);
-      calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
+      //calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
       calculateTetradeColor(recommendedColorSchemeAmount, baseColor);
       calculateTriadColor(recommendedColorSchemeAmount, baseColor);
       calculateDominantTone(recommendedColorSchemeAmount, baseColor);
@@ -210,7 +210,7 @@ export function CalculateRecommendColors() {
 
       if (colorScheme === "dominantColor") { calculateDominantColor(recommendedColorSchemeAmount, baseColor); }
       else if (colorScheme === "dyad") { calculateDyadColor(recommendedColorSchemeAmount, baseColor); }
-      else if (colorScheme === "splitComplementary") { calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor); }
+      //else if (colorScheme === "splitComplementary") { calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor); }
       else if (colorScheme === "tetrade") { calculateTetradeColor(recommendedColorSchemeAmount, baseColor); }
       else if (colorScheme === "triad") { calculateTriadColor(recommendedColorSchemeAmount, baseColor); }
       else if (colorScheme === "dominantTone") { calculateDominantTone(recommendedColorSchemeAmount, baseColor); }
@@ -266,14 +266,14 @@ export function CalculateRecommendColors() {
       if (orderUsedColorsAmount.length === 1) {
         calculateDominantColor(recommendedColorSchemeAmount, baseColor);
         calculateDyadColor(recommendedColorSchemeAmount, baseColor);
-        calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
+        //calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
       }
 
       // 使われた色の数が2色だった場合
       else if (orderUsedColorsAmount.length === 2) {
         if (maxHueDifference >= 90) {
           calculateDyadColor(recommendedColorSchemeAmount, baseColor);
-          calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
+          //calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
         }
         else if (maxHueDifferenceExcludeBaseColor >= 60) {
           calculateTriadColor(recommendedColorSchemeAmount, baseColor);
@@ -293,7 +293,7 @@ export function CalculateRecommendColors() {
         }
         else {
           //calculateTriadColor(recommendedColorSchemeAmount, baseColor);
-          calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
+          //calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
         }
       }
     }
