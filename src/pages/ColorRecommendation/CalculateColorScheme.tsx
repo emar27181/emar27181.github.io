@@ -17,7 +17,8 @@ export function calculateTriadColor(colorAmount: ColorAmount[][], baseColor: p5.
   colorAmount[i].push(new ColorAmount(p.color((hue + 240) % 360, saturation, lightness), 33));
 }
 
-export function calculateSplitComplementaryColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
+// スプリットコンプリメンタリー(ベースカラーが分裂していない色相(「色彩検定～」p190参照))
+export function calculateSplitComplementaryColor(colorAmount: ColorAmount[][], baseColor: p5.Color, hueDifference: number) {
   let i = colorAmount.length;
   colorAmount[i] = [];
   p.colorMode(p.HSL);
@@ -26,8 +27,8 @@ export function calculateSplitComplementaryColor(colorAmount: ColorAmount[][], b
   let lightness = p.lightness(baseColor);
 
   colorAmount[i].push(new ColorAmount(baseColor, 70));
-  colorAmount[i].push(new ColorAmount(p.color((hue + 165) % 360, saturation, lightness), 15));
-  colorAmount[i].push(new ColorAmount(p.color((hue + 195) % 360, saturation, lightness), 15));
+  colorAmount[i].push(new ColorAmount(p.color((hue + (180 - 15*hueDifference)) % 360, saturation, lightness), 15));
+  colorAmount[i].push(new ColorAmount(p.color((hue + (180 + 15*hueDifference)) % 360, saturation, lightness), 15));
 }
 
 export function calculateDyadColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {

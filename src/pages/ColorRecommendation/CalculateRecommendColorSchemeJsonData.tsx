@@ -71,7 +71,8 @@ export function updateRecommendColorSchemeAmount(baseColorsAmount: ColorAmount[]
   // ベースカラーを基に配列に配色を追加
   calculateDominantColor(recommendColorSchemeAmount, baseColor);
   calculateDyadColor(recommendColorSchemeAmount, baseColor);
-  calculateSplitComplementaryColor(recommendColorSchemeAmount, baseColor);
+  calculateSplitComplementaryColor(recommendColorSchemeAmount, baseColor, 1);
+  calculateSplitComplementaryColor(recommendColorSchemeAmount, baseColor, 2);
   calculateTetradeColor(recommendColorSchemeAmount, baseColor);
   calculateTriadColor(recommendColorSchemeAmount, baseColor);
   calculateDominantTone(recommendColorSchemeAmount, baseColor);
@@ -102,7 +103,7 @@ function addColorScheme(colorScheme: string, baseColor: p5.Color, recommendedCol
   if (false) { }
   else if (colorScheme === "dominantColor") { calculateDominantColor(recommendedColorSchemeAmount, baseColor); }
   else if (colorScheme === "dyad") { calculateDyadColor(recommendedColorSchemeAmount, baseColor); }
-  else if (colorScheme === "splitComplementary") { calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor); }
+  //else if (colorScheme === "splitComplementary") { calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor); }
   else if (colorScheme === "tetrade") { calculateTetradeColor(recommendedColorSchemeAmount, baseColor); }
   else if (colorScheme === "triad") { calculateTriadColor(recommendedColorSchemeAmount, baseColor); }
   else if (colorScheme === "dominantTone") { calculateDominantTone(recommendedColorSchemeAmount, baseColor); }
