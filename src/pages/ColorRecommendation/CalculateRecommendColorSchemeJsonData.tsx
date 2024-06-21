@@ -59,7 +59,7 @@ export function CalculateRecommendColorSchemeJsonData(colorSchemeNumber: number,
 }
 
 // 塗った配色を基にいくつかの配色を推薦する配色群を保存する二重配列を更新する関数
-function updateRecommendColorSchemeAmount(baseColorsAmount: ColorAmount[], recommendColorSchemeAmount: ColorAmount[][]) {
+export function updateRecommendColorSchemeAmount(baseColorsAmount: ColorAmount[], recommendColorSchemeAmount: ColorAmount[][]) {
   if (typeof (baseColorsAmount) === "undefined") { return; }
   // ベースとなる配色がなかった場合何もせず終了
   if (baseColorsAmount.length === 0) { return; }

@@ -16,6 +16,7 @@ import { LOAD_USED_COLOR_NUMBER, LOAD_USED_COLOR_SCHEME_NUMBER } from '../../con
 import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmount.json";
 import { DataRecommendColorAmount, addSimilarityValuesTorecommendColorsAmount } from '../../components/ButtonSaveColorScheme';
 import { JsonDataRecommendColorScheme } from '../../utils/JsonDataRecommendColorScheme';
+import { updateRecommendColorSchemeAmount } from './CalculateRecommendColorSchemeJsonData';
 
 const DEBUG = false;
 
@@ -55,8 +56,12 @@ export function CalculateRecommendColors() {
       if (isUpdateRecommendColorsScheme) {
         updateVariables();
 
+        // 推薦配色群のスロットのリセット
+        recommendedColorSchemeAmount = [];
+
         //推薦する配色の追加
-        calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
+        updateRecommendColorSchemeAmount(orderUsedColorsAmount, recommendedColorSchemeAmount);
+        //calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
 
         //推薦された配色群の明度が異なるバリエーションを追加
         const RECOMMEND_LENGTH = recommendedColorSchemeAmount.length;
