@@ -7,7 +7,7 @@ import { ReturnOrderUsedColors, ReturnOrderUsedColorsAmount, ReturnUsedColorSche
 import p5 from 'p5';
 import Color from 'color';
 import { calculateLabColorSimilarity, calculateColorsAmountSimilarity } from '../ColorRecommendation/CalculateSimilarity';
-import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor, addColorSchemesLightnessVariations } from './CalculateColorScheme';
+import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTriadColor, calculateTetradeColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor, addColorSchemesLightnessVariations, calculatePentadColorBkW } from './CalculateColorScheme';
 import { ReturnIsMouseReleased } from '../Reserch/Canvas';
 import { convertToJsonData } from './ConvertToJsonData';
 import { LIGHTNESS_DIFF } from '../../config/constants';
@@ -184,6 +184,7 @@ export function CalculateRecommendColors() {
       calculateHexadColor(recommendedColorSchemeAmount, baseColor);
       calculateAnalogyColor(recommendedColorSchemeAmount, baseColor);
       calculateIntermediateColor(recommendedColorSchemeAmount, baseColor);
+      calculatePentadColorBkW(recommendedColorSchemeAmount, baseColor);
       /*
       calculateColorScheme("dominantColor", baseColor);
       calculateColorScheme("dyad", baseColor);

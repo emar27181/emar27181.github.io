@@ -3,7 +3,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from 'react-p5-wrapper'
 import '../../App.css'
 import { ColorAmount } from '../../utils/ColorAmount';
 import p5 from 'p5';
-import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTetradeColor, calculateTriadColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor, addColorSchemesLightnessVariations } from './CalculateColorScheme';
+import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTetradeColor, calculateTriadColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor, addColorSchemesLightnessVariations, calculatePentadColorBkW } from './CalculateColorScheme';
 import { LIGHTNESS_DIFF } from '../../config/constants';
 import { DataRecommendColorAmount } from '../../utils/DataRecommendColorAmount';
 import { convertToJsonData } from './ConvertToJsonData';
@@ -79,6 +79,7 @@ function updateRecommendColorSchemeAmount(baseColorsAmount: ColorAmount[], recom
   calculateHexadColor(recommendColorSchemeAmount, baseColor);
   calculateAnalogyColor(recommendColorSchemeAmount, baseColor);
   calculateIntermediateColor(recommendColorSchemeAmount, baseColor);
+  calculatePentadColorBkW(recommendColorSchemeAmount, baseColor);
 
   /*
   addColorScheme("dominantColor", baseColor, recommendColorSchemeAmount);

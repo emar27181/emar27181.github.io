@@ -71,6 +71,22 @@ export function calculatePentadColor(colorAmount: ColorAmount[][], baseColor: p5
   colorAmount[i].push(new ColorAmount(p.color((hue + 288) % 360, saturation, lightness), 25));
 }
 
+// ペンタード配色(トライアド配色+白黒)
+export function calculatePentadColorBkW(colorAmount: ColorAmount[][], baseColor: p5.Color) {
+  let i = colorAmount.length;
+  colorAmount[i] = [];
+  p.colorMode(p.HSL);
+  let hue = p.hue(baseColor);
+  let saturation = p.saturation(baseColor);
+  let lightness = p.lightness(baseColor);
+
+  colorAmount[i].push(new ColorAmount(baseColor, 33));
+  colorAmount[i].push(new ColorAmount(p.color("#FFFFFF"), 33));
+  colorAmount[i].push(new ColorAmount(p.color((hue + 120) % 360, saturation, lightness), 33));
+  colorAmount[i].push(new ColorAmount(p.color("#000000"), 33));
+  colorAmount[i].push(new ColorAmount(p.color((hue + 240) % 360, saturation, lightness), 33));
+}
+
 export function calculateHexadColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
   let i = colorAmount.length;
   colorAmount[i] = [];
