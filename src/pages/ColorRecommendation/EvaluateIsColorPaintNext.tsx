@@ -129,18 +129,17 @@ export function evaluateRecommendColorSchemes(): number {
       }
     }
 
-    console.log("-------------------------------------")
+    console.log("--- (表示(評価)するかどうかを判定する相違度の閾値) = " + simValueThresholdIsDisplay + " -----");
     console.log("次に塗る色を予測できていていた確率((次の色があった数)/(評価した使用配色の数))は" + Math.round(correctCount / evaluateedUsedColorSchemeCount * 100) + "%(" + correctCount + "/" + evaluateedUsedColorSchemeCount + ")です．");
-    let text = ("推薦した配色群の中で次に塗る色を予測できていていた確率: p@" +compareCountSum + " = " + (Math.round((correctCount / compareCountSum )*100))/100 + " (" + correctCount + "/" + compareCountSum + ")です．");
+    let text = ("推薦した配色群の中で次に塗る色を予測できていていた確率: p@" +compareCountSum + " = " + (Math.round((correctCount / compareCountSum )*100))/100 + " (" + correctCount + "/" + compareCountSum + ")です．\n");
     consoleLogColors(text, "#AA0000");
     //console.log("推薦した配色群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / compareCountSum * 100) + "%(" + correctCount + "/" + compareCountSum + ")です．");
-    console.log("(表示(評価)するかどうかを判定する相違度の閾値) = " + simValueThresholdIsDisplay);
-    console.log("(同じ色かどうかを判定する相違度の閾値) = " + SIM_VALUE_SAME_COLOR);
   }
 
-  console.log("-------------------------------------")
+  console.log("-------------------------------------");
   console.log("(‟1色目に対する推薦を除く”生成した推薦する配色の数) = " + sumRecommendColorSchemeExcludeFirstColorReco);
   console.log("(生成した推薦する配色の数) = " + sumRecommendColorScheme + "(※誤差あり)");
+  console.log("(同じ色かどうかを判定する相違度の閾値) = " + SIM_VALUE_SAME_COLOR);
 
   return 0;
 }
