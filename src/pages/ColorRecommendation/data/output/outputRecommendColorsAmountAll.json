@@ -50,6 +50,71 @@
         "similarityValue": 0,
         "colorsAmount": [
           {
+            "color": "#2BD4AA",
+            "amount": 70
+          },
+          {
+            "color": "#D42B80",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#D4802C",
+            "amount": 15
+          },
+          {
+            "color": "#2BAAD4",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#2BD480",
+            "amount": 15
+          },
+          {
+            "color": "#2B80D4",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#2BD480",
+            "amount": 70
+          },
+          {
+            "color": "#D42BD4",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#D4D42C",
+            "amount": 15
+          },
+          {
+            "color": "#2B80D4",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
             "color": "#80D42C",
             "amount": 25
           },
@@ -154,6 +219,52 @@
         ]
       },
       {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#2BD42C",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#2B2BD4",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#80D42C",
+            "amount": 25
+          },
+          {
+            "color": "#2BD4D4",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#802BD4",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 5,
         "colorsAmount": [
           {
@@ -197,6 +308,71 @@
           },
           {
             "color": "#1A667F",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#1A7F66",
+            "amount": 70
+          },
+          {
+            "color": "#7F1A4D",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#7F4D1A",
+            "amount": 15
+          },
+          {
+            "color": "#1A667F",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#1A7F4D",
+            "amount": 15
+          },
+          {
+            "color": "#1A4D7F",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#1A7F4D",
+            "amount": 70
+          },
+          {
+            "color": "#7F1A7F",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#7F7F1A",
+            "amount": 15
+          },
+          {
+            "color": "#1A4D7F",
             "amount": 15
           }
         ]
@@ -309,6 +485,52 @@
         ]
       },
       {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#CCCCCC",
+            "amount": 33
+          },
+          {
+            "color": "#1A7F1A",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#1A1A7F",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#4D7F1A",
+            "amount": 25
+          },
+          {
+            "color": "#1A7F7F",
+            "amount": 25
+          },
+          {
+            "color": "#CCCCCC",
+            "amount": 20
+          },
+          {
+            "color": "#4D1A7F",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 20,
         "colorsAmount": [
           {
@@ -339,6 +561,71 @@
           },
           {
             "color": "#80CCE5",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#80E5CC",
+            "amount": 70
+          },
+          {
+            "color": "#E580B3",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#E5B380",
+            "amount": 15
+          },
+          {
+            "color": "#80CCE5",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#80E5B3",
+            "amount": 15
+          },
+          {
+            "color": "#80B3E5",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#80E5B3",
+            "amount": 70
+          },
+          {
+            "color": "#E580E5",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#E5E580",
+            "amount": 15
+          },
+          {
+            "color": "#80B3E5",
             "amount": 15
           }
         ]
@@ -436,6 +723,52 @@
             "amount": 30
           }
         ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#80E580",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
+          },
+          {
+            "color": "#8080E5",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#B3E580",
+            "amount": 25
+          },
+          {
+            "color": "#80E5E5",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#B380E5",
+            "amount": 25
+          }
+        ]
       }
     ]
   },
@@ -468,8 +801,29 @@
         "similarityValue": 0,
         "colorsAmount": [
           {
-            "color": "#7F1A4D",
-            "amount": 5
+            "color": "#2BD480",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#80D42C",
+            "amount": 25
+          },
+          {
+            "color": "#2BD4D4",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
           }
         ]
       },
@@ -478,6 +832,42 @@
         "colorsAmount": [
           {
             "color": "#2BD4AA",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#2BD4AA",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#2BAAD4",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#2BD480",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#D4D42C",
             "amount": 15
           }
         ]
@@ -555,7 +945,33 @@
         "similarityValue": 13,
         "colorsAmount": [
           {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#2BD42C",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
             "color": "#E580B3",
+            "amount": 5
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#7F1A4D",
             "amount": 5
           }
         ]
@@ -600,15 +1016,65 @@
         ]
       },
       {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#1A7F4D",
+            "amount": 70
+          }
+        ]
+      },
+      {
         "similarityValue": 21,
         "colorsAmount": [
           {
-            "color": "#B3E580",
-            "amount": 25
-          },
+            "color": "#80E5CC",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
           {
-            "color": "#80E5E5",
-            "amount": 25
+            "color": "#E5E580",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#1A7F66",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#1A667F",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#1A7F4D",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#1A4D7F",
+            "amount": 15
           }
         ]
       },
@@ -631,6 +1097,15 @@
           {
             "color": "#1A7F1A",
             "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#E58080",
+            "amount": 70
           }
         ]
       },
@@ -661,11 +1136,61 @@
         ]
       },
       {
-        "similarityValue": 27,
+        "similarityValue": 22,
         "colorsAmount": [
           {
-            "color": "#80E580",
+            "color": "#1A7F1A",
             "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#1A1A7F",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#4D7F1A",
+            "amount": 25
+          },
+          {
+            "color": "#1A7F7F",
+            "amount": 25
+          },
+          {
+            "color": "#4D1A7F",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#B3E580",
+            "amount": 25
+          },
+          {
+            "color": "#80E5E5",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
           }
         ]
       },
@@ -673,8 +1198,48 @@
         "similarityValue": 27,
         "colorsAmount": [
           {
-            "color": "#E58080",
+            "color": "#80CCE5",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 27,
+        "colorsAmount": [
+          {
+            "color": "#80E5B3",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 27,
+        "colorsAmount": [
+          {
+            "color": "#80E5B3",
             "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 27,
+        "colorsAmount": [
+          {
+            "color": "#B3E580",
+            "amount": 25
+          },
+          {
+            "color": "#80E5E5",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 27,
+        "colorsAmount": [
+          {
+            "color": "#80E580",
+            "amount": 33
           }
         ]
       },
@@ -715,6 +1280,23 @@
             "amount": 25
           }
         ]
+      },
+      {
+        "similarityValue": 27,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#80E580",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
+          }
+        ]
       }
     ]
   },
@@ -751,15 +1333,54 @@
         "similarityValue": 7,
         "colorsAmount": [
           {
-            "color": "#1A7F1A",
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#80D42C",
             "amount": 25
           },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#B3E580",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "similarityValue": 9,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
           {
             "color": "#1A7F7F",
-            "amount": 25
-          },
-          {
-            "color": "#1A1A7F",
             "amount": 25
           }
         ]
@@ -768,16 +1389,12 @@
         "similarityValue": 14,
         "colorsAmount": [
           {
-            "color": "#E5E580",
-            "amount": 25
+            "color": "#1A7F1A",
+            "amount": 33
           },
           {
-            "color": "#80E580",
-            "amount": 25
-          },
-          {
-            "color": "#8080E5",
-            "amount": 25
+            "color": "#1A1A7F",
+            "amount": 33
           }
         ]
       },
@@ -785,12 +1402,12 @@
         "similarityValue": 15,
         "colorsAmount": [
           {
-            "color": "#1A7F42",
-            "amount": 25
+            "color": "#FFFFFF",
+            "amount": 33
           },
           {
-            "color": "#1A427F",
-            "amount": 25
+            "color": "#333333",
+            "amount": 33
           }
         ]
       },
@@ -837,7 +1454,11 @@
         "similarityValue": 16,
         "colorsAmount": [
           {
-            "color": "#1A7F7F",
+            "color": "#D1E580",
+            "amount": 25
+          },
+          {
+            "color": "#80A8E5",
             "amount": 25
           }
         ]
@@ -846,11 +1467,62 @@
         "similarityValue": 16,
         "colorsAmount": [
           {
-            "color": "#D1E580",
+            "color": "#1A7F42",
             "amount": 25
           },
           {
-            "color": "#80A8E5",
+            "color": "#1A427F",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 16,
+        "colorsAmount": [
+          {
+            "color": "#E5E580",
+            "amount": 25
+          },
+          {
+            "color": "#80E580",
+            "amount": 25
+          },
+          {
+            "color": "#8080E5",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 16,
+        "colorsAmount": [
+          {
+            "color": "#1A7F1A",
+            "amount": 25
+          },
+          {
+            "color": "#1A7F7F",
+            "amount": 25
+          },
+          {
+            "color": "#1A1A7F",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 16,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#4D7F1A",
+            "amount": 25
+          },
+          {
+            "color": "#4D1A7F",
             "amount": 25
           }
         ]
@@ -908,6 +1580,71 @@
         "similarityValue": 0,
         "colorsAmount": [
           {
+            "color": "#2BD4AA",
+            "amount": 70
+          },
+          {
+            "color": "#D42B80",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#D4802C",
+            "amount": 15
+          },
+          {
+            "color": "#2BAAD4",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#2BD480",
+            "amount": 15
+          },
+          {
+            "color": "#2B80D4",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#2BD480",
+            "amount": 70
+          },
+          {
+            "color": "#D42BD4",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#D4D42C",
+            "amount": 15
+          },
+          {
+            "color": "#2B80D4",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
             "color": "#80D42C",
             "amount": 25
           },
@@ -1012,6 +1749,52 @@
         ]
       },
       {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#2BD42C",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#2B2BD4",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#80D42C",
+            "amount": 25
+          },
+          {
+            "color": "#2BD4D4",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#802BD4",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 5,
         "colorsAmount": [
           {
@@ -1055,6 +1838,71 @@
           },
           {
             "color": "#1A667F",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#1A7F66",
+            "amount": 70
+          },
+          {
+            "color": "#7F1A4D",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#7F4D1A",
+            "amount": 15
+          },
+          {
+            "color": "#1A667F",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#1A7F4D",
+            "amount": 15
+          },
+          {
+            "color": "#1A4D7F",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#1A7F4D",
+            "amount": 70
+          },
+          {
+            "color": "#7F1A7F",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#7F7F1A",
+            "amount": 15
+          },
+          {
+            "color": "#1A4D7F",
             "amount": 15
           }
         ]
@@ -1167,6 +2015,52 @@
         ]
       },
       {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#CCCCCC",
+            "amount": 33
+          },
+          {
+            "color": "#1A7F1A",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#1A1A7F",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#4D7F1A",
+            "amount": 25
+          },
+          {
+            "color": "#1A7F7F",
+            "amount": 25
+          },
+          {
+            "color": "#CCCCCC",
+            "amount": 20
+          },
+          {
+            "color": "#4D1A7F",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 20,
         "colorsAmount": [
           {
@@ -1197,6 +2091,71 @@
           },
           {
             "color": "#80CCE5",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#80E5CC",
+            "amount": 70
+          },
+          {
+            "color": "#E580B3",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#E5B380",
+            "amount": 15
+          },
+          {
+            "color": "#80CCE5",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#80E5B3",
+            "amount": 15
+          },
+          {
+            "color": "#80B3E5",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#80E5B3",
+            "amount": 70
+          },
+          {
+            "color": "#E580E5",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#E5E580",
+            "amount": 15
+          },
+          {
+            "color": "#80B3E5",
             "amount": 15
           }
         ]
@@ -1294,6 +2253,52 @@
             "amount": 30
           }
         ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#80E580",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
+          },
+          {
+            "color": "#8080E5",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#B3E580",
+            "amount": 25
+          },
+          {
+            "color": "#80E5E5",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#B380E5",
+            "amount": 25
+          }
+        ]
       }
     ]
   },
@@ -1373,6 +2378,51 @@
         "similarityValue": 7,
         "colorsAmount": [
           {
+            "color": "#2BD4AA",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#D4802C",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#2BD480",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#2BD480",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#D4D42C",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
             "color": "#80D42C",
             "amount": 25
           },
@@ -1425,6 +2475,44 @@
         "similarityValue": 7,
         "colorsAmount": [
           {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#2BD42C",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#80D42C",
+            "amount": 25
+          },
+          {
+            "color": "#2BD4D4",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
             "color": "#E5B380",
             "amount": 25
           }
@@ -1444,6 +2532,51 @@
         "colorsAmount": [
           {
             "color": "#80E5CC",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#80E5CC",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#E5B380",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#80E5B3",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#80E5B3",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#E5E580",
             "amount": 15
           }
         ]
@@ -1518,10 +2651,93 @@
         ]
       },
       {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#80E580",
+            "amount": 33
+          },
+          {
+            "color": "#8080E5",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#B3E580",
+            "amount": 25
+          },
+          {
+            "color": "#80E5E5",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#B380E5",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 26,
         "colorsAmount": [
           {
             "color": "#1A7F66",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 26,
+        "colorsAmount": [
+          {
+            "color": "#1A7F66",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 26,
+        "colorsAmount": [
+          {
+            "color": "#7F4D1A",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 26,
+        "colorsAmount": [
+          {
+            "color": "#1A7F4D",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 26,
+        "colorsAmount": [
+          {
+            "color": "#1A7F4D",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 26,
+        "colorsAmount": [
+          {
+            "color": "#7F7F1A",
             "amount": 15
           }
         ]
@@ -1573,6 +2789,44 @@
             "amount": 25
           }
         ]
+      },
+      {
+        "similarityValue": 26,
+        "colorsAmount": [
+          {
+            "color": "#CCCCCC",
+            "amount": 33
+          },
+          {
+            "color": "#1A7F1A",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 26,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#4D7F1A",
+            "amount": 25
+          },
+          {
+            "color": "#1A7F7F",
+            "amount": 25
+          },
+          {
+            "color": "#CCCCCC",
+            "amount": 20
+          }
+        ]
       }
     ]
   },
@@ -1600,11 +2854,15 @@
         "similarityValue": 0,
         "colorsAmount": [
           {
-            "color": "#D1E580",
+            "color": "#7F7F1A",
             "amount": 25
           },
           {
-            "color": "#80A8E5",
+            "color": "#1A7F1A",
+            "amount": 25
+          },
+          {
+            "color": "#1A1A7F",
             "amount": 25
           }
         ]
@@ -1652,6 +2910,36 @@
         "similarityValue": 13,
         "colorsAmount": [
           {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#80D42C",
+            "amount": 25
+          },
+          {
+            "color": "#2BD4D4",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
             "color": "#80E5E5",
             "amount": 25
           }
@@ -1662,6 +2950,19 @@
         "colorsAmount": [
           {
             "color": "#1A7F7F",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#D1E580",
+            "amount": 25
+          },
+          {
+            "color": "#80A8E5",
             "amount": 25
           }
         ]
@@ -1700,16 +3001,59 @@
         "similarityValue": 13,
         "colorsAmount": [
           {
-            "color": "#7F7F1A",
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#8080E5",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#CCCCCC",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#B3E580",
             "amount": 25
           },
           {
-            "color": "#1A7F1A",
+            "color": "#80E5E5",
             "amount": 25
           },
           {
-            "color": "#1A1A7F",
+            "color": "#B380E5",
             "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#4D7F1A",
+            "amount": 25
+          },
+          {
+            "color": "#CCCCCC",
+            "amount": 20
           }
         ]
       }
@@ -1758,6 +3102,71 @@
           },
           {
             "color": "#A3D0DF",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#A3DED0",
+            "amount": 70
+          },
+          {
+            "color": "#DEA3C1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#DEC1A3",
+            "amount": 15
+          },
+          {
+            "color": "#A3D0DF",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#A3DEC1",
+            "amount": 15
+          },
+          {
+            "color": "#A3C1DF",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#A3DEC1",
+            "amount": 70
+          },
+          {
+            "color": "#DEA3DF",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#DEDEA3",
+            "amount": 15
+          },
+          {
+            "color": "#A3C1DF",
             "amount": 15
           }
         ]
@@ -1870,6 +3279,52 @@
         ]
       },
       {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#A3DEA3",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#A3A3DF",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#C1DEA3",
+            "amount": 25
+          },
+          {
+            "color": "#A3DEDF",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#C1A3DF",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 10,
         "colorsAmount": [
           {
@@ -1879,6 +3334,52 @@
           {
             "color": "#936C6C",
             "amount": 5
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#C45757",
+            "amount": 33
+          },
+          {
+            "color": "#57C457",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#5757C4",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#C45757",
+            "amount": 25
+          },
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#8EC457",
+            "amount": 25
+          },
+          {
+            "color": "#57C4C4",
+            "amount": 25
+          },
+          {
+            "color": "#8E57C4",
+            "amount": 25
           }
         ]
       },
@@ -1948,6 +3449,136 @@
           },
           {
             "color": "#57A9C4",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#F9EEEE",
+            "amount": 15
+          },
+          {
+            "color": "#EEF9F6",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#57C4A9",
+            "amount": 70
+          },
+          {
+            "color": "#C4578E",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#F9F4EE",
+            "amount": 15
+          },
+          {
+            "color": "#EEF6F9",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#C48E57",
+            "amount": 15
+          },
+          {
+            "color": "#57A9C4",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#EEF9F4",
+            "amount": 15
+          },
+          {
+            "color": "#EEF4F9",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#57C48E",
+            "amount": 15
+          },
+          {
+            "color": "#578EC4",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#EEF9F4",
+            "amount": 70
+          },
+          {
+            "color": "#F9EEF9",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#57C48E",
+            "amount": 70
+          },
+          {
+            "color": "#C457C4",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#F9F9EE",
+            "amount": 15
+          },
+          {
+            "color": "#EEF4F9",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#C4C457",
+            "amount": 15
+          },
+          {
+            "color": "#578EC4",
             "amount": 15
           }
         ]
@@ -2152,6 +3783,52 @@
             "amount": 30
           }
         ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#EEF9EE",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
+          },
+          {
+            "color": "#EEEEF9",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#F4F9EE",
+            "amount": 25
+          },
+          {
+            "color": "#EEF9F9",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#F4EEF9",
+            "amount": 25
+          }
+        ]
       }
     ]
   },
@@ -2171,6 +3848,33 @@
       }
     ],
     "dataRecommendColorsAmount": [
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
+            "color": "#DEA3C1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
+            "color": "#A3DEC1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
+            "color": "#DEA3DF",
+            "amount": 15
+          }
+        ]
+      },
       {
         "similarityValue": 5,
         "colorsAmount": [
@@ -2236,8 +3940,52 @@
         "similarityValue": 8,
         "colorsAmount": [
           {
-            "color": "#F9F4EE",
-            "amount": 25
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#A3DEA3",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 8,
+        "colorsAmount": [
+          {
+            "color": "#C4578E",
+            "amount": 5
+          }
+        ]
+      },
+      {
+        "similarityValue": 8,
+        "colorsAmount": [
+          {
+            "color": "#EEF9F6",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 9,
+        "colorsAmount": [
+          {
+            "color": "#DEC1A3",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#DEDEA3",
+            "amount": 15
           }
         ]
       },
@@ -2254,8 +4002,20 @@
         "similarityValue": 13,
         "colorsAmount": [
           {
-            "color": "#C4578E",
-            "amount": 5
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#C1DEA3",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#C1A3DF",
+            "amount": 25
           }
         ]
       },
@@ -2263,7 +4023,16 @@
         "similarityValue": 14,
         "colorsAmount": [
           {
-            "color": "#EEF9F6",
+            "color": "#F9F4EE",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#EEF9F4",
             "amount": 15
           }
         ]
@@ -2272,8 +4041,8 @@
         "similarityValue": 15,
         "colorsAmount": [
           {
-            "color": "#F9EEEE",
-            "amount": 70
+            "color": "#F9F9EE",
+            "amount": 15
           }
         ]
       },
@@ -2319,8 +4088,30 @@
         "similarityValue": 18,
         "colorsAmount": [
           {
-            "color": "#EEF9EE",
-            "amount": 33
+            "color": "#F9F4EE",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#F4F9EE",
+            "amount": 25
+          },
+          {
+            "color": "#F4EEF9",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#F9EEEE",
+            "amount": 70
           }
         ]
       },
@@ -2342,6 +4133,81 @@
         ]
       },
       {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#F4F9EE",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#F4EEF9",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#C4578E",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#C48E57",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#57C48E",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#F9EEF9",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#57C48E",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#C4C457",
+            "amount": 15
+          }
+        ]
+      },
+      {
         "similarityValue": 21,
         "colorsAmount": [
           {
@@ -2351,6 +4217,15 @@
           {
             "color": "#8E57C4",
             "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#EEF9EE",
+            "amount": 33
           }
         ]
       },
@@ -2390,6 +4265,44 @@
         ]
       },
       {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#C45757",
+            "amount": 33
+          },
+          {
+            "color": "#57C457",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#C45757",
+            "amount": 25
+          },
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#57C4C4",
+            "amount": 25
+          },
+          {
+            "color": "#8E57C4",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 22,
         "colorsAmount": [
           {
@@ -2423,12 +4336,25 @@
         "similarityValue": 26,
         "colorsAmount": [
           {
-            "color": "#F4F9EE",
-            "amount": 25
+            "color": "#EEF9F6",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 30,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
           },
           {
-            "color": "#F4EEF9",
-            "amount": 25
+            "color": "#EEF9EE",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
           }
         ]
       }
@@ -2458,12 +4384,12 @@
         "similarityValue": 12,
         "colorsAmount": [
           {
-            "color": "#AEC457",
-            "amount": 25
+            "color": "#FFFFFF",
+            "amount": 33
           },
           {
-            "color": "#57C483",
-            "amount": 25
+            "color": "#333333",
+            "amount": 33
           }
         ]
       },
@@ -2471,16 +4397,12 @@
         "similarityValue": 12,
         "colorsAmount": [
           {
-            "color": "#F9F9EE",
-            "amount": 25
+            "color": "#C45757",
+            "amount": 33
           },
           {
-            "color": "#EEF9EE",
-            "amount": 25
-          },
-          {
-            "color": "#F9EEF9",
-            "amount": 25
+            "color": "#000000",
+            "amount": 33
           }
         ]
       },
@@ -2488,7 +4410,11 @@
         "similarityValue": 13,
         "colorsAmount": [
           {
-            "color": "#F4F9EE",
+            "color": "#AEC457",
+            "amount": 25
+          },
+          {
+            "color": "#57C483",
             "amount": 25
           }
         ]
@@ -2511,6 +4437,54 @@
         ]
       },
       {
+        "similarityValue": 16,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#C1DEA3",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "similarityValue": 16,
+        "colorsAmount": [
+          {
+            "color": "#F4F9EE",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 16,
+        "colorsAmount": [
+          {
+            "color": "#8EC457",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 16,
+        "colorsAmount": [
+          {
+            "color": "#F7F9EE",
+            "amount": 25
+          },
+          {
+            "color": "#EEF9F2",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 18,
         "colorsAmount": [
           {
@@ -2527,7 +4501,28 @@
         "similarityValue": 18,
         "colorsAmount": [
           {
-            "color": "#8EC457",
+            "color": "#A3DEA3",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#F9F9EE",
+            "amount": 25
+          },
+          {
+            "color": "#EEF9EE",
+            "amount": 25
+          },
+          {
+            "color": "#F9EEF9",
             "amount": 25
           }
         ]
@@ -2545,6 +4540,40 @@
         "similarityValue": 22,
         "colorsAmount": [
           {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#F4F9EE",
+            "amount": 25
+          },
+          {
+            "color": "#F4EEF9",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#C45757",
+            "amount": 25
+          },
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#57C4C4",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 24,
+        "colorsAmount": [
+          {
             "color": "#C4C457",
             "amount": 25
           },
@@ -2554,19 +4583,6 @@
           },
           {
             "color": "#5757C4",
-            "amount": 25
-          }
-        ]
-      },
-      {
-        "similarityValue": 24,
-        "colorsAmount": [
-          {
-            "color": "#F7F9EE",
-            "amount": 25
-          },
-          {
-            "color": "#EEF9F2",
             "amount": 25
           }
         ]
@@ -2616,6 +4632,71 @@
           },
           {
             "color": "#D0B693",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#D09793",
+            "amount": 70
+          },
+          {
+            "color": "#93D0C5",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#939DD0",
+            "amount": 15
+          },
+          {
+            "color": "#D0B693",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#D0939D",
+            "amount": 15
+          },
+          {
+            "color": "#D0C593",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#D0939D",
+            "amount": 70
+          },
+          {
+            "color": "#93D0A7",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#A793D0",
+            "amount": 15
+          },
+          {
+            "color": "#D0C593",
             "amount": 15
           }
         ]
@@ -2728,6 +4809,52 @@
         ]
       },
       {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#D093BC",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#BBD093",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#C593D0",
+            "amount": 25
+          },
+          {
+            "color": "#D0A793",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#9DD093",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 6,
         "colorsAmount": [
           {
@@ -2771,6 +4898,71 @@
           },
           {
             "color": "#EEE6DA",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#EEDBDA",
+            "amount": 70
+          },
+          {
+            "color": "#DAEEEB",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#DADDEE",
+            "amount": 15
+          },
+          {
+            "color": "#EEE6DA",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#EEDADD",
+            "amount": 15
+          },
+          {
+            "color": "#EEEBDA",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#EEDADD",
+            "amount": 70
+          },
+          {
+            "color": "#DAEEE0",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#E0DAEE",
+            "amount": 15
+          },
+          {
+            "color": "#EEEBDA",
             "amount": 15
           }
         ]
@@ -2870,6 +5062,52 @@
         ]
       },
       {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#EEDAE8",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
+          },
+          {
+            "color": "#E8EEDA",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#EBDAEE",
+            "amount": 25
+          },
+          {
+            "color": "#EEE0DA",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#DDEEDA",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 15,
         "colorsAmount": [
           {
@@ -2900,6 +5138,71 @@
           },
           {
             "color": "#B0864C",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#B0544C",
+            "amount": 70
+          },
+          {
+            "color": "#4CB09F",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#4C5DB0",
+            "amount": 15
+          },
+          {
+            "color": "#B0864C",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#B04C5D",
+            "amount": 15
+          },
+          {
+            "color": "#B09F4C",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#B04C5D",
+            "amount": 70
+          },
+          {
+            "color": "#4CB06D",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#6D4CB0",
+            "amount": 15
+          },
+          {
+            "color": "#B09F4C",
             "amount": 15
           }
         ]
@@ -3010,6 +5313,52 @@
             "amount": 30
           }
         ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#4C8FB0",
+            "amount": 33
+          },
+          {
+            "color": "#B04C8F",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#8FB04C",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#4C8FB0",
+            "amount": 25
+          },
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#9F4CB0",
+            "amount": 25
+          },
+          {
+            "color": "#B06D4C",
+            "amount": 25
+          },
+          {
+            "color": "#5DB04C",
+            "amount": 25
+          }
+        ]
       }
     ]
   },
@@ -3060,6 +5409,51 @@
         "colorsAmount": [
           {
             "color": "#D09793",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
+            "color": "#D09793",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
+            "color": "#939DD0",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
+            "color": "#D0939D",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
+            "color": "#D0939D",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
+            "color": "#A793D0",
             "amount": 15
           }
         ]
@@ -3120,6 +5514,44 @@
         "similarityValue": 5,
         "colorsAmount": [
           {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#D093BC",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#C593D0",
+            "amount": 25
+          },
+          {
+            "color": "#D0A793",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
             "color": "#DADDEE",
             "amount": 25
           }
@@ -3161,6 +5593,51 @@
           {
             "color": "#8FB04C",
             "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#EEDBDA",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#DADDEE",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#EEDADD",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#EEDADD",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#E0DAEE",
+            "amount": 15
           }
         ]
       },
@@ -3234,10 +5711,93 @@
         ]
       },
       {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#EEDAE8",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#EBDAEE",
+            "amount": 25
+          },
+          {
+            "color": "#EEE0DA",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
+      },
+      {
         "similarityValue": 18,
         "colorsAmount": [
           {
             "color": "#B0544C",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#B0544C",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#4C5DB0",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#B04C5D",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#B04C5D",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#6D4CB0",
             "amount": 15
           }
         ]
@@ -3289,6 +5849,44 @@
             "amount": 25
           }
         ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#4C8FB0",
+            "amount": 33
+          },
+          {
+            "color": "#B04C8F",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 18,
+        "colorsAmount": [
+          {
+            "color": "#4C8FB0",
+            "amount": 25
+          },
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#9F4CB0",
+            "amount": 25
+          },
+          {
+            "color": "#B06D4C",
+            "amount": 25
+          }
+        ]
       }
     ]
   },
@@ -3333,12 +5931,51 @@
         "similarityValue": 9,
         "colorsAmount": [
           {
-            "color": "#814CB0",
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#C593D0",
             "amount": 25
           },
           {
-            "color": "#B0A94C",
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "similarityValue": 9,
+        "colorsAmount": [
+          {
+            "color": "#EEE0DA",
             "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 9,
+        "colorsAmount": [
+          {
+            "color": "#E5DAEE",
+            "amount": 25
+          },
+          {
+            "color": "#EEEDDA",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 9,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#EEDAE8",
+            "amount": 33
           }
         ]
       },
@@ -3359,29 +5996,11 @@
         "similarityValue": 10,
         "colorsAmount": [
           {
-            "color": "#EEE0DA",
-            "amount": 25
-          }
-        ]
-      },
-      {
-        "similarityValue": 10,
-        "colorsAmount": [
-          {
-            "color": "#9F4CB0",
-            "amount": 25
-          }
-        ]
-      },
-      {
-        "similarityValue": 10,
-        "colorsAmount": [
-          {
-            "color": "#E5DAEE",
+            "color": "#814CB0",
             "amount": 25
           },
           {
-            "color": "#EEEDDA",
+            "color": "#B0A94C",
             "amount": 25
           }
         ]
@@ -3404,6 +6023,36 @@
         ]
       },
       {
+        "similarityValue": 10,
+        "colorsAmount": [
+          {
+            "color": "#6D4CB0",
+            "amount": 25
+          },
+          {
+            "color": "#B04C8F",
+            "amount": 25
+          },
+          {
+            "color": "#8FB04C",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 10,
+        "colorsAmount": [
+          {
+            "color": "#4C8FB0",
+            "amount": 33
+          },
+          {
+            "color": "#B04C8F",
+            "amount": 33
+          }
+        ]
+      },
+      {
         "similarityValue": 11,
         "colorsAmount": [
           {
@@ -3416,15 +6065,54 @@
         "similarityValue": 11,
         "colorsAmount": [
           {
-            "color": "#6D4CB0",
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#D093BC",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#9F4CB0",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#EEE0DA",
             "amount": 25
           },
           {
-            "color": "#B04C8F",
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#4C8FB0",
             "amount": 25
           },
           {
-            "color": "#8FB04C",
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#9F4CB0",
             "amount": 25
           }
         ]
@@ -3474,6 +6162,71 @@
           },
           {
             "color": "#9FC3CF",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#9FCEC3",
+            "amount": 70
+          },
+          {
+            "color": "#CE9FB7",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#CEB79F",
+            "amount": 15
+          },
+          {
+            "color": "#9FC3CF",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#9FCEB7",
+            "amount": 15
+          },
+          {
+            "color": "#9FB7CF",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#9FCEB7",
+            "amount": 70
+          },
+          {
+            "color": "#CE9FCF",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#CECE9F",
+            "amount": 15
+          },
+          {
+            "color": "#9FB7CF",
             "amount": 15
           }
         ]
@@ -3586,6 +6339,52 @@
         ]
       },
       {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#9FCE9F",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#9F9FCF",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#B7CE9F",
+            "amount": 25
+          },
+          {
+            "color": "#9FCECF",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#B79FCF",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 9,
         "colorsAmount": [
           {
@@ -3629,6 +6428,71 @@
           },
           {
             "color": "#E3EDF1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#E3F1ED",
+            "amount": 70
+          },
+          {
+            "color": "#F1E3EA",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#F1EAE3",
+            "amount": 15
+          },
+          {
+            "color": "#E3EDF1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#E3F1EA",
+            "amount": 15
+          },
+          {
+            "color": "#E3EAF1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#E3F1EA",
+            "amount": 70
+          },
+          {
+            "color": "#F1E3F1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#F1F1E3",
+            "amount": 15
+          },
+          {
+            "color": "#E3EAF1",
             "amount": 15
           }
         ]
@@ -3728,6 +6592,98 @@
         ]
       },
       {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#E3F1E3",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
+          },
+          {
+            "color": "#E3E3F1",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 33
+          },
+          {
+            "color": "#5BAC5B",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#5B5BAD",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#EAF1E3",
+            "amount": 25
+          },
+          {
+            "color": "#E3F1F1",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#EAE3F1",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 25
+          },
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#84AC5B",
+            "amount": 25
+          },
+          {
+            "color": "#5BACAD",
+            "amount": 25
+          },
+          {
+            "color": "#845BAD",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 20,
         "colorsAmount": [
           {
@@ -3737,6 +6693,19 @@
           {
             "color": "#AC5B84",
             "amount": 5
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 15
+          },
+          {
+            "color": "#5B98AD",
+            "amount": 15
           }
         ]
       },
@@ -3767,6 +6736,58 @@
           },
           {
             "color": "#5B98AD",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#5BAC98",
+            "amount": 70
+          },
+          {
+            "color": "#AC5B84",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#5BAC84",
+            "amount": 15
+          },
+          {
+            "color": "#5B84AD",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#5BAC84",
+            "amount": 70
+          },
+          {
+            "color": "#AC5BAD",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#ACAC5B",
+            "amount": 15
+          },
+          {
+            "color": "#5B84AD",
             "amount": 15
           }
         ]
@@ -3891,12 +6912,17 @@
         "similarityValue": 1,
         "colorsAmount": [
           {
-            "color": "#B7CE9F",
-            "amount": 25
-          },
+            "color": "#CE9FB7",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 1,
+        "colorsAmount": [
           {
-            "color": "#B79FCF",
-            "amount": 25
+            "color": "#9FCEB7",
+            "amount": 15
           }
         ]
       },
@@ -3913,6 +6939,28 @@
         "similarityValue": 4,
         "colorsAmount": [
           {
+            "color": "#CE9FCF",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 4,
+        "colorsAmount": [
+          {
+            "color": "#B7CE9F",
+            "amount": 25
+          },
+          {
+            "color": "#B79FCF",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 4,
+        "colorsAmount": [
+          {
             "color": "#9FCE9F",
             "amount": 33
           }
@@ -3922,8 +6970,34 @@
         "similarityValue": 4,
         "colorsAmount": [
           {
-            "color": "#F1E3EA",
-            "amount": 5
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#9FCE9F",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 4,
+        "colorsAmount": [
+          {
+            "color": "#E3F1ED",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 6,
+        "colorsAmount": [
+          {
+            "color": "#CEB79F",
+            "amount": 15
           }
         ]
       },
@@ -3949,6 +7023,15 @@
         ]
       },
       {
+        "similarityValue": 8,
+        "colorsAmount": [
+          {
+            "color": "#CECE9F",
+            "amount": 15
+          }
+        ]
+      },
+      {
         "similarityValue": 10,
         "colorsAmount": [
           {
@@ -3958,11 +7041,20 @@
         ]
       },
       {
+        "similarityValue": 10,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 70
+          }
+        ]
+      },
+      {
         "similarityValue": 11,
         "colorsAmount": [
           {
-            "color": "#E3F1ED",
-            "amount": 15
+            "color": "#F1E3EA",
+            "amount": 5
           }
         ]
       },
@@ -3979,8 +7071,29 @@
         "similarityValue": 12,
         "colorsAmount": [
           {
-            "color": "#AD5B5B",
-            "amount": 70
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#B7CE9F",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#B79FCF",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 16,
+        "colorsAmount": [
+          {
+            "color": "#F1F1E3",
+            "amount": 15
           }
         ]
       },
@@ -4026,6 +7139,69 @@
         "similarityValue": 17,
         "colorsAmount": [
           {
+            "color": "#AC5B84",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#F1EAE3",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#E3F1EA",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#5BAC84",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#AC5BAD",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#ACAC5B",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
             "color": "#84AC5B",
             "amount": 25
           },
@@ -4039,26 +7215,8 @@
         "similarityValue": 17,
         "colorsAmount": [
           {
-            "color": "#E3E3F1",
-            "amount": 33
-          }
-        ]
-      },
-      {
-        "similarityValue": 17,
-        "colorsAmount": [
-          {
             "color": "#5B5BAD",
             "amount": 33
-          }
-        ]
-      },
-      {
-        "similarityValue": 17,
-        "colorsAmount": [
-          {
-            "color": "#F1E2E3",
-            "amount": 70
           }
         ]
       },
@@ -4084,6 +7242,44 @@
           },
           {
             "color": "#EEE3F1",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#5B5BAD",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 25
+          },
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#5BACAD",
+            "amount": 25
+          },
+          {
+            "color": "#845BAD",
             "amount": 25
           }
         ]
@@ -4115,6 +7311,67 @@
         ]
       },
       {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#F1E3F1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#EAF1E3",
+            "amount": 25
+          },
+          {
+            "color": "#EAE3F1",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#E3E3F1",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#F1E2E3",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#EAF1E3",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#EAE3F1",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 25,
         "colorsAmount": [
           {
@@ -4139,12 +7396,25 @@
         "similarityValue": 28,
         "colorsAmount": [
           {
-            "color": "#EAF1E3",
-            "amount": 25
+            "color": "#F1E3EA",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 32,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
           },
           {
-            "color": "#EAE3F1",
-            "amount": 25
+            "color": "#333333",
+            "amount": 33
+          },
+          {
+            "color": "#E3E3F1",
+            "amount": 33
           }
         ]
       }
@@ -4188,6 +7458,23 @@
         ]
       },
       {
+        "similarityValue": 4,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#B7CE9F",
+            "amount": 25
+          },
+          {
+            "color": "#B79FCF",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 6,
         "colorsAmount": [
           {
@@ -4213,21 +7500,17 @@
         "similarityValue": 6,
         "colorsAmount": [
           {
-            "color": "#F1F1E3",
+            "color": "#EEF1E3",
             "amount": 25
           },
           {
-            "color": "#E3F1E3",
-            "amount": 25
-          },
-          {
-            "color": "#E3E3F1",
+            "color": "#EEE3F1",
             "amount": 25
           }
         ]
       },
       {
-        "similarityValue": 7,
+        "similarityValue": 6,
         "colorsAmount": [
           {
             "color": "#9CAC5B",
@@ -4240,10 +7523,66 @@
         ]
       },
       {
-        "similarityValue": 10,
+        "similarityValue": 6,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 33
+          },
+          {
+            "color": "#5B5BAD",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#E3E3F1",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 8,
         "colorsAmount": [
           {
             "color": "#845BAD",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 10,
+        "colorsAmount": [
+          {
+            "color": "#F1F1E3",
+            "amount": 25
+          },
+          {
+            "color": "#E3F1E3",
+            "amount": 25
+          },
+          {
+            "color": "#E3E3F1",
             "amount": 25
           }
         ]
@@ -4261,6 +7600,40 @@
         "similarityValue": 11,
         "colorsAmount": [
           {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#EAF1E3",
+            "amount": 25
+          },
+          {
+            "color": "#EAE3F1",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 25
+          },
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#845BAD",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
             "color": "#ACAC5B",
             "amount": 25
           },
@@ -4270,19 +7643,6 @@
           },
           {
             "color": "#AC5BAD",
-            "amount": 25
-          }
-        ]
-      },
-      {
-        "similarityValue": 15,
-        "colorsAmount": [
-          {
-            "color": "#EEF1E3",
-            "amount": 25
-          },
-          {
-            "color": "#EEE3F1",
             "amount": 25
           }
         ]
@@ -4332,6 +7692,71 @@
           },
           {
             "color": "#9FC3CF",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#9FCEC3",
+            "amount": 70
+          },
+          {
+            "color": "#CE9FB7",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#CEB79F",
+            "amount": 15
+          },
+          {
+            "color": "#9FC3CF",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#9FCEB7",
+            "amount": 15
+          },
+          {
+            "color": "#9FB7CF",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#9FCEB7",
+            "amount": 70
+          },
+          {
+            "color": "#CE9FCF",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#CECE9F",
+            "amount": 15
+          },
+          {
+            "color": "#9FB7CF",
             "amount": 15
           }
         ]
@@ -4444,6 +7869,52 @@
         ]
       },
       {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#9FCE9F",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#9F9FCF",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#B7CE9F",
+            "amount": 25
+          },
+          {
+            "color": "#9FCECF",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#B79FCF",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 9,
         "colorsAmount": [
           {
@@ -4487,6 +7958,71 @@
           },
           {
             "color": "#E3EDF1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#E3F1ED",
+            "amount": 70
+          },
+          {
+            "color": "#F1E3EA",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#F1EAE3",
+            "amount": 15
+          },
+          {
+            "color": "#E3EDF1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#E3F1EA",
+            "amount": 15
+          },
+          {
+            "color": "#E3EAF1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#E3F1EA",
+            "amount": 70
+          },
+          {
+            "color": "#F1E3F1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#F1F1E3",
+            "amount": 15
+          },
+          {
+            "color": "#E3EAF1",
             "amount": 15
           }
         ]
@@ -4586,6 +8122,98 @@
         ]
       },
       {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#E3F1E3",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
+          },
+          {
+            "color": "#E3E3F1",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 33
+          },
+          {
+            "color": "#5BAC5B",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#5B5BAD",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#EAF1E3",
+            "amount": 25
+          },
+          {
+            "color": "#E3F1F1",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#EAE3F1",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 25
+          },
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#84AC5B",
+            "amount": 25
+          },
+          {
+            "color": "#5BACAD",
+            "amount": 25
+          },
+          {
+            "color": "#845BAD",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 20,
         "colorsAmount": [
           {
@@ -4595,6 +8223,19 @@
           {
             "color": "#AC5B84",
             "amount": 5
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 15
+          },
+          {
+            "color": "#5B98AD",
+            "amount": 15
           }
         ]
       },
@@ -4625,6 +8266,58 @@
           },
           {
             "color": "#5B98AD",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#5BAC98",
+            "amount": 70
+          },
+          {
+            "color": "#AC5B84",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#5BAC84",
+            "amount": 15
+          },
+          {
+            "color": "#5B84AD",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#5BAC84",
+            "amount": 70
+          },
+          {
+            "color": "#AC5BAD",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#ACAC5B",
+            "amount": 15
+          },
+          {
+            "color": "#5B84AD",
             "amount": 15
           }
         ]
@@ -4767,6 +8460,51 @@
         "similarityValue": 5,
         "colorsAmount": [
           {
+            "color": "#9FCEC3",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
+            "color": "#CEB79F",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
+            "color": "#9FCEB7",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
+            "color": "#9FCEB7",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
+            "color": "#CECE9F",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
             "color": "#B7CE9F",
             "amount": 25
           },
@@ -4836,6 +8574,44 @@
         "similarityValue": 5,
         "colorsAmount": [
           {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#9FCE9F",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#B7CE9F",
+            "amount": 25
+          },
+          {
+            "color": "#9FCECF",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "similarityValue": 5,
+        "colorsAmount": [
+          {
             "color": "#F1EAE3",
             "amount": 25
           }
@@ -4893,6 +8669,51 @@
         "similarityValue": 14,
         "colorsAmount": [
           {
+            "color": "#5BAC98",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#5BAC84",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#5BAC84",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#ACAC5B",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
             "color": "#84AC5B",
             "amount": 25
           },
@@ -4934,6 +8755,89 @@
           {
             "color": "#5B7BAD",
             "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 33
+          },
+          {
+            "color": "#5BAC5B",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 25
+          },
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#84AC5B",
+            "amount": 25
+          },
+          {
+            "color": "#5BACAD",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#E3F1ED",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#F1EAE3",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#E3F1EA",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#E3F1EA",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#F1F1E3",
+            "amount": 15
           }
         ]
       },
@@ -5005,6 +8909,44 @@
             "amount": 25
           }
         ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#E3F1E3",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#EAF1E3",
+            "amount": 25
+          },
+          {
+            "color": "#E3F1F1",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
       }
     ]
   },
@@ -5046,6 +8988,23 @@
         ]
       },
       {
+        "similarityValue": 4,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#9FCECF",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
+      },
+      {
         "similarityValue": 6,
         "colorsAmount": [
           {
@@ -5071,21 +9030,17 @@
         "similarityValue": 6,
         "colorsAmount": [
           {
-            "color": "#F1F1E3",
+            "color": "#EEF1E3",
             "amount": 25
           },
           {
-            "color": "#E3F1F1",
-            "amount": 25
-          },
-          {
-            "color": "#E3E3F1",
+            "color": "#E3E8F1",
             "amount": 25
           }
         ]
       },
       {
-        "similarityValue": 7,
+        "similarityValue": 6,
         "colorsAmount": [
           {
             "color": "#5BAC7B",
@@ -5098,10 +9053,66 @@
         ]
       },
       {
-        "similarityValue": 10,
+        "similarityValue": 6,
+        "colorsAmount": [
+          {
+            "color": "#5BAC5B",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#9FCE9F",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#E3F1E3",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 8,
         "colorsAmount": [
           {
             "color": "#5BACAD",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 10,
+        "colorsAmount": [
+          {
+            "color": "#F1F1E3",
+            "amount": 25
+          },
+          {
+            "color": "#E3F1F1",
+            "amount": 25
+          },
+          {
+            "color": "#E3E3F1",
             "amount": 25
           }
         ]
@@ -5119,6 +9130,40 @@
         "similarityValue": 11,
         "colorsAmount": [
           {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#E3F1F1",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#AD5B5B",
+            "amount": 25
+          },
+          {
+            "color": "#84AC5B",
+            "amount": 25
+          },
+          {
+            "color": "#5BACAD",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
             "color": "#ACAC5B",
             "amount": 25
           },
@@ -5128,19 +9173,6 @@
           },
           {
             "color": "#5B5BAD",
-            "amount": 25
-          }
-        ]
-      },
-      {
-        "similarityValue": 15,
-        "colorsAmount": [
-          {
-            "color": "#EEF1E3",
-            "amount": 25
-          },
-          {
-            "color": "#E3E8F1",
             "amount": 25
           }
         ]
@@ -5190,6 +9222,71 @@
           },
           {
             "color": "#B48545",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#B44E45",
+            "amount": 70
+          },
+          {
+            "color": "#45B4A1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#4557B4",
+            "amount": 15
+          },
+          {
+            "color": "#B48545",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#B44557",
+            "amount": 15
+          },
+          {
+            "color": "#B4A145",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#B44557",
+            "amount": 70
+          },
+          {
+            "color": "#45B46A",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#6945B4",
+            "amount": 15
+          },
+          {
+            "color": "#B4A145",
             "amount": 15
           }
         ]
@@ -5302,6 +9399,52 @@
         ]
       },
       {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#B4458F",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#8FB445",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#A145B4",
+            "amount": 25
+          },
+          {
+            "color": "#B46A45",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#57B445",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 4,
         "colorsAmount": [
           {
@@ -5345,6 +9488,71 @@
           },
           {
             "color": "#D2B58C",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#D2918C",
+            "amount": 70
+          },
+          {
+            "color": "#8CD2C7",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#8C97D2",
+            "amount": 15
+          },
+          {
+            "color": "#D2B58C",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#D28C97",
+            "amount": 15
+          },
+          {
+            "color": "#D2C78C",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#D28C97",
+            "amount": 70
+          },
+          {
+            "color": "#8CD2A3",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#A38CD2",
+            "amount": 15
+          },
+          {
+            "color": "#D2C78C",
             "amount": 15
           }
         ]
@@ -5444,6 +9652,52 @@
         ]
       },
       {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#D28CBB",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
+          },
+          {
+            "color": "#BBD28C",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#C78CD2",
+            "amount": 25
+          },
+          {
+            "color": "#D2A38C",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#97D28C",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 22,
         "colorsAmount": [
           {
@@ -5474,6 +9728,71 @@
           },
           {
             "color": "#6A4E28",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#6A2E28",
+            "amount": 70
+          },
+          {
+            "color": "#286A5F",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#28336A",
+            "amount": 15
+          },
+          {
+            "color": "#6A4E28",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#6A2833",
+            "amount": 15
+          },
+          {
+            "color": "#6A5F28",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#6A2833",
+            "amount": 70
+          },
+          {
+            "color": "#286A3E",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#3E286A",
+            "amount": 15
+          },
+          {
+            "color": "#6A5F28",
             "amount": 15
           }
         ]
@@ -5584,6 +9903,52 @@
             "amount": 30
           }
         ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#CCCCCC",
+            "amount": 33
+          },
+          {
+            "color": "#6A2854",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#546A28",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#5F286A",
+            "amount": 25
+          },
+          {
+            "color": "#6A3E28",
+            "amount": 25
+          },
+          {
+            "color": "#CCCCCC",
+            "amount": 20
+          },
+          {
+            "color": "#336A28",
+            "amount": 25
+          }
+        ]
       }
     ]
   },
@@ -5604,8 +9969,74 @@
     ],
     "dataRecommendColorsAmount": [
       {
+        "similarityValue": 12,
+        "colorsAmount": [
+          {
+            "color": "#3E286A",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 12,
+        "colorsAmount": [
+          {
+            "color": "#5F286A",
+            "amount": 25
+          },
+          {
+            "color": "#336A28",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 13,
         "colorsAmount": [
+          {
+            "color": "#28336A",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#D2B58C",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#28336A",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#6A2833",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 13,
+        "colorsAmount": [
+          {
+            "color": "#6A2854",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
           {
             "color": "#546A28",
             "amount": 33
@@ -5634,8 +10065,16 @@
         "similarityValue": 14,
         "colorsAmount": [
           {
-            "color": "#8CD2C7",
-            "amount": 5
+            "color": "#B4458F",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#8FB445",
+            "amount": 33
           }
         ]
       },
@@ -5643,12 +10082,44 @@
         "similarityValue": 15,
         "colorsAmount": [
           {
-            "color": "#A145B4",
-            "amount": 25
-          },
+            "color": "#45B4A1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
           {
-            "color": "#57B445",
-            "amount": 25
+            "color": "#4557B4",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#B4A145",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#45B46A",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#6945B4",
+            "amount": 15
           }
         ]
       },
@@ -5677,12 +10148,8 @@
         "similarityValue": 15,
         "colorsAmount": [
           {
-            "color": "#5F286A",
-            "amount": 25
-          },
-          {
-            "color": "#336A28",
-            "amount": 25
+            "color": "#286A5F",
+            "amount": 15
           }
         ]
       },
@@ -5713,6 +10180,27 @@
         ]
       },
       {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#5F286A",
+            "amount": 25
+          },
+          {
+            "color": "#6A3E28",
+            "amount": 25
+          },
+          {
+            "color": "#336A28",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 16,
         "colorsAmount": [
           {
@@ -5725,8 +10213,39 @@
         "similarityValue": 18,
         "colorsAmount": [
           {
-            "color": "#D2B58C",
+            "color": "#8CD2C7",
+            "amount": 5
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#A145B4",
+            "amount": 25
+          },
+          {
+            "color": "#57B445",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#286A3E",
             "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#546A28",
+            "amount": 33
           }
         ]
       },
@@ -5790,7 +10309,19 @@
         "similarityValue": 23,
         "colorsAmount": [
           {
-            "color": "#28336A",
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#A145B4",
+            "amount": 25
+          },
+          {
+            "color": "#B46A45",
+            "amount": 25
+          },
+          {
+            "color": "#57B445",
             "amount": 25
           }
         ]
@@ -5799,8 +10330,39 @@
         "similarityValue": 34,
         "colorsAmount": [
           {
-            "color": "#BBD28C",
-            "amount": 33
+            "color": "#8C97D2",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 34,
+        "colorsAmount": [
+          {
+            "color": "#D2C78C",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 34,
+        "colorsAmount": [
+          {
+            "color": "#D2C78C",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 34,
+        "colorsAmount": [
+          {
+            "color": "#C78CD2",
+            "amount": 25
+          },
+          {
+            "color": "#97D28C",
+            "amount": 25
           }
         ]
       },
@@ -5827,6 +10389,36 @@
           {
             "color": "#8CD295",
             "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 34,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#C78CD2",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#97D28C",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 36,
+        "colorsAmount": [
+          {
+            "color": "#8CD2A3",
+            "amount": 15
           }
         ]
       },
@@ -5852,15 +10444,37 @@
         ]
       },
       {
+        "similarityValue": 37,
+        "colorsAmount": [
+          {
+            "color": "#BBD28C",
+            "amount": 33
+          }
+        ]
+      },
+      {
         "similarityValue": 39,
         "colorsAmount": [
           {
-            "color": "#C78CD2",
-            "amount": 25
+            "color": "#8CD2C7",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 39,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
           },
           {
-            "color": "#97D28C",
-            "amount": 25
+            "color": "#333333",
+            "amount": 33
+          },
+          {
+            "color": "#BBD28C",
+            "amount": 33
           }
         ]
       }
@@ -5920,7 +10534,29 @@
         "similarityValue": 14,
         "colorsAmount": [
           {
+            "color": "#B4458F",
+            "amount": 33
+          },
+          {
+            "color": "#8FB445",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
             "color": "#97D28C",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#336A28",
             "amount": 25
           }
         ]
@@ -5942,6 +10578,49 @@
         "similarityValue": 14,
         "colorsAmount": [
           {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#BBD28C",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#6A2854",
+            "amount": 33
+          },
+          {
+            "color": "#546A28",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#A145B4",
+            "amount": 25
+          },
+          {
+            "color": "#57B445",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
             "color": "#A38CD2",
             "amount": 25
           },
@@ -5956,8 +10635,29 @@
         ]
       },
       {
-        "similarityValue": 15,
+        "similarityValue": 17,
         "colorsAmount": [
+          {
+            "color": "#B18CD2",
+            "amount": 25
+          },
+          {
+            "color": "#8CD295",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#5F286A",
+            "amount": 25
+          },
           {
             "color": "#336A28",
             "amount": 25
@@ -5977,19 +10677,6 @@
         "similarityValue": 20,
         "colorsAmount": [
           {
-            "color": "#B18CD2",
-            "amount": 25
-          },
-          {
-            "color": "#8CD295",
-            "amount": 25
-          }
-        ]
-      },
-      {
-        "similarityValue": 20,
-        "colorsAmount": [
-          {
             "color": "#3E286A",
             "amount": 25
           },
@@ -5999,6 +10686,23 @@
           },
           {
             "color": "#286A3E",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#C78CD2",
+            "amount": 25
+          },
+          {
+            "color": "#97D28C",
             "amount": 25
           }
         ]
@@ -6048,6 +10752,71 @@
           },
           {
             "color": "#B48545",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#B44E45",
+            "amount": 70
+          },
+          {
+            "color": "#45B4A1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#4557B4",
+            "amount": 15
+          },
+          {
+            "color": "#B48545",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#B44557",
+            "amount": 15
+          },
+          {
+            "color": "#B4A145",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#B44557",
+            "amount": 70
+          },
+          {
+            "color": "#45B46A",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#6945B4",
+            "amount": 15
+          },
+          {
+            "color": "#B4A145",
             "amount": 15
           }
         ]
@@ -6160,6 +10929,52 @@
         ]
       },
       {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#B4458F",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#8FB445",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#A145B4",
+            "amount": 25
+          },
+          {
+            "color": "#B46A45",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#57B445",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 4,
         "colorsAmount": [
           {
@@ -6203,6 +11018,71 @@
           },
           {
             "color": "#D2B58C",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#D2918C",
+            "amount": 70
+          },
+          {
+            "color": "#8CD2C7",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#8C97D2",
+            "amount": 15
+          },
+          {
+            "color": "#D2B58C",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#D28C97",
+            "amount": 15
+          },
+          {
+            "color": "#D2C78C",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#D28C97",
+            "amount": 70
+          },
+          {
+            "color": "#8CD2A3",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#A38CD2",
+            "amount": 15
+          },
+          {
+            "color": "#D2C78C",
             "amount": 15
           }
         ]
@@ -6302,6 +11182,52 @@
         ]
       },
       {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#D28CBB",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
+          },
+          {
+            "color": "#BBD28C",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#C78CD2",
+            "amount": 25
+          },
+          {
+            "color": "#D2A38C",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#97D28C",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 22,
         "colorsAmount": [
           {
@@ -6332,6 +11258,71 @@
           },
           {
             "color": "#6A4E28",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#6A2E28",
+            "amount": 70
+          },
+          {
+            "color": "#286A5F",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#28336A",
+            "amount": 15
+          },
+          {
+            "color": "#6A4E28",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#6A2833",
+            "amount": 15
+          },
+          {
+            "color": "#6A5F28",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#6A2833",
+            "amount": 70
+          },
+          {
+            "color": "#286A3E",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#3E286A",
+            "amount": 15
+          },
+          {
+            "color": "#6A5F28",
             "amount": 15
           }
         ]
@@ -6442,6 +11433,52 @@
             "amount": 30
           }
         ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#CCCCCC",
+            "amount": 33
+          },
+          {
+            "color": "#6A2854",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#546A28",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#5F286A",
+            "amount": 25
+          },
+          {
+            "color": "#6A3E28",
+            "amount": 25
+          },
+          {
+            "color": "#CCCCCC",
+            "amount": 20
+          },
+          {
+            "color": "#336A28",
+            "amount": 25
+          }
+        ]
       }
     ]
   },
@@ -6475,6 +11512,51 @@
         "colorsAmount": [
           {
             "color": "#B44E45",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#B44E45",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#4557B4",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#B44557",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#B44557",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#6945B4",
             "amount": 15
           }
         ]
@@ -6552,6 +11634,44 @@
         "similarityValue": 7,
         "colorsAmount": [
           {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#B4458F",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#A145B4",
+            "amount": 25
+          },
+          {
+            "color": "#B46A45",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "similarityValue": 7,
+        "colorsAmount": [
+          {
             "color": "#8C97D2",
             "amount": 25
           }
@@ -6609,6 +11729,51 @@
         "similarityValue": 12,
         "colorsAmount": [
           {
+            "color": "#6A2E28",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 12,
+        "colorsAmount": [
+          {
+            "color": "#28336A",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 12,
+        "colorsAmount": [
+          {
+            "color": "#6A2833",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 12,
+        "colorsAmount": [
+          {
+            "color": "#6A2833",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 12,
+        "colorsAmount": [
+          {
+            "color": "#3E286A",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 12,
+        "colorsAmount": [
+          {
             "color": "#5F286A",
             "amount": 25
           },
@@ -6654,7 +11819,90 @@
         ]
       },
       {
+        "similarityValue": 12,
+        "colorsAmount": [
+          {
+            "color": "#6A2854",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#546A28",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 12,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#5F286A",
+            "amount": 25
+          },
+          {
+            "color": "#6A3E28",
+            "amount": 25
+          },
+          {
+            "color": "#336A28",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 27,
+        "colorsAmount": [
+          {
+            "color": "#D2918C",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 27,
+        "colorsAmount": [
+          {
+            "color": "#D28C97",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 30,
+        "colorsAmount": [
+          {
+            "color": "#8C97D2",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 30,
+        "colorsAmount": [
+          {
+            "color": "#D28C97",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 30,
+        "colorsAmount": [
+          {
+            "color": "#A38CD2",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 30,
         "colorsAmount": [
           {
             "color": "#C78CD2",
@@ -6721,6 +11969,44 @@
             "amount": 25
           }
         ]
+      },
+      {
+        "similarityValue": 30,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#D28CBB",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 30,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#C78CD2",
+            "amount": 25
+          },
+          {
+            "color": "#D2A38C",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
       }
     ]
   },
@@ -6778,7 +12064,29 @@
         "similarityValue": 14,
         "colorsAmount": [
           {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#B4458F",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
             "color": "#D2A38C",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#6A3E28",
             "amount": 25
           }
         ]
@@ -6800,6 +12108,49 @@
         "similarityValue": 14,
         "colorsAmount": [
           {
+            "color": "#D28CBB",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 14,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#546A28",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#A145B4",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
             "color": "#A38CD2",
             "amount": 25
           },
@@ -6814,10 +12165,31 @@
         ]
       },
       {
-        "similarityValue": 15,
+        "similarityValue": 17,
         "colorsAmount": [
           {
+            "color": "#D28C9E",
+            "amount": 25
+          },
+          {
+            "color": "#D2CE8C",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
             "color": "#6A3E28",
+            "amount": 25
+          },
+          {
+            "color": "#336A28",
             "amount": 25
           }
         ]
@@ -6827,19 +12199,6 @@
         "colorsAmount": [
           {
             "color": "#B46A45",
-            "amount": 25
-          }
-        ]
-      },
-      {
-        "similarityValue": 20,
-        "colorsAmount": [
-          {
-            "color": "#D28C9E",
-            "amount": 25
-          },
-          {
-            "color": "#D2CE8C",
             "amount": 25
           }
         ]
@@ -6858,6 +12217,23 @@
           {
             "color": "#546A28",
             "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#D2A38C",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
           }
         ]
       }
@@ -6906,6 +12282,71 @@
           },
           {
             "color": "#87D7F5",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#87F5DB",
+            "amount": 70
+          },
+          {
+            "color": "#F587BC",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#F5C087",
+            "amount": 15
+          },
+          {
+            "color": "#87D7F5",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#87F5C0",
+            "amount": 15
+          },
+          {
+            "color": "#87BBF5",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#87F5C0",
+            "amount": 70
+          },
+          {
+            "color": "#F587F3",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#F3F587",
+            "amount": 15
+          },
+          {
+            "color": "#87BBF5",
             "amount": 15
           }
         ]
@@ -7018,6 +12459,52 @@
         ]
       },
       {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#87F589",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#8887F5",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#BBF587",
+            "amount": 25
+          },
+          {
+            "color": "#87F3F5",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#BF87F5",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 12,
         "colorsAmount": [
           {
@@ -7061,6 +12548,71 @@
           },
           {
             "color": "#28B8ED",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#28EDBF",
+            "amount": 70
+          },
+          {
+            "color": "#ED2887",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#ED8E28",
+            "amount": 15
+          },
+          {
+            "color": "#28B8ED",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#28ED8E",
+            "amount": 15
+          },
+          {
+            "color": "#2887ED",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#28ED8E",
+            "amount": 70
+          },
+          {
+            "color": "#ED28E9",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#E9ED28",
+            "amount": 15
+          },
+          {
+            "color": "#2887ED",
             "amount": 15
           }
         ]
@@ -7173,6 +12725,52 @@
         ]
       },
       {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#CCCCCC",
+            "amount": 33
+          },
+          {
+            "color": "#28ED2C",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#2C28ED",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#87ED28",
+            "amount": 25
+          },
+          {
+            "color": "#28E9ED",
+            "amount": 25
+          },
+          {
+            "color": "#CCCCCC",
+            "amount": 20
+          },
+          {
+            "color": "#8E28ED",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 24,
         "colorsAmount": [
           {
@@ -7203,6 +12801,71 @@
           },
           {
             "color": "#E5F6FC",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 24,
+        "colorsAmount": [
+          {
+            "color": "#E5FCF7",
+            "amount": 70
+          },
+          {
+            "color": "#FCE5F0",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 24,
+        "colorsAmount": [
+          {
+            "color": "#FCF1E5",
+            "amount": 15
+          },
+          {
+            "color": "#E5F6FC",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 24,
+        "colorsAmount": [
+          {
+            "color": "#E5FCF1",
+            "amount": 15
+          },
+          {
+            "color": "#E5F0FC",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 24,
+        "colorsAmount": [
+          {
+            "color": "#E5FCF1",
+            "amount": 70
+          },
+          {
+            "color": "#FCE5FC",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 24,
+        "colorsAmount": [
+          {
+            "color": "#FCFCE5",
+            "amount": 15
+          },
+          {
+            "color": "#E5F0FC",
             "amount": 15
           }
         ]
@@ -7300,6 +12963,52 @@
             "amount": 30
           }
         ]
+      },
+      {
+        "similarityValue": 24,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#E5FCE5",
+            "amount": 33
+          },
+          {
+            "color": "#333333",
+            "amount": 33
+          },
+          {
+            "color": "#E5E5FC",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 24,
+        "colorsAmount": [
+          {
+            "color": "#333333",
+            "amount": 20
+          },
+          {
+            "color": "#F0FCE5",
+            "amount": 25
+          },
+          {
+            "color": "#E5FCFC",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#F1E5FC",
+            "amount": 25
+          }
+        ]
       }
     ]
   },
@@ -7358,8 +13067,34 @@
         "similarityValue": 10,
         "colorsAmount": [
           {
-            "color": "#FCF1E5",
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#87F589",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 10,
+        "colorsAmount": [
+          {
+            "color": "#ED8E28",
             "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 10,
+        "colorsAmount": [
+          {
+            "color": "#E5FCF7",
+            "amount": 15
           }
         ]
       },
@@ -7394,11 +13129,56 @@
         ]
       },
       {
+        "similarityValue": 12,
+        "colorsAmount": [
+          {
+            "color": "#F5C087",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 12,
+        "colorsAmount": [
+          {
+            "color": "#F3F587",
+            "amount": 15
+          }
+        ]
+      },
+      {
         "similarityValue": 15,
         "colorsAmount": [
           {
             "color": "#87F5DB",
             "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#87F5DB",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#87F5C0",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 15,
+        "colorsAmount": [
+          {
+            "color": "#87F5C0",
+            "amount": 70
           }
         ]
       },
@@ -7419,8 +13199,20 @@
         "similarityValue": 15,
         "colorsAmount": [
           {
-            "color": "#ED8E28",
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#BBF587",
             "amount": 25
+          },
+          {
+            "color": "#87F3F5",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
           }
         ]
       },
@@ -7428,8 +13220,8 @@
         "similarityValue": 15,
         "colorsAmount": [
           {
-            "color": "#E5FCF7",
-            "amount": 15
+            "color": "#FCF1E5",
+            "amount": 25
           }
         ]
       },
@@ -7455,7 +13247,7 @@
         ]
       },
       {
-        "similarityValue": 21,
+        "similarityValue": 20,
         "colorsAmount": [
           {
             "color": "#F0FCE5",
@@ -7464,6 +13256,41 @@
           {
             "color": "#E5FCFC",
             "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#F1E5FC",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#E5FCF7",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#E5FCF1",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 21,
+        "colorsAmount": [
+          {
+            "color": "#E5FCE5",
+            "amount": 33
           }
         ]
       },
@@ -7481,6 +13308,45 @@
           {
             "color": "#E5EEFC",
             "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#E5FCE5",
+            "amount": 33
+          },
+          {
+            "color": "#E5E5FC",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 23,
+        "colorsAmount": [
+          {
+            "color": "#F0FCE5",
+            "amount": 25
+          },
+          {
+            "color": "#E5FCFC",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 23,
+        "colorsAmount": [
+          {
+            "color": "#FCE5E5",
+            "amount": 70
           }
         ]
       },
@@ -7509,8 +13375,8 @@
         "similarityValue": 26,
         "colorsAmount": [
           {
-            "color": "#E5FCE5",
-            "amount": 33
+            "color": "#FCF1E5",
+            "amount": 15
           }
         ]
       },
@@ -7518,8 +13384,17 @@
         "similarityValue": 26,
         "colorsAmount": [
           {
-            "color": "#FCE5E5",
-            "amount": 70
+            "color": "#E5FCF1",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 26,
+        "colorsAmount": [
+          {
+            "color": "#FCFCE5",
+            "amount": 15
           }
         ]
       },
@@ -7529,6 +13404,28 @@
           {
             "color": "#28EDBF",
             "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 29,
+        "colorsAmount": [
+          {
+            "color": "#28ED8E",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 29,
+        "colorsAmount": [
+          {
+            "color": "#87ED28",
+            "amount": 25
+          },
+          {
+            "color": "#28E9ED",
+            "amount": 25
           }
         ]
       },
@@ -7559,8 +13456,29 @@
         ]
       },
       {
-        "similarityValue": 30,
+        "similarityValue": 29,
         "colorsAmount": [
+          {
+            "color": "#CCCCCC",
+            "amount": 33
+          },
+          {
+            "color": "#28ED2C",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 29,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
           {
             "color": "#87ED28",
             "amount": 25
@@ -7568,6 +13486,46 @@
           {
             "color": "#28E9ED",
             "amount": 25
+          },
+          {
+            "color": "#CCCCCC",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "similarityValue": 30,
+        "colorsAmount": [
+          {
+            "color": "#28EDBF",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 30,
+        "colorsAmount": [
+          {
+            "color": "#ED8E28",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 30,
+        "colorsAmount": [
+          {
+            "color": "#28ED8E",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 30,
+        "colorsAmount": [
+          {
+            "color": "#E9ED28",
+            "amount": 15
           }
         ]
       },
@@ -7606,6 +13564,45 @@
         "similarityValue": 17,
         "colorsAmount": [
           {
+            "color": "#E9ED28",
+            "amount": 25
+          },
+          {
+            "color": "#28ED2C",
+            "amount": 25
+          },
+          {
+            "color": "#2C28ED",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#CCCCCC",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 23,
+        "colorsAmount": [
+          {
+            "color": "#E5FCFC",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 23,
+        "colorsAmount": [
+          {
             "color": "#F7FCE5",
             "amount": 25
           },
@@ -7616,7 +13613,20 @@
         ]
       },
       {
-        "similarityValue": 22,
+        "similarityValue": 23,
+        "colorsAmount": [
+          {
+            "color": "#C2ED28",
+            "amount": 25
+          },
+          {
+            "color": "#2873ED",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 23,
         "colorsAmount": [
           {
             "color": "#FCFCE5",
@@ -7633,33 +13643,15 @@
         ]
       },
       {
-        "similarityValue": 23,
-        "colorsAmount": [
-          {
-            "color": "#E5FCFC",
-            "amount": 25
-          }
-        ]
-      },
-      {
-        "similarityValue": 23,
-        "colorsAmount": [
-          {
-            "color": "#28E9ED",
-            "amount": 25
-          }
-        ]
-      },
-      {
         "similarityValue": 24,
         "colorsAmount": [
           {
-            "color": "#C2ED28",
-            "amount": 25
+            "color": "#FFFFFF",
+            "amount": 33
           },
           {
-            "color": "#2873ED",
-            "amount": 25
+            "color": "#E5FCE5",
+            "amount": 33
           }
         ]
       },
@@ -7690,6 +13682,45 @@
         ]
       },
       {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#BBF587",
+            "amount": 25
+          },
+          {
+            "color": "#87F3F5",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#28E9ED",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 26,
         "colorsAmount": [
           {
@@ -7706,15 +13737,32 @@
         "similarityValue": 26,
         "colorsAmount": [
           {
-            "color": "#E9ED28",
+            "color": "#F0FCE5",
             "amount": 25
           },
           {
-            "color": "#28ED2C",
+            "color": "#E5FCFC",
             "amount": 25
           },
           {
-            "color": "#2C28ED",
+            "color": "#FFFFFF",
+            "amount": 20
+          }
+        ]
+      },
+      {
+        "similarityValue": 26,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#87ED28",
+            "amount": 25
+          },
+          {
+            "color": "#28E9ED",
             "amount": 25
           }
         ]
@@ -7764,6 +13812,71 @@
           },
           {
             "color": "#776730",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#774330",
+            "amount": 70
+          },
+          {
+            "color": "#2F7678",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#312F78",
+            "amount": 15
+          },
+          {
+            "color": "#776730",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#773130",
+            "amount": 15
+          },
+          {
+            "color": "#767730",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#773130",
+            "amount": 70
+          },
+          {
+            "color": "#2F7756",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#552F78",
+            "amount": 15
+          },
+          {
+            "color": "#767730",
             "amount": 15
           }
         ]
@@ -7879,6 +13992,52 @@
         "similarityValue": 0,
         "colorsAmount": [
           {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#772F52",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#527730",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#772F76",
+            "amount": 25
+          },
+          {
+            "color": "#775530",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#2F7732",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 0,
+        "colorsAmount": [
+          {
             "color": "#5384BA",
             "amount": 70
           },
@@ -7898,6 +14057,19 @@
           {
             "color": "#53B7BA",
             "amount": 5
+          }
+        ]
+      },
+      {
+        "similarityValue": 12,
+        "colorsAmount": [
+          {
+            "color": "#5384BA",
+            "amount": 15
+          },
+          {
+            "color": "#BAA353",
+            "amount": 15
           }
         ]
       },
@@ -7941,6 +14113,71 @@
           },
           {
             "color": "#2F2812",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#2F1A12",
+            "amount": 70
+          },
+          {
+            "color": "#122E2F",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#13122F",
+            "amount": 15
+          },
+          {
+            "color": "#2F2812",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#2F1312",
+            "amount": 15
+          },
+          {
+            "color": "#2E2F12",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#2F1312",
+            "amount": 70
+          },
+          {
+            "color": "#122F21",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#21122F",
+            "amount": 15
+          },
+          {
+            "color": "#2E2F12",
             "amount": 15
           }
         ]
@@ -8053,6 +14290,52 @@
         ]
       },
       {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#CCCCCC",
+            "amount": 33
+          },
+          {
+            "color": "#2F1220",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#202F12",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#2F122E",
+            "amount": 25
+          },
+          {
+            "color": "#2F2112",
+            "amount": 25
+          },
+          {
+            "color": "#CCCCCC",
+            "amount": 20
+          },
+          {
+            "color": "#122F13",
+            "amount": 25
+          }
+        ]
+      },
+      {
         "similarityValue": 19,
         "colorsAmount": [
           {
@@ -8070,6 +14353,58 @@
           },
           {
             "color": "#BAA353",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#BA7053",
+            "amount": 70
+          },
+          {
+            "color": "#53B7BA",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#BA5653",
+            "amount": 15
+          },
+          {
+            "color": "#B7BA53",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#BA5653",
+            "amount": 70
+          },
+          {
+            "color": "#53BA89",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#8953BA",
+            "amount": 15
+          },
+          {
+            "color": "#B7BA53",
             "amount": 15
           }
         ]
@@ -8158,6 +14493,52 @@
             "amount": 30
           }
         ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#5384BA",
+            "amount": 33
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#BA5384",
+            "amount": 33
+          },
+          {
+            "color": "#84BA53",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#5384BA",
+            "amount": 25
+          },
+          {
+            "color": "#BA53B7",
+            "amount": 25
+          },
+          {
+            "color": "#BA8953",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#53BA56",
+            "amount": 25
+          }
+        ]
       }
     ]
   },
@@ -8211,6 +14592,15 @@
         "similarityValue": 10,
         "colorsAmount": [
           {
+            "color": "#5384BA",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 10,
+        "colorsAmount": [
+          {
             "color": "#BA7053",
             "amount": 15
           }
@@ -8230,6 +14620,51 @@
         "colorsAmount": [
           {
             "color": "#774330",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#774330",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#312F78",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#773130",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#773130",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#767730",
             "amount": 15
           }
         ]
@@ -8277,8 +14712,37 @@
         "similarityValue": 11,
         "colorsAmount": [
           {
-            "color": "#5384BA",
-            "amount": 70
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#527730",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 11,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#775530",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#2F7732",
+            "amount": 25
           }
         ]
       },
@@ -8322,10 +14786,66 @@
         ]
       },
       {
+        "similarityValue": 16,
+        "colorsAmount": [
+          {
+            "color": "#2F1312",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#202F12",
+            "amount": 33
+          }
+        ]
+      },
+      {
         "similarityValue": 17,
         "colorsAmount": [
           {
             "color": "#04070B",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#2F1220",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#202F12",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 17,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#2F2112",
+            "amount": 25
+          },
+          {
+            "color": "#CCCCCC",
+            "amount": 20
+          },
+          {
+            "color": "#122F13",
             "amount": 25
           }
         ]
@@ -8351,6 +14871,42 @@
         "similarityValue": 20,
         "colorsAmount": [
           {
+            "color": "#2F1A12",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#2F2812",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#2F1312",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#2E2F12",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
             "color": "#2F2112",
             "amount": 25
           },
@@ -8361,11 +14917,11 @@
         ]
       },
       {
-        "similarityValue": 20,
+        "similarityValue": 24,
         "colorsAmount": [
           {
-            "color": "#202F12",
-            "amount": 33
+            "color": "#5384BA",
+            "amount": 70
           }
         ]
       },
@@ -8383,6 +14939,72 @@
           {
             "color": "#53BA75",
             "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 24,
+        "colorsAmount": [
+          {
+            "color": "#5384BA",
+            "amount": 25
+          },
+          {
+            "color": "#BA8953",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#53BA56",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#BA7053",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#5384BA",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#BA5653",
+            "amount": 15
+          }
+        ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#BA5653",
+            "amount": 70
+          }
+        ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#B7BA53",
+            "amount": 15
           }
         ]
       },
@@ -8412,15 +15034,6 @@
         "similarityValue": 25,
         "colorsAmount": [
           {
-            "color": "#5384BA",
-            "amount": 70
-          }
-        ]
-      },
-      {
-        "similarityValue": 25,
-        "colorsAmount": [
-          {
             "color": "#BA5384",
             "amount": 25
           },
@@ -8435,6 +15048,23 @@
           {
             "color": "#53BA89",
             "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 25,
+        "colorsAmount": [
+          {
+            "color": "#5384BA",
+            "amount": 33
+          },
+          {
+            "color": "#BA5384",
+            "amount": 33
+          },
+          {
+            "color": "#84BA53",
+            "amount": 33
           }
         ]
       }
@@ -8464,7 +15094,11 @@
         "similarityValue": 18,
         "colorsAmount": [
           {
-            "color": "#53BA56",
+            "color": "#2B2F12",
+            "amount": 25
+          },
+          {
+            "color": "#122F1C",
             "amount": 25
           }
         ]
@@ -8503,15 +15137,41 @@
         "similarityValue": 19,
         "colorsAmount": [
           {
-            "color": "#BA8953",
+            "color": "#FFFFFF",
+            "amount": 33
+          },
+          {
+            "color": "#000000",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 19,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 33
+          },
+          {
+            "color": "#202F12",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#775530",
             "amount": 25
           },
           {
-            "color": "#84BA53",
-            "amount": 25
-          },
-          {
-            "color": "#53BA89",
+            "color": "#2F7732",
             "amount": 25
           }
         ]
@@ -8520,11 +15180,59 @@
         "similarityValue": 20,
         "colorsAmount": [
           {
-            "color": "#2B2F12",
+            "color": "#53BA56",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#122F13",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 20,
+        "colorsAmount": [
+          {
+            "color": "#5384BA",
+            "amount": 33
+          },
+          {
+            "color": "#BA5384",
+            "amount": 33
+          }
+        ]
+      },
+      {
+        "similarityValue": 22,
+        "colorsAmount": [
+          {
+            "color": "#ADBA53",
             "amount": 25
           },
           {
-            "color": "#122F1C",
+            "color": "#53BA75",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 23,
+        "colorsAmount": [
+          {
+            "color": "#000000",
+            "amount": 20
+          },
+          {
+            "color": "#2F2112",
+            "amount": 25
+          },
+          {
+            "color": "#122F13",
             "amount": 25
           }
         ]
@@ -8542,20 +15250,15 @@
         "similarityValue": 24,
         "colorsAmount": [
           {
-            "color": "#122F13",
-            "amount": 25
-          }
-        ]
-      },
-      {
-        "similarityValue": 24,
-        "colorsAmount": [
-          {
-            "color": "#ADBA53",
+            "color": "#BA8953",
             "amount": 25
           },
           {
-            "color": "#53BA75",
+            "color": "#84BA53",
+            "amount": 25
+          },
+          {
+            "color": "#53BA89",
             "amount": 25
           }
         ]
@@ -8573,6 +15276,23 @@
           },
           {
             "color": "#122F21",
+            "amount": 25
+          }
+        ]
+      },
+      {
+        "similarityValue": 24,
+        "colorsAmount": [
+          {
+            "color": "#5384BA",
+            "amount": 25
+          },
+          {
+            "color": "#FFFFFF",
+            "amount": 20
+          },
+          {
+            "color": "#53BA56",
             "amount": 25
           }
         ]
