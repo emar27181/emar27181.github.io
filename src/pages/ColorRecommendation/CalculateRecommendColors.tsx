@@ -172,6 +172,19 @@ export function CalculateRecommendColors() {
       resetRecommendedColorSchemeAmount();
       let baseColor = colorsAmount[0].color; // 最初に使われた色をベースカラーであると仮定する
 
+
+      // ベースカラーを基に配列に配色を追加
+      calculateDominantColor(recommendedColorSchemeAmount, baseColor);
+      calculateDyadColor(recommendedColorSchemeAmount, baseColor);
+      calculateSplitComplementaryColor(recommendedColorSchemeAmount, baseColor);
+      calculateTetradeColor(recommendedColorSchemeAmount, baseColor);
+      calculateTriadColor(recommendedColorSchemeAmount, baseColor);
+      calculateDominantTone(recommendedColorSchemeAmount, baseColor);
+      calculatePentadColor(recommendedColorSchemeAmount, baseColor);
+      calculateHexadColor(recommendedColorSchemeAmount, baseColor);
+      calculateAnalogyColor(recommendedColorSchemeAmount, baseColor);
+      calculateIntermediateColor(recommendedColorSchemeAmount, baseColor);
+      /*
       calculateColorScheme("dominantColor", baseColor);
       calculateColorScheme("dyad", baseColor);
       calculateColorScheme("splitComplementary", baseColor);
@@ -182,6 +195,7 @@ export function CalculateRecommendColors() {
       calculateColorScheme("hexad", baseColor);
       calculateColorScheme("analogy", baseColor);
       calculateColorScheme("intermediate", baseColor);
+      */
     }
 
     // 推薦しようとしている配色の類似度を調べ，閾値以上だった場合追加を取り消す関数
