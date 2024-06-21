@@ -103,6 +103,23 @@ export function calculateHexadColor(colorAmount: ColorAmount[][], baseColor: p5.
   colorAmount[i].push(new ColorAmount(p.color((hue + 300) % 360, saturation, lightness), 25));
 }
 
+// ヘクサード配色(テトラード+白黒)
+export function calculateHexadBkWColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
+  let i = colorAmount.length;
+  colorAmount[i] = [];
+  p.colorMode(p.HSL);
+  let hue = p.hue(baseColor);
+  let saturation = p.saturation(baseColor);
+  let lightness = p.lightness(baseColor);
+
+  colorAmount[i].push(new ColorAmount(baseColor, 25));
+  colorAmount[i].push(new ColorAmount(p.color("#000000"), 20));
+  colorAmount[i].push(new ColorAmount(p.color((hue + 90) % 360, saturation, lightness), 25));
+  colorAmount[i].push(new ColorAmount(p.color((hue + 180) % 360, saturation, lightness), 25));
+  colorAmount[i].push(new ColorAmount(p.color("#FFFFFF"), 20));
+  colorAmount[i].push(new ColorAmount(p.color((hue + 270) % 360, saturation, lightness), 25));
+}
+
 export function calculateDominantColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
   let i = colorAmount.length;
   colorAmount[i] = [];
