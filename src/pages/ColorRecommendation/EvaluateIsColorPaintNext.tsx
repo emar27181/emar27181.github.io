@@ -150,6 +150,9 @@ export function evaluateRecommendColorSchemes(): number {
     if (simValueThresholdIsDisplay < 10) {
       simValueThresholdIsDisplay++;
     }
+    else if (simValueThresholdIsDisplay < 50) {
+      simValueThresholdIsDisplay += 5;
+    }
     else {
       simValueThresholdIsDisplay += 10
     }
