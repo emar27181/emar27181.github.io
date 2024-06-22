@@ -5,7 +5,7 @@ import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmou
 import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsAmountAll.json"
 import { calculateLabColorSimilarity } from "./CalculateSimilarity";
 import { consoleLogColors } from "../../utils/consoleLogColors";
-import { SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR } from "../../config/constants";
+import { IS_EVALUATE_TIMING_DRAW_COLOR, SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR } from "../../config/constants";
 import { PrecisionAtK } from "../../utils/PrecisionAtK";
 
 // compareCountSum: 使用配色と推薦配色の比較を行った回数を保存する変数
@@ -107,7 +107,6 @@ export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
     sumRecommendColorScheme += recommendColorsAmountAll[i].dataRecommendColorsAmount.length;
   }
 
-
   // 表示させるかどうかを保存する変数によってp@kの計算
   for (let simValueThresholdIsDisplay = 0; simValueThresholdIsDisplay <= 100;) {
     compareCountSum = 0;
@@ -125,8 +124,23 @@ export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
       //sumRecommendColorScheme += dataRecomenndColorsAmount.length;
 
       // 1色目(used[colorSchemeNumber][0])を塗った後の2色目(used[colorSchemeNumber][1])を当てるのはほぼ不可能なためスキップ
-      if (colorNumber === 0) { continue; }
+      //if (colorNumber === 0) { continue; }
 
+
+      // isEvaluateTiming: 今スロットに入っている色を評価するかどうかを保存する変数
+      let isEvaluateTiming = false;
+      for (let t = 0; t < IS_EVALUATE_TIMING_DRAW_COLOR.length; t++) {
+        if (colorNumber === IS_EVALUATE_TIMING_DRAW_COLOR[t]) {
+          isEvaluateTiming = true;
+        }
+      }
+
+      // 評価するタイミングでは無かった場合，何もせず修了(次の色の処理へ移動)
+      if (!isEvaluateTiming) { continue; }
+
+      console.log("evaluate of used[" + colorSchemeNumber + "][" + colorNumber + "] is called");
+
+      // 次の色が含まれているかどうかの評価
       if (isColorPaintNext(colorSchemeNumber, colorNumber, i, simValueThresholdIsDisplay, SIM_VALUE_SAME_COLOR)) {
         correctCount++;
       }
@@ -161,8 +175,8 @@ export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
   //console.log(precisions);
 
   console.log("-------------------------------------");
-  console.log("(‟1色目に対する推薦を除く”生成した推薦する配色の数) = " + sumRecommendColorSchemeExcludeFirstColorReco);
-  console.log("(生成した推薦する配色の数) = " + sumRecommendColorScheme + "(※誤差あり)");
+  console.log("(生成した推薦する配色の“中で評価した配色”の数) = " + sumRecommendColorSchemeExcludeFirstColorReco);
+  console.log("(生成した推薦する配色の“全体”の数) = " + sumRecommendColorScheme + "(※誤差あり)");
   console.log("(同じ色かどうかを判定する相違度の閾値) = " + SIM_VALUE_SAME_COLOR);
 
   return precisions;
