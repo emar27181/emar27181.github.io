@@ -55,7 +55,7 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
       continue;
     }
 
-    evaluateedUsedColorSchemeCount++; 
+    evaluateedUsedColorSchemeCount++;
 
     for (let j = 0; j < recomenndColorsAmount[i].length; j++) {
       compareCount++;
@@ -106,7 +106,7 @@ export function evaluateRecommendColorSchemes(): number {
 
   //console.log("recommendColorsAmountAll.length = " + recommendColorsAmountAll.length);
 
-  for (let simValueThresholdIsDisplay = 0; simValueThresholdIsDisplay <= 100; simValueThresholdIsDisplay += 10) {
+  for (let simValueThresholdIsDisplay = 0; simValueThresholdIsDisplay <= 100;) {
     compareCountSum = 0;
     sumRecommendColorSchemeExcludeFirstColorReco = 0;
     evaluateedUsedColorSchemeCount = 0;
@@ -131,9 +131,17 @@ export function evaluateRecommendColorSchemes(): number {
 
     console.log("--- (表示(評価)するかどうかを判定する相違度の閾値) = " + simValueThresholdIsDisplay + " -----");
     console.log("次に塗る色を予測できていていた確率((次の色があった数)/(評価した使用配色の数))は" + Math.round(correctCount / evaluateedUsedColorSchemeCount * 100) + "%(" + correctCount + "/" + evaluateedUsedColorSchemeCount + ")です．");
-    let text = ("推薦した配色群の中で次に塗る色を予測できていていた確率: p@" +compareCountSum + " = " + (Math.round((correctCount / compareCountSum )*100))/100 + " (" + correctCount + "/" + compareCountSum + ")です．\n");
+    let text = ("推薦した配色群の中で次に塗る色を予測できていていた確率: p@" + compareCountSum + " = " + (Math.round((correctCount / compareCountSum) * 100)) / 100 + " (" + correctCount + "/" + compareCountSum + ")です．\n");
     consoleLogColors(text, "#AA0000");
     //console.log("推薦した配色群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / compareCountSum * 100) + "%(" + correctCount + "/" + compareCountSum + ")です．");
+
+    // 閾値のインクリメント
+    if (simValueThresholdIsDisplay < 10) {
+      simValueThresholdIsDisplay++;
+    }
+    else {
+      simValueThresholdIsDisplay += 10
+    }
   }
 
   console.log("-------------------------------------");
