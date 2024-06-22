@@ -98,7 +98,7 @@ export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color, simValueThre
 }
 
 // 生成された推薦する配色の評価をまとめて行う関数
-export function evaluateRecommendColorSchemes(): number {
+export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
   //
   let recommendColorsAmountAll = outputRecommendColorsAmountAll;
   let sumRecommendColorScheme = 0;
@@ -158,12 +158,12 @@ export function evaluateRecommendColorSchemes(): number {
     }
   }
 
-  console.log(precisions);
+  //console.log(precisions);
 
   console.log("-------------------------------------");
   console.log("(‟1色目に対する推薦を除く”生成した推薦する配色の数) = " + sumRecommendColorSchemeExcludeFirstColorReco);
   console.log("(生成した推薦する配色の数) = " + sumRecommendColorScheme + "(※誤差あり)");
   console.log("(同じ色かどうかを判定する相違度の閾値) = " + SIM_VALUE_SAME_COLOR);
 
-  return 0;
+  return precisions;
 }
