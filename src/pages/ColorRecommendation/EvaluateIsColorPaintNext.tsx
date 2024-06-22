@@ -6,6 +6,7 @@ import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsA
 import { calculateLabColorSimilarity } from "./CalculateSimilarity";
 import { consoleLogColors } from "../../utils/consoleLogColors";
 import { SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR } from "../../config/constants";
+import { PrecisionAtK } from "../../utils/PrecisionAtK";
 
 // compareCountSum: 使用配色と推薦配色の比較を行った回数を保存する変数
 // sumRecommendColorSchemeExcludeFirstColorReco: 1色目を基に推薦するのを除外した推薦配色群の合計
@@ -98,14 +99,16 @@ export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color, simValueThre
 
 // 生成された推薦する配色の評価をまとめて行う関数
 export function evaluateRecommendColorSchemes(): number {
+  //
   let recommendColorsAmountAll = outputRecommendColorsAmountAll;
   let sumRecommendColorScheme = 0;
+  let precisions: PrecisionAtK[] = [];
   for (let i = 0; i < recommendColorsAmountAll.length; i++) {
     sumRecommendColorScheme += recommendColorsAmountAll[i].dataRecommendColorsAmount.length;
   }
 
-  //console.log("recommendColorsAmountAll.length = " + recommendColorsAmountAll.length);
 
+  // 表示させるかどうかを保存する変数によってp@kの計算
   for (let simValueThresholdIsDisplay = 0; simValueThresholdIsDisplay <= 100;) {
     compareCountSum = 0;
     sumRecommendColorSchemeExcludeFirstColorReco = 0;
@@ -129,6 +132,14 @@ export function evaluateRecommendColorSchemes(): number {
       }
     }
 
+    let newK = compareCountSum;
+    let newPrecision = (Math.round((correctCount / compareCountSum) * 100)) / 100;
+    const newPrecisionAtK: PrecisionAtK = {
+      precision: newPrecision,
+      k: newK
+    };
+    precisions.push(newPrecisionAtK);
+
     console.log("--- (表示(評価)するかどうかを判定する相違度の閾値) = " + simValueThresholdIsDisplay + " -----");
     console.log("次に塗る色を予測できていていた確率((次の色があった数)/(評価した使用配色の数))は" + Math.round(correctCount / evaluateedUsedColorSchemeCount * 100) + "%(" + correctCount + "/" + evaluateedUsedColorSchemeCount + ")です．");
     let text = ("推薦した配色群の中で次に塗る色を予測できていていた確率: p@" + compareCountSum + " = " + (Math.round((correctCount / compareCountSum) * 100)) / 100 + " (" + correctCount + "/" + compareCountSum + ")です．\n");
@@ -143,6 +154,8 @@ export function evaluateRecommendColorSchemes(): number {
       simValueThresholdIsDisplay += 10
     }
   }
+
+  console.log(precisions);
 
   console.log("-------------------------------------");
   console.log("(‟1色目に対する推薦を除く”生成した推薦する配色の数) = " + sumRecommendColorSchemeExcludeFirstColorReco);
