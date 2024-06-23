@@ -10,12 +10,32 @@ import { PrecisionAtK } from "../../utils/PrecisionAtK";
 
 // compareCountSum: 使用配色と推薦配色の比較を行った回数を保存する変数
 // sumRecommendColorSchemeExcludeFirstColorReco: 1色目を基に推薦するのを除外した推薦配色群の合計
-// evaluateedUsedColorSchemeCount: 評価された使用配色の数
+// evaluateedUsedColorSchemeCount: 評価対象の使用配色の数
 // IS_PRINT_IS_EXIST_SAME_COLOR: 次の色が含まれているかどうかの情報をコンソール表示させるかどうかを保存する変数
 let compareCountSum = 0;
 let sumRecommendColorSchemeExcludeFirstColorReco = 0;
 let evaluatedUsedColorSchemeCount = 0;
 const IS_PRINT_IS_EXIST_SAME_COLOR = false;
+
+// 評価対象の使用配色の数
+//function calculateEvaluatedUsedColorSchemeCount() {
+for (let i = 0; i < inputOrderUsedColorScheme.length; i++) {
+  for (let j = 0; j < inputOrderUsedColorScheme[i].length; j++) {
+    // jが評価対象のインデックス番号かのチェック
+    let isEvaluated = false;
+    for (let k = 0; k < IS_EVALUATE_TIMING_DRAW_COLOR.length; k++) {
+      if (j === IS_EVALUATE_TIMING_DRAW_COLOR[k]) {
+        isEvaluated = true;
+        break;
+      }
+    }
+
+    if (isEvaluated) {
+      evaluatedUsedColorSchemeCount++;
+    }
+  }
+}
+//}
 
 // jsonファイルを基にused[colorSchemeNumber][colorNumber]に対する推薦recommend[][]にused[i][j+1](次の色)が含まれているかどうか確認する関数
 // colorSchemeNumber: 読込む使用配色のインデックス番号を保存する変数
@@ -55,8 +75,6 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
     if (simValue > simValueThresholdIsDisplay) {
       continue;
     }
-
-    evaluatedUsedColorSchemeCount++;
 
     for (let j = 0; j < recomenndColorsAmount[i].length; j++) {
       compareCount++;
@@ -99,7 +117,7 @@ export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color, simValueThre
 
 // 生成された推薦する配色の評価をまとめて行う関数
 export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
-  //
+
   let recommendColorsAmountAll = outputRecommendColorsAmountAll;
   let sumRecommendColorScheme = 0;
   let precisions: PrecisionAtK[] = [];
@@ -107,11 +125,11 @@ export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
     sumRecommendColorScheme += recommendColorsAmountAll[i].dataRecommendColorsAmount.length;
   }
 
+
   // 表示させるかどうかを保存する変数によってp@kの計算
   for (let simValueThresholdIsDisplay = 0; simValueThresholdIsDisplay <= 100;) {
     compareCountSum = 0;
     sumRecommendColorSchemeExcludeFirstColorReco = 0;
-    evaluatedUsedColorSchemeCount = 0;
 
     // correctCount: 推薦した配色群の中で次に塗る色を予測できていていた個数
     // sumRecommendColorScheme: 推薦配色群の合計
