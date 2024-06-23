@@ -14,7 +14,7 @@ import { PrecisionAtK } from "../../utils/PrecisionAtK";
 // IS_PRINT_IS_EXIST_SAME_COLOR: 次の色が含まれているかどうかの情報をコンソール表示させるかどうかを保存する変数
 let compareCountSum = 0;
 let sumRecommendColorSchemeExcludeFirstColorReco = 0;
-let evaluateedUsedColorSchemeCount = 0;
+let evaluatedUsedColorSchemeCount = 0;
 const IS_PRINT_IS_EXIST_SAME_COLOR = false;
 
 // jsonファイルを基にused[colorSchemeNumber][colorNumber]に対する推薦recommend[][]にused[i][j+1](次の色)が含まれているかどうか確認する関数
@@ -56,7 +56,7 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
       continue;
     }
 
-    evaluateedUsedColorSchemeCount++;
+    evaluatedUsedColorSchemeCount++;
 
     for (let j = 0; j < recomenndColorsAmount[i].length; j++) {
       compareCount++;
@@ -111,7 +111,7 @@ export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
   for (let simValueThresholdIsDisplay = 0; simValueThresholdIsDisplay <= 100;) {
     compareCountSum = 0;
     sumRecommendColorSchemeExcludeFirstColorReco = 0;
-    evaluateedUsedColorSchemeCount = 0;
+    evaluatedUsedColorSchemeCount = 0;
 
     // correctCount: 推薦した配色群の中で次に塗る色を予測できていていた個数
     // sumRecommendColorScheme: 推薦配色群の合計
@@ -155,7 +155,7 @@ export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
     precisions.push(newPrecisionAtK);
 
     console.log("--- (表示(評価)するかどうかを判定する相違度の閾値) = " + simValueThresholdIsDisplay + " -----");
-    console.log("次に塗る色を予測できていていた確率((次の色があった数)/(評価した使用配色の数))は" + Math.round(correctCount / evaluateedUsedColorSchemeCount * 100) + "%(" + correctCount + "/" + evaluateedUsedColorSchemeCount + ")です．");
+    console.log("次に塗る色を予測できていていた確率((次の色があった数)/(評価した使用配色の数))は" + Math.round(correctCount / evaluatedUsedColorSchemeCount * 100) + "%(" + correctCount + "/" + evaluatedUsedColorSchemeCount + ")です．");
     let text = ("推薦した配色群の中で次に塗る色を予測できていていた確率: p@" + compareCountSum + " = " + (Math.round((correctCount / compareCountSum) * 100)) / 100 + " (" + correctCount + "/" + compareCountSum + ")です．\n");
     consoleLogColors(text, "#AA0000");
     //console.log("推薦した配色群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / compareCountSum * 100) + "%(" + correctCount + "/" + compareCountSum + ")です．");
