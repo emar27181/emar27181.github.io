@@ -138,7 +138,7 @@ export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
       // 評価するタイミングでは無かった場合，何もせず修了(次の色の処理へ移動)
       if (!isEvaluateTiming) { continue; }
 
-      console.log("evaluate of used[" + colorSchemeNumber + "][" + colorNumber + "] is called");
+      //console.log("evaluate of used[" + colorSchemeNumber + "][" + colorNumber + "] is called");
 
       // 次の色が含まれているかどうかの評価
       if (isColorPaintNext(colorSchemeNumber, colorNumber, i, simValueThresholdIsDisplay, SIM_VALUE_SAME_COLOR)) {
