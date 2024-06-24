@@ -71,8 +71,8 @@ export function updateRecommendColorSchemeAmount(baseColorsAmount: ColorAmount[]
   // ベースカラーを基に配列に配色を追加
   calculateDominantColor(recommendColorSchemeAmount, baseColor);
   calculateDyadColor(recommendColorSchemeAmount, baseColor);
-  calculateSplitComplementaryColor(recommendColorSchemeAmount, baseColor, 1);
-  calculateSplitComplementaryColor(recommendColorSchemeAmount, baseColor, 2);
+  calculateSplitComplementaryColor(recommendColorSchemeAmount, baseColor, 1); // ※スプリットコンプリメンタリーのみ3パターン推薦配色を追加
+  calculateSplitComplementaryColor(recommendColorSchemeAmount, baseColor, 2); // ※スプリットコンプリメンタリーのみ3パターン推薦配色を追加
   calculateTetradeColor(recommendColorSchemeAmount, baseColor);
   calculateTriadColor(recommendColorSchemeAmount, baseColor);
   calculateDominantTone(recommendColorSchemeAmount, baseColor);
