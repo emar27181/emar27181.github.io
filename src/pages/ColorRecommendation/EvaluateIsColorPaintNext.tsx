@@ -133,21 +133,23 @@ export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color, simValueThre
 // 生成された推薦する配色の評価をまとめて行う関数
 export function evaluateRecommendColorSchemes(): RecallAtK[] {
 
-  let recommendColorsAmountAll = outputRecommendColorsAmountAll;
+  createRecalls();
+
+  return recalls;
+}
+
+// recall@kのデータを生成する関数
+function createRecalls() {
+  // correctCount: 推薦した配色群の中で次に塗る色を予測できていていた個数
+  // sumRecommendColorScheme: 推薦配色群の合計
+  compareCountSum = 0;
+  sumRecommendColorSchemeExcludeFirstColorReco = 0;
+  let correctCount = 0;
   let sumRecommendColorScheme = 0;
-  let precisions: PrecisionAtK[] = [];
+  let recommendColorsAmountAll = outputRecommendColorsAmountAll;
   for (let i = 0; i < recommendColorsAmountAll.length; i++) {
     sumRecommendColorScheme += recommendColorsAmountAll[i].dataRecommendColorsAmount.length;
   }
-
-
-
-
-  compareCountSum = 0;
-  sumRecommendColorSchemeExcludeFirstColorReco = 0;
-  // correctCount: 推薦した配色群の中で次に塗る色を予測できていていた個数
-  // sumRecommendColorScheme: 推薦配色群の合計
-  let correctCount = 0;
 
   // recall@kの計算
   for (let i = 0; i < recommendColorsAmountAll.length; i++) {
@@ -176,11 +178,6 @@ export function evaluateRecommendColorSchemes(): RecallAtK[] {
 
   let newK = compareCountSum;
   let newPrecision = (Math.round((correctCount / compareCountSum) * 100)) / 100;
-  const newPrecisionAtK: PrecisionAtK = {
-    precision: newPrecision,
-    k: newK
-  };
-  precisions.push(newPrecisionAtK);
 
   // recallの値の計算
   for (let i = 0; i < recalls.length; i++) {
@@ -197,5 +194,4 @@ export function evaluateRecommendColorSchemes(): RecallAtK[] {
   console.log("(生成した推薦する配色の“全体”の数) = " + sumRecommendColorScheme + "(※誤差あり)");
   console.log("(同じ色かどうかを判定する相違度の閾値) = " + SIM_VALUE_SAME_COLOR);
 
-  return recalls;
 }
