@@ -133,7 +133,7 @@ export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color, simValueThre
 }
 
 // 生成された推薦する配色の評価をまとめて行う関数
-export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
+export function evaluateRecommendColorSchemes(): RecallAtK[] {
 
   let recommendColorsAmountAll = outputRecommendColorsAmountAll;
   let sumRecommendColorScheme = 0;
@@ -225,5 +225,5 @@ export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
   console.log("(生成した推薦する配色の“全体”の数) = " + sumRecommendColorScheme + "(※誤差あり)");
   console.log("(同じ色かどうかを判定する相違度の閾値) = " + SIM_VALUE_SAME_COLOR);
 
-  return precisions;
+  return recalls;
 }

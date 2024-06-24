@@ -21,7 +21,7 @@ const ButtonEvaluateRecommendColors: React.FC = () => {
     // 自動でダウンロードリンクをクリックしてJSONファイルをダウンロード
     const link = document.createElement('a');
     link.href = newJsonURL;
-    link.download = `precision@k.json`;
+    link.download = `recalls@k.json`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
