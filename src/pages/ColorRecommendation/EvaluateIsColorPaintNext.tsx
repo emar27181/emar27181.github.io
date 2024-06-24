@@ -127,7 +127,7 @@ export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
 
 
   // 表示させるかどうかを保存する変数によってp@kの計算
-  for (let simValueThresholdIsDisplay = 0; simValueThresholdIsDisplay <= 100;) {
+  //for (let simValueThresholdIsDisplay = 100; simValueThresholdIsDisplay <= 100;) {
     compareCountSum = 0;
     sumRecommendColorSchemeExcludeFirstColorReco = 0;
 
@@ -159,7 +159,8 @@ export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
       //console.log("evaluate of used[" + colorSchemeNumber + "][" + colorNumber + "] is called");
 
       // 次の色が含まれているかどうかの評価
-      if (isColorPaintNext(colorSchemeNumber, colorNumber, i, simValueThresholdIsDisplay, SIM_VALUE_SAME_COLOR)) {
+    //if (isColorPaintNext(colorSchemeNumber, colorNumber, i, simValueThresholdIsDisplay, SIM_VALUE_SAME_COLOR)) {
+    if (isColorPaintNext(colorSchemeNumber, colorNumber, i, SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR)) {
         correctCount++;
       }
     }
@@ -173,12 +174,17 @@ export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
     precisions.push(newPrecisionAtK);
 
     console.log("--- (表示(評価)するかどうかを判定する相違度の閾値) = " + simValueThresholdIsDisplay + " -----");
+  console.log("--- (表示(評価)するかどうかを判定する相違度の閾値) = " + SIM_VALUE_DISPLAY_LIMIT + " -----");
+  //console.log("--- (表示(評価)するかどうかを判定する相違度の閾値) = " + simValueThresholdIsDisplay + " -----");
     console.log("次に塗る色を予測できていていた確率((次の色があった数)/(評価した使用配色の数))は" + Math.round(correctCount / evaluatedUsedColorSchemeCount * 100) + "%(" + correctCount + "/" + evaluatedUsedColorSchemeCount + ")です．");
     let text = ("推薦した配色群の中で次に塗る色を予測できていていた確率: p@" + compareCountSum + " = " + (Math.round((correctCount / compareCountSum) * 100)) / 100 + " (" + correctCount + "/" + compareCountSum + ")です．\n");
     consoleLogColors(text, "#AA0000");
     //console.log("推薦した配色群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / compareCountSum * 100) + "%(" + correctCount + "/" + compareCountSum + ")です．");
 
+
     // 閾値のインクリメント
+  //simValueThresholdIsDisplay += 101
+  /*
     if (simValueThresholdIsDisplay < 10) {
       simValueThresholdIsDisplay++;
     }
@@ -187,8 +193,8 @@ export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
     }
     else {
       simValueThresholdIsDisplay += 10
-    }
-  }
+  }*/
+  //}
 
   //console.log(precisions);
 
