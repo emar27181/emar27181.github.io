@@ -191,6 +191,11 @@ export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
   };
   precisions.push(newPrecisionAtK);
 
+    // recallの値の計算
+    for (let i = 0; i < recalls.length; i++) {
+      recalls[i].recall = recalls[i].recall / evaluatedUsedColorSchemeCount;
+    }
+
   console.log(recalls);
   console.log("--- (表示(評価)するかどうかを判定する相違度の閾値) = " + SIM_VALUE_DISPLAY_LIMIT + " -----");
   //console.log("--- (表示(評価)するかどうかを判定する相違度の閾値) = " + simValueThresholdIsDisplay + " -----");
