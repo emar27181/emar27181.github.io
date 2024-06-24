@@ -13,7 +13,7 @@ export const LIGHTNESS_DIFF = 20; // 推薦するメインの配色と異なる�
 
 export const IS_INPUT_BY_JSON = false; // 使用した配色の代入をJsonファイルを基にするかどうかを保存する固定値
 export const SIM_VALUE_SAME_COLOR = 10; // 同じ色かどうかを判定する相違度の閾値
-export const SIM_VALUE_DISPLAY_LIMIT = 20; // 表示(評価)するかどうかを判定する相違度の閾値
+export const SIM_VALUE_DISPLAY_LIMIT = 100; // 表示(評価)するかどうかを判定する相違度の閾値
 
 // どのタイミングに塗られた色を評価するか保存する配列
 // [1]だとused[i][1]に対してrecommend_(i,1)[][]が生成され，used[i][2]が含まれているかどうかの評価がされる
