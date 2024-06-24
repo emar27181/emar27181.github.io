@@ -5,7 +5,7 @@ import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmou
 import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsAmountAll.json"
 import { calculateLabColorSimilarity } from "./CalculateSimilarity";
 import { consoleLogColors } from "../../utils/consoleLogColors";
-import { IS_EVALUATE_TIMING_DRAW_COLOR, SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR } from "../../config/constants";
+import { IS_EVALUATE_TIMING_DRAW_COLOR, MAX_RECOMMENDED_COLOR_SCHEME_LENGTH, SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR } from "../../config/constants";
 import { PrecisionAtK } from "../../utils/PrecisionAtK";
 import { RecallAtK } from "../../utils/RecallAtK";
 
@@ -19,8 +19,7 @@ let evaluatedUsedColorSchemeCount = 0;
 const IS_PRINT_IS_EXIST_SAME_COLOR = true;
 
 let recalls: RecallAtK[] = [];
-//for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
   recalls[i] = {
     k: i,
     recall: 0
