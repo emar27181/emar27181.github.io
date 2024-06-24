@@ -7,6 +7,7 @@ import { calculateLabColorSimilarity } from "./CalculateSimilarity";
 import { consoleLogColors } from "../../utils/consoleLogColors";
 import { IS_EVALUATE_TIMING_DRAW_COLOR, SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR } from "../../config/constants";
 import { PrecisionAtK } from "../../utils/PrecisionAtK";
+import { RecallAtK } from "../../utils/RecallAtK";
 
 // compareCountSum: 使用配色と推薦配色の比較を行った回数を保存する変数
 // sumRecommendColorSchemeExcludeFirstColorReco: 1色目を基に推薦するのを除外した推薦配色群の合計
@@ -15,7 +16,17 @@ import { PrecisionAtK } from "../../utils/PrecisionAtK";
 let compareCountSum = 0;
 let sumRecommendColorSchemeExcludeFirstColorReco = 0;
 let evaluatedUsedColorSchemeCount = 0;
-const IS_PRINT_IS_EXIST_SAME_COLOR = false;
+const IS_PRINT_IS_EXIST_SAME_COLOR = true;
+
+let recalls: RecallAtK[] = [];
+//for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
+for (let i = 0; i < 100; i++) {
+  recalls[i] = {
+    k: i,
+    recall: 0
+  }
+}
+
 
 // 評価対象の使用配色の数
 //function calculateEvaluatedUsedColorSchemeCount() {
@@ -64,8 +75,8 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
   let dataRecomenndColorsAmount = outputRecommendColorsAmountAll[recommendIndex].dataRecommendColorsAmount;
   let recomenndColorsAmount = dataRecomenndColorsAmount.map(item => item.colorsAmount); // 配色を抽出し代入
   sumRecommendColorSchemeExcludeFirstColorReco += recomenndColorsAmount.length;
-
   const p = new p5(() => { });
+
   // recommend[][]にused[colorSchemeNumber][colorNumber+1](次の色)が含まれているかどうかの確認
   for (let i = 0; i < recomenndColorsAmount.length; i++) {
     // simValue: used[colorSchemeNumber][colorNumber]に対するrecommend[i]の相違度
@@ -89,10 +100,16 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
 
         if (IS_PRINT_IS_EXIST_SAME_COLOR) {
           consoleLogColors(("■■■reco=“" + recomenndColorsAmount[i][j].color + "”■■■■■■■■■"), recomenndColorsAmount[i][j].color);
-          let text = ("推薦配色の中に次の色が含まれていました．(recomenndColorsAmount[" + i + "][" + j + "].color = " + recomenndColorsAmount[i][j].color + ", compareCount = " + compareCount + ", simValue = " + simValue + ")");
+          let text = ("推薦配色の中に次の色が含まれていました．(recomenndColorsAmount[" + i + "][" + j + "].color = " + recomenndColorsAmount[i][j].color + ", k = " + (i + 1) + ", simValue = " + simValue + ")");
+          //let text = ("推薦配色の中に次の色が含まれていました．(recomenndColorsAmount[" + i + "][" + j + "].color = " + recomenndColorsAmount[i][j].color + ", compareCount = " + compareCount + ", simValue = " + simValue + ")");
           consoleLogColors(text, "#AA0000");
         }
         compareCountSum += compareCount;
+
+        //for (let k = compareCount; k < recalls.length; k++) {
+        for (let k = i + 1; k < recalls.length; k++) {
+          recalls[k].recall++;
+        }
         return true;
       }
     }
@@ -101,7 +118,8 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
   // 推薦配色の中に次の色が含まれていなかった場合
   //console.log("推薦配色の中に次の色が含まれていませんでした．(compareCount = " + compareCount + ")");
   if (IS_PRINT_IS_EXIST_SAME_COLOR) {
-    let text = ("推薦配色の中に次の色が含まれていませんでした．(compareCount = " + compareCount + ")");
+    //let text = ("推薦配色の中に次の色が含まれていませんでした．(compareCount = " + compareCount + ")");
+    let text = ("推薦配色の中に次の色が含まれていませんでした．(k = " + recomenndColorsAmount.length + ")");
     consoleLogColors(text, "#0000DD");
   }
   compareCountSum += compareCount;
@@ -128,71 +146,71 @@ export function evaluateRecommendColorSchemes(): PrecisionAtK[] {
 
   // 表示させるかどうかを保存する変数によってp@kの計算
   //for (let simValueThresholdIsDisplay = 100; simValueThresholdIsDisplay <= 100;) {
-    compareCountSum = 0;
-    sumRecommendColorSchemeExcludeFirstColorReco = 0;
+  compareCountSum = 0;
+  sumRecommendColorSchemeExcludeFirstColorReco = 0;
 
-    // correctCount: 推薦した配色群の中で次に塗る色を予測できていていた個数
-    // sumRecommendColorScheme: 推薦配色群の合計
-    let correctCount = 0;
+  // correctCount: 推薦した配色群の中で次に塗る色を予測できていていた個数
+  // sumRecommendColorScheme: 推薦配色群の合計
+  let correctCount = 0;
 
-    for (let i = 0; i < recommendColorsAmountAll.length; i++) {
-      let colorSchemeNumber = recommendColorsAmountAll[i].LOAD_NUMBER[0];
-      let colorNumber = recommendColorsAmountAll[i].LOAD_NUMBER[1];
-      let dataRecomenndColorsAmount = recommendColorsAmountAll[i].dataRecommendColorsAmount;
-      //sumRecommendColorScheme += dataRecomenndColorsAmount.length;
+  for (let i = 0; i < recommendColorsAmountAll.length; i++) {
+    let colorSchemeNumber = recommendColorsAmountAll[i].LOAD_NUMBER[0];
+    let colorNumber = recommendColorsAmountAll[i].LOAD_NUMBER[1];
+    let dataRecomenndColorsAmount = recommendColorsAmountAll[i].dataRecommendColorsAmount;
+    //sumRecommendColorScheme += dataRecomenndColorsAmount.length;
 
-      // 1色目(used[colorSchemeNumber][0])を塗った後の2色目(used[colorSchemeNumber][1])を当てるのはほぼ不可能なためスキップ
-      //if (colorNumber === 0) { continue; }
+    // 1色目(used[colorSchemeNumber][0])を塗った後の2色目(used[colorSchemeNumber][1])を当てるのはほぼ不可能なためスキップ
+    //if (colorNumber === 0) { continue; }
 
 
-      // isEvaluateTiming: 今スロットに入っている色を評価するかどうかを保存する変数
-      let isEvaluateTiming = false;
-      for (let t = 0; t < IS_EVALUATE_TIMING_DRAW_COLOR.length; t++) {
-        if (colorNumber === IS_EVALUATE_TIMING_DRAW_COLOR[t]) {
-          isEvaluateTiming = true;
-        }
+    // isEvaluateTiming: 今スロットに入っている色を評価するかどうかを保存する変数
+    let isEvaluateTiming = false;
+    for (let t = 0; t < IS_EVALUATE_TIMING_DRAW_COLOR.length; t++) {
+      if (colorNumber === IS_EVALUATE_TIMING_DRAW_COLOR[t]) {
+        isEvaluateTiming = true;
       }
+    }
 
-      // 評価するタイミングでは無かった場合，何もせず修了(次の色の処理へ移動)
-      if (!isEvaluateTiming) { continue; }
+    // 評価するタイミングでは無かった場合，何もせず修了(次の色の処理へ移動)
+    if (!isEvaluateTiming) { continue; }
 
-      //console.log("evaluate of used[" + colorSchemeNumber + "][" + colorNumber + "] is called");
+    //console.log("evaluate of used[" + colorSchemeNumber + "][" + colorNumber + "] is called");
 
-      // 次の色が含まれているかどうかの評価
+    // 次の色が含まれているかどうかの評価
     //if (isColorPaintNext(colorSchemeNumber, colorNumber, i, simValueThresholdIsDisplay, SIM_VALUE_SAME_COLOR)) {
     if (isColorPaintNext(colorSchemeNumber, colorNumber, i, SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR)) {
-        correctCount++;
-      }
+      correctCount++;
     }
+  }
 
-    let newK = compareCountSum;
-    let newPrecision = (Math.round((correctCount / compareCountSum) * 100)) / 100;
-    const newPrecisionAtK: PrecisionAtK = {
-      precision: newPrecision,
-      k: newK
-    };
-    precisions.push(newPrecisionAtK);
+  let newK = compareCountSum;
+  let newPrecision = (Math.round((correctCount / compareCountSum) * 100)) / 100;
+  const newPrecisionAtK: PrecisionAtK = {
+    precision: newPrecision,
+    k: newK
+  };
+  precisions.push(newPrecisionAtK);
 
-    console.log("--- (表示(評価)するかどうかを判定する相違度の閾値) = " + simValueThresholdIsDisplay + " -----");
+  console.log(recalls);
   console.log("--- (表示(評価)するかどうかを判定する相違度の閾値) = " + SIM_VALUE_DISPLAY_LIMIT + " -----");
   //console.log("--- (表示(評価)するかどうかを判定する相違度の閾値) = " + simValueThresholdIsDisplay + " -----");
-    console.log("次に塗る色を予測できていていた確率((次の色があった数)/(評価した使用配色の数))は" + Math.round(correctCount / evaluatedUsedColorSchemeCount * 100) + "%(" + correctCount + "/" + evaluatedUsedColorSchemeCount + ")です．");
-    let text = ("推薦した配色群の中で次に塗る色を予測できていていた確率: p@" + compareCountSum + " = " + (Math.round((correctCount / compareCountSum) * 100)) / 100 + " (" + correctCount + "/" + compareCountSum + ")です．\n");
-    consoleLogColors(text, "#AA0000");
-    //console.log("推薦した配色群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / compareCountSum * 100) + "%(" + correctCount + "/" + compareCountSum + ")です．");
+  console.log("次に塗る色を予測できていていた確率((次の色があった数)/(評価した使用配色の数))は" + Math.round(correctCount / evaluatedUsedColorSchemeCount * 100) + "%(" + correctCount + "/" + evaluatedUsedColorSchemeCount + ")です．");
+  let text = ("推薦した配色群の中で次に塗る色を予測できていていた確率: p@" + compareCountSum + " = " + (Math.round((correctCount / compareCountSum) * 100)) / 100 + " (" + correctCount + "/" + compareCountSum + ")です．\n");
+  consoleLogColors(text, "#AA0000");
+  //console.log("推薦した配色群の中で次に塗る色を予測できていていた確率は" + Math.round(correctCount / compareCountSum * 100) + "%(" + correctCount + "/" + compareCountSum + ")です．");
 
 
-    // 閾値のインクリメント
+  // 閾値のインクリメント
   //simValueThresholdIsDisplay += 101
   /*
-    if (simValueThresholdIsDisplay < 10) {
-      simValueThresholdIsDisplay++;
-    }
-    else if (simValueThresholdIsDisplay < 50) {
-      simValueThresholdIsDisplay += 5;
-    }
-    else {
-      simValueThresholdIsDisplay += 10
+  if (simValueThresholdIsDisplay < 10) {
+    simValueThresholdIsDisplay++;
+  }
+  else if (simValueThresholdIsDisplay < 50) {
+    simValueThresholdIsDisplay += 5;
+  }
+  else {
+    simValueThresholdIsDisplay += 10
   }*/
   //}
 
