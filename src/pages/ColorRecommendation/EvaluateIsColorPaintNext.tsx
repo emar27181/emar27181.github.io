@@ -28,8 +28,16 @@ for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
 }
 
 
+// 生成された推薦する配色の評価をまとめて行う関数
+export function evaluateRecommendColorSchemes(): RecallAtK[] {
+
+  createRecalls([0, 1]);
+
+  return recalls;
+}
+
 // 評価対象の使用配色の数を計算する関数
-function calculateEvaluatedUsedColorSchemeCount(IS_EVALUATE_TIMING_DRAW_COLOR: number[]): number{
+function calculateEvaluatedUsedColorSchemeCount(IS_EVALUATE_TIMING_DRAW_COLOR: number[]): number {
   let evaluatedUsedColorSchemeCountValue = 0;
   for (let i = 0; i < inputOrderUsedColorScheme.length; i++) {
     for (let j = 0; j < inputOrderUsedColorScheme[i].length; j++) {
@@ -132,13 +140,6 @@ export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color, simValueThre
   return (simValue <= simValueThresholdIsSameColor);
 }
 
-// 生成された推薦する配色の評価をまとめて行う関数
-export function evaluateRecommendColorSchemes(): RecallAtK[] {
-
-  createRecalls([0,1]);
-
-  return recalls;
-}
 
 // recall@kのデータを生成する関数
 function createRecalls(isEvaluatedTimingDrawColor: number[]) {
@@ -152,7 +153,7 @@ function createRecalls(isEvaluatedTimingDrawColor: number[]) {
   for (let i = 0; i < recommendColorsAmountAll.length; i++) {
     sumRecommendColorScheme += recommendColorsAmountAll[i].dataRecommendColorsAmount.length;
   }
-  let evaluatedUsedColorSchemeCount:number = calculateEvaluatedUsedColorSchemeCount(isEvaluatedTimingDrawColor);
+  let evaluatedUsedColorSchemeCount: number = calculateEvaluatedUsedColorSchemeCount(isEvaluatedTimingDrawColor);
   console.log("評価した使用配色の数は" + evaluatedUsedColorSchemeCount + "です．(used[n][" + isEvaluatedTimingDrawColor + "]の次の色が含まれているかどうか)(n=0,1,2...))");
 
   // recall@kの計算
