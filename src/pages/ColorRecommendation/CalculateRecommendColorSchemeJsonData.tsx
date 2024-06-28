@@ -20,10 +20,10 @@ export function CalculateRecommendColorSchemeJsonData(colorSchemeNumber: number,
   // 推薦する配色群を保存する二重配列を初期化
   let recommendedColorSchemeAmount: ColorAmount[][] = [];
 
-  // 引数で受け取った配色を基に推薦する配色群を計算
+  // 引数で受け取った配色を基に推薦する配色群を計算(17パターン(2024/06/28時点))
   updateRecommendColorSchemeAmount(colorsAmount, recommendedColorSchemeAmount);
 
-  //推薦された配色群の明度が異なるバリエーションを追加
+  //推薦された配色群の明度が異なるバリエーションを追加(+2バリエーション(2024/06/28))
   const RECOMMEND_LENGTH = recommendedColorSchemeAmount.length;
   for (let i = 0; i < RECOMMEND_LENGTH; i++) {
     addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, + LIGHTNESS_DIFF);
@@ -71,8 +71,8 @@ export function updateRecommendColorSchemeAmount(baseColorsAmount: ColorAmount[]
   // ベースカラーを基に配列に配色を追加
   calculateDominantColor(recommendColorSchemeAmount, baseColor);
   calculateDyadColor(recommendColorSchemeAmount, baseColor);
-  calculateSplitComplementaryColor(recommendColorSchemeAmount, baseColor, 1);
-  calculateSplitComplementaryColor(recommendColorSchemeAmount, baseColor, 2);
+  calculateSplitComplementaryColor(recommendColorSchemeAmount, baseColor, 1); // ※スプリットコンプリメンタリーのみ3パターン推薦配色を追加
+  calculateSplitComplementaryColor(recommendColorSchemeAmount, baseColor, 2); // ※スプリットコンプリメンタリーのみ3パターン推薦配色を追加
   calculateTetradeColor(recommendColorSchemeAmount, baseColor);
   calculateTriadColor(recommendColorSchemeAmount, baseColor);
   calculateDominantTone(recommendColorSchemeAmount, baseColor);
