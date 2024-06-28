@@ -5,7 +5,7 @@ import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmou
 import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsAmountAll.json"
 import { calculateLabColorSimilarity } from "./CalculateSimilarity";
 import { consoleLogColors } from "../../utils/consoleLogColors";
-import { MAX_RECOMMENDED_COLOR_SCHEME_LENGTH, SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR } from "../../config/constants";
+import { MAX_RECOMMENDED_COLOR_SCHEME_LENGTH, SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR, IS_EVALUATE_TIMING_DRAW_COLOR } from "../../config/constants";
 import { PrecisionAtK } from "../../utils/PrecisionAtK";
 import { RecallAtK } from "../../utils/RecallAtK";
 
@@ -31,7 +31,7 @@ for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
 // 生成された推薦する配色の評価をまとめて行う関数
 export function evaluateRecommendColorSchemes(): RecallAtK[] {
 
-  createRecalls([0, 1]);
+  createRecalls(IS_EVALUATE_TIMING_DRAW_COLOR);
 
   return recalls;
 }
