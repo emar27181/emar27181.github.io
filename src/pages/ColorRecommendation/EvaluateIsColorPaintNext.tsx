@@ -23,7 +23,8 @@ let recalls: RecallAtK[] = [];
 for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
   recalls[i] = {
     k: i,
-    recall: 0
+    recall: 0,
+    colorCountAve: 0,
   }
 }
 
@@ -32,8 +33,31 @@ for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
 export function evaluateRecommendColorSchemes(): RecallAtK[] {
 
   createRecalls(IS_EVALUATE_TIMING_DRAW_COLOR);
+  updateRecallsColorCountAve();
 
   return recalls;
+}
+
+// k種類目の配色を推薦するときの色の数の平均を計算する関数
+export function updateRecallsColorCountAve() {
+  let recommendColorsAmountAll = outputRecommendColorsAmountAll;
+
+  // illust: 読込んだイラストの番号
+  for (let illust = 0; illust < recommendColorsAmountAll.length; illust++) {
+    //console.log("---illust = " + illust + "------------");
+
+    // patternNum: 配色パターンの番号
+    for (let patternNum = 0; patternNum < recommendColorsAmountAll[illust].dataRecommendColorsAmount.length; patternNum++) {
+      //console.log("[" + patternNum + "] = " + recommendColorsAmountAll[illust].dataRecommendColorsAmount[patternNum].colorsAmount.length);
+      recalls[patternNum].colorCountAve += recommendColorsAmountAll[illust].dataRecommendColorsAmount[patternNum].colorsAmount.length;
+    }
+  }
+
+  for (let i = 0; i < recalls.length; i++) {
+    let ave = recalls[i].colorCountAve / recommendColorsAmountAll.length;
+    ave = Math.round(ave * 100) / 100;
+    recalls[i].colorCountAve = ave;
+  }
 }
 
 // 評価対象の使用配色の数を計算する関数
