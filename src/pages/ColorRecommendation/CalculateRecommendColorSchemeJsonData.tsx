@@ -4,7 +4,7 @@ import '../../App.css'
 import { ColorAmount } from '../../utils/ColorAmount';
 import p5 from 'p5';
 import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTetradeColor, calculateTriadColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor, addColorSchemesLightnessVariations, calculatePentadColorBkW, calculateHexadBkWColor } from './CalculateColorScheme';
-import { LIGHTNESS_DIFF } from '../../config/constants';
+import { LIGHTNESS_DIFF, VARIATIONS_LIGHTNESS_DIFF } from '../../config/constants';
 import { DataRecommendColorAmount } from '../../utils/DataRecommendColorAmount';
 import { convertToJsonData } from './ConvertToJsonData';
 import { JsonDataRecommendColorScheme } from '../../utils/JsonDataRecommendColorScheme';
@@ -24,11 +24,15 @@ export function CalculateRecommendColorSchemeJsonData(colorSchemeNumber: number,
   updateRecommendColorSchemeAmount(colorsAmount, recommendedColorSchemeAmount);
 
   //推薦された配色群の明度が異なるバリエーションを追加(+2バリエーション(2024/06/28))
+  addRecommendColorValiations(recommendedColorSchemeAmount);
+  /*
   const RECOMMEND_LENGTH = recommendedColorSchemeAmount.length;
   for (let i = 0; i < RECOMMEND_LENGTH; i++) {
-    addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, + LIGHTNESS_DIFF);
-    addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, - LIGHTNESS_DIFF);
+
+    //addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, + LIGHTNESS_DIFF);
+    //addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, - LIGHTNESS_DIFF);
   }
+  */
 
   // 推薦した配色群と使用した色の類似度の計算と配列への代入
   let similarityValues = updateSimilarityValues(colorsAmount, recommendedColorSchemeAmount);
@@ -56,6 +60,19 @@ export function CalculateRecommendColorSchemeJsonData(colorSchemeNumber: number,
 
   //return recommendedColorSchemeAmount;
   return addJsonData;
+}
+
+
+  //推薦された配色群に異なるバリエーションをまとめて追加する関数
+export function addRecommendColorValiations(recommendedColorSchemeAmount: ColorAmount[][]) {
+  const RECOMMEND_LENGTH = recommendedColorSchemeAmount.length;
+  for (let i = 0; i < RECOMMEND_LENGTH; i++) {
+
+    for (let j = 0; j < VARIATIONS_LIGHTNESS_DIFF.length; j++) {
+      addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, + VARIATIONS_LIGHTNESS_DIFF[j]);
+    }
+
+  }
 }
 
 // 塗った配色を基にいくつかの配色を推薦する配色群を保存する二重配列を更新する関数
