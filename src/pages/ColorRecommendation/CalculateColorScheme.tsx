@@ -213,3 +213,8 @@ export function addColorSchemesLightnessVariations(colorsAmount: ColorAmount[][]
     colorsAmount[addIndexNumber].push(new ColorAmount(p.color(hue, saturation, lightness), baseColorScheme[j].amount));
   }
 }
+
+// 入力された配色技法を推定する関数
+export function estimateColorScheme(colorsAmount: ColorAmount[]): string {
+  return "testOutput";
+}

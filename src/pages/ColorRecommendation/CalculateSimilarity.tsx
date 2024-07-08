@@ -1,6 +1,7 @@
 import { RGBColor, LabColor, diff, rgb_to_lab } from 'color-diff';
 import { ColorAmount } from '../../utils/ColorAmount';
 import p5, { Color } from 'p5';
+import { estimateColorScheme } from './CalculateColorScheme';
 
 const DEBUG = false;
 
@@ -180,6 +181,7 @@ export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], co
   }
 
   //console.log(minIndexNumberArray);
+  console.log(estimateColorScheme(colorsAmount2));
 
   return (sumSimilarity / colorsAmount1.length);
 }
