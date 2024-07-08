@@ -2,6 +2,7 @@ import { RGBColor, LabColor, diff, rgb_to_lab } from 'color-diff';
 import { ColorAmount } from '../../utils/ColorAmount';
 import p5, { Color } from 'p5';
 import { estimateColorScheme } from './CalculateColorScheme';
+import inputLogUsedColorSchemes from './data/inputLogUsedColorSchemes.json'
 
 const DEBUG = false;
 
@@ -120,12 +121,36 @@ export function calculateColorsAmountSimilarityP1(colorsAmount1: ColorAmount[], 
 }
 */
 
+// 使用ログの中に引数で受け取った配色があるかどうかを確認する関数
+export function searchLogColorScheme(colorscheme: string) {
+  for (let i = 0; i < inputLogUsedColorSchemes.length; i++) {
+    if (inputLogUsedColorSchemes[i].colorScheme === colorscheme) {
+      return inputLogUsedColorSchemes[i].count;
+    }
+  }
+  return 0;
+}
+
+// 配色技法の使用率によって変動する相違度の調整値を求める関数
+// ex) イラストのログを受け取って高頻度(１０枚中７枚とか)に使われた配色技法は優先度を高くする
+export function calcSimDiffByUseRate(colorsAmount: ColorAmount[]) {
+  //MAX_COUNT: ログのイラストの枚数
+  //colorScheme: 比較される配色
+  //count: 比較される配色のログの中での出現回数
+  const MAX_COUNT = 10;
+  let colorScheme = estimateColorScheme(colorsAmount);
+  let count = searchLogColorScheme(colorScheme);
+
+  console.log(colorScheme + ": " + (MAX_COUNT - count));
+
+  return (MAX_COUNT - count);
+}
+
 // 
 export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
-
-  //console.log(minIndexNumberArray);
   // 推薦する配色の過去の使用率に合わせて調整値を設定
-  console.log(estimateColorScheme(colorsAmount2));
+  // simDiff: 出現回数が多い程，小さくなる相違度の調整値(0 <= simDiff <= 10)
+  let simDiff = calcSimDiffByUseRate(colorsAmount2);
 
   // colorsAmount1: 使用された配色
   // colorsAmount2: 比較される配色
@@ -188,5 +213,8 @@ export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], co
     }
   }
 
-  return (sumSimilarity / colorsAmount1.length);
+  let simValue = sumSimilarity / colorsAmount1.length;
+  simValue += simDiff;
+
+  return (simValue);
 }
