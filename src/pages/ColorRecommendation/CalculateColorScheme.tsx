@@ -234,13 +234,13 @@ function calcAngleDiff(angle1: number, angle2: number): number {
 export function estimateColorScheme(colorsAmount: ColorAmount[]): string {
   //console.log(colorsAmount.length);
 
-  let colorScheme: ColorScheme = "analogyColor"
+  let colorScheme: ColorScheme = "init";
   const BASE_COLOR_HUE = p.hue(colorsAmount[0].color);
 
   // 色相差の計算
   let hueDiffs: number[] = [];
   for (let i = 1; i < colorsAmount.length; i++) {
-    hueDiffs.push(calcAngleDiff(BASE_COLOR_HUE, p.hue(colorsAmount[i].color)));
+    hueDiffs.push(Math.round(calcAngleDiff(BASE_COLOR_HUE, p.hue(colorsAmount[i].color))));
     //console.log(calcAngleDiff(BASE_COLOR_HUE, p.hue(colorsAmount[i].color)));
   }
 
@@ -257,8 +257,9 @@ export function estimateColorScheme(colorsAmount: ColorAmount[]): string {
       colorScheme = "dyadColor";
     }
   }
+
+  //推薦配色が3色の場合
   else if (colorsAmount.length === 3) {
-    console.log(hueDiffs);
     if (hueDiffs[0] == 120 && hueDiffs[1] == 120) {
       colorScheme = "triadColor";
     }
@@ -273,14 +274,33 @@ export function estimateColorScheme(colorsAmount: ColorAmount[]): string {
     }
   }
 
+  //推薦配色が4色の場合
   else if (colorsAmount.length === 4) {
+    if (hueDiffs[0] == 90 && hueDiffs[1] == 180 && hueDiffs[2] == 90) {
+      colorScheme = "tetradeColor";
+    }
+
   }
 
 
+  //推薦配色が5色の場合
   else if (colorsAmount.length === 5) {
+    if (hueDiffs[0] == 72 && hueDiffs[1] == 144 && hueDiffs[2] == 144 && hueDiffs[3] == 72) {
+      colorScheme = "pentadColor";
+    }
+    else if (hueDiffs[0] == 0 && hueDiffs[1] == 120 && hueDiffs[2] == 0 && hueDiffs[3] == 120) {
+      colorScheme = "pentadBkwColor";
+    }
   }
 
+  //推薦配色が6色の場合
   else if (colorsAmount.length === 6) {
+    if (hueDiffs[0] == 60 && hueDiffs[1] == 120 && hueDiffs[2] == 180 && hueDiffs[3] == 120 && hueDiffs[4] == 60) {
+      colorScheme = "hexadColor";
+    }
+    else if (hueDiffs[0] == 0 && hueDiffs[1] == 90 && hueDiffs[2] == 180 && hueDiffs[3] == 0 && hueDiffs[4] == 90) {
+      colorScheme = "hexadBkwColor";
+    }
   }
 
   return colorScheme;
