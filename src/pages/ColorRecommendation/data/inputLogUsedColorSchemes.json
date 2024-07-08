@@ -1,0 +1,18 @@
+[
+  {
+    "colorScheme": "dominantColor",
+    "count": 4
+  },
+  {
+    "colorScheme": "dyadColor",
+    "count": 3
+  },
+  {
+    "colorScheme": "dominantTone",
+    "count": 2
+  },
+  {
+    "colorScheme": "triadColor",
+    "count": 1
+  }
+]
