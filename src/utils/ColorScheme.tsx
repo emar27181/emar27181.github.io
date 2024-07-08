@@ -15,4 +15,5 @@ export type ColorScheme =
   "dominantColor" |
   "analogyColor" |
   "intermediateColor" |
-  "dominantTone";
+  "dominantTone" |
+  "init";
