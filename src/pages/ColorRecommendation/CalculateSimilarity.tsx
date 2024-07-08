@@ -22,6 +22,8 @@ export function calculateLabColorSimilarity(p5Color1: Color, p5Color2: Color): n
   return diff(labColor1, labColor2);
 }
 
+
+/*
 export function calculateColorsAmountSimilarityP0(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
 
   const p = new p5(() => { });
@@ -116,6 +118,7 @@ export function calculateColorsAmountSimilarityP1(colorsAmount1: ColorAmount[], 
 
   return (sumSimilarity / colorsAmount1.length);
 }
+*/
 
 // 
 export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
