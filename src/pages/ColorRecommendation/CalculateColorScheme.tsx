@@ -1,6 +1,7 @@
 import p5 from "p5";
 import { ColorAmount } from "./DisplayUsedColorRatio";
 import { LIGHTNESS_DIFF } from "../../config/constants";
+import { ColorScheme } from "../../utils/ColorScheme";
 
 const p = new p5(() => { });
 
@@ -216,5 +217,7 @@ export function addColorSchemesLightnessVariations(colorsAmount: ColorAmount[][]
 
 // 入力された配色技法を推定する関数
 export function estimateColorScheme(colorsAmount: ColorAmount[]): string {
-  return "testOutput";
+  let colorScheme: ColorScheme = "analogyColor"
+
+  return colorScheme;
 }
