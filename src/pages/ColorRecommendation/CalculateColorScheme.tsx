@@ -215,6 +215,12 @@ export function addColorSchemesLightnessVariations(colorsAmount: ColorAmount[][]
   }
 }
 
+// 角度の差を計算する関数
+function calcAngleDiff(angle1: number, angle2: number): number {
+  let diff = Math.abs(angle1 - angle2);
+  return diff > 180 ? 360 - diff : diff;
+}
+
 // 入力された配色技法を推定する関数
 export function estimateColorScheme(colorsAmount: ColorAmount[]): string {
   let colorScheme: ColorScheme = "analogyColor"
