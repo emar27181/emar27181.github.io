@@ -119,6 +119,11 @@ export function calculateColorsAmountSimilarityP1(colorsAmount1: ColorAmount[], 
 
 // 
 export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
+
+  //console.log(minIndexNumberArray);
+  // 推薦する配色の過去の使用率に合わせて調整値を設定
+  console.log(estimateColorScheme(colorsAmount2));
+
   // colorsAmount1: 使用された配色
   // colorsAmount2: 比較される配色
   const p = new p5(() => { });
@@ -175,13 +180,10 @@ export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], co
 
   for (let i = 0; i < minIndexNumberArray.length; i++) {
     colorsAmount2.splice(minIndexNumberArray[i], 1);
-    for(let j = 0; j < minIndexNumberArray.length; j++) {
+    for (let j = 0; j < minIndexNumberArray.length; j++) {
       minIndexNumberArray[j] -= 1;
     }
   }
-
-  //console.log(minIndexNumberArray);
-  console.log(estimateColorScheme(colorsAmount2));
 
   return (sumSimilarity / colorsAmount1.length);
 }
