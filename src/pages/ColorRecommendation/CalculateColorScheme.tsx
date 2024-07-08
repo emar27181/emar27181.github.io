@@ -246,7 +246,6 @@ export function estimateColorScheme(colorsAmount: ColorAmount[]): string {
 
   //推薦配色が2色の場合
   if (colorsAmount.length === 2) {
-    //console.log(hueDiffs);
 
     if (hueDiffs[0] == 30) {
       colorScheme = "analogyColor";
@@ -259,6 +258,19 @@ export function estimateColorScheme(colorsAmount: ColorAmount[]): string {
     }
   }
   else if (colorsAmount.length === 3) {
+    console.log(hueDiffs);
+    if (hueDiffs[0] == 120 && hueDiffs[1] == 120) {
+      colorScheme = "triadColor";
+    }
+    else if (hueDiffs[0] == 0 && hueDiffs[1] == 0) {
+      colorScheme = "dominantTone";
+    }
+    else if (hueDiffs[0] == 30 && hueDiffs[1] == 30) {
+      colorScheme = "dominantColor";
+    }
+    else {
+      colorScheme = "splitComplementaryColor";
+    }
   }
 
   else if (colorsAmount.length === 4) {
