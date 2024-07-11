@@ -1,9 +1,11 @@
 import p5 from "p5";
 import { ColorAmount } from "./DisplayUsedColorRatio";
 import { LIGHTNESS_DIFF } from "../../config/constants";
+import { ColorScheme } from "../../utils/ColorScheme";
 
 const p = new p5(() => { });
 
+// トライアド(3色)
 export function calculateTriadColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
   let i = colorAmount.length;
   colorAmount[i] = [];
@@ -17,12 +19,12 @@ export function calculateTriadColor(colorAmount: ColorAmount[][], baseColor: p5.
   colorAmount[i].push(new ColorAmount(p.color((hue + 240) % 360, saturation, lightness), 33));
 }
 
-// スプリットコンプリメンタリー
+// スプリットコンプリメンタリー(3色)
 export function calculateSplitComplementaryColor(colorAmount: ColorAmount[][], baseColor: p5.Color, hueDifference: number) {
   let i = colorAmount.length;
   colorAmount[i] = [];
-  colorAmount[i+1] = [];
-  colorAmount[i+2] = [];
+  colorAmount[i + 1] = [];
+  colorAmount[i + 2] = [];
 
   p.colorMode(p.HSL);
   let hue = p.hue(baseColor);
@@ -31,20 +33,21 @@ export function calculateSplitComplementaryColor(colorAmount: ColorAmount[][], b
 
   //ベースカラーが分裂していない色相の場合(「色彩検定～」p190参照)
   colorAmount[i].push(new ColorAmount(baseColor, 70)); //←分裂していない色相
-  colorAmount[i].push(new ColorAmount(p.color((hue + (180 - 15*hueDifference)) % 360, saturation, lightness), 15));
-  colorAmount[i].push(new ColorAmount(p.color((hue + (180 + 15*hueDifference)) % 360, saturation, lightness), 15));
+  colorAmount[i].push(new ColorAmount(p.color((hue + (180 - 15 * hueDifference)) % 360, saturation, lightness), 15));
+  colorAmount[i].push(new ColorAmount(p.color((hue + (180 + 15 * hueDifference)) % 360, saturation, lightness), 15));
 
   //ベースカラーが分裂する色相(左側)の場合(「色彩検定～」p190参照)
-  colorAmount[i+1].push(new ColorAmount(baseColor, 15));
-  colorAmount[i+1].push(new ColorAmount(p.color((hue + (180 - 15*hueDifference)) % 360, saturation, lightness), 70)); //←分裂していない色相
-  colorAmount[i+1].push(new ColorAmount(p.color((hue + (360 - 15*hueDifference*2)) % 360, saturation, lightness), 15));
+  colorAmount[i + 1].push(new ColorAmount(baseColor, 15));
+  colorAmount[i + 1].push(new ColorAmount(p.color((hue + (180 - 15 * hueDifference)) % 360, saturation, lightness), 70)); //←分裂していない色相
+  colorAmount[i + 1].push(new ColorAmount(p.color((hue + (360 - 15 * hueDifference * 2)) % 360, saturation, lightness), 15));
 
   //ベースカラーが分裂する色相(右側)の場合(「色彩検定～」p190参照)
-  colorAmount[i+2].push(new ColorAmount(baseColor, 15));
-  colorAmount[i+2].push(new ColorAmount(p.color((hue + (15*hueDifference*2)) % 360, saturation, lightness), 15));
-  colorAmount[i+2].push(new ColorAmount(p.color((hue + (180 + 15*hueDifference)) % 360, saturation, lightness), 15)); //←分裂していない色相
+  colorAmount[i + 2].push(new ColorAmount(baseColor, 15));
+  colorAmount[i + 2].push(new ColorAmount(p.color((hue + (15 * hueDifference * 2)) % 360, saturation, lightness), 15));
+  colorAmount[i + 2].push(new ColorAmount(p.color((hue + (180 + 15 * hueDifference)) % 360, saturation, lightness), 15)); //←分裂していない色相
 }
 
+// ダイアード(2色)
 export function calculateDyadColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
   let i = colorAmount.length;
   colorAmount[i] = [];
@@ -57,6 +60,7 @@ export function calculateDyadColor(colorAmount: ColorAmount[][], baseColor: p5.C
   colorAmount[i].push(new ColorAmount(p.color((hue + 180) % 360, saturation, lightness), 50));
 }
 
+// テトラード(4色)
 export function calculateTetradeColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
   let i = colorAmount.length;
   colorAmount[i] = [];
@@ -71,6 +75,7 @@ export function calculateTetradeColor(colorAmount: ColorAmount[][], baseColor: p
   colorAmount[i].push(new ColorAmount(p.color((hue + 270) % 360, saturation, lightness), 25));
 }
 
+// ペンタード(5色)
 export function calculatePentadColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
   let i = colorAmount.length;
   colorAmount[i] = [];
@@ -86,7 +91,7 @@ export function calculatePentadColor(colorAmount: ColorAmount[][], baseColor: p5
   colorAmount[i].push(new ColorAmount(p.color((hue + 288) % 360, saturation, lightness), 25));
 }
 
-// ペンタード配色(トライアド配色+白黒)
+// ペンタード配色(トライアド配色+白黒)(5色)
 export function calculatePentadColorBkW(colorAmount: ColorAmount[][], baseColor: p5.Color) {
   let i = colorAmount.length;
   colorAmount[i] = [];
@@ -102,6 +107,7 @@ export function calculatePentadColorBkW(colorAmount: ColorAmount[][], baseColor:
   colorAmount[i].push(new ColorAmount(p.color((hue + 240) % 360, saturation, lightness), 33));
 }
 
+// ヘキサード(6色)
 export function calculateHexadColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
   let i = colorAmount.length;
   colorAmount[i] = [];
@@ -118,7 +124,7 @@ export function calculateHexadColor(colorAmount: ColorAmount[][], baseColor: p5.
   colorAmount[i].push(new ColorAmount(p.color((hue + 300) % 360, saturation, lightness), 25));
 }
 
-// ヘクサード配色(テトラード+白黒)
+// ヘクサード(テトラード+白黒)(6色)
 export function calculateHexadBkWColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
   let i = colorAmount.length;
   colorAmount[i] = [];
@@ -135,6 +141,7 @@ export function calculateHexadBkWColor(colorAmount: ColorAmount[][], baseColor: 
   colorAmount[i].push(new ColorAmount(p.color((hue + 270) % 360, saturation, lightness), 25));
 }
 
+// ドミナントカラー(3色)
 export function calculateDominantColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
   let i = colorAmount.length;
   colorAmount[i] = [];
@@ -148,6 +155,7 @@ export function calculateDominantColor(colorAmount: ColorAmount[][], baseColor: 
   colorAmount[i].push(new ColorAmount(p.color((hue + 330) % 360, saturation, lightness), 5));
 }
 
+// アナロジー(2色)
 // 参考: https://webnaut.jp/design/645.html
 export function calculateAnalogyColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
   let i = colorAmount.length;
@@ -167,6 +175,7 @@ export function calculateAnalogyColor(colorAmount: ColorAmount[][], baseColor: p
   */
 }
 
+// インターミディエート(2色)
 // 参考: https://webnaut.jp/design/645.html
 export function calculateIntermediateColor(colorAmount: ColorAmount[][], baseColor: p5.Color) {
   let i = colorAmount.length;
@@ -181,6 +190,7 @@ export function calculateIntermediateColor(colorAmount: ColorAmount[][], baseCol
   colorAmount[i].push(new ColorAmount(p.color((hue + 90) % 360, saturation, lightness), 30));
 }
 
+// ドミナントトーン(3色)
 export function calculateDominantTone(colorAmount: ColorAmount[][], baseColor: p5.Color) {
   let i = colorAmount.length;
   colorAmount[i] = [];
@@ -212,4 +222,86 @@ export function addColorSchemesLightnessVariations(colorsAmount: ColorAmount[][]
     //console.log("[" + j + "] = (" + p.round(hue) + ", " + p.round(saturation) + "," + p.round(lightness) + ")");
     colorsAmount[addIndexNumber].push(new ColorAmount(p.color(hue, saturation, lightness), baseColorScheme[j].amount));
   }
+}
+
+// 角度の差を計算する関数
+function calcAngleDiff(angle1: number, angle2: number): number {
+  let diff = Math.abs(angle1 - angle2);
+  return diff > 180 ? 360 - diff : diff;
+}
+
+// 入力された配色技法を推定する関数
+export function estimateColorScheme(colorsAmount: ColorAmount[]): string {
+  //console.log(colorsAmount.length);
+
+  let colorScheme: ColorScheme = "init";
+  const BASE_COLOR_HUE = p.hue(colorsAmount[0].color);
+
+  // 色相差の計算
+  let hueDiffs: number[] = [];
+  for (let i = 1; i < colorsAmount.length; i++) {
+    hueDiffs.push(Math.round(calcAngleDiff(BASE_COLOR_HUE, p.hue(colorsAmount[i].color))));
+    //console.log(calcAngleDiff(BASE_COLOR_HUE, p.hue(colorsAmount[i].color)));
+  }
+
+  //推薦配色が2色の場合
+  if (colorsAmount.length === 2) {
+
+    if (hueDiffs[0] == 30) {
+      colorScheme = "analogyColor";
+    }
+    else if (hueDiffs[0] == 90) {
+      colorScheme = "intermediateColor";
+    }
+    else if (hueDiffs[0] == 180) {
+      colorScheme = "dyadColor";
+    }
+  }
+
+  //推薦配色が3色の場合
+  else if (colorsAmount.length === 3) {
+    if (hueDiffs[0] == 120 && hueDiffs[1] == 120) {
+      colorScheme = "triadColor";
+    }
+    else if (hueDiffs[0] == 0 && hueDiffs[1] == 0) {
+      colorScheme = "dominantTone";
+    }
+    else if (hueDiffs[0] == 30 && hueDiffs[1] == 30) {
+      colorScheme = "dominantColor";
+    }
+    else {
+      colorScheme = "splitComplementaryColor";
+    }
+  }
+
+  //推薦配色が4色の場合
+  else if (colorsAmount.length === 4) {
+    if (hueDiffs[0] == 90 && hueDiffs[1] == 180 && hueDiffs[2] == 90) {
+      colorScheme = "tetradeColor";
+    }
+
+  }
+
+
+  //推薦配色が5色の場合
+  else if (colorsAmount.length === 5) {
+    if (hueDiffs[0] == 72 && hueDiffs[1] == 144 && hueDiffs[2] == 144 && hueDiffs[3] == 72) {
+      colorScheme = "pentadColor";
+    }
+    else if (hueDiffs[0] == 0 && hueDiffs[1] == 120 && hueDiffs[2] == 0 && hueDiffs[3] == 120) {
+      colorScheme = "pentadBkwColor";
+    }
+  }
+
+  //推薦配色が6色の場合
+  else if (colorsAmount.length === 6) {
+    if (hueDiffs[0] == 60 && hueDiffs[1] == 120 && hueDiffs[2] == 180 && hueDiffs[3] == 120 && hueDiffs[4] == 60) {
+      colorScheme = "hexadColor";
+    }
+    else if (hueDiffs[0] == 0 && hueDiffs[1] == 90 && hueDiffs[2] == 180 && hueDiffs[3] == 0 && hueDiffs[4] == 90) {
+      colorScheme = "hexadBkwColor";
+    }
+  }
+
+  return colorScheme;
 }

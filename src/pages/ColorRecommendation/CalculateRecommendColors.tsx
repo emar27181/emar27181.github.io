@@ -16,7 +16,7 @@ import { LOAD_USED_COLOR_NUMBER, LOAD_USED_COLOR_SCHEME_NUMBER } from '../../con
 import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmount.json";
 import { DataRecommendColorAmount, addSimilarityValuesTorecommendColorsAmount } from '../../components/ButtonSaveColorScheme';
 import { JsonDataRecommendColorScheme } from '../../utils/JsonDataRecommendColorScheme';
-import { updateRecommendColorSchemeAmount } from './CalculateRecommendColorSchemeJsonData';
+import { addRecommendColorValiations, updateRecommendColorSchemeAmount } from './CalculateRecommendColorSchemeJsonData';
 
 const DEBUG = false;
 
@@ -64,11 +64,14 @@ export function CalculateRecommendColors() {
         //calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
 
         //推薦された配色群の明度が異なるバリエーションを追加
+        addRecommendColorValiations(recommendedColorSchemeAmount);
+        /*
         const RECOMMEND_LENGTH = recommendedColorSchemeAmount.length;
         for (let i = 0; i < RECOMMEND_LENGTH; i++) {
           addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, + LIGHTNESS_DIFF);
           addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, - LIGHTNESS_DIFF);
         }
+        */
 
         //推薦する配色群をjson型に変換されたデータに変換して代入
         filteredOrderUsedColorsAmount = convertToJsonData(orderUsedColorsAmount);
