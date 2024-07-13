@@ -3,6 +3,7 @@ import { ColorAmount } from '../../utils/ColorAmount';
 import p5, { Color } from 'p5';
 import { estimateColorScheme } from './CalculateColorScheme';
 import inputLogUsedColorSchemes from './data/inputLogUsedColorSchemes.json'
+import { LOG_ILLUSTLATION_COUNT } from '../../config/constants';
 
 const DEBUG = false;
 
@@ -134,16 +135,15 @@ export function searchLogColorScheme(colorscheme: string) {
 // 配色技法の使用率によって変動する相違度の調整値を求める関数
 // ex) イラストのログを受け取って高頻度(１０枚中７枚とか)に使われた配色技法は優先度を高くする
 export function calcSimDiffByUseRate(colorsAmount: ColorAmount[]) {
-  //MAX_COUNT: ログのイラストの枚数
   //colorScheme: 比較される配色
   //count: 比較される配色のログの中での出現回数
-  const MAX_COUNT = 10;
+
   let colorScheme = estimateColorScheme(colorsAmount);
   let count = searchLogColorScheme(colorScheme);
 
-  console.log(colorScheme + ": " + (MAX_COUNT - count));
+  console.log(colorScheme + ": " + (LOG_ILLUSTLATION_COUNT - count));
 
-  return (MAX_COUNT - count);
+  return (LOG_ILLUSTLATION_COUNT - count);
 }
 
 // 

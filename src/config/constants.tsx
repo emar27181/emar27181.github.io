@@ -21,3 +21,5 @@ export const MAX_RECOMMENDED_COLOR_SCHEME_LENGTH = 17 * (1 + VARIATIONS_LIGHTNES
 // [1]だとused[i][1]に対してrecommend_(i,1)[][]が生成され，used[i][2]が含まれているかどうかの評価がされる
 // [0, 1]だと上の評価に加えて，used[i][0]に対してrecommend_(i,0)[][]が生成され，used[i][1]が含まれているかどうかの評価がされる
 export const IS_EVALUATE_TIMING_DRAW_COLOR = [1]; 
+
+export const LOG_ILLUSTLATION_COUNT = 10; // 読込むログのイラストの枚数
