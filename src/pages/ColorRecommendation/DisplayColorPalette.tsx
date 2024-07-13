@@ -124,7 +124,7 @@ export function DisplayColorPalette() {
             p.text("[" + displayOrderIndex[i] + "]", X_RECOMMEND_COLOR_PALLETE - HEIGHT_COLOR_PALETTE + p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
           }
           p.fill(0);
-          p.text(p.round(similarityValues[displayOrderIndex[i]] * 10) / 10, X_RECOMMEND_COLOR_PALLETE + p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
+          p.text(p.round(similarityValues[displayOrderIndex[i]] * 100) / 100, X_RECOMMEND_COLOR_PALLETE + p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
 
         }
       }
