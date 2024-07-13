@@ -141,7 +141,7 @@ export function calcSimDiffByUseRate(colorsAmount: ColorAmount[]) {
   let colorScheme = estimateColorScheme(colorsAmount);
   let count = searchLogColorScheme(colorScheme);
 
-  console.log(colorScheme + ": " + (LOG_ILLUSTLATION_COUNT - count));
+  if (DEBUG) { console.log(colorScheme + ": " + (LOG_ILLUSTLATION_COUNT - count)); }
 
   return (LOG_ILLUSTLATION_COUNT - count);
 }
