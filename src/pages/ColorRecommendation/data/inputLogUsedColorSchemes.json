@@ -1,18 +1,14 @@
 [
   {
     "colorScheme": "dominantColor",
-    "count": 4
+    "count": 7
   },
   {
     "colorScheme": "dyadColor",
-    "count": 3
+    "count": 20
   },
   {
-    "colorScheme": "dominantTone",
-    "count": 2
-  },
-  {
-    "colorScheme": "triadColor",
-    "count": 1
+    "colorScheme": "splitComplementary",
+    "count": 18
   }
 ]
