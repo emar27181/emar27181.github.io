@@ -1,0 +1,2753 @@
+[
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG102-140x140.jpg",
+            "color": "#dda099",
+            "rate": 0.273,
+            "amount": -1
+        },
+        {
+            "color": "#f3f0f0",
+            "rate": 0.178,
+            "amount": -1
+        },
+        {
+            "color": "#b1bcc2",
+            "rate": 0.033,
+            "amount": -1
+        },
+        {
+            "color": "#e0d6cc",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG106-510x510.jpg",
+            "color": "#8a504f",
+            "rate": 0.023,
+            "amount": -1
+        },
+        {
+            "color": "#909fa6",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#cdcdcd",
+            "rate": 0.393,
+            "amount": -1
+        },
+        {
+            "color": "#fdfdfd",
+            "rate": 0.283,
+            "amount": -1
+        },
+        {
+            "color": "#bbcdd1",
+            "rate": 0.099,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG107-140x140.jpg",
+            "color": "#faf8f7",
+            "rate": 0.123,
+            "amount": -1
+        },
+        {
+            "color": "#c9d6db",
+            "rate": 0.114,
+            "amount": -1
+        },
+        {
+            "color": "#5e5e5e",
+            "rate": 0.103,
+            "amount": -1
+        },
+        {
+            "color": "#de967d",
+            "rate": 0.027,
+            "amount": -1
+        },
+        {
+            "color": "#6d4f4f",
+            "rate": 0.015,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG110-510x510.jpg",
+            "color": "#cfc8b5",
+            "rate": 0.06,
+            "amount": -1
+        },
+        {
+            "color": "#9ea3a7",
+            "rate": 0.046,
+            "amount": -1
+        },
+        {
+            "color": "#cac9c4",
+            "rate": 0.007,
+            "amount": -1
+        },
+        {
+            "color": "#ededed",
+            "rate": 0.336,
+            "amount": -1
+        },
+        {
+            "color": "#a07a7a",
+            "rate": 0.196,
+            "amount": -1
+        },
+        {
+            "color": "#a0b2b4",
+            "rate": 0.108,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG114-140x140.jpg",
+            "color": "#d1cfb8",
+            "rate": 0.012,
+            "amount": -1
+        },
+        {
+            "color": "#bdb0a7",
+            "rate": 0.005,
+            "amount": -1
+        },
+        {
+            "color": "#97a8b0",
+            "rate": 0.241,
+            "amount": -1
+        },
+        {
+            "color": "#e1d5d5",
+            "rate": 0.09,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.087,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG121-510x510.jpg",
+            "color": "#cb9595",
+            "rate": 0.135,
+            "amount": -1
+        },
+        {
+            "color": "#e9e3d5",
+            "rate": 0.057,
+            "amount": -1
+        },
+        {
+            "color": "#73716e",
+            "rate": 0.01,
+            "amount": -1
+        },
+        {
+            "color": "#d0b5ae",
+            "rate": 0.005,
+            "amount": -1
+        },
+        {
+            "color": "#66635e",
+            "rate": 0.003,
+            "amount": -1
+        },
+        {
+            "color": "#dae2e5",
+            "rate": 0.26,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.178,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG126-140x140.jpg",
+            "color": "#e2a8a7",
+            "rate": 0.245,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.079,
+            "amount": -1
+        },
+        {
+            "color": "#9eabb4",
+            "rate": 0.045,
+            "amount": -1
+        },
+        {
+            "color": "#baa5aa",
+            "rate": 0.007,
+            "amount": -1
+        },
+        {
+            "color": "#757575",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG127-140x140.jpg",
+            "color": "#a4b9ca",
+            "rate": 0.122,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.12,
+            "amount": -1
+        },
+        {
+            "color": "#7d7d7d",
+            "rate": 0.331,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG131-140x140.jpg",
+            "color": "#c5929b",
+            "rate": 0.116,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.024,
+            "amount": -1
+        },
+        {
+            "color": "#757575",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#eaf0f0",
+            "rate": 0.282,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG143.jpg",
+            "color": "#ddd3bb",
+            "rate": 0.201,
+            "amount": -1
+        },
+        {
+            "color": "#849aa5",
+            "rate": 0.11,
+            "amount": -1
+        },
+        {
+            "color": "#898582",
+            "rate": 0.028,
+            "amount": -1
+        },
+        {
+            "color": "#bbbac0",
+            "rate": 0.022,
+            "amount": -1
+        },
+        {
+            "color": "#d8c1b1",
+            "rate": 0.009,
+            "amount": -1
+        },
+        {
+            "color": "#6a8799",
+            "rate": 0.005,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.515,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG154-140x140.jpg",
+            "color": "#ecdccd",
+            "rate": 0.099,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.018,
+            "amount": -1
+        },
+        {
+            "color": "#ebe8e1",
+            "rate": 0.428,
+            "amount": -1
+        },
+        {
+            "color": "#4c4c4c",
+            "rate": 0.099,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG155-140x140.jpg",
+            "color": "#e8c8cd",
+            "rate": 0.052,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.013,
+            "amount": -1
+        },
+        {
+            "color": "#a09b97",
+            "rate": 0.003,
+            "amount": -1
+        },
+        {
+            "color": "#ebe8e1",
+            "rate": 0.429,
+            "amount": -1
+        },
+        {
+            "color": "#595959",
+            "rate": 0.167,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG156-140x140.jpg",
+            "color": "#cf9da6",
+            "rate": 0.062,
+            "amount": -1
+        },
+        {
+            "color": "#96b3bb",
+            "rate": 0.04,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.027,
+            "amount": -1
+        },
+        {
+            "color": "#b6acaa",
+            "rate": 0.011,
+            "amount": -1
+        },
+        {
+            "color": "#ebe8e1",
+            "rate": 0.464,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG158-140x140.jpg",
+            "color": "#80a1b0",
+            "rate": 0.084,
+            "amount": -1
+        },
+        {
+            "color": "#daa8b1",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#edebe5",
+            "rate": 0.466,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG160.jpg",
+            "color": "#ce9091",
+            "rate": 0.2,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.175,
+            "amount": -1
+        },
+        {
+            "color": "#b08485",
+            "rate": 0.091,
+            "amount": -1
+        },
+        {
+            "color": "#92777e",
+            "rate": 0.016,
+            "amount": -1
+        },
+        {
+            "color": "#90a3aa",
+            "rate": 0.015,
+            "amount": -1
+        },
+        {
+            "color": "#bf777a",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#eed8c1",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#ababab",
+            "rate": 0.003,
+            "amount": -1
+        },
+        {
+            "color": "#dfe0e1",
+            "rate": 0.41,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG162-2.jpg",
+            "color": "#92b3ba",
+            "rate": 0.119,
+            "amount": -1
+        },
+        {
+            "color": "#8dc7d5",
+            "rate": 0.072,
+            "amount": -1
+        },
+        {
+            "color": "#d5a0a8",
+            "rate": 0.068,
+            "amount": -1
+        },
+        {
+            "color": "#3d3d3d",
+            "rate": 0.03,
+            "amount": -1
+        },
+        {
+            "color": "#7293a4",
+            "rate": 0.012,
+            "amount": -1
+        },
+        {
+            "color": "#656565",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#737373",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#e4e4e4",
+            "rate": 0.268,
+            "amount": -1
+        },
+        {
+            "color": "#555555",
+            "rate": 0.194,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.121,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG163-140x140.jpg",
+            "color": "#f0e7d6",
+            "rate": 0.332,
+            "amount": -1
+        },
+        {
+            "color": "#deadb6",
+            "rate": 0.128,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.056,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG166-140x140.jpg",
+            "color": "#f6ebcb",
+            "rate": 0.258,
+            "amount": -1
+        },
+        {
+            "color": "#c4b3ac",
+            "rate": 0.078,
+            "amount": -1
+        },
+        {
+            "color": "#8daab2",
+            "rate": 0.025,
+            "amount": -1
+        },
+        {
+            "color": "#e5e5e5",
+            "rate": 0.015,
+            "amount": -1
+        },
+        {
+            "color": "#e2c2c7",
+            "rate": 0.013,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.01,
+            "amount": -1
+        },
+        {
+            "color": "#afc0c7",
+            "rate": 0.009,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG167-510x510.jpg",
+            "color": "#e1f0f5",
+            "rate": 0.312,
+            "amount": -1
+        },
+        {
+            "color": "#ddadad",
+            "rate": 0.179,
+            "amount": -1
+        },
+        {
+            "color": "#545454",
+            "rate": 0.091,
+            "amount": -1
+        },
+        {
+            "color": "#3e3d42",
+            "rate": 0.022,
+            "amount": -1
+        },
+        {
+            "color": "#f4f4f4",
+            "rate": 0.015,
+            "amount": -1
+        },
+        {
+            "color": "#504748",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#e4cacd",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG168-140x140.jpg",
+            "color": "#8caeb8",
+            "rate": 0.248,
+            "amount": -1
+        },
+        {
+            "color": "#f1e8e1",
+            "rate": 0.127,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.045,
+            "amount": -1
+        },
+        {
+            "color": "#738a98",
+            "rate": 0.007,
+            "amount": -1
+        },
+        {
+            "color": "#525252",
+            "rate": 0.007,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG170-140x140.jpg",
+            "color": "#c88e8d",
+            "rate": 0.17,
+            "amount": -1
+        },
+        {
+            "color": "#67a2aa",
+            "rate": 0.112,
+            "amount": -1
+        },
+        {
+            "color": "#c9c9c9",
+            "rate": 0.061,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.046,
+            "amount": -1
+        },
+        {
+            "color": "#95a7ab",
+            "rate": 0.008,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG170-2-140x140.jpg",
+            "color": "#f7e8d1",
+            "rate": 0.112,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.109,
+            "amount": -1
+        },
+        {
+            "color": "#c78c8c",
+            "rate": 0.096,
+            "amount": -1
+        },
+        {
+            "color": "#d8d2c6",
+            "rate": 0.073,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG171-510x510.jpg",
+            "color": "#e1eaef",
+            "rate": 0.397,
+            "amount": -1
+        },
+        {
+            "color": "#595959",
+            "rate": 0.086,
+            "amount": -1
+        },
+        {
+            "color": "#b19f9f",
+            "rate": 0.079,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.045,
+            "amount": -1
+        },
+        {
+            "color": "#ded4cf",
+            "rate": 0.021,
+            "amount": -1
+        },
+        {
+            "color": "#789db3",
+            "rate": 0.018,
+            "amount": -1
+        },
+        {
+            "color": "#494949",
+            "rate": 0.015,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG186-2048x2048.jpg",
+            "color": "#f9f5f2",
+            "rate": 0.458,
+            "amount": -1
+        },
+        {
+            "color": "#ded9c2",
+            "rate": 0.253,
+            "amount": -1
+        },
+        {
+            "color": "#535151",
+            "rate": 0.068,
+            "amount": -1
+        },
+        {
+            "color": "#b9b4b5",
+            "rate": 0.062,
+            "amount": -1
+        },
+        {
+            "color": "#d7abac",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#a9c6cc",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG187-2048x2048.jpg",
+            "color": "#d3e6ec",
+            "rate": 0.444,
+            "amount": -1
+        },
+        {
+            "color": "#ab9c99",
+            "rate": 0.219,
+            "amount": -1
+        },
+        {
+            "color": "#4f4f4f",
+            "rate": 0.068,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.068,
+            "amount": -1
+        },
+        {
+            "color": "#99a3a5",
+            "rate": 0.019,
+            "amount": -1
+        },
+        {
+            "color": "#e8d1c3",
+            "rate": 0.016,
+            "amount": -1
+        },
+        {
+            "color": "#cb9394",
+            "rate": 0.015,
+            "amount": -1
+        },
+        {
+            "color": "#8b898a",
+            "rate": 0.011,
+            "amount": -1
+        },
+        {
+            "color": "#414141",
+            "rate": 0.008,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG188-2048x2048.jpg",
+            "color": "#f4dbdf",
+            "rate": 0.332,
+            "amount": -1
+        },
+        {
+            "color": "#5e5e5e",
+            "rate": 0.182,
+            "amount": -1
+        },
+        {
+            "color": "#eddcc8",
+            "rate": 0.171,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.113,
+            "amount": -1
+        },
+        {
+            "color": "#9cbbc7",
+            "rate": 0.036,
+            "amount": -1
+        },
+        {
+            "color": "#e8cdba",
+            "rate": 0.02,
+            "amount": -1
+        },
+        {
+            "color": "#494949",
+            "rate": 0.015,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG190-scaled.jpg",
+            "color": "#e9e1d4",
+            "rate": 0.197,
+            "amount": -1
+        },
+        {
+            "color": "#aac5ce",
+            "rate": 0.054,
+            "amount": -1
+        },
+        {
+            "color": "#cacdc6",
+            "rate": 0.025,
+            "amount": -1
+        },
+        {
+            "color": "#8db1bd",
+            "rate": 0.015,
+            "amount": -1
+        },
+        {
+            "color": "#f6f6f6",
+            "rate": 0.554,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG193-2048x2048.jpg",
+            "color": "#f9f5f2",
+            "rate": 0.434,
+            "amount": -1
+        },
+        {
+            "color": "#82a8b1",
+            "rate": 0.168,
+            "amount": -1
+        },
+        {
+            "color": "#595859",
+            "rate": 0.154,
+            "amount": -1
+        },
+        {
+            "color": "#424348",
+            "rate": 0.034,
+            "amount": -1
+        },
+        {
+            "color": "#f6e4e6",
+            "rate": 0.027,
+            "amount": -1
+        },
+        {
+            "color": "#78909c",
+            "rate": 0.014,
+            "amount": -1
+        },
+        {
+            "color": "#c5d0cc",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#dae9ee",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG196-scaled.jpg",
+            "color": "#fcf8f6",
+            "rate": 0.596,
+            "amount": -1
+        },
+        {
+            "color": "#d0d0d0",
+            "rate": 0.178,
+            "amount": -1
+        },
+        {
+            "color": "#d3c3c6",
+            "rate": 0.062,
+            "amount": -1
+        },
+        {
+            "color": "#bac3c8",
+            "rate": 0.02,
+            "amount": -1
+        },
+        {
+            "color": "#bdd7e4",
+            "rate": 0.013,
+            "amount": -1
+        },
+        {
+            "color": "#b0adb8",
+            "rate": 0.01,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG198-2048x2048.jpg",
+            "color": "#e9d9ca",
+            "rate": 0.419,
+            "amount": -1
+        },
+        {
+            "color": "#ce9fa7",
+            "rate": 0.19,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.12,
+            "amount": -1
+        },
+        {
+            "color": "#575757",
+            "rate": 0.024,
+            "amount": -1
+        },
+        {
+            "color": "#9ab9be",
+            "rate": 0.021,
+            "amount": -1
+        },
+        {
+            "color": "#ae8a94",
+            "rate": 0.015,
+            "amount": -1
+        },
+        {
+            "color": "#f3e7e9",
+            "rate": 0.009,
+            "amount": -1
+        },
+        {
+            "color": "#4e4848",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#a598a1",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#8fa6ac",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#d3e2e9",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#dbc7c9",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG199-2048x2048.jpg",
+            "color": "#e9f3f5",
+            "rate": 0.409,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.111,
+            "amount": -1
+        },
+        {
+            "color": "#eddcd4",
+            "rate": 0.096,
+            "amount": -1
+        },
+        {
+            "color": "#98bdc6",
+            "rate": 0.089,
+            "amount": -1
+        },
+        {
+            "color": "#c89898",
+            "rate": 0.081,
+            "amount": -1
+        },
+        {
+            "color": "#bfbebc",
+            "rate": 0.022,
+            "amount": -1
+        },
+        {
+            "color": "#575757",
+            "rate": 0.018,
+            "amount": -1
+        },
+        {
+            "color": "#b38a8e",
+            "rate": 0.014,
+            "amount": -1
+        },
+        {
+            "color": "#90a4af",
+            "rate": 0.007,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG204-2048x2048.jpg",
+            "color": "#fdf7f3",
+            "rate": 0.536,
+            "amount": -1
+        },
+        {
+            "color": "#d8b1b2",
+            "rate": 0.197,
+            "amount": -1
+        },
+        {
+            "color": "#a1bcc3",
+            "rate": 0.034,
+            "amount": -1
+        },
+        {
+            "color": "#bfa0a5",
+            "rate": 0.03,
+            "amount": -1
+        },
+        {
+            "color": "#f0dcde",
+            "rate": 0.008,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG206-scaled.jpg",
+            "color": "#f0ece3",
+            "rate": 0.308,
+            "amount": -1
+        },
+        {
+            "color": "#c4ccce",
+            "rate": 0.246,
+            "amount": -1
+        },
+        {
+            "color": "#545454",
+            "rate": 0.148,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.089,
+            "amount": -1
+        },
+        {
+            "color": "#b4aeb2",
+            "rate": 0.04,
+            "amount": -1
+        },
+        {
+            "color": "#d9b6a3",
+            "rate": 0.023,
+            "amount": -1
+        },
+        {
+            "color": "#424242",
+            "rate": 0.018,
+            "amount": -1
+        },
+        {
+            "color": "#a2b5bb",
+            "rate": 0.007,
+            "amount": -1
+        },
+        {
+            "color": "#f4e4e7",
+            "rate": 0.005,
+            "amount": -1
+        },
+        {
+            "color": "#af9d8f",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG207-2048x2048.jpg",
+            "color": "#ceaaaa",
+            "rate": 0.013,
+            "amount": -1
+        },
+        {
+            "color": "#dcdcdc",
+            "rate": 0.514,
+            "amount": -1
+        },
+        {
+            "color": "#b1aca9",
+            "rate": 0.161,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.064,
+            "amount": -1
+        },
+        {
+            "color": "#e2d6d8",
+            "rate": 0.059,
+            "amount": -1
+        },
+        {
+            "color": "#525252",
+            "rate": 0.02,
+            "amount": -1
+        },
+        {
+            "color": "#8c9597",
+            "rate": 0.015,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG213-2048x2048.jpg",
+            "color": "#f9f6f3",
+            "rate": 0.508,
+            "amount": -1
+        },
+        {
+            "color": "#d5c6c3",
+            "rate": 0.214,
+            "amount": -1
+        },
+        {
+            "color": "#9db5c1",
+            "rate": 0.081,
+            "amount": -1
+        },
+        {
+            "color": "#c0b7b8",
+            "rate": 0.03,
+            "amount": -1
+        },
+        {
+            "color": "#8e95a5",
+            "rate": 0.009,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG214-scaled.jpg",
+            "color": "#c9e0e6",
+            "rate": 0.389,
+            "amount": -1
+        },
+        {
+            "color": "#f7f7f7",
+            "rate": 0.217,
+            "amount": -1
+        },
+        {
+            "color": "#e2b2b2",
+            "rate": 0.123,
+            "amount": -1
+        },
+        {
+            "color": "#575757",
+            "rate": 0.065,
+            "amount": -1
+        },
+        {
+            "color": "#c6a3a7",
+            "rate": 0.045,
+            "amount": -1
+        },
+        {
+            "color": "#98c6d3",
+            "rate": 0.005,
+            "amount": -1
+        },
+        {
+            "color": "#e5c9c8",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG215-140x140.jpg",
+            "color": "#fff5e9",
+            "rate": 0.114,
+            "amount": -1
+        },
+        {
+            "color": "#dcdcdc",
+            "rate": 0.064,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.054,
+            "amount": -1
+        },
+        {
+            "color": "#f9cbd2",
+            "rate": 0.017,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG218-scaled.jpg",
+            "color": "#629fb1",
+            "rate": 0.351,
+            "amount": -1
+        },
+        {
+            "color": "#e5e5e5",
+            "rate": 0.188,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.097,
+            "amount": -1
+        },
+        {
+            "color": "#e7ded5",
+            "rate": 0.042,
+            "amount": -1
+        },
+        {
+            "color": "#eac0c6",
+            "rate": 0.026,
+            "amount": -1
+        },
+        {
+            "color": "#c0d0d5",
+            "rate": 0.024,
+            "amount": -1
+        },
+        {
+            "color": "#a9c9d4",
+            "rate": 0.009,
+            "amount": -1
+        },
+        {
+            "color": "#fbeaec",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#b8dde5",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#525252",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#bda4a8",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#f8d8dd",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG219-1536x1536.jpg",
+            "color": "#8bb0b9",
+            "rate": 0.139,
+            "amount": -1
+        },
+        {
+            "color": "#649ba9",
+            "rate": 0.089,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.055,
+            "amount": -1
+        },
+        {
+            "color": "#545454",
+            "rate": 0.034,
+            "amount": -1
+        },
+        {
+            "color": "#daa5af",
+            "rate": 0.021,
+            "amount": -1
+        },
+        {
+            "color": "#5d8698",
+            "rate": 0.018,
+            "amount": -1
+        },
+        {
+            "color": "#b6909d",
+            "rate": 0.016,
+            "amount": -1
+        },
+        {
+            "color": "#607a8b",
+            "rate": 0.015,
+            "amount": -1
+        },
+        {
+            "color": "#ada09a",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#c7dade",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#f1e5cd",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#d4d4d4",
+            "rate": 0.395,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG223-scaled.jpg",
+            "color": "#8cb2bd",
+            "rate": 0.065,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.058,
+            "amount": -1
+        },
+        {
+            "color": "#b9bbba",
+            "rate": 0.031,
+            "amount": -1
+        },
+        {
+            "color": "#525252",
+            "rate": 0.03,
+            "amount": -1
+        },
+        {
+            "color": "#859caa",
+            "rate": 0.011,
+            "amount": -1
+        },
+        {
+            "color": "#6da1af",
+            "rate": 0.007,
+            "amount": -1
+        },
+        {
+            "color": "#3a5560",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#eecbd1",
+            "rate": 0.005,
+            "amount": -1
+        },
+        {
+            "color": "#4e6269",
+            "rate": 0.455,
+            "amount": -1
+        },
+        {
+            "color": "#d9d1cc",
+            "rate": 0.086,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG235-scaled.jpg",
+            "color": "#dde8ec",
+            "rate": 0.411,
+            "amount": -1
+        },
+        {
+            "color": "#535353",
+            "rate": 0.229,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.144,
+            "amount": -1
+        },
+        {
+            "color": "#475254",
+            "rate": 0.03,
+            "amount": -1
+        },
+        {
+            "color": "#f4eddd",
+            "rate": 0.026,
+            "amount": -1
+        },
+        {
+            "color": "#ead0c3",
+            "rate": 0.011,
+            "amount": -1
+        },
+        {
+            "color": "#7a7a7a",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#f0e6e7",
+            "rate": 0.007,
+            "amount": -1
+        },
+        {
+            "color": "#c9d2cd",
+            "rate": 0.005,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG251-1536x1536.jpg",
+            "color": "#90c9da",
+            "rate": 0.328,
+            "amount": -1
+        },
+        {
+            "color": "#ddadad",
+            "rate": 0.214,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.138,
+            "amount": -1
+        },
+        {
+            "color": "#b1b3b0",
+            "rate": 0.022,
+            "amount": -1
+        },
+        {
+            "color": "#b0adb8",
+            "rate": 0.016,
+            "amount": -1
+        },
+        {
+            "color": "#c8e1e8",
+            "rate": 0.005,
+            "amount": -1
+        },
+        {
+            "color": "#768e98",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#f6d6db",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#a78c9b",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#b39698",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#95bac3",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG253-510x510.jpg",
+            "color": "#e1bec4",
+            "rate": 0.277,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.2,
+            "amount": -1
+        },
+        {
+            "color": "#e8dedf",
+            "rate": 0.156,
+            "amount": -1
+        },
+        {
+            "color": "#a4bfca",
+            "rate": 0.011,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG254-510x510.jpg",
+            "color": "#f9e3c1",
+            "rate": 0.186,
+            "amount": -1
+        },
+        {
+            "color": "#99b4c7",
+            "rate": 0.107,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.07,
+            "amount": -1
+        },
+        {
+            "color": "#d7c1c4",
+            "rate": 0.023,
+            "amount": -1
+        },
+        {
+            "color": "#4e4242",
+            "rate": 0.014,
+            "amount": -1
+        },
+        {
+            "color": "#779fb8",
+            "rate": 0.011,
+            "amount": -1
+        },
+        {
+            "color": "#57666d",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#fbf1f2",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#545454",
+            "rate": 0.25,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG255-510x510.jpg",
+            "color": "#edeae3",
+            "rate": 0.279,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.149,
+            "amount": -1
+        },
+        {
+            "color": "#9cc1d6",
+            "rate": 0.054,
+            "amount": -1
+        },
+        {
+            "color": "#545454",
+            "rate": 0.023,
+            "amount": -1
+        },
+        {
+            "color": "#818181",
+            "rate": 0.02,
+            "amount": -1
+        },
+        {
+            "color": "#90a6bd",
+            "rate": 0.007,
+            "amount": -1
+        },
+        {
+            "color": "#cbd5d7",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG259-1536x1536.jpg",
+            "color": "#f9e2c0",
+            "rate": 0.345,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.214,
+            "amount": -1
+        },
+        {
+            "color": "#93b7c7",
+            "rate": 0.082,
+            "amount": -1
+        },
+        {
+            "color": "#545454",
+            "rate": 0.072,
+            "amount": -1
+        },
+        {
+            "color": "#f5e0e4",
+            "rate": 0.014,
+            "amount": -1
+        },
+        {
+            "color": "#8a9dae",
+            "rate": 0.014,
+            "amount": -1
+        },
+        {
+            "color": "#abcdd9",
+            "rate": 0.01,
+            "amount": -1
+        },
+        {
+            "color": "#4d3d3e",
+            "rate": 0.009,
+            "amount": -1
+        },
+        {
+            "color": "#888ea6",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG260-2000x1200.jpg",
+            "color": "#dfa3a3",
+            "rate": 0.204,
+            "amount": -1
+        },
+        {
+            "color": "#ab8794",
+            "rate": 0.082,
+            "amount": -1
+        },
+        {
+            "color": "#a1b3b5",
+            "rate": 0.039,
+            "amount": -1
+        },
+        {
+            "color": "#888888",
+            "rate": 0.028,
+            "amount": -1
+        },
+        {
+            "color": "#84a8b0",
+            "rate": 0.025,
+            "amount": -1
+        },
+        {
+            "color": "#ebd2d3",
+            "rate": 0.018,
+            "amount": -1
+        },
+        {
+            "color": "#a99fa7",
+            "rate": 0.009,
+            "amount": -1
+        },
+        {
+            "color": "#788596",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#e2b6b7",
+            "rate": 0.003,
+            "amount": -1
+        },
+        {
+            "color": "#f5f5f5",
+            "rate": 0.323,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG260-2048x2048.jpg",
+            "color": "#dfa3a3",
+            "rate": 0.135,
+            "amount": -1
+        },
+        {
+            "color": "#ab8794",
+            "rate": 0.056,
+            "amount": -1
+        },
+        {
+            "color": "#888888",
+            "rate": 0.038,
+            "amount": -1
+        },
+        {
+            "color": "#83a8b0",
+            "rate": 0.024,
+            "amount": -1
+        },
+        {
+            "color": "#a99fa7",
+            "rate": 0.015,
+            "amount": -1
+        },
+        {
+            "color": "#6c949f",
+            "rate": 0.012,
+            "amount": -1
+        },
+        {
+            "color": "#ebd2d3",
+            "rate": 0.011,
+            "amount": -1
+        },
+        {
+            "color": "#788596",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#f5f5f5",
+            "rate": 0.322,
+            "amount": -1
+        },
+        {
+            "color": "#a1b3b5",
+            "rate": 0.142,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG262-1536x1408.jpg",
+            "color": "#faf9f7",
+            "rate": 0.337,
+            "amount": -1
+        },
+        {
+            "color": "#525252",
+            "rate": 0.139,
+            "amount": -1
+        },
+        {
+            "color": "#d0c8c6",
+            "rate": 0.111,
+            "amount": -1
+        },
+        {
+            "color": "#c3dae2",
+            "rate": 0.11,
+            "amount": -1
+        },
+        {
+            "color": "#a5c6d7",
+            "rate": 0.045,
+            "amount": -1
+        },
+        {
+            "color": "#3d464a",
+            "rate": 0.014,
+            "amount": -1
+        },
+        {
+            "color": "#d4d9da",
+            "rate": 0.009,
+            "amount": -1
+        },
+        {
+            "color": "#b4b3b8",
+            "rate": 0.009,
+            "amount": -1
+        },
+        {
+            "color": "#a59fa3",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#eae1e2",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG264.jpg",
+            "color": "#6598ad",
+            "rate": 0.346,
+            "amount": -1
+        },
+        {
+            "color": "#fefefd",
+            "rate": 0.219,
+            "amount": -1
+        },
+        {
+            "color": "#f0eadc",
+            "rate": 0.215,
+            "amount": -1
+        },
+        {
+            "color": "#b79594",
+            "rate": 0.031,
+            "amount": -1
+        },
+        {
+            "color": "#c9cec8",
+            "rate": 0.025,
+            "amount": -1
+        },
+        {
+            "color": "#978287",
+            "rate": 0.007,
+            "amount": -1
+        },
+        {
+            "color": "#c0b5b1",
+            "rate": 0.005,
+            "amount": -1
+        },
+        {
+            "color": "#545454",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG265-1536x864.jpg",
+            "color": "#90bdd0",
+            "rate": 0.29,
+            "amount": -1
+        },
+        {
+            "color": "#e5c7bc",
+            "rate": 0.244,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.164,
+            "amount": -1
+        },
+        {
+            "color": "#515051",
+            "rate": 0.107,
+            "amount": -1
+        },
+        {
+            "color": "#bcb0ac",
+            "rate": 0.013,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG270-1316x1536.jpg",
+            "color": "#72aac3",
+            "rate": 0.36,
+            "amount": -1
+        },
+        {
+            "color": "#eed7d1",
+            "rate": 0.24,
+            "amount": -1
+        },
+        {
+            "color": "#f8f8f7",
+            "rate": 0.098,
+            "amount": -1
+        },
+        {
+            "color": "#6a6a6a",
+            "rate": 0.043,
+            "amount": -1
+        },
+        {
+            "color": "#685f60",
+            "rate": 0.019,
+            "amount": -1
+        },
+        {
+            "color": "#e6c3bf",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#799faa",
+            "rate": 0.005,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG274-2-1536x1317.jpg",
+            "color": "#739dad",
+            "rate": 0.275,
+            "amount": -1
+        },
+        {
+            "color": "#337a8c",
+            "rate": 0.191,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.115,
+            "amount": -1
+        },
+        {
+            "color": "#8e999f",
+            "rate": 0.049,
+            "amount": -1
+        },
+        {
+            "color": "#c9bcb4",
+            "rate": 0.02,
+            "amount": -1
+        },
+        {
+            "color": "#f2c3cb",
+            "rate": 0.015,
+            "amount": -1
+        },
+        {
+            "color": "#d0ccd2",
+            "rate": 0.015,
+            "amount": -1
+        },
+        {
+            "color": "#747678",
+            "rate": 0.011,
+            "amount": -1
+        },
+        {
+            "color": "#525252",
+            "rate": 0.01,
+            "amount": -1
+        },
+        {
+            "color": "#9d9d9d",
+            "rate": 0.005,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG279-1536x1536.jpg",
+            "color": "#e6c3c9",
+            "rate": 0.331,
+            "amount": -1
+        },
+        {
+            "color": "#979394",
+            "rate": 0.163,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.13,
+            "amount": -1
+        },
+        {
+            "color": "#99bac3",
+            "rate": 0.082,
+            "amount": -1
+        },
+        {
+            "color": "#cf9f9f",
+            "rate": 0.018,
+            "amount": -1
+        },
+        {
+            "color": "#8c98a6",
+            "rate": 0.017,
+            "amount": -1
+        },
+        {
+            "color": "#b0b0b0",
+            "rate": 0.005,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG281-1536x1536.jpg",
+            "color": "#f5dac5",
+            "rate": 0.324,
+            "amount": -1
+        },
+        {
+            "color": "#d09798",
+            "rate": 0.198,
+            "amount": -1
+        },
+        {
+            "color": "#fefefe",
+            "rate": 0.1,
+            "amount": -1
+        },
+        {
+            "color": "#e5e5e5",
+            "rate": 0.098,
+            "amount": -1
+        },
+        {
+            "color": "#525252",
+            "rate": 0.027,
+            "amount": -1
+        },
+        {
+            "color": "#ad848a",
+            "rate": 0.012,
+            "amount": -1
+        },
+        {
+            "color": "#c4cfd3",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#8f8492",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG282-1536x1536.jpg",
+            "color": "#92b5c9",
+            "rate": 0.156,
+            "amount": -1
+        },
+        {
+            "color": "#889ab0",
+            "rate": 0.039,
+            "amount": -1
+        },
+        {
+            "color": "#f1ced4",
+            "rate": 0.034,
+            "amount": -1
+        },
+        {
+            "color": "#68676d",
+            "rate": 0.033,
+            "amount": -1
+        },
+        {
+            "color": "#6b9ebb",
+            "rate": 0.015,
+            "amount": -1
+        },
+        {
+            "color": "#d4bac7",
+            "rate": 0.01,
+            "amount": -1
+        },
+        {
+            "color": "#f7e8eb",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#f2f2f2",
+            "rate": 0.189,
+            "amount": -1
+        },
+        {
+            "color": "#817b7b",
+            "rate": 0.159,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG290-1920x1200.jpg",
+            "color": "#5797b2",
+            "rate": 0.421,
+            "amount": -1
+        },
+        {
+            "color": "#f4f4f4",
+            "rate": 0.243,
+            "amount": -1
+        },
+        {
+            "color": "#4c4c4c",
+            "rate": 0.02,
+            "amount": -1
+        },
+        {
+            "color": "#97bacd",
+            "rate": 0.016,
+            "amount": -1
+        },
+        {
+            "color": "#bdd8e2",
+            "rate": 0.013,
+            "amount": -1
+        },
+        {
+            "color": "#808080",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#fbd0ca",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#cddae2",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG297-2-1536x1536.jpg",
+            "color": "#35bbde",
+            "rate": 0.436,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.054,
+            "amount": -1
+        },
+        {
+            "color": "#4486ba",
+            "rate": 0.013,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG297-2-1920x1920.jpg",
+            "color": "#35bbde",
+            "rate": 0.442,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.069,
+            "amount": -1
+        },
+        {
+            "color": "#4487ba",
+            "rate": 0.018,
+            "amount": -1
+        },
+        {
+            "color": "#f8b0b1",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG300-1536x1536.jpg",
+            "color": "#fddbda",
+            "rate": 0.442,
+            "amount": -1
+        },
+        {
+            "color": "#4c4c4d",
+            "rate": 0.196,
+            "amount": -1
+        },
+        {
+            "color": "#bcbcbc",
+            "rate": 0.014,
+            "amount": -1
+        },
+        {
+            "color": "#4c5f65",
+            "rate": 0.012,
+            "amount": -1
+        },
+        {
+            "color": "#f5e9e9",
+            "rate": 0.011,
+            "amount": -1
+        },
+        {
+            "color": "#87bfce",
+            "rate": 0.01,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.009,
+            "amount": -1
+        },
+        {
+            "color": "#eba9aa",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#646464",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#929292",
+            "rate": 0.005,
+            "amount": -1
+        },
+        {
+            "color": "#3b464c",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG301-1536x1536.jpg",
+            "color": "#37acc0",
+            "rate": 0.439,
+            "amount": -1
+        },
+        {
+            "color": "#f3e3e3",
+            "rate": 0.116,
+            "amount": -1
+        },
+        {
+            "color": "#f5f5f5",
+            "rate": 0.037,
+            "amount": -1
+        },
+        {
+            "color": "#585051",
+            "rate": 0.023,
+            "amount": -1
+        },
+        {
+            "color": "#ab8b8c",
+            "rate": 0.016,
+            "amount": -1
+        },
+        {
+            "color": "#bfb5b6",
+            "rate": 0.012,
+            "amount": -1
+        },
+        {
+            "color": "#d6cfd6",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#4b5356",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#38474e",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG310-1536x1536.jpg",
+            "color": "#3caac3",
+            "rate": 0.418,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.148,
+            "amount": -1
+        },
+        {
+            "color": "#d2d5d9",
+            "rate": 0.068,
+            "amount": -1
+        },
+        {
+            "color": "#e0d3d3",
+            "rate": 0.01,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG311-1536x1536.jpg",
+            "color": "#eaa6a7",
+            "rate": 0.42,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.142,
+            "amount": -1
+        },
+        {
+            "color": "#4f565a",
+            "rate": 0.122,
+            "amount": -1
+        },
+        {
+            "color": "#82afbc",
+            "rate": 0.045,
+            "amount": -1
+        },
+        {
+            "color": "#585557",
+            "rate": 0.024,
+            "amount": -1
+        },
+        {
+            "color": "#b9d9e4",
+            "rate": 0.007,
+            "amount": -1
+        },
+        {
+            "color": "#67686c",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG314-1536x1536.jpg",
+            "color": "#ffddd3",
+            "rate": 0.374,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.091,
+            "amount": -1
+        },
+        {
+            "color": "#5c5153",
+            "rate": 0.079,
+            "amount": -1
+        },
+        {
+            "color": "#6eb3ca",
+            "rate": 0.065,
+            "amount": -1
+        },
+        {
+            "color": "#d2d2d2",
+            "rate": 0.031,
+            "amount": -1
+        },
+        {
+            "color": "#cebcbc",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#9ab6c2",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG315-1536x1536.jpg",
+            "color": "#e1a2a4",
+            "rate": 0.022,
+            "amount": -1
+        },
+        {
+            "color": "#575f65",
+            "rate": 0.007,
+            "amount": -1
+        },
+        {
+            "color": "#e4e4e4",
+            "rate": 0.453,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.138,
+            "amount": -1
+        },
+        {
+            "color": "#625d5f",
+            "rate": 0.032,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG319-1418x1536.jpg",
+            "color": "#fdf8f8",
+            "rate": 0.512,
+            "amount": -1
+        },
+        {
+            "color": "#cad9e2",
+            "rate": 0.017,
+            "amount": -1
+        },
+        {
+            "color": "#e38d90",
+            "rate": 0.005,
+            "amount": -1
+        },
+        {
+            "color": "#2c2c2c",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG324-1396x1536.jpg",
+            "color": "#eba7a8",
+            "rate": 0.291,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.167,
+            "amount": -1
+        },
+        {
+            "color": "#525252",
+            "rate": 0.136,
+            "amount": -1
+        },
+        {
+            "color": "#71bdd0",
+            "rate": 0.057,
+            "amount": -1
+        },
+        {
+            "color": "#e1d5d9",
+            "rate": 0.019,
+            "amount": -1
+        },
+        {
+            "color": "#646160",
+            "rate": 0.014,
+            "amount": -1
+        },
+        {
+            "color": "#fde8e8",
+            "rate": 0.009,
+            "amount": -1
+        },
+        {
+            "color": "#737373",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG43-140x140.jpg",
+            "color": "#80a8b0",
+            "rate": 0.363,
+            "amount": -1
+        },
+        {
+            "color": "#d8d4af",
+            "rate": 0.155,
+            "amount": -1
+        },
+        {
+            "color": "#fefefe",
+            "rate": 0.035,
+            "amount": -1
+        },
+        {
+            "color": "#8f9ea3",
+            "rate": 0.024,
+            "amount": -1
+        },
+        {
+            "color": "#a0b1b8",
+            "rate": 0.021,
+            "amount": -1
+        },
+        {
+            "color": "#6d6d6d",
+            "rate": 0.007,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG70-140x140.jpg",
+            "color": "#d7acb5",
+            "rate": 0.389,
+            "amount": -1
+        },
+        {
+            "color": "#fefefe",
+            "rate": 0.191,
+            "amount": -1
+        },
+        {
+            "color": "#bdcad0",
+            "rate": 0.056,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG80-140x140.jpg",
+            "color": "#cfa3b2",
+            "rate": 0.248,
+            "amount": -1
+        },
+        {
+            "color": "#ded4d2",
+            "rate": 0.224,
+            "amount": -1
+        },
+        {
+            "color": "#a5a5a5",
+            "rate": 0.106,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.063,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG84-3-140x140.jpg",
+            "color": "#c38c89",
+            "rate": 0.27,
+            "amount": -1
+        },
+        {
+            "color": "#f1f1f1",
+            "rate": 0.317,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG86-2-140x140.jpg",
+            "color": "#79989a",
+            "rate": 0.188,
+            "amount": -1
+        },
+        {
+            "color": "#ffffff",
+            "rate": 0.105,
+            "amount": -1
+        },
+        {
+            "color": "#787878",
+            "rate": 0.057,
+            "amount": -1
+        },
+        {
+            "color": "#e7e6e1",
+            "rate": 0.024,
+            "amount": -1
+        },
+        {
+            "color": "#b9b9b9",
+            "rate": 0.012,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG87-3-140x140.jpg",
+            "color": "#e0bdc3",
+            "rate": 0.042,
+            "amount": -1
+        },
+        {
+            "color": "#f2ebd1",
+            "rate": 0.015,
+            "amount": -1
+        },
+        {
+            "color": "#e2dfda",
+            "rate": 0.005,
+            "amount": -1
+        },
+        {
+            "color": "#fafafa",
+            "rate": 0.195,
+            "amount": -1
+        },
+        {
+            "color": "#8ea7af",
+            "rate": 0.155,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG89-140x140.jpg",
+            "color": "#b2a59c",
+            "rate": 0.239,
+            "amount": -1
+        },
+        {
+            "color": "#f5f5f5",
+            "rate": 0.154,
+            "amount": -1
+        },
+        {
+            "color": "#8aa4b1",
+            "rate": 0.035,
+            "amount": -1
+        },
+        {
+            "color": "#8a8a8a",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG90-2-140x140.jpg",
+            "color": "#dec3b2",
+            "rate": 0.267,
+            "amount": -1
+        },
+        {
+            "color": "#f3f3f3",
+            "rate": 0.184,
+            "amount": -1
+        },
+        {
+            "color": "#8aa3aa",
+            "rate": 0.05,
+            "amount": -1
+        },
+        {
+            "color": "#8a8a8a",
+            "rate": 0.036,
+            "amount": -1
+        },
+        {
+            "color": "#ba8a8a",
+            "rate": 0.005,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG94-1-140x140.jpg",
+            "color": "#eaeaea",
+            "rate": 0.467,
+            "amount": -1
+        },
+        {
+            "color": "#94827e",
+            "rate": 0.035,
+            "amount": -1
+        },
+        {
+            "color": "#777777",
+            "rate": 0.01,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG97-140x140.jpg",
+            "color": "#fffefe",
+            "rate": 0.129,
+            "amount": -1
+        },
+        {
+            "color": "#eed3d8",
+            "rate": 0.106,
+            "amount": -1
+        },
+        {
+            "color": "#dddcbe",
+            "rate": 0.003,
+            "amount": -1
+        },
+        {
+            "color": "#5e5e5e",
+            "rate": 0.353,
+            "amount": -1
+        }
+    ]
+]

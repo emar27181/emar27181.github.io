@@ -1,0 +1,14 @@
+[
+  {
+    "colorScheme": "dominantColor",
+    "count": 7
+  },
+  {
+    "colorScheme": "dyadColor",
+    "count": 20
+  },
+  {
+    "colorScheme": "splitComplementary",
+    "count": 18
+  }
+]
