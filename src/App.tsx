@@ -33,6 +33,7 @@ import AllScrollLock from './components/AllScrollLock';
 import CanvasHomeForInteraction2024 from './views/CanvasHomeForInteraction2024';
 import GravityHome from './views/GravityHome';
 import GyroCanvasHome from './views/GyroCanvasHome';
+import EvaluateResearchPage from './views/EvaluateResearchPage';
 
 let isDesktop = false;
 let isMobileLandscape = false;
@@ -208,6 +209,11 @@ function App() {
         <Route path="/colorRecommendHome">
           <ColorRecommendHome />
         </Route>
+
+        <Route path="/evaluateResearch">
+          <EvaluateResearchPage/>
+        </Route>
+
 
         <Route path="/softwareKisoHome">
           <SoftwareKisoHome />
