@@ -20,4 +20,10 @@ export const MAX_RECOMMENDED_COLOR_SCHEME_LENGTH = 17 * (1 + VARIATIONS_LIGHTNES
 // どのタイミングに塗られた色を評価するか保存する配列
 // [1]だとused[i][1]に対してrecommend_(i,1)[][]が生成され，used[i][2]が含まれているかどうかの評価がされる
 // [0, 1]だと上の評価に加えて，used[i][0]に対してrecommend_(i,0)[][]が生成され，used[i][1]が含まれているかどうかの評価がされる
-export const IS_EVALUATE_TIMING_DRAW_COLOR = [1]; 
+export const IS_EVALUATE_TIMING_DRAW_COLOR = [1];
+
+export const LOG_ILLUSTLATION_COUNT = 10; // 読込むログのイラストの枚数
+
+//WEIGHTING_COEFFICIENT: 重み付け係数(説明では"W"と表記する)
+//simValue = (1-W)*(使用配色と推薦配色の相違度) + W*(推薦配色の配色技法の利用率)
+export const WEIGHTING_COEFFICIENT = 0.5; 

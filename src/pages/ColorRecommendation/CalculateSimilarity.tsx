@@ -3,6 +3,7 @@ import { ColorAmount } from '../../utils/ColorAmount';
 import p5, { Color } from 'p5';
 import { estimateColorScheme } from './CalculateColorScheme';
 import inputLogUsedColorSchemes from './data/inputLogUsedColorSchemes.json'
+import {WEIGHTING_COEFFICIENT } from '../../config/constants';
 
 const DEBUG = false;
 
@@ -131,26 +132,38 @@ export function searchLogColorScheme(colorscheme: string) {
   return 0;
 }
 
+// 使用ログ内のイラストの枚数を計算する関数
+function calcIllustlationCount(){
+  let illustCount = 0;
+  for(let i = 0; i < inputLogUsedColorSchemes.length; i++){
+    illustCount += inputLogUsedColorSchemes[i].count;
+  }
+  return illustCount;
+}
+
 // 配色技法の使用率によって変動する相違度の調整値を求める関数
 // ex) イラストのログを受け取って高頻度(１０枚中７枚とか)に使われた配色技法は優先度を高くする
 export function calcSimDiffByUseRate(colorsAmount: ColorAmount[]) {
-  //MAX_COUNT: ログのイラストの枚数
   //colorScheme: 比較される配色
   //count: 比較される配色のログの中での出現回数
-  const MAX_COUNT = 10;
+
   let colorScheme = estimateColorScheme(colorsAmount);
   let count = searchLogColorScheme(colorScheme);
+  const ILLUST_COUNT = calcIllustlationCount();
+  //console.log("ILLUST_COUNT" + ILLUST_COUNT );
 
-  console.log(colorScheme + ": " + (MAX_COUNT - count));
+  if (DEBUG) { console.log(colorScheme + ": " + (ILLUST_COUNT - count)); }
 
-  return (MAX_COUNT - count);
+  return ((ILLUST_COUNT - count) / ILLUST_COUNT);
 }
+
+
 
 // 
 export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
   // 推薦する配色の過去の使用率に合わせて調整値を設定
-  // simDiff: 出現回数が多い程，小さくなる相違度の調整値(0 <= simDiff <= 10)
-  let simDiff = calcSimDiffByUseRate(colorsAmount2);
+  // simValueByUserate: 出現回数が多い程，小さくなる相違度の調整値(0 <= simValueByUserate <= 1)
+  let simValueByUseRate = calcSimDiffByUseRate(colorsAmount2);
 
   // colorsAmount1: 使用された配色
   // colorsAmount2: 比較される配色
@@ -213,8 +226,13 @@ export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], co
     }
   }
 
-  let simValue = sumSimilarity / colorsAmount1.length;
-  simValue += simDiff;
+  // simValueBetweenUsedAndRecommend: 配色同士の相違度
+  // (0<=simValueBetweenUsedAndRecommend<=1)
+  let simValueBetweenUsedAndRecommend = (sumSimilarity / colorsAmount1.length) / 100;
 
-  return (simValue);
+  //console.log((1 - WEIGHTING_COEFFICIENT) * simValueBetweenUsedAndRecommend + " + " + WEIGHTING_COEFFICIENT * simValueByUseRate)
+
+  //WEIGHTING_COEFFICIENT: 重み付け係数(説明では"W"と表記する)
+  //(1-W)*(使用配色と推薦配色の相違度) + W*(推薦配色の配色技法の利用率)
+  return ((1 - WEIGHTING_COEFFICIENT) * simValueBetweenUsedAndRecommend + WEIGHTING_COEFFICIENT * simValueByUseRate);
 }
