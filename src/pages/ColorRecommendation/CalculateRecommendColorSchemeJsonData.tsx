@@ -150,7 +150,7 @@ export function addSimilarityValuesTorecommendColorsAmount(colorsAmount: Filterd
   let dataColorsAmount: DataRecommendColorAmount[] = [];
   for (let i = 0; i < colorsAmount.length; i++) {
     let addData: DataRecommendColorAmount = {
-      "similarityValue": Math.round(similarityValues[i]),
+      "similarityValue": similarityValues[i],
       "colorsAmount": colorsAmount[i]
     }
     dataColorsAmount.push(addData);
