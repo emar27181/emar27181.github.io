@@ -171,14 +171,15 @@ function createRecalls(isEvaluatedTimingDrawColor: number[]) {
   // sumRecommendColorScheme: 推薦配色群の合計
   compareCountSum = 0;
   sumRecommendColorSchemeExcludeFirstColorReco = 0;
+  let evaluateCount = 0;
   let correctCount = 0;
   let sumRecommendColorScheme = 0;
   let recommendColorsAmountAll = outputRecommendColorsAmountAll;
   for (let i = 0; i < recommendColorsAmountAll.length; i++) {
     sumRecommendColorScheme += recommendColorsAmountAll[i].dataRecommendColorsAmount.length;
   }
-  let evaluatedUsedColorSchemeCount: number = calculateEvaluatedUsedColorSchemeCount(isEvaluatedTimingDrawColor);
-  console.log("評価した使用配色の数は" + evaluatedUsedColorSchemeCount + "です．(used[n][" + isEvaluatedTimingDrawColor + "]の次の色が含まれているかどうか)(n=0,1,2...))");
+  //let evaluateCount: number = calculateEvaluatedUsedColorSchemeCount(isEvaluatedTimingDrawColor);
+  console.log("評価した使用配色の数は" + evaluateCount + "です．(used[n][" + isEvaluatedTimingDrawColor + "]の次の色が含まれているかどうか)(n=0,1,2...))");
 
   // recall@kの計算
   for (let i = 0; i < recommendColorsAmountAll.length; i++) {
@@ -203,18 +204,23 @@ function createRecalls(isEvaluatedTimingDrawColor: number[]) {
     if (isColorPaintNext(colorSchemeNumber, colorNumber, i, SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR)) {
       correctCount++;
     }
+    evaluateCount++;
+    console.log("evaluateCount = " + evaluateCount);
+
   }
 
   let newK = compareCountSum;
   let newPrecision = (Math.round((correctCount / compareCountSum) * 100)) / 100;
 
+  console.log("racalls");
+  console.log(recalls);
   // recallの値の計算
   for (let i = 0; i < recalls.length; i++) {
-    recalls[i].recall = recalls[i].recall / evaluatedUsedColorSchemeCount;
+    recalls[i].recall = recalls[i].recall / evaluateCount;
   }
 
   console.log("--- (表示(評価)するかどうかを判定する相違度の閾値) = " + SIM_VALUE_DISPLAY_LIMIT + " -----");
-  console.log("次に塗る色を予測できていていた確率((次の色があった数)/(評価した使用配色の数))は" + Math.round(correctCount / evaluatedUsedColorSchemeCount * 100) + "%(" + correctCount + "/" + evaluatedUsedColorSchemeCount + ")です．");
+  console.log("次に塗る色を予測できていていた確率((次の色があった数)/(評価した使用配色の数))は" + Math.round(correctCount / evaluateCount * 100) + "%(" + correctCount + "/" + evaluateCount + ")です．");
   let text = ("推薦した配色群の中で次に塗る色を予測できていていた確率: p@" + compareCountSum + " = " + (Math.round((correctCount / compareCountSum) * 100)) / 100 + " (" + correctCount + "/" + compareCountSum + ")です．\n");
   consoleLogColors(text, "#AA5500");
 
