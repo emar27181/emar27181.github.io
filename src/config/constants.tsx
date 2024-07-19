@@ -9,8 +9,8 @@ export const SATURATION_LIMIT = 10;
 export const LIGHTNESS_UPPER_LIMIT = 90;
 export const LIGHTNESS_LOWER_LIMIT = 10;
 
-export const LIGHTNESS_DIFF = 20; // 推薦するメインの配色と異なる明度の配色を推薦するときの差
-export const VARIATIONS_LIGHTNESS_DIFF = [-20, 20]; // 追加する明度のバリエーションの値を保存する配列
+export const LIGHTNESS_DIFF = 10; // 推薦するメインの配色と異なる明度の配色を推薦するときの差
+export const VARIATIONS_LIGHTNESS_DIFF = [-20, +20]; // 追加する明度のバリエーションの値を保存する配列
 
 export const IS_INPUT_BY_JSON = false; // 使用した配色の代入をJsonファイルを基にするかどうかを保存する固定値
 export const SIM_VALUE_SAME_COLOR = 10; // 同じ色かどうかを判定する相違度の閾値
@@ -20,7 +20,7 @@ export const MAX_RECOMMENDED_COLOR_SCHEME_LENGTH = 17 * (1 + VARIATIONS_LIGHTNES
 // どのタイミングに塗られた色を評価するか保存する配列
 // [1]だとused[i][1]に対してrecommend_(i,1)[][]が生成され，used[i][2]が含まれているかどうかの評価がされる
 // [0, 1]だと上の評価に加えて，used[i][0]に対してrecommend_(i,0)[][]が生成され，used[i][1]が含まれているかどうかの評価がされる
-export const IS_EVALUATE_TIMING_DRAW_COLOR = [1];
+export const IS_EVALUATE_TIMING_DRAW_COLOR = [2];
 
 export const LOG_ILLUSTLATION_COUNT = 10; // 読込むログのイラストの枚数
 
