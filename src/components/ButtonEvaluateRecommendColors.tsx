@@ -5,7 +5,7 @@ import { IS_EVALUATE_TIMING_DRAW_COLOR, SIM_VALUE_SAME_COLOR, VARIATIONS_LIGHTNE
 
 
 // 引数で受け取る評価基準で評価したデータを保存する関数
-function downloadEvaluateJson(setJsonURL: React.Dispatch<React.SetStateAction<string | null>>){
+function downloadEvaluateJson(SAME: number, TIME: number[], LIGHT: number[], setJsonURL: React.Dispatch<React.SetStateAction<string | null>>){
   let jsonData = evaluateRecommendColorSchemes();
 
   // 新しいBlobを作成
@@ -19,17 +19,20 @@ function downloadEvaluateJson(setJsonURL: React.Dispatch<React.SetStateAction<st
 
   let timingStrArray = "";
   let lighnessDiffStrArray = "";
-  for (let i = 0; i < IS_EVALUATE_TIMING_DRAW_COLOR.length; i++) {
-    timingStrArray += IS_EVALUATE_TIMING_DRAW_COLOR[i];
+  
+  for (let i = 0; i < TIME.length; i++) {
+    timingStrArray += TIME[i];
 
-    if (i != (IS_EVALUATE_TIMING_DRAW_COLOR.length - 1)) { timingStrArray += ", "; }
+    if (i != (TIME.length - 1)) { timingStrArray += ", "; }
   }
-  for (let i = 0; i < VARIATIONS_LIGHTNESS_DIFF.length; i++) {
-    lighnessDiffStrArray += VARIATIONS_LIGHTNESS_DIFF[i];
-    if (i != (VARIATIONS_LIGHTNESS_DIFF.length - 1)) { lighnessDiffStrArray += ", "; }
+  for (let i = 0; i < LIGHT.length; i++) {
+    lighnessDiffStrArray += LIGHT[i];
+    if (i != (LIGHT.length - 1)) { lighnessDiffStrArray += ", "; }
   }
+  
 
-  const FILE_NAME = "recall@k_SAME=" + SIM_VALUE_SAME_COLOR + "_TIME=[" + timingStrArray + "]_LIGHT=[" + lighnessDiffStrArray + "]";
+  const FILE_NAME = "recall@k_SAME=" + SAME + "_TIME=[" + TIME + "]_LIGHT=[" + LIGHT + "]";
+  //const FILE_NAME = "recall@k_SAME=" + SIM_VALUE_SAME_COLOR + "_TIME=[" + timingStrArray + "]_LIGHT=[" + lighnessDiffStrArray + "]";
 
   // 自動でダウンロードリンクをクリックしてJSONファイルをダウンロード
   const link = document.createElement('a');
@@ -45,7 +48,7 @@ const ButtonEvaluateRecommendColors: React.FC = () => {
   const [jsonURL, setJsonURL] = useState<string | null>(null);
 
   const handleClick = () => {
-    downloadEvaluateJson(setJsonURL);
+    downloadEvaluateJson(SIM_VALUE_SAME_COLOR ,IS_EVALUATE_TIMING_DRAW_COLOR, VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
   };
 
   return (
