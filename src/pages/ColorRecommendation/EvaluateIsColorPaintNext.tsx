@@ -1,8 +1,9 @@
 
 import p5 from "p5";
 import inputOrderUsedColorScheme from "./data/input/inputOrderUsedColorsAmount.json";
-import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmount.json"
-import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsAmountAll.json"
+//import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmount.json"
+//import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsAmountAll.json"
+import outputRecommendColorsSchemeAll_LIGHT_10_20 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-10_10_-20_20.json"
 import { calculateLabColorSimilarity } from "./CalculateSimilarity";
 import { consoleLogColors } from "../../utils/consoleLogColors";
 //import { MAX_RECOMMENDED_COLOR_SCHEME_LENGTH, SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR, IS_EVALUATE_TIMING_DRAW_COLOR } from "../../config/constants";
@@ -34,14 +35,14 @@ for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
 export function evaluateRecommendColorSchemes(SAME: number, TIME: number[] ): RecallAtK[] {
 
   //createRecalls(IS_EVALUATE_TIMING_DRAW_COLOR);
-  createRecalls(SAME, TIME);
-  updateRecallsColorCountAve();
+  createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_10_20);
+  updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_10_20);
 
   return recalls;
 }
 
 // k種類目の配色を推薦するときの色の数の平均を計算する関数
-export function updateRecallsColorCountAve() {
+export function updateRecallsColorCountAve(outputRecommendColorsAmountAll: any) {
   let recommendColorsAmountAll = outputRecommendColorsAmountAll;
 
   // illust: 読込んだイラストの番号
@@ -88,7 +89,7 @@ function calculateEvaluatedUsedColorSchemeCount(IS_EVALUATE_TIMING_DRAW_COLOR: n
 // colorSchemeNumber: 読込む使用配色のインデックス番号を保存する変数
 // colorNumber: 使用配色のどの色までインデックス番号まで読み込むかを保存する変数
 // recommendIndex: 推薦した配色群を保存する配列の読込むインデックス番号を保存する変数
-export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number, recommendIndex: number, simValueThresholdIsDisplay: number, simValueThresholdIsSameColor: number): boolean {
+export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number, recommendIndex: number, simValueThresholdIsDisplay: number, simValueThresholdIsSameColor: number, outputRecommendColorsAmountAll: any): boolean {
   // SIM_VALUE_LIMIT: 相違度の限界値(これより相違度が大きい配色は評価されない)
   // conpareCount: used[colorSchemeNmuber][colorNumber+1]とrecommend[][]が比較した回数を保存する変数
 
@@ -168,7 +169,7 @@ export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color, simValueThre
 
 
 // recall@kのデータを生成する関数
-function createRecalls(SAME: number , isEvaluatedTimingDrawColor: number[]) {
+function createRecalls(SAME: number , isEvaluatedTimingDrawColor: number[], outputRecommendColorsAmountAll: any) {
   // correctCount: 推薦した配色群の中で次に塗る色を予測できていていた個数
   // sumRecommendColorScheme: 推薦配色群の合計
   compareCountSum = 0;
@@ -203,7 +204,7 @@ function createRecalls(SAME: number , isEvaluatedTimingDrawColor: number[]) {
     if (DEBUG) { console.log("evaluate of used[" + colorSchemeNumber + "][" + colorNumber + "] is called"); }
 
     // 次の色が含まれているかどうかの評価
-    if (isColorPaintNext(colorSchemeNumber, colorNumber, i, SIM_VALUE_DISPLAY_LIMIT, SAME)) {
+    if (isColorPaintNext(colorSchemeNumber, colorNumber, i, SIM_VALUE_DISPLAY_LIMIT, SAME, outputRecommendColorsAmountAll)) {
       correctCount++;
     }
     evaluateCount++;

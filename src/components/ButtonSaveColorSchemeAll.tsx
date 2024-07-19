@@ -19,7 +19,12 @@ function downloadColorSchemesJson(variation_lightness_diffs: number[], setJsonUR
   // Stateを更新してURLを更新
   setJsonURL(newJsonURL);
 
-  const FILE_NAME = "outputRecommendColorsSchemeAll" + "_LIGHT=[" + variation_lightness_diffs +  "]";
+  let lightness_diffs_str = "";
+  for (let i = 0; i < variation_lightness_diffs.length; i++) {
+    lightness_diffs_str += "_" + variation_lightness_diffs[i];
+  }
+
+  const FILE_NAME = "outputRecommendColorsSchemeAll" + "_LIGHT=" + lightness_diffs_str;
 
   // 自動でダウンロードリンクをクリックしてJSONファイルをダウンロード
   const link = document.createElement('a');
