@@ -5,10 +5,10 @@ import { IS_EVALUATE_TIMING_DRAW_COLOR, SIM_VALUE_SAME_COLOR, VARIATIONS_LIGHTNE
 
 
 // 引数で受け取る評価基準で評価したデータを保存する関数
-function downloadEvaluateJson(SAME: number, TIME: number[], LIGHT: number[], setJsonURL: React.Dispatch<React.SetStateAction<string | null>>){
+function downloadEvaluateJson(SAME: number, TIME: number[], LIGHT: number[], WEIGHT: number, setJsonURL: React.Dispatch<React.SetStateAction<string | null>>) {
 
   // 閾値を基に評価したデータを保存
-  let jsonData = evaluateRecommendColorSchemes(SAME, TIME, LIGHT);
+  let jsonData = evaluateRecommendColorSchemes(SAME, TIME, LIGHT, WEIGHT);
 
   // 新しいBlobを作成
   const blobData = new Blob([JSON.stringify(jsonData)], {
@@ -21,7 +21,7 @@ function downloadEvaluateJson(SAME: number, TIME: number[], LIGHT: number[], set
 
   let timingStrArray = "";
   let lighnessDiffStrArray = "";
-  
+
   for (let i = 0; i < TIME.length; i++) {
     timingStrArray += TIME[i];
 
@@ -31,9 +31,9 @@ function downloadEvaluateJson(SAME: number, TIME: number[], LIGHT: number[], set
     lighnessDiffStrArray += LIGHT[i];
     if (i != (LIGHT.length - 1)) { lighnessDiffStrArray += ", "; }
   }
-  
+
   // pythonでファイルを読み込めるファイル名が([0, 1, 2])のように半角スペースになっているので半角スペースを挟んで保存
-  const FILE_NAME = "recall@k_SAME=" + SAME + "_TIME=[" + timingStrArray + "]_LIGHT=[" + lighnessDiffStrArray + "]";
+  const FILE_NAME = "recall@k_SAME=" + SAME + "_TIME=[" + timingStrArray + "]_LIGHT=[" + lighnessDiffStrArray + "]_WEIGHT=" + WEIGHT*100;
   //const FILE_NAME = "recall@k_SAME=" + SIM_VALUE_SAME_COLOR + "_TIME=[" + timingStrArray + "]_LIGHT=[" + lighnessDiffStrArray + "]";
 
   // 自動でダウンロードリンクをクリックしてJSONファイルをダウンロード
@@ -52,23 +52,30 @@ const ButtonEvaluateRecommendColors: React.FC = () => {
   const handleClick = () => {
     //downloadEvaluateJson(SIM_VALUE_SAME_COLOR ,IS_EVALUATE_TIMING_DRAW_COLOR, VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
 
-
-    downloadEvaluateJson(10 ,[0,1,2], [], setJsonURL);
-    downloadEvaluateJson(10 ,[0,1,2], [10], setJsonURL);
-    downloadEvaluateJson(10 ,[0,1,2], [20], setJsonURL);
+    // 明度のバリエーションの差
+    downloadEvaluateJson(10, [0, 1, 2], [], 0.5, setJsonURL);
+    downloadEvaluateJson(10, [0, 1, 2], [10], 0.5, setJsonURL);
+    downloadEvaluateJson(10, [0, 1, 2], [20], 0.5, setJsonURL);
     //downloadEvaluateJson(10 ,[0,1,2], [10, 20], setJsonURL);
 
+    // 同一色判定の閾値の差
+    downloadEvaluateJson(5, [0, 1, 2], [20], 0.5, setJsonURL);
+    downloadEvaluateJson(10, [0, 1, 2], [20], 0.5, setJsonURL);
+    downloadEvaluateJson(15, [0, 1, 2], [20], 0.5, setJsonURL);
+
+    // 描画タイミングによる差
+    downloadEvaluateJson(10, [0], [20], 0.5, setJsonURL);
+    downloadEvaluateJson(10, [1], [20], 0.5, setJsonURL);
+    downloadEvaluateJson(10, [2], [20], 0.5, setJsonURL);
+    downloadEvaluateJson(10, [0, 1, 2], [20], 0.5, setJsonURL);
+
+    // 配色同士の相違度と配色の使用率の重みによる差
+    downloadEvaluateJson(10, [0, 1, 2], [20], 0, setJsonURL);
+    downloadEvaluateJson(10, [0, 1, 2], [20], 0.25, setJsonURL);
+    downloadEvaluateJson(10, [0, 1, 2], [20], 0.5, setJsonURL);
+    downloadEvaluateJson(10, [0, 1, 2], [20], 0.75, setJsonURL);
+    downloadEvaluateJson(10, [0, 1, 2], [20], 1, setJsonURL);
     
-    downloadEvaluateJson(5 ,[0,1,2], [20], setJsonURL);
-    downloadEvaluateJson(10 ,[0,1,2], [20], setJsonURL);
-    downloadEvaluateJson(15 ,[0,1,2], [20], setJsonURL);
-
-
-    downloadEvaluateJson(10 ,[0], [20], setJsonURL);
-    downloadEvaluateJson(10 ,[1], [20], setJsonURL);
-    downloadEvaluateJson(10 ,[2], [20], setJsonURL);
-    
-
   };
 
   return (
