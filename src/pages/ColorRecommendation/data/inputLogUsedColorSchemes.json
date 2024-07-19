@@ -1,14 +1,15 @@
 [
   {
-    "colorScheme": "dominantColor",
-    "count": 7
-  },
-  {
-    "colorScheme": "dyadColor",
+    "illustrator": "gaako_instagram",
+    "colorScheme": "dominantTone",
     "count": 20
   },
   {
-    "colorScheme": "splitComplementary",
-    "count": 18
+    "colorScheme": "analogyColor",
+    "count": 6
+  },
+  {
+    "colorScheme": "intermediateColor",
+    "count": 1
   }
 ]
