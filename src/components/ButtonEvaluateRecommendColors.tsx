@@ -6,7 +6,9 @@ import { IS_EVALUATE_TIMING_DRAW_COLOR, SIM_VALUE_SAME_COLOR, VARIATIONS_LIGHTNE
 
 // 引数で受け取る評価基準で評価したデータを保存する関数
 function downloadEvaluateJson(SAME: number, TIME: number[], LIGHT: number[], setJsonURL: React.Dispatch<React.SetStateAction<string | null>>){
-  let jsonData = evaluateRecommendColorSchemes();
+
+  // 閾値を基に評価したデータを保存
+  let jsonData = evaluateRecommendColorSchemes(SAME, TIME);
 
   // 新しいBlobを作成
   const blobData = new Blob([JSON.stringify(jsonData)], {
@@ -30,8 +32,8 @@ function downloadEvaluateJson(SAME: number, TIME: number[], LIGHT: number[], set
     if (i != (LIGHT.length - 1)) { lighnessDiffStrArray += ", "; }
   }
   
-
-  const FILE_NAME = "recall@k_SAME=" + SAME + "_TIME=[" + TIME + "]_LIGHT=[" + LIGHT + "]";
+  // pythonでファイルを読み込めるファイル名が([0, 1, 2])のように半角スペースになっているので半角スペースを挟んで保存
+  const FILE_NAME = "recall@k_SAME=" + SAME + "_TIME=[" + timingStrArray + "]_LIGHT=[" + lighnessDiffStrArray + "]";
   //const FILE_NAME = "recall@k_SAME=" + SIM_VALUE_SAME_COLOR + "_TIME=[" + timingStrArray + "]_LIGHT=[" + lighnessDiffStrArray + "]";
 
   // 自動でダウンロードリンクをクリックしてJSONファイルをダウンロード
@@ -48,7 +50,16 @@ const ButtonEvaluateRecommendColors: React.FC = () => {
   const [jsonURL, setJsonURL] = useState<string | null>(null);
 
   const handleClick = () => {
-    downloadEvaluateJson(SIM_VALUE_SAME_COLOR ,IS_EVALUATE_TIMING_DRAW_COLOR, VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
+    //downloadEvaluateJson(SIM_VALUE_SAME_COLOR ,IS_EVALUATE_TIMING_DRAW_COLOR, VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
+    downloadEvaluateJson(5 ,[0,1,2], VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
+    downloadEvaluateJson(10 ,[0,1,2], VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
+    downloadEvaluateJson(15 ,[0,1,2], VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
+
+
+    downloadEvaluateJson(10 ,[0], VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
+    downloadEvaluateJson(10 ,[1], VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
+    downloadEvaluateJson(10 ,[2], VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
+
   };
 
   return (

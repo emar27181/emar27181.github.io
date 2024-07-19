@@ -5,7 +5,8 @@ import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmou
 import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsAmountAll.json"
 import { calculateLabColorSimilarity } from "./CalculateSimilarity";
 import { consoleLogColors } from "../../utils/consoleLogColors";
-import { MAX_RECOMMENDED_COLOR_SCHEME_LENGTH, SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR, IS_EVALUATE_TIMING_DRAW_COLOR } from "../../config/constants";
+//import { MAX_RECOMMENDED_COLOR_SCHEME_LENGTH, SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR, IS_EVALUATE_TIMING_DRAW_COLOR } from "../../config/constants";
+import { MAX_RECOMMENDED_COLOR_SCHEME_LENGTH, SIM_VALUE_DISPLAY_LIMIT } from "../../config/constants";
 import { PrecisionAtK } from "../../utils/PrecisionAtK";
 import { RecallAtK } from "../../utils/RecallAtK";
 
@@ -30,9 +31,10 @@ for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
 
 
 // 生成された推薦する配色の評価をまとめて行う関数
-export function evaluateRecommendColorSchemes(): RecallAtK[] {
+export function evaluateRecommendColorSchemes(SAME: number, TIME: number[] ): RecallAtK[] {
 
-  createRecalls(IS_EVALUATE_TIMING_DRAW_COLOR);
+  //createRecalls(IS_EVALUATE_TIMING_DRAW_COLOR);
+  createRecalls(SAME, TIME);
   updateRecallsColorCountAve();
 
   return recalls;
@@ -166,7 +168,7 @@ export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color, simValueThre
 
 
 // recall@kのデータを生成する関数
-function createRecalls(isEvaluatedTimingDrawColor: number[]) {
+function createRecalls(SAME: number , isEvaluatedTimingDrawColor: number[]) {
   // correctCount: 推薦した配色群の中で次に塗る色を予測できていていた個数
   // sumRecommendColorScheme: 推薦配色群の合計
   compareCountSum = 0;
@@ -201,7 +203,7 @@ function createRecalls(isEvaluatedTimingDrawColor: number[]) {
     if (DEBUG) { console.log("evaluate of used[" + colorSchemeNumber + "][" + colorNumber + "] is called"); }
 
     // 次の色が含まれているかどうかの評価
-    if (isColorPaintNext(colorSchemeNumber, colorNumber, i, SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR)) {
+    if (isColorPaintNext(colorSchemeNumber, colorNumber, i, SIM_VALUE_DISPLAY_LIMIT, SAME)) {
       correctCount++;
     }
     evaluateCount++;
@@ -227,6 +229,6 @@ function createRecalls(isEvaluatedTimingDrawColor: number[]) {
   console.log("-------------------------------------");
   console.log("(生成した推薦する配色の“中で評価した配色”の数) = " + sumRecommendColorSchemeExcludeFirstColorReco);
   console.log("(生成した推薦する配色の“全体”の数) = " + sumRecommendColorScheme + "(※誤差あり)");
-  console.log("(同じ色かどうかを判定する相違度の閾値) = " + SIM_VALUE_SAME_COLOR);
+  console.log("(同じ色かどうかを判定する相違度の閾値) = " + SAME);
 
 }
