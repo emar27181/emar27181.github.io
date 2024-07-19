@@ -10,8 +10,12 @@ export function CreateRecommendColorsAll(): JsonDataRecommendColorScheme[] {
   let jsonData: JsonDataRecommendColorScheme[] = [];
 
   for (let i = 0; i < inputOrderUsedColorAmount.length; i++) {
+
+    if(i >= 10){ continue; }
+
     for (let j = 0; j < inputOrderUsedColorAmount[i].length; j++) {
 
+      if(j >= 3){ continue; }
       let usedColorsAmount = initializeOrderUsedColorsAmountByJson(i, j);
       //let recommendColorScheme = CalculateRecommendColorsRe(i, j, usedColorsAmount);
 
