@@ -5,10 +5,10 @@ const fileName = 'recommendColorSchemesAll';
 
 
 // 引数で受け取る基準で生成した推薦配色群を保存する関数
-function downloadColorSchemesJson(loadIllustcount: number, loadTimingMax: number, variation_lightness_diffs: number[], setJsonURL: React.Dispatch<React.SetStateAction<string | null>>) {
+function downloadColorSchemesJson(loadIllustcount: number, loadTimingMax: number, variation_lightness_diffs: number[], weightingCoefficient: number, setJsonURL: React.Dispatch<React.SetStateAction<string | null>>) {
 
 
-  let jsonData = CreateRecommendColorsAll(loadIllustcount, loadTimingMax, variation_lightness_diffs);
+  let jsonData = CreateRecommendColorsAll(loadIllustcount, loadTimingMax, variation_lightness_diffs, weightingCoefficient);
 
   // 新しいBlobを作成
   const blobData = new Blob([JSON.stringify(jsonData)], {
@@ -24,7 +24,7 @@ function downloadColorSchemesJson(loadIllustcount: number, loadTimingMax: number
     lightness_diffs_str += "_" + variation_lightness_diffs[i];
   }
 
-  const FILE_NAME = "outputRecommendColorsSchemeAll" + "_LIGHT=" + lightness_diffs_str;
+  const FILE_NAME = "outputRecommendColorsSchemeAll" + "_LIGHT=" + lightness_diffs_str + "_WEIGHT=" + weightingCoefficient;
 
   // 自動でダウンロードリンクをクリックしてJSONファイルをダウンロード
   const link = document.createElement('a');
@@ -43,8 +43,12 @@ const ButtonSaveColorSchemeAll: React.FC = () => {
 
     //downloadColorSchemesJson(10, 3, [], setJsonURL);
     //downloadColorSchemesJson(10, 3, [-10, 10], setJsonURL);
-    downloadColorSchemesJson(10, 3, [-20, 20], setJsonURL);
-    downloadColorSchemesJson(10, 3, [-10, 10, -20, 20], setJsonURL);
+    //downloadColorSchemesJson(10, 3, [-20, 20], 0, setJsonURL);
+    downloadColorSchemesJson(10, 3, [-20, 20], 0.25, setJsonURL);
+    //downloadColorSchemesJson(10, 3, [-20, 20], 0.5, setJsonURL);
+    downloadColorSchemesJson(10, 3, [-20, 20], 0.75, setJsonURL);
+    //downloadColorSchemesJson(10, 3, [-20, 20], 1, setJsonURL);
+    //downloadColorSchemesJson(10, 3, [-10, 10, -20, 20], setJsonURL);
   };
 
   return (

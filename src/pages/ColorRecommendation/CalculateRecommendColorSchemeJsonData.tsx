@@ -14,7 +14,7 @@ import { FilterdColorAmount } from '../../utils/FilteredColorAmount';
 //import { recommendedColorSchemeAmount } from './CalculateRecommendColors';
 
 // 引数で受け取る配色に対して推薦する配色群を生成しそのデータをJson形式返す関数
-export function CalculateRecommendColorSchemeJsonData(colorSchemeNumber: number, colorNumber: number, colorsAmount: ColorAmount[], lightnessDiffs: number[]): JsonDataRecommendColorScheme {
+export function CalculateRecommendColorSchemeJsonData(colorSchemeNumber: number, colorNumber: number, colorsAmount: ColorAmount[], lightnessDiffs: number[], weightingCoefficient: number): JsonDataRecommendColorScheme {
   const p = new p5(() => { });
 
   // 推薦する配色群を保存する二重配列を初期化
@@ -35,7 +35,7 @@ export function CalculateRecommendColorSchemeJsonData(colorSchemeNumber: number,
   */
 
   // 推薦した配色群と使用した色の類似度の計算と配列への代入
-  let similarityValues = updateSimilarityValues(colorsAmount, recommendedColorSchemeAmount);
+  let similarityValues = updateSimilarityValues(colorsAmount, recommendedColorSchemeAmount, weightingCoefficient);
 
   //使用した配色と推薦する配色群をカラーコードとその色の量のデータに変換して代入
   let filteredOrderUsedColorsAmount: FilterdColorAmount[] = convertToJsonData(colorsAmount);
@@ -159,10 +159,10 @@ export function addSimilarityValuesTorecommendColorsAmount(colorsAmount: Filterd
   return dataColorsAmount;
 }
 
-function updateSimilarityValues(orderUsedColorsAmount: ColorAmount[], recommendedColorSchemeAmount: ColorAmount[][]) {
+function updateSimilarityValues(orderUsedColorsAmount: ColorAmount[], recommendedColorSchemeAmount: ColorAmount[][], weightingCoefficient: number) {
   let similarityValues: number[] = [];
   for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
-    let simValue = calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[i]);
+    let simValue = calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[i], weightingCoefficient);
     similarityValues[i] = simValue;
   }
   return similarityValues;
