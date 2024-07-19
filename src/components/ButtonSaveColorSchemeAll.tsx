@@ -5,10 +5,10 @@ const fileName = 'recommendColorSchemesAll';
 
 
 // 引数で受け取る基準で生成した推薦配色群を保存する関数
-function downloadColorSchemesJson(variation_lightness_diffs: number[], setJsonURL: React.Dispatch<React.SetStateAction<string | null>>) {
+function downloadColorSchemesJson(loadIllustcount: number, loadTimingMax: number, variation_lightness_diffs: number[], setJsonURL: React.Dispatch<React.SetStateAction<string | null>>) {
 
 
-  let jsonData = CreateRecommendColorsAll(1, 3, variation_lightness_diffs);
+  let jsonData = CreateRecommendColorsAll(loadIllustcount, loadTimingMax, variation_lightness_diffs);
 
   // 新しいBlobを作成
   const blobData = new Blob([JSON.stringify(jsonData)], {
@@ -41,10 +41,10 @@ const ButtonSaveColorSchemeAll: React.FC = () => {
   const handleExport = () => {
     console.log("ExportAll is clicked");
 
-    downloadColorSchemesJson([], setJsonURL);
-    downloadColorSchemesJson([-10, 10], setJsonURL);
-    downloadColorSchemesJson([-20, 20], setJsonURL);
-    downloadColorSchemesJson([-10, 10,-20, 20], setJsonURL);
+    //downloadColorSchemesJson(10, 3, [], setJsonURL);
+    //downloadColorSchemesJson(10, 3, [-10, 10], setJsonURL);
+    downloadColorSchemesJson(10, 3, [-20, 20], setJsonURL);
+    downloadColorSchemesJson(10, 3, [-10, 10, -20, 20], setJsonURL);
   };
 
   return (

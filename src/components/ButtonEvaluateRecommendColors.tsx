@@ -8,7 +8,7 @@ import { IS_EVALUATE_TIMING_DRAW_COLOR, SIM_VALUE_SAME_COLOR, VARIATIONS_LIGHTNE
 function downloadEvaluateJson(SAME: number, TIME: number[], LIGHT: number[], setJsonURL: React.Dispatch<React.SetStateAction<string | null>>){
 
   // 閾値を基に評価したデータを保存
-  let jsonData = evaluateRecommendColorSchemes(SAME, TIME);
+  let jsonData = evaluateRecommendColorSchemes(SAME, TIME, LIGHT);
 
   // 新しいBlobを作成
   const blobData = new Blob([JSON.stringify(jsonData)], {
@@ -51,14 +51,23 @@ const ButtonEvaluateRecommendColors: React.FC = () => {
 
   const handleClick = () => {
     //downloadEvaluateJson(SIM_VALUE_SAME_COLOR ,IS_EVALUATE_TIMING_DRAW_COLOR, VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
-    downloadEvaluateJson(5 ,[0,1,2], VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
-    downloadEvaluateJson(10 ,[0,1,2], VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
-    downloadEvaluateJson(15 ,[0,1,2], VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
 
 
-    downloadEvaluateJson(10 ,[0], VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
-    downloadEvaluateJson(10 ,[1], VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
-    downloadEvaluateJson(10 ,[2], VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
+    downloadEvaluateJson(10 ,[0,1,2], [], setJsonURL);
+    downloadEvaluateJson(10 ,[0,1,2], [10], setJsonURL);
+    downloadEvaluateJson(10 ,[0,1,2], [20], setJsonURL);
+    //downloadEvaluateJson(10 ,[0,1,2], [10, 20], setJsonURL);
+
+    
+    downloadEvaluateJson(5 ,[0,1,2], [20], setJsonURL);
+    downloadEvaluateJson(10 ,[0,1,2], [20], setJsonURL);
+    downloadEvaluateJson(15 ,[0,1,2], [20], setJsonURL);
+
+
+    downloadEvaluateJson(10 ,[0], [20], setJsonURL);
+    downloadEvaluateJson(10 ,[1], [20], setJsonURL);
+    downloadEvaluateJson(10 ,[2], [20], setJsonURL);
+    
 
   };
 

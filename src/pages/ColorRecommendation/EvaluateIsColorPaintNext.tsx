@@ -3,7 +3,11 @@ import p5 from "p5";
 import inputOrderUsedColorScheme from "./data/input/inputOrderUsedColorsAmount.json";
 //import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmount.json"
 //import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsAmountAll.json"
-import outputRecommendColorsSchemeAll_LIGHT_10_20 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-10_10_-20_20.json"
+//import outputRecommendColorsSchemeAll_LIGHT_10_20 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-10_10_-20_20.json"
+import outputRecommendColorsSchemeAll_LIGHT_20 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-20_20.json"
+import outputRecommendColorsSchemeAll_LIGHT_10 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-10_10.json"
+import outputRecommendColorsSchemeAll_LIGHT from "./data/output/outputRecommendColorsSchemeAll_LIGHT=.json"
+
 import { calculateLabColorSimilarity } from "./CalculateSimilarity";
 import { consoleLogColors } from "../../utils/consoleLogColors";
 //import { MAX_RECOMMENDED_COLOR_SCHEME_LENGTH, SIM_VALUE_DISPLAY_LIMIT, SIM_VALUE_SAME_COLOR, IS_EVALUATE_TIMING_DRAW_COLOR } from "../../config/constants";
@@ -32,11 +36,27 @@ for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
 
 
 // 生成された推薦する配色の評価をまとめて行う関数
-export function evaluateRecommendColorSchemes(SAME: number, TIME: number[] ): RecallAtK[] {
+export function evaluateRecommendColorSchemes(SAME: number, TIME: number[], LIGHT: number[]): RecallAtK[] {
 
   //createRecalls(IS_EVALUATE_TIMING_DRAW_COLOR);
-  createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_10_20);
-  updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_10_20);
+  if (LIGHT.length === 0){
+    createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT);
+    updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT);
+  }
+  /*
+  if (LIGHT[0] === 10 && LIGHT[1] === 20) {
+    createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_10_20);
+    updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_10_20);
+  }*/
+  else if (LIGHT[0] === 10 ) {
+    console.log("called")
+    createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_10);
+    updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_10);
+  }
+  else if (LIGHT[0] === 20 ) {
+    createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_20);
+    updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_20);
+  }
 
   return recalls;
 }
@@ -110,7 +130,7 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
 
   // used[colorSchemeNumber][colorNumber]のに対する推薦配色のセット
   let dataRecomenndColorsAmount = outputRecommendColorsAmountAll[recommendIndex].dataRecommendColorsAmount;
-  let recomenndColorsAmount = dataRecomenndColorsAmount.map(item => item.colorsAmount); // 配色を抽出し代入
+  let recomenndColorsAmount = dataRecomenndColorsAmount.map((item: { colorsAmount: any; }) => item.colorsAmount); // 配色を抽出し代入
   sumRecommendColorSchemeExcludeFirstColorReco += recomenndColorsAmount.length;
   const p = new p5(() => { });
 
@@ -169,7 +189,7 @@ export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color, simValueThre
 
 
 // recall@kのデータを生成する関数
-function createRecalls(SAME: number , isEvaluatedTimingDrawColor: number[], outputRecommendColorsAmountAll: any) {
+function createRecalls(SAME: number, isEvaluatedTimingDrawColor: number[], outputRecommendColorsAmountAll: any) {
   // correctCount: 推薦した配色群の中で次に塗る色を予測できていていた個数
   // sumRecommendColorScheme: 推薦配色群の合計
   compareCountSum = 0;
