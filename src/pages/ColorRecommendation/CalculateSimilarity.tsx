@@ -2,7 +2,7 @@ import { RGBColor, LabColor, diff, rgb_to_lab } from 'color-diff';
 import { ColorAmount } from '../../utils/ColorAmount';
 import p5, { Color } from 'p5';
 import { estimateColorScheme } from './CalculateColorScheme';
-import inputLogUsedColorSchemes from './data/inputLogUsedColorSchemes.json'
+import inputLogUsedColorSchemes from './data/input/inputLogUsedColorSchemes.json'
 import {WEIGHTING_COEFFICIENT } from '../../config/constants';
 
 const DEBUG = false;

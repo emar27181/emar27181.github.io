@@ -5,7 +5,7 @@ import { ReturnDrawingColor, ReturnIsMouseReleased } from "../Reserch/Canvas";
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 import { ColorAmount } from "../../utils/ColorAmount";
 import { isUpdateRecommendColorsScheme } from "./CalculateRecommendColors";
-import inputOrderUsedColorAmount from "./data/inputOrderUsedColorsAmount.json";
+import inputOrderUsedColorAmount from "./data/input/inputOrderUsedColorsAmount.json";
 import { LOAD_USED_COLOR_NUMBER, LOAD_USED_COLOR_SCHEME_NUMBER } from "../../config/constants.dev";
 
 let usedColorsAmount: Array<ColorAmount> = [];

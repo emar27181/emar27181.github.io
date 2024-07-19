@@ -1,6 +1,6 @@
 
 import { initializeOrderUsedColorsAmountByJson } from "./CalculateUsedColors";
-import inputOrderUsedColorAmount from "./data/inputOrderUsedColorsAmount.json";
+import inputOrderUsedColorAmount from "./data/input/inputOrderUsedColorsAmount.json";
 import { CalculateRecommendColorSchemeJsonData } from "./CalculateRecommendColorSchemeJsonData";
 import { JsonDataRecommendColorScheme } from "../../utils/JsonDataRecommendColorScheme";
 

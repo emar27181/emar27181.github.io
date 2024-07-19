@@ -1,6 +1,6 @@
 
 import p5 from "p5";
-import inputOrderUsedColorScheme from "./data/inputOrderUsedColorsAmount.json";
+import inputOrderUsedColorScheme from "./data/input/inputOrderUsedColorsAmount.json";
 import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmount.json"
 import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsAmountAll.json"
 import { calculateLabColorSimilarity } from "./CalculateSimilarity";
