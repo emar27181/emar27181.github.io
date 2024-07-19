@@ -4,7 +4,7 @@ import '../../App.css'
 import { ColorAmount } from '../../utils/ColorAmount';
 import p5 from 'p5';
 import { calculateDominantColor, calculateDyadColor, calculateSplitComplementaryColor, calculateTetradeColor, calculateTriadColor, calculateDominantTone, calculatePentadColor, calculateHexadColor, calculateAnalogyColor, calculateIntermediateColor, addColorSchemesLightnessVariations, calculatePentadColorBkW, calculateHexadBkWColor } from './CalculateColorScheme';
-import { LIGHTNESS_DIFF, VARIATIONS_LIGHTNESS_DIFF } from '../../config/constants';
+import { LIGHTNESS_DIFF, VARIATIONS_LIGHTNESS_DIFF as lightnessDiffs } from '../../config/constants';
 import { DataRecommendColorAmount } from '../../utils/DataRecommendColorAmount';
 import { convertToJsonData } from './ConvertToJsonData';
 import { JsonDataRecommendColorScheme } from '../../utils/JsonDataRecommendColorScheme';
@@ -14,7 +14,7 @@ import { FilterdColorAmount } from '../../utils/FilteredColorAmount';
 //import { recommendedColorSchemeAmount } from './CalculateRecommendColors';
 
 // 引数で受け取る配色に対して推薦する配色群を生成しそのデータをJson形式返す関数
-export function CalculateRecommendColorSchemeJsonData(colorSchemeNumber: number, colorNumber: number, colorsAmount: ColorAmount[]): JsonDataRecommendColorScheme {
+export function CalculateRecommendColorSchemeJsonData(colorSchemeNumber: number, colorNumber: number, colorsAmount: ColorAmount[], lightnessDiffs: number[]): JsonDataRecommendColorScheme {
   const p = new p5(() => { });
 
   // 推薦する配色群を保存する二重配列を初期化
@@ -24,7 +24,7 @@ export function CalculateRecommendColorSchemeJsonData(colorSchemeNumber: number,
   updateRecommendColorSchemeAmount(colorsAmount, recommendedColorSchemeAmount);
 
   //推薦された配色群の明度が異なるバリエーションを追加(+2バリエーション(2024/06/28))
-  addRecommendColorValiations(recommendedColorSchemeAmount);
+  addRecommendColorValiations(recommendedColorSchemeAmount, lightnessDiffs);
   /*
   const RECOMMEND_LENGTH = recommendedColorSchemeAmount.length;
   for (let i = 0; i < RECOMMEND_LENGTH; i++) {
@@ -64,12 +64,12 @@ export function CalculateRecommendColorSchemeJsonData(colorSchemeNumber: number,
 
 
   //推薦された配色群に異なるバリエーションをまとめて追加する関数
-export function addRecommendColorValiations(recommendedColorSchemeAmount: ColorAmount[][]) {
+export function addRecommendColorValiations(recommendedColorSchemeAmount: ColorAmount[][], lightnessDiffs: number[]) {
   const RECOMMEND_LENGTH = recommendedColorSchemeAmount.length;
   for (let i = 0; i < RECOMMEND_LENGTH; i++) {
 
-    for (let j = 0; j < VARIATIONS_LIGHTNESS_DIFF.length; j++) {
-      addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, + VARIATIONS_LIGHTNESS_DIFF[j]);
+    for (let j = 0; j < lightnessDiffs.length; j++) {
+      addColorSchemesLightnessVariations(recommendedColorSchemeAmount, i, + lightnessDiffs[j]);
     }
 
   }
