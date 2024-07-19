@@ -5,17 +5,17 @@ import { CalculateRecommendColorSchemeJsonData } from "./CalculateRecommendColor
 import { JsonDataRecommendColorScheme } from "../../utils/JsonDataRecommendColorScheme";
 
 // 使用色を保存するjsonファイルにある配色全てに対して，推薦する配色群を作成する関数
-export function CreateRecommendColorsAll(): JsonDataRecommendColorScheme[] {
+export function CreateRecommendColorsAll(LOAD_ILLUST_COUNT: number, LOAD_TIMING: number): JsonDataRecommendColorScheme[] {
 
   let jsonData: JsonDataRecommendColorScheme[] = [];
 
   for (let i = 0; i < inputOrderUsedColorAmount.length; i++) {
 
-    if(i >= 10){ continue; }
+    if(i >= LOAD_ILLUST_COUNT){ continue; }
 
     for (let j = 0; j < inputOrderUsedColorAmount[i].length; j++) {
 
-      if(j >= 3){ continue; }
+      if(j >= LOAD_TIMING){ continue; }
       let usedColorsAmount = initializeOrderUsedColorsAmountByJson(i, j);
       //let recommendColorScheme = CalculateRecommendColorsRe(i, j, usedColorsAmount);
 

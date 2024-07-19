@@ -7,7 +7,7 @@ const fileName = 'recommendColorSchemesAll';
 // 引数で受け取る基準で生成した推薦配色群を保存する関数
 function downloadColorSchemesJson( setJsonURL: React.Dispatch<React.SetStateAction<string | null>>) {
 
-  let jsonData = CreateRecommendColorsAll();
+  let jsonData = CreateRecommendColorsAll(10, 3);
 
   // 新しいBlobを作成
   const blobData = new Blob([JSON.stringify(jsonData)], {
