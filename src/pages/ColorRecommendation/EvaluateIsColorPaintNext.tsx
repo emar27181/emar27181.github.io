@@ -43,7 +43,7 @@ for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
 export function evaluateRecommendColorSchemes(SAME: number, TIME: number[], LIGHT: number[], WEIGHT: number): RecallAtK[] {
 
   //createRecalls(IS_EVALUATE_TIMING_DRAW_COLOR);
-  if (LIGHT.length === 0){
+  if (LIGHT.length === 0) {
     createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_WEIGHT_5);
     updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_WEIGHT_5);
   }
@@ -52,31 +52,31 @@ export function evaluateRecommendColorSchemes(SAME: number, TIME: number[], LIGH
     createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_10_20);
     updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_10_20);
   }*/
-  else if (LIGHT[0] === 10 ) {
+  else if (LIGHT[0] === 10) {
     createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_10_WEIGHT_5);
     updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_10_WEIGHT_5);
   }
-  else if (LIGHT[0] === 20 ) {
-    if(WEIGHT === 0){
-    createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_0);
-    updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_0);
+  else if (LIGHT[0] === 20) {
+    if (WEIGHT === 0) {
+      createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_0);
+      updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_0);
     }
-    else if(WEIGHT === 0.25){
-    createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_25);
-    updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_25);
+    else if (WEIGHT === 0.25) {
+      createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_25);
+      updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_25);
     }
-    else if(WEIGHT === 0.5){
-    createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_50);
-    updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_50);
+    else if (WEIGHT === 0.5) {
+      createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_50);
+      updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_50);
     }
-    else if(WEIGHT === 0.75){
+    else if (WEIGHT === 0.75) {
       createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_75);
       updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_75);
-      }
-    else if(WEIGHT === 1){
+    }
+    else if (WEIGHT === 1) {
       createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_100);
       updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_100);
-      }
+    }
   }
 
   return recalls;
@@ -149,6 +149,8 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
     consoleLogColors(("■■■used=“" + inputOrderUsedColorScheme[colorSchemeNumber][colorNumber + 1].color + "”■■■■■■■■■"), inputOrderUsedColorScheme[colorSchemeNumber][colorNumber + 1].color)
   }
 
+  compareCountSum += compareCount;
+
   // used[colorSchemeNumber][colorNumber]のに対する推薦配色のセット
   let dataRecomenndColorsAmount = outputRecommendColorsAmountAll[recommendIndex].dataRecommendColorsAmount;
   let recomenndColorsAmount = dataRecomenndColorsAmount.map((item: { colorsAmount: any; }) => item.colorsAmount); // 配色を抽出し代入
@@ -180,7 +182,6 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
           //let text = ("推薦配色の中に次の色が含まれていました．(recomenndColorsAmount[" + i + "][" + j + "].color = " + recomenndColorsAmount[i][j].color + ", compareCount = " + compareCount + ", simValue = " + simValue + ")");
           consoleLogColors(text, "#AA5500");
         }
-        compareCountSum += compareCount;
 
         //for (let k = compareCount; k < recalls.length; k++) {
         for (let k = i + 1; k < recalls.length; k++) {
@@ -229,7 +230,7 @@ function createRecalls(SAME: number, isEvaluatedTimingDrawColor: number[], outpu
   for (let i = 0; i < recommendColorsAmountAll.length; i++) {
     let colorSchemeNumber = recommendColorsAmountAll[i].LOAD_NUMBER[0];
     let colorNumber = recommendColorsAmountAll[i].LOAD_NUMBER[1];
-    let dataRecomenndColorsAmount = recommendColorsAmountAll[i].dataRecommendColorsAmount;
+    //let dataRecomenndColorsAmount = recommendColorsAmountAll[i].dataRecommendColorsAmount;
 
     // isEvaluateTiming: 今スロットに入っている色を評価するかどうかを保存する変数
     let isEvaluateTiming = false;
@@ -242,6 +243,9 @@ function createRecalls(SAME: number, isEvaluatedTimingDrawColor: number[], outpu
     // 評価するタイミングでは無かった場合，何もせず修了(次の色の処理へ移動)
     if (!isEvaluateTiming) { continue; }
 
+    // 次の色が存在しなかった場合，何もせず終了
+    if (inputOrderUsedColorScheme[colorSchemeNumber].length <= (colorNumber + 1)) { continue; }
+
     if (DEBUG) { console.log("evaluate of used[" + colorSchemeNumber + "][" + colorNumber + "] is called"); }
 
     // 次の色が含まれているかどうかの評価
@@ -253,15 +257,16 @@ function createRecalls(SAME: number, isEvaluatedTimingDrawColor: number[], outpu
 
   }
 
-  let newK = compareCountSum;
-  let newPrecision = (Math.round((correctCount / compareCountSum) * 100)) / 100;
+  //let newK = compareCountSum;
+  //let newPrecision = (Math.round((correctCount / compareCountSum) * 100)) / 100;
 
-  console.log("racalls");
-  console.log(recalls);
   // recallの値の計算
   for (let i = 0; i < recalls.length; i++) {
     recalls[i].recall = recalls[i].recall / evaluateCount;
   }
+
+  console.log("racalls");
+  console.log(recalls);
 
   console.log("--- (表示(評価)するかどうかを判定する相違度の閾値) = " + SIM_VALUE_DISPLAY_LIMIT + " -----");
   console.log("次に塗る色を予測できていていた確率((次の色があった数)/(評価した使用配色の数))は" + Math.round(correctCount / evaluateCount * 100) + "%(" + correctCount + "/" + evaluateCount + ")です．");
