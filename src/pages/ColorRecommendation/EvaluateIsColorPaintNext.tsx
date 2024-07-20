@@ -35,6 +35,7 @@ for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
     k: i,
     recall: 0,
     colorCountAve: 0,
+    evaluatedIllustCount: 0
   }
 }
 
@@ -263,6 +264,7 @@ function createRecalls(SAME: number, isEvaluatedTimingDrawColor: number[], outpu
   // recallの値の計算
   for (let i = 0; i < recalls.length; i++) {
     recalls[i].recall = recalls[i].recall / evaluateCount;
+    recalls[i].evaluatedIllustCount = evaluateCount;
   }
 
   console.log("racalls");
