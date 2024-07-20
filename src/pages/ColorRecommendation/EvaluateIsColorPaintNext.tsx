@@ -44,6 +44,13 @@ for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
 // 生成された推薦する配色の評価をまとめて行う関数
 export function evaluateRecommendColorSchemes(SAME: number, TIME: number[], LIGHT: number[], WEIGHT: number): RecallAtK[] {
 
+  // テスト実行
+  if( false ){
+    createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_TEST);
+    updateRecallsColorCountAve(outputRecommendColorsSchemeAll_TEST);
+    return recalls;
+  }
+
   //createRecalls(IS_EVALUATE_TIMING_DRAW_COLOR);
   if (LIGHT.length === 0) {
     createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_WEIGHT_5);
