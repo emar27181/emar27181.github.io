@@ -137,6 +137,8 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
   // conpareCount: used[colorSchemeNmuber][colorNumber+1]とrecommend[][]が比較した回数を保存する変数
 
   let compareCount = 0;
+  let isColorPaintNext = false;
+  let isRecallsincrement = true;
 
   // 次の色が存在しない場合終了
   if (inputOrderUsedColorScheme[colorSchemeNumber].length <= (colorNumber + 1)) {
@@ -186,10 +188,15 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
         }
 
         //for (let k = compareCount; k < recalls.length; k++) {
-        for (let k = i + 1; k < recalls.length; k++) {
-          recalls[k].recall++;
+
+        if (isRecallsincrement) {
+          for (let k = i + 1; k < recalls.length; k++) {
+            recalls[k].recall++;
+          } 
+          isRecallsincrement = false;
         }
-        return true;
+        isColorPaintNext = true;
+        //return true;
       }
     }
   }
@@ -201,7 +208,9 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
     consoleLogColors(text, "#0000DD");
   }
   compareCountSum += compareCount;
-  return false;
+  //return false;
+
+  return isColorPaintNext;
 }
 
 export function isSameColor(p5Color1: p5.Color, p5Color2: p5.Color, simValueThresholdIsSameColor: number): boolean {
@@ -268,7 +277,7 @@ function createRecalls(SAME: number, isEvaluatedTimingDrawColor: number[], outpu
     recalls[i].recall = correctCount / evaluateCount;
     recalls[i].precision = correctCount / i;
 
-    console.log("[ " + i + "].recall = " + recalls[i].recall + "[" + i + "].precision = " + recalls[i].precision);
+    console.log("[" + i + "]: correctCount = " + correctCount + ", recall = " + recalls[i].recall + ", precision = " + recalls[i].precision);
 
     recalls[i].evaluatedIllustCount = evaluateCount;
   }
