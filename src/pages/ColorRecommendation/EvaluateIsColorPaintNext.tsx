@@ -34,6 +34,7 @@ for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
   recalls[i] = {
     k: i,
     recall: 0,
+    precision: 0,
     colorCountAve: 0,
     evaluatedIllustCount: 0
   }
@@ -262,8 +263,13 @@ function createRecalls(SAME: number, isEvaluatedTimingDrawColor: number[], outpu
   //let newPrecision = (Math.round((correctCount / compareCountSum) * 100)) / 100;
 
   // recallの値の計算
-  for (let i = 0; i < recalls.length; i++) {
-    recalls[i].recall = recalls[i].recall / evaluateCount;
+  for (let i = 1; i < recalls.length; i++) {
+    let correctCount = recalls[i].recall;
+    recalls[i].recall = correctCount / evaluateCount;
+    recalls[i].precision = correctCount / i;
+
+    console.log("[ " + i + "].recall = " + recalls[i].recall + "[" + i + "].precision = " + recalls[i].precision);
+
     recalls[i].evaluatedIllustCount = evaluateCount;
   }
 
