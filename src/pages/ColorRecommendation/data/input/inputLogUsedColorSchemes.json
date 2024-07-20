@@ -1,15 +1,19 @@
 [
   {
-    "illustrator": "gaako_instagram",
-    "colorScheme": "dominantTone",
-    "count": 20
+    "illustrator": "NCG",
+    "colorScheme": "dominantColor",
+    "count": 15
+  },
+  {
+    "colorScheme": "dyadColor",
+    "count": 19
+  },
+  {
+    "colorScheme": "splitComplementary",
+    "count": 12
   },
   {
     "colorScheme": "analogyColor",
-    "count": 6
-  },
-  {
-    "colorScheme": "intermediateColor",
-    "count": 1
+    "count": 2
   }
 ]
