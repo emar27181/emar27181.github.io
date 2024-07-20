@@ -11,6 +11,7 @@ import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_75 from "./data/output/out
 import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_100 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=1.json"
 import outputRecommendColorsSchemeAll_LIGHT_10_WEIGHT_5 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-10_10_WEIGHT=0.5.json"
 import outputRecommendColorsSchemeAll_LIGHT_WEIGHT_5 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_WEIGHT=0.5.json"
+import outputRecommendColorsSchemeAll_TEST from "./data/output/outputRecommendColorsSchemeAll_TEST.json"
 
 import { calculateLabColorSimilarity } from "./CalculateSimilarity";
 import { consoleLogColors } from "../../utils/consoleLogColors";
@@ -35,6 +36,7 @@ for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
     k: i,
     recall: 0,
     precision: 0,
+    truePositives: 0,
     colorCountAve: 0,
     evaluatedIllustCount: 0
   }
@@ -202,6 +204,12 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
           } 
           isRecallsincrement = false;
         }
+        
+        // TPの更新
+        for (let k = i + 1; k < recalls.length; k++) {
+          recalls[k].truePositives++;
+        } 
+
         isColorPaintNext = true;
         //return true;
       }
@@ -211,8 +219,10 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
   // 推薦配色の中に次の色が含まれていなかった場合
   if (IS_PRINT_IS_EXIST_SAME_COLOR) {
     //let text = ("推薦配色の中に次の色が含まれていませんでした．(compareCount = " + compareCount + ")");
+    if(!isColorPaintNext){
     let text = ("推薦配色の中に次の色が含まれていませんでした．(k = " + recomenndColorsAmount.length + ")");
     consoleLogColors(text, "#0000DD");
+    }
   }
   compareCountSum += compareCount;
   //return false;
@@ -282,9 +292,11 @@ function createRecalls(SAME: number, isEvaluatedTimingDrawColor: number[], outpu
   for (let i = 1; i < recalls.length; i++) {
     let correctCount = recalls[i].recall;
     recalls[i].recall = correctCount / evaluateCount;
-    recalls[i].precision = correctCount / i;
+    recalls[i].truePositives = recalls[i].truePositives /evaluateCount;
+    recalls[i].precision =  recalls[i].truePositives / i;
+    //recalls[i].precision = correctCount / i;
 
-    console.log("[" + i + "]: correctCount = " + correctCount + ", recall = " + recalls[i].recall + ", precision = " + recalls[i].precision);
+    console.log("[" + i + "]: correctCount = " + correctCount + ", recall@k = " + recalls[i].recall + ", truePositives = " + recalls[i].truePositives + ", precision@k     = " + recalls[i].precision);
 
     recalls[i].evaluatedIllustCount = evaluateCount;
   }
