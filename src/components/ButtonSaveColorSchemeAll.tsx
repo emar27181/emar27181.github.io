@@ -41,14 +41,14 @@ const ButtonSaveColorSchemeAll: React.FC = () => {
   const handleExport = () => {
     console.log("ExportAll is clicked");
 
-    //downloadColorSchemesJson(10, 3, [], setJsonURL);
-    //downloadColorSchemesJson(10, 3, [-10, 10], setJsonURL);
-    //downloadColorSchemesJson(10, 3, [-20, 20], 0, setJsonURL);
+    downloadColorSchemesJson(10, 3, [], 0.5, setJsonURL);
+    downloadColorSchemesJson(10, 3, [-10, 10], 0.5, setJsonURL);
+    downloadColorSchemesJson(10, 3, [-20, 20], 0, setJsonURL);
     downloadColorSchemesJson(10, 3, [-20, 20], 0.25, setJsonURL);
-    //downloadColorSchemesJson(10, 3, [-20, 20], 0.5, setJsonURL);
+    downloadColorSchemesJson(10, 3, [-20, 20], 0.5, setJsonURL);
     downloadColorSchemesJson(10, 3, [-20, 20], 0.75, setJsonURL);
-    //downloadColorSchemesJson(10, 3, [-20, 20], 1, setJsonURL);
-    //downloadColorSchemesJson(10, 3, [-10, 10, -20, 20], setJsonURL);
+    downloadColorSchemesJson(10, 3, [-20, 20], 1, setJsonURL);
+    downloadColorSchemesJson(10, 3, [-10, 10, -20, 20], 0.5, setJsonURL);
   };
 
   return (
