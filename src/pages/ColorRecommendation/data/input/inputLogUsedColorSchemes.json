@@ -1,14 +1,19 @@
 [
   {
+    "illustrator": "NCG",
     "colorScheme": "dominantColor",
-    "count": 7
+    "count": 15
   },
   {
     "colorScheme": "dyadColor",
-    "count": 20
+    "count": 19
   },
   {
     "colorScheme": "splitComplementary",
-    "count": 18
+    "count": 12
+  },
+  {
+    "colorScheme": "analogyColor",
+    "count": 2
   }
 ]

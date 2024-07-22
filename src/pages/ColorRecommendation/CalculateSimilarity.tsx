@@ -2,7 +2,7 @@ import { RGBColor, LabColor, diff, rgb_to_lab } from 'color-diff';
 import { ColorAmount } from '../../utils/ColorAmount';
 import p5, { Color } from 'p5';
 import { estimateColorScheme } from './CalculateColorScheme';
-import inputLogUsedColorSchemes from './data/inputLogUsedColorSchemes.json'
+import inputLogUsedColorSchemes from './data/input/inputLogUsedColorSchemes.json'
 import {WEIGHTING_COEFFICIENT } from '../../config/constants';
 
 const DEBUG = false;
@@ -160,7 +160,7 @@ export function calcSimDiffByUseRate(colorsAmount: ColorAmount[]) {
 
 
 // 
-export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[]) {
+export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], colorsAmount2: ColorAmount[], weightingCoefficient: number) {
   // 推薦する配色の過去の使用率に合わせて調整値を設定
   // simValueByUserate: 出現回数が多い程，小さくなる相違度の調整値(0 <= simValueByUserate <= 1)
   let simValueByUseRate = calcSimDiffByUseRate(colorsAmount2);
@@ -234,5 +234,6 @@ export function calculateColorsAmountSimilarity(colorsAmount1: ColorAmount[], co
 
   //WEIGHTING_COEFFICIENT: 重み付け係数(説明では"W"と表記する)
   //(1-W)*(使用配色と推薦配色の相違度) + W*(推薦配色の配色技法の利用率)
-  return ((1 - WEIGHTING_COEFFICIENT) * simValueBetweenUsedAndRecommend + WEIGHTING_COEFFICIENT * simValueByUseRate);
+  //return ((1 - WEIGHTING_COEFFICIENT) * simValueBetweenUsedAndRecommend + WEIGHTING_COEFFICIENT * simValueByUseRate);
+  return ((1 - weightingCoefficient) * simValueBetweenUsedAndRecommend + weightingCoefficient * simValueByUseRate);
 }
