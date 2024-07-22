@@ -9,8 +9,8 @@ import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_25 from "./data/output/out
 import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_50 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.5.json"
 import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_75 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.75.json"
 import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_100 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=1.json"
-import outputRecommendColorsSchemeAll_LIGHT_10_WEIGHT_5 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-10_10_WEIGHT=0.5.json"
-import outputRecommendColorsSchemeAll_LIGHT_WEIGHT_5 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_WEIGHT=0.5.json"
+import outputRecommendColorsSchemeAll_LIGHT_10_WEIGHT_50 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-10_10_WEIGHT=0.5.json"
+import outputRecommendColorsSchemeAll_LIGHT_WEIGHT_50 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_WEIGHT=0.5.json"
 import outputRecommendColorsSchemeAll_TEST from "./data/output/outputRecommendColorsSchemeAll_TEST.json"
 
 import { calculateLabColorSimilarity } from "./CalculateSimilarity";
@@ -28,7 +28,7 @@ let compareCountSum = 0;
 let sumRecommendColorSchemeExcludeFirstColorReco = 0;
 //let evaluatedUsedColorSchemeCount = 0;
 const DEBUG = false;
-const IS_PRINT_IS_EXIST_SAME_COLOR = true;
+const IS_PRINT_IS_EXIST_SAME_COLOR = false;
 
 let recalls: RecallAtK[] = [];
 for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
@@ -55,8 +55,8 @@ export function evaluateRecommendColorSchemes(SAME: number, TIME: number[], LIGH
 
   //createRecalls(IS_EVALUATE_TIMING_DRAW_COLOR);
   if (LIGHT.length === 0) {
-    createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_WEIGHT_5);
-    updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_WEIGHT_5);
+    createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_WEIGHT_50);
+    updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_WEIGHT_50);
   }
   /*
   if (LIGHT[0] === 10 && LIGHT[1] === 20) {
@@ -64,8 +64,8 @@ export function evaluateRecommendColorSchemes(SAME: number, TIME: number[], LIGH
     updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_10_20);
   }*/
   else if (LIGHT[0] === 10) {
-    createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_10_WEIGHT_5);
-    updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_10_WEIGHT_5);
+    createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_LIGHT_10_WEIGHT_50);
+    updateRecallsColorCountAve(outputRecommendColorsSchemeAll_LIGHT_10_WEIGHT_50);
   }
   else if (LIGHT[0] === 20) {
     if (WEIGHT === 0) {
