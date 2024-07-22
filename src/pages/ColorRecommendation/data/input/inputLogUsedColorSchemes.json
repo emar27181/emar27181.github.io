@@ -1,8 +1,8 @@
 [
   {
-    "illustrator": "NCG",
+    "illustrator": "All",
     "colorScheme": "dominantColor",
-    "count": 15
+    "count": 35
   },
   {
     "colorScheme": "dyadColor",
@@ -14,6 +14,10 @@
   },
   {
     "colorScheme": "analogyColor",
-    "count": 2
+    "count": 8
+  },
+  {
+    "colorScheme": "intermediateColor",
+    "count": 1
   }
 ]
