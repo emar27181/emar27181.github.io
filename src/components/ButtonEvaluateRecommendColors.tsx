@@ -60,19 +60,19 @@ const ButtonEvaluateRecommendColors: React.FC = () => {
 
     // 同一色判定の閾値の差
     downloadEvaluateJson(5, [0, 1, 2], [20], 0.5, setJsonURL);
-    downloadEvaluateJson(10, [0, 1, 2], [20], 0.5, setJsonURL);
+    //downloadEvaluateJson(10, [0, 1, 2], [20], 0.5, setJsonURL); // 明度のバリエーションで実行済
     downloadEvaluateJson(15, [0, 1, 2], [20], 0.5, setJsonURL);
 
     // 描画タイミングによる差
     downloadEvaluateJson(10, [0], [20], 0.5, setJsonURL);
     downloadEvaluateJson(10, [1], [20], 0.5, setJsonURL);
     downloadEvaluateJson(10, [2], [20], 0.5, setJsonURL);
-    downloadEvaluateJson(10, [0, 1, 2], [20], 0.5, setJsonURL);
+    //downloadEvaluateJson(10, [0, 1, 2], [20], 0.5, setJsonURL); // 明度のバリエーションで実行済
 
     // 配色同士の相違度と配色の使用率の重みによる差
     downloadEvaluateJson(10, [0, 1, 2], [20], 0, setJsonURL);
     downloadEvaluateJson(10, [0, 1, 2], [20], 0.25, setJsonURL);
-    downloadEvaluateJson(10, [0, 1, 2], [20], 0.5, setJsonURL);
+    //downloadEvaluateJson(10, [0, 1, 2], [20], 0.5, setJsonURL); // 明度のバリエーションで実行済
     downloadEvaluateJson(10, [0, 1, 2], [20], 0.75, setJsonURL);
     downloadEvaluateJson(10, [0, 1, 2], [20], 1, setJsonURL);
     
