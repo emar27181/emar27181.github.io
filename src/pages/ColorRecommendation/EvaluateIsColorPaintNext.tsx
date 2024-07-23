@@ -4,6 +4,28 @@ import inputOrderUsedColorScheme from "./data/input/inputOrderUsedColorsAmount.j
 //import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmount.json"
 //import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsAmountAll.json"
 //import outputRecommendColorsSchemeAll_LIGHT_10_20 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-10_10_-20_20.json"
+
+// NCGのデータのセット
+/*
+import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_0 from "./data/output/NCG/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.json"
+import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_25 from "./data/output/NCG/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.25.json"
+import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_50 from "./data/output/NCG/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.5.json"
+import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_75 from "./data/output/NCG/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.75.json"
+import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_100 from "./data/output/NCG/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=1.json"
+import outputRecommendColorsSchemeAll_LIGHT_10_WEIGHT_50 from "./data/output/NCG/outputRecommendColorsSchemeAll_LIGHT=_-10_10_WEIGHT=0.5.json"
+import outputRecommendColorsSchemeAll_LIGHT_WEIGHT_50 from "./data/output/NCG/outputRecommendColorsSchemeAll_LIGHT=_WEIGHT=0.5.json"
+*/
+
+// gaako_instagramのデータのセット
+import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_0 from "./data/output/gaako_instagram/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.json"
+import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_25 from "./data/output/gaako_instagram/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.25.json"
+import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_50 from "./data/output/gaako_instagram/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.5.json"
+import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_75 from "./data/output/gaako_instagram/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.75.json"
+import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_100 from "./data/output/gaako_instagram/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=1.json"
+import outputRecommendColorsSchemeAll_LIGHT_10_WEIGHT_50 from "./data/output/gaako_instagram/outputRecommendColorsSchemeAll_LIGHT=_-10_10_WEIGHT=0.5.json"
+import outputRecommendColorsSchemeAll_LIGHT_WEIGHT_50 from "./data/output/gaako_instagram/outputRecommendColorsSchemeAll_LIGHT=_WEIGHT=0.5.json"
+
+/*
 import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_0 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.json"
 import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_25 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.25.json"
 import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_50 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.5.json"
@@ -11,6 +33,9 @@ import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_75 from "./data/output/out
 import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_100 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=1.json"
 import outputRecommendColorsSchemeAll_LIGHT_10_WEIGHT_50 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-10_10_WEIGHT=0.5.json"
 import outputRecommendColorsSchemeAll_LIGHT_WEIGHT_50 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_WEIGHT=0.5.json"
+*/
+
+
 import outputRecommendColorsSchemeAll_TEST from "./data/output/outputRecommendColorsSchemeAll_TEST.json"
 
 import { calculateLabColorSimilarity } from "./CalculateSimilarity";
@@ -47,7 +72,7 @@ for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
 export function evaluateRecommendColorSchemes(SAME: number, TIME: number[], LIGHT: number[], WEIGHT: number): RecallAtK[] {
 
   // テスト実行
-  if( false ){
+  if (false) {
     createRecalls(SAME, TIME, outputRecommendColorsSchemeAll_TEST);
     updateRecallsColorCountAve(outputRecommendColorsSchemeAll_TEST);
     return recalls;
@@ -201,14 +226,14 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
         if (isRecallsincrement) {
           for (let k = i + 1; k < recalls.length; k++) {
             recalls[k].recall++;
-          } 
+          }
           isRecallsincrement = false;
         }
-        
+
         // TPの更新
         for (let k = i + 1; k < recalls.length; k++) {
           recalls[k].truePositives++;
-        } 
+        }
 
         isColorPaintNext = true;
         //return true;
@@ -219,9 +244,9 @@ export function isColorPaintNext(colorSchemeNumber: number, colorNumber: number,
   // 推薦配色の中に次の色が含まれていなかった場合
   if (IS_PRINT_IS_EXIST_SAME_COLOR) {
     //let text = ("推薦配色の中に次の色が含まれていませんでした．(compareCount = " + compareCount + ")");
-    if(!isColorPaintNext){
-    let text = ("推薦配色の中に次の色が含まれていませんでした．(k = " + recomenndColorsAmount.length + ")");
-    consoleLogColors(text, "#0000DD");
+    if (!isColorPaintNext) {
+      let text = ("推薦配色の中に次の色が含まれていませんでした．(k = " + recomenndColorsAmount.length + ")");
+      consoleLogColors(text, "#0000DD");
     }
   }
   compareCountSum += compareCount;
@@ -292,8 +317,8 @@ function createRecalls(SAME: number, isEvaluatedTimingDrawColor: number[], outpu
   for (let i = 1; i < recalls.length; i++) {
     let correctCount = recalls[i].recall;
     recalls[i].recall = correctCount / evaluateCount;
-    recalls[i].truePositives = recalls[i].truePositives /evaluateCount;
-    recalls[i].precision =  recalls[i].truePositives / i;
+    recalls[i].truePositives = recalls[i].truePositives / evaluateCount;
+    recalls[i].precision = recalls[i].truePositives / i;
     //recalls[i].precision = correctCount / i;
 
     console.log("[" + i + "]: correctCount = " + correctCount + ", recall@k = " + recalls[i].recall + ", truePositives = " + recalls[i].truePositives + ", precision@k     = " + recalls[i].precision);
