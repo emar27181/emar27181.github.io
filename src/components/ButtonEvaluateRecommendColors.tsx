@@ -68,6 +68,7 @@ const ButtonEvaluateRecommendColors: React.FC = () => {
     downloadEvaluateJson(5, [0, 1, 2], [20], 0.5, setJsonURL);
     //downloadEvaluateJson(10, [0, 1, 2], [20], 0.5, setJsonURL); // 明度のバリエーションで実行済
     downloadEvaluateJson(15, [0, 1, 2], [20], 0.5, setJsonURL);
+    downloadEvaluateJson(20, [0, 1, 2], [20], 0.5, setJsonURL);
 
     // 描画タイミングによる差
     downloadEvaluateJson(10, [0], [20], 0.5, setJsonURL);
