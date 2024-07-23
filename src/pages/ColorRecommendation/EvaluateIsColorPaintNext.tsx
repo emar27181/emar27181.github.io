@@ -53,7 +53,7 @@ let compareCountSum = 0;
 let sumRecommendColorSchemeExcludeFirstColorReco = 0;
 //let evaluatedUsedColorSchemeCount = 0;
 const DEBUG = false;
-const IS_PRINT_IS_EXIST_SAME_COLOR = false;
+const IS_PRINT_IS_EXIST_SAME_COLOR = true;
 
 let recalls: RecallAtK[] = [];
 for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {

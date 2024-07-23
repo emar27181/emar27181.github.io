@@ -33,7 +33,7 @@ function downloadEvaluateJson(SAME: number, TIME: number[], LIGHT: number[], WEI
   }
 
   // pythonでファイルを読み込めるファイル名が([0, 1, 2])のように半角スペースになっているので半角スペースを挟んで保存
-  const FILE_NAME = "recall@k_SAME=" + SAME + "_TIME=[" + timingStrArray + "]_LIGHT=[" + lighnessDiffStrArray + "]_WEIGHT=" + WEIGHT*100;
+  const FILE_NAME = "recall@k_SAME=" + SAME + "_TIME=[" + timingStrArray + "]_LIGHT=[" + lighnessDiffStrArray + "]_WEIGHT=" + WEIGHT * 100;
   //const FILE_NAME = "recall@k_SAME=" + SIM_VALUE_SAME_COLOR + "_TIME=[" + timingStrArray + "]_LIGHT=[" + lighnessDiffStrArray + "]";
 
   // 自動でダウンロードリンクをクリックしてJSONファイルをダウンロード
@@ -51,6 +51,12 @@ const ButtonEvaluateRecommendColors: React.FC = () => {
 
   const handleClick = () => {
     //downloadEvaluateJson(SIM_VALUE_SAME_COLOR ,IS_EVALUATE_TIMING_DRAW_COLOR, VARIATIONS_LIGHTNESS_DIFF, setJsonURL);
+
+    // テスト実行
+    if (false) {
+      downloadEvaluateJson(10, [0, 1, 2], [20], 0.5, setJsonURL);
+      return ;
+    }
 
     // 明度のバリエーションの差
     downloadEvaluateJson(10, [0, 1, 2], [], 0.5, setJsonURL);
@@ -75,7 +81,7 @@ const ButtonEvaluateRecommendColors: React.FC = () => {
     //downloadEvaluateJson(10, [0, 1, 2], [20], 0.5, setJsonURL); // 明度のバリエーションで実行済
     downloadEvaluateJson(10, [0, 1, 2], [20], 0.75, setJsonURL);
     downloadEvaluateJson(10, [0, 1, 2], [20], 1, setJsonURL);
-    
+
   };
 
   return (
