@@ -11,7 +11,7 @@ export function TestDispayIsSameColor() {
     const SQUARE_WIDTH = 0.04 * (DISPLAY_RATE * window.innerWidth / 3);
 
     p.setup = () => {
-      p.createCanvas(DISPLAY_RATE * window.innerWidth / 3,  DISPLAY_RATE * window.innerWidth / 3);
+      p.createCanvas(DISPLAY_RATE * window.innerWidth / 3, 1.1* DISPLAY_RATE * window.innerWidth / 3);
       p.background(0);
       p.frameRate(1);
       //p.noStroke();
@@ -24,7 +24,7 @@ export function TestDispayIsSameColor() {
 
       p.fill(255);
       p.textSize(SQUARE_WIDTH);
-      p.text(" 　　※以下，HSL色空間による表示", 0,  SQUARE_WIDTH);
+      p.text(" 　　※以下，HSL色空間による表示", 0, SQUARE_WIDTH);
       const Y_SPACE = 1.2 * SQUARE_WIDTH;
 
       count++;
@@ -33,24 +33,29 @@ export function TestDispayIsSameColor() {
       compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(14, 100, 50));
       compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(20, 100, 50));
       compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(25, 100, 50));
+      compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(29, 100, 50));
       count++;
 
       // 彩度の差(->薄)
       compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(0, 83, 50));
       compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(0, 65, 50));
       compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(0, 50, 50));
+      compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(0, 30, 50));
+
       count++;
 
       // 明度の差(->明)
       compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(0, 100, 59));
       compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(0, 100, 65));
       compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(0, 100, 70));
+      compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(0, 100, 75));
       count++;
 
       // 明度の差(->暗)
       compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(0, 100, 45));
       compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(0, 100, 41));
       compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(0, 100, 36));
+      compareColor(0.5 * SQUARE_WIDTH, Y_SPACE * (count++), hslToP5Color(0, 100, 50), hslToP5Color(0, 100, 31));
       count++;
     };
 
@@ -82,7 +87,7 @@ export function TestDispayIsSameColor() {
       p.textSize(SQUARE_WIDTH);
       // p.text(":", x + 1.3 * SQUARE_WIDTH, y + p.textSize());
       //p.text("→ " + p.round(simValue), x + SQUARE_WIDTH * 3.5, y + p.textSize());
-      p.text("diff(    (" + p5ColorToHsl(p5Color1) + "),     (" + p5ColorToHsl(p5Color2) + ")) = " + p.round(simValue), x + 1.3 * SQUARE_WIDTH, y + p.textSize());
+      p.text("ΔE(    (" + p5ColorToHsl(p5Color1) + "),     (" + p5ColorToHsl(p5Color2) + ")) = " + p.round(simValue), x + 1.3 * SQUARE_WIDTH, y + p.textSize());
     }
   }
 
