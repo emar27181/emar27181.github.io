@@ -13,12 +13,14 @@ import { convertToJsonData } from './ConvertToJsonData';
 import { LIGHTNESS_DIFF } from '../../config/constants';
 import { isColorPaintNext } from './EvaluateIsColorPaintNext';
 import { LOAD_USED_COLOR_NUMBER, LOAD_USED_COLOR_SCHEME_NUMBER } from '../../config/constants.dev';
-import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmount.json";
+//import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmount.json";
 import { DataRecommendColorAmount, addSimilarityValuesTorecommendColorsAmount } from '../../components/ButtonSaveColorScheme';
 import { JsonDataRecommendColorScheme } from '../../utils/JsonDataRecommendColorScheme';
 import { addRecommendColorValiations, updateRecommendColorSchemeAmount } from './CalculateRecommendColorSchemeJsonData';
 
 const DEBUG = false;
+const THIS_WEIGHT = 0.5
+const THIS_LIGHTNESS_DIFFS = [-20, 20];
 
 export let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];
 let usedColorSchemeAmount: Array<ColorAmount> = [];
@@ -64,7 +66,7 @@ export function CalculateRecommendColors() {
         //calculateRecommendColorSchemeAmountBySimilarity(orderUsedColorsAmount);
 
         //推薦された配色群の明度が異なるバリエーションを追加
-        addRecommendColorValiations(recommendedColorSchemeAmount);
+        addRecommendColorValiations(recommendedColorSchemeAmount, THIS_LIGHTNESS_DIFFS);
         /*
         const RECOMMEND_LENGTH = recommendedColorSchemeAmount.length;
         for (let i = 0; i < RECOMMEND_LENGTH; i++) {
@@ -104,7 +106,7 @@ export function CalculateRecommendColors() {
 
       if (DEBUG) {
         //console.log("colorSimilarityLab(~): " + calculateLabColorSimilarity([255, 255, 255], [0, 0, 0]));
-        console.log("calculateColorsAmountSimilarity(~,~) = " + calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[0]));
+        console.log("calculateColorsAmountSimilarity(~,~) = " + calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[0], THIS_WEIGHT));
         //console.log("isUpdateRecommendColorsScheme = " + isUpdateRecommendColorsScheme);
         //console.log("similarityValues = " + similarityValues);
         //console.log("recommendedColorSchemeAmount.length = " + recommendedColorSchemeAmount.length);
@@ -242,7 +244,7 @@ export function CalculateRecommendColors() {
     function updateSimilarityValues() {
       similarityValues = [];
       for (let i = 0; i < recommendedColorSchemeAmount.length; i++) {
-        let simValue = calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[i]);
+        let simValue = calculateColorsAmountSimilarity(orderUsedColorsAmount, recommendedColorSchemeAmount[i], THIS_WEIGHT);
         similarityValues[i] = simValue;
       }
     }
