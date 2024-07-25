@@ -34,6 +34,7 @@ import CanvasHomeForInteraction2024 from './views/CanvasHomeForInteraction2024';
 import GravityHome from './views/GravityHome';
 import GyroCanvasHome from './views/GyroCanvasHome';
 import EvaluateResearchPage from './views/EvaluateResearchPage';
+import CanvasHomeForEntertainmentComputing2024 from './views/CanvasHomeForEntertainmentComputing2024';
 
 let isDesktop = false;
 let isMobileLandscape = false;
@@ -117,8 +118,10 @@ function App() {
           <Nav className="ml-auto d-flex">
             <Nav.Link href="/" >ホーム</Nav.Link>
             {/*<Nav.Link href='/gravityHome' > 重力操作 </Nav.Link>*/}
-            <Nav.Link href='/canvasHome' > 研究 </Nav.Link>
-            <Nav.Link href="/workMenu" >作品集</Nav.Link>
+
+            <Nav.Link href='/canvasHomeForEntertainmentComputing2024' > EC2024 </Nav.Link>
+            {/*<Nav.Link href='/canvasHome' > 研究 </Nav.Link>*/}
+            {/*<Nav.Link href="/workMenu" >作品集</Nav.Link>*/}
             {/*<Nav.Link href='/canvasHomeForInteraction2024' > キャンバス </Nav.Link>*/}
             {/*<Nav.Link href='/flipGame' > 制作中ゲーム</Nav.Link>*/}
             {/*<Nav.Link href='/matchBoGame' > マッチ棒ゲーム</Nav.Link>*/}
@@ -198,6 +201,10 @@ function App() {
           <CanvasHomeForInteraction2024 />
         </Route>
 
+        <Route path="/canvasHomeForEntertainmentComputing2024">
+          <CanvasHomeForEntertainmentComputing2024 />
+        </Route>
+
         <Route path="/canvasHomeRecommend">
           <CanvasHomeRecommend />
         </Route>
@@ -211,7 +218,7 @@ function App() {
         </Route>
 
         <Route path="/evaluateResearch">
-          <EvaluateResearchPage/>
+          <EvaluateResearchPage />
         </Route>
 
 
