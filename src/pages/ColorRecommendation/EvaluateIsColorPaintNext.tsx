@@ -1,12 +1,13 @@
 
 import p5 from "p5";
-import inputOrderUsedColorScheme from "./data/input/inputOrderUsedColorsAmount.json";
+//import inputOrderUsedColorScheme from "./data/input/inputOrderUsedColorsAmount.json";
 //import outputRecommendColorsAmount from "./data/output/outputRecommendColorsAmount.json"
 //import outputRecommendColorsAmountAll from "./data/output/outputRecommendColorsAmountAll.json"
 //import outputRecommendColorsSchemeAll_LIGHT_10_20 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-10_10_-20_20.json"
 
 // NCGのデータのセット
 /*
+import inputOrderUsedColorScheme from "./data/input/NCG/inputOrderUsedColorsAmount_NCG.json"
 import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_0 from "./data/output/NCG/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.json"
 import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_25 from "./data/output/NCG/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.25.json"
 import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_50 from "./data/output/NCG/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.5.json"
@@ -17,6 +18,8 @@ import outputRecommendColorsSchemeAll_LIGHT_WEIGHT_50 from "./data/output/NCG/ou
 */
 
 // gaako_instagramのデータのセット
+
+import inputOrderUsedColorScheme from "./data/input/gaako_instagram/inputOrderUsedColorsAmount_gaakoInstagram.json";
 import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_0 from "./data/output/gaako_instagram/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.json"
 import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_25 from "./data/output/gaako_instagram/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.25.json"
 import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_50 from "./data/output/gaako_instagram/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.5.json"
@@ -24,16 +27,6 @@ import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_75 from "./data/output/gaa
 import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_100 from "./data/output/gaako_instagram/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=1.json"
 import outputRecommendColorsSchemeAll_LIGHT_10_WEIGHT_50 from "./data/output/gaako_instagram/outputRecommendColorsSchemeAll_LIGHT=_-10_10_WEIGHT=0.5.json"
 import outputRecommendColorsSchemeAll_LIGHT_WEIGHT_50 from "./data/output/gaako_instagram/outputRecommendColorsSchemeAll_LIGHT=_WEIGHT=0.5.json"
-
-/*
-import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_0 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.json"
-import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_25 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.25.json"
-import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_50 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.5.json"
-import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_75 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=0.75.json"
-import outputRecommendColorsSchemeAll_LIGHT_20_WEIGHT_100 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-20_20_WEIGHT=1.json"
-import outputRecommendColorsSchemeAll_LIGHT_10_WEIGHT_50 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_-10_10_WEIGHT=0.5.json"
-import outputRecommendColorsSchemeAll_LIGHT_WEIGHT_50 from "./data/output/outputRecommendColorsSchemeAll_LIGHT=_WEIGHT=0.5.json"
-*/
 
 
 import outputRecommendColorsSchemeAll_TEST from "./data/output/outputRecommendColorsSchemeAll_TEST.json"
@@ -70,6 +63,8 @@ for (let i = 0; i < MAX_RECOMMENDED_COLOR_SCHEME_LENGTH; i++) {
 
 // 生成された推薦する配色の評価をまとめて行う関数
 export function evaluateRecommendColorSchemes(SAME: number, TIME: number[], LIGHT: number[], WEIGHT: number): RecallAtK[] {
+
+  console.log("SAME: " + SAME + ", TIME: " + TIME + ", LIGHT: " + LIGHT + ", WEIGHT: " + WEIGHT);
 
   // テスト実行
   if (false) {
