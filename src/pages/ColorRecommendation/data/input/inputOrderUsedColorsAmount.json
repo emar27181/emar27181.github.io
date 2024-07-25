@@ -1,6 +1,597 @@
 [
     [
         {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 221527.png",
+            "color": "#705d3d",
+            "rate": 0.053,
+            "amount": -1
+        },
+        {
+            "color": "#c8b7a3",
+            "rate": 0.027,
+            "amount": -1
+        },
+        {
+            "color": "#944e2a",
+            "rate": 0.01,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 221610.png",
+            "color": "#baa8ce",
+            "rate": 0.109,
+            "amount": -1
+        },
+        {
+            "color": "#24202f",
+            "rate": 0.081,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 221628.png",
+            "color": "#765149",
+            "rate": 0.023,
+            "amount": -1
+        },
+        {
+            "color": "#cdb4b2",
+            "rate": 0.018,
+            "amount": -1
+        },
+        {
+            "color": "#493e3a",
+            "rate": 0.007,
+            "amount": -1
+        },
+        {
+            "color": "#ab847c",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 221924.png",
+            "color": "#503779",
+            "rate": 0.016,
+            "amount": -1
+        },
+        {
+            "color": "#b5a5bf",
+            "rate": 0.014,
+            "amount": -1
+        },
+        {
+            "color": "#645b7a",
+            "rate": 0.008,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 221949.png",
+            "color": "#23302c",
+            "rate": 0.041,
+            "amount": -1
+        },
+        {
+            "color": "#a0ad93",
+            "rate": 0.014,
+            "amount": -1
+        },
+        {
+            "color": "#122521",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222003.png",
+            "color": "#bea0aa",
+            "rate": 0.029,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222018.png",
+            "color": "#839973",
+            "rate": 0.022,
+            "amount": -1
+        },
+        {
+            "color": "#b8bca1",
+            "rate": 0.014,
+            "amount": -1
+        },
+        {
+            "color": "#c3ea97",
+            "rate": 0.007,
+            "amount": -1
+        },
+        {
+            "color": "#2c3726",
+            "rate": 0.005,
+            "amount": -1
+        }
+    ],
+    [],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222040.png",
+            "color": "#bb9f9b",
+            "rate": 0.005,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222106.png",
+            "color": "#d0dae6",
+            "rate": 0.073,
+            "amount": -1
+        },
+        {
+            "color": "#2d3740",
+            "rate": 0.013,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222119.png",
+            "color": "#816347",
+            "rate": 0.054,
+            "amount": -1
+        },
+        {
+            "color": "#c9af9e",
+            "rate": 0.044,
+            "amount": -1
+        },
+        {
+            "color": "#9c7c6d",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222130.png",
+            "color": "#48869b",
+            "rate": 0.017,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222142.png",
+            "color": "#5d3142",
+            "rate": 0.017,
+            "amount": -1
+        },
+        {
+            "color": "#feb9d5",
+            "rate": 0.009,
+            "amount": -1
+        },
+        {
+            "color": "#caa1a9",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#996478",
+            "rate": 0.007,
+            "amount": -1
+        },
+        {
+            "color": "#66525d",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222153.png",
+            "color": "#f1dcd7",
+            "rate": 0.602,
+            "amount": -1
+        },
+        {
+            "color": "#594141",
+            "rate": 0.055,
+            "amount": -1
+        },
+        {
+            "color": "#872826",
+            "rate": 0.024,
+            "amount": -1
+        },
+        {
+            "color": "#c5797b",
+            "rate": 0.02,
+            "amount": -1
+        },
+        {
+            "color": "#c29ba0",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222206.png",
+            "color": "#30491f",
+            "rate": 0.041,
+            "amount": -1
+        },
+        {
+            "color": "#87a662",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#4a4a28",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222218.png",
+            "color": "#584561",
+            "rate": 0.033,
+            "amount": -1
+        },
+        {
+            "color": "#75b0b8",
+            "rate": 0.021,
+            "amount": -1
+        },
+        {
+            "color": "#a692cf",
+            "rate": 0.009,
+            "amount": -1
+        },
+        {
+            "color": "#826db0",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222232.png",
+            "color": "#e9b9c9",
+            "rate": 0.021,
+            "amount": -1
+        },
+        {
+            "color": "#cb8ea0",
+            "rate": 0.005,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222245.png",
+            "color": "#1c2426",
+            "rate": 0.062,
+            "amount": -1
+        },
+        {
+            "color": "#2a3837",
+            "rate": 0.013,
+            "amount": -1
+        },
+        {
+            "color": "#8fbbba",
+            "rate": 0.012,
+            "amount": -1
+        },
+        {
+            "color": "#657f7c",
+            "rate": 0.01,
+            "amount": -1
+        },
+        {
+            "color": "#b3d3ce",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#b7c6cd",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222259.png",
+            "color": "#303352",
+            "rate": 0.033,
+            "amount": -1
+        },
+        {
+            "color": "#1f243a",
+            "rate": 0.022,
+            "amount": -1
+        },
+        {
+            "color": "#a28aa4",
+            "rate": 0.019,
+            "amount": -1
+        },
+        {
+            "color": "#181c1f",
+            "rate": 0.007,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222328.png",
+            "color": "#31301c",
+            "rate": 0.084,
+            "amount": -1
+        },
+        {
+            "color": "#887c54",
+            "rate": 0.036,
+            "amount": -1
+        },
+        {
+            "color": "#b4917e",
+            "rate": 0.017,
+            "amount": -1
+        },
+        {
+            "color": "#735138",
+            "rate": 0.009,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222341.png",
+            "color": "#1a1a26",
+            "rate": 0.067,
+            "amount": -1
+        },
+        {
+            "color": "#5f6d88",
+            "rate": 0.021,
+            "amount": -1
+        },
+        {
+            "color": "#595b82",
+            "rate": 0.019,
+            "amount": -1
+        },
+        {
+            "color": "#738899",
+            "rate": 0.006,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222354.png",
+            "color": "#1a1b2f",
+            "rate": 0.047,
+            "amount": -1
+        },
+        {
+            "color": "#8489ff",
+            "rate": 0.04,
+            "amount": -1
+        },
+        {
+            "color": "#3f3ebd",
+            "rate": 0.01,
+            "amount": -1
+        },
+        {
+            "color": "#8f86b1",
+            "rate": 0.008,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222414.png",
+            "color": "#afa694",
+            "rate": 0.022,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222431.png",
+            "color": "#a77a43",
+            "rate": 0.022,
+            "amount": -1
+        },
+        {
+            "color": "#f0b16e",
+            "rate": 0.022,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222450.png",
+            "color": "#5e484b",
+            "rate": 0.026,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222508.png",
+            "color": "#d8cecd",
+            "rate": 0.631,
+            "amount": -1
+        },
+        {
+            "color": "#8f615b",
+            "rate": 0.061,
+            "amount": -1
+        },
+        {
+            "color": "#926f69",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#38100e",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#3a1e1a",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222521.png",
+            "color": "#50817b",
+            "rate": 0.064,
+            "amount": -1
+        },
+        {
+            "color": "#bbf9ee",
+            "rate": 0.043,
+            "amount": -1
+        },
+        {
+            "color": "#5b7d7e",
+            "rate": 0.023,
+            "amount": -1
+        },
+        {
+            "color": "#172525",
+            "rate": 0.006,
+            "amount": -1
+        },
+        {
+            "color": "#4d6663",
+            "rate": 0.005,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222551.png",
+            "color": "#a3b9c7",
+            "rate": 0.036,
+            "amount": -1
+        },
+        {
+            "color": "#95a7b3",
+            "rate": 0.02,
+            "amount": -1
+        },
+        {
+            "color": "#3c576a",
+            "rate": 0.008,
+            "amount": -1
+        },
+        {
+            "color": "#758896",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#303c48",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222611.png",
+            "color": "#a59179",
+            "rate": 0.026,
+            "amount": -1
+        },
+        {
+            "color": "#9e7a6e",
+            "rate": 0.015,
+            "amount": -1
+        },
+        {
+            "color": "#b4764f",
+            "rate": 0.014,
+            "amount": -1
+        },
+        {
+            "color": "#713e29",
+            "rate": 0.005,
+            "amount": -1
+        },
+        {
+            "color": "#845a44",
+            "rate": 0.004,
+            "amount": -1
+        },
+        {
+            "color": "#feba7d",
+            "rate": 0.003,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222624.png",
+            "color": "#d6d4e9",
+            "rate": 0.584,
+            "amount": -1
+        },
+        {
+            "color": "#1d1a2d",
+            "rate": 0.08,
+            "amount": -1
+        },
+        {
+            "color": "#423d53",
+            "rate": 0.071,
+            "amount": -1
+        },
+        {
+            "color": "#443c65",
+            "rate": 0.035,
+            "amount": -1
+        }
+    ],
+    [
+        {
+            "illustName": "tmp/estimate_used_color_scheme/data/input/gaako_instagram/スクリーンショット 2024-07-17 222639.png",
+            "color": "#484937",
+            "rate": 0.033,
+            "amount": -1
+        },
+        {
+            "color": "#bbb39e",
+            "rate": 0.01,
+            "amount": -1
+        },
+        {
+            "color": "#bcca72",
+            "rate": 0.004,
+            "amount": -1
+        }
+    ],
+    [
+        {
             "illustName": "tmp/estimate_used_color_scheme/data/input/NCG/NCG102-140x140.jpg",
             "color": "#dda099",
             "rate": 0.273,
