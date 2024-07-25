@@ -27,7 +27,7 @@ export function CanvasHomeForEntertainmentComputing2024() {
 
   return (
     <div>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <br /><br /><br /><br /><br /><br /><br />
       <AllScrollLock />
       <div style={{ display: 'flex', margin: 0 }}>
         <div>
