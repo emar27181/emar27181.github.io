@@ -22,7 +22,8 @@ export function DisplayColorPalette() {
     const HEIGHT_COLOR_PALETTE = 0.015 * window.innerWidth;
     const IS_DISPLAY_COLOR_PALETTE_BY_RATIO = false;
     const IS_DISPLAY_COLOR_PALETTE_BY_SQUARE = true;
-    const IS_DISPLAY_INDEX_NUMBER = true;
+    const IS_DISPLAY_INDEX_NUMBER = false;
+    const IS_DISPLAY_DIFF_VALUE = false;
     let usedColorsAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmount: Array<ColorAmount> = [];
     let usedColorSchemeAmountOnlyMainColor: Array<ColorAmount> = [];
@@ -124,8 +125,10 @@ export function DisplayColorPalette() {
             p.text("[" + displayOrderIndex[i] + "]", X_RECOMMEND_COLOR_PALLETE - HEIGHT_COLOR_PALETTE + p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
           }
           p.fill(0);
-          p.text(p.round(similarityValues[displayOrderIndex[i]] * 100) / 100, X_RECOMMEND_COLOR_PALLETE + p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
 
+          if (IS_DISPLAY_DIFF_VALUE) {
+            p.text(p.round(similarityValues[displayOrderIndex[i]] * 100) / 100, X_RECOMMEND_COLOR_PALLETE + p.textSize(), (countDisplayColorPalette - 1) * HEIGHT_COLOR_PALETTE + p.textSize());
+          }
         }
       }
     }

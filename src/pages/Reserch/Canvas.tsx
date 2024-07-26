@@ -258,7 +258,7 @@ export function Canvas() {
       getCanvasColors();
       if (0 < p.mouseX && p.mouseX < p.width && 0 < p.mouseY && p.mouseY < p.height) {
         isMouseReleased = true;
-        SetIsUpdateRecommendColorsScheme();
+        //SetIsUpdateRecommendColorsScheme();
       }
     }
 
