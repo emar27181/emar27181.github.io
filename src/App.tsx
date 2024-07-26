@@ -109,7 +109,7 @@ function App() {
       <Navbar bg="dark" variant="dark" fixed="top" style={{ display: isNavbarVisible ? 'block' : 'none' }}>
         <Navbar.Brand className="d-flex" >
           {/*<img src={logo} height="30" className="d-inline-block align-top" alt="Logo" />*/}
-          <span style={{ marginLeft: "10px" }}>p5.js演習ブラウザ</span>
+          {/*<span style={{ marginLeft: "10px" }}>p5.js演習ブラウザ</span>*/}
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="navbarNav" />
