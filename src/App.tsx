@@ -121,7 +121,7 @@ function App() {
 
             <Nav.Link href='/canvasHomeForEntertainmentComputing2024' > EC2024 </Nav.Link>
             {/*<Nav.Link href='/canvasHome' > 研究 </Nav.Link>*/}
-            {/*<Nav.Link href="/workMenu" >作品集</Nav.Link>*/}
+            <Nav.Link href="/workMenu" >作品集</Nav.Link>
             {/*<Nav.Link href='/canvasHomeForInteraction2024' > キャンバス </Nav.Link>*/}
             {/*<Nav.Link href='/flipGame' > 制作中ゲーム</Nav.Link>*/}
             {/*<Nav.Link href='/matchBoGame' > マッチ棒ゲーム</Nav.Link>*/}
