@@ -129,7 +129,7 @@ function App() {
           </Nav>
 
           <Form className="ml-auto d-flex" >
-            <FormControl type="text" placeholder="Search(Preparing)" className="mr-sm-2" />
+            <FormControl type="text" placeholder="Preparing" className="mr-sm-2" />
             <Button variant="outline-primary" >Search</Button>
           </Form>
         </Navbar.Collapse>
