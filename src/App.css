@@ -57,6 +57,9 @@ body{
 }
 
 .update-button{
-  padding: 5px 50px;
+  display: flex;
+  padding: 5px 15px;
   font-size: 12px;
+  align-items: center; 
+  justify-content: center;
 }

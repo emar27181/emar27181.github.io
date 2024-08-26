@@ -56,8 +56,9 @@ export function DisplayColorPalette() {
 
       if (isUpdateRecommendColorsScheme) {
         p.fill(255);
-        p.textSize(0.1* p.width);
-        p.text("loading...", p.width/2 - p.textSize(), 0.1 * p.height);
+        p.textSize(0.15* p.width);
+        p.textAlign(p.CENTER);
+        p.text("loading...", p.width/2, 0.3 * p.height);
       }
       else{
         displayColorPalettes(orderUsedColorsAmount, 0);
