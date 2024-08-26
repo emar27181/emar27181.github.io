@@ -35,6 +35,7 @@ import GravityHome from './views/GravityHome';
 import GyroCanvasHome from './views/GyroCanvasHome';
 import EvaluateResearchPage from './views/EvaluateResearchPage';
 import CanvasHomeForEntertainmentComputing2024 from './views/CanvasHomeForEntertainmentComputing2024';
+import CanvasHomeForEntertainmentComputing2024_none from './views/CanvasHomeForEntertainmentComputing2024_none';
 
 let isDesktop = false;
 let isMobileLandscape = false;
@@ -109,19 +110,20 @@ function App() {
       <Navbar bg="dark" variant="dark" fixed="top" style={{ display: isNavbarVisible ? 'block' : 'none' }}>
         <Navbar.Brand className="d-flex" >
           {/*<img src={logo} height="30" className="d-inline-block align-top" alt="Logo" />*/}
-          <span style={{ marginLeft: "10px" }}>p5.js演習ブラウザ</span>
+          {/*<span style={{ marginLeft: "10px" }}>p5.js演習ブラウザ</span>*/}
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="navbarNav" />
 
         <Navbar.Collapse id="navbarNav">
           <Nav className="ml-auto d-flex">
-            <Nav.Link href="/" >ホーム</Nav.Link>
+            <Nav.Link href="/" >Home</Nav.Link>
             {/*<Nav.Link href='/gravityHome' > 重力操作 </Nav.Link>*/}
 
             <Nav.Link href='/canvasHomeForEntertainmentComputing2024' > EC2024 </Nav.Link>
+            <Nav.Link href='/canvasHomeForEntertainmentComputing2024_none' > EC2024_none </Nav.Link>
             {/*<Nav.Link href='/canvasHome' > 研究 </Nav.Link>*/}
-            {/*<Nav.Link href="/workMenu" >作品集</Nav.Link>*/}
+            <Nav.Link href="/workMenu" >Works</Nav.Link>
             {/*<Nav.Link href='/canvasHomeForInteraction2024' > キャンバス </Nav.Link>*/}
             {/*<Nav.Link href='/flipGame' > 制作中ゲーム</Nav.Link>*/}
             {/*<Nav.Link href='/matchBoGame' > マッチ棒ゲーム</Nav.Link>*/}
@@ -129,7 +131,7 @@ function App() {
           </Nav>
 
           <Form className="ml-auto d-flex" >
-            <FormControl type="text" placeholder="Search(Preparing)" className="mr-sm-2" />
+            <FormControl type="text" placeholder="Preparing" className="mr-sm-2" />
             <Button variant="outline-primary" >Search</Button>
           </Form>
         </Navbar.Collapse>
@@ -201,8 +203,14 @@ function App() {
           <CanvasHomeForInteraction2024 />
         </Route>
 
+
+
         <Route path="/canvasHomeForEntertainmentComputing2024">
           <CanvasHomeForEntertainmentComputing2024 />
+        </Route>
+
+        <Route path="/canvasHomeForEntertainmentComputing2024_none">
+          <CanvasHomeForEntertainmentComputing2024_none />
         </Route>
 
         <Route path="/canvasHomeRecommend">

@@ -25,6 +25,8 @@ export function DisplayCanvasFilter(displayMode: string, loadNumber: number, dis
     p.setup = () => {
       //p.createCanvas(200, 200);
 
+      p.createCanvas(0, 0);
+      /*
       if (displayMode === "camera") { p.createCanvas(480 / 3, 480 / 3); }
       else if (displayMode === "image") { p.createCanvas(512 / 3, 512 / 3); }
       else {
@@ -34,6 +36,7 @@ export function DisplayCanvasFilter(displayMode: string, loadNumber: number, dis
         //if (ReturnIsDesktop()) { p.createCanvas(rate * p.windowWidth / 2 / 3, rate * p.windowWidth / 2 / 3); }
         //else { p.createCanvas(rate * p.windowWidth / 3, rate * p.windowWidth / 3); }
       }
+      */
       p.background(backgroundColor);
       p.noStroke();
       p.frameRate(1);

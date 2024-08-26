@@ -6,6 +6,10 @@ export function WorkMenu() {
   return (
     <div>
       <ul>
+        <NavLink activeClassName="active" to="/canvasHomeForInteraction2024">
+          インタラクション2024
+        </NavLink><br />
+
         <NavLink activeClassName='active' to="/researchHome">
           研究系
         </NavLink><br />
