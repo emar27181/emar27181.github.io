@@ -16,7 +16,7 @@ const ButtonUpdateRecommendColors: React.FC = () => {
     <div>
       <button className="update-button" onClick={handleClick}>
         {/*<p>{isCalculateRecommendColors ? 'loading' : 'update'}</p>*/}
-        <p>update</p>
+        <p>指でタップして更新</p>
       </button>
     </div>
   );
