@@ -19,7 +19,7 @@ const DEBUG: boolean = true;
 
 export function DisplayColorPalette() {
   const sketch = (p: P5CanvasInstance) => {
-    const HEIGHT_COLOR_PALETTE = 0.015 * window.innerWidth;
+    const HEIGHT_COLOR_PALETTE = 0.020 * window.innerWidth;
     const IS_DISPLAY_COLOR_PALETTE_BY_RATIO = false;
     const IS_DISPLAY_COLOR_PALETTE_BY_SQUARE = true;
     const IS_DISPLAY_INDEX_NUMBER = false;
@@ -52,11 +52,21 @@ export function DisplayColorPalette() {
       updateVariables();
       p.background(0);
       //displayColorPalettes(usedColorSchemeAmountOnlyMainColor, 0);
-      displayColorPalettes(orderUsedColorsAmount, 0);
+      
+
+      if (isUpdateRecommendColorsScheme) {
+        p.fill(255);
+        p.textSize(0.1* p.width);
+        p.text("loading...", p.width/2 - p.textSize(), 0.1 * p.height);
+      }
+      else{
+        displayColorPalettes(orderUsedColorsAmount, 0);
+      }
 
       if (DEBUG) {
         //console.log("calculateDisplayOrder(recommendedColorSchemeAmount) = " + calculateDisplayOrder(recommendedColorSchemeAmount));
       }
+      console.log("isUpdateRecommendColorsScheme = " + isUpdateRecommendColorsScheme)
     };
 
     p.mousePressed = () => {
