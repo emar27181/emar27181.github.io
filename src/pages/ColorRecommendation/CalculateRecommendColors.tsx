@@ -19,7 +19,7 @@ import { JsonDataRecommendColorScheme } from '../../utils/JsonDataRecommendColor
 import { addRecommendColorValiations, updateRecommendColorSchemeAmount } from './CalculateRecommendColorSchemeJsonData';
 
 const DEBUG = false;
-const THIS_WEIGHT = 0.5
+export const THIS_WEIGHT = 0.9;
 const THIS_LIGHTNESS_DIFFS = [-20, 20];
 
 export let recommendedColorSchemeAmount: Array<Array<ColorAmount>> = [];

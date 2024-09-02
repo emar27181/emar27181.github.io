@@ -18,6 +18,8 @@ import ButtonSaveColorScheme from '../components/ButtonSaveColorScheme';
 import ButtonSaveColorSchemeAll from '../components/ButtonSaveColorSchemeAll';
 import ButtonEvaluateRecommendColors from '../components/ButtonEvaluateRecommendColors';
 import TestDispayIsSameColor from '../pages/ColorRecommendation/TestDispayIsSameColor';
+import BarWeightingCoefficient from '../pages/ColorRecommendation/BarWeightingCoefficient';
+import DisplayUseRateDescription from '../pages/ColorRecommendation/DisplayUseRateDescription';
 
 let isCanvasHome = false;
 
@@ -33,6 +35,7 @@ export function CanvasHomeForEntertainmentComputing2024() {
         <div>
           <ColorGanerateRe />
           <OperateGuiControl />
+          <DisplayUseRateDescription/>
         </div>
         <div style={{ overflow: 'hidden' }}>
           {Canvas()}

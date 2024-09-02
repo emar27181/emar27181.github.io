@@ -1,23 +1,16 @@
 [
   {
-    "illustrator": "All",
+    "illustrator": "Original",
     "colorScheme": "dominantColor",
-    "count": 35
+    "count": 10
   },
   {
-    "colorScheme": "dyadColor",
-    "count": 19
+    "colorScheme": "triadColor",
+    "count": 7
   },
   {
-    "colorScheme": "splitComplementary",
-    "count": 12
-  },
-  {
-    "colorScheme": "analogyColor",
-    "count": 8
-  },
-  {
-    "colorScheme": "intermediateColor",
-    "count": 1
+    "colorScheme": "dominantTone",
+    "count": 3
   }
+
 ]
